@@ -1,0 +1,19 @@
+{
+  "name": "@lictor/shield",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lictor Shield — Chrome extension that audits AI-built sites locally.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "typecheck": "tsc --noEmit",
+    "wasm": "cd ../core && wasm-pack build --target web --out-dir ../shield/wasm"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.270",
+    "typescript": "^5.5.0",
+    "vite": "^5.4.0"
+  }
+}

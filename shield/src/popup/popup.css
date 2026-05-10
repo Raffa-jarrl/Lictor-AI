@@ -1,0 +1,124 @@
+/* Lictor Shield — popup styling.
+ * Brand palette per docs/BRAND.md: imperial purple + gold leaf on charcoal. */
+
+:root {
+  --bg: #0F1419;
+  --surface: #1A2028;
+  --text: #E8E2D5;
+  --text-muted: #6E7780;
+  --accent: #C9A23B;
+  --primary: #3D2C5E;
+  --critical: #C0392B;
+  --warning: #D68910;
+  --success: #3D7C5E;
+  --border: #2A323E;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 320px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  font-size: 11px;
+}
+
+.hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(61, 44, 94, 0.18), transparent);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mark {
+  color: var(--accent);
+  font-size: 20px;
+  line-height: 1;
+}
+
+.wordmark {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+}
+
+.version {
+  color: var(--text-muted);
+}
+
+main {
+  padding: 14px;
+}
+
+.status {
+  padding: 12px;
+  border-radius: 6px;
+  background: var(--surface);
+  border-left: 3px solid var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.status--scanning { border-left-color: var(--text-muted); }
+.status--clean    { border-left-color: var(--success); }
+.status--warning  { border-left-color: var(--warning); }
+.status--critical { border-left-color: var(--critical); }
+
+.status__title {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.status__sub {
+  color: var(--text-muted);
+}
+
+.findings {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.findings li {
+  padding: 10px;
+  background: var(--surface);
+  border-radius: 5px;
+  border-left: 3px solid var(--border);
+}
+
+.cta {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  border-top: 1px solid var(--border);
+  margin: 0 -14px -14px;
+}
+
+.cta:hover {
+  background: rgba(201, 162, 59, 0.08);
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lictor Shield</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="hdr">
+    <div class="brand">
+      <span class="mark" aria-hidden="true">⚜</span>
+      <span class="wordmark">Lictor</span>
+    </div>
+    <span class="version mono" id="version">v0.1.0</span>
+  </header>
+
+  <main>
+    <div id="status" class="status status--scanning">
+      <div class="status__title">Scanning…</div>
+      <div class="status__sub mono">Analyzing this page locally</div>
+    </div>
+
+    <ul id="findings" class="findings" hidden></ul>
+
+    <a class="cta" href="https://lictor.ai" target="_blank" rel="noopener">
+      What does this mean? →
+    </a>
+  </main>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

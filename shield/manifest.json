@@ -1,0 +1,60 @@
+{
+  "manifest_version": 3,
+  "name": "Lictor Shield",
+  "short_name": "Lictor",
+  "version": "0.1.0",
+  "description": "Audits AI-built sites locally before you trust them. Alarms when AI agents access your data.",
+  "homepage_url": "https://lictor.ai",
+  "author": "Lictor AI",
+
+  "icons": {
+    "16":  "assets/icon-16.png",
+    "32":  "assets/icon-32.png",
+    "48":  "assets/icon-48.png",
+    "128": "assets/icon-128.png"
+  },
+
+  "action": {
+    "default_title": "Lictor Shield",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16":  "assets/icon-16.png",
+      "32":  "assets/icon-32.png",
+      "48":  "assets/icon-48.png"
+    }
+  },
+
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["wasm/lictor_core_bg.wasm", "wasm/lictor_core.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  }
+}

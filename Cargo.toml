@@ -1,0 +1,40 @@
+[workspace]
+resolver = "2"
+members = ["core"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Lictor AI"]
+license = "MIT"
+repository = "https://github.com/lictor-ai/lictor"
+homepage = "https://lictor.ai"
+
+[workspace.dependencies]
+# HTTP
+ureq = { version = "2.10", default-features = false, features = ["tls"] }
+url = "2.5"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Pattern matching
+regex = "1.11"
+
+# WASM bindings (for browser builds)
+wasm-bindgen = "0.2"
+serde-wasm-bindgen = "0.6"
+
+# Errors
+thiserror = "2.0"
+
+# Logging
+tracing = "0.1"
+
+[profile.release]
+opt-level = "z"      # optimize for size (matters for WASM bundle size in Shield)
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

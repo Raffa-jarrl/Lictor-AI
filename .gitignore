@@ -1,0 +1,51 @@
+# Build artifacts
+target/
+node_modules/
+dist/
+build/
+out/
+*.wasm
+pkg/
+
+# Cargo
+Cargo.lock     # workspaces — keep at root only
+**/Cargo.lock
+!Cargo.lock
+
+# JS/TS
+.next/
+.turbo/
+.cache/
+*.log
+.npm/
+.pnpm-store/
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*~
+Thumbs.db
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Local agent / Claude Code state
+.claude/
+
+# Test outputs
+coverage/
+*.lcov
+.nyc_output/
+
+# OS-specific
+.fuse_hidden*
+
+# Lictor-specific
+shield/dist/
+shield/build/
+shield/web-ext-artifacts/
+core/wasm-pkg/

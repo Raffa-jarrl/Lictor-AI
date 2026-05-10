@@ -1,0 +1,37 @@
+[package]
+name = "lictor-core"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+description = "Shared security check engine for the Lictor AI suite. Native + WASM."
+readme = "README.md"
+categories = ["web-programming", "command-line-utilities"]
+keywords = ["security", "ai", "audit", "wasm"]
+
+[lib]
+# `cdylib` for WASM (loaded by Shield extension), `rlib` for Sentinel/Guardian native use
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["native"]
+# Native features: full HTTP client. Used by Sentinel SDK + Guardian.
+native = ["dep:ureq"]
+# WASM features: no HTTP (browser handles fetch); just static analysis.
+wasm = ["dep:wasm-bindgen", "dep:serde-wasm-bindgen"]
+
+[dependencies]
+ureq = { workspace = true, optional = true }
+url = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+regex = { workspace = true }
+wasm-bindgen = { workspace = true, optional = true }
+serde-wasm-bindgen = { workspace = true, optional = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+serde_json = { workspace = true }
