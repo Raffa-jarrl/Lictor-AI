@@ -20,3 +20,8 @@ export type {
   TripAction,
 } from "./types.js";
 export { SENTINEL_VERSION } from "./version.js";
+
+// Internal — for users implementing custom checks (advanced use). The
+// `Check` interface is stable; the registry helpers may change before v1.0.
+export type { Check, CheckResult } from "./check-runner.js";
+export { registerCheck, getCheck, registeredCheckIds, PASS } from "./check-runner.js";
