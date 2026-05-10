@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "Lictor Shield — Chrome extension that audits AI-built sites locally.",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "wasm": "node scripts/build-wasm.mjs",

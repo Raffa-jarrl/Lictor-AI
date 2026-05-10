@@ -1,0 +1,32 @@
+Lictor AI
+Copyright 2026 Lictor AI
+
+This product includes software developed at Lictor AI (https://lictor.ai).
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The `guardian/` directory is licensed under separate source-available terms;
+see guardian/LICENSE.
+
+---
+
+Third-party software bundled with this distribution:
+
+  lictor-core (Rust):
+    - ureq (Apache-2.0 OR MIT)
+    - url (Apache-2.0 OR MIT)
+    - regex (Apache-2.0 OR MIT)
+    - serde, serde_json (Apache-2.0 OR MIT)
+    - once_cell (Apache-2.0 OR MIT)
+    - thiserror (Apache-2.0 OR MIT)
+    - tracing (MIT)
+    - wasm-bindgen, serde-wasm-bindgen (Apache-2.0 OR MIT) — wasm builds only
+
+  shield (TypeScript / Chrome extension):
+    - lictor-core (Apache-2.0, this repo)
+
+  sentinel (TypeScript):
+    - tsx, typescript, @types/node — devDependencies only, MIT/Apache-2.0
+
+  sentinel-py (Python):
+    - hatchling — build dependency only, MIT
