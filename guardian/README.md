@@ -1,38 +1,61 @@
 # Lictor Guardian
 
-> Hosted enterprise platform. Real-time AI security monitoring across an organization. SOC 2 / GDPR / EU AI Act reporting. Incident response.
+> Hosted dashboard for Sentinel telemetry. AI security monitoring + compliance evidence for teams.
 
 ## Status
 
-Placeholder. Lands in **Phase 3** (weeks 9–12 of the build plan).
+Pre-alpha skeleton. Phase 2 build (W11–17, July 20 – Sep 6, 2026).
 
-## What Guardian is
+| Surface | Status |
+|---|---|
+| Next.js app shell | ✅ scaffolded |
+| Postgres schema | ✅ migration 0001 written |
+| `/api/ingest` endpoint | ✅ validates + auths; INSERT lands W11 |
+| Magic-link auth | ⏳ W11 |
+| Incident timeline UI | ⏳ W12 |
+| Audit log export | ⏳ W14 |
+| Slack webhook | ⏳ W15 |
+| Stripe scaffolding | ⏳ W16 |
 
-The third tier of the Lictor suite. Where Shield is consumer-side and Sentinel runs in-process inside developer applications, **Guardian is the hosted service that aggregates Sentinel telemetry across an entire organization** and turns it into the artifacts an enterprise actually needs to operate AI in production:
+## Local development
 
-- **Real-time incident view** — every prompt-injection attempt, every blocked tool call, every flagged AI output across every service
-- **Audit log export** — SOC 2 Type II auditors increasingly require logs of AI agent activity. Guardian exports them in standard formats.
-- **Compliance report templates** — pre-built templates for SOC 2, GDPR Art. 32, HIPAA, EU AI Act
-- **Alerting** — Slack / email / PagerDuty for security incidents
-- **SSO/SAML** — enterprise identity from day 1
-- **Support SLAs** — what enterprise contracts are actually paying for
+```bash
+# 1. Postgres up locally
+brew install postgresql@16
+brew services start postgresql@16
+createdb lictor_guardian
+createuser -s lictor_guardian || true
 
-## Planned shape
+# 2. Env
+cp .env.example .env.local
+# Edit DATABASE_URL + SESSION_SECRET
 
-- Next.js dashboard
-- Postgres + Redis backend (Node.js / TypeScript)
-- Receives ingest from `@lictor/sentinel` clients via a write-only API
-- Multi-tenant, single-tenant deployment available for FedRAMP/HIPAA-heavy customers (Year 2)
+# 3. Install deps
+pnpm install
 
-## Pricing (planned)
+# 4. Run migrations
+pnpm db:migrate
 
-| Tier | Price | Audience |
-|---|---|---|
-| **Self-Serve** | $999/mo per org | SMB, mid-market |
-| **Enterprise** | $50K–$500K / year | Custom; SOC 2, SAML, dedicated CSM |
+# 5. Dev server
+pnpm dev
+# → http://localhost:3100
+```
+
+## Architecture
+
+- **Next.js 15 App Router** for server-rendered pages + API routes
+- **Postgres** via Kysely (type-safe SQL builder) over `pg`. No ORM.
+- **Magic-link auth** via Postmark; sessions backed by signed cookies + DB-side session rows
+- **Append-only audit log** with DB triggers blocking UPDATE/DELETE — for SOC 2 / GDPR Article 32 evidence
+
+## Specs
+
+- [`../docs/specs/guardian-schema.md`](../docs/specs/guardian-schema.md) — data model
+- [`../docs/specs/wire-format.md`](../docs/specs/wire-format.md) — Sentinel → Guardian envelope
+- [`../docs/specs/sentinel-api.md`](../docs/specs/sentinel-api.md) — what produces these events
 
 ## License
 
-**Source-available, NOT MIT.** The Guardian code lives in this repo for transparency, but is licensed for hosted use through lictor.ai only — not for self-hosting, redistribution, or production deployment elsewhere. See `LICENSE` (root).
-
-This is the same model used by Sentry and Posthog: open monitoring SDKs (Sentinel here), source-available hosted product (Guardian here). The wedge is the suite + the brand, not source-code restriction.
+Source-available, NOT MIT. The Guardian source is published in this repo for
+transparency, but is licensed for hosted use through lictor.ai only — not for
+self-hosting or redistribution. See the root `LICENSE`.

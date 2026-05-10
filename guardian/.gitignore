@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+dist/
+build/
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+.cache/
+.turbo/
+next-env.d.ts
+tsconfig.tsbuildinfo
