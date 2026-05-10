@@ -40,6 +40,7 @@ async function clean() {
   await mkdir(join(dist, "popup"), { recursive: true });
   await mkdir(join(dist, "wasm"), { recursive: true });
   await mkdir(join(dist, "assets"), { recursive: true });
+  await mkdir(join(dist, "popup"), { recursive: true });
 }
 
 async function copyStatic() {
@@ -48,6 +49,12 @@ async function copyStatic() {
   // popup html + css
   await cp(join(root, "src/popup/popup.html"), join(dist, "popup/popup.html"));
   await cp(join(root, "src/popup/popup.css"), join(dist, "popup/popup.css"));
+
+  // Logo SVG used in the popup header (lighter than embedding inline)
+  const brandSvg = join(root, "..", "brand", "lictor-mark.svg");
+  if (existsSync(brandSvg)) {
+    await cp(brandSvg, join(dist, "popup", "mark.svg"));
+  }
 
   // WASM (built by `pnpm wasm` / `npm run wasm`)
   const wasmDir = join(root, "wasm");
@@ -60,15 +67,24 @@ async function copyStatic() {
     }
   }
 
-  // Icons (if rendered). We ship a one-pixel transparent PNG so the
-  // manifest validates even before a real designer pass — Chrome accepts
-  // it. Replace with rendered helmet logos before Web Store submission.
+  // Icons. Sourced from ../brand/ where the SVG sources live alongside
+  // pre-rendered PNGs at every Chrome-required size. If a size is missing
+  // we fall back to the one-pixel transparent placeholder so the manifest
+  // still validates, but log a warning so the gap is obvious.
+  const brandDir = join(root, "..", "brand");
   const oneByOnePng = Buffer.from(
     "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
     "base64"
   );
   for (const size of [16, 32, 48, 128]) {
-    await writeFile(join(dist, "assets", `icon-${size}.png`), oneByOnePng);
+    const src = join(brandDir, `icon-${size}.png`);
+    const dst = join(dist, "assets", `icon-${size}.png`);
+    if (existsSync(src)) {
+      await cp(src, dst);
+    } else {
+      console.warn(`⚠  brand/icon-${size}.png missing — shipping 1×1 placeholder.`);
+      await writeFile(dst, oneByOnePng);
+    }
   }
 }
 

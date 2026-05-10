@@ -6,7 +6,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "wasm": "cd ../core && wasm-pack build --target web --out-dir ../shield/wasm --no-default-features --features wasm",
+    "wasm": "node scripts/build-wasm.mjs",
     "build": "node build.mjs",
     "dev": "node build.mjs --watch",
     "typecheck": "tsc --noEmit",

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Lictor AI — secondary fasces mark.
+
+  The fasces is the historical badge that lictors actually carried — a bound
+  bundle of rods with an axe head emerging. It's the more iconic Roman
+  authority symbol than the helmet. Used as an alternative favicon and as a
+  separator/ornament in long-form layouts.
+
+  The rods are rendered with a subtle gradient suggestion (using fill alone,
+  no gradients defined — keep it flat for crisp small-size rendering).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 256" role="img" aria-label="Lictor fasces">
+  <!-- Axe head: emerges to the right at the top -->
+  <path d="
+    M 64 32
+    L 96 24
+    Q 116 36 116 56
+    Q 116 76 96 88
+    L 64 80
+    Z"
+    fill="#C9A23B" />
+
+  <!-- Axe blade highlight (a sliver of bone for definition) -->
+  <path d="
+    M 96 24
+    Q 100 36 100 56
+    Q 100 76 96 88
+    L 92 88
+    Q 96 76 96 56
+    Q 96 36 92 24
+    Z"
+    fill="#F5F1E8" />
+
+  <!-- Rod bundle: 5 vertical rods bound by 3 horizontal cords -->
+  <g fill="#3D2C5E">
+    <rect x="40" y="32" width="8" height="200" rx="3" />
+    <rect x="52" y="32" width="8" height="200" rx="3" />
+    <rect x="64" y="32" width="8" height="200" rx="3" />
+    <rect x="76" y="32" width="8" height="200" rx="3" />
+    <rect x="88" y="32" width="8" height="200" rx="3" />
+  </g>
+
+  <!-- Cords binding the bundle -->
+  <g fill="#C9A23B">
+    <rect x="36" y="80" width="64" height="8" rx="3" />
+    <rect x="36" y="140" width="64" height="8" rx="3" />
+    <rect x="36" y="200" width="64" height="8" rx="3" />
+  </g>
+</svg>

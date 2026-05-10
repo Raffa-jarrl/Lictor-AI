@@ -44,9 +44,10 @@ html, body {
 .brand { display: flex; align-items: center; gap: 8px; }
 
 .mark {
-  color: var(--accent);
-  font-size: 20px;
-  line-height: 1;
+  display: block;
+  width: 22px;
+  height: 22px;
+  /* SVG carries its own colors */
 }
 
 .wordmark {
