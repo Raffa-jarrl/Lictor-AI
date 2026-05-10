@@ -1,45 +1,68 @@
-# Lictor Sentinel
+# @lictor/sentinel
 
-> Free SDK that wraps OpenAI / Anthropic clients. Blocks prompt injection, data exfiltration, and unsafe tool calls before they hit the model — and after the model responds.
+> Wraps OpenAI / Anthropic SDK clients to block prompt injection, data exfiltration, and unsafe AI behaviour.
 
 ## Status
 
-Placeholder. Lands in **Phase 2** (weeks 5–8 of the build plan). Tracking in [docs/projects/lictor/STRATEGY.md](../../GenerationAI/docs/projects/lictor/STRATEGY.md) (private).
+Pre-alpha. **API surface is locked** ([`docs/specs/sentinel-api.md`](../docs/specs/sentinel-api.md)). Check execution is stubbed and lands in Phase 1 (June–July 2026).
 
-## Planned shape
+| Feature | Status |
+|---|---|
+| `wrap()` API | ✅ stable, returns client unchanged at v0.1 |
+| Type definitions | ✅ stable |
+| Telemetry → Guardian | ✅ wired |
+| Fingerprint hashing | ✅ |
+| Prompt-injection check | ⏳ Phase 1 W4 |
+| PII-leak check | ⏳ Phase 1 W5 |
+| Secrets-in-input check | ⏳ Phase 1 W5 |
+| Streaming response interception | ⏳ v0.2 |
 
-Two language packages, one shared rule set (powered by `lictor-core`):
+## Install
 
-- **`@lictor/sentinel`** (npm, TypeScript) — wraps the OpenAI + Anthropic Node SDKs
-- **`lictor-sentinel`** (PyPI, Python) — wraps `openai` + `anthropic` Python clients
-
-Sketched API (subject to change — this is the *feel*, not the contract):
-
-```ts
-import OpenAI from 'openai';
-import { wrap } from '@lictor/sentinel';
-
-const client = wrap(new OpenAI(), {
-  preflight:  ['prompt-injection', 'pii-in-input'],
-  postflight: ['pii-leak', 'unsafe-tool-call'],
-  onIncident: (event) => console.warn('[lictor]', event),
-});
-
-// Same call site — Sentinel checks transparently before/after.
-const completion = await client.chat.completions.create({ /* ... */ });
+```bash
+pnpm add @lictor/sentinel
+# or
+npm i @lictor/sentinel
 ```
 
-## Design notes
+## Quick start
 
-- **Same call site.** No "rewrite your AI code with our SDK." We wrap the existing client; if Sentinel has nothing to flag, the call is a passthrough with ~1ms overhead.
-- **Local-first.** Default checks run in-process. No network calls. No telemetry.
-- **Optional Guardian link.** When `LICTOR_GUARDIAN_TOKEN` is set, incidents are forwarded to the hosted dashboard. Otherwise, on-device only.
-- **Free + MIT.** No paid feature gating in the SDK itself — paid value lives in Guardian.
+```ts
+import OpenAI from "openai";
+import { wrap } from "@lictor/sentinel";
 
-## Why this exists
+const client = wrap(new OpenAI(), {
+  preflight: ["prompt-injection", "secrets-in-input"],
+  postflight: ["pii-leak"],
+  onIncident: (event) => console.warn(`[lictor] ${event.severity}: ${event.title}`),
+  guardian: {
+    endpoint: "https://app.lictor.ai/api/ingest",
+    token: process.env.LICTOR_GUARDIAN_TOKEN!,
+  },
+});
 
-Today, integrating "AI safety" into a real product means ad-hoc input filtering, post-hoc regex checks, and hoping you remembered the cases that matter. Sentinel ships the rule set + the wrapping pattern as one library. New rules ship via a version bump.
+// Same call site. Sentinel intercepts pre-flight and post-flight.
+const completion = await client.chat.completions.create({
+  model: "gpt-4",
+  messages: [{ role: "user", content: userInput }],
+});
+```
+
+## Privacy contract
+
+- Sentinel **never** ships raw user content to Guardian.
+- The wire format includes only severities, check IDs, and 16-hex-char fingerprints (sha256 of the first 4 KB).
+- Telemetry is opt-in and disabled when `guardian` is not configured.
+- See [`docs/specs/wire-format.md`](../docs/specs/wire-format.md) §4 for the privacy invariants.
+
+## Build
+
+```bash
+pnpm install
+pnpm build
+pnpm test
+```
 
 ## License
 
-MIT (planned).
+MIT.

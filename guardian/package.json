@@ -1,0 +1,35 @@
+{
+  "name": "@lictor/guardian",
+  "version": "0.1.0-alpha.0",
+  "description": "Lictor Guardian — hosted dashboard for Sentinel telemetry. AI security monitoring + compliance evidence for teams.",
+  "license": "SEE LICENSE IN ../LICENSE",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --turbo --port 3100",
+    "build": "next build",
+    "start": "next start --port 3100",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "db:migrate": "node scripts/migrate.mjs",
+    "db:reset": "node scripts/migrate.mjs --reset"
+  },
+  "dependencies": {
+    "kysely": "^0.27.4",
+    "next": "^15.0.0",
+    "pg": "^8.13.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.11.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
