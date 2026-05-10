@@ -1,66 +1,114 @@
 /**
- * Lictor Shield — service worker (background script).
+ * Lictor Shield — background service worker.
  *
- * Responsibilities (target):
- *   - Receive findings from content scripts
- *   - Maintain a per-tab badge state (green / yellow / red)
- *   - Persist anonymous local-only history of audited origins (opt-in)
- *   - Surface real-time alarms when content script reports a sensitive
- *     surface being read by an AI agent
- *
- * Status: stub. Wire content-script → background message channel in Phase 1.
+ * Receives audit requests from content scripts, runs the WASM-backed audit
+ * engine, maintains per-tab state, updates the toolbar badge, and answers
+ * queries from the popup.
  */
 
-type Severity = 'critical' | 'high' | 'medium' | 'low' | 'info';
+import type {
+  AuditRequest,
+  ContentMessage,
+  PopupMessage,
+  TabAuditState,
+  TabStateReply,
+} from "./types.js";
+import { topSeverity } from "./types.js";
+import { audit } from "./audit-engine.js";
 
-interface Finding {
-  severity: Severity;
-  category: string;
-  title: string;
-  detail: string;
-  where_found: string;
-  remediation: string;
+// Per-tab state. Cleared on tab close.
+const tabState = new Map<number, TabAuditState>();
+
+const BADGE_COLORS = {
+  scanning: { text: "…", color: "#6E7780" },
+  info:     { text: "",  color: "#3D7C5E" },
+  low:      { text: "·", color: "#3D7C5E" },
+  medium:   { text: "!", color: "#D68910" },
+  high:     { text: "!", color: "#C0392B" },
+  critical: { text: "✕", color: "#C0392B" },
+  error:    { text: "?", color: "#6E7780" },
+} as const;
+
+function setBadge(tabId: number, kind: keyof typeof BADGE_COLORS) {
+  const b = BADGE_COLORS[kind];
+  void chrome.action.setBadgeText({ tabId, text: b.text });
+  void chrome.action.setBadgeBackgroundColor({ tabId, color: b.color });
 }
 
-interface AuditMessage {
-  type: 'audit-result';
-  origin: string;
-  findings: Finding[];
+async function handleAuditRequest(req: AuditRequest, tabId: number): Promise<void> {
+  // Mark scanning
+  tabState.set(tabId, {
+    origin: req.origin,
+    status: "scanning",
+    findings: [],
+    startedAt: Date.now(),
+  });
+  setBadge(tabId, "scanning");
+
+  try {
+    const findings = await audit(req.origin, req.landingHtml);
+    const top = findings.length === 0 ? "info" : topSeverity(findings);
+    tabState.set(tabId, {
+      origin: req.origin,
+      status: "done",
+      findings,
+      startedAt: tabState.get(tabId)?.startedAt ?? Date.now(),
+      completedAt: Date.now(),
+    });
+    setBadge(tabId, top);
+    console.log(
+      `[Lictor] tab ${tabId} ${req.origin}: ${findings.length} finding(s), top=${top}`
+    );
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    tabState.set(tabId, {
+      origin: req.origin,
+      status: "error",
+      findings: [],
+      startedAt: tabState.get(tabId)?.startedAt ?? Date.now(),
+      completedAt: Date.now(),
+      error: msg,
+    });
+    setBadge(tabId, "error");
+    console.error(`[Lictor] tab ${tabId} ${req.origin} audit failed:`, e);
+  }
 }
 
-// Map: tabId -> highest-severity finding observed so far for that tab.
-const tabSeverity = new Map<number, Severity>();
+chrome.runtime.onMessage.addListener(
+  (msg: ContentMessage | PopupMessage, sender, sendResponse) => {
+    if (msg.type === "audit-request") {
+      const tabId = sender.tab?.id;
+      if (typeof tabId === "number") {
+        // Fire-and-forget. We don't sendResponse for this kind.
+        void handleAuditRequest(msg, tabId);
+      }
+      return false;
+    }
 
-const SEVERITY_ORDER: Severity[] = ['info', 'low', 'medium', 'high', 'critical'];
+    if (msg.type === "get-tab-state") {
+      const reply: TabStateReply = {
+        type: "tab-state",
+        tabId: msg.tabId,
+        state: tabState.get(msg.tabId) ?? null,
+      };
+      sendResponse(reply);
+      return false;
+    }
 
-function maxSeverity(a: Severity, b: Severity): Severity {
-  return SEVERITY_ORDER.indexOf(a) >= SEVERITY_ORDER.indexOf(b) ? a : b;
-}
-
-function badgeForSeverity(s: Severity | undefined): { text: string; color: string } {
-  if (!s || s === 'info') return { text: '', color: '#3D7C5E' };
-  if (s === 'low') return { text: '·', color: '#3D7C5E' };
-  if (s === 'medium') return { text: '!', color: '#D68910' };
-  if (s === 'high') return { text: '!', color: '#C0392B' };
-  return { text: '✕', color: '#C0392B' }; // critical
-}
-
-chrome.runtime.onMessage.addListener((msg: AuditMessage, sender) => {
-  if (msg.type !== 'audit-result' || !sender.tab?.id) return;
-  const tabId = sender.tab.id;
-
-  const top: Severity =
-    msg.findings.reduce<Severity>((acc, f) => maxSeverity(acc, f.severity), 'info');
-
-  const previous = tabSeverity.get(tabId);
-  const next = previous ? maxSeverity(previous, top) : top;
-  tabSeverity.set(tabId, next);
-
-  const badge = badgeForSeverity(next);
-  void chrome.action.setBadgeText({ tabId, text: badge.text });
-  void chrome.action.setBadgeBackgroundColor({ tabId, color: badge.color });
-});
+    return false;
+  }
+);
 
 chrome.tabs.onRemoved.addListener((tabId) => {
-  tabSeverity.delete(tabId);
+  tabState.delete(tabId);
 });
+
+chrome.tabs.onUpdated.addListener((tabId, info) => {
+  // Reset state when navigating to a new URL.
+  if (info.url) {
+    tabState.delete(tabId);
+    setBadge(tabId, "info"); // clears badge
+    void chrome.action.setBadgeText({ tabId, text: "" });
+  }
+});
+

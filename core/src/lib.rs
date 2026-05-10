@@ -27,6 +27,8 @@ pub mod checks;
 pub mod finding;
 pub mod http;
 pub mod report;
+#[cfg(feature = "wasm")]
+pub mod wasm;
 
 pub use finding::{Category, Finding, Severity};
 
@@ -88,7 +90,8 @@ mod tests {
 
     #[test]
     fn run_all_checks_against_clean_html() {
-        let fetcher = MockFetch::new().with_html("https://example.com/", "<html><body>Hello</body></html>");
+        let fetcher =
+            MockFetch::new().with_html("https://example.com/", "<html><body>Hello</body></html>");
         let findings = run_all_checks("https://example.com/", &fetcher);
         // We expect at least the two "no surface detected" info findings (auth + ai-agent).
         assert!(

@@ -124,7 +124,11 @@ fn unix_to_ymdhm_utc(mut secs: u64) -> (u32, u32, u32, u32, u32) {
     }
     let months_norm = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     let months_leap = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    let months = if is_leap(year) { months_leap } else { months_norm };
+    let months = if is_leap(year) {
+        months_leap
+    } else {
+        months_norm
+    };
     let mut month: u32 = 1;
     for &m in &months {
         if days < m as u64 {

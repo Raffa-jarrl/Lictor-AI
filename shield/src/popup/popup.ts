@@ -1,95 +1,128 @@
 /**
  * Lictor Shield — popup script.
  *
- * Asks the active tab's content script for its current findings; renders
- * a quick verdict + scrollable list. Read-only — never writes anywhere.
+ * Asks the background service worker for the current tab's audit state.
+ * Renders a verdict header + finding list.
  */
 
-interface Finding {
-  severity: 'critical' | 'high' | 'medium' | 'low' | 'info';
-  category: string;
-  title: string;
-  where_found: string;
-}
+import type { Finding, GetTabState, TabStateReply } from "../types.js";
+import { severityRank, topSeverity } from "../types.js";
 
-interface AuditSnapshot {
-  origin: string;
-  findings: Finding[];
-}
-
-const SEVERITY_LABELS: Record<Finding['severity'], string> = {
-  critical: 'Critical',
-  high: 'High',
-  medium: 'Medium',
-  low: 'Low',
-  info: 'Info',
+const SEVERITY_LABELS: Record<Finding["severity"], string> = {
+  critical: "Critical",
+  high: "High",
+  medium: "Medium",
+  low: "Low",
+  info: "Info",
 };
 
-function rank(s: Finding['severity']): number {
-  return ['info', 'low', 'medium', 'high', 'critical'].indexOf(s);
-}
+const SEVERITY_PILL: Record<Finding["severity"], string> = {
+  critical: "🟥",
+  high: "🟧",
+  medium: "🟨",
+  low: "🟦",
+  info: "⬜",
+};
 
-function topSeverity(findings: Finding[]): Finding['severity'] {
-  return findings.reduce<Finding['severity']>(
-    (acc, f) => (rank(f.severity) > rank(acc) ? f.severity : acc),
-    'info',
-  );
-}
-
-async function getActiveTabFindings(): Promise<AuditSnapshot | null> {
+async function getCurrentTabState(): Promise<{ tabId: number | null; reply: TabStateReply | null }> {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  if (!tab?.id) return null;
-
-  // TODO(Phase 1): replace with real round-trip to background.ts that holds
-  // last audit per tab. For now, return a stub so the UI renders.
-  return {
-    origin: tab.url ? new URL(tab.url).origin : 'unknown',
-    findings: [],
-  };
+  if (!tab?.id) return { tabId: null, reply: null };
+  const msg: GetTabState = { type: "get-tab-state", tabId: tab.id };
+  const reply = (await chrome.runtime.sendMessage(msg)) as TabStateReply | undefined;
+  return { tabId: tab.id, reply: reply ?? null };
 }
 
-function render(snapshot: AuditSnapshot | null) {
-  const status = document.getElementById('status');
-  const list = document.getElementById('findings');
-  if (!status || !list) return;
+function renderEmpty(): void {
+  const status = document.getElementById("status")!;
+  status.className = "status status--clean";
+  status.querySelector(".status__title")!.textContent = "Nothing to audit here";
+  status.querySelector(".status__sub")!.textContent =
+    "Visit an AI-built site (Supabase, OpenAI/Anthropic, Vercel, etc.) to see audit results.";
+}
 
-  if (!snapshot) {
-    status.className = 'status status--scanning';
-    status.querySelector('.status__title')!.textContent = 'No active tab';
+function renderScanning(origin: string): void {
+  const status = document.getElementById("status")!;
+  status.className = "status status--scanning";
+  status.querySelector(".status__title")!.textContent = "Scanning…";
+  status.querySelector(".status__sub")!.textContent = origin;
+}
+
+function renderError(origin: string, err: string | undefined): void {
+  const status = document.getElementById("status")!;
+  status.className = "status status--critical";
+  status.querySelector(".status__title")!.textContent = "Audit error";
+  status.querySelector(".status__sub")!.textContent = err || origin;
+}
+
+function renderFindings(origin: string, findings: Finding[]): void {
+  const status = document.getElementById("status")!;
+  const list = document.getElementById("findings")!;
+
+  if (findings.length === 0) {
+    status.className = "status status--clean";
+    status.querySelector(".status__title")!.textContent = "No findings";
+    status.querySelector(".status__sub")!.textContent = origin;
+    list.hidden = true;
     return;
   }
 
-  if (snapshot.findings.length === 0) {
-    status.className = 'status status--clean';
-    status.querySelector('.status__title')!.textContent = 'No findings';
-    status.querySelector('.status__sub')!.textContent = snapshot.origin;
-    return;
-  }
-
-  const top = topSeverity(snapshot.findings);
+  // Sort by severity desc.
+  const sorted = [...findings].sort((a, b) => severityRank(b.severity) - severityRank(a.severity));
+  const top = topSeverity(findings);
   const cls =
-    top === 'critical' || top === 'high' ? 'status--critical' :
-    top === 'medium'                    ? 'status--warning'  :
-                                          'status--clean';
+    top === "critical" || top === "high" ? "status--critical" :
+    top === "medium"                     ? "status--warning"  :
+                                           "status--clean";
 
   status.className = `status ${cls}`;
-  status.querySelector('.status__title')!.textContent =
-    `${snapshot.findings.length} finding${snapshot.findings.length === 1 ? '' : 's'} — top: ${SEVERITY_LABELS[top]}`;
-  status.querySelector('.status__sub')!.textContent = snapshot.origin;
+  status.querySelector(".status__title")!.textContent =
+    `${findings.length} finding${findings.length === 1 ? "" : "s"} — top: ${SEVERITY_LABELS[top]}`;
+  status.querySelector(".status__sub")!.textContent = origin;
 
   list.hidden = false;
-  list.innerHTML = '';
-  for (const f of snapshot.findings) {
-    const li = document.createElement('li');
+  list.innerHTML = "";
+  for (const f of sorted) {
+    const li = document.createElement("li");
+    li.className = `finding finding--${f.severity}`;
     li.innerHTML = `
-      <div><strong>${f.title}</strong></div>
-      <div class="mono" style="color: var(--text-muted)">${f.where_found}</div>
+      <div class="finding__head">
+        <span class="finding__pill" aria-label="${SEVERITY_LABELS[f.severity]}">${SEVERITY_PILL[f.severity]}</span>
+        <span class="finding__title">${escapeHtml(f.title)}</span>
+      </div>
+      <div class="finding__where mono">${escapeHtml(f.where_found)}</div>
     `;
     list.appendChild(li);
   }
 }
 
-void getActiveTabFindings().then(render).catch((e) => {
-  console.error('[Lictor Shield popup]', e);
-  render(null);
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+async function refresh(): Promise<void> {
+  const { reply } = await getCurrentTabState();
+  if (!reply || !reply.state) {
+    renderEmpty();
+    return;
+  }
+  const s = reply.state;
+  if (s.status === "scanning") {
+    renderScanning(s.origin);
+    // Poll while still scanning.
+    setTimeout(() => void refresh(), 700);
+  } else if (s.status === "error") {
+    renderError(s.origin, s.error);
+  } else {
+    renderFindings(s.origin, s.findings);
+  }
+}
+
+void refresh().catch((e) => {
+  console.error("[Lictor Shield popup]", e);
+  renderError("(unknown)", String(e));
 });

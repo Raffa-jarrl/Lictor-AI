@@ -4,7 +4,7 @@
 
 Lictor is an open-source AI security suite. Three products, one shared engine:
 
-- **[Lictor Shield](./shield)** — free Chrome extension. Audits AI-built sites before you sign up; alarms when AI accesses your data.
+- **[Lictor Shield](./shield)** — free Chrome extension. Audits AI-built sites locally before you sign up; alarms when AI agents access your data.
 - **[Lictor Sentinel](./sentinel)** — free SDK (npm + pip). Wraps OpenAI/Anthropic SDKs; blocks prompt injection, data exfiltration, and unsafe tool calls.
 - **[Lictor Guardian](./guardian)** — enterprise SaaS. Real-time AI security platform with SOC 2 / GDPR / EU AI Act reporting.
 
@@ -12,23 +12,51 @@ All three share **[Lictor Core](./core)** — a Rust crate that compiles to nati
 
 ## Status
 
-Pre-alpha. Building in public. Star the repo to follow.
+Pre-alpha. Building in public.
 
 | Component | Status |
 |---|---|
-| `core/` | ✅ Phase 1 ported — 5 checks, 30 tests passing, working CLI example |
-| `shield/` | manifest stubbed, content-script wired; WASM bridge to `core` is the next Phase 1 step |
+| `core/` | ✅ Phase 1 — 5 checks (secrets / database / auth / CORS / AI-agent), native + WASM, 39 tests, working CLI |
+| `shield/` | ✅ Phase 1 — Chrome MV3 extension, WASM-backed audits, real popup verdict, loads unpacked into Chrome |
 | `sentinel/` | placeholder (Phase 2) |
 | `guardian/` | placeholder (Phase 3) |
 
 ## Try it (native CLI)
 
+Audit any AI-built site from the terminal. The audit is read-only and rate-limited to 1 req/sec/host.
+
 ```bash
-cd ~/Lictor
+git clone https://github.com/lictor-ai/lictor.git
+cd lictor
+
+# One-time setup
+brew install rustup wasm-pack    # macOS
+rustup default stable
+rustup target add wasm32-unknown-unknown
+
+# Run
 cargo run --release --example audit -- https://your-vibe-coded-app.com -o report.md
 ```
 
-Read-only. Rate-limited to 1 req/sec/host. Same checks as the upstream `audit.py`.
+A self-contained vulnerable demo lives in [`examples/vulnerable-demo/`](./examples/vulnerable-demo/) — spin it up with `python3 -m http.server` and audit it to verify the engine works.
+
+## Try it (Chrome extension)
+
+```bash
+cd shield
+pnpm install
+pnpm wasm        # builds lictor-core to WASM, copies into shield/wasm/
+pnpm build       # produces shield/dist/
+```
+
+Then in Chrome → `chrome://extensions` → Developer Mode → Load unpacked → select `shield/dist/`.
+
+Visit any AI-built site (Vercel/Supabase/OpenAI/Anthropic fingerprints) and the toolbar badge will report findings. A vulnerable demo to test against:
+
+```bash
+( cd examples/vulnerable-demo && python3 -m http.server 8765 )
+# then in Chrome: open http://localhost:8765/
+```
 
 ## Why
 

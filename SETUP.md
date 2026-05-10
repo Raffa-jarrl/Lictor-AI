@@ -52,16 +52,19 @@ pnpm --filter @lictor/shield dev
 4. Click **Load unpacked** → select `~/Lictor/shield/dist`
 5. Pin the Lictor icon to the toolbar
 
-## Known gaps in this scaffold
+## Phase 1 status
 
-These are deliberately empty — they land in their respective build phases.
+Phase 1 is **done**. The core engine + Shield extension are wired end-to-end:
 
-| Path | Empty reason |
+- `core/` — 5 checks ported from upstream `audit.py`, 39 tests passing, native + WASM builds clean, clippy clean
+- `shield/` — Chrome MV3 extension; content-script detects AI-built sites, background runs full WASM-backed audit, popup shows live findings with severity badges
+- `examples/vulnerable-demo/` — fixture used to validate the engine catches the 6 expected findings against real HTTP
+
+## Known gaps (deferred to later phases)
+
+| Path | Status |
 |---|---|
-| `core/src/checks/*.rs` (5 files) | Stubs return empty `Vec<Finding>`. Real rules port from `audit.py` in Phase 1. |
-| `core/src/http.rs` | Stub returns error. Real polite client lands in Phase 1. |
-| `shield/src/content.ts` | Has detection heuristic + stub finding. Real WASM dispatch in Phase 1. |
 | `sentinel/` | One README. Code lands in Phase 2. |
 | `guardian/` | One README. Code lands in Phase 3. |
-| `examples/` | Empty. Populated in Phase 2 once Sentinel ships. |
-| `shield/assets/icon-*.png` | Not yet rendered. Need designer pass on the Praetorian helmet mark. |
+| `shield/dist/assets/icon-*.png` | 1×1 transparent placeholders. Need designer pass on the Praetorian helmet mark before Web Store submission. |
+| `wasm-opt` size pass | Disabled in Cargo.toml (bundled wasm-opt is older than rustc's bulk-memory output). 960 KB → ~280 KB once we wire a newer wasm-opt. |

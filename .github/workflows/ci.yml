@@ -1,0 +1,124 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: short
+
+jobs:
+  core:
+    name: lictor-core (native + wasm)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        run: |
+          rustup toolchain install stable --profile minimal --component clippy --component rustfmt
+          rustup target add wasm32-unknown-unknown
+          rustup default stable
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Format check
+        run: cargo fmt --all -- --check
+
+      - name: Clippy (native)
+        run: cargo clippy -p lictor-core -- -D warnings
+
+      - name: Clippy (wasm)
+        run: cargo clippy -p lictor-core --no-default-features --features wasm --target wasm32-unknown-unknown -- -D warnings
+
+      - name: Tests
+        run: cargo test -p lictor-core --all-features
+
+      - name: Build native release
+        run: cargo build --release -p lictor-core
+
+      - name: Build WASM
+        run: cargo build --release -p lictor-core --no-default-features --features wasm --target wasm32-unknown-unknown
+
+      - name: Build native CLI example
+        run: cargo build --release --example audit -p lictor-core
+
+  shield:
+    name: lictor-shield (TypeScript + build)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: core
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup target add wasm32-unknown-unknown
+          rustup default stable
+
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Install Shield deps
+        working-directory: shield
+        run: pnpm install --frozen-lockfile=false
+
+      - name: Build WASM into shield/wasm/
+        working-directory: shield
+        run: pnpm wasm
+
+      - name: Typecheck Shield
+        working-directory: shield
+        run: pnpm typecheck
+
+      - name: Build Shield extension
+        working-directory: shield
+        run: pnpm build
+
+      - name: Verify dist/ has expected files
+        run: |
+          test -f shield/dist/manifest.json
+          test -f shield/dist/background.js
+          test -f shield/dist/content.js
+          test -f shield/dist/popup/popup.js
+          test -f shield/dist/popup/popup.html
+          test -f shield/dist/wasm/lictor_core_bg.wasm
+          test -f shield/dist/wasm/lictor_core.js
+          echo "✓ all expected dist/ files present"
+
+      - name: Upload Shield extension artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lictor-shield-unpacked
+          path: shield/dist/
+          retention-days: 14

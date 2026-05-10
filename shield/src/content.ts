@@ -1,77 +1,51 @@
 /**
  * Lictor Shield — content script.
  *
- * Runs in every tab. Responsibilities (target):
- *   1. Detect AI-built site fingerprints (Next.js, Vite, Supabase, OpenAI/Anthropic SDKs)
- *   2. Load lictor-core WASM (lazy, only when fingerprint matches)
- *   3. Run static checks against page HTML / JS
- *   4. Watch DOM for AI-agent surfaces reading sensitive data (localStorage,
- *      cookies, form contents) and ship-to-network patterns
- *   5. Forward findings to background.ts for badge + alarm UI
+ * Tiny by design. Just two responsibilities:
+ *   1. Detect AI-built site fingerprints in the page (cheap heuristic — exit
+ *      fast on negative).
+ *   2. Forward the page HTML + origin to the background service worker, which
+ *      does all I/O and runs the WASM audit.
  *
- * Status: stub. Detection heuristic + message passing scaffolded; real audit
- * pipeline lands in Phase 1 once WASM bundle is wired.
+ * No WASM is loaded here — content scripts can't easily import WASM, and
+ * background can fetch any same/cross-origin URL with our manifest perms.
  */
 
-interface Finding {
-  severity: 'critical' | 'high' | 'medium' | 'low' | 'info';
-  category: string;
-  title: string;
-  detail: string;
-  where_found: string;
-  remediation: string;
-}
+import type { AuditRequest } from "./types.js";
 
-/**
- * Quick heuristic: does this page look like an AI-built site we should audit?
- * Cheap synchronous checks only — we exit fast on negative.
- */
+const FINGERPRINTS: RegExp[] = [
+  /__NEXT_DATA__/,                       // Next.js SSR data
+  /\/_next\/static\//,                   // Next.js bundles
+  /supabase-js/i,                        // Supabase client
+  /firebase-app/i,                       // Firebase
+  /openai\.com\/v1/i,                    // OpenAI API
+  /api\.anthropic\.com/i,                // Anthropic API
+  /\bclaude-(?:opus|sonnet|haiku)/i,     // Claude model identifiers
+  /\bgpt-(?:4|3\.5|4o|5)/i,              // OpenAI model identifiers
+  /vite\/dist/i,                         // Vite
+  /\/_app-router-/i,                     // Next.js app router
+  /\bcreate-react-app/i,                 // CRA
+];
+
 function looksLikeAiBuiltSite(): boolean {
   const html = document.documentElement.outerHTML;
-
-  const fingerprints = [
-    /__NEXT_DATA__/,                       // Next.js
-    /\/_next\/static\//,                   // Next.js bundles
-    /supabase-js/i,                        // Supabase client
-    /firebase-app/i,                       // Firebase
-    /openai\.com\/v1/i,                    // OpenAI API
-    /api\.anthropic\.com/i,                // Anthropic API
-    /\bclaude-(?:opus|sonnet|haiku)/i,     // Claude model identifiers
-    /\bgpt-(?:4|3\.5|4o|5)/i,              // OpenAI model identifiers
-    /vite\/dist/i,                         // Vite
-    /<script[^>]*type="module"/i,          // ESM (modern build)
-  ];
-
-  return fingerprints.some((re) => re.test(html));
-}
-
-/**
- * Run the audit pipeline. Returns findings for this page.
- *
- * STUB: real impl will load `lictor-core` WASM and dispatch to its checks.
- */
-async function runAudit(): Promise<Finding[]> {
-  // TODO(Phase 1): import('../wasm/lictor_core.js') and run real checks.
-  // For now, emit one INFO finding so the toolchain end-to-end works.
-  return [
-    {
-      severity: 'info',
-      category: 'general',
-      title: 'AI-built site detected (audit stub)',
-      detail: 'Lictor Shield is wired but checks are not yet ported.',
-      where_found: location.origin,
-      remediation: 'Real checks ship in Phase 1.',
-    },
-  ];
+  return FINGERPRINTS.some((re) => re.test(html));
 }
 
 (async function main() {
+  // Don't audit chrome:// pages, file://, etc.
+  if (location.protocol !== "https:" && location.protocol !== "http:") return;
   if (!looksLikeAiBuiltSite()) return;
 
-  const findings = await runAudit();
-  chrome.runtime.sendMessage({
-    type: 'audit-result',
+  const msg: AuditRequest = {
+    type: "audit-request",
     origin: location.origin,
-    findings,
-  });
-})().catch((e) => console.error('[Lictor Shield] content script failed:', e));
+    landingHtml: document.documentElement.outerHTML,
+  };
+
+  try {
+    await chrome.runtime.sendMessage(msg);
+  } catch (e) {
+    console.error("[Lictor Shield] failed to dispatch audit:", e);
+  }
+})();

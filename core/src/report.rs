@@ -23,7 +23,7 @@ pub fn render_markdown(target: &str, findings: &[Finding], now_iso: &str) -> Str
     let score = (10i32
         - 4 * count(Severity::Critical) as i32
         - 2 * count(Severity::High) as i32
-        - 1 * count(Severity::Medium) as i32)
+        - count(Severity::Medium) as i32)
         .max(0);
 
     let mut out = String::with_capacity(8 * 1024);
@@ -65,18 +65,14 @@ pub fn render_markdown(target: &str, findings: &[Finding], now_iso: &str) -> Str
             if items.is_empty() {
                 continue;
             }
-            out.push_str(&format!(
-                "## {} — {} finding(s)\n\n",
-                pill(s),
-                items.len()
-            ));
+            out.push_str(&format!("## {} — {} finding(s)\n\n", pill(s), items.len()));
             for (i, f) in items.iter().enumerate() {
                 out.push_str(&format!("### {}. {}\n\n", i + 1, f.title));
                 out.push_str(&format!("**Category:** {}  \n", category_label(f.category)));
                 if !f.where_found.is_empty() {
                     out.push_str(&format!("**Where:** `{}`  \n\n", f.where_found));
                 } else {
-                    out.push_str("\n");
+                    out.push('\n');
                 }
                 out.push_str(&format!("{}\n\n", f.detail));
                 if !f.remediation.is_empty() {
@@ -88,7 +84,9 @@ pub fn render_markdown(target: &str, findings: &[Finding], now_iso: &str) -> Str
     }
 
     out.push_str("\n## What this audit checked\n\n");
-    out.push_str("This pass covers 5 of the most common failure modes in AI-built / vibe-coded apps:\n\n");
+    out.push_str(
+        "This pass covers 5 of the most common failure modes in AI-built / vibe-coded apps:\n\n",
+    );
     out.push_str("1. **Secrets exposure** — API keys, JWTs, and credentials in HTML/JS bundles or `.env` paths.\n");
     out.push_str("2. **Database exposure** — Supabase / Firebase / public APIs returning data without auth.\n");
     out.push_str("3. **Auth surface** — admin paths reachable without server-side gates.\n");

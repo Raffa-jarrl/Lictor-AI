@@ -137,7 +137,10 @@ mod native {
         fn fetch(&self, url: &str, method: Method) -> Result<Response, Error> {
             // Determine host for rate-limiting.
             let parsed = url::Url::parse(url)?;
-            let host = parsed.host_str().ok_or_else(|| Error::Other(format!("no host in url: {url}")))?.to_lowercase();
+            let host = parsed
+                .host_str()
+                .ok_or_else(|| Error::Other(format!("no host in url: {url}")))?
+                .to_lowercase();
             self.rate_limit(&host);
 
             let req = self.agent.request(method.as_str(), url);
@@ -177,9 +180,15 @@ mod native {
             // Read body, capped.
             let mut body = Vec::with_capacity(8 * 1024);
             let mut reader = resp.into_reader().take(MAX_BODY_BYTES as u64);
-            reader.read_to_end(&mut body).map_err(|e| Error::Http(e.to_string()))?;
+            reader
+                .read_to_end(&mut body)
+                .map_err(|e| Error::Http(e.to_string()))?;
 
-            Ok(Response { status, headers, body })
+            Ok(Response {
+                status,
+                headers,
+                body,
+            })
         }
     }
 
@@ -242,8 +251,19 @@ impl MockFetch {
     pub fn with_html(self, url: impl Into<String>, body: impl Into<String>) -> Self {
         let body = body.into().into_bytes();
         let mut headers = std::collections::HashMap::new();
-        headers.insert("content-type".to_string(), "text/html; charset=utf-8".to_string());
-        self.with(Method::Get, url, Response { status: 200, headers, body })
+        headers.insert(
+            "content-type".to_string(),
+            "text/html; charset=utf-8".to_string(),
+        );
+        self.with(
+            Method::Get,
+            url,
+            Response {
+                status: 200,
+                headers,
+                body,
+            },
+        )
     }
 
     /// Convenience: pre-load a 200 GET with JSON body and content-type.
@@ -251,12 +271,28 @@ impl MockFetch {
         let body = body.into().into_bytes();
         let mut headers = std::collections::HashMap::new();
         headers.insert("content-type".to_string(), "application/json".to_string());
-        self.with(Method::Get, url, Response { status: 200, headers, body })
+        self.with(
+            Method::Get,
+            url,
+            Response {
+                status: 200,
+                headers,
+                body,
+            },
+        )
     }
 
     /// Convenience: pre-load a status-only response (no body).
     pub fn with_status(self, method: Method, url: impl Into<String>, status: u16) -> Self {
-        self.with(method, url, Response { status, headers: std::collections::HashMap::new(), body: Vec::new() })
+        self.with(
+            method,
+            url,
+            Response {
+                status,
+                headers: std::collections::HashMap::new(),
+                body: Vec::new(),
+            },
+        )
     }
 }
 

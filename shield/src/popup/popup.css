@@ -1,5 +1,5 @@
 /* Lictor Shield — popup styling.
- * Brand palette per docs/BRAND.md: imperial purple + gold leaf on charcoal. */
+ * Brand palette per docs/projects/lictor/BRAND.md. */
 
 :root {
   --bg: #0F1419;
@@ -14,23 +14,20 @@
   --border: #2A323E;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
-  width: 320px;
+  width: 360px;
+  max-height: 600px;
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", system-ui, sans-serif;
   font-size: 13px;
   line-height: 1.5;
 }
 
 .mono {
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   font-size: 11px;
 }
 
@@ -41,13 +38,10 @@ html, body {
   padding: 12px 14px;
   border-bottom: 1px solid var(--border);
   background: linear-gradient(180deg, rgba(61, 44, 94, 0.18), transparent);
+  position: sticky; top: 0; z-index: 1;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+.brand { display: flex; align-items: center; gap: 8px; }
 
 .mark {
   color: var(--accent);
@@ -56,19 +50,15 @@ html, body {
 }
 
 .wordmark {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: "Cormorant Garamond", Georgia, serif;
   font-weight: 700;
   font-size: 18px;
   letter-spacing: 0.02em;
 }
 
-.version {
-  color: var(--text-muted);
-}
+.version { color: var(--text-muted); }
 
-main {
-  padding: 14px;
-}
+main { padding: 14px; max-height: 540px; overflow-y: auto; }
 
 .status {
   padding: 12px;
@@ -77,36 +67,43 @@ main {
   border-left: 3px solid var(--text-muted);
   margin-bottom: 12px;
 }
-
 .status--scanning { border-left-color: var(--text-muted); }
 .status--clean    { border-left-color: var(--success); }
 .status--warning  { border-left-color: var(--warning); }
 .status--critical { border-left-color: var(--critical); }
 
-.status__title {
-  font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 2px;
-}
-
-.status__sub {
-  color: var(--text-muted);
-}
+.status__title { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+.status__sub   { color: var(--text-muted); word-break: break-all; }
 
 .findings {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   margin-bottom: 12px;
 }
 
-.findings li {
+.finding {
   padding: 10px;
   background: var(--surface);
   border-radius: 5px;
   border-left: 3px solid var(--border);
 }
+.finding--critical { border-left-color: var(--critical); }
+.finding--high     { border-left-color: var(--critical); }
+.finding--medium   { border-left-color: var(--warning); }
+.finding--low      { border-left-color: var(--text-muted); }
+.finding--info     { border-left-color: var(--success); }
+
+.finding__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.finding__pill { flex-shrink: 0; }
+.finding__title { font-weight: 500; font-size: 13px; }
+.finding__where { color: var(--text-muted); word-break: break-all; }
 
 .cta {
   display: block;
@@ -117,8 +114,7 @@ main {
   font-weight: 500;
   border-top: 1px solid var(--border);
   margin: 0 -14px -14px;
+  position: sticky; bottom: 0;
+  background: var(--bg);
 }
-
-.cta:hover {
-  background: rgba(201, 162, 59, 0.08);
-}
+.cta:hover { background: rgba(201, 162, 59, 0.08); }

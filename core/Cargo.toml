@@ -41,3 +41,13 @@ serde_json = { workspace = true }
 [[example]]
 name = "audit"
 required-features = ["native"]
+
+# Disable wasm-opt during wasm-pack build — the bundled wasm-opt is older
+# than rustc's bulk-memory output and crashes on validation. The WASM still
+# works without the optimization pass; we'll wire a newer wasm-opt later
+# when bundle size matters more.
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
+
+[package.metadata.wasm-pack.profile.dev]
+wasm-opt = false

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vulnerable Demo App — DO NOT DEPLOY</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 20px; }
+    h1 { color: #c0392b; }
+    .warning {
+      background: #fff3cd;
+      border-left: 4px solid #d68910;
+      padding: 12px 16px;
+      margin: 20px 0;
+    }
+    code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>⚠️  Vulnerable Demo</h1>
+  <p>
+    This page is a deliberately bad AI-built app, used as a fixture to validate
+    Lictor Core's audit pipeline. <strong>Do not deploy this to a real domain.</strong>
+  </p>
+
+  <div class="warning">
+    <strong>Intentional findings this page should produce:</strong>
+    <ul>
+      <li>Multiple <code>Critical</code> secrets in the inline <code>&lt;script&gt;</code>
+        below (OpenAI sk-, Anthropic sk-ant, Stripe sk_live_)</li>
+      <li>A <code>Critical</code> Postgres connection string</li>
+      <li>An <code>Info</code>-level Stripe publishable key</li>
+      <li>Auth surface present (login link below) → triggers admin path probes</li>
+      <li>An AI-agent fingerprint (api.openai.com referenced inline)</li>
+    </ul>
+  </div>
+
+  <p>The "app":</p>
+  <p><a href="/login">Sign in</a> · <a href="/admin">Admin (oops)</a></p>
+
+  <!--
+    Fingerprints below are used by Lictor's static analysis. Each one is
+    deliberately chosen to mirror a common vibe-coded mistake.
+  -->
+  <script>
+    // BAD: real secret keys hardcoded into client JS.
+    const OPENAI_KEY = "sk-proj-AAAABBBBCCCCDDDDEEEEFFFFGGGGHHHHIIII";
+    const ANTHROPIC_KEY = "sk-ant-api03-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+    const STRIPE_LIVE = "sk_live_AAAABBBBCCCCDDDDEEEEFFFF";
+    const STRIPE_PK = "pk_live_AAAABBBBCCCCDDDDEEEEFFFF"; // informational
+    const DB_URL = "postgres://admin:hunter2@db.example.local:5432/prod";
+
+    // Pretend we call OpenAI from the browser (AI-agent fingerprint).
+    fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: { "Authorization": "Bearer " + OPENAI_KEY },
+      body: JSON.stringify({ model: "gpt-4", messages: [] }),
+    });
+  </script>
+</body>
+</html>
