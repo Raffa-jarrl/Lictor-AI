@@ -1,0 +1,61 @@
+Lictor Guardian — Source-Available License
+
+Copyright (c) 2026 Lictor AI. All rights reserved.
+
+The source code in this directory ("Guardian") is published in this repository
+for transparency. It is NOT open-source software. The Apache 2.0 license that
+applies to the rest of this repository does NOT apply to this directory.
+
+PERMISSIONS GRANTED:
+
+  1. You may read, study, and reference the Guardian source code for the
+     purpose of understanding how the hosted Lictor Guardian service operates.
+
+  2. You may submit pull requests, bug reports, and security reports against
+     the Guardian source code, subject to the project's CONTRIBUTING.md.
+
+  3. You may run the Guardian source code on your own machine for development
+     or evaluation purposes.
+
+PERMISSIONS NOT GRANTED:
+
+  1. You may NOT host or operate Guardian as a service for any third party
+     (including for free), whether for profit or not.
+
+  2. You may NOT redistribute Guardian source code or compiled artifacts to
+     any third party.
+
+  3. You may NOT integrate Guardian source code into another product or
+     service that is provided to third parties.
+
+  4. You may NOT remove or modify the copyright or license notices in
+     Guardian source files.
+
+INTENT:
+
+The Guardian source is published openly for transparency and security review,
+not for redistribution. The value of Lictor Guardian is in the hosted service
+operated at lictor.ai — including monitoring, compliance evidence, alerting,
+SLAs, and the operations team that runs it. Self-hosting Guardian provides
+none of that value and creates no benefit for the user that the lictor.ai
+hosted service does not already provide.
+
+If you have a business need that requires self-hosting (regulated environment,
+air-gapped deployment, sovereign-cloud requirement, etc.) — please contact
+us at hello@lictor.ai. We're willing to discuss enterprise self-hosting
+licenses on a case-by-case basis.
+
+DISCLAIMER:
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+This license is governed by the laws of the State of Delaware, USA.
+
+For questions, licensing inquiries, or to request a self-hosting agreement,
+contact: hello@lictor.ai

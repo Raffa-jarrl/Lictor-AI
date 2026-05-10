@@ -2,7 +2,22 @@
 
 All notable changes to Lictor are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/) once we hit `0.1.0` (the first published release).
 
-## [Unreleased] — 2026-05
+## [Unreleased] — 2026-05 (positioning + governance round)
+
+### Added
+
+- **`docs/compliance.md`** — Lictor's products mapped onto SOC 2 (CC6/7/8/9), GDPR Article 32, EU AI Act (Articles 9, 12, 14, 26, 50), NIST AI RMF, ISO/IEC 42001. The lictor.ai/compliance landing page is generated from this doc. Removes the #1 blocker in enterprise procurement.
+- **`docs/specs/multi-tenant-plan.md`** — explicit migration recipe to flip Guardian from single-tenant to multi-tenant. Schema is already shaped for it; this doc is the runbook for when an enterprise customer triggers the flip (~Q1 2027).
+- **`NOTICE`** — Apache 2.0-required NOTICE file, with attribution for bundled third-party software.
+- **`guardian/LICENSE`** — explicit source-available terms for Guardian (read/study/contribute permitted; host-as-a-service forbidden; self-hosting agreements available on request).
+
+### Changed
+
+- **License pivot: MIT → Apache 2.0** for all OSS components (lictor-core, Lictor Shield, @lictor/sentinel, lictor-sentinel). Apache's patent grant is what enterprise legal teams require; MIT was unblocking nothing. Guardian stays source-available under separate terms.
+- **Updated `package.json` / `pyproject.toml` / `Cargo.toml`** for the four OSS packages to declare Apache-2.0 in their metadata.
+- **Strategic positioning: "AI security tool" → "safety infrastructure for the AI agent era".** Captured in `STRATEGY.md` §13.0 (in the GenerationAI repo). The launch-day narrative anchor is now: *"AI agents are starting to take real-world actions. The infrastructure to make that safe doesn't exist yet. We're building it."* This frame pulls Lictor out of feature-comparison with incumbents and into category-creation territory.
+
+## [Earlier] — 2026-05 (initial polish round)
 
 ### Added
 
