@@ -36,10 +36,12 @@ Magic-link auth tokens. Short-lived. One row per request.
 | `id` | `uuid` (PK) | `gen_random_uuid()` |
 | `account_id` | `uuid` (FK → accounts.id) | NULL until consumed if signing up |
 | `email` | `text` (NOT NULL) | Where the magic link was sent |
-| `token_hash` | `text` (NOT NULL) | bcrypt(token). The raw token only goes in the email. |
+| `token_hash` | `text` (NOT NULL) | **sha256(token) hex.** Tokens are 64-char hex (32 bytes random); high enough entropy that bcrypt's slow-by-design hashing is unnecessary and bcrypt's per-input salt would prevent the equality lookup we need at consumption time. The raw token never persists server-side. |
 | `expires_at` | `timestamptz` (NOT NULL) | 15 minutes from creation |
 | `consumed_at` | `timestamptz` | When the link was clicked. NULL = unused. |
 | `created_at` | `timestamptz` (NOT NULL, default `now()`) | |
+
+**Atomic consumption.** Magic links are claimed via `UPDATE ... WHERE consumed_at IS NULL AND expires_at > now() RETURNING account_id`. This is atomic at the row level — concurrent clicks on the same link can only one ever succeed. Verified in the integration test suite.
 
 Indexes:
 - `idx_magic_links_token_hash` on `token_hash`
@@ -89,19 +91,31 @@ Indexes:
 
 ### `audit_log`
 
-Immutable event log of state-changing operations on the account. For SOC 2 / GDPR Article 32 evidence later. Append-only — there is no UPDATE or DELETE allowed (enforced by trigger).
+Compliance-grade event log of state-changing operations on the account. The audit log IS the evidence the SOC 2 auditor reads; tampering with it (or being able to delete it through application code) defeats the purpose.
 
 | Column | Type | Notes |
 |---|---|---|
 | `id` | `uuid` (PK) | |
-| `account_id` | `uuid` (FK, NOT NULL) | |
+| `account_id` | `uuid` (FK, **nullable**) | `ON DELETE SET NULL` — see audit-log-rules below |
 | `actor_email` | `text` (NOT NULL) | Who did the thing |
-| `action` | `text` (NOT NULL) | e.g. `account.create`, `ingest_token.rotate`, `incident.export` |
+| `action` | `text` (NOT NULL) | e.g. `account.create`, `ingest_token.rotate`, `incident.export`, `session.create` |
 | `target_id` | `text` | Optional reference to the affected resource |
 | `metadata` | `jsonb` | Free-form context |
 | `created_at` | `timestamptz` (NOT NULL, default `now()`) | |
 | `ip` | `inet` | Source IP, for forensic correlation |
 | `user_agent` | `text` | Browser/SDK UA |
+
+#### Audit-log rules
+
+The trigger `block_audit_log_tampering()` enforces:
+
+1. **DELETE is unconditionally blocked.** Even our own FK uses `ON DELETE SET NULL`, never `CASCADE`. The audit log persists after account deletion.
+2. **UPDATE is allowed only if the audit-content fields are unchanged.** The fields `actor_email`, `action`, `target_id`, `metadata`, `created_at`, `ip`, `user_agent`, `id` cannot change. Only `account_id` (and `revoked_at`-equivalents on other tables) may change — this is the carve-out that lets `ON DELETE SET NULL` work for GDPR Article 17 account deletion.
+3. **Application code never UPDATEs audit content.** The only legitimate UPDATE is FK-driven (`SET NULL` of `account_id`) or future privileged anonymization (`audit_log_anonymize()` function — Phase 4).
+
+This design satisfies both **SOC 2 CC7.5** (incident communication evidence) and **GDPR Article 17** (right to erasure of PII while retaining the system event record).
+
+The trigger is verified by `tests/integration.test.ts` — direct UPDATE attempting to change `action` is rejected; FK-driven `SET NULL` succeeds.
 
 ---
 
