@@ -75,9 +75,16 @@ CREATE INDEX idx_incidents_account_check_id  ON incidents (account_id, check_id,
 -- ─────────────────────────────────────────────────────────────────────────────
 -- audit_log — append-only, no UPDATE / DELETE allowed
 -- ─────────────────────────────────────────────────────────────────────────────
+-- audit_log.account_id is intentionally ON DELETE SET NULL (not CASCADE):
+-- audit logs persist after the account is deleted so the historical event
+-- record survives. GDPR Article 17 (right to erasure) is satisfied via
+-- a separate anonymization path (planned: audit_log_anonymize(account_id)
+-- privileged function) that nullifies actor_email + redacts ip/user_agent.
+-- This is the standard pattern for compliance-grade audit logs — the log
+-- IS the evidence; CASCADE-deleting it would defeat its purpose.
 CREATE TABLE audit_log (
   id          uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  account_id  uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  account_id  uuid REFERENCES accounts(id) ON DELETE SET NULL,
   actor_email text NOT NULL,
   action      text NOT NULL,
   target_id   text,
@@ -88,15 +95,43 @@ CREATE TABLE audit_log (
 );
 CREATE INDEX idx_audit_log_account_ts ON audit_log (account_id, created_at DESC);
 
--- Block UPDATE and DELETE on audit_log (compliance-grade append-only).
-CREATE OR REPLACE FUNCTION block_audit_log_mutation() RETURNS trigger AS $$
+-- Block tampering with audit content. Two triggers:
+--
+--   1. UPDATE: allow if and only if the audit-content fields are unchanged.
+--      This permits FK SET NULL on account_id (used for GDPR Article 17
+--      account deletion — the audit row survives, account_id nullifies)
+--      and the future audit_log_anonymize() function. It blocks every
+--      attempt to modify what the row recorded.
+--
+--   2. DELETE: blocked unconditionally. The audit log IS the evidence.
+--      Even our own CASCADE FK uses SET NULL, never DELETE.
+--
+-- Rationale documented in `docs/specs/guardian-schema.md` §audit-log-rules.
+CREATE OR REPLACE FUNCTION block_audit_log_tampering() RETURNS trigger AS $$
 BEGIN
-  RAISE EXCEPTION 'audit_log is append-only';
+  IF TG_OP = 'UPDATE' THEN
+    -- Allow UPDATE only if all audit-content fields are unchanged.
+    -- account_id is allowed to change (FK SET NULL for GDPR account deletion).
+    IF NEW.actor_email IS DISTINCT FROM OLD.actor_email
+       OR NEW.action IS DISTINCT FROM OLD.action
+       OR NEW.target_id IS DISTINCT FROM OLD.target_id
+       OR NEW.metadata::text IS DISTINCT FROM OLD.metadata::text
+       OR NEW.created_at IS DISTINCT FROM OLD.created_at
+       OR NEW.ip::text IS DISTINCT FROM OLD.ip::text
+       OR NEW.user_agent IS DISTINCT FROM OLD.user_agent
+       OR NEW.id IS DISTINCT FROM OLD.id THEN
+      RAISE EXCEPTION 'audit_log is append-only (cannot tamper with audit content)';
+    END IF;
+    RETURN NEW;
+  END IF;
+
+  -- DELETE is always blocked.
+  RAISE EXCEPTION 'audit_log is append-only (cannot delete audit rows)';
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER no_audit_log_update
-  BEFORE UPDATE ON audit_log FOR EACH ROW EXECUTE FUNCTION block_audit_log_mutation();
+CREATE TRIGGER no_audit_log_tamper
+  BEFORE UPDATE ON audit_log FOR EACH ROW EXECUTE FUNCTION block_audit_log_tampering();
 
 CREATE TRIGGER no_audit_log_delete
-  BEFORE DELETE ON audit_log FOR EACH ROW EXECUTE FUNCTION block_audit_log_mutation();
+  BEFORE DELETE ON audit_log FOR EACH ROW EXECUTE FUNCTION block_audit_log_tampering();

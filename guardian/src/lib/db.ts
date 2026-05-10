@@ -8,14 +8,15 @@
  * tuning yet — defaults are fine for the launch traffic estimate (<100 RPS).
  */
 
-import { Kysely, PostgresDialect } from "kysely";
+import { Kysely, PostgresDialect, type Generated } from "kysely";
 import pg from "pg";
 
 const { Pool } = pg;
 
 // ─── Database schema (TypeScript mirror of `migrations/0001_initial.sql`) ───
-// Keep these types in lockstep with the SQL. The `Generated<T>` marker tells
-// Kysely a column is server-defaulted (we never write to it on insert).
+// Keep these types in lockstep with the SQL. `Generated<T>` marks columns
+// that the database fills in by default — these are optional on INSERT but
+// always present on SELECT.
 
 export interface Database {
   accounts: AccountsTable;
@@ -26,40 +27,40 @@ export interface Database {
 }
 
 export interface AccountsTable {
-  id: string;
+  id: Generated<string>;
   email: string;
   name: string | null;
   org_name: string | null;
-  plan: "preview" | "pro" | "team" | "org";
+  plan: Generated<"preview" | "pro" | "team" | "org">;
   ingest_token: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at: Generated<Date>;
+  updated_at: Generated<Date>;
 }
 
 export interface MagicLinksTable {
-  id: string;
+  id: Generated<string>;
   account_id: string | null;
   email: string;
   token_hash: string;
   expires_at: Date;
   consumed_at: Date | null;
-  created_at: Date;
+  created_at: Generated<Date>;
 }
 
 export interface SessionsTable {
-  id: string;
+  id: Generated<string>;
   account_id: string;
-  created_at: Date;
-  last_seen_at: Date;
+  created_at: Generated<Date>;
+  last_seen_at: Generated<Date>;
   revoked_at: Date | null;
 }
 
 export interface IncidentsTable {
-  id: string;
+  id: Generated<string>;
   account_id: string;
   agent_id: string;
   ts: Date;
-  received_at: Date;
+  received_at: Generated<Date>;
   phase: "preflight" | "postflight";
   check_id: string;
   severity: "critical" | "high" | "medium" | "low" | "info";
@@ -73,13 +74,13 @@ export interface IncidentsTable {
 }
 
 export interface AuditLogTable {
-  id: string;
+  id: Generated<string>;
   account_id: string;
   actor_email: string;
   action: string;
   target_id: string | null;
   metadata: unknown;
-  created_at: Date;
+  created_at: Generated<Date>;
   ip: string | null;
   user_agent: string | null;
 }
