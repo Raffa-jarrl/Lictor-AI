@@ -1,8 +1,9 @@
 //! lictor-core — the shared security check engine.
 //!
 //! Compiles to native (for Sentinel SDK, Guardian backend) and to WASM
-//! (for the Shield browser extension). Public API is intentionally small:
-//! each check returns a `Vec<Finding>`. The wrappers decide what to do with them.
+//! (for the Shield browser extension). Public API is small: callers
+//! provide a `Fetch` implementation and call `run_all_checks` (or one of
+//! the `checks::*::run` functions). Findings come back as `Vec<Finding>`.
 //!
 //! # Build targets
 //!
@@ -12,16 +13,20 @@
 //!     --no-default-features --features wasm
 //! ```
 //!
+//! # End-to-end native example
+//!
+//! ```bash
+//! cargo run --example audit -- https://example.com -o report.md
+//! ```
+//!
 //! See `core/README.md` for details.
 
 #![forbid(unsafe_code)]
-#![warn(missing_docs)]
 
 pub mod checks;
 pub mod finding;
-
-#[cfg(feature = "native")]
 pub mod http;
+pub mod report;
 
 pub use finding::{Category, Finding, Severity};
 
@@ -29,28 +34,31 @@ pub use finding::{Category, Finding, Severity};
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 /// User-Agent string used by the native HTTP client.
-#[cfg(feature = "native")]
 pub const USER_AGENT: &str = concat!(
     "Lictor-Core/",
     env!("CARGO_PKG_VERSION"),
     " (+https://lictor.ai)"
 );
 
-/// Run every static check against a URL, native side.
+/// Run all five static checks against `base_url`, using the supplied
+/// `Fetch` implementation for HTTP. Returns the merged finding list.
 ///
-/// In the WASM/Shield build, the browser does the HTTP and feeds bytes
-/// in via separate entry points — this function is native-only.
-#[cfg(feature = "native")]
-pub fn run_all_checks(_url: &str) -> Result<Vec<Finding>, Error> {
-    // TODO(Phase 1): port audit.py check pipeline. Stub returns empty for now.
-    Ok(Vec::new())
+/// Native callers will typically pass a `http::UreqFetch::new()`. WASM
+/// callers will pass an implementation that wraps `window.fetch`.
+pub fn run_all_checks<F: http::Fetch>(base_url: &str, fetcher: &F) -> Vec<Finding> {
+    let mut findings = Vec::new();
+    findings.extend(checks::secrets::run(base_url, fetcher));
+    findings.extend(checks::database::run(base_url, fetcher));
+    findings.extend(checks::auth::run(base_url, fetcher));
+    findings.extend(checks::cors::run(base_url, fetcher));
+    findings.extend(checks::ai_agent::run(base_url, fetcher));
+    findings
 }
 
 /// Top-level error type.
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
-    /// Underlying HTTP failure (native only).
-    #[cfg(feature = "native")]
+    /// Underlying HTTP failure (transport / DNS / TLS / timeout).
     #[error("http error: {0}")]
     Http(String),
 
@@ -66,15 +74,30 @@ pub enum Error {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::http::MockFetch;
 
     #[test]
     fn version_is_set() {
         assert!(!VERSION.is_empty());
     }
 
-    #[cfg(feature = "native")]
     #[test]
     fn user_agent_is_set() {
         assert!(USER_AGENT.starts_with("Lictor-Core/"));
+    }
+
+    #[test]
+    fn run_all_checks_against_clean_html() {
+        let fetcher = MockFetch::new().with_html("https://example.com/", "<html><body>Hello</body></html>");
+        let findings = run_all_checks("https://example.com/", &fetcher);
+        // We expect at least the two "no surface detected" info findings (auth + ai-agent).
+        assert!(
+            findings.iter().any(|f| f.severity == Severity::Info),
+            "expected at least one info finding"
+        );
+        assert!(
+            findings.iter().all(|f| f.severity != Severity::Critical),
+            "expected no critical findings on clean HTML"
+        );
     }
 }

@@ -28,6 +28,7 @@ url = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
 regex = { workspace = true }
+once_cell = { workspace = true }
 wasm-bindgen = { workspace = true, optional = true }
 serde-wasm-bindgen = { workspace = true, optional = true }
 thiserror = { workspace = true }
@@ -35,3 +36,8 @@ tracing = { workspace = true }
 
 [dev-dependencies]
 serde_json = { workspace = true }
+
+# A tiny CLI example so you can run audits end-to-end. Native-only.
+[[example]]
+name = "audit"
+required-features = ["native"]

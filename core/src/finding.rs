@@ -6,7 +6,11 @@
 use serde::{Deserialize, Serialize};
 
 /// Severity of a finding. Ordering: Critical > High > Medium > Low > Info.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
+///
+/// We `derive` `PartialEq`/`Eq`/`Hash` but implement `Ord`/`PartialOrd`
+/// manually — the natural variant order has Critical first (most readable),
+/// but the semantic order is Critical largest (most severe).
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum Severity {
     /// Active exposure that an attacker could exploit today.
@@ -19,6 +23,31 @@ pub enum Severity {
     Low,
     /// Informational — context, not a vulnerability.
     Info,
+}
+
+impl Severity {
+    /// Numeric rank for ordering. Higher = more severe.
+    fn rank(self) -> u8 {
+        match self {
+            Severity::Info => 0,
+            Severity::Low => 1,
+            Severity::Medium => 2,
+            Severity::High => 3,
+            Severity::Critical => 4,
+        }
+    }
+}
+
+impl PartialOrd for Severity {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
+impl Ord for Severity {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+        self.rank().cmp(&other.rank())
+    }
 }
 
 /// What kind of check produced the finding.

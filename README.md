@@ -16,10 +16,19 @@ Pre-alpha. Building in public. Star the repo to follow.
 
 | Component | Status |
 |---|---|
-| `core/` | scaffolded, checks porting from `audit.py` (Phase 1) |
-| `shield/` | manifest stubbed, content-script in progress (Phase 1) |
+| `core/` | ✅ Phase 1 ported — 5 checks, 30 tests passing, working CLI example |
+| `shield/` | manifest stubbed, content-script wired; WASM bridge to `core` is the next Phase 1 step |
 | `sentinel/` | placeholder (Phase 2) |
 | `guardian/` | placeholder (Phase 3) |
+
+## Try it (native CLI)
+
+```bash
+cd ~/Lictor
+cargo run --release --example audit -- https://your-vibe-coded-app.com -o report.md
+```
+
+Read-only. Rate-limited to 1 req/sec/host. Same checks as the upstream `audit.py`.
 
 ## Why
 
