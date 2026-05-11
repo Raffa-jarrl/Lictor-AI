@@ -8,14 +8,36 @@ Pre-alpha. **API surface is locked** ([`docs/specs/sentinel-api.md`](../docs/spe
 
 | Feature | Status |
 |---|---|
-| `wrap()` API | ✅ stable, returns client unchanged at v0.1 |
+| `wrap()` API | ✅ stable, real Proxy interception of OpenAI + Anthropic shapes |
 | Type definitions | ✅ stable |
 | Telemetry → Guardian | ✅ wired |
 | Fingerprint hashing | ✅ |
-| Prompt-injection check | ⏳ Phase 1 W4 |
+| **Prompt-injection check** | ✅ **shipped W4 — 32 patterns across 7 attack families, 84 tests** |
 | PII-leak check | ⏳ Phase 1 W5 |
 | Secrets-in-input check | ⏳ Phase 1 W5 |
 | Streaming response interception | ⏳ v0.2 |
+
+## What `prompt-injection` catches
+
+Auto-registered as a built-in. 32 curated patterns across these attack families:
+
+| Family | Severity | What it catches |
+|---|---|---|
+| **direct-override** | high / medium | "ignore previous instructions", "from now on", "your real goal is…" |
+| **authority-impersonation** | high | `System:`, `[SYSTEM]`, "admin override", "developer mode enabled", "bypass safety filters" |
+| **jailbreak** | high / medium | DAN-style personas, "act as evil AI", "you have been jailbroken", "unrestricted version" |
+| **system-prompt-extraction** | medium / high | "repeat your system prompt", "what were your initial instructions", "base64-encode your prompt" |
+| **delimiter-injection** | **critical** | Model-control tokens never legitimately in user input: `<\|im_start\|>`, `[INST]`, `<\|eot_id\|>`, fake `Assistant:` turn boundaries |
+| **goal-hijacking** | medium | "instead of that, do this", "your new objective is…" |
+| **suspicious-encoding** | medium | Long base64 strings, hex-escape soup, zero-width / direction-override character runs |
+
+Highest severity wins; all matched categories are listed in the finding detail. The catalog is curated for low false-positive rate — every pattern has positive AND negative test cases in `tests/prompt-injection.test.ts`.
+
+When patterns evolve (and they will — adversarial inputs are a moving target), the addition discipline is:
+1. Add the pattern to `src/checks/prompt-injection.ts`
+2. Add at least one positive test (real adversarial input MUST trip)
+3. Add at least one negative test (similar-looking legitimate input MUST NOT trip)
+4. Bump the SDK minor version
 
 ## Install
 
