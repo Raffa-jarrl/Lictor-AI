@@ -13,6 +13,7 @@
 import { NextResponse } from "next/server";
 import { EnvelopeSchema, type IncidentEventWire } from "@/lib/wire-format";
 import { db } from "@/lib/db";
+import { maybeFireSlackForIncident } from "@/lib/slack";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -83,10 +84,13 @@ export async function POST(request: Request): Promise<Response> {
   const envelope = parsed.data;
 
   // 3. Persist events. One INSERT batched for the whole envelope.
+  //    `returning("id")` so we can pass real incident IDs to Slack fire.
+  let inserted: Array<{ id: string }>;
   try {
-    await db()
+    inserted = await db()
       .insertInto("incidents")
       .values(envelope.events.map((e: IncidentEventWire) => mapEventToRow(e, accountId)))
+      .returning("id")
       .execute();
   } catch (e) {
     console.error("[ingest] insert failed:", e);
@@ -96,7 +100,31 @@ export async function POST(request: Request): Promise<Response> {
     );
   }
 
-  // 4. Respond 202 Accepted.
+  // 4. Fire Slack webhook for each event (best-effort, fire-and-forget).
+  //    Latency note: we don't await — the webhook lives on its own clock.
+  //    Errors are stored in slack_integrations.last_error for debugging.
+  const guardianUrl =
+    process.env["NEXT_PUBLIC_GUARDIAN_URL"] ?? "http://localhost:3100";
+  for (let i = 0; i < envelope.events.length; i++) {
+    const ev = envelope.events[i]!;
+    const insertedRow = inserted[i];
+    if (!insertedRow) continue;
+    void maybeFireSlackForIncident(accountId, {
+      ts: new Date(ev.ts),
+      phase: ev.phase,
+      check_id: ev.checkId,
+      severity: ev.severity,
+      title: ev.title,
+      model_provider: ev.model.provider,
+      model_name: ev.model.name,
+      fingerprint: ev.fingerprint,
+      action: ev.action,
+      guardian_url: guardianUrl,
+      incident_id: insertedRow.id,
+    });
+  }
+
+  // 5. Respond 202 Accepted.
   return NextResponse.json(
     {
       received: envelope.events.length,
