@@ -1,0 +1,430 @@
+/* Lictor AI — landing page styles.
+ * Brand palette per docs/projects/lictor/BRAND.md.
+ * Imperial Purple (#3D2C5E) + Gold Leaf (#C9A23B) on Charcoal (#0F1419).
+ */
+
+:root {
+  --bg:           #0F1419;
+  --surface:      #1A2028;
+  --surface-2:   #232B36;
+  --text:         #E8E2D5;
+  --text-muted:   #6E7780;
+  --accent:       #C9A23B;
+  --primary:      #3D2C5E;
+  --primary-2:    #5A4280;
+  --critical:     #C0392B;
+  --warning:      #D68910;
+  --success:      #3D7C5E;
+  --border:       #2A323E;
+  --border-light: #3A4250;
+
+  --max-width: 1100px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(180deg, var(--bg) 0%, #0a0d11 100%);
+  min-height: 100vh;
+}
+
+.mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+.accent { color: var(--accent); }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.link { color: var(--accent); font-weight: 500; font-size: 13px; }
+
+/* ─── Nav ───────────────────────────────────────────────────────────────── */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: rgba(15, 20, 25, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+}
+.brand:hover { text-decoration: none; }
+.brand__name {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+}
+.brand__name--accent { color: var(--accent); }
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-size: 14px;
+}
+.nav__links a {
+  color: var(--text);
+  text-decoration: none;
+}
+.nav__links a:hover { color: var(--accent); }
+.nav__github {
+  padding: 6px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent) !important;
+}
+
+/* ─── Hero ──────────────────────────────────────────────────────────────── */
+.hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 100px 32px 80px;
+  text-align: center;
+}
+
+.hero__title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+
+.hero__sub {
+  font-size: 18px;
+  color: var(--text);
+  max-width: 720px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+
+.hero__cta {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-block;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.btn--primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn--primary:hover { background: #b88f2e; text-decoration: none; }
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border-light);
+}
+.btn--ghost:hover { border-color: var(--accent); text-decoration: none; }
+
+.hero__meta {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* ─── Sections ──────────────────────────────────────────────────────────── */
+.section__title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.section__sub {
+  text-align: center;
+  color: var(--text-muted);
+  max-width: 640px;
+  margin: 0 auto 48px;
+  font-size: 16px;
+}
+
+/* ─── Suite cards ───────────────────────────────────────────────────────── */
+.suite {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 80px 32px;
+  border-top: 1px solid var(--border);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__pill {
+  display: inline-block;
+  width: fit-content;
+  padding: 4px 10px;
+  background: rgba(201, 162, 59, 0.1);
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  color: var(--accent);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.card__title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.card__title--accent { color: var(--accent); }
+
+.card__lede {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.card__code {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 14px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  color: var(--accent);
+}
+
+.card__points {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+  flex: 1;
+}
+.card__points li {
+  position: relative;
+  padding: 6px 0 6px 22px;
+  font-size: 13px;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+.card__points li:last-child { border-bottom: none; }
+.card__points li::before {
+  content: "›";
+  position: absolute;
+  left: 6px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.card__cta {
+  display: flex;
+  gap: 16px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+.card--guardian .card__pill { background: rgba(61, 124, 94, 0.15); border-color: var(--success); color: var(--success); }
+
+/* ─── Why ───────────────────────────────────────────────────────────────── */
+.why {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 80px 32px;
+  border-top: 1px solid var(--border);
+}
+
+.why__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.why__item h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  color: var(--accent);
+}
+.why__item p {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ─── Waitlist ──────────────────────────────────────────────────────────── */
+.waitlist {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 80px 32px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.waitlist__form {
+  display: flex;
+  gap: 12px;
+  max-width: 500px;
+  margin: 32px auto 16px;
+}
+.waitlist__form input {
+  flex: 1;
+  padding: 12px 16px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 15px;
+  font-family: inherit;
+}
+.waitlist__form input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.waitlist__form button {
+  padding: 12px 24px;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+.waitlist__form button:hover { background: #b88f2e; }
+
+.waitlist__small {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* ─── Founder ───────────────────────────────────────────────────────────── */
+.founder {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 80px 32px;
+  border-top: 1px solid var(--border);
+}
+.founder__body {
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+/* ─── Footer ────────────────────────────────────────────────────────────── */
+.footer {
+  margin-top: 80px;
+  background: #08090c;
+  border-top: 1px solid var(--border);
+  padding: 48px 32px 24px;
+}
+
+.footer__cols {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.footer__accent { color: var(--accent); }
+.footer__tagline {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.footer h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.footer a {
+  display: block;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 4px 0;
+}
+.footer a:hover { color: var(--accent); }
+
+.footer__bottom {
+  max-width: var(--max-width);
+  margin: 32px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* ─── Mobile ────────────────────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .nav { padding: 16px 20px; }
+  .nav__links { gap: 16px; font-size: 13px; }
+  .nav__links a:not(.nav__github) { display: none; }
+  .hero { padding: 60px 20px 40px; }
+  .hero__title { font-size: 36px; }
+  .hero__sub { font-size: 16px; }
+  .suite, .why, .waitlist, .founder { padding: 60px 20px; }
+  .section__title { font-size: 28px; }
+  .waitlist__form { flex-direction: column; }
+  .footer__cols { grid-template-columns: 1fr; gap: 24px; }
+  .footer__bottom { flex-direction: column; gap: 8px; }
+}
