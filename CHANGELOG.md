@@ -2,7 +2,24 @@
 
 All notable changes to Lictor are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/) once we hit `0.1.0` (the first published release).
 
-## [Unreleased] — 2026-05 (W4: prompt-injection check)
+## [Unreleased] — 2026-05 (W5–W10: Phase 1 Sentinel feature-frozen)
+
+### Added
+
+- **`pii-leak` check** (postflight). 11 patterns × 7 categories with Luhn-validated credit cards. Catches emails, phones (US + international), SSNs (rejects invalid prefixes), IBANs, IPv4/IPv6, formatted US addresses.
+- **`secrets-in-input` check** (preflight). 15 patterns ported from `lictor-core` SECRET_PATTERNS. Catches Google/Anthropic/OpenAI/Stripe/GitHub/Slack/AWS keys, private key blocks, JWTs, MongoDB/Postgres/Redis connection strings.
+- **Sentinel telemetry sender hardened**. 5xx + network errors retry up to 3 times with exponential backoff (200/400/800ms ± 20% jitter); 4xx are permanent; queue capped at 100 in-flight. Pluggable fetch for testability.
+- **Python sister package: `lictor-sentinel` (PyPI).** Feature parity with `@lictor/sentinel`: real `wrap()` via recursive `__getattr__` proxy, same Check interface, all three check catalogs mirrored character-for-character, same telemetry wire format. urllib-based (zero runtime deps). 11 E2E tests pass.
+- **End-to-end Guardian integration test** (`sentinel/tests/e2e-guardian.test.ts`). Stands up a real HTTP server, wraps a fake OpenAI client, fires adversarial input, verifies the envelope lands at Guardian with the correct shape, bearer auth, AND the privacy invariant (no raw user content in the wire format).
+
+### Status
+
+- **`@lictor/sentinel`** v0.1.0-alpha.0 — feature-frozen, 159/159 tests pass, `pnpm pack` produces clean tarball with all three checks bundled
+- **`lictor-sentinel`** v0.1.0a0 — feature-frozen, 11/11 tests pass, `python -m build` produces clean wheel that installs and works in a fresh venv
+
+Both packages publishable to their registries (`pnpm publish` / `twine upload`) when the launch infrastructure sprint (W19) opens.
+
+## [Earlier] — 2026-05 (W4: prompt-injection check)
 
 ### Added
 
