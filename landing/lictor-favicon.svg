@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Lictor AI — favicon (16×16 / 32×32).
+
+  Simplified silhouette: the helmet detail loses too much below 24px. This
+  variant drops the visor T-shape and the circuit traces, keeping just the
+  helmet skull + crest block + cheek pieces as the strong silhouette.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Lictor">
+  <!-- Helmet skull + cheek pieces -->
+  <path d="
+    M 7 12
+    C 7 8  10 6  16 6
+    C 22 6  25 8  25 12
+    L 25 21
+    C 25 24  23.5 25.5  21.5 26
+    L 21.5 28
+    L 18.5 28
+    L 18.5 26
+    L 13.5 26
+    L 13.5 28
+    L 10.5 28
+    L 10.5 26
+    C 8.5 25.5  7 24  7 21
+    Z"
+    fill="#3D2C5E" />
+
+  <!-- Crest -->
+  <rect x="7.5" y="2.5" width="17" height="6" rx="1" fill="#C9A23B" />
+
+  <!-- Visor: simple horizontal slit so the helmet reads as a face mask -->
+  <rect x="11.5" y="14" width="9" height="2.5" rx="0.5" fill="#0F1419" />
+</svg>

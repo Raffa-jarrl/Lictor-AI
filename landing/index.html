@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lictor AI — Safety infrastructure for the AI agent era</title>
+  <meta name="description" content="Open-source AI security suite. Audits AI-built sites, wraps OpenAI/Anthropic SDKs to block prompt injection and data exfiltration, and gives teams a hosted dashboard for AI incident monitoring. Free for individuals." />
+
+  <meta property="og:title" content="Lictor AI — Safety infrastructure for the AI agent era" />
+  <meta property="og:description" content="Three free open-source tools: a Chrome extension that audits AI-built sites, an SDK that wraps OpenAI/Anthropic to block prompt injection, and a hosted dashboard for team-wide AI security monitoring." />
+  <meta property="og:url" content="https://lictor.ai" />
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lictor AI — Safety infrastructure for the AI agent era" />
+
+  <link rel="icon" type="image/svg+xml" href="/lictor-favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="/" class="brand">
+      <img src="/lictor-mark.svg" alt="" width="28" height="28" />
+      <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
+    </a>
+    <nav class="nav__links">
+      <a href="#suite">Suite</a>
+      <a href="#why">Why now</a>
+      <a href="/compliance">Compliance</a>
+      <a href="https://github.com/lictor-ai/lictor" class="nav__github">GitHub →</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <h1 class="hero__title">
+        The bodyguard your AI didn&rsquo;t ship with.
+      </h1>
+      <p class="hero__sub">
+        AI agents are starting to take real-world actions — booking, paying, deciding, acting on your behalf.
+        The infrastructure to make that safe doesn&rsquo;t exist yet. We&rsquo;re building it.
+        Today we&rsquo;re shipping the first three layers free.
+      </p>
+      <div class="hero__cta">
+        <a href="#suite" class="btn btn--primary">See the suite</a>
+        <a href="https://github.com/lictor-ai/lictor" class="btn btn--ghost">Star on GitHub</a>
+      </div>
+      <p class="hero__meta">
+        Apache 2.0 · 220+ tests · Built by a 20-year cybersec engineer
+      </p>
+    </section>
+
+    <!-- SUITE -->
+    <section id="suite" class="suite">
+      <h2 class="section__title">Three layers, one engine</h2>
+      <p class="section__sub">
+        Same Rust security engine compiles to native + WASM and powers every layer.
+        Every new check ships everywhere at once.
+      </p>
+
+      <div class="cards">
+        <!-- SHIELD -->
+        <div class="card card--shield">
+          <div class="card__pill">Free · Chrome extension</div>
+          <h3 class="card__title">Lictor <span class="card__title--accent">Shield</span></h3>
+          <p class="card__lede">
+            For end-users. Audits AI-built sites locally before you sign up.
+          </p>
+          <ul class="card__points">
+            <li>Detects AI-built site fingerprints (Next.js, Supabase, OpenAI/Anthropic SDK references)</li>
+            <li>5 static security checks: secrets / database / auth / CORS / AI-agent surface</li>
+            <li>Local-only — no URL ever leaves your browser</li>
+            <li>Real-time alarms when AI agents touch your localStorage / cookies</li>
+          </ul>
+          <div class="card__cta">
+            <a href="https://github.com/lictor-ai/lictor/tree/main/shield" class="link">Install →</a>
+          </div>
+        </div>
+
+        <!-- SENTINEL -->
+        <div class="card card--sentinel">
+          <div class="card__pill">Free · npm + PyPI</div>
+          <h3 class="card__title">Lictor <span class="card__title--accent">Sentinel</span></h3>
+          <p class="card__lede">
+            For developers. Wraps OpenAI / Anthropic SDKs to block prompt injection + data exfiltration.
+          </p>
+          <pre class="card__code">import { wrap } from "@lictor/sentinel";
+
+const client = wrap(new OpenAI(), {
+  preflight:  ["prompt-injection", "secrets-in-input"],
+  postflight: ["pii-leak"],
+});
+
+// Same call site. Same response shape.
+// Sentinel intercepts pre + post.</pre>
+          <ul class="card__points">
+            <li>32 prompt-injection patterns across 7 attack families</li>
+            <li>Luhn-validated credit card detection in model output</li>
+            <li>15 secret patterns (Anthropic, OpenAI, Stripe, GitHub, AWS, &hellip;)</li>
+            <li>Privacy: never ships raw input/output — only 16-char fingerprints</li>
+          </ul>
+          <div class="card__cta">
+            <a href="https://github.com/lictor-ai/lictor/tree/main/sentinel" class="link">npm →</a>
+            <a href="https://github.com/lictor-ai/lictor/tree/main/sentinel-py" class="link">PyPI →</a>
+          </div>
+        </div>
+
+        <!-- GUARDIAN -->
+        <div class="card card--guardian">
+          <div class="card__pill">Free preview · 90 days</div>
+          <h3 class="card__title">Lictor <span class="card__title--accent">Guardian</span></h3>
+          <p class="card__lede">
+            For teams. Hosted dashboard for AI incident monitoring + compliance evidence.
+          </p>
+          <ul class="card__points">
+            <li>Per-incident timeline with severity / check / phase filters</li>
+            <li>Audit log export (CSV + JSON) for SOC 2 / GDPR Article 32 evidence</li>
+            <li>Slack webhook for critical incidents</li>
+            <li>Append-only audit log enforced at the database trigger level</li>
+          </ul>
+          <div class="card__cta">
+            <a href="#waitlist" class="link">Join waitlist →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section id="why" class="why">
+      <h2 class="section__title">Why now</h2>
+      <div class="why__grid">
+        <div class="why__item">
+          <h3>In 2024 AI talked. In 2025 it acted.<br>In 2026 it&rsquo;s running businesses.</h3>
+          <p>
+            The security model hasn&rsquo;t caught up. Vibe-coded SaaS ships with hardcoded API keys.
+            AI agents call cross-app tools with user data. The OWASP LLM Top 10 keeps growing.
+          </p>
+        </div>
+        <div class="why__item">
+          <h3>Why open source?</h3>
+          <p>
+            Every AI agent platform — from Zapier to Make to Manus — needs this. A closed enterprise
+            product becomes one of five vendors. Open-sourced, we become the standard.
+          </p>
+        </div>
+        <div class="why__item">
+          <h3>Why now (regulatory)?</h3>
+          <p>
+            The EU AI Act enters phase-2 enforcement in 2026. NIST AI RMF is being adopted by every
+            Fortune 500. Compliance-shaped demand exists today; the supply is missing.
+          </p>
+        </div>
+        <div class="why__item">
+          <h3>What&rsquo;s the moat?</h3>
+          <p>
+            Network effects. Every Sentinel install adds telemetry that improves every other
+            install. Lakera and Protect AI see their own customers. We see the union.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP / SENTRY TEASE -->
+    <section id="waitlist" class="waitlist">
+      <h2 class="section__title">Coming Q1 2027 — Lictor <span class="accent">Sentry</span></h2>
+      <p class="section__sub">
+        AI threat protection for high-value individuals. iOS VPN profile that monitors outbound
+        AI API calls from your phone — for executives, journalists, dissidents, anyone whose
+        AI assistant has access to sensitive data.
+      </p>
+      <form class="waitlist__form" action="https://formspree.io/f/REPLACE_ME" method="POST">
+        <input type="email" name="email" required placeholder="you@example.com" />
+        <button type="submit">Join the waitlist</button>
+      </form>
+      <p class="waitlist__small">
+        We&rsquo;ll only email you when Sentry is ready to install. No newsletter.
+      </p>
+    </section>
+
+    <!-- FOUNDER -->
+    <section class="founder">
+      <h2 class="section__title">Who&rsquo;s building this?</h2>
+      <p class="founder__body">
+        Lictor is built by a 20-year cybersecurity engineer based in Israel.
+        Prior work spans CISO advisory at Fortune 500 and security architecture for venture-backed startups.
+        Lictor exists because AI security cannot remain an enterprise-only category — the consumer wedge
+        and the developer wedge are both wide open, and waiting another year for the incumbents to ship
+        a free OSS layer means the wrong companies define the category.
+      </p>
+      <p class="founder__body">
+        Lictor&rsquo;s sister project, <a href="https://generationai.com" class="link">GenerationAI</a>,
+        teaches developers how to ship AI apps that pass Lictor&rsquo;s checks.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__cols">
+      <div>
+        <div class="footer__brand">
+          <img src="/lictor-mark.svg" alt="" width="22" height="22" />
+          Lictor <span class="footer__accent">AI</span>
+        </div>
+        <p class="footer__tagline">Safety infrastructure for the AI agent era.</p>
+      </div>
+      <div>
+        <h4>Products</h4>
+        <a href="#suite">Shield</a>
+        <a href="#suite">Sentinel</a>
+        <a href="#suite">Guardian</a>
+        <a href="#waitlist">Sentry (coming)</a>
+      </div>
+      <div>
+        <h4>Open source</h4>
+        <a href="https://github.com/lictor-ai/lictor">GitHub</a>
+        <a href="https://github.com/lictor-ai/lictor/blob/main/LICENSE">License (Apache 2.0)</a>
+        <a href="https://github.com/lictor-ai/lictor/blob/main/SECURITY.md">Security policy</a>
+        <a href="https://github.com/lictor-ai/lictor/blob/main/CONTRIBUTING.md">Contributing</a>
+      </div>
+      <div>
+        <h4>Enterprise</h4>
+        <a href="/compliance">Compliance</a>
+        <a href="mailto:hello@lictor.ai">Contact</a>
+        <a href="mailto:security@lictor.ai">Security disclosures</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 Lictor AI</span>
+      <span class="mono">v0.1.0-alpha · Pre-launch</span>
+    </div>
+  </footer>
+</body>
+</html>
