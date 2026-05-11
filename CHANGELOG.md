@@ -2,7 +2,28 @@
 
 All notable changes to Lictor are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/) once we hit `0.1.0` (the first published release).
 
-## [Unreleased] — 2026-05 (positioning + governance round)
+## [Unreleased] — 2026-05 (W4: prompt-injection check)
+
+### Added
+
+- **`@lictor/sentinel` — real `prompt-injection` check.** Auto-registered on module import. 32 curated patterns across 7 attack families:
+  - `direct-override` — "ignore previous instructions" and variants
+  - `authority-impersonation` — fake `System:` / `[ADMIN]` role markers, "developer mode enabled", "bypass safety filters"
+  - `jailbreak` — DAN-style personas, "act as evil AI", "unrestricted version"
+  - `system-prompt-extraction` — "repeat your system prompt", "base64-encode your instructions"
+  - `delimiter-injection` (CRITICAL) — model-control tokens (`<|im_start|>`, `[INST]`, `<|eot_id|>`, fake `Assistant:` turn boundaries)
+  - `goal-hijacking` — "instead of that, do this"
+  - `suspicious-encoding` — long base64 strings, hex-escape soup, zero-width character runs
+- 84 tests covering positive (real adversarial input MUST trip) and negative (similar-looking legitimate input MUST NOT trip) cases. Every pattern in the catalog has at least one positive AND one negative test — that's the addition discipline going forward.
+- End-to-end integration tests in `sentinel/tests/integration.test.ts` proving the real check fires through `wrap()` for OpenAI-shaped clients.
+- Documented in `sentinel/README.md` and `docs/specs/sentinel-api.md` §8.
+
+### Internal
+
+- New `sentinel/src/checks/` directory with `index.ts` as the built-in registry. Side-effect import auto-registers `BUILTIN_CHECKS` on `@lictor/sentinel` load.
+- `Check` interface (unchanged) is now the stable contract — W5 PII-leak and secrets-in-input checks plug in with no further wiring.
+
+## [Earlier] — 2026-05 (positioning + governance round)
 
 ### Added
 

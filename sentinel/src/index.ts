@@ -25,3 +25,9 @@ export { SENTINEL_VERSION } from "./version.js";
 // `Check` interface is stable; the registry helpers may change before v1.0.
 export type { Check, CheckResult } from "./check-runner.js";
 export { registerCheck, getCheck, registeredCheckIds, PASS } from "./check-runner.js";
+
+// Built-in check catalog. Imported for its side-effect: registers every
+// builtin check at module load. Users who `import { wrap } from "@lictor/sentinel"`
+// get prompt-injection (and future built-ins) active by default.
+export { BUILTIN_CHECKS, promptInjectionCheck, INJECTION_PATTERNS } from "./checks/index.js";
+export type { InjectionPattern } from "./checks/index.js";

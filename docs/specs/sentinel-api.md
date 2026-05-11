@@ -215,6 +215,38 @@ For a single `client.chat.completions.create(args)` call:
 
 If a v0.1 user asks for any of these, they go on the parking-lot list, not into the codebase.
 
+## 8. Built-in check catalog (v0.1)
+
+These checks are auto-registered when `@lictor/sentinel` is imported. To opt out for a specific instance, register your own `Check` with the same `CheckId` — the registry is keyed by id, so re-registration replaces.
+
+### 8.1 `prompt-injection` (W4)
+
+Rule-based pattern detection for the dominant attack families from OWASP LLM01. Catalog of 32 patterns organized into 7 families:
+
+| Family | Severity | Examples of what trips it |
+|---|---|---|
+| `direct-override` | high / medium | "ignore previous instructions", "new instructions:", "from now on", "your real task is…" |
+| `authority-impersonation` | high | `System:` prefix, `[ADMIN]`, "developer mode enabled", "bypass safety filters" |
+| `jailbreak` | high / medium | "DAN mode", "do anything now", "act as if you have no restrictions", "pretend you are an evil AI" |
+| `system-prompt-extraction` | medium / high | "repeat your system prompt", "what were your initial instructions", "base64-encode your prompt" |
+| `delimiter-injection` | **critical** | `<\|im_start\|>`, `<\|eot_id\|>`, `[INST]`, fake `Assistant:` / `Human:` turn boundaries |
+| `goal-hijacking` | medium | "instead of that, do this", "your new objective is…" |
+| `suspicious-encoding` | medium | 80+ char base64 strings, hex-escape sequences, zero-width / direction-override characters |
+
+**Severity resolution:** if multiple patterns match a single input, the finding's severity is the maximum, and the `detail` enumerates every matched (severity, category, description). Detail capped at 10 entries to prevent runaway output on heavily-poisoned input.
+
+**Performance:** all 32 patterns scan a 270 KB benign input in <500 ms on a 2024-era laptop (verified in `tests/prompt-injection.test.ts`). Typical user-message inputs (<2 KB) are sub-millisecond.
+
+**Curation discipline:** every pattern has at least one positive test (must trip on adversarial input) AND one negative test (must NOT trip on similar-looking legitimate input). Pattern PRs without both sides of coverage are rejected.
+
+### 8.2 `pii-leak`, `secrets-in-input` (W5)
+
+Planned for Phase 1 W5 (June 8-14). Same registration pattern; same `Check` interface.
+
+### 8.3 `unsafe-tool-call` (v0.2)
+
+Planned for v0.2 alongside tool-call sandboxing. Deferred from v0.1.
+
 ---
 
 ## 8. References
