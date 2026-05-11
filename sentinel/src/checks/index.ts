@@ -18,12 +18,22 @@
 
 import { registerCheck, type Check } from "../check-runner.js";
 import { promptInjectionCheck } from "./prompt-injection.js";
+import { piiLeakCheck } from "./pii-leak.js";
+import { secretsInInputCheck } from "./secrets-in-input.js";
 
 export { promptInjectionCheck, INJECTION_PATTERNS } from "./prompt-injection.js";
 export type { InjectionPattern } from "./prompt-injection.js";
+export { piiLeakCheck, PII_PATTERNS } from "./pii-leak.js";
+export type { PiiPattern } from "./pii-leak.js";
+export { secretsInInputCheck, SECRET_PATTERNS } from "./secrets-in-input.js";
+export type { SecretPattern } from "./secrets-in-input.js";
 
 /** The full set of checks auto-registered at module load. */
-export const BUILTIN_CHECKS: readonly Check[] = [promptInjectionCheck];
+export const BUILTIN_CHECKS: readonly Check[] = [
+  promptInjectionCheck,
+  piiLeakCheck,
+  secretsInInputCheck,
+];
 
 // Side-effect: register on import. Idempotent.
 for (const check of BUILTIN_CHECKS) {

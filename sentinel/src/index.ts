@@ -28,6 +28,14 @@ export { registerCheck, getCheck, registeredCheckIds, PASS } from "./check-runne
 
 // Built-in check catalog. Imported for its side-effect: registers every
 // builtin check at module load. Users who `import { wrap } from "@lictor/sentinel"`
-// get prompt-injection (and future built-ins) active by default.
-export { BUILTIN_CHECKS, promptInjectionCheck, INJECTION_PATTERNS } from "./checks/index.js";
-export type { InjectionPattern } from "./checks/index.js";
+// get all three v0.1 checks active by default.
+export {
+  BUILTIN_CHECKS,
+  promptInjectionCheck,
+  INJECTION_PATTERNS,
+  piiLeakCheck,
+  PII_PATTERNS,
+  secretsInInputCheck,
+  SECRET_PATTERNS,
+} from "./checks/index.js";
+export type { InjectionPattern, PiiPattern, SecretPattern } from "./checks/index.js";
