@@ -101,6 +101,32 @@ export default async function DashboardPage(): Promise<ReactElement> {
           Lictor <span style={{ color: "#C9A23B" }}>Guardian</span>
         </h1>
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <a
+            href="/incidents"
+            style={{
+              padding: "6px 12px",
+              border: "1px solid #2A323E",
+              borderRadius: 4,
+              color: "#E8E2D5",
+              textDecoration: "none",
+              fontSize: 12,
+            }}
+          >
+            All incidents →
+          </a>
+          <a
+            href="/export"
+            style={{
+              padding: "6px 12px",
+              border: "1px solid #2A323E",
+              borderRadius: 4,
+              color: "#C9A23B",
+              textDecoration: "none",
+              fontSize: 12,
+            }}
+          >
+            Export
+          </a>
           <span style={{ fontSize: 12, color: "#6E7780" }}>{account.email}</span>
           <form action="/api/auth/logout" method="POST">
             <button
