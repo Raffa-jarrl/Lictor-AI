@@ -2,13 +2,14 @@
 
 > The bodyguard your AI didn't ship with.
 
-Lictor is an open-source AI security suite. Three products, one shared engine:
+Lictor is an open-source AI security suite. Three products, one shared engine, plus a Claude Code skill for pre-release audits:
 
 - **[Lictor Shield](./shield)** — free Chrome extension. Audits AI-built sites locally before you sign up; alarms when AI agents access your data.
 - **[Lictor Sentinel](./sentinel)** — free SDK (npm + pip). Wraps OpenAI/Anthropic SDKs; blocks prompt injection, data exfiltration, and unsafe tool calls.
-- **[Lictor Guardian](./guardian)** — enterprise SaaS. Real-time AI security platform with SOC 2 / GDPR / EU AI Act reporting.
+- **[Lictor Guardian](./guardian)** — hosted dashboard for teams. AI incident timeline, audit log export, Slack webhook, compliance evidence.
+- **[Lictor Security Check](./skills/lictor-security-check)** — Claude Code skill. Run `/lictor-security-check` in your project before you deploy; get a markdown report with severity-ranked findings.
 
-All three share **[Lictor Core](./core)** — a Rust crate that compiles to native and WASM, so the same checks run in your browser, your Node service, and our cloud.
+All three products share **[Lictor Core](./core)** — a Rust crate that compiles to native and WASM, so the same checks run in your browser, your Node service, and our cloud. The Claude skill is a markdown-only port of the same check catalog, designed for vibe-coders who haven't installed anything yet.
 
 ## Status
 
