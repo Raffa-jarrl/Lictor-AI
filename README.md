@@ -2,14 +2,14 @@
 
 > The bodyguard your AI didn't ship with.
 
-Lictor is an open-source AI security suite. Three products, one shared engine, plus a Claude Code skill for pre-release audits:
+Lictor is an open-source AI security suite. Four free things, all under one brand, designed for vibe-coders who don't have a CISO and don't want to talk to one:
 
-- **[Lictor Shield](./shield)** — free Chrome extension. Audits AI-built sites locally before you sign up; alarms when AI agents access your data.
-- **[Lictor Sentinel](./sentinel)** — free SDK (npm + pip). Wraps OpenAI/Anthropic SDKs; blocks prompt injection, data exfiltration, and unsafe tool calls.
-- **[Lictor Guardian](./guardian)** — hosted dashboard for teams. AI incident timeline, audit log export, Slack webhook, compliance evidence.
-- **[Lictor Security Check](./skills/lictor-security-check)** — Claude Code skill. Run `/lictor-security-check` in your project before you deploy; get a markdown report with severity-ranked findings.
+- **[Lictor Shield](./shield)** — free Chrome extension. Watches AI-built sites you visit and warns you about leaked keys, open databases, and unguarded chat interfaces.
+- **[Lictor Sentinel](./sentinel)** — free SDK (`npm install @lictor/sentinel` / `pip install lictor-sentinel`). Wraps your OpenAI/Anthropic SDK to block prompt injection and PII leaks in your live app.
+- **[Lictor Guardian](./guardian)** — free hosted dashboard. Aggregates incidents across your apps. Audit log export for the day an enterprise customer asks "how do you secure AI?"
+- **[Lictor Security Suite for Claude Code](./skills)** — four free Claude plugins. Type `/lictor-security-check` in any project to scan it for bugs before you ship. Plus `/lictor-explain` (translates jargon), `/lictor-fix-it` (applies fixes with your permission), `/lictor-rotate` (walks you through rotating a leaked key).
 
-All three products share **[Lictor Core](./core)** — a Rust crate that compiles to native and WASM, so the same checks run in your browser, your Node service, and our cloud. The Claude skill is a markdown-only port of the same check catalog, designed for vibe-coders who haven't installed anything yet.
+All three products share **[Lictor Core](./core)** — a Rust crate that compiles to native and WASM, so the same checks run in your browser, your Node service, and our cloud. The Claude plugins are a markdown-only port of the same check catalog, designed for people who haven't installed anything yet.
 
 ## Status
 

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://docs.anthropic.com/schemas/claude-plugin-v1.json",
+  "name": "lictor-security-suite",
+  "displayName": "Lictor Security Suite",
+  "version": "0.1.0",
+  "description": "Four free Claude Code plugins that catch security bugs in AI-built apps before they ship. Built for vibe-coders, designers, and solo founders — not for compliance teams.",
+  "author": {
+    "name": "Lictor AI",
+    "url": "https://lictor.ai",
+    "email": "hello@lictor.ai"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://lictor.ai",
+  "repository": "https://github.com/lictor-ai/lictor",
+  "issues": "https://github.com/lictor-ai/lictor/issues",
+
+  "categories": [
+    "security",
+    "ai-safety",
+    "code-quality",
+    "pre-deploy"
+  ],
+
+  "keywords": [
+    "security",
+    "audit",
+    "vibe-coding",
+    "ai-security",
+    "prompt-injection",
+    "secret-detection",
+    "owasp",
+    "lovable",
+    "bolt",
+    "v0",
+    "cursor"
+  ],
+
+  "skills": [
+    {
+      "name": "lictor-security-check",
+      "path": "./lictor-security-check/SKILL.md",
+      "description": "Pre-release audit. Scans your project for the 7 most common security bugs in AI-built apps and writes a markdown report.",
+      "icon": "🛡️"
+    },
+    {
+      "name": "lictor-explain",
+      "path": "./lictor-explain/SKILL.md",
+      "description": "Explains any security finding in plain English. No jargon. Walks you through why it matters and what to do.",
+      "icon": "💡"
+    },
+    {
+      "name": "lictor-fix-it",
+      "path": "./lictor-fix-it/SKILL.md",
+      "description": "Applies the fixes from a security audit, with your explicit permission for each change.",
+      "icon": "🔧"
+    },
+    {
+      "name": "lictor-rotate",
+      "path": "./lictor-rotate/SKILL.md",
+      "description": "Walks you through rotating a leaked API key — provider-specific steps for Stripe, OpenAI, Anthropic, GitHub, AWS, and more.",
+      "icon": "🔄"
+    }
+  ],
+
+  "compatibility": {
+    "claude-code": ">=1.0",
+    "operating-systems": ["macos", "linux", "windows"]
+  },
+
+  "telemetry": {
+    "enabled": false,
+    "note": "These plugins do not phone home. All audit work happens locally on your machine. We don't know that you used them and we never will. If you want to support us, star the repo: github.com/lictor-ai/lictor"
+  }
+}
