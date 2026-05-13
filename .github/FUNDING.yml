@@ -1,0 +1,9 @@
+# Funding-related links for the GitHub "Sponsor" button.
+# Lictor is solo-built; "sponsor" maps to "support the engineer keeping
+# this maintained."
+
+github: []
+# patreon: lictorai      # not yet set up
+# open_collective: lictor # not yet set up
+custom:
+  - "https://lictor.ai"
