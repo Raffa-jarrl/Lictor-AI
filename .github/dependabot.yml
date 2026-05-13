@@ -1,0 +1,79 @@
+version: 2
+updates:
+  # Rust workspace (core/)
+  - package-ecosystem: "cargo"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "rust"
+    commit-message:
+      prefix: "chore(deps)"
+
+  # @lictor/sentinel
+  - package-ecosystem: "npm"
+    directory: "/sentinel"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "sentinel"
+    commit-message:
+      prefix: "chore(deps/sentinel)"
+
+  # @lictor/shield
+  - package-ecosystem: "npm"
+    directory: "/shield"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "shield"
+    commit-message:
+      prefix: "chore(deps/shield)"
+
+  # @lictor/guardian (highest-risk surface — paid customers eventually,
+  # so we want fast feedback on dependency CVEs)
+  - package-ecosystem: "npm"
+    directory: "/guardian"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "guardian"
+      - "high-priority"
+    commit-message:
+      prefix: "chore(deps/guardian)"
+
+  # lictor-sentinel (Python)
+  - package-ecosystem: "pip"
+    directory: "/sentinel-py"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "sentinel-py"
+    commit-message:
+      prefix: "chore(deps/sentinel-py)"
+
+  # GitHub Actions themselves
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "ci"
+    commit-message:
+      prefix: "chore(ci)"
