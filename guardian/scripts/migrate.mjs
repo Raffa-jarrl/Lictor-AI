@@ -35,8 +35,13 @@ if (reset) {
     process.exit(2);
   }
   console.warn("⚠  Dropping all tables (--reset on localhost only)");
+  // Drop EVERYTHING in the public schema, not just the tables from any
+  // specific migration. This way --reset always works regardless of which
+  // migrations have been applied previously. Postgres-specific.
   await client.query(`
-    DROP TABLE IF EXISTS audit_log, incidents, sessions, magic_links, accounts, _migrations CASCADE;
+    DROP SCHEMA public CASCADE;
+    CREATE SCHEMA public;
+    GRANT ALL ON SCHEMA public TO PUBLIC;
   `);
 }
 
