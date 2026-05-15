@@ -1,6 +1,8 @@
 # Social profile copy
 
-Drop-in text for the social profiles you're setting up in Sprint 1. Each is sized to fit the platform's character limits.
+Drop-in text for the Lictor social profiles. Repositioned 2026-05-15 to the **vibe-coder-vertical** wedge — built for the founder shipping a Lovable / Bolt / v0 / Cursor app, not for the CISO buying SOC 2 evidence.
+
+Each is sized to fit the platform's stated character limits as of Q2 2026.
 
 ---
 
@@ -15,22 +17,23 @@ Lictor AI
 ### Bio (160 chars max)
 
 ```
-Open-source AI security suite for vibe-coders. Four free tools. No SOC 2 jargon. Apache 2.0.
+11 AI agents audit your Lovable / Bolt / v0 project for security gaps. Plain English, runs in Claude Code, Apache 2.0.
 
-🛡 lictor.ai · github.com/lictor-ai/lictor
+🛡 lictor.ai
 ```
 
-**Char count:** 138 / 160
+**Char count:** ~146 / 160
 
 ### Alternate bio (more direct)
 
 ```
-Free open-source AI security for people who build with AI but don't speak security. Chrome ext + npm/pip SDK + Claude Code skills.
+The security crew for apps you built with AI.
+60-second audit. No signup, no telemetry, no per-seat pricing.
 
-→ lictor.ai
+→ lictor.ai · github.com/lictor-ai
 ```
 
-**Char count:** 152 / 160
+**Char count:** ~145 / 160
 
 ### Location
 
@@ -65,46 +68,50 @@ Then upload as profile picture.
 ### Tagline (120 chars max)
 
 ```
-Safety infrastructure for the AI agent era. Four free open-source security tools for AI-built apps.
+The security crew for apps you built with AI. 11 AI agents audit your Lovable / Bolt / v0 project in plain English.
 ```
 
-**Char count:** 100 / 120
+**Char count:** 113 / 120
 
 ### About (2,000 chars max)
 
 ```
-Lictor is an open-source AI security suite. We build the safety layer that gets skipped when AI generates code faster than security can review it.
+Lictor is the security crew for apps you built with AI.
 
-Most AI security software is built for enterprise compliance teams — buyers who already speak the language of SOC 2 and CWE. That's a real market, but it's not the market that needs us most.
+Eleven specialist AI agents audit your project, name what's wrong, and tell you exactly how to fix it — in plain English, no compliance dialect required. Free, open source (Apache 2.0), runs locally inside Claude Code.
 
-The market that needs us is the explosion of "vibe-coded" applications shipping from Lovable, Bolt, v0, Cursor, and direct AI prompting. The founders and designers building those apps don't have a CISO. They don't have a compliance team. They have themselves, an AI assistant, and 48 hours to ship something. They need security tooling that speaks plain English and doesn't require a sales call.
+The problem we exist for:
 
-That's what Lictor is.
+40 to 62 percent of AI-generated code ships with security vulnerabilities. 91.5 percent of vibe-coded apps had at least one AI-hallucination flaw in Q1 2026. In a single February incident, one popular AI app-builder exposed 18,000 users across 170+ databases. Eight million people now build software with AI assistants every week, and most of them don't know what an "RLS policy" is — let alone how to find a leaked Supabase service key in their own JavaScript bundle.
 
-Four open-source products, free forever, Apache 2.0:
+Enterprise security tools weren't built for them. Snyk, Veracode, Checkmarx — they assume a five-developer team and a CISO who speaks SOC 2. They charge per seat. They report in compliance jargon. They gate everything important behind a sales call.
 
-→ Lictor Shield — Chrome extension. Watches AI-built sites you visit and warns about leaked credentials, open databases, and unguarded AI interfaces. Local-only audit; no URL ever leaves your browser.
+Lictor assumes you, a Claude Code window, and a Lovable app you shipped on Saturday.
 
-→ Lictor Sentinel — npm + PyPI SDK. Wraps OpenAI/Anthropic SDKs to block prompt injection and PII leaks at runtime. One-line integration: `wrap(new OpenAI())`. The privacy invariant prevents raw user content from ever crossing into our infrastructure.
+The product:
 
-→ Lictor Guardian — hosted dashboard. AI incident timeline, audit log export for SOC 2 / GDPR / EU AI Act evidence, Slack integration. Free preview for 90 days.
+→ /lictor-security-check — A Claude Code skill that walks your project, runs 7 checks tuned for Lovable / Bolt / v0 / Cursor / Replit patterns, and writes a plain-English report. 60-second install. No signup. No telemetry.
 
-→ Lictor Security Suite for Claude Code — four free plugins (`/lictor-security-check`, `/lictor-explain`, `/lictor-fix-it`, `/lictor-rotate`). Run a security audit on your project before you deploy, in plain English. 60-second install.
+→ Lictor Shield — Chrome extension. Audits any deployed AI-built site you visit. Catches leaked credentials, exposed databases, and unguarded AI surfaces before you sign up. Local-only.
+
+→ Lictor Sentinel — npm + PyPI SDK. Wraps OpenAI / Anthropic clients at runtime to block prompt injection, PII leaks, and secret exfiltration. One-line integration: wrap(new OpenAI()).
+
+→ Lictor Guardian — Hosted dashboard. AI incident timeline + audit-log export for SOC 2 / GDPR / EU AI Act evidence — for the day your AI-built app gets its first compliance question.
 
 Built solo by a 20-year cybersecurity engineer. Open source so trust is verifiable by reading the code, not by certificates.
 
-The launch target is October 6, 2026.
+Launch: October 6, 2026.
 
 — github.com/lictor-ai/lictor
 — lictor.ai
 ```
 
-**Char count:** 1,887 / 2,000
+**Char count:** ~1,940 / 2,000
 
 ### Specialties / focus areas
 
 ```
-AI Security · Open Source · Developer Tools · Vibe-Coding · Prompt Injection · OWASP LLM Top 10 · Compliance Evidence
+AI Security · Vibe Coding · Open Source · Developer Tools · Claude Code · Lovable Security · Prompt Injection · OWASP LLM Top 10
 ```
 
 ### Industry
@@ -116,7 +123,7 @@ Computer & Network Security
 ### Company size
 
 ```
-1 employee  (Note: when this grows, update to "2-10 employees")
+1 employee  (Note: update to "2-10 employees" when the crew scales)
 ```
 
 ### Founded
@@ -134,10 +141,8 @@ Computer & Network Security
 Build a horizontal crop from `landing/og/og-image.png`:
 
 ```bash
-# Crop the 1200×630 OG image to LinkedIn's 1192×220 banner aspect
-# Quick: take the top center crop
 convert landing/og/og-image.png -crop 1192x220+4+205 brand/linkedin-banner.png
-# (Or skip the crop — LinkedIn will auto-crop the upload)
+# Or skip the crop — LinkedIn will auto-crop the upload
 ```
 
 ---
@@ -151,19 +156,28 @@ After you create the `lictor-ai` org, you'll want a profile README. Create a pub
 ```markdown
 # Lictor AI
 
-> The bodyguard your AI didn't ship with.
+> The security crew for apps you built with AI.
 
-Open-source AI security for builders who don't have a security team.
+Eleven AI agents audit your Lovable / Bolt / v0 / Cursor / Replit project for the security gaps the AI assistant didn't catch. Plain English. Apache 2.0. Runs locally inside Claude Code.
 
 ## What's here
 
-- **[lictor](https://github.com/lictor-ai/lictor)** — the monorepo: Shield (browser), Sentinel (SDK), Guardian (dashboard), and the Claude Code skill suite. Apache 2.0.
+- **[lictor](https://github.com/lictor-ai/lictor)** — the monorepo. Claude Code skill suite (the wedge), Shield (Chrome extension), Sentinel (npm + PyPI SDK), and Guardian (hosted dashboard for incidents + compliance evidence). All Apache 2.0.
 
-## Why
+## Who this is for
 
-The AI security market is dominated by enterprise sales motions and certification theater. None of that helps the founder shipping a SaaS from Lovable on Saturday.
+- The solo founder shipping a Lovable app on Saturday
+- The indie hacker prototyping in Cursor at midnight
+- The designer deploying a Bolt project before morning coffee
+- Anyone whose AI assistant just generated 200 lines of code they can't fully read
 
-We build the layer those founders need: free, open, in plain English, install in 60 seconds.
+## Who this isn't for (yet)
+
+- Fortune 500 CISOs buying SOC 2 evidence. Use [Snyk](https://snyk.io) or [Veracode](https://veracode.com). They're great at that lane. We're great at ours.
+
+## Why open source
+
+The AI security market is dominated by enterprise sales motions and certification theater. None of that helps the founder shipping a SaaS from Lovable on Saturday. We build the layer they need: free, open, in plain English, install in 60 seconds.
 
 ## Get in touch
 
@@ -174,8 +188,6 @@ We build the layer those founders need: free, open, in plain English, install in
 Website: [lictor.ai](https://lictor.ai)
 ```
 
-This README shows on the org's public landing page once you've created the `.github` repo.
-
 ---
 
 ## Intro tweets (for when you decide to start posting)
@@ -185,25 +197,24 @@ Three short tweets, schedule for the day after you flip the repo public. **Don't
 ### Tweet 1 — existence
 
 ```
-Building something new in the open: Lictor AI — open-source security tools for AI-built apps.
+Building Lictor: the security crew for apps you built with AI.
 
-Four free products, all Apache 2.0:
-🛡 Shield (Chrome ext)
-🔧 Sentinel (npm + pip SDK)
-📊 Guardian (hosted dashboard)
-💬 Security skills for Claude Code
+11 AI agents audit your Lovable / Bolt / v0 / Cursor project. Plain English. Runs in Claude Code. Apache 2.0.
+
+One slash command:
+/lictor-security-check
 
 github.com/lictor-ai/lictor
 ```
 
-### Tweet 2 — the motivation
+### Tweet 2 — the why
 
 ```
-Most AI security tools are built for enterprise compliance teams who already speak the language.
+Most AI security tools are built for the 5-developer team with a CISO. They charge per seat. They speak SOC 2.
 
-Lictor is built for the people shipping AI SaaS from Lovable / Bolt / v0 / Cursor — designers and founders who don't have a CISO and don't want one.
+Lictor is built for you. A Lovable app shipped on Saturday. A Bolt project deployed at midnight. A Cursor session that just generated 200 lines you can't fully read.
 
-Plain English. No SOC 2 jargon.
+Plain English. No signup.
 ```
 
 ### Tweet 3 — credibility
@@ -211,9 +222,11 @@ Plain English. No SOC 2 jargon.
 ```
 Why am I building this?
 
-20 years in cybersecurity. Spent the last 18 months watching AI engineers ship apps the way web engineers shipped them in 2014 — fast and loose. Same bugs. New attack surface.
+20 years in cybersecurity. Wrote a lot of security reports nobody outside compliance teams could read.
 
-Most security tools won't help vibe-coders. Lictor will. Free.
+40-62% of AI-built code ships vulnerable. Most builders don't know what an "RLS policy" is. They shouldn't have to.
+
+Lictor: plain English. Free. Open.
 
 lictor.ai
 ```
@@ -222,9 +235,26 @@ These three tweets, posted as a triplet, set up your account for whoever discove
 
 ---
 
+## A note on the repositioning (2026-05-15)
+
+The previous social copy positioned Lictor as *"safety infrastructure for the AI agent era"* — a tagline competitive analysis on 2026-05-15 surfaced as already-occupied by Snyk's Agent Security (launched March 2026), Terra ($30M Series A), Armadin ($190M, Kevin Mandia), Straiker, Noma, and Lyrie. Six well-funded competitors had already claimed that exact phrase before Lictor's launch.
+
+The new positioning — *"the security crew for apps you built with AI"* — narrows the wedge to:
+- A specific audience (vibe-coders shipping from Lovable / Bolt / v0 / Cursor / Replit)
+- A specific surface (Claude Code skill as primary, three layers underneath)
+- A specific voice (plain English, builder dialect, no compliance speak)
+- A specific differentiator (11 named agents, transparent crew, local-only)
+
+This is the position no funded incumbent has claimed — because their pricing architecture, sales motion, and brand voice prevent them from claiming it without alienating their enterprise buyers. That asymmetry is the moat.
+
+See `docs/launch/snyk-gap-analysis.md` for the evidence + the 7 specific gaps Lictor wins on.
+See `docs/launch/anti-snyk-free-tier-playbook.md` for what happens when the incumbents try to follow.
+
+---
+
 ## Notes
 
-- All character counts checked against the platform's stated maximums as of Q1 2026. Confirm before posting if it's been a while.
+- All character counts checked against the platforms' stated maximums as of Q2 2026. Confirm before posting if it's been a while.
 - The Twitter handle `@lictor_ai` may already be taken. Fallbacks (in order of preference): `@getlictor`, `@lictor_security`, `@lictoraisec`. The Twitter bio works for any of those.
 - LinkedIn requires you to verify the domain `lictor.ai` before the page can be associated with the company. Do this after step 5 (domain deploy) of the playbook — Cloudflare Pages serves the domain, LinkedIn fetches a TXT record you add via Cloudflare DNS.
 - For GitHub org avatar: re-render `brand/icon-512.png` if it doesn't currently exist:

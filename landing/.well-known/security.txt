@@ -1,0 +1,23 @@
+# Lictor security contact policy
+# https://www.rfc-editor.org/rfc/rfc9116
+#
+# If you've found a security issue in Lictor itself, contact us via the
+# channels below. We acknowledge within 48 hours and aim to ship fixes
+# within 14 days for non-critical issues, 7 days for critical.
+
+Contact: mailto:security@lictor.ai
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en, he
+Canonical: https://lictor.ai/.well-known/security.txt
+Policy: https://lictor.ai/security
+Acknowledgments: https://lictor.ai/security#hall-of-fame
+
+# We participate in responsible disclosure. Public disclosure with
+# coordinated timeline preferred over silent fix. We credit reporters
+# (with consent) in the Acknowledgments link above.
+
+# Lictor's public bug bounty program (launching Apr 2027) will offer:
+#   $100   for valid low/medium-severity findings
+#   $500   for valid high-severity findings
+#   $1000  for critical findings tied to a real-world incident
+# Until then, we'll send Lictor swag + public credit + our genuine thanks.

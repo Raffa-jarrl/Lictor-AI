@@ -1,0 +1,24 @@
+[package]
+name = "lictor-cli"
+version = "0.1.0-pre.0"
+description = "Lictor — terminal audit for AI-built apps. CLI sibling of Lictor Studio."
+authors = ["Lictor AI <hello@lictor.ai>"]
+license = "Apache-2.0"
+repository = "https://github.com/lictor-ai/lictor"
+homepage = "https://lictor.ai/cli"
+edition = "2021"
+rust-version = "1.79"
+readme = "README.md"
+
+[[bin]]
+name = "lictor"
+path = "src/main.rs"
+
+[dependencies]
+lictor-core = { path = "../core", default-features = false, features = ["native"] }
+serde = { workspace = true }
+serde_json = { workspace = true }
+clap = { version = "4.5", features = ["derive"] }
+walkdir = "2.5"
+chrono = { version = "0.4", features = ["serde"] }
+anstyle = "1.0"

@@ -42,8 +42,11 @@ pub const USER_AGENT: &str = concat!(
     " (+https://lictor.ai)"
 );
 
-/// Run all five static checks against `base_url`, using the supplied
-/// `Fetch` implementation for HTTP. Returns the merged finding list.
+/// Run all five URL-based static checks against `base_url`, using the
+/// supplied `Fetch` implementation for HTTP. Returns the merged finding list.
+///
+/// This is the Shield path: audits a deployed site. For repository-based
+/// audits (Studio, CI integrations) see [`run_repo_checks`].
 ///
 /// Native callers will typically pass a `http::UreqFetch::new()`. WASM
 /// callers will pass an implementation that wraps `window.fetch`.
@@ -54,6 +57,55 @@ pub fn run_all_checks<F: http::Fetch>(base_url: &str, fetcher: &F) -> Vec<Findin
     findings.extend(checks::auth::run(base_url, fetcher));
     findings.extend(checks::cors::run(base_url, fetcher));
     findings.extend(checks::ai_agent::run(base_url, fetcher));
+    findings
+}
+
+/// Run all source-file-based static checks against a project's source tree.
+///
+/// This is the Studio path: audits a local repository. `file_listing` is
+/// a vector of `(relative_path, file_contents)` tuples — the caller is
+/// responsible for walking the project and collecting source files (see
+/// `studio/src-tauri/src/audit.rs::collect_source_files` for the canonical
+/// implementation).
+///
+/// `declared_dependencies` are the names from `package.json` /
+/// `Cargo.toml` / `requirements.txt` — used by the hallucinated-package
+/// check to avoid false-positives on declared deps.
+///
+/// `fetcher` is used by checks that need to verify external state (e.g.,
+/// `hallucinated_packages` queries the npm registry). Pass a no-op fetcher
+/// for offline-only audits; those checks will skip cleanly.
+pub fn run_repo_checks<F: http::Fetch>(
+    file_listing: &[(String, String)],
+    declared_dependencies: &std::collections::HashSet<String>,
+    fetcher: &F,
+) -> Vec<Finding> {
+    let mut findings = Vec::new();
+
+    // Secrets — runs per-file analyze_text
+    for (path, content) in file_listing {
+        let source_label = match std::path::Path::new(path)
+            .extension()
+            .and_then(|s| s.to_str())
+        {
+            Some("js" | "jsx" | "ts" | "tsx" | "mjs" | "cjs") => "JS bundle",
+            Some("py") => ".py file",
+            Some("env") => ".env file",
+            _ => "source file",
+        };
+        findings.extend(checks::secrets::analyze_text(content, path, source_label));
+    }
+
+    // Webhooks — file listing in, file listing scanned
+    findings.extend(checks::webhooks::run(fetcher, file_listing));
+
+    // Hallucinated packages — needs declared deps + npm registry
+    findings.extend(checks::hallucinated_packages::run(
+        fetcher,
+        file_listing,
+        declared_dependencies,
+    ));
+
     findings
 }
 
