@@ -18,6 +18,39 @@
   --border:       #2A323E;
   --border-light: #3A4250;
 
+  /* Accent derivatives — keep in lockstep with --accent (#C9A23B). */
+  --accent-tint:        rgba(201, 162, 59, 0.10); /* faint backgrounds */
+  --accent-tint-strong: rgba(201, 162, 59, 0.30); /* borders on tinted */
+  --accent-hover:       #D8B04A;                  /* +6% lightness */
+
+  /* Severity surface tints — for SeverityBadge + Finding cards (use as bg
+     under --critical / --warning / --accent / --success / --text-muted text). */
+  --critical-tint:      rgba(192, 57, 43, 0.12);
+  --warning-tint:       rgba(214, 137, 16, 0.12);
+  --success-tint:       rgba(61, 124, 94, 0.14);
+  --info-tint:          rgba(110, 119, 128, 0.14);
+
+  /* Border-radius scale (used across cards, buttons, inputs, pills). */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:  12px;
+  --radius-pill: 999px;
+
+  /* Spacing scale — 4px base. Use these instead of arbitrary px values. */
+  --space-1:  0.25rem;  /*  4px */
+  --space-2:  0.5rem;   /*  8px */
+  --space-3:  0.75rem;  /* 12px */
+  --space-4:  1rem;     /* 16px */
+  --space-5:  1.5rem;   /* 24px */
+  --space-6:  2rem;     /* 32px */
+  --space-8:  3rem;     /* 48px */
+  --space-10: 4rem;     /* 64px */
+
+  /* Motion tokens. */
+  --motion-fast:   0.05s ease;
+  --motion-base:   0.15s ease;
+  --motion-slow:   0.30s ease;
+
   --max-width: 1100px;
 }
 
