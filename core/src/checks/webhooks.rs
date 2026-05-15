@@ -103,16 +103,13 @@ pub fn analyze_text(source: &str, file_path: &str) -> Vec<WebhookSiteFinding> {
             // Handler is present. Is verification?
             if !provider.verifier_pattern.is_match(source) {
                 // Find the rough line number of the handler match
-                let line_hint = source
-                    .lines()
-                    .enumerate()
-                    .find_map(|(i, line)| {
-                        if provider.handler_pattern.is_match(line) {
-                            Some((i + 1) as u32)
-                        } else {
-                            None
-                        }
-                    });
+                let line_hint = source.lines().enumerate().find_map(|(i, line)| {
+                    if provider.handler_pattern.is_match(line) {
+                        Some((i + 1) as u32)
+                    } else {
+                        None
+                    }
+                });
 
                 found.push(WebhookSiteFinding {
                     provider: provider.name.to_string(),
