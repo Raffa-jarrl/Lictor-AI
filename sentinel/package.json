@@ -35,7 +35,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "test": "node --import tsx --test tests/**/*.test.ts",
+    "test": "node --import tsx --test 'tests/**/*.test.ts'",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
