@@ -1,0 +1,112 @@
+/* ────────────────────────────────────────────────────────────────────────
+   Lictor design system — component CSS. Loaded after style.css.
+   Documented at docs/design-system/README.md.
+   Components: SeverityBadge, FindingCard, MetricTile, GradeBig.
+   ──────────────────────────────────────────────────────────────────────── */
+
+/* ── SeverityBadge ──────────────────────────────────────────────────── */
+/* Spec: docs/design-system/components/severity-badge.md                 */
+.severity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  user-select: none;
+}
+.severity-badge--critical { background: var(--critical-tint); color: var(--critical); }
+.severity-badge--high     { background: var(--warning-tint);  color: var(--warning);  }
+.severity-badge--medium   { background: var(--accent-tint);   color: var(--accent);   }
+.severity-badge--low      { background: var(--info-tint);     color: var(--text-muted); }
+.severity-badge--info     { background: var(--info-tint);     color: var(--text-muted); }
+
+/* ── FindingCard ────────────────────────────────────────────────────── */
+.finding-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+.finding-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  flex-wrap: wrap;
+}
+.finding-card__title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+.finding-card__path {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.finding-card__body { color: var(--text); line-height: 1.6; margin-bottom: var(--space-3); }
+.finding-card__body p { margin-bottom: var(--space-3); }
+.finding-card__fix {
+  background: var(--bg);
+  border-left: 3px solid var(--accent);
+  padding: var(--space-3) var(--space-4);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin-top: var(--space-3);
+}
+.finding-card__fix-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+/* ── GradeBig ───────────────────────────────────────────────────────── */
+/* The headline letter on a scorecard. A/B/C/D/F. */
+.grade-big {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 160px; height: 160px;
+  border-radius: var(--radius-lg);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 6.5rem;
+  font-weight: 700;
+  line-height: 1;
+  user-select: none;
+}
+.grade-big--a { background: var(--success-tint); color: var(--success); }
+.grade-big--b { background: var(--accent-tint);  color: var(--accent);  }
+.grade-big--c { background: var(--accent-tint);  color: var(--accent);  }
+.grade-big--d { background: var(--warning-tint); color: var(--warning); }
+.grade-big--f { background: var(--critical-tint); color: var(--critical); }
+
+/* ── MetricTile ─────────────────────────────────────────────────────── */
+.metric-tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  text-align: center;
+}
+.metric-tile__value {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  display: block;
+  margin-bottom: var(--space-2);
+}
+.metric-tile__label { font-size: 0.9rem; color: var(--text-muted); line-height: 1.3; }
