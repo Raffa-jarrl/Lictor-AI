@@ -11,7 +11,7 @@
     "start": "next start --port 3100",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "node --import tsx --test tests/**/*.test.ts",
+    "test": "node --import tsx --test 'tests/**/*.test.ts'",
     "db:migrate": "node scripts/migrate.mjs",
     "db:reset": "node scripts/migrate.mjs --reset"
   },
