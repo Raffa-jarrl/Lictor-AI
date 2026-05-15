@@ -68,7 +68,7 @@ pub fn extract_imports(source: &str) -> HashSet<String> {
                 name.splitn(3, '/').take(2).collect::<Vec<_>>().join("/")
             } else {
                 // pkg/subpath -> pkg
-                name.splitn(2, '/').next().unwrap_or(name).to_string()
+                name.split('/').next().unwrap_or(name).to_string()
             };
 
             imports.insert(pkg_name);

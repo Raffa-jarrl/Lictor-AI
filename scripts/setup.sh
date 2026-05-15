@@ -102,8 +102,19 @@ echo
 # ── Step 4: Cargo build/check the workspace ────────────────────────────
 
 echo "Step 4/6: Cargo workspace check (first time may take a few minutes)…"
-cargo check --workspace --features native --quiet 2>&1 | tail -5
-echo "  ✓ workspace compiles"
+# Studio (Tauri) needs GTK + WebKit system libs on Linux. On Linux dev/CI
+# environments, default to checking only the cross-platform crates.
+# Explicit override: `LICTOR_INCLUDE_STUDIO=1` to attempt the full workspace.
+if [ "$(uname -s)" = "Linux" ] && [ "${LICTOR_INCLUDE_STUDIO:-0}" != "1" ]; then
+  echo "  → Linux detected. Checking lictor-core + lictor-cli only."
+  echo "    (Studio is macOS-only for v0.1; needs GTK/WebKit to build on Linux."
+  echo "     Set LICTOR_INCLUDE_STUDIO=1 + apt-get install libgtk-3-dev"
+  echo "     libwebkit2gtk-4.1-dev libsoup-3.0-dev to include it.)"
+  cargo check -p lictor-core -p lictor-cli --features native --quiet 2>&1 | tail -5
+else
+  cargo check --workspace --features native --quiet 2>&1 | tail -5
+fi
+echo "  ✓ cargo check passed"
 echo
 
 # ── Step 5: Run the Rust test suite ────────────────────────────────────
