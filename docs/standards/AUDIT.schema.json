@@ -1,0 +1,428 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lictor.ai/standards/AUDIT.schema.json",
+  "title": "AUDIT.json — Security tool output standard",
+  "description": "Community standard for security-tool output. v0.1 proposal. Authored by Lictor AI, released CC0 — the spec belongs to nobody. Conforming tools emit this format alongside their native output so downstream consumers (dashboards, IDE plugins, AI translators, compliance exporters) can interop freely.",
+  "type": "object",
+  "required": [
+    "spec_version",
+    "tool",
+    "target",
+    "audit",
+    "summary",
+    "findings"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "spec_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+(\\.[0-9]+)?$",
+      "description": "Semver string declaring which version of the AUDIT.json spec this document conforms to. Consumers must check this before parsing — breaking changes go in v0.2 → v1.0, etc.",
+      "examples": ["0.1", "0.1.0", "1.0.0"]
+    },
+
+    "tool": {
+      "type": "object",
+      "description": "What produced this report.",
+      "required": ["name", "version"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Lowercase identifier for the tool. Should be the canonical name (e.g., 'lictor', 'snyk', 'semgrep', 'trivy', 'aikido', 'github-code-scanning')."
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Semver string of the tool that produced this output. Used by consumers to handle quirks per tool-version.",
+          "examples": ["0.1.0", "1.2.3-alpha.4"]
+        },
+        "vendor": {
+          "type": "string",
+          "description": "Optional vendor / publisher name or domain. Helpful when the same tool name is used by multiple projects.",
+          "examples": ["lictor.ai", "snyk.io", "github.com"]
+        }
+      }
+    },
+
+    "target": {
+      "type": "object",
+      "description": "What was audited.",
+      "required": ["type"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "repository",
+            "deployed-site",
+            "container-image",
+            "package",
+            "binary",
+            "iac"
+          ],
+          "description": "What kind of target was audited. 'repository' = local or remote source code. 'deployed-site' = a live URL (Shield-style). 'container-image' = Docker/OCI. 'package' = a single dependency tarball. 'binary' = a compiled artifact. 'iac' = Infrastructure as Code template."
+        },
+        "url_or_path": {
+          "type": "string",
+          "description": "Filesystem path, repository URL, or live site URL identifying the target."
+        },
+        "platform_fingerprint": {
+          "type": "string",
+          "enum": [
+            "lovable",
+            "bolt",
+            "v0",
+            "cursor",
+            "replit",
+            "claude-code",
+            "windsurf",
+            "custom",
+            "unknown"
+          ],
+          "description": "For AI-built apps: which build platform produced the target. Lets downstream tools apply platform-specific rules. Use 'custom' for manually written code; 'unknown' if you couldn't detect."
+        },
+        "platform_confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Confidence (0.0–1.0) that platform_fingerprint is correct. Tools without a fingerprinting engine should omit this field rather than set 0."
+        },
+        "commit_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7,40}$",
+          "description": "For repository targets: the git commit SHA the audit ran against. Lets consumers reproduce the audit on the same code state."
+        },
+        "branch": {
+          "type": "string",
+          "description": "Optional git branch name for repository targets."
+        }
+      }
+    },
+
+    "audit": {
+      "type": "object",
+      "description": "When + how the audit ran.",
+      "required": ["started"],
+      "additionalProperties": false,
+      "properties": {
+        "started": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp with timezone offset for when the audit began."
+        },
+        "completed": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp with timezone offset for when the audit finished. Omit only for in-progress audits."
+        },
+        "duration_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Wall-clock duration of the audit in milliseconds. Should reconcile with completed − started."
+        },
+        "checks_run": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of distinct checks the tool ran. Tools that don't have discrete checks (e.g., LLM-driven audits) can set this to 1 or omit."
+        },
+        "partial": {
+          "type": "boolean",
+          "description": "True if the audit was incomplete (e.g., timeout, error, scope-limited). Findings may be partial; consumers should warn the user."
+        }
+      }
+    },
+
+    "summary": {
+      "type": "object",
+      "description": "Counts of findings by severity. Must reconcile with findings.length.",
+      "required": ["critical", "high", "medium", "low", "info", "total"],
+      "additionalProperties": false,
+      "properties": {
+        "critical": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of severity='critical' findings."
+        },
+        "high": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of severity='high' findings."
+        },
+        "medium": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of severity='medium' findings."
+        },
+        "low": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of severity='low' findings."
+        },
+        "info": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of severity='info' findings."
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total count across all severities. MUST equal critical + high + medium + low + info AND MUST equal findings array length."
+        }
+      }
+    },
+
+    "findings": {
+      "type": "array",
+      "description": "The list of findings. May be empty (clean audit = empty array, not absent field).",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "title", "summary"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Tool-scoped unique identifier for this finding. Format is tool-specific but should be stable across runs against the same code. Lictor uses 'L-YYYY-NNNN' format.",
+            "examples": ["L-2026-0001", "SNYK-JS-LODASH-590103", "semgrep.javascript.lang.security.audit.xss"]
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["critical", "high", "medium", "low", "info"],
+            "description": "5-level severity ladder. 'critical' = immediate exploitation possible with real-world impact. 'high' = exploitable with effort, real impact. 'medium' = exploitable in specific conditions, moderate impact. 'low' = unlikely or low-impact. 'info' = informational only, no action needed."
+          },
+          "category": {
+            "type": "string",
+            "description": "Free-form category tag. A reference vocabulary will ship in vocabulary.json v0.2. Encouraged values: secrets, auth, database, rls, cors, prompt-injection, pii-leak, dependency, iac-misconfig, xss, csrf, idor, supply-chain, secret-in-llm-input, data-exfiltration, other.",
+            "examples": ["secrets", "rls", "prompt-injection", "dependency"]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120,
+            "description": "Plain-English title for the finding. Should be a complete short sentence the user can read at a glance. Max 120 chars but aim for 80."
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1,
+            "description": "1–3 sentence plain-English description of the finding. Focus on impact ('anyone can read every user's row'), not jargon ('information disclosure vulnerability'). Lictor uses this as the report-body voice."
+          },
+          "evidence": {
+            "type": "object",
+            "description": "Where the finding lives in the audited target.",
+            "additionalProperties": false,
+            "properties": {
+              "file_path": {
+                "type": "string",
+                "description": "Relative path to the file containing the finding. Use forward slashes regardless of host OS."
+              },
+              "line": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "1-indexed line number where the finding is anchored. For multi-line findings, use the first relevant line."
+              },
+              "line_end": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Optional last line for multi-line findings."
+              },
+              "column": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Optional 1-indexed column for character-precise findings."
+              },
+              "code_snippet": {
+                "type": "string",
+                "description": "The actual code or content at the finding location. Tools should redact secrets before including (e.g., show 'eyJ...' not the full JWT)."
+              },
+              "url": {
+                "type": ["string", "null"],
+                "format": "uri",
+                "description": "For 'deployed-site' targets: the URL where the finding was observed. Null otherwise."
+              }
+            }
+          },
+          "fix": {
+            "type": "object",
+            "description": "How to fix the finding.",
+            "additionalProperties": false,
+            "properties": {
+              "summary": {
+                "type": "string",
+                "description": "1-line plain-English description of the fix."
+              },
+              "diff_or_snippet": {
+                "type": "string",
+                "description": "Unified-diff or code-snippet showing the recommended fix. Free-form text — consumers render however they want."
+              },
+              "rotated_secrets_needed": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "If the fix requires rotating credentials, list the credential identifiers. Lets /lictor-rotate or any rotation tool auto-generate the runbook.",
+                "examples": [["STRIPE_SECRET_KEY", "SUPABASE_SERVICE_ROLE_KEY"]]
+              },
+              "estimated_effort_minutes": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Optional rough estimate of fix effort in minutes. Helpful for prioritization in dashboards."
+              }
+            }
+          },
+          "agent": {
+            "type": "string",
+            "description": "For AI-driven tools: which sub-agent / rule / check found this. Lictor uses agent names (radar, sieve, probe, etc.); rule-based scanners use rule IDs.",
+            "examples": ["radar", "sieve", "javascript.lang.security.audit.xss"]
+          },
+          "agent_confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "For AI-driven tools: confidence (0.0–1.0) that the finding is real. Rule-based scanners can omit this. Consumers can use this to threshold low-confidence findings out of default views."
+          },
+          "references": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "URLs to documentation, CVE entries, blog posts, or other relevant context for this finding."
+          },
+          "cwe": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^CWE-[0-9]+$"
+            },
+            "description": "Optional CWE (Common Weakness Enumeration) IDs that classify this finding.",
+            "examples": [["CWE-200", "CWE-798"]]
+          },
+          "cve": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^CVE-[0-9]{4}-[0-9]+$"
+            },
+            "description": "Optional CVE IDs for findings tied to known published vulnerabilities (typically dependency findings)."
+          },
+          "fingerprint": {
+            "type": "string",
+            "description": "Optional stable hash of (file_path + canonicalized code_snippet + category) usable for dedup across tools. Format is tool-specific but should be deterministic across runs. (Stable cross-tool fingerprinting is an open question for v0.2.)"
+          }
+        }
+      }
+    },
+
+    "agent_attributions": {
+      "type": "array",
+      "description": "For AI-driven tools: per-agent contribution stats. Optional for rule-based scanners.",
+      "items": {
+        "type": "object",
+        "required": ["agent"],
+        "additionalProperties": false,
+        "properties": {
+          "agent": {
+            "type": "string",
+            "description": "Agent identifier (matches findings[].agent values)."
+          },
+          "found_count": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of findings this agent generated."
+          },
+          "scored_count": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of findings this agent scored / reviewed (without originating)."
+          },
+          "confidence_avg": {
+            "type": ["number", "null"],
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Mean agent_confidence across findings this agent generated. Null if agent doesn't generate findings (e.g., orchestrator agents)."
+          }
+        }
+      }
+    },
+
+    "notes": {
+      "type": "array",
+      "description": "Free-text annotations from the tool. Use for context the schema doesn't capture (e.g., 'audit ran with --skip-rls-check', 'OpenAI API rate-limited during scan').",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+
+  "examples": [
+    {
+      "spec_version": "0.1",
+      "tool": {
+        "name": "lictor",
+        "version": "0.1.0",
+        "vendor": "lictor.ai"
+      },
+      "target": {
+        "type": "repository",
+        "url_or_path": "/Users/dor/projects/my-lovable-app",
+        "platform_fingerprint": "lovable",
+        "platform_confidence": 0.95,
+        "commit_sha": "a1b2c3d4",
+        "branch": "main"
+      },
+      "audit": {
+        "started": "2026-05-15T14:30:00Z",
+        "completed": "2026-05-15T14:30:42Z",
+        "duration_ms": 42183,
+        "checks_run": 7,
+        "partial": false
+      },
+      "summary": {
+        "critical": 1,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "info": 0,
+        "total": 1
+      },
+      "findings": [
+        {
+          "id": "L-2026-0001",
+          "severity": "critical",
+          "category": "secrets",
+          "title": "Supabase service key exposed in client JS bundle",
+          "summary": "The SUPABASE_SERVICE_ROLE_KEY is bundled into src/lib/db.ts and shipped to every visitor's browser. Anyone with the URL has full database write access.",
+          "evidence": {
+            "file_path": "src/lib/db.ts",
+            "line": 12,
+            "code_snippet": "const supabase = createClient(URL, 'eyJ...redacted...')",
+            "url": null
+          },
+          "fix": {
+            "summary": "Move to a server-only route, never bundle in client",
+            "diff_or_snippet": "// Move db.ts to app/api/_internal/db.ts so Next.js bundler keeps it server-only.",
+            "rotated_secrets_needed": ["SUPABASE_SERVICE_ROLE_KEY"],
+            "estimated_effort_minutes": 15
+          },
+          "agent": "radar",
+          "agent_confidence": 0.98,
+          "references": [
+            "https://lictor.ai/checks/L-secrets-1"
+          ],
+          "cwe": ["CWE-200", "CWE-798"]
+        }
+      ],
+      "agent_attributions": [
+        {
+          "agent": "radar",
+          "found_count": 1,
+          "scored_count": 0,
+          "confidence_avg": 0.98
+        }
+      ],
+      "notes": []
+    }
+  ]
+}
