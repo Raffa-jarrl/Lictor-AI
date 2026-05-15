@@ -1,3 +1,5 @@
+> **NOTE (May 2026 update):** Course revenue line REMOVED from Lictor's plan. The course at generationai.com is a separate consulting business and is no longer part of this project. References below that mention "Course", "course enrollments", or course-derived revenue should be treated as historical and substituted with zero. Other revenue lines (Teams, AaaS, Enterprise) stand.
+
 # Content Calendar — 90 days post-launch (Oct 6 → Dec 31, 2026)
 
 > **Purpose:** What each agent ships, when, where, and who approves it. Read it Monday morning. Execute it that week. Don't improvise.

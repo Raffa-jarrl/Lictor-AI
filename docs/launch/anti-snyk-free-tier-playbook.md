@@ -1,3 +1,5 @@
+> **NOTE (May 2026 update):** Course revenue line REMOVED from Lictor's plan. The course at generationai.com is a separate consulting business and is no longer part of this project. References below that mention "Course", "course enrollments", or course-derived revenue should be treated as historical and substituted with zero. Other revenue lines (Teams, AaaS, Enterprise) stand.
+
 # Anti-Snyk-Free-Tier Playbook — what Lictor does in the 90 days after Snyk ships a free SMB / vibe-coder tier
 
 > **Generated:** 2026-05-15

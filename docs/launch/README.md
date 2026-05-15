@@ -10,7 +10,6 @@ This directory holds every piece of copy that goes live on launch day. Each file
 | 07:00 am | Twitter / X | 12-tweet launch thread | [`twitter-thread.md`](./twitter-thread.md) |
 | 09:00 am | YouTube | Case-study video (TODO: shoot W19) | — |
 | 09:30 am | Blog | Long-form "Why I built Lictor" | [`blog-post.md`](./blog-post.md) |
-| 10:00 am | Email | GenerationAI course list | [`course-email.md`](./course-email.md) |
 | 11:00 am | Email | Press list (individual sends) | [`press-email.md`](./press-email.md) |
 | 11:00 am – 11:00 pm | All channels | Comment / reply triage | — |
 
@@ -19,7 +18,6 @@ This directory holds every piece of copy that goes live on launch day. Each file
 - [ ] HN post draft locked, copied into ready-to-paste form
 - [ ] Twitter thread scheduled or pre-loaded in TweetDeck
 - [ ] Blog post published as `/blog/why-lictor` (status: draft, scheduled for 09:30)
-- [ ] Course email scheduled in Mailchimp (status: paused, send at 10:00)
 - [ ] Press emails personalized + drafted in Gmail (one per recipient — don't BCC)
 - [ ] YouTube video uploaded as "unlisted", scheduled to go public at 09:00
 - [ ] OG images verified on lictor.ai (1200×630 — required for Twitter/Slack previews)
@@ -32,14 +30,11 @@ This directory holds every piece of copy that goes live on launch day. Each file
 - **Screenshots / hero images** for the Twitter thread (tweets #1, #4, #5, #8 need attachments)
 - **OG image** at 1200×630 (lictor.ai meta tags reference it; need to render from the lockup SVG)
 - **YouTube case-study video** — needs shooting in W19. 90-second cut: wrap → adversarial input → blocked + Guardian dashboard shows the incident. Should be doable in one focused day.
-- **HN post link substitution** — the course email references the HN post URL. The HN URL is only known after posting at 06:00. Plan: send the first 10% of the course email at 10:00 with the link substituted live; full send at 10:15.
-
 ## Why these specific channels
 
 - **HN** — highest-density technical audience. The "Show HN" framing pre-qualifies us as "open-source, free to try, here to discuss." Bad HN reception is recoverable; not posting on HN at all means we lose the consumer-developer crossover audience.
 - **Twitter** — picks up the AI safety / dev tools community. 12-tweet threads outperform single tweets 4-6× on engagement.
 - **YouTube** — the case-study video is the one piece of content that converts CISO-level viewers more than text. It's also the asset that survives the launch week and keeps recruiting customers for months.
-- **Course email** — already-warm audience. Sets expectations that the course content will reference Lictor going forward.
 - **Press** — leverage. A single TLDR AI mention reaches 100K+ developers. A Stratechery / Acquired follow-up reaches CISOs. Both require a substantive launch (HN landing on the front page helps).
 
 ## Why these times
@@ -47,7 +42,6 @@ This directory holds every piece of copy that goes live on launch day. Each file
 - **06:00 Pacific = 09:00 Eastern** = peak HN morning load + start of European workday
 - **07:00 Pacific = peak Twitter morning** for US tech audience
 - **09:00 Pacific** = YouTube goes live after HN has had 3 hours to react (HN comments inform the YouTube reply pinned at top)
-- **10:00 Pacific** = course email lands at start of US workday for the largest segment of the list
 - **11:00 Pacific** = press emails — by now the HN URL is real, the Twitter thread has some engagement, journalists can verify the launch is happening
 
 ## Day-of rules

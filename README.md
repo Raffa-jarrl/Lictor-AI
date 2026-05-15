@@ -123,6 +123,4 @@ Not yet broadly open. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for what we DO 
 
 A 20-year cybersecurity engineer + Claude. Solo build, building in public.
 
-The course at [generationai.com](https://generationai.com) teaches developers to ship AI apps that pass Lictor's checks.
-
 If this saved you from a bad day: star the repo. That's how solo open-source projects get measured.

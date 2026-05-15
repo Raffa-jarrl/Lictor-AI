@@ -1,3 +1,5 @@
+> **NOTE (May 2026 update):** Course revenue line REMOVED from Lictor's plan. The course at generationai.com is a separate consulting business and is no longer part of this project. References below that mention "Course", "course enrollments", or course-derived revenue should be treated as historical and substituted with zero. Other revenue lines (Teams, AaaS, Enterprise) stand.
+
 # Operation Triumph EXPANDED — 12-month plan to category-defining
 
 > **Generated:** 2026-05-15

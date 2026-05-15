@@ -32,7 +32,7 @@ Pre-Year-1 work shipped before public launch:
 - [x] 11-agent crew operational — sleep-resistant cron + 4 launchd jobs
 - [x] Probe agent extended for weekly competitive-watch on 6 competitors
 - [x] Mission Control: competitive-watch + year-1-metrics + waitlist-metrics dashboards
-- [x] ~80 strategic + tactical docs in `docs/launch/` — year plan, anti-Snyk playbook, M&A strategy, teardown engine, Beacon campaign, course curriculum, acquirer deck, press kit, 5 polished launch teardown drafts, Sep 22 disclosure emails
+- [x] ~80 strategic + tactical docs in `docs/launch/` — year plan, anti-Snyk playbook, M&A strategy, teardown engine, Beacon campaign, acquirer deck, press kit, 5 polished launch teardown drafts, Sep 22 disclosure emails
 - [x] **VS Code extension skeleton** (`vscode-extension/`) — manifest, diagnostics provider, sidebar tree view, 5 commands, README; TS compiles clean (ships v0.1 in Q4 2026)
 - [x] **4 new specialist agent SOULs** — Translator (🌐 locale rendering), Reel (🎬 video scripts), Booth (🎙️ podcast/CFP scouting), Bridge (🤝 GitHub triage); bring-online dates staggered Oct 2026–Jan 2027
 - [x] **AUDIT.json v0.2 adoption outreach** — 5 personalized email drafts (Semgrep, VibeEval, Symbioticsec, Aikido, Snyk) at `docs/launch/audit-json-adoption-outreach.md`
@@ -81,7 +81,6 @@ Subject to Q4 learnings.
 - [ ] Hebrew + Japanese landing translations
 - [ ] Lictor Studio v0.2 — Mac + Windows + Pro tier ($79 one-time or $7/mo)
 - [ ] Audit-as-a-Service productized — first 5 VC firms enrolled
-- [ ] GenerationAI course relaunch — "Ship Secure AI Apps in 30 Days" ($99)
 - [ ] Talk at AI Engineer Summit (March 2027)
 - [ ] Booth agent comes online (Jan 15) for podcast booking + CFP scouting
 - [ ] First conference CFP acceptance
