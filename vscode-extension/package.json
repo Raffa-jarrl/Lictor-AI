@@ -1,0 +1,139 @@
+{
+  "name": "lictor",
+  "displayName": "Lictor — AI Security Audit",
+  "description": "Free open-source security audit for AI-built apps. Catches the patterns Snyk and Semgrep miss in Lovable / Bolt / v0 / Cursor / Replit projects.",
+  "version": "0.1.0-pre.0",
+  "publisher": "lictor-ai",
+  "license": "Apache-2.0",
+  "homepage": "https://lictor.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lictor-ai/lictor.git",
+    "directory": "vscode-extension"
+  },
+  "categories": ["Linters", "Other"],
+  "keywords": ["security", "ai", "lovable", "bolt", "v0", "cursor", "replit", "audit"],
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onCommand:lictor.auditWorkspace",
+    "onCommand:lictor.auditFile",
+    "onCommand:lictor.importAuditJson",
+    "onCommand:lictor.exportFindings",
+    "onCommand:lictor.explainFinding",
+    "workspaceContains:**/.lovable.json",
+    "workspaceContains:**/.bolt/**",
+    "workspaceContains:vercel.json"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "lictor.auditWorkspace",
+        "title": "Lictor: Audit this workspace",
+        "category": "Lictor"
+      },
+      {
+        "command": "lictor.auditFile",
+        "title": "Lictor: Audit this file",
+        "category": "Lictor"
+      },
+      {
+        "command": "lictor.importAuditJson",
+        "title": "Lictor: Import AUDIT.json from another tool",
+        "category": "Lictor"
+      },
+      {
+        "command": "lictor.exportFindings",
+        "title": "Lictor: Export findings as AUDIT.json",
+        "category": "Lictor"
+      },
+      {
+        "command": "lictor.explainFinding",
+        "title": "Lictor: Explain this finding in plain English",
+        "category": "Lictor"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "lictor.auditFile",
+          "when": "resourceLangId =~ /typescript|javascript|javascriptreact|typescriptreact|python/",
+          "group": "lictor@1"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "lictor.auditFile",
+          "when": "resourceLangId =~ /typescript|javascript|javascriptreact|typescriptreact|python/",
+          "group": "lictor@1"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Lictor",
+      "properties": {
+        "lictor.severityFilter": {
+          "type": "string",
+          "default": "low",
+          "enum": ["critical", "high", "medium", "low", "info"],
+          "description": "Minimum severity to surface in the Problems panel. Lower values show more findings."
+        },
+        "lictor.runOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "Re-run the audit automatically when a workspace file is saved. Off by default — manual audits don't surprise you."
+        },
+        "lictor.skipDirs": {
+          "type": "array",
+          "default": ["node_modules", "target", "dist", "build", ".next", ".git", ".venv", "__pycache__", "vendor"],
+          "description": "Directory names to skip during audits."
+        }
+      }
+    },
+    "views": {
+      "lictor-sidebar": [
+        {
+          "id": "lictor.findingsView",
+          "name": "Lictor findings",
+          "icon": "$(shield)",
+          "contextualTitle": "Lictor findings"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "lictor-sidebar",
+          "title": "Lictor",
+          "icon": "$(shield)"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm build",
+    "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --target=node20",
+    "watch": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --target=node20 --sourcemap --watch",
+    "typecheck": "tsc --noEmit",
+    "package": "vsce package",
+    "publish:vsce": "vsce publish",
+    "publish:openvsx": "ovsx publish"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^3.2.0",
+    "esbuild": "^0.24.0",
+    "ovsx": "^0.10.0",
+    "typescript": "^5.6.0"
+  },
+  "extensionDependencies": [],
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#0F1419",
+    "theme": "dark"
+  },
+  "preview": true
+}

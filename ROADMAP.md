@@ -33,6 +33,10 @@ Pre-Year-1 work shipped before public launch:
 - [x] Probe agent extended for weekly competitive-watch on 6 competitors
 - [x] Mission Control: competitive-watch + year-1-metrics + waitlist-metrics dashboards
 - [x] ~80 strategic + tactical docs in `docs/launch/` — year plan, anti-Snyk playbook, M&A strategy, teardown engine, Beacon campaign, course curriculum, acquirer deck, press kit, 5 polished launch teardown drafts, Sep 22 disclosure emails
+- [x] **VS Code extension skeleton** (`vscode-extension/`) — manifest, diagnostics provider, sidebar tree view, 5 commands, README; TS compiles clean (ships v0.1 in Q4 2026)
+- [x] **4 new specialist agent SOULs** — Translator (🌐 locale rendering), Reel (🎬 video scripts), Booth (🎙️ podcast/CFP scouting), Bridge (🤝 GitHub triage); bring-online dates staggered Oct 2026–Jan 2027
+- [x] **AUDIT.json v0.2 adoption outreach** — 5 personalized email drafts (Semgrep, VibeEval, Symbioticsec, Aikido, Snyk) at `docs/launch/audit-json-adoption-outreach.md`
+- [x] **Waitlist landing translated** to Spanish (LATAM) and Portuguese (BR) at `landing/translations/{es,pt-BR}/waitlist.html`
 
 ## 🚀 Now — Q3 2026 (Jun–Sep)
 
