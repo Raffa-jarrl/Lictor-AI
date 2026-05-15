@@ -85,12 +85,18 @@ echo
 # ── Step 3: Render brand assets ────────────────────────────────────────
 
 echo "Step 3/6: Rendering brand assets…"
-bash scripts/render-brand-assets.sh > /tmp/lictor-setup-brand.log 2>&1 || {
-  echo "  ✗ brand rendering failed — see /tmp/lictor-setup-brand.log"
-  exit 1
-}
-RENDERED=$(bash scripts/render-brand-assets.sh --check | tail -1)
-echo "  $RENDERED"
+if [ "${LICTOR_SKIP_BRAND:-0}" = "1" ]; then
+  echo "  → skipped (LICTOR_SKIP_BRAND=1)"
+  echo "    Brand .icns generation is macOS-only; set this flag on Linux CI."
+else
+  if ! bash scripts/render-brand-assets.sh > /tmp/lictor-setup-brand.log 2>&1; then
+    echo "  ⚠ brand rendering failed — see /tmp/lictor-setup-brand.log"
+    echo "    (continuing — this isn't fatal for the rest of setup)"
+  else
+    RENDERED=$(bash scripts/render-brand-assets.sh --check 2>&1 | tail -1)
+    echo "  $RENDERED"
+  fi
+fi
 echo
 
 # ── Step 4: Cargo build/check the workspace ────────────────────────────
