@@ -1,0 +1,23 @@
+# Cloudflare Pages _headers — applied to all routes on lictor-ai.com.
+# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+#
+# These headers ship the "medium" findings flagged in /scan/example-lictor-ai.html
+# from day one. We don't get to publish a scanner that lectures the world about
+# CSP / Permissions-Policy / HSTS while serving without them ourselves.
+
+/*
+  # Defense-in-depth even though we have no user-generated content yet.
+  # script-src 'self' = no inline JS, no remote JS (scan.js is served from /scan/).
+  # style-src adds Google Fonts; img-src adds 'data:' so SVG <img> tags work.
+  # TODO(pre-Aug-15-launch): remove 'unsafe-inline' from script-src — currently
+  # required for the waitlist onsubmit attribute and the coming-soon.html
+  # query-param renderer. Refactor those to external JS + addEventListener,
+  # then drop 'unsafe-inline'.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://scan-api.lictor-ai.com https://buttondown.com; form-action 'self' https://buttondown.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  # Cross-Origin-Opener-Policy keeps popups (Buttondown subscribe window) isolated.
+  Cross-Origin-Opener-Policy: same-origin-allow-popups

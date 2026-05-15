@@ -1,0 +1,23 @@
+# Cloudflare Pages _redirects — clean URL rules.
+# Docs: https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Routes referenced but not yet built — route to a friendly coming-soon page
+# instead of a 404. (Patrol publishes its report at /in-the-wild on Jul 1;
+# transparency reports start Nov 1; /transparency archive lives there too.)
+/in-the-wild      /coming-soon.html?from=in-the-wild      200
+/in-the-wild/*    /coming-soon.html?from=in-the-wild      200
+/transparency     /coming-soon.html?from=transparency     200
+/transparency/*   /coming-soon.html?from=transparency     200
+/crew             /coming-soon.html?from=crew             200
+/crew/*           /coming-soon.html?from=crew             200
+
+# /scan/<id> — placeholder until the Worker ships. After Jun 1, the Worker
+# at scan-api.lictor-ai.com handles these and this rule is removed.
+/scan/example-lictor-ai   /scan/example-lictor-ai.html   200
+
+# Spanish + Portuguese waitlist — short URL aliases so we can share /es and /pt
+/es               /translations/es/waitlist.html         301
+/es/*             /translations/es/waitlist.html         301
+/pt               /translations/pt-BR/waitlist.html      301
+/pt/*             /translations/pt-BR/waitlist.html      301
+/pt-BR            /translations/pt-BR/waitlist.html      301
