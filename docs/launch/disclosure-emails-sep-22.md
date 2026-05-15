@@ -2,8 +2,8 @@
 
 > **Generated:** 2026-05-15 (drafts ready 4 months ahead of send date)
 > **Send date:** September 22, 2026
-> **Purpose:** Coordinated responsible-disclosure emails to the 5 teardown targets per [teardown-targets.md](./teardown-targets.md) + [teardown-engine.md](./teardown-engine.md). Drafts written here so Dor's send-day work is "personalize + click send," not "draft from scratch under launch-week pressure."
-> **Action by Dor on Sep 22:** review each draft → fill in `[FILL]` placeholders → personalize the opener → send via Dor's normal email client (NOT bcc — one personal message per recipient).
+> **Purpose:** Coordinated responsible-disclosure emails to the 5 teardown targets per [teardown-targets.md](./teardown-targets.md) + [teardown-engine.md](./teardown-engine.md). Drafts written here so Raffa's send-day work is "personalize + click send," not "draft from scratch under launch-week pressure."
+> **Action by Raffa on Sep 22:** review each draft → fill in `[FILL]` placeholders → personalize the opener → send via Raffa's normal email client (NOT bcc — one personal message per recipient).
 
 ---
 
@@ -32,13 +32,13 @@ If any target responds with hostility, **pause** the remaining sends and reasses
 Hi [FOUNDER FIRST NAME],
 
 [FILL — 1-line personal opener:
-  Pick ONE specific true thing about Pitchtank Dor noticed.
+  Pick ONE specific true thing about Pitchtank Raffa noticed.
   Examples: "Saw Pitchtank on madewithlovable last week — the 70/30
   revenue-split mechanic is one of the cleanest indie-business
   designs I've seen on Lovable." OR "Caught your launch on Product Hunt
   in [month]." Keep it real, not flattering.]
 
-I'm Dor — 20-year cybersecurity engineer, based in Israel. I'm
+I'm Raffa — 20-year cybersecurity engineer, based in Israel. I'm
 building Lictor — an open-source AI security tool for vibe-coded
 apps — and I'd like to run an audit on Pitchtank, with your
 permission, and publish the findings.
@@ -74,19 +74,19 @@ The audit itself is free, no NDA, no payment, no future
 obligations. I've drafted the writeup template ahead of time —
 happy to share it so you see exactly what we'd publish.
 
-You can read more about Lictor at lictor.ai. The repo is
+You can read more about Lictor at lictor-ai.com. The repo is
 github.com/Raffa-jarrl/Lictor-AI (public Oct 6, currently private — I
 can add you as a collaborator if you want a preview).
 
 Worth a quick 15-minute call to discuss?
 
-— Dor
+— Raffa
 
 P.S. If the answer is "no thanks, I'm not interested" — that's
 totally fine. No follow-up. I'll pick a different target.
 ```
 
-**Variant — if founder is from Twitter rather than email-discoverable:** DM with: `"Hey, sent you an email about a free security audit of Pitchtank for an indie-hacker content piece. If it didn't land, my address is dor@lictor.ai. No pressure."`
+**Variant — if founder is from Twitter rather than email-discoverable:** DM with: `"Hey, sent you an email about a free security audit of Pitchtank for an indie-hacker content piece. If it didn't land, my address is raffa@lictor-ai.com. No pressure."`
 
 ---
 
@@ -103,7 +103,7 @@ shipped recently. Example: "Saw your Tymora launch on Lovable's
 showcase — the OAuth-scope-handling pattern you've shipped is a
 problem most AI assistants haven't figured out yet."]
 
-I'm Dor. 20 years in cybersecurity, building Lictor — an open-source
+I'm Raffa. 20 years in cybersecurity, building Lictor — an open-source
 AI security tool for vibe-coded apps. I'm doing a series of
 security audits before our Oct 6 launch and Tymora is on the
 shortlist.
@@ -135,11 +135,11 @@ If you've already audited and you know it's clean — even better.
 The writeup becomes "Tymora is the reference implementation for
 secure AI assistants." That's content I'd happily publish.
 
-Lictor: lictor.ai. Repo: github.com/Raffa-jarrl/Lictor-AI.
+Lictor: lictor-ai.com. Repo: github.com/Raffa-jarrl/Lictor-AI.
 
 Worth a 15-minute call?
 
-— Dor
+— Raffa
 
 P.S. If you'd rather pass — no problem. I'm doing 5 audits and
 have alternates lined up.
@@ -159,7 +159,7 @@ Hello [FOUNDER NAME],
 [source] — the verified-email database approach is clever, and
 the lifetime-deal pricing is unusual."]
 
-I'm Dor, a 20-year cybersecurity engineer based in Israel. I'm
+I'm Raffa, a 20-year cybersecurity engineer based in Israel. I'm
 launching Lictor — an open-source AI security tool — on October
 20, 2026, and as part of the launch I'm doing a free security
 audit of 5 vibe-coded apps (Lovable / Bolt / v0 stack).
@@ -186,16 +186,16 @@ issues, I'll send you the findings 14 days before publication so
 your team has time to fix. The writeup is a teaching piece, not
 a takedown — happy to share the draft for your review.
 
-Lictor: lictor.ai. Open source under Apache 2.0.
+Lictor: lictor-ai.com. Open source under Apache 2.0.
 
 If you'd like to discuss, I'm happy to schedule a call this
 week or next. If not — completely fine, no further outreach.
 
 Best,
-Dor
+Raffa
 
 Founder, Lictor AI
-dor@lictor.ai · lictor.ai
+raffa@lictor-ai.com · lictor-ai.com
 ```
 
 ---
@@ -213,7 +213,7 @@ demo on X this week — the sandbox-execution flow is genuinely
 impressive, and the way you're teaching prompt-engineering
 concepts through real agents is the right pedagogy."]
 
-I'm Dor. 20 years in cybersecurity. Building Lictor — an
+I'm Raffa. 20 years in cybersecurity. Building Lictor — an
 open-source security tool for AI-built apps. We're launching
 October 6, and as part of the launch I'm running security audits
 on 5 vibe-coded apps. AgentSwarms is the one I'm most interested
@@ -247,15 +247,15 @@ coordinate everything. If anything goes sideways during the
 audit (we find something embarrassing), we coordinate the public
 narrative together. No surprises.
 
-Lictor: lictor.ai. Repo: github.com/Raffa-jarrl/Lictor-AI.
+Lictor: lictor-ai.com. Repo: github.com/Raffa-jarrl/Lictor-AI.
 
 Even if the joint publication doesn't fit your schedule, I'd
 still love to audit privately. Whatever shape you prefer.
 
-Reply via DM, email (dor@lictor.ai), or schedule a call:
-[FILL — Calendly link if Dor uses one].
+Reply via DM, email (raffa@lictor-ai.com), or schedule a call:
+[FILL — Calendly link if Raffa uses one].
 
-— Dor
+— Raffa
 
 P.S. The teardown engine + voice doctrine for Lictor is at
 docs/launch/teardown-engine.md in our repo. I can share that
@@ -283,8 +283,8 @@ publicly-available apps shipped through Anything (anything.so).
 its category]. No personal grievance, no involvement in any
 prior conversations about [App Name]."]
 
-I'm Dor, a 20-year cybersecurity engineer based in Israel. I run
-Lictor (lictor.ai), an open-source security audit tool for
+I'm Raffa, a 20-year cybersecurity engineer based in Israel. I run
+Lictor (lictor-ai.com), an open-source security audit tool for
 AI-built and vibe-coded apps. We are launching October 6, 2026,
 with a content series featuring 5 audits of real vibe-coded apps
 across multiple platforms.
@@ -329,16 +329,16 @@ audit [App Name] — there are 4 other targets in the series and
 no individual app is essential.
 
 Lictor's repo: github.com/Raffa-jarrl/Lictor-AI. Our broader
-responsible disclosure policy: lictor.ai/security.
+responsible disclosure policy: lictor-ai.com/security.
 
 Please reply confirming receipt by [FILL: Sep 29, 2026] and
 indicating whether you'd like to discuss before deciding.
 
 Sincerely,
 
-Dor [LASTNAME]
+Raffa [LASTNAME]
 Founder, Lictor AI
-dor@lictor.ai · +[FILL: phone if comfortable] · lictor.ai
+raffa@lictor-ai.com · +[FILL: phone if comfortable] · lictor-ai.com
 ```
 
 **Pre-send checklist (Email 5 ONLY):**
@@ -347,7 +347,7 @@ dor@lictor.ai · +[FILL: phone if comfortable] · lictor.ai
 - [ ] Anything's security email confirmed as CC
 - [ ] Calendly / call link in the signature
 - [ ] No exploit code or specific findings in the email (drafts attached only after they confirm interest)
-- [ ] Dor's full legal name in the signature
+- [ ] Raffa's full legal name in the signature
 
 ---
 
@@ -365,7 +365,7 @@ Totally understand if it's not a fit — just wanted to make sure
 it didn't end up in spam. Reply with "pass" if you'd rather not
 and I'll close the loop on my side.
 
-— Dor
+— Raffa
 ```
 
 **No response in 10 business days from initial send** → drop. Pick alternate target from [teardown-targets.md](./teardown-targets.md). No further outreach.
@@ -379,7 +379,7 @@ Got it — won't audit [APP]. Apologies for the unwanted email.
 I'll remove you from any future outreach. If you have specific
 concerns about Lictor's research methodology, my email's open.
 
-— Dor
+— Raffa
 ```
 
 Then actually remove them and move on. Never argue. Never publish about the target.

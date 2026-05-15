@@ -2,7 +2,7 @@
 
 > How Lictor handles community reports that we got something wrong.
 > Status: live. This protocol runs forever.
-> Owner: Mirror agent. Escalation owner: Dor.
+> Owner: Mirror agent. Escalation owner: Raffa.
 > Last updated: 2026-05-15
 
 ---
@@ -69,7 +69,7 @@ No CISSP gate. No NDA. No "are you sure?" friction. The template is the contract
 
 - **Acknowledge within 4 hours.** Bridge replies on the issue, confirms the report type, asks any clarifying questions, applies labels.
 - **Triage to Mirror within 24 hours.** Bridge tags the report with severity, agent-of-origin if known (which of the 11 agents produced the finding), target platform, and routes to Mirror agent's queue.
-- **Escalate to Dor within 48 hours** if the report is a critical false negative (see section 6) or a high-visibility critic post.
+- **Escalate to Raffa within 48 hours** if the report is a critical false negative (see section 6) or a high-visibility critic post.
 
 **Labels applied during triage:**
 
@@ -104,7 +104,7 @@ These labels feed the monthly accuracy report. They are not optional.
 3. **Write the new rule** (or extend an existing one) until the regression passes.
 4. **Verify no new false positives.** Probe agent re-runs the full audit suite against the 30+ teardown corpus. Any new findings get human-reviewed before merge. This step is non-negotiable — a fix that catches one missed bug but starts flagging legitimate code in five other projects is a net loss.
 5. **Ships in a PR labeled `false-negative-fix-LXXXX`.**
-6. **Reporter credit + reward.** CHANGELOG mention. Public spotlight in the next weekly newsletter (with consent). For high-severity catches — patterns that were actively exploited in a real production incident — a bug bounty payment from the Lictor Foundation budget. **Tier suggestion (Dor to confirm): $100 baseline, $500 for high-severity catches, $1,000 for critical catches tied to a real incident.** Paid via GitHub Sponsors or direct transfer. No invoice gymnastics.
+6. **Reporter credit + reward.** CHANGELOG mention. Public spotlight in the next weekly newsletter (with consent). For high-severity catches — patterns that were actively exploited in a real production incident — a bug bounty payment from the Lictor Foundation budget. **Tier suggestion (Raffa to confirm): $100 baseline, $500 for high-severity catches, $1,000 for critical catches tied to a real incident.** Paid via GitHub Sponsors or direct transfer. No invoice gymnastics.
 7. **The pattern becomes a permanent check.** Once shipped, every future audit runs it.
 
 ### For voice-bugs
@@ -122,7 +122,7 @@ These labels feed the monthly accuracy report. They are not optional.
 
 - **CHANGELOG entries.** Every fix — FP, FN, voice-bug — goes in the changelog with the reporter credited (with consent) and a one-line description of what changed. No exceptions, no batched omissions.
 - **Weekly newsletter.** Quill's user-spotlight section can feature a specific fix: *"This week, @username caught a Stripe webhook signature check we missed. Here's the test that now catches it."* One spotlight per newsletter when there's a worthy one. Don't manufacture them.
-- **The `lictor.ai/audit-report` page.** A public dashboard rebuilt monthly: open issues, fixed-this-month count, new patterns added, median time-to-fix. Generated from labels + CHANGELOG, not hand-maintained.
+- **The `lictor-ai.com/audit-report` page.** A public dashboard rebuilt monthly: open issues, fixed-this-month count, new patterns added, median time-to-fix. Generated from labels + CHANGELOG, not hand-maintained.
 - **Twitter.** Explicit "we got this wrong, here's what we shipped to fix it" posts. Not buried in a thread, not framed as marketing. Surfaced. Pinned for a day when the fix is meaningful.
 - **The accuracy claim.** Lictor never claims "100% accurate," "99% accurate," or any unfalsifiable number. The standing claim is: *"We get things wrong sometimes. Here's how we fix it. Here's the public log of every error and its resolution."* That sentence is on the landing page, in the README, and in the issue template.
 
@@ -132,11 +132,11 @@ These labels feed the monthly accuracy report. They are not optional.
 
 ## 6. Escalation thresholds
 
-Most reports are routine: a misfire, a missed pattern, a clumsy sentence. These run through Mirror's queue and ship in days. A small number of reports are not routine. These get Dor.
+Most reports are routine: a misfire, a missed pattern, a clumsy sentence. These run through Mirror's queue and ship in days. A small number of reports are not routine. These get Raffa.
 
-- **Critical false negative.** Lictor missed a vulnerability that was actively exploited in a real production incident. Escalation: Dor responds personally within 24 hours. Public security advisory published in the GitHub Security tab. Transparent post-mortem published within 7 days — what we missed, why we missed it, what we shipped to catch it, what we changed in our process. **Dor to confirm:** is 7 days the right post-mortem SLA, or should it be 14?
-- **Pattern of false positives in one category.** More than 3 false-positive reports against the same rule within 30 days. Escalation: that rule is auto-disabled until fixed. Users get notified via the next newsletter and a pinned issue. Root cause posted on the issue thread. **Dor to confirm:** is the threshold 3 in 30 days, or should it be more sensitive (2 in 14 days) given low total volume in year one?
-- **A critic posts publicly without filing a report.** Someone on Twitter / HN / LinkedIn calls out Lictor's accuracy without opening a GitHub issue. Bridge escalates to Dor. Dor responds publicly, on-thread: thank them for the signal, ask for the specific case, invite a GitHub issue, link to this protocol. Never get defensive. Never argue accuracy in a quote-tweet. Move the conversation to where fixes happen.
+- **Critical false negative.** Lictor missed a vulnerability that was actively exploited in a real production incident. Escalation: Raffa responds personally within 24 hours. Public security advisory published in the GitHub Security tab. Transparent post-mortem published within 7 days — what we missed, why we missed it, what we shipped to catch it, what we changed in our process. **Raffa to confirm:** is 7 days the right post-mortem SLA, or should it be 14?
+- **Pattern of false positives in one category.** More than 3 false-positive reports against the same rule within 30 days. Escalation: that rule is auto-disabled until fixed. Users get notified via the next newsletter and a pinned issue. Root cause posted on the issue thread. **Raffa to confirm:** is the threshold 3 in 30 days, or should it be more sensitive (2 in 14 days) given low total volume in year one?
+- **A critic posts publicly without filing a report.** Someone on Twitter / HN / LinkedIn calls out Lictor's accuracy without opening a GitHub issue. Bridge escalates to Raffa. Raffa responds publicly, on-thread: thank them for the signal, ask for the specific case, invite a GitHub issue, link to this protocol. Never get defensive. Never argue accuracy in a quote-tweet. Move the conversation to where fixes happen.
 
 ---
 
@@ -165,7 +165,7 @@ These files compound into a public record. Anyone running Lictor a year from now
 
 ---
 
-## Notes for Dor
+## Notes for Raffa
 
 This protocol is ready to run from launch day. Three calls before it goes live:
 

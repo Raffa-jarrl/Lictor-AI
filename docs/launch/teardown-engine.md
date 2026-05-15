@@ -14,7 +14,7 @@ The week runs **Tuesday-publish → Tuesday-publish**. Disclosure is the gate; t
 |---|---|---|---|
 | **Tue (Week 0)** publish | Quill + Magnet | This week's teardown ships at 09:00 PT | Blog, Twitter, LinkedIn, HN, Reddit, Substack, GitHub gist, YouTube short |
 | **Tue (Week 1)** | Radar | Pick next week's target from the rolling candidate list | `teardowns/next/target.json` |
-| **Wed (Week 1)** | Conductor + Dor | Send responsible disclosure email | `teardowns/next/disclosure.eml` saved with timestamp |
+| **Wed (Week 1)** | Conductor + Raffa | Send responsible disclosure email | `teardowns/next/disclosure.eml` saved with timestamp |
 | **Thu (Week 1)** | (founder window) | Quiet day. Founder reads the email. Don't poke. | — |
 | **Fri (Week 1)** | Probe + Sieve | Run the audit. Score every finding. | `teardowns/next/findings.json` |
 | **Sat (Week 1)** | Quill + Magnet | First draft of the report + the landing page | `teardowns/next/report.md`, `landing-pages/<slug>/page.md` |
@@ -35,10 +35,10 @@ Each agent has one job that week. Conductor coordinates. No one freelances.
 | Agent | Role | What ships from them |
 |---|---|---|
 | **Radar (scout)** | Picks the target. Reads the candidate pool, ranks by the `teardown-targets.md` criteria, picks one. | `target.json` — app name, URL, platform, founder name, public traction, risk score |
-| **Conductor (planner)** | Sends the disclosure email Wednesday. Owns the calendar. Escalates to Dor if the founder responds. | `disclosure.eml`, `briefings/YYYY-MM-DD.json` entry |
+| **Conductor (planner)** | Sends the disclosure email Wednesday. Owns the calendar. Escalates to Raffa if the founder responds. | `disclosure.eml`, `briefings/YYYY-MM-DD.json` entry |
 | **Probe** | Runs the audit Friday. Catalogs every finding with file/URL evidence. | `findings.json` — full structured findings, severity per finding, evidence path |
 | **Sieve (critic)** | Scores each finding for severity + clarity. Anything below `severity ≥ medium` AND `evidence: solid` gets cut. | `findings.scored.json` |
-| **Quill (writer)** | Writes the report in Dor's voice. One pass to draft, one pass to tighten. | `report.md` |
+| **Quill (writer)** | Writes the report in Raffa's voice. One pass to draft, one pass to tighten. | `report.md` |
 | **Magnet** | Builds the landing page that ranks for `[App Name] security audit`. SEO meta, OG image, capture form. | `landing-pages/<slug>/{page.md, meta.json, follow-up.md}` |
 | **Pulse (surveyor)** | Writes 5 hook variants for the Twitter thread, LinkedIn post, and HN title. | `hooks.json` |
 | **Vibe** | Designs the cover image, the YouTube short thumbnail, and the carousel visuals. | `cover.png`, `thumbnail.png`, `carousel/*.png` |
@@ -175,8 +175,8 @@ Every teardown ships to every surface below. C-3PO owns the deploy. Each surface
 | **Reddit r/programming** | Same as HN but slightly more technical framing | Conductor submits | Title is a question or a finding. "[App] leaks every user's [X] — here's why and how to prevent it." |
 | **Substack newsletter** | The full teardown, plus a sidebar of "what this week taught me" | Quill | Goes to the Lictor list every Tuesday 10:00 PT |
 | **GitHub gist** | The full structured `findings.json` + reproducer script | C-3PO | Public gist under the Lictor org. Linked from the blog. The proof-of-work. |
-| **YouTube short** | ≤60 seconds. Hook, 3 findings, fix, CTA. | Vibe storyboards, Quill scripts, Dor records | Vertical 9:16. Captions hardcoded. |
-| **TikTok** | Same script as YouTube short, reshot if needed for platform-native pacing | Skip if Dor isn't shipping TikTok regularly | Only ship if the TikTok account has consistent posting — one-offs flop |
+| **YouTube short** | ≤60 seconds. Hook, 3 findings, fix, CTA. | Vibe storyboards, Quill scripts, Raffa records | Vertical 9:16. Captions hardcoded. |
+| **TikTok** | Same script as YouTube short, reshot if needed for platform-native pacing | Skip if Raffa isn't shipping TikTok regularly | Only ship if the TikTok account has consistent posting — one-offs flop |
 | **Lictor landing page** | `lictor.dev/audits/[app-slug]` — SEO-optimized to rank for "[App Name] security audit" | Magnet | Headline matches the search query. Capture form below the fold. |
 
 **Cross-posting timing:** blog goes live at 09:00 PT. Twitter thread goes 09:01. LinkedIn 09:05. HN at 09:10 (HN voting is timezone-sensitive — 09:10 PT = 12:10 ET = good NYC/east-coast audience). Reddit at 09:30. Substack auto-sends at 10:00. YouTube short at 11:00 (gives the blog post time to rank for the search query the short will drive).
@@ -187,7 +187,7 @@ Every teardown ships to every surface below. C-3PO owns the deploy. Each surface
 
 These are not suggestions. Break any of them and Mirror kicks the teardown back. Break them twice and Lictor loses the right to do public teardowns at all.
 
-1. **14-day minimum disclosure window.** No exceptions. If the founder asks for more time and the request is in good faith, grant up to 30 days. If they ask for more than 30, escalate to Dor.
+1. **14-day minimum disclosure window.** No exceptions. If the founder asks for more time and the request is in good faith, grant up to 30 days. If they ask for more than 30, escalate to Raffa.
 2. **Never publish exploit code.** Findings describe *what's wrong*, not *how to weaponize it*. "The Supabase anon key is in the JS bundle" — yes. "Here's a curl command that drains the database" — no.
 3. **Never punch down.** No teardown of apps with under 1,000 users unless the owner explicitly consents. The point is to teach the ecosystem, not bully indie hackers.
 4. **Never name an individual user.** If a leaked record contains a real person's email, redact it. Show the schema, not the row.

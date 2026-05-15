@@ -4,16 +4,16 @@
 
 > **Updated:** May 15, 2026
 > **Launch date:** October 6, 2026
-> **Primary contact:** `press@lictor.ai` (live by September 2026; until then, `hello@lictor.ai`)
-> **Repo:** github.com/Raffa-jarrl/Lictor-AI · **Web:** lictor.ai
+> **Primary contact:** `press@lictor-ai.com` (live by September 2026; until then, `hello@lictor-ai.com`)
+> **Repo:** github.com/Raffa-jarrl/Lictor-AI · **Web:** lictor-ai.com
 
 ---
 
 ## How journalists use this kit
 
-Download once. Reference for any Lictor coverage — teardowns, profiles, category pieces, interviews with Dor. Everything in this document is cleared for re-use. Quote any of the boilerplates verbatim. Adapt the bios. Lift the pull-quotes. The brand assets are in `~/Lictor/brand/` and the repo's public mirror.
+Download once. Reference for any Lictor coverage — teardowns, profiles, category pieces, interviews with Raffa. Everything in this document is cleared for re-use. Quote any of the boilerplates verbatim. Adapt the bios. Lift the pull-quotes. The brand assets are in `~/Lictor/brand/` and the repo's public mirror.
 
-If anything in this kit is unclear, out of date, or you want a clarification before you publish, email `press@lictor.ai` — turnaround target is 48 hours for clarifications, 7+ days for sit-down interviews. We honor reasonable embargos (see Section 9).
+If anything in this kit is unclear, out of date, or you want a clarification before you publish, email `press@lictor-ai.com` — turnaround target is 48 hours for clarifications, 7+ days for sit-down interviews. We honor reasonable embargos (see Section 9).
 
 If you're writing a teardown of one of Lictor's audits, jump to Section 10.
 
@@ -53,25 +53,25 @@ For a featured news item or category-trends story.
 
 ## 4. Founder bios
 
-All in third person. Verify the specific factual claims (years of experience, prior CISO advisory engagements) with Dor before publication — these are accurate as of May 2026 but should be confirmed at time of writing.
+All in third person. Verify the specific factual claims (years of experience, prior CISO advisory engagements) with Raffa before publication — these are accurate as of May 2026 but should be confirmed at time of writing.
 
 ### Short bio — 20 words
 
-> Dor is a 20-year cybersecurity engineer and founder of Lictor, the open-source security suite for AI-built apps.
+> Raffa is a 20-year cybersecurity engineer and founder of Lictor, the open-source security suite for AI-built apps.
 
 ### Medium bio — 60 words
 
-> Dor is the founder of Lictor, an open-source security suite for apps built with AI. He spent twenty years in cybersecurity — CISO advisory engagements at Fortune 500 companies, security architecture for venture-backed startups, and twenty years of writing security reports nobody outside compliance teams could read. He builds Lictor solo from Israel. Apache 2.0, no investors, no co-founders.
+> Raffa is the founder of Lictor, an open-source security suite for apps built with AI. He spent twenty years in cybersecurity — CISO advisory engagements at Fortune 500 companies, security architecture for venture-backed startups, and twenty years of writing security reports nobody outside compliance teams could read. He builds Lictor solo from Israel. Apache 2.0, no investors, no co-founders.
 
 ### Long bio — 100 words
 
-> Dor is the founder of Lictor, the open-source security crew for apps built with AI. Lictor launches October 6, 2026, with eleven specialist AI agents that audit Lovable, Bolt, v0, Cursor, and Replit projects in plain English. Before Lictor, Dor spent twenty years in cybersecurity — CISO advisory work at Fortune 500 companies, security architecture for venture-backed startups, and a long, quiet career writing reports nobody outside the compliance team could read. He builds Lictor solo from Israel, self-funded. His sister project, GenerationAI, teaches builders how to ship AI apps that pass Lictor's checks the first time.
+> Raffa is the founder of Lictor, the open-source security crew for apps built with AI. Lictor launches October 6, 2026, with eleven specialist AI agents that audit Lovable, Bolt, v0, Cursor, and Replit projects in plain English. Before Lictor, Raffa spent twenty years in cybersecurity — CISO advisory work at Fortune 500 companies, security architecture for venture-backed startups, and a long, quiet career writing reports nobody outside the compliance team could read. He builds Lictor solo from Israel, self-funded. His sister project, GenerationAI, teaches builders how to ship AI apps that pass Lictor's checks the first time.
 
 ---
 
 ## 5. Quotable lines
 
-Twelve standalone pull-quotes. Each one makes sense in isolation and reads as Lictor's voice. Lift any of these verbatim, attribute to Dor or to Lictor as appropriate.
+Twelve standalone pull-quotes. Each one makes sense in isolation and reads as Lictor's voice. Lift any of these verbatim, attribute to Raffa or to Lictor as appropriate.
 
 > "AI built half the apps shipping this year. Nobody built the security crew to audit them. That's the gap Lictor exists for."
 
@@ -101,7 +101,7 @@ Twelve standalone pull-quotes. Each one makes sense in isolation and reads as Li
 
 ## 6. The five talking-point arcs
 
-What Dor expects to be asked, with a 1–2 sentence answer and supporting facts. Use these to prep an interview or to verify a quote.
+What Raffa expects to be asked, with a 1–2 sentence answer and supporting facts. Use these to prep an interview or to verify a quote.
 
 ### Arc 1 — "What does Lictor do that Snyk doesn't?"
 
@@ -123,7 +123,7 @@ What Dor expects to be asked, with a 1–2 sentence answer and supporting facts.
 
 ### Arc 3 — "What's the business model?"
 
-**Answer:** "Four streams, all built on the open-source core. Teams subscription at $19/month flat-rate. A $99 course called GenerationAI. Audit-as-a-Service for agencies and VC portfolios. Enterprise pilots when someone deploys it on-prem. No venture capital, no funding round, no dilution — funded by Dor's consulting income while the OSS compounds."
+**Answer:** "Four streams, all built on the open-source core. Teams subscription at $19/month flat-rate. A $99 course called GenerationAI. Audit-as-a-Service for agencies and VC portfolios. Enterprise pilots when someone deploys it on-prem. No venture capital, no funding round, no dilution — funded by Raffa's consulting income while the OSS compounds."
 
 **Supporting facts:**
 - Target: $25–50k MRR by Q2 2027 across all four streams.
@@ -166,7 +166,7 @@ Everything is in `~/Lictor/brand/` (mirrored in the public repo). License: sourc
 | Icons | `brand/icon-{16,32,48,128,256,512}.png` | App icons, social profile pictures |
 | Fasces secondary mark | `brand/lictor-fasces.svg` (and `.png`) | Ornament, alt favicon, separator |
 | OG / social image | `landing/og/og-image.png` (1200×630) | Social cards, header images |
-| Founder headshot | `brand/founder-headshot.jpg` | **Placeholder — professional shoot needed by July 2026.** Until then, request a current photo from `press@lictor.ai`. |
+| Founder headshot | `brand/founder-headshot.jpg` | **Placeholder — professional shoot needed by July 2026.** Until then, request a current photo from `press@lictor-ai.com`. |
 
 ### Color palette
 
@@ -208,25 +208,25 @@ Verify these for accuracy before publication. All are accurate as of May 15, 202
 - **Number of secret patterns in Sentinel:** fifteen (Anthropic, OpenAI, Stripe, GitHub, AWS, Supabase, and more).
 - **Test coverage at launch:** 220+ automated tests across the suite. `core` 39 tests, `sentinel` 159 tests, `sentinel-py` 11 tests, `guardian` 12 integration tests.
 - **Primary repo:** github.com/Raffa-jarrl/Lictor-AI (monorepo)
-- **Primary domain:** lictor.ai
-- **Email addresses:** `press@lictor.ai` (live by September 2026), `hello@lictor.ai`, `security@lictor.ai`, `compliance@lictor.ai`
+- **Primary domain:** lictor-ai.com
+- **Email addresses:** `press@lictor-ai.com` (live by September 2026), `hello@lictor-ai.com`, `security@lictor-ai.com`, `compliance@lictor-ai.com`
 - **Launch date:** Tuesday, October 6, 2026
 - **Founded:** 2026
 - **Headquarters:** Israel
 - **Funding:** bootstrap, self-funded, no venture capital, no outside investors
-- **Team size:** one full-time (Dor) plus an AI agent crew, an outside accountant, and outside legal counsel engaged on retainer
+- **Team size:** one full-time (Raffa) plus an AI agent crew, an outside accountant, and outside legal counsel engaged on retainer
 
 ---
 
 ## 9. Contact and media-inquiry process
 
-- **Primary press contact:** `press@lictor.ai` (live by September 2026; until then use `hello@lictor.ai`)
-- **Secondary:** `hello@lictor.ai` (general inquiries, always live)
-- **Security disclosures:** `security@lictor.ai` (PGP key on lictor.ai)
+- **Primary press contact:** `press@lictor-ai.com` (live by September 2026; until then use `hello@lictor-ai.com`)
+- **Secondary:** `hello@lictor-ai.com` (general inquiries, always live)
+- **Security disclosures:** `security@lictor-ai.com` (PGP key on lictor-ai.com)
 
 ### Embargoed-content policy
 
-We honor reasonable embargos. To request one: email `press@lictor.ai` with your outlet, intended publication date, the angle of the story, and what specific Lictor information you'd like under embargo. We typically agree to embargos of up to 14 days. Embargo-breakers do not get embargoed access to future stories — this is non-negotiable.
+We honor reasonable embargos. To request one: email `press@lictor-ai.com` with your outlet, intended publication date, the angle of the story, and what specific Lictor information you'd like under embargo. We typically agree to embargos of up to 14 days. Embargo-breakers do not get embargoed access to future stories — this is non-negotiable.
 
 ### Interview request lead time
 
@@ -234,13 +234,13 @@ We honor reasonable embargos. To request one: email `press@lictor.ai` with your 
 - **7+ days** for sit-down interviews (audio, video, or extended text).
 - **2+ weeks** for a feature-piece arc with multiple sessions.
 
-Dor is in Israel — Pacific Time interviews are possible, but mornings local (Israel) work better.
+Raffa is in Israel — Pacific Time interviews are possible, but mornings local (Israel) work better.
 
 ### Right-of-reply policy
 
 We offer right-of-reply on any story that names Lictor specifically or makes a specific factual claim about the product, the founder, or the team. We expect the same on teardowns we publish — every founder whose app is audited gets a 14-day responsible-disclosure window before public release, and gets named credit if they fix the issue in that window.
 
-### The "no" list — questions Dor will not answer
+### The "no" list — questions Raffa will not answer
 
 - **Specifics of any acquisition discussion** (yes, no, or pending). The acquisition-readiness work is public; specific conversations are not.
 - **Customer-specific revenue.** We disclose total MRR and total customer count. We do not disclose what any single customer pays.
@@ -255,15 +255,15 @@ For journalists writing about a specific Lictor teardown.
 
 - **Every teardown writeup is freely re-publishable.** The teardown text, code snippets, finding summaries, and remediation steps are all Apache 2.0 (consistent with the rest of the repo). Quote at any length. Excerpt the full piece if your outlet's licensing allows.
 - **The founder of the audited app is owed a separate contact.** Before publishing your piece, reach out to the founder of the application Lictor audited (named in every teardown writeup) for their comment. They have already gone through Lictor's 14-day disclosure process — they are aware the public writeup exists. They deserve the chance to speak for themselves on your piece.
-- **Specific findings can be quoted freely.** Snippets of code from the original (vulnerable) application are reproduced in the teardown under fair-use review; you may re-publish them in editorial coverage. Exploit code — proof-of-concept payloads, full attack chains, working exploit scripts — is never published by Lictor. If you need exploit code for an investigative story, email `press@lictor.ai` with a written request describing your outlet, your editor, and the security justification. We respond within 48 hours.
-- **Best practice:** link to `lictor.ai/teardowns/[slug]` rather than scraping the writeup. Our pages stay updated as new information surfaces (e.g., when the audited founder responds, when the issue is patched, when the disclosure is closed). Scraped copies go stale.
+- **Specific findings can be quoted freely.** Snippets of code from the original (vulnerable) application are reproduced in the teardown under fair-use review; you may re-publish them in editorial coverage. Exploit code — proof-of-concept payloads, full attack chains, working exploit scripts — is never published by Lictor. If you need exploit code for an investigative story, email `press@lictor-ai.com` with a written request describing your outlet, your editor, and the security justification. We respond within 48 hours.
+- **Best practice:** link to `lictor-ai.com/teardowns/[slug]` rather than scraping the writeup. Our pages stay updated as new information surfaces (e.g., when the audited founder responds, when the issue is patched, when the disclosure is closed). Scraped copies go stale.
 
-If your teardown coverage will be uncomplimentary to Lictor (i.e., you've found a flaw in our methodology, a missed finding, or a false positive), we would still rather read your piece before publication than after. Email `press@lictor.ai`. Right-of-reply applies.
+If your teardown coverage will be uncomplimentary to Lictor (i.e., you've found a flaw in our methodology, a missed finding, or a false positive), we would still rather read your piece before publication than after. Email `press@lictor-ai.com`. Right-of-reply applies.
 
 ---
 
 ## End of press kit
 
-If you need anything that isn't here, email `press@lictor.ai`. The kit is updated quarterly; check the file date at the top.
+If you need anything that isn't here, email `press@lictor-ai.com`. The kit is updated quarterly; check the file date at the top.
 
-Built by Dor and the Lictor agent crew. May 2026.
+Built by Raffa and the Lictor agent crew. May 2026.

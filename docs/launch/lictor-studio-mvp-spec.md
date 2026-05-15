@@ -54,7 +54,7 @@ Not for: enterprise CISOs (that's Lictor Enterprise, Q2 2027). Not for runtime m
 - "Open in Claude Code" button per finding — opens the file + line in Claude Code if installed (uses `claude://file?path=...&line=...` URL scheme)
 - macOS code signing + notarization (Gatekeeper-friendly install)
 - Auto-update via Tauri's built-in updater
-- Single signed `.dmg` download from `lictor.ai/studio`
+- Single signed `.dmg` download from `lictor-ai.com/studio`
 
 ### Explicitly OUT of v0.1.0 — defer to v0.2+
 
@@ -121,9 +121,9 @@ Telemetry: NONE.
 
 ### Telemetry — none, ever
 
-This is non-negotiable. Studio's whole pitch is "offline-by-design." We do **not** ship Sentry, do **not** ship analytics SDKs, do **not** ping a "check for updates" endpoint on launch. The auto-updater pings `lictor.ai/studio/update.json` (Tauri's standard updater URL) but only when the user explicitly opens the "Check for updates" menu item or, on launch, the update preference setting is enabled.
+This is non-negotiable. Studio's whole pitch is "offline-by-design." We do **not** ship Sentry, do **not** ship analytics SDKs, do **not** ping a "check for updates" endpoint on launch. The auto-updater pings `lictor-ai.com/studio/update.json` (Tauri's standard updater URL) but only when the user explicitly opens the "Check for updates" menu item or, on launch, the update preference setting is enabled.
 
-This is documented in Settings → Privacy as "Lictor Studio sends zero data to lictor.ai or any third party. The only outbound network call is to check for app updates, and you control whether that happens."
+This is documented in Settings → Privacy as "Lictor Studio sends zero data to lictor-ai.com or any third party. The only outbound network call is to check for app updates, and you control whether that happens."
 
 ---
 
@@ -189,7 +189,7 @@ Shared with the rest of the Lictor monorepo:
 
 ### First launch (Day 1, fresh install)
 
-1. User downloads `Lictor.Studio.dmg` from `lictor.ai/studio` (~25 MB).
+1. User downloads `Lictor.Studio.dmg` from `lictor-ai.com/studio` (~25 MB).
 2. Opens DMG, drags to Applications. macOS Gatekeeper: passes (signed + notarized).
 3. First launch shows a 3-screen onboarding:
    - **Screen 1:** "Lictor Studio audits your AI-built apps locally. Nothing leaves your machine." Button: "Continue."
@@ -281,10 +281,10 @@ A separate "Pro" build that includes everything in the free tier plus:
 
 ### Distribution
 
-- **Primary:** direct download from `lictor.ai/studio` (signed .dmg)
+- **Primary:** direct download from `lictor-ai.com/studio` (signed .dmg)
 - **Secondary:** Homebrew cask (`brew install --cask lictor-studio`) — Q1 2027
 - **Tertiary:** Mac App Store — investigated for v0.3+ (signing + review process adds friction; we control distribution better via direct download for v0.1–0.2)
-- **Auto-update:** Tauri's built-in updater pulls from `lictor.ai/studio/update.json`. User can disable.
+- **Auto-update:** Tauri's built-in updater pulls from `lictor-ai.com/studio/update.json`. User can disable.
 
 ### Code signing requirements
 
@@ -299,7 +299,7 @@ Working back from the Dec 31, 2026 v0.1.0 ship target:
 
 | Week | Milestone | Gate to pass |
 |---|---|---|
-| **Sep 1, 2026** | Spec sign-off | This doc + Dor's revisions merged |
+| **Sep 1, 2026** | Spec sign-off | This doc + Raffa's revisions merged |
 | **Sep 15** | Tauri skeleton + first command | `cargo tauri dev` opens an empty window; one IPC call works |
 | **Oct 1** | Audit pipeline wired | Drop folder → 7 checks run → findings returned as JSON to frontend |
 | **Oct 15** | Full UI: audit + findings list | All findings render with severity icons, category filters work, search works |
@@ -307,16 +307,16 @@ Working back from the Dec 31, 2026 v0.1.0 ship target:
 | **Nov 15** | AUDIT.json import/export | Both flows working against the schema; tested against Snyk, Semgrep, Trivy output |
 | **Dec 1** | Settings panel + auto-updater | All settings persisted; updater pings the right URL; rollback path tested |
 | **Dec 15** | Code signing + notarization | Signed `.dmg` passes Gatekeeper on a fresh Mac without warnings |
-| **Dec 22** | Landing page (`lictor.ai/studio`) + first paying tier infrastructure | Page live; Stripe Checkout wired for Pro v0.2 pre-orders (optional) |
+| **Dec 22** | Landing page (`lictor-ai.com/studio`) + first paying tier infrastructure | Page live; Stripe Checkout wired for Pro v0.2 pre-orders (optional) |
 | **Dec 31** | **v0.1.0 ships** | Public download live; first announcement post live |
 
 Cushion: 2 working weeks built into the schedule for the inevitable signing/notarization/Tauri-update-system snags.
 
 ---
 
-## 9. Open questions for Dor
+## 9. Open questions for Raffa
 
-Decisions only Dor can make:
+Decisions only Raffa can make:
 
 1. **Tauri vs Electron — do you want to revisit?** The spec assumes Tauri. If you have Electron expertise on tap or want the bigger ecosystem, this is the time to decide. (Strong rec: stay Tauri. The 10x size + memory win + Rust-native bridge is decisive.)
 2. **Mac-only v0.1 or also Windows?** The spec defers Windows to v0.2 (Q1 2027). If the audience research says Windows is bigger than I estimated, the priority flips. (Strong rec: Mac first. Indie vibe-coder population is heavily Mac.)
@@ -334,7 +334,7 @@ If you greenlight this spec:
 
 - [ ] Apple Developer Program enrollment ($99/yr, ~24h activation)
 - [ ] Decide individual vs team Apple ID (matters for signing key inheritance)
-- [ ] Reserve the `lictor.ai/studio` route in the landing site
+- [ ] Reserve the `lictor-ai.com/studio` route in the landing site
 - [ ] Add `studio` to the Lictor monorepo CI matrix (Rust + Node both required)
 - [ ] Start a `studio/CHANGELOG.md` with v0.1.0-pre.0 → v0.1.0 entries
 - [ ] Probe the Tauri 2.x + macOS signing toolchain end-to-end on a throwaway app to verify the path works (avoid finding signing issues in Week 11 of build)

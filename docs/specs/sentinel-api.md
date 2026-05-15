@@ -28,7 +28,7 @@ const client = wrap(new OpenAI(), {
 
   // Optional: stream telemetry to Guardian for centralized monitoring
   guardian: {
-    endpoint: "https://app.lictor.ai/api/ingest",
+    endpoint: "https://app.lictor-ai.com/api/ingest",
     token: process.env.LICTOR_GUARDIAN_TOKEN,
   },
 });
@@ -51,7 +51,7 @@ client = wrap(OpenAI(), config={
     "postflight": ["pii-leak"],
     "on_incident": lambda event: print(f"[lictor] {event.severity}: {event.title}"),
     "guardian": {
-        "endpoint": "https://app.lictor.ai/api/ingest",
+        "endpoint": "https://app.lictor-ai.com/api/ingest",
         "token": os.getenv("LICTOR_GUARDIAN_TOKEN"),
     },
 })

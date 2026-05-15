@@ -39,7 +39,7 @@
     "category": "DeveloperTool",
     "shortDescription": "Offline AI security audit for vibe-coded apps",
     "longDescription": "Lictor Studio runs Lictor's full audit locally — no telemetry, no signup, no cloud round-trip. Drop a project folder; get a plain-English report. Open source (Apache 2.0).",
-    "homepage": "https://lictor.ai/studio",
+    "homepage": "https://lictor-ai.com/studio",
     "publisher": "Lictor AI",
     "copyright": "© 2026 Lictor AI",
     "icon": [
@@ -66,7 +66,7 @@
   "plugins": {
     "updater": {
       "active": false,
-      "endpoints": ["https://lictor.ai/studio/update.json"],
+      "endpoints": ["https://lictor-ai.com/studio/update.json"],
       "dialog": true,
       "pubkey": ""
     }

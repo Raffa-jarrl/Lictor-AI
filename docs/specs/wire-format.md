@@ -9,7 +9,7 @@ A breaking change here means an SDK major-version bump and a Guardian migration.
 ## 1. The endpoint
 
 ```
-POST https://app.lictor.ai/api/ingest
+POST https://app.lictor-ai.com/api/ingest
 Content-Type: application/json
 Authorization: Bearer <ingest_token>
 ```

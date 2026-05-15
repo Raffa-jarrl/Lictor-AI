@@ -2,7 +2,7 @@
 
 # Lictor Legal Structure — Strategic Memo
 
-**Audience:** Dor (founder), and the lawyers Dor hires.
+**Audience:** Raffa (founder), and the lawyers Raffa hires.
 **Status:** Pre-launch. Decisions need to be locked by Jun 2026 (LLC) and Apr 2027 (Foundation), per `year-plan-2026-2027.md`.
 **Not legal advice.** This memo is the *thesis*. Every dated commitment in §8 needs a lawyer to actually execute.
 
@@ -12,7 +12,7 @@
 
 Lictor needs two legal entities, not one. They do different jobs and protect against different failure modes.
 
-**Lictor LLC (commercial).** This is where money moves. It signs customer contracts, collects subscription revenue from Teams, the Course, AaaS, and Enterprise, employs Dor and any future hires, holds the IP for closed-source commercial features (Lictor Studio Pro, Enterprise modules), and processes payments through Paddle/Stripe. The LLC owns the "Lictor" and "Lictor AI" trademarks — for now.
+**Lictor LLC (commercial).** This is where money moves. It signs customer contracts, collects subscription revenue from Teams, the Course, AaaS, and Enterprise, employs Raffa and any future hires, holds the IP for closed-source commercial features (Lictor Studio Pro, Enterprise modules), and processes payments through Paddle/Stripe. The LLC owns the "Lictor" and "Lictor AI" trademarks — for now.
 
 **Lictor Foundation (steward).** This entity exists for one reason: structural protection of the OSS core. It owns the canonical Apache 2.0 repo and the trademark (transferred from the LLC in Apr 2027), receives donations and grants, and answers to a board of directors rather than a single founder. The Foundation cannot be acquired — that's the point.
 
@@ -26,22 +26,22 @@ Lictor needs two legal entities, not one. They do different jobs and protect aga
 
 ## 2. The jurisdiction question
 
-Dor is in Israel. The realistic options for the commercial entity:
+Raffa is in Israel. The realistic options for the commercial entity:
 
 | Jurisdiction | Setup cost | Annual cost | Acquirer-friendly? | Banking | Verdict |
 |---|---|---|---|---|---|
 | **Delaware LLC** | $500 + lawyer | ~$300 franchise tax + agent | Excellent (US default) | Stripe/Paddle direct | **Recommended primary** |
 | **Delaware C-Corp** | Same | ~$400 + reporting | Excellent (VC default) | Same | Convert later if VC route opens |
-| **Israeli Ltd. (Ba'm)** | ~$2k | ~$3k accounting | Friction (foreign entity) | Local fine, Stripe OK | Recommended as Israeli **subsidiary** for Dor's employment |
+| **Israeli Ltd. (Ba'm)** | ~$2k | ~$3k accounting | Friction (foreign entity) | Local fine, Stripe OK | Recommended as Israeli **subsidiary** for Raffa's employment |
 | **UK Ltd.** | ~£500 | ~£2k | Decent | OK | No reason to pick this |
 | **Estonian e-Residency OÜ** | ~€500 | ~€2k | Weak (US buyers find it odd) | Wise/Revolut | Founder-aesthetic; not strategic |
 | **Singapore Pte Ltd** | ~$2k | ~$3-5k | Decent for Asia-Pac | Strong | Overkill for current scale |
 | **Cayman/BVI** | ~$3-5k | ~$3k | Red flag for strategic buyers | Hard | Avoid pre-Series A |
 
-**Recommended structure:** Delaware LLC as the parent commercial entity, with an Israeli Ltd. operating subsidiary that employs Dor and handles day-to-day work. Why:
+**Recommended structure:** Delaware LLC as the parent commercial entity, with an Israeli Ltd. operating subsidiary that employs Raffa and handles day-to-day work. Why:
 
 - **Acquirer-friendly.** US strategic buyers (Snyk, Palo Alto, CrowdStrike, GitLab, Snowflake) strongly prefer Delaware. A Cayman parent or Estonian shell adds diligence friction worth ~10-20% off the offer.
-- **Tax-rational for Dor.** Israel has a tax treaty with the US; pass-through LLC income flows to Dor as the beneficial owner and is taxed in Israel. The Israeli subsidiary handles Dor's salary and pension cleanly under Israeli employment law.
+- **Tax-rational for Raffa.** Israel has a tax treaty with the US; pass-through LLC income flows to Raffa as the beneficial owner and is taxed in Israel. The Israeli subsidiary handles Raffa's salary and pension cleanly under Israeli employment law.
 - **Conversion-ready.** If Lictor takes VC money in 2027+, the standard move is converting Delaware LLC → Delaware C-Corp (a one-day filing). Starting in Cayman or Estonia makes this messy.
 - **Stripe + Paddle + banking all work.** Mercury Bank or Brex accept Delaware LLCs with Israeli founders in 1-2 weeks.
 
@@ -53,9 +53,9 @@ Dor is in Israel. The realistic options for the commercial entity:
 
 This is where the expensive mistakes happen. They are all preventable in 2026 and unfixable in 2028.
 
-**Dor's employment agreement (LLC → Dor).** Must include explicit, broad IP assignment: every line of code, document, design, and idea related to Lictor that Dor produces — on or off hours, on any device — is assigned to Lictor LLC. Standard tech-startup boilerplate; any US tech lawyer has the template. Sign by **Jul 1, 2026**.
+**Raffa's employment agreement (LLC → Raffa).** Must include explicit, broad IP assignment: every line of code, document, design, and idea related to Lictor that Raffa produces — on or off hours, on any device — is assigned to Lictor LLC. Standard tech-startup boilerplate; any US tech lawyer has the template. Sign by **Jul 1, 2026**.
 
-**The GenerationAI overlap problem.** Dor runs a consulting business (GenerationAI). The employment agreement must define a clear carve-out: GenerationAI keeps client-specific consulting deliverables; Lictor owns anything Lictor-related. The danger is ambiguous projects (e.g., a client engagement that uses Lictor code or generates code that ends up in Lictor). Fix: a written "Inventions Excluded" schedule attached to Dor's employment agreement listing pre-existing GenerationAI IP, plus a forward-looking rule that anything touching the Lictor codebase is Lictor IP regardless of which laptop it was typed on. **An acquirer's diligence lawyer will ask about this in the first hour.**
+**The GenerationAI overlap problem.** Raffa runs a consulting business (GenerationAI). The employment agreement must define a clear carve-out: GenerationAI keeps client-specific consulting deliverables; Lictor owns anything Lictor-related. The danger is ambiguous projects (e.g., a client engagement that uses Lictor code or generates code that ends up in Lictor). Fix: a written "Inventions Excluded" schedule attached to Raffa's employment agreement listing pre-existing GenerationAI IP, plus a forward-looking rule that anything touching the Lictor codebase is Lictor IP regardless of which laptop it was typed on. **An acquirer's diligence lawyer will ask about this in the first hour.**
 
 **Contributor License Agreement (CLA).** Every external contributor signs a CLA before their PR is merged. Use the Apache ICLA template (battle-tested, community-accepted) or EasyCLA via the Linux Foundation. The CLA gives Lictor (and later the Foundation) the right to relicense — without it, the project is stuck on Apache 2.0 forever, including for commercial features that need to stay closed. Publish on the repo by **Jul 15, 2026**.
 
@@ -70,16 +70,16 @@ This is where the expensive mistakes happen. They are all preventable in 2026 an
 
 ## 4. Tax and financial structure
 
-**Pass-through vs. C-Corp.** Delaware LLC is pass-through by default — profits flow to Dor (the member) and are taxed at Dor's personal Israeli rate. Cleaner than C-Corp's double taxation (corporate tax + dividend tax). If VC money arrives, the LLC converts to C-Corp because investors don't want pass-through K-1s flowing into their LPs' tax returns.
+**Pass-through vs. C-Corp.** Delaware LLC is pass-through by default — profits flow to Raffa (the member) and are taxed at Raffa's personal Israeli rate. Cleaner than C-Corp's double taxation (corporate tax + dividend tax). If VC money arrives, the LLC converts to C-Corp because investors don't want pass-through K-1s flowing into their LPs' tax returns.
 
-**Israeli tax for Dor.** Dor is an Israeli tax resident; LLC income is reportable in Israel. Israel/US tax treaty prevents double taxation on most income types, but there are quirks (the LLC is "transparent" in the US, "opaque" in Israel by default — Israeli accountants apply an election to align them). Engage an Israeli accountant who's done this before. **Failure mode:** discovering in 2028 that 3 years of LLC income is subject to a 23% Israeli corporate tax on top of personal income tax.
+**Israeli tax for Raffa.** Raffa is an Israeli tax resident; LLC income is reportable in Israel. Israel/US tax treaty prevents double taxation on most income types, but there are quirks (the LLC is "transparent" in the US, "opaque" in Israel by default — Israeli accountants apply an election to align them). Engage an Israeli accountant who's done this before. **Failure mode:** discovering in 2028 that 3 years of LLC income is subject to a 23% Israeli corporate tax on top of personal income tax.
 
-**US tax obligations.** Even as a non-US-resident LLC member, Dor must file FBAR (if total foreign account balances exceed $10k), Form 5472 (US LLC owned by foreign person — required even with zero income, $25k penalty if missed), and possibly Form 1120 with K-1 distribution. Not optional.
+**US tax obligations.** Even as a non-US-resident LLC member, Raffa must file FBAR (if total foreign account balances exceed $10k), Form 5472 (US LLC owned by foreign person — required even with zero income, $25k penalty if missed), and possibly Form 1120 with K-1 distribution. Not optional.
 
-**Sales tax and VAT.** EU VAT on Teams subscriptions is the real exposure — once Lictor sells to one EU customer, it owes VAT in that country. The threshold is **€0** for digital services. This is where Paddle saves Dor's life.
+**Sales tax and VAT.** EU VAT on Teams subscriptions is the real exposure — once Lictor sells to one EU customer, it owes VAT in that country. The threshold is **€0** for digital services. This is where Paddle saves Raffa's life.
 
 **Stripe vs. Paddle.**
-- **Paddle for Teams subscriptions and the Course.** Paddle is the Merchant of Record — they invoice the customer, collect VAT/sales tax in every jurisdiction, file the returns, and remit net to Lictor. Dor never thinks about VAT. Higher take rate (~5%+50¢ vs. Stripe's 2.9%+30¢) but the compliance cost is zero. For B2C/B2B-self-serve, this is non-negotiable.
+- **Paddle for Teams subscriptions and the Course.** Paddle is the Merchant of Record — they invoice the customer, collect VAT/sales tax in every jurisdiction, file the returns, and remit net to Lictor. Raffa never thinks about VAT. Higher take rate (~5%+50¢ vs. Stripe's 2.9%+30¢) but the compliance cost is zero. For B2C/B2B-self-serve, this is non-negotiable.
 - **Stripe for AaaS and Enterprise contracts.** These are custom, B2B, invoiced via DocuSign'd MSA. Stripe is fine because the customer pays VAT themselves (B2B reverse-charge).
 
 Open the Paddle account **Aug 1, 2026** — they take 2-3 weeks to verify, and the launch is Oct 6.
@@ -98,7 +98,7 @@ Harder, slower, more reversible. The decision can wait until early 2027.
 
 **Why NOT a Foundation.**
 - **Setup cost.** $8-15k legal + ~$3-5k/yr ongoing compliance (board minutes, public reporting, Form 990 for 501(c)(3), conflicts-of-interest policies).
-- **Real governance.** 501(c)(3) requires a board of at least 3 unrelated directors. No self-dealing. Dor cannot just be "the boss" of the Foundation. Dor can sit on the board, but cannot control it.
+- **Real governance.** 501(c)(3) requires a board of at least 3 unrelated directors. No self-dealing. Raffa cannot just be "the boss" of the Foundation. Raffa can sit on the board, but cannot control it.
 - **Commercial friction.** Major decisions about the OSS roadmap that affect community trust technically run through the Foundation board, not the LLC. This is fine for healthy projects; it's a brake on the *bad* founder behaviors that would kill the project anyway.
 - **Survivable without one.** Tailwind, Svelte, shadcn/ui, tRPC — none have foundations. They survive because of founder integrity and community trust, not structure. A Foundation is belt-and-suspenders, not a hard requirement.
 
@@ -113,7 +113,7 @@ Harder, slower, more reversible. The decision can wait until early 2027.
 
 > *Lictor's core code will be transferred to the Lictor Foundation, an independent non-profit, by April 2027. Until then, the project is stewarded by Lictor LLC under a public commitment to keep the core Apache 2.0 forever.*
 
-That public commitment is binding-enough in the court of community opinion. It gives acquirers comfort (the path is known) and gives Dor 11 months to learn what Foundation shape fits. Reneging would be a brand-ending event — which is the point.
+That public commitment is binding-enough in the court of community opinion. It gives acquirers comfort (the path is known) and gives Raffa 11 months to learn what Foundation shape fits. Reneging would be a brand-ending event — which is the point.
 
 **End state:** Foundation owns the trademark and the OSS repo. LLC licenses the trademark from Foundation under a perpetual, royalty-free, worldwide license, terminable only for material breach. LLC contributes to OSS under CLA like any other contributor. Acquirer buys the LLC — they get the commercial features, the customer contracts, the trademark license, and a seat at the table with the Foundation. They do *not* get to relicense the OSS.
 
@@ -129,7 +129,7 @@ How does each structure read to different acquirer types?
 - **Pure Foundation:** unbuyable. The Foundation can't sell itself; it can only hand control of OSS direction to a new board.
 
 **Talent + IP buyer (Anthropic, OpenAI, Google).** Acqui-hire pattern.
-- They take either structure. They want Dor and the team; the OSS code is incidental and they're often happy to keep it open.
+- They take either structure. They want Raffa and the team; the OSS code is incidental and they're often happy to keep it open.
 - Foundation is *less* of a friction here because they don't need to lock up the OSS.
 
 **Private equity / financial buyer (Thoma Bravo, Vista).** Roll-up pattern.
@@ -146,9 +146,9 @@ The current plan (LLC June 2026, Foundation April 2027) **maximizes optionality*
 
 Do not DIY any of this. Specific recommendations:
 
-**US tech-startup lawyer (specializes in OSS).** Engage by **Aug 1, 2026**. Scope: Delaware LLC formation, Dor employment + IP assignment, CLA setup, BUSL/EULA drafting for paid features, trademark filings. Budget **$3-5k** for the first 6 months. Names to look at: Cooley LLP (gold standard, expensive), Gunderson Dettmer (similar), or boutique OSS-specialist firms like Heather Meeker's group.
+**US tech-startup lawyer (specializes in OSS).** Engage by **Aug 1, 2026**. Scope: Delaware LLC formation, Raffa employment + IP assignment, CLA setup, BUSL/EULA drafting for paid features, trademark filings. Budget **$3-5k** for the first 6 months. Names to look at: Cooley LLP (gold standard, expensive), Gunderson Dettmer (similar), or boutique OSS-specialist firms like Heather Meeker's group.
 
-**Israeli accountant familiar with US LLC ownership.** Engage by **Sep 1, 2026**. Scope: Israeli tax election for the Delaware LLC, Dor's cross-border income reporting, Israeli subsidiary setup, VAT registration when needed. Budget **~$2-3k/yr**.
+**Israeli accountant familiar with US LLC ownership.** Engage by **Sep 1, 2026**. Scope: Israeli tax election for the Delaware LLC, Raffa's cross-border income reporting, Israeli subsidiary setup, VAT registration when needed. Budget **~$2-3k/yr**.
 
 **Trademark lawyer (may be same as US lawyer).** For US + EU + IL filings. Budget **~$3k one-time** plus ~$500/yr per jurisdiction renewal. Some firms include this in the startup package.
 
@@ -166,7 +166,7 @@ These feed into `year-plan-2026-2027.md`:
 |---|---|
 | **Jun 1, 2026** | Lictor LLC (Delaware) registered |
 | **Jun 15, 2026** | Israeli subsidiary registered (pending accountant confirmation) |
-| **Jul 1, 2026** | Dor employment agreement + IP assignment + GenerationAI carve-out signed |
+| **Jul 1, 2026** | Raffa employment agreement + IP assignment + GenerationAI carve-out signed |
 | **Jul 15, 2026** | CLA published on the OSS repo (Apache ICLA or EasyCLA) |
 | **Aug 1, 2026** | Paddle account opened (verification takes 2-3 weeks; Oct 6 launch requires it live by Sep 15) |
 | **Sep 1, 2026** | Trademark filings submitted (US, EU, IL) |
@@ -178,11 +178,11 @@ These feed into `year-plan-2026-2027.md`:
 
 ---
 
-## 9. The decisions Dor actually has to make
+## 9. The decisions Raffa actually has to make
 
-Most of this memo delegates to lawyers. But three calls are Dor's, not the lawyer's:
+Most of this memo delegates to lawyers. But three calls are Raffa's, not the lawyer's:
 
-1. **Israeli subsidiary, yes or no?** Driven by Dor's preference on Israeli employment law, pension structure, and tax election. The accountant will explain trade-offs; Dor picks. Default recommendation: yes, employs Dor cleanly under Israeli law.
+1. **Israeli subsidiary, yes or no?** Driven by Raffa's preference on Israeli employment law, pension structure, and tax election. The accountant will explain trade-offs; Raffa picks. Default recommendation: yes, employs Raffa cleanly under Israeli law.
 
 2. **BUSL vs. proprietary EULA for paid features.** BUSL signals "open-ish" and earns community goodwill; EULA is cleaner from an acquirer's perspective. Default: BUSL 1.1 with 4-year Apache conversion — the modern OSS-commercial standard.
 

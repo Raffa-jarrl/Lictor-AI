@@ -1,12 +1,12 @@
 # r/SaaS post — submit Tuesday May 19, 10 AM PT
 
-> Reddit is allergic to anything that smells like marketing. The post below is written in honest-founder voice, leads with utility, and asks for feedback. Comments + answers from Dor are 80% of the value — block 2 hours Tuesday afternoon to engage in the thread.
+> Reddit is allergic to anything that smells like marketing. The post below is written in honest-founder voice, leads with utility, and asks for feedback. Comments + answers from Raffa are 80% of the value — block 2 hours Tuesday afternoon to engage in the thread.
 
 ---
 
 ## Subreddit choices (post once, mention in others)
 
-**Primary submission:** r/SaaS (highest-fit audience, ~250k members, 30-day-old account requirement — Dor's account should be old enough)
+**Primary submission:** r/SaaS (highest-fit audience, ~250k members, 30-day-old account requirement — Raffa's account should be old enough)
 
 **Secondary (post within 48h):** r/indiehackers, r/SideProject, r/SaaSy
 
@@ -47,7 +47,7 @@ That's the wedge. Generic security tools were built for codebases people wrote b
 
 Each finding includes: where it is (file + line), what's wrong in plain English (no "information disclosure vulnerability" — just "anyone can read your customer list"), and a 1-line fix.
 
-**About the founder bit:** I'm Dor, 20 years in cybersecurity. CISO advisory at Fortune 500, security architecture for venture-backed startups. I built Lictor because the security tools I'd recommend at my day job cost $25/dev/month minimum and require sales calls. None of that helps an indie hacker shipping from Lovable on Saturday.
+**About the founder bit:** I'm Raffa, 20 years in cybersecurity. CISO advisory at Fortune 500, security architecture for venture-backed startups. I built Lictor because the security tools I'd recommend at my day job cost $25/dev/month minimum and require sales calls. None of that helps an indie hacker shipping from Lovable on Saturday.
 
 **What I'm asking from this community:**
 
@@ -61,7 +61,7 @@ Each finding includes: where it is (file + line), what's wrong in plain English 
 
 **Launch + waitlist:**
 
-Ships **October 6, 2026.** Waitlist is open today: **lictor.ai/waitlist**
+Ships **October 6, 2026.** Waitlist is open today: **lictor-ai.com/waitlist**
 
 The repo flips public around June 1. If you want to follow the build, github.com/Raffa-jarrl/Lictor-AI will be live then.
 
@@ -113,7 +113,7 @@ Block Tuesday 12pm-3pm PT (lunch through early afternoon US, evening EU). Reply 
 | Upvotes | ≥30 in first 24h | Reddit dashboard |
 | Comments | ≥15 in first 24h | Reddit dashboard |
 | Top comment ratio | ≥70% positive | Manual read |
-| Click-through to lictor.ai/waitlist | ≥100 | UTM parameter `?utm_source=reddit&utm_medium=r-saas&utm_campaign=beacon` |
+| Click-through to lictor-ai.com/waitlist | ≥100 | UTM parameter `?utm_source=reddit&utm_medium=r-saas&utm_campaign=beacon` |
 | Waitlist signups attributed to Reddit | ≥30 | Mission Control dashboard's source breakdown |
 | Design-partner DM volume | ≥3 inquiries | Manual count |
 

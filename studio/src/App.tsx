@@ -117,12 +117,12 @@ function DropZoneView(props: {
       <footer class="border-t border-zinc-800 px-6 py-3 text-xs text-zinc-500 flex justify-between">
         <span>Lictor Studio — offline by design.</span>
         <a
-          href="https://lictor.ai"
+          href="https://lictor-ai.com"
           target="_blank"
           rel="noopener"
           class="hover:text-amber-400"
         >
-          lictor.ai
+          lictor-ai.com
         </a>
       </footer>
     </div>

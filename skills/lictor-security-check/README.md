@@ -76,20 +76,20 @@ Full report saved to ./SECURITY-AUDIT.md.
 
 ## What this skill is
 
-A wrapper around the same security check engine that powers [Lictor](https://lictor.ai)'s Shield Chrome extension and Sentinel SDK. The skill version is for *pre-deploy* audits — once you ship, install Sentinel for runtime protection.
+A wrapper around the same security check engine that powers [Lictor](https://lictor-ai.com)'s Shield Chrome extension and Sentinel SDK. The skill version is for *pre-deploy* audits — once you ship, install Sentinel for runtime protection.
 
 | Stage | Tool | Catches |
 |---|---|---|
 | **Pre-release** (now) | `/lictor-security-check` (this skill) | Bugs in your source code |
 | **Production** | [`@lictor/sentinel`](https://npmjs.com/package/@lictor/sentinel) | Prompt injection + PII leak + secrets at runtime |
-| **End-user side** | [Lictor Shield](https://lictor.ai/shield) Chrome extension | Audits any AI-built site for these same issues |
+| **End-user side** | [Lictor Shield](https://lictor-ai.com/shield) Chrome extension | Audits any AI-built site for these same issues |
 
 All three are free and open source.
 
 ## What this skill is NOT
 
 - **Not a pentest.** It catches the categories that vibe-coded SaaS ships with most often. Real adversaries probing your app will find issues this skill won't. Treat it as a final sanity check, not as a security audit by a human.
-- **Not a compliance certification.** See [lictor.ai/compliance](https://lictor.ai/compliance) for how these findings map onto SOC 2 / GDPR / EU AI Act controls. Certification still requires a human auditor.
+- **Not a compliance certification.** See [lictor-ai.com/compliance](https://lictor-ai.com/compliance) for how these findings map onto SOC 2 / GDPR / EU AI Act controls. Certification still requires a human auditor.
 - **Not a substitute for security mindset.** Reading the report and understanding *why* each finding matters is the value. If you just want a green checkmark, you'll go from "0/10" to "10/10" by hiding findings — you won't be safer.
 
 ## Why this exists
@@ -120,6 +120,6 @@ If we add it to the catalog, you're credited in the next release notes.
 
 ## Attribution
 
-Built by [Lictor AI](https://lictor.ai) — open-source AI security infrastructure. 20-year cybersec founder. The audit engine in this skill (`checks/*.md`) is the source-of-truth for the Rust `lictor-core` library + the JavaScript `@lictor/sentinel` SDK + the Python `lictor-sentinel` package.
+Built by [Lictor AI](https://lictor-ai.com) — open-source AI security infrastructure. 20-year cybersec founder. The audit engine in this skill (`checks/*.md`) is the source-of-truth for the Rust `lictor-core` library + the JavaScript `@lictor/sentinel` SDK + the Python `lictor-sentinel` package.
 
 When this skill helps you ship a safer app, drop a star on the repo at [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI). That's how solo founders measure traction.

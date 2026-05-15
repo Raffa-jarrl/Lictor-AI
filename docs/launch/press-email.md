@@ -20,7 +20,7 @@ Hi {{first_name}},
 
 {{personalized sentence — see "personalization bank" below}}
 
-I'm Dor — 20-year cybersec engineer. I just shipped **Lictor**, an open-source AI security suite. Three free layers:
+I'm Raffa — 20-year cybersec engineer. I just shipped **Lictor**, an open-source AI security suite. Three free layers:
 
 - **Shield** — Chrome extension auditing AI-built sites locally (no URL leaves the browser)
 - **Sentinel** — npm + PyPI SDK that wraps OpenAI/Anthropic to block prompt injection, secrets-in-input, PII leak
@@ -32,11 +32,11 @@ The category gap I'm aiming at: every AI security incumbent (Lakera, Protect AI,
 
 **HN launch:** {{hn_link}}
 **Repo:** github.com/Raffa-jarrl/Lictor-AI
-**Compliance mapping (might interest your security audience):** lictor.ai/compliance
+**Compliance mapping (might interest your security audience):** lictor-ai.com/compliance
 
-Happy to do an embargo briefing, walk through the privacy contract, or send the demo video if useful. Available all day — `dor@lictor.ai` or just reply here.
+Happy to do an embargo briefing, walk through the privacy contract, or send the demo video if useful. Available all day — `raffa@lictor-ai.com` or just reply here.
 
-— Dor
+— Raffa
 
 ---
 
@@ -81,7 +81,7 @@ Happy to do an embargo briefing, walk through the privacy contract, or send the 
 
 - One-page PDF — the architecture diagram + the four key talking points (`docs/launch/press-onepager.pdf` — TODO to create)
 - Demo video link (90 seconds; "wrap → adversarial input → blocked + reported to Guardian")
-- Press contact: `press@lictor.ai`
+- Press contact: `press@lictor-ai.com`
 
 ## What NOT to do
 

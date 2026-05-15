@@ -2,7 +2,7 @@
 name: lictor-fix-it
 description: Applies the fixes recommended by /lictor-security-check, with the user's explicit permission for each change. Walks through findings one at a time, shows the proposed change, gets approval, applies, runs tests if available, and moves on. Some fixes (rotating leaked credentials) require the user to act outside Claude — surface those clearly.
 license: Apache-2.0
-attribution: Lictor AI (lictor.ai)
+attribution: Lictor AI (lictor-ai.com)
 ---
 
 # Lictor Fix It — guided remediation

@@ -1,4 +1,4 @@
-# lictor.ai — landing page
+# lictor-ai.com — landing page
 
 Vanilla HTML/CSS, no build step. Drop the contents of this directory on any static host (Vercel, Netlify, Cloudflare Pages, S3 + CloudFront, GitHub Pages).
 
@@ -29,7 +29,7 @@ vercel deploy --prod              # or netlify deploy --prod
 
 ## What still needs to happen before launch
 
-1. **Register `lictor.ai`** (and `lictor.dev`, `getlictor.com`) via Cloudflare Registrar
+1. **Register `lictor-ai.com`** (and `lictor.dev`, `getlictor.com`) via Cloudflare Registrar
 2. **Replace the Formspree placeholder** in `index.html` (`action="https://formspree.io/f/REPLACE_ME"`) with a real Formspree form ID or your own email-collection endpoint
 3. ~~**Compliance page** at `/compliance`~~ ✅ **DONE** (see `compliance/`)
 4. **OG image** (1200×630) — currently the meta tag references one but the file doesn't exist. Could generate from the lockup SVG.

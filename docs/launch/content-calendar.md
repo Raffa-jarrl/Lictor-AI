@@ -3,7 +3,7 @@
 # Content Calendar — 90 days post-launch (Oct 6 → Dec 31, 2026)
 
 > **Purpose:** What each agent ships, when, where, and who approves it. Read it Monday morning. Execute it that week. Don't improvise.
-> **Owner:** Conductor coordinates the weekly content kanban. Mirror audits Friday. Dor approves anything that escalates.
+> **Owner:** Conductor coordinates the weekly content kanban. Mirror audits Friday. Raffa approves anything that escalates.
 > **Pillar:** every week has a theme. Every agent's output reinforces that week's theme. The weekly teardown is the spine; everything else hangs off it.
 
 ---
@@ -27,15 +27,15 @@ Per-channel weekly volume. Numbers are floors, not ceilings. If a teardown lands
 | Channel | Weekly volume | Owner | Why |
 |---|---|---|---|
 | **X (Twitter)** | 14 posts/week (2/day) | Quill drafts, Conductor schedules | Builder discovery surface. Daily presence is non-negotiable. |
-| **LinkedIn** | 5/week (one per weekday) | Quill drafts, Dor approves | Decision-maker surface. Long-form case study format performs best. |
+| **LinkedIn** | 5/week (one per weekday) | Quill drafts, Raffa approves | Decision-maker surface. Long-form case study format performs best. |
 | **Blog (lictor.dev)** | 3/week | Quill writes, C-3PO deploys | Teardown (Tue), agent-watch (Thu), guest/community post (Fri). |
-| **YouTube** | 1 long-form + 3 shorts/week | Dor records, Vibe edits | Long-form Tuesday after teardown ships. Shorts Wed/Fri/Sun. |
-| **TikTok** | 5/week (one per weekday) — **skip if Dor isn't posting** | Vibe edits | Only ship if posting is consistent. One-offs flop the algorithm. **Decision gate Oct 6.** |
+| **YouTube** | 1 long-form + 3 shorts/week | Raffa records, Vibe edits | Long-form Tuesday after teardown ships. Shorts Wed/Fri/Sun. |
+| **TikTok** | 5/week (one per weekday) — **skip if Raffa isn't posting** | Vibe edits | Only ship if posting is consistent. One-offs flop the algorithm. **Decision gate Oct 6.** |
 | **Substack** | 1/week (Tuesday 10:00 PT) | Quill writes, auto-send | The teardown, plus "what I learned this week." |
 | **Hacker News** | 1 submission/week | Conductor submits | Tuesday post-teardown. Always text-only Show HN. |
 | **Reddit r/programming** | 1/week | Conductor submits | Tuesday or Wednesday depending on HN traction. |
 
-Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them human (except Dor recording video). This is the volume Snyk's brand team cannot match — not because they lack people, but because their compliance review breaks at this cadence.
+Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them human (except Raffa recording video). This is the volume Snyk's brand team cannot match — not because they lack people, but because their compliance review breaks at this cadence.
 
 ---
 
@@ -46,7 +46,7 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 - **Cadence:** Daily briefing at 06:00 PT. Weekly content kanban refresh Monday 09:00.
 - **Format:** Internal — `briefings/YYYY-MM-DD.json` for the crew, plus a weekly public "Conductor's note" on the Lictor blog Friday.
 - **Topic territory:** What's working, what's stuck, what the crew is doing this week. The "behind the scenes" surface.
-- **Approval gate:** Self-approves (Dor reads the briefing; if Dor disagrees, it changes the next day).
+- **Approval gate:** Self-approves (Raffa reads the briefing; if Raffa disagrees, it changes the next day).
 - **Sample output:**
 
 > **Conductor's note — Week 3, Oct 19-25**
@@ -131,9 +131,9 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 ### 5. Quill (writer) — the voice of Lictor
 
 - **Cadence:** Daily. 2 X posts/day, 1 LinkedIn/day (M-F), 3 blog posts/week, weekly Substack.
-- **Format:** Everything that isn't a SOUL.md voice. Quill is Dor's voice.
+- **Format:** Everything that isn't a SOUL.md voice. Quill is Raffa's voice.
 - **Topic territory:** Teardown reports (Tuesday). Agent-watch posts (Thursday). Community guest posts (Friday). Everything daily on X + LinkedIn.
-- **Approval gate:** Voice linter on every post (mechanical). Mirror reviews the Friday batch. Dor approves any post over 500 chars before Friday batch.
+- **Approval gate:** Voice linter on every post (mechanical). Mirror reviews the Friday batch. Raffa approves any post over 500 chars before Friday batch.
 - **Sample output (Twitter, Wednesday):**
 
 > Tuesday I audited Pitchtank. 12 minutes. 7 findings. 2 critical.
@@ -153,7 +153,7 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 - **Cadence:** Weekly — one teardown landing page Saturday. Bi-weekly — one playbook landing page (Lovable RLS playbook, Bolt env-var playbook, etc.).
 - **Format:** `landing-pages/<slug>/{page.md, meta.json, follow-up.md}`. Capture form on every page, email-only, one CTA.
 - **Topic territory:** Anything that should rank in Google for `[App] security audit` or `[Platform] security checklist`.
-- **Approval gate:** Mirror reviews headlines and the "what's inside" framing. Dor approves before publish.
+- **Approval gate:** Mirror reviews headlines and the "what's inside" framing. Raffa approves before publish.
 - **Sample output (a playbook landing page headline + sub):**
 
 > **Headline:** Stop your Lovable app from leaking every user's data — the 7-check playbook
@@ -197,7 +197,7 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 - **Cadence:** Daily. Cover image per blog post, thumbnail per YouTube short, carousel per teardown.
 - **Format:** PNG / vertical 9:16 for shorts / 1200x630 for OG. All assets under `output/visuals/YYYY-MM-DD/`.
 - **Topic territory:** What Lictor *looks* like. The aesthetic of "security crew you'd actually want on your project." Not corporate. Not scary. A little playful.
-- **Approval gate:** Self-approves except YouTube thumbnails (Dor approves those because they're the highest-CTR surface).
+- **Approval gate:** Self-approves except YouTube thumbnails (Raffa approves those because they're the highest-CTR surface).
 - **Sample output description:**
 
 > Tymora teardown cover image: black background, single Lictor crew member silhouette (Probe), holding a magnifying glass over a stylized "OAuth token" icon. One red dot in the bottom-right corner — the finding indicator. No logos, no platform names. The image should feel like a noir detective movie poster, not a Snyk infographic.
@@ -229,7 +229,7 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 - **Cadence:** Every Friday 04:30 PT. Reads the full week's output.
 - **Format:** `output/review-week-NN.md`. Internal — but Mirror also writes one public post per month: "what the crew learned this month."
 - **Topic territory:** Internal — every drift, every miss, every win pattern. Public — the meta-narrative of "this is what an AI crew running a content engine looks like, transparently."
-- **Approval gate:** Dor reads the weekly review Monday morning. Public monthly post: Dor approves.
+- **Approval gate:** Raffa reads the weekly review Monday morning. Public monthly post: Raffa approves.
 - **Sample output (the monthly public post):**
 
 > **October at Lictor — what the crew learned**
@@ -253,7 +253,7 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 - **Cadence:** Continuous. Owns the deploy. Owns the cross-poster.
 - **Format:** Code, deploys, dashboards. Not public-facing copy.
 - **Topic territory:** Reliability. The Lictor publishing pipeline never misses Tuesday. Ever.
-- **Approval gate:** Self-approves. Dor reviews any architecture change.
+- **Approval gate:** Self-approves. Raffa reviews any architecture change.
 - **Sample output:**
 
 > **C-3PO deploy log — Tue Oct 6, 09:00 PT**
@@ -309,7 +309,7 @@ Two tiers. Leading indicators tell us if the engine is firing. Lagging indicator
 | **Domain authority lictor.dev** | DA 25+ by December | Ahrefs / similarweb |
 | **Founders who cooperated on teardown** (out of 12) | 8/12 | teardowns log |
 
-### Lagging indicators — checked monthly by Conductor + Dor
+### Lagging indicators — checked monthly by Conductor + Raffa
 
 | Metric | Target by Dec 31 | Where it lives |
 |---|---|---|

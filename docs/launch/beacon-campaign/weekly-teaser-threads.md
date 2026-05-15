@@ -9,7 +9,7 @@
 
 - **Wednesdays at 09:00 AM PT** (lunch hour US East, late afternoon EU) — empirically the highest-engagement window for tech-content threads.
 - **8-12 tweets per thread.** Longer than that loses momentum; shorter doesn't compound enough.
-- **Always end with a CTA to the waitlist** — `lictor.ai/waitlist`.
+- **Always end with a CTA to the waitlist** — `lictor-ai.com/waitlist`.
 - **Always include a P.S. tweet** (after the official "/end") that says something off-script, a little vulnerable. Those tweets get the highest engagement.
 
 ---
@@ -59,7 +59,7 @@ Snyk doesn't connect to your Supabase. npm audit doesn't check your imports agai
 
 The 7 checks above + 2 more, tuned for what Lovable / Bolt / v0 / Cursor / Replit / Claude Code apps actually ship. Plain English. Runs in Claude Code. Free forever (Apache 2.0).
 
-Ships Oct 6, 2026. Get on the list: lictor.ai/waitlist
+Ships Oct 6, 2026. Get on the list: lictor-ai.com/waitlist
 
 10/ /end thread.
 
@@ -111,7 +111,7 @@ Quality > volume.
 
 8/ Lictor ships Oct 6. Free, open source, Apache 2.0, runs locally.
 
-If you build with AI, get on the list: lictor.ai/waitlist
+If you build with AI, get on the list: lictor-ai.com/waitlist
 
 P.S. If you have ideas for an agent we should add (the current 11 cover most patterns but I'm sure there are gaps), the GitHub issue label is `feature-request` once the repo is public.
 ```
@@ -177,7 +177,7 @@ If the security report requires its own glossary, you'll bounce off it.
 
 If the report reads like a senior engineer pointing things out — you'll fix it.
 
-8/ Ships Oct 6. Free. Apache 2.0. lictor.ai/waitlist
+8/ Ships Oct 6. Free. Apache 2.0. lictor-ai.com/waitlist
 
 P.S. Quill's full SOUL.md is in the repo. The forbidden-words list is right there at line 38. Fork it, extend it, customize it for your team's voice.
 ```
@@ -233,7 +233,7 @@ I might, later. Year 1 is self-funded from my consulting income (~$50k total bur
 
 Both paths stay open.
 
-9/ Ships Oct 6. Free. Apache 2.0. lictor.ai/waitlist
+9/ Ships Oct 6. Free. Apache 2.0. lictor-ai.com/waitlist
 
 P.S. The full year plan + acquisition strategy + 4-quarter execution is public in the repo (or will be, June 1). Building in public means the strategy is auditable too.
 ```
@@ -278,14 +278,14 @@ The HN thread (Week 9-10) is the spike event. Everything before it is building t
 
 ## Reel agent integration
 
-These threads can be drafted by the Reel agent (per the new-agents spec) once it comes online in Q4 2026. For Beacon, Dor drafts them weekly OR Quill (the writer agent) generates the first draft and Dor edits.
+These threads can be drafted by the Reel agent (per the new-agents spec) once it comes online in Q4 2026. For Beacon, Raffa drafts them weekly OR Quill (the writer agent) generates the first draft and Raffa edits.
 
 Workflow when fully automated:
 
 ```
 Sun PM:  Quill drafts next week's thread from this week's news + the schedule above
 Mon AM:  Mirror reviews; flags any voice issues
-Mon PM:  Dor edits the draft, schedules in Hypefury/TweetDeck
+Mon PM:  Raffa edits the draft, schedules in Hypefury/TweetDeck
 Wed 09:00 PT: thread auto-posts
-Wed PM:  Dor responds to top 5-10 replies within the algorithmic boost window
+Wed PM:  Raffa responds to top 5-10 replies within the algorithmic boost window
 ```

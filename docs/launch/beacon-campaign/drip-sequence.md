@@ -17,7 +17,7 @@ Hey,
 
 You're on the Lictor waitlist. Thanks for the trust.
 
-I'm Dor — 20-year cybersecurity engineer, building Lictor in the open. Quick honest version of what you signed up for:
+I'm Raffa — 20-year cybersecurity engineer, building Lictor in the open. Quick honest version of what you signed up for:
 
 **What Lictor is.** A free, open-source AI security audit for apps you built with AI — Lovable, Bolt, v0, Cursor, Replit, Claude Code, all of them. 11 AI agents walk your project, find what's broken, and explain the fix in plain English. Runs locally inside Claude Code. No signup, no telemetry, no per-seat pricing.
 
@@ -42,7 +42,7 @@ If any of those three matter to your project, Lictor will catch a lot more like 
 
 Thanks for being early.
 
-— Dor
+— Raffa
 
 P.S. The repo flips public around June. If you want to track the build, star [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI) — I'll email you the day it goes live too.
 
@@ -80,7 +80,7 @@ Each of these is a 12-line fix or less. Each is what Lictor catches in the 60-se
 
 Next email: ~2 weeks. I introduce you to the 11 agents (genuinely — they're each a markdown file you can read on GitHub).
 
-— Dor
+— Raffa
 
 P.S. If your project is something you'd want me to audit personally when Lictor ships, reply to this email with a sentence about it. I'm picking 10 design partners for the first round of audits.
 
@@ -118,7 +118,7 @@ The whole crew is in the GitHub repo: `agents/` directory. Every SOUL.md is a ma
 
 Next email: ~2 months from now. I'll send you the most-uncomfortable artifact in the whole campaign — the time we audited Lictor with Lictor, and what we shipped to fix.
 
-— Dor
+— Raffa
 
 P.S. Repo flips public around June 1. I'll email you the day it does. Stars appreciated when it lands.
 
@@ -142,7 +142,7 @@ Two of them were the kind of finding that ends most security projects — embarr
 
 We fixed all 5 within 72 hours. Then we wrote up the whole thing publicly because **that's the discipline this category needs**: every security tool's most-vulnerable moment is when its own code gets audited. If we hide that, every claim we make about anyone else is suspect.
 
-The full writeup is at `lictor.ai/blog/we-audited-lictor-with-lictor`. The TL;DR:
+The full writeup is at `lictor-ai.com/blog/we-audited-lictor-with-lictor`. The TL;DR:
 
 - 🔴 **Critical.** A Guardian dashboard endpoint returned full SOC 2 evidence to any authenticated user, not just users with the `compliance_admin` role. Classic IDOR. Found by Mirror's weekly review of audit logs. Fix: role check + audit-log entry per access.
 
@@ -154,15 +154,15 @@ The full writeup is at `lictor.ai/blog/we-audited-lictor-with-lictor`. The TL;DR
 
 - 🔵 **Low.** A Mission Control proxy returned 503 with the env-var name in the error. Information disclosure that aids attackers. Fix: generic error.
 
-**The lesson is in the protocol, not the findings.** When you build a security tool, you commit to publicly auditing your own code. When you find things wrong, you publish them. When you fix them, you publish that too. Every false-positive someone reports about Lictor gets logged in public. Every false-negative becomes a new check. This is the audit-our-own-audit protocol; the whole policy is at `lictor.ai/security`.
+**The lesson is in the protocol, not the findings.** When you build a security tool, you commit to publicly auditing your own code. When you find things wrong, you publish them. When you fix them, you publish that too. Every false-positive someone reports about Lictor gets logged in public. Every false-negative becomes a new check. This is the audit-our-own-audit protocol; the whole policy is at `lictor-ai.com/security`.
 
 **One final email from me.** Two weeks before launch. I'll send the install command and the link.
 
 October 6.
 
-— Dor
+— Raffa
 
-P.S. If you found this email more interesting than the prior three, tell a builder friend. Forward this email or share `lictor.ai/waitlist`. The early signal we get from list size is the difference between launching to crickets and launching to a room.
+P.S. If you found this email more interesting than the prior three, tell a builder friend. Forward this email or share `lictor-ai.com/waitlist`. The early signal we get from list size is the difference between launching to crickets and launching to a room.
 
 ---
 
@@ -210,7 +210,7 @@ Whatever happens Monday — whether Lictor finds 0 things in your project or 12 
 
 That's the whole point. See you Monday.
 
-— Dor
+— Raffa
 
 P.S. If you want the same audit method but as a CLI instead of a Claude Code skill, `lictor` ships on crates.io Monday too. `cargo install lictor-cli` → `lictor audit .`. Same engine, terminal-first.
 

@@ -169,7 +169,7 @@ This post will get sharper if you push back on it. Three things we genuinely wan
 
 1. **If you've tried both [COMPETITOR] and Lictor on the same project, what did each one miss?** We mean this honestly. Tell us where we have gaps. Reply on Twitter ([@lictor_ai](https://twitter.com/lictor_ai)) or open an issue on [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI) — we read everything.
 2. **What's the single security worry you have about your AI-built app that no tool — ours, theirs, anyone's — currently answers?** This is what feeds our Radar and Sieve agents. We're trying to build for the bug shapes that are getting shipped today, not the ones that already have a vendor.
-3. **If you're building a competing tool, do you want to talk?** The category needs more shared standards. We've been thinking about an `AUDIT.json` spec that any scanner could emit, so users could compare tool outputs directly. If you're working on something adjacent, [DM Dor](https://twitter.com/[FILL_IN: Dor's handle]).
+3. **If you're building a competing tool, do you want to talk?** The category needs more shared standards. We've been thinking about an `AUDIT.json` spec that any scanner could emit, so users could compare tool outputs directly. If you're working on something adjacent, [DM Raffa](https://twitter.com/[FILL_IN: Raffa's handle]).
 
 Try Lictor: [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI). One command. No signup. Apache 2.0.
 
@@ -192,7 +192,7 @@ Before you hit publish on the day [COMPETITOR_VENDOR] announces:
 - [ ] **Update the comparison table** with whatever they specifically promised — pricing tier, seat caps, data-flow details.
 - [ ] **Pick a headline.** Default is #1. Use #2 if their announcement is heavy on marketing hype. Use #3 only if [COMPETITOR_VENDOR] is a strategic friend.
 - [ ] **Add screenshots.** Side-by-side: [COMPETITOR]'s output for one finding vs Lictor's output for the same finding. Plain text in this doc, but the published post should be visual.
-- [ ] **Stage on a hidden URL** (`lictor.ai/blog/competitor-free-tier-DRAFT`) for 60-minute internal review before pushing to the live blog URL.
+- [ ] **Stage on a hidden URL** (`lictor-ai.com/blog/competitor-free-tier-DRAFT`) for 60-minute internal review before pushing to the live blog URL.
 - [ ] **Check forbidden words.** No "leverage," "revolutionary," "game-changing," "transform," "disrupt," "ecosystem," "synergy," "robust," "elevate," "paradigm." `grep -iE "leverage|revolutionary|game.chang|transform|disrupt|ecosystem|synergy|robust|elevate|paradigm" blog-cornerstone-when-competitor-ships-free.md`
 - [ ] **Run readability.** Average sentence ≤ 25 words.
 - [ ] **Set OG image** to a fresh side-by-side screenshot rather than the default Lictor OG. The OG image is the headline on social.
@@ -202,9 +202,9 @@ Before you hit publish on the day [COMPETITOR_VENDOR] announces:
 **Day 0 (the day [COMPETITOR_VENDOR] announces):**
 
 - T+0h: Don't post. Watch indie Twitter react for 4 hours.
-- T+4h: Publish the post at `lictor.ai/blog/[competitor-slug]-free-tier-what-it-means`.
+- T+4h: Publish the post at `lictor-ai.com/blog/[competitor-slug]-free-tier-what-it-means`.
 - T+4h: Twitter thread (see below) from `@lictor_ai`.
-- T+4h: LinkedIn post (see below) from Dor's personal account.
+- T+4h: LinkedIn post (see below) from Raffa's personal account.
 - T+5h: DM the post to ~15 known indie-security writers and creators. No mass blast. Personalized one-liner: "[name] — wrote this after [COMPETITOR_VENDOR]'s announcement, would love your honest read."
 - T+6h: Cross-post the Twitter thread to Bluesky, Mastodon (`infosec.exchange`), Threads.
 
@@ -279,7 +279,7 @@ Different shapes of finding.
 
 We're rooting for [COMPETITOR_VENDOR]. The category needs more entrants, not fewer. Eight million people now ship software with AI assistants every week. They need every option they can get.
 
-### LinkedIn post (from Dor's personal account)
+### LinkedIn post (from Raffa's personal account)
 
 [COMPETITOR_VENDOR] shipped [COMPETITOR] today — a free tier of their security platform aimed at smaller teams.
 
@@ -313,9 +313,9 @@ Happy to talk about anything in the design, the threat model, the comparison met
 
 ---
 
-## Decisions worth Dor's review
+## Decisions worth Raffa's review
 
 - **Headline choice.** We defaulted to #1 ("Here's what it actually means for indie founders"). If [COMPETITOR_VENDOR]'s announcement is unusually loud / hype-heavy, switch to #2. If they're a friendly competitor we want to keep dialogue open with (Aikido), use #3.
-- **The "honest comparison" table is intentionally not check-and-X.** Every row is a trade-off, not a winner. This is the single biggest tone choice in the post. Dor: review whether this lands or whether it reads as too generous to the competitor.
+- **The "honest comparison" table is intentionally not check-and-X.** Every row is a trade-off, not a winner. This is the single biggest tone choice in the post. Raffa: review whether this lands or whether it reads as too generous to the competitor.
 - **The `/lictor-explain` example in "What to do if you're already using [COMPETITOR]" is the conversion mechanism for users who already adopted the competitor.** Make sure the [FILL_IN] example is a real piece of competitor output before publish.
 - **We don't mention paid Lictor Teams ($19/mo flat-rate) anywhere in the body.** That's deliberate — this post is about positioning, not monetization. The Teams tier is mentioned in one row of the comparison table only.

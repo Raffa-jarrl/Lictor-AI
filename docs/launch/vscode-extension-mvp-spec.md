@@ -1,8 +1,8 @@
 # Lictor VS Code extension — MVP scoping doc (v0.1.0)
 
-> **Status:** Draft for Dor review. Sign-off target: week of Sep 1, 2026.
+> **Status:** Draft for Raffa review. Sign-off target: week of Sep 1, 2026.
 > **Ship target:** Dec 31, 2026 (v0.1.0 live on VS Code Marketplace + Open VSX).
-> **Owner:** TBD (contractor or Dor). Spec author: Quill.
+> **Owner:** TBD (contractor or Raffa). Spec author: Quill.
 > **Cross-refs:** `ROADMAP.md` Q4 2026; `docs/launch/operation-triumph-expanded.md` Front 1+2.
 
 ---
@@ -82,7 +82,7 @@ Explicitly rejected:
 - **Pure-TS reimplementation of the checks:** drift risk + duplicated maintenance.
 
 **Marketplace publishing:**
-- **VS Code Marketplace** (Microsoft) via `vsce publish`. Publisher `lictor` (Dor registers; free; Azure DevOps PAT).
+- **VS Code Marketplace** (Microsoft) via `vsce publish`. Publisher `lictor` (Raffa registers; free; Azure DevOps PAT).
 - **Open VSX** (Eclipse) via `ovsx publish`. Required for Cursor / VSCodium / Gitpod / code-server. Same `.vsix`.
 
 Both free. CI (GitHub Actions) builds on tag push `vscode-extension-v*`, runs tests, then `vsce publish` → `ovsx publish`.
@@ -200,7 +200,7 @@ Working back from Dec 31, 2026. Each milestone has a deliverable + a gate.
 
 | Week of | Deliverable | Gate (must pass to proceed) |
 |---|---|---|
-| **Sep 1, 2026** | This spec, Dor-reviewed and signed off | Dor approves §9 open questions; any deltas merged into this doc |
+| **Sep 1, 2026** | This spec, Raffa-reviewed and signed off | Raffa approves §9 open questions; any deltas merged into this doc |
 | **Sep 15** | Skeleton extension: `package.json` + `extension.ts` + 4 command stubs registered | All 4 commands appear in Command Palette when extension is loaded in a fresh VS Code window; stubs show "not implemented" toast |
 | **Oct 1** | `lictor-core` WASM wired in; 7 checks run against the open workspace via `Lictor: Audit entire project` | Audit completes against 5 known-vulnerable fixtures (one per platform: Lovable, Bolt, v0, Cursor, Replit) and finds ≥80% of the seeded vulns Shield also catches on the deployed version |
 | **Oct 15** | Problems-panel + inline-diagnostics integration; status bar live | Every fixture's findings appear as `Diagnostic` entries with correct severity; squigglies render on correct line numbers; status bar shows accurate count |
@@ -208,7 +208,7 @@ Working back from Dec 31, 2026. Each milestone has a deliverable + a gate.
 | **Nov 15** | AUDIT.json import + export; Code Action for "Open in Claude Code" | Imports valid Snyk-emitted JSON (we use a sample from the Snyk docs); exports a schema-valid AUDIT.json; Claude Code handoff opens a new window with the finding prefilled |
 | **Dec 1** | Cursor + Windsurf compatibility tested; fixes for any divergence | Install + run full audit on Cursor (latest) and Windsurf (latest); all 4 commands work; no console errors |
 | **Dec 15** | Marketplace + Open VSX publishing pipeline; publisher account verified | `.vsix` builds in CI; `vsce publish --pre-release` succeeds against a staging publisher; Open VSX namespace claimed |
-| **Dec 22** | Launch dress rehearsal — internal install on Dor's machine + 3 design partners; bug-bash | Zero P0 bugs; CHANGELOG entry written; README polished for marketplace listing |
+| **Dec 22** | Launch dress rehearsal — internal install on Raffa's machine + 3 design partners; bug-bash | Zero P0 bugs; CHANGELOG entry written; README polished for marketplace listing |
 | **Dec 31** | **v0.1.0 LIVE** on VS Code Marketplace + Open VSX | Both listings searchable for `lictor`; install on a fresh machine works end-to-end |
 
 The Dec 22 cushion is deliberate — Marketplace review can take 24-72h; we don't want to be debugging publisher verification on Dec 30.
@@ -220,14 +220,14 @@ If a milestone slips: shift the *gate*, not the date. v0.1.0 ships Dec 31 even i
 ## 8. Distribution + install flow
 
 **Publishing requirements:**
-- **VS Code Marketplace:** free publisher account, Microsoft Partner Center signup, Azure DevOps PAT for `vsce publish`. Publisher ID `lictor` (Dor to claim). No code signing required.
+- **VS Code Marketplace:** free publisher account, Microsoft Partner Center signup, Azure DevOps PAT for `vsce publish`. Publisher ID `lictor` (Raffa to claim). No code signing required.
 - **Open VSX:** free namespace at open-vsx.org, GitHub OAuth login, `ovsx create-namespace lictor` then `ovsx publish`. No signing required.
-- **Verified publisher badge:** domain verification at `lictor.ai` via DNS TXT record. Worth doing — visible trust signal on the listing.
+- **Verified publisher badge:** domain verification at `lictor-ai.com` via DNS TXT record. Worth doing — visible trust signal on the listing.
 
 **Discovery:**
 - Marketplace search: `lictor` (primary), `vibe coder security`, `ai security audit`, `lovable security`, `bolt audit` (long-tail).
 - `categories`: `Linters`, `Other`. Tags: `security`, `audit`, `ai`, `lovable`, `bolt`, `v0`, `cursor`.
-- Cross-link from `lictor.ai` ("Install in VS Code / Cursor →") and every Claude Code skill README.
+- Cross-link from `lictor-ai.com` ("Install in VS Code / Cursor →") and every Claude Code skill README.
 - Oct 6 launch teardown #1 includes "We built this — try it in your IDE" CTA.
 
 **Install:** one click → extension loads → no signup, no API key, no consent dialog, no welcome popup. Fully functional on first open. Every friction point loses 5-15% of installs; we have none.
@@ -238,7 +238,7 @@ If a milestone slips: shift the *gate*, not the date. v0.1.0 ships Dec 31 even i
 
 ---
 
-## 9. Open questions for Dor
+## 9. Open questions for Raffa
 
 1. **Guardian sync.** Opt-in push of findings to Guardian (workspace settings `lictor.guardian.endpoint` + `lictor.guardian.token`)? Recommend: **no in v0.1.0, yes in v0.2.** Keeps launch surface clean.
 

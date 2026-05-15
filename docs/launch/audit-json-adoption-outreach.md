@@ -1,7 +1,7 @@
 # AUDIT.json v0.1 — adoption outreach
 
 > Generated: 2026-05-15. Send timing: Q4 2026 (after launch + the spec proves usable in production via Lictor's own teardowns).
-> Drafts are ready to personalize + send. Per the legal-structure memo, Dor signs from a Lictor LLC email once that exists.
+> Drafts are ready to personalize + send. Per the legal-structure memo, Raffa signs from a Lictor LLC email once that exists.
 > Each draft is written in the **collaborative-not-competitive** voice — we're proposing a standard, not announcing one we control.
 
 ---
@@ -27,13 +27,13 @@ Don't email all 5 simultaneously. Sequence over 2-3 weeks so each conversation h
 ## Email 1 — Semgrep
 
 **To:** `[FILL: Semgrep's OSS / community lead — likely findable via their team page or Slack community]`
-**CC:** `[FILL: Dor's lawyer if Semgrep responds positively and a co-authorship discussion starts]`
+**CC:** `[FILL: Raffa's lawyer if Semgrep responds positively and a co-authorship discussion starts]`
 **Subject:** Draft v0.1 of a shared AUDIT.json format — would Semgrep want to read it?
 
 ```
 Hi [NAME],
 
-I'm Dor — 20-year cybersec engineer building Lictor, an OSS security audit tool
+I'm Raffa — 20-year cybersec engineer building Lictor, an OSS security audit tool
 specifically for AI-built apps (Lovable / Bolt / v0 / Cursor / Replit). We
 launched October 6.
 
@@ -74,9 +74,9 @@ If this is interesting, happy to chat. 30 min, no agenda beyond a real read.
 
 If it's not — also fine. I appreciate the considered no.
 
-— Dor
+— Raffa
 
-[Lictor signature block — repo, lictor.ai, security@]
+[Lictor signature block — repo, lictor-ai.com, security@]
 
 P.S. If you want context on Lictor before deciding whether to engage, the
 audit-our-own-audit protocol page is the most representative thing we've
@@ -96,7 +96,7 @@ log them in public, fix them in public.
 ```
 Hi [NAME],
 
-I'm Dor — building Lictor (open-source security audit for vibe-coded apps,
+I'm Raffa — building Lictor (open-source security audit for vibe-coded apps,
 launched October 6 — github.com/Raffa-jarrl/Lictor-AI). I've been a quiet admirer
 of VibeEval's vibe-coding-security work since the Feb 2026 Lovable report.
 
@@ -133,7 +133,7 @@ it helps any single tool.
 
 Quick 20-min chat?
 
-— Dor
+— Raffa
 
 [signature]
 
@@ -154,7 +154,7 @@ this whole category should be measured against.
 ```
 Hi [NAME],
 
-I'm Dor — building Lictor (open-source AI security audit tool, launched
+I'm Raffa — building Lictor (open-source AI security audit tool, launched
 October 6 — github.com/Raffa-jarrl/Lictor-AI). I've been following Symbioticsec's
 Lovable scanner work; you're one of the very few teams shipping
 vibe-coder-specific security tooling.
@@ -182,7 +182,7 @@ No exclusivity, no Lictor branding in the spec, no lock-in. Plain JSON, CC0.
 
 Worth a 15-min call? Happy to talk on any platform.
 
-— Dor
+— Raffa
 
 [signature]
 ```
@@ -199,7 +199,7 @@ Worth a 15-min call? Happy to talk on any platform.
 ```
 Hi [NAME],
 
-I'm Dor — 20-year cybersec engineer, building Lictor (OSS security audit for
+I'm Raffa — 20-year cybersec engineer, building Lictor (OSS security audit for
 vibe-coded apps; launched October 6 — github.com/Raffa-jarrl/Lictor-AI).
 
 Aikido's approach to AI-first security tooling has been one of the references
@@ -237,7 +237,7 @@ both get to grow the category without competing on the format layer.
 
 Quick chat?
 
-— Dor
+— Raffa
 
 [signature]
 
@@ -258,7 +258,7 @@ would directly improve the v0.2 draft.
 ```
 Hi [NAME],
 
-I'm Dor — building Lictor, an OSS AI-security audit tool that launched October
+I'm Raffa — building Lictor, an OSS AI-security audit tool that launched October
 6 (github.com/Raffa-jarrl/Lictor-AI). I'm writing because Snyk has shaped my
 thinking on what good security tooling looks like for the last 5 years, and
 because Snyk's adoption (or thoughtful rejection) of a draft I've shipped
@@ -296,7 +296,7 @@ standard with one of the AI-security upstarts — happy to discuss. Lictor's
 positioning is deliberately complementary to Snyk's, not competitive. The
 audience overlap is small.)
 
-— Dor
+— Raffa
 
 [signature]
 

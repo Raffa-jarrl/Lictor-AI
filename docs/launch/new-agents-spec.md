@@ -11,14 +11,14 @@
 ### What this agent does
 Renders every Lictor + GenerationAI public artifact into Hebrew, Spanish, Portuguese, and Japanese — the 4 languages with the highest combined value for the bigger market thesis:
 
-- **Hebrew** — Dor's native language. Authentic-voice content for the Israeli tech ecosystem. Differentiator: nobody else in the AI-security category speaks Hebrew well.
+- **Hebrew** — Raffa's native language. Authentic-voice content for the Israeli tech ecosystem. Differentiator: nobody else in the AI-security category speaks Hebrew well.
 - **Spanish (LATAM dialect)** — biggest growth region for vibe-coder platforms outside the US. Mexico, Argentina, Colombia all hot.
 - **Portuguese (BR dialect)** — Brazilian indie-hacker scene is enormous and underserved by English-only tools.
 - **Japanese** — Japan has the second-highest concentration of Cursor + Claude Code users per capita (after the US). Notoriously underserved by Western dev tools.
 
 ### What this agent does NOT do
 - Doesn't auto-translate technical security terms when their English form is canonical (CVE, RLS, OAuth, JWT — these stay in English with a parenthetical first time)
-- Doesn't translate Dor's personal voice content (founder videos, personal tweets) — those stay in English unless Dor explicitly requests translation
+- Doesn't translate Raffa's personal voice content (founder videos, personal tweets) — those stay in English unless Raffa explicitly requests translation
 - Doesn't translate teardowns of non-English-language apps without local context (a teardown of a Japanese app should be translated by a native speaker, not the agent)
 
 ### Cadence
@@ -51,7 +51,7 @@ Mirror reviews every Friday — spot-checks 3 translations per language for fide
 ## Agent 13 — 🎬 Reel (video-script writer)
 
 ### What this agent does
-Generates weekly scripts for Dor's talking-head videos and short-form content. Three formats per week:
+Generates weekly scripts for Raffa's talking-head videos and short-form content. Three formats per week:
 
 - **1 long-form script** (8-12 minutes) — a teardown walkthrough, a security explainer, or a "behind the scenes of the agent crew" piece
 - **2 short scripts** (under 60s each) — single-finding teardowns, quick concept explainers, voice-bug callouts ("here's the worst compliance-speak I read this week")
@@ -59,8 +59,8 @@ Generates weekly scripts for Dor's talking-head videos and short-form content. T
 Each script includes: hook (first 3 seconds), beats (3-5 named segments), B-roll cues (what to show on screen), CTA (one specific action).
 
 ### What this agent does NOT do
-- Doesn't write Dor's personality — pulls voice from `~/GenerationAI/calibration/dor-voice/` and the previous week's video performance
-- Doesn't produce video — it produces scripts that Dor records
+- Doesn't write Raffa's personality — pulls voice from `~/GenerationAI/calibration/dor-voice/` and the previous week's video performance
+- Doesn't produce video — it produces scripts that Raffa records
 - Doesn't pick the topic — Conductor (planner) assigns the week's video themes from the teardown calendar
 
 ### Cadence
@@ -79,11 +79,11 @@ Each script includes: hook (first 3 seconds), beats (3-5 named segments), B-roll
 
 ### Inter-agent contracts
 - **Reads from:** Quill's teardown drafts, Trends' viral-format intel, Pulse's hook formulas, Mirror's last-week performance review
-- **Writes for:** Dor (recording), Conductor (Friday brief)
+- **Writes for:** Raffa (recording), Conductor (Friday brief)
 - **Coordination protocol:** Files on disk
 
 ### Special handling
-Reel maintains a "what's hitting" file — `~/GenerationAI/output/video-performance.jsonl` — fed by Dor weekly with view counts and engagement metrics from past videos. This is the feedback loop. Without it, Reel optimizes blind.
+Reel maintains a "what's hitting" file — `~/GenerationAI/output/video-performance.jsonl` — fed by Raffa weekly with view counts and engagement metrics from past videos. This is the feedback loop. Without it, Reel optimizes blind.
 
 ---
 
@@ -97,19 +97,19 @@ Two jobs:
 - Have an audience that includes vibe-coders or indie hackers
 - Are still actively publishing (last episode within 30 days)
 
-Drafts a personalized cold outreach email for each. Includes: a specific reference to a recent episode, the angle Dor would bring, a 1-line pitch for the host's audience. Saves drafts to `~/GenerationAI/output/outreach/podcasts/`.
+Drafts a personalized cold outreach email for each. Includes: a specific reference to a recent episode, the angle Raffa would bring, a 1-line pitch for the host's audience. Saves drafts to `~/GenerationAI/output/outreach/podcasts/`.
 
 **Job 2 — Conference CFP scouting.** Weekly digest of:
 - Open CFPs for AI / security / OSS / developer-tool conferences worldwide
 - Filter for: 2027 events, in-person or hybrid (not pure online), CFP deadline within next 90 days
-- Match against Dor's pitch repertoire (teardown findings, agent crew demo, plain-English-security thesis)
+- Match against Raffa's pitch repertoire (teardown findings, agent crew demo, plain-English-security thesis)
 
 Output: a Markdown digest at `~/GenerationAI/output/conferences/YYYY-MM-DD-cfp-digest.md`.
 
 ### What this agent does NOT do
 - Doesn't send emails (only drafts)
 - Doesn't apply to CFPs (only flags)
-- Doesn't engage with the booked hosts after Dor accepts a podcast — that's Dor's job
+- Doesn't engage with the booked hosts after Raffa accepts a podcast — that's Raffa's job
 
 ### Cadence
 - **Weekly heartbeat** — Mondays at 09:00 IST
@@ -127,7 +127,7 @@ Output: a Markdown digest at `~/GenerationAI/output/conferences/YYYY-MM-DD-cfp-d
 
 ### Inter-agent contracts
 - **Reads from:** Trends (what's hot this week in the dev tool space), Probe (recent competitive moves that make for relevant pitch angles), Conductor's briefings
-- **Writes for:** Dor (review + send)
+- **Writes for:** Raffa (review + send)
 
 ### Special handling
 Booth maintains a `~/GenerationAI/output/outreach/sent-podcasts.jsonl` log of what got sent vs ignored. After 6 weeks of data, Booth starts ranking which outreach patterns convert better. This is the long-game asymmetry.
@@ -142,7 +142,7 @@ Continuously triages incoming GitHub activity on the `lictor` repo. Three jobs:
 **Job 1 — Issue triage.** Every 4h heartbeat, fetches new issues + PRs. For each:
 - Label appropriately (bug, feature-request, pattern-request, false-positive, false-negative, voice-bug, etc.)
 - Draft a first-response (welcoming + asking for the missing repro info if needed)
-- Escalate to Dor or dev only if the issue is non-trivial (security advisory, breaking change, architectural decision)
+- Escalate to Raffa or dev only if the issue is non-trivial (security advisory, breaking change, architectural decision)
 
 **Job 2 — Contributor welcome.** First-time contributors get a personalized welcome comment on their first PR. Includes: thanks, a link to CONTRIBUTING.md, and a "your PR will be reviewed within 48h" expectation.
 
@@ -150,8 +150,8 @@ Continuously triages incoming GitHub activity on the `lictor` repo. Three jobs:
 
 ### What this agent does NOT do
 - Doesn't merge PRs (escalates to dev)
-- Doesn't close issues without explicit Dor approval
-- Doesn't respond to anything that looks like a security disclosure — escalates immediately to security@lictor.ai
+- Doesn't close issues without explicit Raffa approval
+- Doesn't respond to anything that looks like a security disclosure — escalates immediately to security@lictor-ai.com
 
 ### Cadence
 - **Heartbeat every 4 hours** for triage and welcomes
@@ -198,9 +198,9 @@ Within the Q1 2027 revenue assumptions of $10-11k MRR. ~1% of expected revenue.
 | Agent | Bring online when... |
 |---|---|
 | **Bridge** | Repo flipped public + first 10 community issues filed. ~Oct 13, 2026. |
-| **Reel** | Dor commits to weekly video cadence + the founder channel pilot succeeds. ~Nov 1, 2026. |
+| **Reel** | Raffa commits to weekly video cadence + the founder channel pilot succeeds. ~Nov 1, 2026. |
 | **Translator** | First Spanish + Portuguese landing pages ship (Q4 2026). ~Dec 1, 2026. |
-| **Booth** | Dor has bandwidth for 2-3 podcasts/month + Reel is producing reliably. ~Jan 15, 2027. |
+| **Booth** | Raffa has bandwidth for 2-3 podcasts/month + Reel is producing reliably. ~Jan 15, 2027. |
 
 Don't bring them all online at once. Each new agent adds operational surface area. Sequence based on user-facing demand, not on the strategic plan calendar.
 
@@ -215,7 +215,7 @@ For each agent, when bringing online:
 - [ ] Write IDENTITY.md (name, theme, emoji)
 - [ ] Write AGENTS.md (relationships with other agents)
 - [ ] Write TOOLS.md (which skills + APIs)
-- [ ] Write USER.md (Dor's context for this agent's domain)
+- [ ] Write USER.md (Raffa's context for this agent's domain)
 - [ ] Add to openclaw.json agent registry
 - [ ] Add cron heartbeat in `~/GenerationAI/scripts/genai.crontab` (don't forget Referer header)
 - [ ] Add to Mission Control's /api/run VALID_AGENTS whitelist

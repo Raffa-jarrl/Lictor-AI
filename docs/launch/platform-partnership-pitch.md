@@ -2,7 +2,7 @@
 
 > **Document type:** Strategic memo + per-platform addendums
 > **Audience:** [PLATFORM] founders, head of product, head of security (whichever exists)
-> **Sender of record:** Dor + Lictor LLC (pending — see legal-structure-memo.md)
+> **Sender of record:** Raffa + Lictor LLC (pending — see legal-structure-memo.md)
 > **Drafted:** 2026-05-15 · For Q1 2027 outreach per operation-triumph-expanded.md
 > **Status:** Template + per-platform addendums (Lovable, Bolt.new, v0). Master version below; addendums at the bottom.
 
@@ -88,7 +88,7 @@ Lictor's audit runs automatically on every deploy from [PLATFORM]. Findings are 
 [PLATFORM] adds Lictor to your official "tools" / "integrations" / "extensions" page. A link in your docs. A mention in your onboarding. No code-level integration.
 
 - **[PLATFORM] commits:** A page listing, a docs mention, a launch-week tweet, an optional email to your active user base.
-- **Lictor commits:** Co-marketing collateral, a [PLATFORM]-branded landing page on lictor.ai, a dedicated "audit my [PLATFORM] app" skill variant.
+- **Lictor commits:** Co-marketing collateral, a [PLATFORM]-branded landing page on lictor-ai.com, a dedicated "audit my [PLATFORM] app" skill variant.
 - **Timeline:** 2 weeks. Lowest effort on both sides; good first step if you want to test the partnership signal before committing to engineering.
 - **Mutual exclusivity:** Not exclusive. A natural Phase 0 before Option A or B.
 
@@ -143,7 +143,7 @@ We want this partnership to be cheap to start and easy to grow. Specifically:
 - No SLA penalties on the free integration.
 - No data-sharing requirements that compromise user privacy. Lictor is local-first; we don't want your users' source code on our servers any more than you want it on Snyk's.
 
-**Caveat:** Lictor LLC needs to legally exist before any of this is signable. See `docs/launch/legal-structure-memo.md`. The commercial terms above are illustrative until then; we'd execute them through the incorporated entity once formed. Dor should pressure-test the entire §6 with counsel before sending.
+**Caveat:** Lictor LLC needs to legally exist before any of this is signable. See `docs/launch/legal-structure-memo.md`. The commercial terms above are illustrative until then; we'd execute them through the incorporated entity once formed. Raffa should pressure-test the entire §6 with counsel before sending.
 
 ---
 
@@ -160,7 +160,7 @@ Concrete metrics, not press-release adjectives.
 **12 months in (full rollout):**
 - 25% of [PLATFORM]'s active monthly apps audited via Lictor.
 - A named comparison piece: "Snyk vs. Lictor on [PLATFORM]" — written by us, co-promoted by [PLATFORM], with concrete findings per tool on a representative project sample.
-- A joint conference talk — AI Engineer Summit (March 2027), RSAC 2027, or DEF CON 2027 — on "platform-native security for AI-built apps." Dor and a [PLATFORM] representative on stage together.
+- A joint conference talk — AI Engineer Summit (March 2027), RSAC 2027, or DEF CON 2027 — on "platform-native security for AI-built apps." Raffa and a [PLATFORM] representative on stage together.
 - The integration is named in [PLATFORM]'s sales material as a differentiator vs. competitors that don't have it.
 - At least 50 paying Lictor Teams subscribers attributable to [PLATFORM] (modest, but proves the rev-share mechanic).
 
@@ -183,7 +183,7 @@ Five things, in priority order:
 
 4. **A named champion at [PLATFORM].** Someone — likely a co-founder or head of product — who owns the *relationship* internally. Different person from the engineering contact. This is the person we email when the partnership needs a strategic call, not a technical one.
 
-5. **Pre-launch coordination.** Lictor's roadmap will shift; [PLATFORM]'s roadmap will shift. We'd ask for a standing monthly 30-minute sync between the named champion and Dor for the first 6 months to keep both sides aligned.
+5. **Pre-launch coordination.** Lictor's roadmap will shift; [PLATFORM]'s roadmap will shift. We'd ask for a standing monthly 30-minute sync between the named champion and Raffa for the first 6 months to keep both sides aligned.
 
 What we are explicitly *not* asking for: budget commitments, headcount commitments, equity, board seats, or any kind of structural entanglement that constrains [PLATFORM]'s independence.
 
@@ -193,8 +193,8 @@ What we are explicitly *not* asking for: budget commitments, headcount commitmen
 
 Six steps. Each one has a clear "stop here if it's not working" exit.
 
-1. **30-minute intro call** — Dor + [PLATFORM]'s named champion (or whoever takes the meeting first). No commitments. Goal: do the two sides like each other enough to keep talking?
-2. **60-minute technical discovery** — Dor + [PLATFORM]'s engineering contact. Goal: which integration option (A/B/C/D, §4) fits [PLATFORM]'s editor surface? Stop here if no option fits.
+1. **30-minute intro call** — Raffa + [PLATFORM]'s named champion (or whoever takes the meeting first). No commitments. Goal: do the two sides like each other enough to keep talking?
+2. **60-minute technical discovery** — Raffa + [PLATFORM]'s engineering contact. Goal: which integration option (A/B/C/D, §4) fits [PLATFORM]'s editor surface? Stop here if no option fits.
 3. **Joint scoping document** — 1 week. We draft, [PLATFORM] reviews. Goal: written agreement on scope, timeline, and what success looks like in §7 terms.
 4. **Pilot integration build** — 4–8 weeks depending on option. Lictor builds the integration; [PLATFORM] reviews and merges.
 5. **Pilot launch with one [PLATFORM] user** — A real project, with the user's consent, as the proof. Joint blog post. Single tweet.
@@ -206,7 +206,7 @@ If you want to skip steps 1–2 and go straight to scoping — also fine. Tell u
 
 ## 10. About Lictor
 
-Lictor is the security crew for apps people build with AI. Eleven specialist AI agents audit your project, name what's wrong, and tell you exactly how to fix it — in plain English, no compliance dialect required. Free, open source under Apache 2.0, runs locally inside Claude Code. We exist because 40–62% of AI-generated code ships with security vulnerabilities, eight million people now build software with AI assistants every week, and the existing security tools weren't built for them. Built solo by a 20-year cybersecurity engineer; growing into a community-supported open-source project with a public agent crew, a weekly teardown archive, and a roadmap voted on by users. Public launch: October 6, 2026. By Q1 2027: 15k+ GitHub stars, 8k+ weekly active skill users, 12+ published teardowns. github.com/lictor-ai · lictor.ai.
+Lictor is the security crew for apps people build with AI. Eleven specialist AI agents audit your project, name what's wrong, and tell you exactly how to fix it — in plain English, no compliance dialect required. Free, open source under Apache 2.0, runs locally inside Claude Code. We exist because 40–62% of AI-generated code ships with security vulnerabilities, eight million people now build software with AI assistants every week, and the existing security tools weren't built for them. Built solo by a 20-year cybersecurity engineer; growing into a community-supported open-source project with a public agent crew, a weekly teardown archive, and a roadmap voted on by users. Public launch: October 6, 2026. By Q1 2027: 15k+ GitHub stars, 8k+ weekly active skill users, 12+ published teardowns. github.com/lictor-ai · lictor-ai.com.
 
 ---
 

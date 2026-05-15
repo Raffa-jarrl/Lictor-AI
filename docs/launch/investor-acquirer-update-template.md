@@ -3,7 +3,7 @@
 > **Generated:** 2026-05-15
 > **First send:** July 1, 2026 (per year-plan-2026-2027.md, M2)
 > **Companion docs:** year-plan-2026-2027.md, m-and-a-strategy.md, weekly-operating-rhythm.md
-> **What this doc is for:** the monthly cadence and exact format Dor uses to keep ~10 carefully chosen people warm for 12+ months before any of them are needed.
+> **What this doc is for:** the monthly cadence and exact format Raffa uses to keep ~10 carefully chosen people warm for 12+ months before any of them are needed.
 
 ---
 
@@ -11,15 +11,15 @@
 
 Two jobs. Always two.
 
-**Job 1: Build relationships before they're needed.** When a Snyk corp-dev director, a Bessemer partner, or a retired Sailpoint CISO finally has a reason to talk to Dor — an acquisition discussion, a funding round, a board seat — the conversation should not start cold. It should start at "I've been reading your monthly updates for 14 months. I know your numbers. I know what's hard. Let's talk." Founders who only contact investors when they need money have weak leverage. Founders who provide monthly updates have warm channels when the moment arrives.
+**Job 1: Build relationships before they're needed.** When a Snyk corp-dev director, a Bessemer partner, or a retired Sailpoint CISO finally has a reason to talk to Raffa — an acquisition discussion, a funding round, a board seat — the conversation should not start cold. It should start at "I've been reading your monthly updates for 14 months. I know your numbers. I know what's hard. Let's talk." Founders who only contact investors when they need money have weak leverage. Founders who provide monthly updates have warm channels when the moment arrives.
 
-**Job 2: Force honest monthly self-assessment.** The act of writing the update — same template, same metrics, same "what's hard" section — exposes drift. The month Dor can't fill in the "what shipped" section, the month MRR went sideways, the month the hard part repeats from last month — those are the months the update format is doing its real job: telling Dor the truth before reality does.
+**Job 2: Force honest monthly self-assessment.** The act of writing the update — same template, same metrics, same "what's hard" section — exposes drift. The month Raffa can't fill in the "what shipped" section, the month MRR went sideways, the month the hard part repeats from last month — those are the months the update format is doing its real job: telling Raffa the truth before reality does.
 
 **Not weekly.** Weekly is noise. Weekly devalues each touch — by month 3 the recipient archives without reading. Weekly also makes "what's hard" performative (no real friction surfaces in 7 days).
 
 **Not quarterly.** Quarterly is too rare to build relationship gravity. The recipient forgets the prior update. The cadence doesn't compound. Quarterly is what a CEO with a board sends; monthly is what a founder building a category sends.
 
-**The list size.** Start at ~10. Never above 25, even when the temptation is strongest (it will be — Q1 2027, post-conference, post-press-hit). Every name on the list should be one Dor would personally call to discuss a $500k decision. If Dor wouldn't call them, they don't belong on the list.
+**The list size.** Start at ~10. Never above 25, even when the temptation is strongest (it will be — Q1 2027, post-conference, post-press-hit). Every name on the list should be one Raffa would personally call to discuss a $500k decision. If Raffa wouldn't call them, they don't belong on the list.
 
 **The tone.** Never asking for anything until there's a genuine ask. Never bragging — numbers do the bragging on their behalf. Always honest about what's hard. Plain English. Same voice as every other Lictor artifact. If a recipient could mistake the update for a marketing newsletter, it has failed.
 
@@ -45,8 +45,8 @@ By archetype. Examples are illustrative, not commitments.
 
 - A cybersecurity veteran — a CISO at a F500, a retired exec from Snyk / Palo Alto / Sailpoint / CrowdStrike. They've seen the deal flow from the buyer side.
 - An OSS-business veteran — alum from HashiCorp, GitLab, Tailscale, PostHog, Sentry. They've solved the Foundation/LLC governance question, the dual-license question, the community-vs-commercial tension.
-- A category-creating founder in an adjacent space — someone who built a brand category from an OSS root. They've made the calls Dor will make.
-- A startup-CEO-mentor for the founder-level support — someone whose first-call status is just "Dor, what are you doing?"
+- A category-creating founder in an adjacent space — someone who built a brand category from an OSS root. They've made the calls Raffa will make.
+- A startup-CEO-mentor for the founder-level support — someone whose first-call status is just "Raffa, what are you doing?"
 
 **Friendly competitors (1-2 people).** A founder at Aikido, VibeEval, or Symbioticsec. The frame: the AI-app-security category is large enough that all of us win if the category wins, and small enough that we all lose if it doesn't. Open channel for shared learnings, shared press contacts, shared "this acquirer is asking weird questions" signals. Avoid pure-zero-sum competition. Don't share customer lists, pricing experiments, or unreleased product strategy — share the rest.
 
@@ -58,7 +58,7 @@ By archetype. Examples are illustrative, not commitments.
 
 **What's tracked per person.** Name, role, company, last contact (date + medium), what they're interested in (1-3 tags: "OSS governance," "AI safety," "DevSecOps M&A"), open-rate on the last 3 updates, any notes from real conversations.
 
-**How people get added.** Organic only. Dor has had 2+ meaningful conversations with them (not a single conference hello). They've shown they read carefully — replied to a tweet thread, sent a thoughtful question, made a real intro. Cold-add is forbidden — the moment someone first hears from Dor via a monthly update they'd never asked for is the moment the update reads as spam.
+**How people get added.** Organic only. Raffa has had 2+ meaningful conversations with them (not a single conference hello). They've shown they read carefully — replied to a tweet thread, sent a thoughtful question, made a real intro. Cold-add is forbidden — the moment someone first hears from Raffa via a monthly update they'd never asked for is the moment the update reads as spam.
 
 **How people get removed.** Silently. If 3 consecutive monthly updates with no acknowledgment (no reply, no open, no in-person reference), drop them. No farewell email. No "I noticed you stopped engaging." Just remove. If they later resurface, they get re-added.
 
@@ -68,7 +68,7 @@ By archetype. Examples are illustrative, not commitments.
 
 ## 4. The monthly update template
 
-This is the literal format. Dor pastes this into the email tool, fills it in, sends it.
+This is the literal format. Raffa pastes this into the email tool, fills it in, sends it.
 
 ```markdown
 # Lictor Monthly Update — [MONTH YEAR]
@@ -114,14 +114,14 @@ Hi [Name],
 
 [Optional. A piece of long-form thinking, a teardown to read, a video to watch. Provides value without demanding action.]
 
-— Dor
+— Raffa
 ```
 
 ---
 
 ## 5. Section-by-section guidance
 
-**TL;DR.** 3 bullets, max. Pick the most *newsworthy* item first — not the one Dor is proudest of. Not "we shipped a thing"; "we landed first Lovable platform partnership." The first bullet is the one that survives if the recipient reads nothing else.
+**TL;DR.** 3 bullets, max. Pick the most *newsworthy* item first — not the one Raffa is proudest of. Not "we shipped a thing"; "we landed first Lovable platform partnership." The first bullet is the one that survives if the recipient reads nothing else.
 
 **Numbers.** Same metrics every month. Consistency is the asset. Don't add a metric in month 6 because it makes you look good — adding it makes month 5's update look incomplete in hindsight, and the recipient notices. If a metric stops mattering, keep it for 3 more months, then announce its removal in the body with a sentence on why.
 
@@ -133,11 +133,11 @@ Hi [Name],
 - "Cron broke for 30h overnight; 9 of 11 agents went dark until we caught it. Fixed in 4 hours. Documented at [link]."
 - "The self-teardown found a real auth bug in Lictor itself. Patched, disclosed, postmortem written."
 
-If the section reads as humble-brag ("our biggest challenge is how to handle all this inbound"), Dor is not yet writing it correctly.
+If the section reads as humble-brag ("our biggest challenge is how to handle all this inbound"), Raffa is not yet writing it correctly.
 
-**What's next month.** Falsifiable predictions. Next month Dor will be able to write "we said X, we shipped Y." That's how the list builds confidence that Dor can predict his own work. Vague predictions ("keep growing") signal an unsteady founder. Specific predictions ("VS Code v0.1 ships Dec 22, 100 Teams subs by Dec 31") signal a builder.
+**What's next month.** Falsifiable predictions. Next month Raffa will be able to write "we said X, we shipped Y." That's how the list builds confidence that Raffa can predict his own work. Vague predictions ("keep growing") signal an unsteady founder. Specific predictions ("VS Code v0.1 ships Dec 22, 100 Teams subs by Dec 31") signal a builder.
 
-**How you can help.** The moment Dor uses this in month 1, recipients ignore it for months 2-11. Use it sparingly — about 1 month in 3, on average. Specific asks ("intro to [Name] at [Company] re: bug-bounty program design") work; vague asks ("any advice on positioning?") don't. Never multi-ask. Never desperate.
+**How you can help.** The moment Raffa uses this in month 1, recipients ignore it for months 2-11. Use it sparingly — about 1 month in 3, on average. Specific asks ("intro to [Name] at [Company] re: bug-bounty program design") work; vague asks ("any advice on positioning?") don't. Never multi-ask. Never desperate.
 
 **Bonus.** Optional. A teardown link, a long essay, a recorded talk. Signals "I'm thinking big" without asking for anything. Eventually, recipients reply to the bonus — that's the moment the relationship becomes mutual.
 
@@ -165,7 +165,7 @@ The first three months establish the rhythm. By month 3, recipients know to expe
 
 **July 2026 (first update — pre-launch, pre-public).** TL;DR: "Lictor goes public Oct 6. Foundation work shipped this month — repo public, first 4 founder videos, AUDIT.json proposal sent to 5 vendors." Numbers: GitHub stars 500, design partners installed 5, newsletter 100, MRR $0. What's hard: "Audience-building from zero is slow. 500 stars in a month feels fine on paper; one weekend of one Krebs newsletter would 10x it. The compound has to start somewhere." Ask: none. Just FYI. Bonus: link to the first founder video.
 
-**August 2026.** TL;DR: "First 5 design partners running. Self-teardown landed — Lictor audited Lictor, found 3 bugs, fixed and documented. Press list compiled." What's hard: "The self-teardown found a real RLS bypass in our own onboarding flow. Embarrassing to find, useful to publish. The writeup is at [link] — the act of publishing it is the point." Ask: maybe one specific intro — a cybersec journalist Dor wants to brief pre-launch. Bonus: the self-teardown writeup.
+**August 2026.** TL;DR: "First 5 design partners running. Self-teardown landed — Lictor audited Lictor, found 3 bugs, fixed and documented. Press list compiled." What's hard: "The self-teardown found a real RLS bypass in our own onboarding flow. Embarrassing to find, useful to publish. The writeup is at [link] — the act of publishing it is the point." Ask: maybe one specific intro — a cybersec journalist Raffa wants to brief pre-launch. Bonus: the self-teardown writeup.
 
 **September 2026.** TL;DR: "Pre-launch prep complete. Sentinel 0.1.0 GA. 50 pre-orders captured. Disclosure emails out to 5 teardown targets." What's hard: "Disclosure responses from 5 teardown targets came back mixed — 2 acknowledged and patched, 1 quietly fixed without acknowledging, 2 silent. Our Sept 22 disclosure window expires Oct 6. We hold to the timeline." Ask: none. Bonus: the dress-rehearsal post-mortem.
 
@@ -175,13 +175,13 @@ By October, the list knows: monthly. First business day. Numbers, ships, hard, n
 
 ## 8. What the year-1 endgame looks like
 
-By June 2027 (the month after this 12-month plan ends), Dor has sent 12 monthly updates to ~10-20 people. Roughly:
+By June 2027 (the month after this 12-month plan ends), Raffa has sent 12 monthly updates to ~10-20 people. Roughly:
 
 - 30-40% engage actively — reply, retweet, send intros, attend the conference talk
 - 30-40% read consistently, never reply, are quietly compounding
 - 20-30% have been dropped after 3 silent months
 
-Of the active 30-40%, by mid-2027 there should be 2-3 people in the list who would *take Dor's call any time*, who *already know Lictor's numbers cold*, and who *have introduced Dor to at least one corp-dev contact, one Series A partner, or one customer*. Those 2-3 people are the entire purpose of the cadence.
+Of the active 30-40%, by mid-2027 there should be 2-3 people in the list who would *take Raffa's call any time*, who *already know Lictor's numbers cold*, and who *have introduced Raffa to at least one corp-dev contact, one Series A partner, or one customer*. Those 2-3 people are the entire purpose of the cadence.
 
 If they don't materialize by mid-2027, the cadence is not the problem — the relationship-building inside the cadence is. Adjust then.
 

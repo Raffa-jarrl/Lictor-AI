@@ -1,7 +1,7 @@
 # Twitter / X launch thread — draft
 
 **Posted:** 7:00 am Pacific, Tuesday Oct 6, 2026
-**From:** @lictor_ai (also retweet from Dor's personal handle)
+**From:** @lictor_ai (also retweet from Raffa's personal handle)
 
 ---
 
@@ -100,7 +100,7 @@ By construction. Not by policy.
 
 **Guardian** is for teams.
 
-Dashboard at app.lictor.ai. Receives Sentinel telemetry, shows incident timeline, filters by severity / check / phase / time window.
+Dashboard at app.lictor-ai.com. Receives Sentinel telemetry, shows incident timeline, filters by severity / check / phase / time window.
 
 Audit log export (CSV + JSON) for SOC 2, GDPR Article 32, EU AI Act Article 12.
 

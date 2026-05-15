@@ -14,7 +14,7 @@ Most founders build their data-room in the 6 weeks before a deal. That's too lat
 
 Lictor's data-room is built **continuously, in parallel with the operation**. Every month, each section gets its incremental update. By May 2027, when the first acquirer informational meeting happens, the data-room is complete, audit-fresh, and confidence-building.
 
-The data-room is also a *forcing function for Dor*. Maintaining clean financials forces clean books. Maintaining a customer log forces customer-success rigor. The data-room IS the management system, not a separate compliance burden.
+The data-room is also a *forcing function for Raffa*. Maintaining clean financials forces clean books. Maintaining a customer log forces customer-success rigor. The data-room IS the management system, not a separate compliance burden.
 
 ---
 
@@ -25,9 +25,9 @@ The data-room is also a *forcing function for Dor*. Maintaining clean financials
 ├── README.md                          # this file
 ├── 00-company/
 │   ├── company-overview.md            # 1-page intro
-│   ├── org-chart.md                   # Dor + agent crew + contractors
+│   ├── org-chart.md                   # Raffa + agent crew + contractors
 │   ├── entity-registrations/          # cert copies (LLC, Foundation)
-│   └── cap-table.md                   # 100% Dor (until something changes)
+│   └── cap-table.md                   # 100% Raffa (until something changes)
 ├── 01-financials/
 │   ├── statements/
 │   │   ├── 2026-Q3-pnl.pdf           # quarterly P&L
@@ -41,7 +41,7 @@ The data-room is also a *forcing function for Dor*. Maintaining clean financials
 │   ├── unit-economics.md              # LTV, CAC, payback, gross margin
 │   └── forecasts.md                   # 12 + 24-month projections
 ├── 02-customers/
-│   ├── customer-list.csv              # anonymized for sharing; named for Dor
+│   ├── customer-list.csv              # anonymized for sharing; named for Raffa
 │   ├── customer-logos.md              # logos with permission for use
 │   ├── reference-customers.md         # the 5-7 willing to do calls
 │   ├── churn-analysis.md
@@ -57,7 +57,7 @@ The data-room is also a *forcing function for Dor*. Maintaining clean financials
 │   ├── trademark-registrations/       # cert copies (US + EU + IL)
 │   ├── oss-dependencies-inventory.md  # generated; updated quarterly
 │   ├── cla-records/                   # every contributor's signed CLA
-│   ├── employment-ip-assignments/     # Dor's IP assignment + any contractor's
+│   ├── employment-ip-assignments/     # Raffa's IP assignment + any contractor's
 │   └── domain-registrations.md        # all owned domains
 ├── 05-sales-marketing/
 │   ├── pipeline.md                    # if any active deals
@@ -101,7 +101,7 @@ The data-room is also a *forcing function for Dor*. Maintaining clean financials
 
 **What:** the 1-page "here's who we are" overview an acquirer reads first.
 
-**Owner:** Dor.
+**Owner:** Raffa.
 
 **When populated:**
 - `company-overview.md` — drafted June 2026, updated quarterly
@@ -115,11 +115,11 @@ The data-room is also a *forcing function for Dor*. Maintaining clean financials
 
 **What:** the books. Quarterly P&L + balance sheet + cash flow + per-stream revenue history + unit economics + forecasts.
 
-**Owner:** outside accountant (engaged June 2026 per year plan) populates the statements; Dor populates the strategic docs.
+**Owner:** outside accountant (engaged June 2026 per year plan) populates the statements; Raffa populates the strategic docs.
 
 **When populated:**
 - `statements/` — first set delivered by accountant **end of Q3 2026** (Sep 30); thereafter quarterly within 30 days of quarter-end
-- `revenue-streams/*.csv` — Dor updates monthly on the 1st (Teams MRR, Course, AaaS, Enterprise)
+- `revenue-streams/*.csv` — Raffa updates monthly on the 1st (Teams MRR, Course, AaaS, Enterprise)
 - `unit-economics.md` — first calculation **Jan 2027** (after Teams ships); refresh quarterly
 - `forecasts.md` — yearly; first iteration Dec 2026 (12-month) and June 2027 (24-month)
 
@@ -135,7 +135,7 @@ The data-room is also a *forcing function for Dor*. Maintaining clean financials
 
 **What:** who pays Lictor + how much + how happy.
 
-**Owner:** Dor + Bridge agent for the customer log.
+**Owner:** Raffa + Bridge agent for the customer log.
 
 **When populated:**
 - `customer-list.csv` — starts the day Teams launches (Dec 15, 2026); updated weekly
@@ -154,7 +154,7 @@ The data-room is also a *forcing function for Dor*. Maintaining clean financials
 
 **What:** what Lictor actually is, in technical detail an acquirer's CTO would want.
 
-**Owner:** Dor + dev (C-3PO) agent.
+**Owner:** Raffa + dev (C-3PO) agent.
 
 **When populated:**
 - `architecture-overview.md` — first draft **July 2026**; refresh quarterly
@@ -172,21 +172,21 @@ The data-room is also a *forcing function for Dor*. Maintaining clean financials
 
 **What:** the IP audit. The most carefully-watched section in any tech M&A.
 
-**Owner:** Dor + outside IP lawyer.
+**Owner:** Raffa + outside IP lawyer.
 
 **When populated:**
 - `license-audit.md` — **drafted June 2026 with lawyer**; refreshed when license stack changes (e.g., when BUSL is added for paid features per legal-structure-memo.md)
 - `trademark-registrations/` — files added as filings complete (US + EU + IL ~ Sep 2026)
 - `oss-dependencies-inventory.md` — generated by `cargo outdated` + `pnpm audit` + `pip list` exported quarterly
 - `cla-records/` — every external contributor's signed CLA. Start logging June 2026.
-- `employment-ip-assignments/` — Dor's signed by **July 2026**; contractors' as added.
+- `employment-ip-assignments/` — Raffa's signed by **July 2026**; contractors' as added.
 - `domain-registrations.md` — all 3 domains documented with registration receipts
 
 **Diligence-ready when:**
 - Every external code contributor has a signed CLA
 - All trademarks registered or filed
 - Dependency inventory shows no GPL-licensed deps in commercial features
-- Dor's employment + IP assignment exists in writing
+- Raffa's employment + IP assignment exists in writing
 
 **Critical:** acquirers will diligence this section the HARDEST. Missing CLAs are deal-killers. Unclear IP assignment is a deal-killer. Dependencies under aggressive licenses (AGPL) in commercial features = deal-killer.
 
@@ -194,7 +194,7 @@ The data-room is also a *forcing function for Dor*. Maintaining clean financials
 
 **What:** the channel mix + how customers find Lictor.
 
-**Owner:** Dor + Magnet + Bridge agents.
+**Owner:** Raffa + Magnet + Bridge agents.
 
 **When populated:**
 - `pipeline.md` — start tracking Q1 2027 when AaaS pipeline becomes real
@@ -212,7 +212,7 @@ The data-room is also a *forcing function for Dor*. Maintaining clean financials
 
 **What:** the boring-but-deal-critical legal stack.
 
-**Owner:** outside lawyer + Dor.
+**Owner:** outside lawyer + Raffa.
 
 **When populated:**
 - `contracts/customer-template.md` — drafted **before Teams launch** (Nov 2026)
@@ -230,9 +230,9 @@ The data-room is also a *forcing function for Dor*. Maintaining clean financials
 
 ### 07 — Operations
 
-**What:** the "how does this run if Dor is hit by a bus" section.
+**What:** the "how does this run if Raffa is hit by a bus" section.
 
-**Owner:** Dor.
+**Owner:** Raffa.
 
 **When populated:**
 - `vendor-list.md` — populated June 2026; updated as services change
@@ -252,7 +252,7 @@ The data-room is also a *forcing function for Dor*. Maintaining clean financials
 
 **What:** the honest "what could go wrong" register.
 
-**Owner:** Dor.
+**Owner:** Raffa.
 
 **When populated:**
 - `known-risks.md` — symbolic link to year-plan-2026-2027.md's risk section, refreshed at quarter-end
@@ -294,7 +294,7 @@ Use this as the May 2027 readiness gate. Each item is binary: yes / no.
 
 ### Legal + IP
 - [ ] LLC + Foundation incorporated (or LLC-only with binding Foundation commitment)
-- [ ] Dor's employment agreement + IP assignment signed
+- [ ] Raffa's employment agreement + IP assignment signed
 - [ ] CLAs on file for every external contributor
 - [ ] Trademarks registered in US + EU + IL
 - [ ] No GPL/AGPL dependencies in commercial code
@@ -328,7 +328,7 @@ Use this as the May 2027 readiness gate. Each item is binary: yes / no.
 - [ ] 25,000+ weekly active skill users
 - [ ] 3+ platform partnerships (Lovable, Bolt, v0)
 - [ ] At least 1 major-media mention
-- [ ] Dor has spoken at 1+ Tier-1 conference
+- [ ] Raffa has spoken at 1+ Tier-1 conference
 
 If 90%+ of the above is checked by May 2027, Lictor is diligence-ready at multiples that justify a real conversation.
 
@@ -338,7 +338,7 @@ If 90%+ of the above is checked by May 2027, Lictor is diligence-ready at multip
 
 Most data-room maintenance is **monthly + quarterly**:
 
-**Monthly (1st of every month, ~2h of Dor's time):**
+**Monthly (1st of every month, ~2h of Raffa's time):**
 - Update revenue CSVs (Teams, Course, AaaS, Enterprise)
 - Update GitHub stats CSV (auto-generated)
 - Refresh customer list
@@ -375,7 +375,7 @@ Don't try to populate everything. Start with these 8 files in June 2026:
 
 1. `00-company/company-overview.md` (1 hour)
 2. `00-company/org-chart.md` (30 min)
-3. `00-company/cap-table.md` (15 min — 100% Dor, dated)
+3. `00-company/cap-table.md` (15 min — 100% Raffa, dated)
 4. `04-technology-ip/license-audit.md` (1 hour with lawyer)
 5. `04-technology-ip/employment-ip-assignments/dor.pdf` (lawyer-prep'd)
 6. `04-technology-ip/domain-registrations.md` (30 min)

@@ -360,7 +360,7 @@ pub fn run_local_audit(root: PathBuf) -> Result<AuditDocument, AuditError> {
         tool: Tool {
             name: "lictor".to_string(),
             version: env!("CARGO_PKG_VERSION").to_string(),
-            vendor: Some("lictor.ai".to_string()),
+            vendor: Some("lictor-ai.com".to_string()),
         },
         target: Target {
             target_type: "repository".to_string(),

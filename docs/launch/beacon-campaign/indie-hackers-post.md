@@ -117,7 +117,7 @@ If you build AI apps, I'd love your honest take on three things:
 
 **Also, three concrete things you can do:**
 
-- **Get on the waitlist.** lictor.ai/waitlist — I'll email you exactly 4 more times between now and the October 6 launch. No spam.
+- **Get on the waitlist.** lictor-ai.com/waitlist — I'll email you exactly 4 more times between now and the October 6 launch. No spam.
 - **Tell a builder friend.** The single most useful thing one person can do for a pre-launch OSS project is forward the waitlist URL to one other potential user. That's the multiplier.
 - **If you'd be a design partner**, reply to this post or DM me. I'm picking 10 builders to audit their projects before the public launch, in exchange for feedback. No money changes hands; you get a free audit, I get the truth about whether the tool works.
 
@@ -135,10 +135,10 @@ Building this in public is the bet. I'd rather get the criticism while I can sti
 
 Looking forward to your feedback. Thanks for reading this far.
 
-— Dor
+— Raffa
 
 Founder, Lictor AI
-dor@lictor.ai · lictor.ai · github.com/Raffa-jarrl/Lictor-AI
+raffa@lictor-ai.com · lictor-ai.com · github.com/Raffa-jarrl/Lictor-AI
 
 ---
 
@@ -169,7 +169,7 @@ IH community is more sophisticated than Reddit. They'll ask:
 |---|---|---|
 | Upvotes by end of Day 1 | ≥40 | IH dashboard |
 | Comments by end of Day 1 | ≥20 | IH dashboard |
-| Click-through to lictor.ai/waitlist | ≥150 | UTM `?utm_source=ih&utm_campaign=beacon-launch` |
+| Click-through to lictor-ai.com/waitlist | ≥150 | UTM `?utm_source=ih&utm_campaign=beacon-launch` |
 | Waitlist signups attributed to IH | ≥40 | Mission Control |
 | Design partner DM volume | ≥5 inquiries | Manual count |
 

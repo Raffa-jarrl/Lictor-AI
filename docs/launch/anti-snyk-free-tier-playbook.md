@@ -25,7 +25,7 @@ These move regardless of when Snyk ships. They are the bedrock that makes the re
 | **Own the keyword "vibe-coder security"** | Land 3 cornerstone blog posts + 1 weekly teardown rhythm. When a developer Googles the phrase, Lictor is the answer. Snyk's SEO machine cannot pivot a 10,000-page domain authority toward a new keyword in under 12 months. |
 | **Lock in the Claude Code skill suite as the wedge product** | This is where vibe-coders live. Snyk's CLI is an extra install; Lictor's `/lictor-security-check` is one slash command in the chat they're already in. *Distribution-by-context* is Snyk's hardest gap to close. |
 | **Publish the 11-agent crew as a transparent feature, not infrastructure** | Snyk's Evo agents are a black box. Make Lictor's crew named, visible, and personable. People follow agents with names. People don't follow "Workflow Orchestrator." This is asymmetric branding Snyk can't replicate. |
-| **Build the founder-on-camera channel** | Snyk has no face. Lictor has Dor. Ship one talking-head video per week — teardown, agent-watch, security explainer. By the time Snyk ships free, "Dor's videos" is a known content category. Founder content is the moat Snyk's PR team literally cannot copy. |
+| **Build the founder-on-camera channel** | Snyk has no face. Lictor has Raffa. Ship one talking-head video per week — teardown, agent-watch, security explainer. By the time Snyk ships free, "Raffa's videos" is a known content category. Founder content is the moat Snyk's PR team literally cannot copy. |
 | **Co-opt the small competitors** | Reach out to VibeEval and Symbioticsec *now*. Offer integration, cross-citation, joint teardowns. Two small competitors fighting each other = both dead. Allied = collectively too big to ignore. |
 
 ---

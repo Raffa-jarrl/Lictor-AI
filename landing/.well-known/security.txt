@@ -5,12 +5,12 @@
 # channels below. We acknowledge within 48 hours and aim to ship fixes
 # within 14 days for non-critical issues, 7 days for critical.
 
-Contact: mailto:security@lictor.ai
+Contact: mailto:security@lictor-ai.com
 Expires: 2027-12-31T23:59:59.000Z
 Preferred-Languages: en, he
-Canonical: https://lictor.ai/.well-known/security.txt
-Policy: https://lictor.ai/security
-Acknowledgments: https://lictor.ai/security#hall-of-fame
+Canonical: https://lictor-ai.com/.well-known/security.txt
+Policy: https://lictor-ai.com/security
+Acknowledgments: https://lictor-ai.com/security#hall-of-fame
 
 # We participate in responsible disclosure. Public disclosure with
 # coordinated timeline preferred over silent fix. We credit reporters

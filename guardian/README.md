@@ -57,5 +57,5 @@ pnpm dev
 ## License
 
 Source-available, NOT MIT. The Guardian source is published in this repo for
-transparency, but is licensed for hosted use through lictor.ai only — not for
+transparency, but is licensed for hosted use through lictor-ai.com only — not for
 self-hosting or redistribution. See the root `LICENSE`.

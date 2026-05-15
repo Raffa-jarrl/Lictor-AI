@@ -33,9 +33,9 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://lictor.ai"
+Homepage = "https://lictor-ai.com"
 Repository = "https://github.com/Raffa-jarrl/Lictor-AI"
-Documentation = "https://lictor.ai/docs"
+Documentation = "https://lictor-ai.com/docs"
 
 [project.optional-dependencies]
 dev = [

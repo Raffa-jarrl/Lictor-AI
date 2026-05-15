@@ -38,7 +38,7 @@ agent_credits: { radar: N findings, sieve: N scored, probe: N validated, quill: 
 
 # Companion content (drafted by Magnet + Pulse + Reel)
 twitter_thread: 6 tweets, last one links to landing page
-linkedin_post: 1 post in Dor's voice (different framing from Twitter)
+linkedin_post: 1 post in Raffa's voice (different framing from Twitter)
 hn_submission: text-only submission, 200 words
 substack_newsletter: 800-word email version
 youtube_long: 8-12 min walkthrough
@@ -84,7 +84,7 @@ Every scaffold below follows this shape. Variance is in the *target*, *predicted
 **Frame 2 (alt if non-responsive):** measured, no snark, founder credited by handle, fixes are concrete.
 
 ### Companion content sketch
-- **Twitter thread:** open with the specific number ("$X paid out monthly"), 3 findings as numbered cards, founder credit, CTA to lictor.ai/skill
+- **Twitter thread:** open with the specific number ("$X paid out monthly"), 3 findings as numbered cards, founder credit, CTA to lictor-ai.com/skill
 - **LinkedIn post:** "I'm announcing Lictor today. Here's the kind of audit we run." Pitchtank teardown as the proof artifact.
 - **HN submission:** text-only "Show HN: Lictor — open-source AI security audit, with example teardown" + link in first comment
 - **Substack:** "Why I'm building Lictor" essay + the Pitchtank case attached
@@ -286,7 +286,7 @@ US Thanksgiving falls Nov 26-27, 2026. Audience attention is lower. Use this wee
 Don't waste Thanksgiving week on a high-stakes named teardown. Use it for evergreen educational content that compounds:
 - "How I audit my own Cursor-built side project — a 12-minute walkthrough"
 - Voice: tutorial, not exposé
-- Founder/owner: Dor, or a friend with permission
+- Founder/owner: Raffa, or a friend with permission
 
 ### Why it still counts as a teardown
 The structure is the same. The audit is real. The findings are real. But the energy is "build with me" not "look what we found."
@@ -387,10 +387,10 @@ Tue (target -8 days): Disclosure email sent (for high-risk targets)
 Wed of pub-week: Quill's draft reviewed by Mirror
 Thu of pub-week: Founder response logged (engaged | fixed | non-responsive)
                  Branch chosen: standard teardown OR "fixed cleanly" story
-Fri of pub-week: Dor records video using Reel's script
+Fri of pub-week: Raffa records video using Reel's script
                  Magnet builds the landing page
                  Pulse drafts companion social
-Mon AM:          Final review by Dor
+Mon AM:          Final review by Raffa
 Tue PUBLISH:     See teardown-engine.md publication sequence
 ```
 

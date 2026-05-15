@@ -1,6 +1,6 @@
 # Show HN — DO NOT POST UNTIL WEEK 10 (Wed July 23, 2026)
 
-> HN punishes empty-waitlist posts. Wait until: (1) the repo is public (target June 1), (2) waitlist has 500+ confirmed signups, (3) at least one polished teardown is live on lictor.ai/blog or as a public gist.
+> HN punishes empty-waitlist posts. Wait until: (1) the repo is public (target June 1), (2) waitlist has 500+ confirmed signups, (3) at least one polished teardown is live on lictor-ai.com/blog or as a public gist.
 
 ---
 
@@ -11,7 +11,7 @@ The Show HN moment is **the single highest-value channel slot in the entire Beac
 By Week 10 (mid-July):
 - Repo has been public for ~6 weeks (HN can verify the code is real)
 - 250–500 signups on the waitlist (proof of demand, not vapor)
-- ~5 founder videos in the world (Dor has a face HN can put to the project)
+- ~5 founder videos in the world (Raffa has a face HN can put to the project)
 - The self-teardown is published (HN can verify methodology)
 - Multiple weekly teaser threads have circulated (the audience exists already)
 
@@ -36,7 +36,7 @@ Posting earlier wastes the shot. Posting later misses the launch-prep window.
 **Text:**
 
 ```
-Hey HN — I'm Dor, a 20-year cybersecurity engineer building Lictor in the open.
+Hey HN — I'm Raffa, a 20-year cybersecurity engineer building Lictor in the open.
 
 Quick what + why:
 
@@ -54,8 +54,8 @@ The 7 checks:
 7. AI endpoints with no rate limiting
 
 Repo: https://github.com/Raffa-jarrl/Lictor-AI (Apache 2.0)
-Waitlist (ships October 6): https://lictor.ai/waitlist
-First teardown — Lictor audited Lictor's own codebase: https://lictor.ai/blog/we-audited-lictor-with-lictor
+Waitlist (ships October 6): https://lictor-ai.com/waitlist
+First teardown — Lictor audited Lictor's own codebase: https://lictor-ai.com/blog/we-audited-lictor-with-lictor
 
 What I'd love feedback on:
 
@@ -114,7 +114,7 @@ Deeper engineering response. *"The agents are Claude/Sonnet-level LLMs invoked w
 
 **If the post hits #1 on Show HN:** clear your calendar for 24h. Reply to every comment. Sleep is optional. The post WILL get scraped onto Twitter / other sites, and you'll get a wave of inbound DMs / emails — be ready to triage.
 
-**If the post hits #1 on the main HN front page** (rare, but possible if it gets >300 points): you've broken into the second-order audience (HN users who don't filter for "Show"). This is the moment to capitalize — pin the post on Dor's personal Twitter, share it in the LinkedIn company page, send a one-time email to the existing waitlist saying "we hit the HN front page; here's the link, here's the conversation, here's how to weigh in."
+**If the post hits #1 on the main HN front page** (rare, but possible if it gets >300 points): you've broken into the second-order audience (HN users who don't filter for "Show"). This is the moment to capitalize — pin the post on Raffa's personal Twitter, share it in the LinkedIn company page, send a one-time email to the existing waitlist saying "we hit the HN front page; here's the link, here's the conversation, here's how to weigh in."
 
 **If the post lands in #20-50 on Show HN:** still good. The Show HN section has its own loyal audience. Won't drive 5,000 signups but 200-500 is realistic.
 

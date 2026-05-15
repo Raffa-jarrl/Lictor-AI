@@ -19,7 +19,7 @@
 > ### Informational overview — [MONTH YEAR]
 >
 > Prepared for: **[ACQUIRER_NAME]**
-> Presented by: Dor [LAST_NAME], Founder
+> Presented by: Raffa [LAST_NAME], Founder
 >
 > Version [DECK_VERSION] · [PAGE_COUNT] pages · **Confidential**
 >
@@ -27,7 +27,7 @@
 >
 > *Lictor is the security crew for apps you built with AI — an open-source agentic auditor that lives where vibe-coders ship: inside Claude Code, Cursor, the browser, and the runtime.*
 
-**Talking-point overlay (Dor, not on screen):**
+**Talking-point overlay (Raffa, not on screen):**
 > "Thanks for the time. Quick note before we start — this is informational, not a pitch. We're sharing where Lictor is because the category we're in started to matter to your team and we wanted you to hear it from us, not from a third-party deck. I'd rather get your honest read than try to sell you on anything today."
 
 ---
@@ -57,7 +57,7 @@
 > - We thought it was worth walking you through where we are and where we're going before any of this turns into rumor.
 > - If a real strategic conversation ever made sense, we'd want you to have an accurate picture going in. This deck is that picture.
 
-**Talking-point overlay (Dor, not on screen):**
+**Talking-point overlay (Raffa, not on screen):**
 > "We didn't reach out cold. [SPECIFIC_TRIGGER — e.g., your security team starred our repo, your product lead DMed me about the AUDIT.json proposal, your M&A team requested a teardown PDF]. So I figured an hour with the actual founder was more useful than another GitHub click."
 
 ---
@@ -162,7 +162,7 @@
 > | GitHub stars | [GITHUB_STARS]+ | top 0.1% of OSS repos |
 > | Weekly active skill users | [WAU_VALUE]+ | anonymous build-IDs |
 > | Newsletter subs | [NEWSLETTER_SUBS]+ | [NEWSLETTER_OPEN_RATE]% open rate |
-> | Twitter followers (combined) | [TWITTER_FOLLOWERS]+ | Lictor + Dor personal |
+> | Twitter followers (combined) | [TWITTER_FOLLOWERS]+ | Lictor + Raffa personal |
 > | Public teardowns archived | [TEARDOWN_COUNT]+ | weekly cadence, [TEARDOWN_WEEKS] weeks running |
 > | Conference talks delivered | [TALKS_DELIVERED]+ | including [TIER_1_CONF_NAME] [TIER_1_CONF_DATE] |
 
@@ -188,7 +188,7 @@
 > | GitHub stars | [GITHUB_STARS]+ | top 0.1% of OSS repos |
 > | Weekly active users (Claude Code skill) | [WAU_VALUE]+ | anonymous build-IDs |
 > | Newsletter subscribers | [NEWSLETTER_SUBS]+ | [NEWSLETTER_OPEN_RATE]% open rate |
-> | Twitter followers (Lictor + Dor personal) | [TWITTER_FOLLOWERS]+ | |
+> | Twitter followers (Lictor + Raffa personal) | [TWITTER_FOLLOWERS]+ | |
 > | Paying Teams subscriptions | [TEAMS_PAYING]+ | $19/mo flat |
 > | Course alumni | [COURSE_ALUMNI]+ | "Lictor Certified Auditor" badges |
 > | Audit-as-a-Service customers | [AAAS_CUSTOMERS]+ | small dev studios + [VC_FIRM_COUNT] VC firms |
@@ -197,7 +197,7 @@
 > | Net revenue (12-mo trailing) | [TTM_REVENUE]+ | |
 > | Cumulative burn since incorporation | ~[CUMULATIVE_BURN] | self-funded |
 > | Net cash position | ~[CASH_POSITION]+ | from operations |
-> | Employees | 1 (Dor) + 15-agent crew | + outside accountant + lawyer |
+> | Employees | 1 (Raffa) + 15-agent crew | + outside accountant + lawyer |
 
 **[SLIDE 4.2 — Retention + satisfaction]**
 
@@ -300,8 +300,8 @@
 
 > ### Option A — Acqui-hire ($5–10M)
 >
-> **Shape:** Brand + Dor + 15-agent crew + IP transfer.
-> **What acquirer gets:** Lictor absorbs into your AI security GTM motion. Brand survives or sunsets at your discretion. Dor + agent crew become the AI-built-app security team inside your org.
+> **Shape:** Brand + Raffa + 15-agent crew + IP transfer.
+> **What acquirer gets:** Lictor absorbs into your AI security GTM motion. Brand survives or sunsets at your discretion. Raffa + agent crew become the AI-built-app security team inside your org.
 > **Best fit:** Snyk, Aikido, GitHub (precedent: GitHub → Dependabot at similar stage).
 > **Strongest comp:** Snyk → Invariant Labs (June 2025 — sub-1-year-old company acquired to plant a category flag).
 > **Why this shape is real:** Categories get won by the team holding the brand. Acquiring early is cheaper than fighting Lictor for 2 years.
@@ -321,7 +321,7 @@
 > ### Option C — Talent + tech with Foundation carve-out ($10–25M)
 >
 > **Shape:** Acquirer buys Lictor LLC (commercial revenue + IP). Lictor Foundation (OSS code) remains independent — non-acquired, governed by community.
-> **What acquirer gets:** Commercial business + agent crew + Dor. Community keeps the OSS, which protects acquirer from "they killed the open source" backlash.
+> **What acquirer gets:** Commercial business + agent crew + Raffa. Community keeps the OSS, which protects acquirer from "they killed the open source" backlash.
 > **Best fit:** Anthropic (precedent: Bun acquisition Dec 2025; OSS-friendly culture), GitHub, vendors with strong OSS-respect cultures.
 > **Strongest comp:** Anthropic → Bun (carve-out maintained), HashiCorp post-IBM (delayed-but-instructive).
 > **Why this shape is real:** OSS audience has a long memory. Acquirers who've done badly here pay for it for years.
@@ -363,7 +363,7 @@
 **[SLIDE 7.4]**
 
 > 3. **Founder vesting + retention package aligned with the strategic thesis.**
-> Dor isn't trying to vest-and-leave. The interesting work is just starting. A reasonable 3-4 year structure is fine. What's not interesting: a structure where the strategic thesis gets quietly de-prioritized in year 2.
+> Raffa isn't trying to vest-and-leave. The interesting work is just starting. A reasonable 3-4 year structure is fine. What's not interesting: a structure where the strategic thesis gets quietly de-prioritized in year 2.
 
 **[SLIDE 7.5]**
 
@@ -422,9 +422,9 @@
 
 ## Section 9 — The team
 
-**[SLIDE 9.1 — Dor bio]**
+**[SLIDE 9.1 — Raffa bio]**
 
-> **Dor [LAST_NAME] — Founder**
+> **Raffa [LAST_NAME] — Founder**
 > - 20+ years in cybersecurity. Background: [BACKGROUND_HIGHLIGHTS — e.g., IDF Unit 8200, [COMPANY_1], [COMPANY_2], [SPECIFIC_RESEARCH_WORK]].
 > - Founded Lictor in [FOUNDING_YEAR] after watching Lovable + Bolt code repeatedly fail the same security audits.
 > - Day-job context: continues to run GenerationAI consulting (the consulting entity is structurally separate from Lictor LLC — clean books from day one).
@@ -433,11 +433,11 @@
 **[SLIDE 9.2 — The 15-agent crew]**
 
 > **How Lictor is operationally staffed:**
-> - **1 human:** Dor (founder, eng, content, GTM)
+> - **1 human:** Raffa (founder, eng, content, GTM)
 > - **15 AI agents:** documented in `/agents/SOUL.md` in the open monorepo
 > - **Outside professionals:** [ACCOUNTANT_FIRM] (bookkeeping monthly), [LAW_FIRM] (legal, IP, contracts), [CONTRACTOR_COUNT] specialist contractors on rotating basis
 >
-> Each agent has a public job description, prompt library, eval history, and ownership of specific outputs. The "team" is small because the agents do real work, not because Dor is heroically grinding alone.
+> Each agent has a public job description, prompt library, eval history, and ownership of specific outputs. The "team" is small because the agents do real work, not because Raffa is heroically grinding alone.
 
 **[SLIDE 9.3 — Planned human hires]**
 
@@ -463,7 +463,7 @@
 > | 01 — Financials | 4 quarters P&L, balance sheet, cash flow, revenue by stream, unit economics, 24-mo forecast | [LAST_REFRESH] |
 > | 02 — Customers | full customer list (anonymized for first review; named under NDA), [REFERENCE_CUSTOMER_COUNT] reference customers consenting to calls | [LAST_REFRESH] |
 > | 03 — Product | architecture overview, public roadmap, feature list, GitHub stats (12 months), known-issues log | [LAST_REFRESH] |
-> | 04 — Technology + IP | license audit, trademark registrations (US + EU + IL), OSS dependency inventory, CLA records (every contributor), Dor's IP assignment, domain registrations | [LAST_REFRESH] |
+> | 04 — Technology + IP | license audit, trademark registrations (US + EU + IL), OSS dependency inventory, CLA records (every contributor), Raffa's IP assignment, domain registrations | [LAST_REFRESH] |
 > | 05 — Sales + marketing | pipeline, marketing analytics, channel mix, press log, community signal | [LAST_REFRESH] |
 > | 06 — Legal | standard customer contract, vendor contracts (Stripe, Paddle, Cloudflare, GitHub, hosting), partner agreements, insurance, GDPR posture | [LAST_REFRESH] |
 > | 07 — Operations | vendor list, critical-process runbooks, disaster recovery, security policy, runbook index | [LAST_REFRESH] |
@@ -483,7 +483,7 @@
 
 > ## Thank you.
 >
-> **Dor [LAST_NAME]**
+> **Raffa [LAST_NAME]**
 > Founder, Lictor
 > [EMAIL] · [TWITTER_HANDLE] · [SIGNAL_OR_PREFERRED_CHANNEL]
 >
@@ -508,12 +508,12 @@
   - Slide 6.2–6.4 — reorder strategic options so the most-likely-shape-for-this-acquirer appears first.
   - Slide 7.5 — the GTM-lever line. Fill in this acquirer's specific lever.
 - [ ] **Verify cover slide** — version, date, "for [ACQUIRER_NAME]" all current.
-- [ ] **Re-read the acquirer-specific row** in `m-and-a-strategy.md` Section 2 ("Acquirer landscape") right before walking in. The risks and fit notes there should shape what Dor emphasizes verbally.
-- [ ] **Print 1 paper copy + carry on iPad.** Paper for them, iPad for Dor (no projector dependency).
+- [ ] **Re-read the acquirer-specific row** in `m-and-a-strategy.md` Section 2 ("Acquirer landscape") right before walking in. The risks and fit notes there should shape what Raffa emphasizes verbally.
+- [ ] **Print 1 paper copy + carry on iPad.** Paper for them, iPad for Raffa (no projector dependency).
 
-## B. Slide-by-slide talking points (what Dor says vs what's on screen)
+## B. Slide-by-slide talking points (what Raffa says vs what's on screen)
 
-| Slide | On screen | Dor says (~) |
+| Slide | On screen | Raffa says (~) |
 |---|---|---|
 | 0 — Cover | Title, logo, name | "Quick framing — this is informational. Not for sale today. Just wanted you to have an accurate picture." |
 | 1.1 — What | 3-sentence definition | "Three sentences, then we go deeper. If any of these feel off, push back now." |
@@ -529,7 +529,7 @@
 | 9.1–9.3 — Team | Bio + crew | "One person, 15 agents, real outside professionals. The structure is the asset." |
 | 10.1–10.3 — Appendix | Data room | "We can share the data room under NDA. Three docs answer 70% of diligence questions in the first 3 hours of reading." |
 
-## C. The 3 questions Dor asks the acquirer (informational, not negotiating)
+## C. The 3 questions Raffa asks the acquirer (informational, not negotiating)
 
 > Ask all three. Order them based on the room's energy.
 
@@ -551,7 +551,7 @@
 - They commit to a specific follow-up date or named follow-up person
 - They ask about the data room — and specifically which 3 docs to read first
 - They push back on Section 6 options ("we wouldn't do Option B, but Option C is interesting") — engagement = real interest
-- Post-meeting: their team stars the repo, follows Dor on Twitter, or downloads Sentinel within 48 hours
+- Post-meeting: their team stars the repo, follows Raffa on Twitter, or downloads Sentinel within 48 hours
 
 **Polite-no-thanks signals:**
 - Generic praise without follow-up specifics ("really impressive what you've built")
@@ -569,16 +569,16 @@
 
 | Day | Action | Owner |
 |---|---|---|
-| **T+1** | Thank-you note. 3 sentences. No deck attached. Reference one specific thing from the conversation. Mention the data room is available under NDA when they want it. | Dor |
-| **T+7** | Soft update — "FYI, [SPECIFIC_RECENT_SHIP] launched this week, thought you'd be interested." Demonstrate momentum without selling. | Dor |
-| **T+14** | If they responded to T+1 or T+7 — propose a follow-up call with a specific person on their side (the internal champion they named). If no response — do nothing yet. | Dor |
-| **T+30** | Monthly investor/acquirer update email goes out (uses `investor-acquirer-update-template.md`). They're on the list. This is the "you're on the list" cadence, not direct outreach. | Dor + Bridge agent |
-| **T+45** | If still silence: one final direct note. "Hey, given [RECENT_INDUSTRY_EVENT], wondered if anything had changed on your side. No need to reply if not." Then stop. | Dor |
-| **T+60** | If reaching out has happened from their side — proceed at their pace, with a real diligence ask (data room access, second meeting, named champion). If no reach-out happened — they're parked. Re-evaluate in 6 months. | Dor |
+| **T+1** | Thank-you note. 3 sentences. No deck attached. Reference one specific thing from the conversation. Mention the data room is available under NDA when they want it. | Raffa |
+| **T+7** | Soft update — "FYI, [SPECIFIC_RECENT_SHIP] launched this week, thought you'd be interested." Demonstrate momentum without selling. | Raffa |
+| **T+14** | If they responded to T+1 or T+7 — propose a follow-up call with a specific person on their side (the internal champion they named). If no response — do nothing yet. | Raffa |
+| **T+30** | Monthly investor/acquirer update email goes out (uses `investor-acquirer-update-template.md`). They're on the list. This is the "you're on the list" cadence, not direct outreach. | Raffa + Bridge agent |
+| **T+45** | If still silence: one final direct note. "Hey, given [RECENT_INDUSTRY_EVENT], wondered if anything had changed on your side. No need to reply if not." Then stop. | Raffa |
+| **T+60** | If reaching out has happened from their side — proceed at their pace, with a real diligence ask (data room access, second meeting, named champion). If no reach-out happened — they're parked. Re-evaluate in 6 months. | Raffa |
 
 **Important discipline:**
-- **Never ask for an offer.** The point is they reach out for the next conversation, not Dor.
-- **Never run two acquirer conversations as if they don't know about each other.** Acquirer ecosystems are small. The leverage of multiple plausible acquirers comes from their *suspicion* that other acquirers exist — not from Dor confirming it.
+- **Never ask for an offer.** The point is they reach out for the next conversation, not Raffa.
+- **Never run two acquirer conversations as if they don't know about each other.** Acquirer ecosystems are small. The leverage of multiple plausible acquirers comes from their *suspicion* that other acquirers exist — not from Raffa confirming it.
 - **The monthly update email is the steady-state.** It's calibrated to maintain awareness without selling. Don't break cadence to ping someone individually unless you have a real reason.
 
 ---

@@ -37,7 +37,7 @@ Then `/lictor-security-check` from any project.
 
 Worth 30 minutes of your time before I show this to the world?
 
-— Dor
+— Raffa
 ```
 
 ---
@@ -66,7 +66,7 @@ Bug bash guide: [GitHub link once public, or attach the file]
 
 In?
 
-— Dor
+— Raffa
 ```
 
 ---
@@ -94,7 +94,7 @@ Free, no NDA, no pitch. The whole thing is Apache 2.0 and the code is at github.
 
 Worth a try?
 
-— Dor
+— Raffa
 
 P.S. If you're more excited about the Sentinel SDK (the runtime defense against prompt injection) than the audit skill, that's also testable — `npm install @lictor/sentinel` post-launch. Same offer applies.
 ```
@@ -116,7 +116,7 @@ The angle that's most relevant to you: Lictor Sentinel is a `wrap()` around your
 
 In plain terms: if your CISO or your biggest customer ever asks "how do you secure AI agents," you have an answer that isn't a slide deck.
 
-It's all free. Apache 2.0 for the SDK; Guardian's hosted at app.lictor.ai with a 90-day free preview that's effectively permanent for testers.
+It's all free. Apache 2.0 for the SDK; Guardian's hosted at app.lictor-ai.com with a 90-day free preview that's effectively permanent for testers.
 
 The ask: integrate Sentinel into one of your AI endpoints for a week. Tell me what false positives we trip, what real attacks it catches, and whether the Guardian dashboard surfaces the right things. If it's net useful, you keep using it free.
 
@@ -124,7 +124,7 @@ I'll set up your account manually, send a personalized API token, and walk throu
 
 Worth 30 minutes for a call to evaluate?
 
-— Dor
+— Raffa
 
 (20 years in cybersec — built this because every Series A I've consulted with in the last 12 months has had this exact question and nobody has had a clean answer for them.)
 ```
@@ -155,7 +155,7 @@ What you get: free 1:1 audit of any project of your choosing from me personally 
 Github will be public for the launch but currently private. I can add you as a collaborator and send over the bug-bash guide. Let me know.
 
 Thanks,
-— Dor
+— Raffa
 ```
 
 ---

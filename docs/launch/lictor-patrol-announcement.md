@@ -1,8 +1,8 @@
 # Lictor Patrol — Aug 15 soft-launch publication (DRAFT)
 
 > **Status:** draft for Aug 15 2026 publication. Updated by Quill from the actual numbers once the 30-day silent run completes (Jul 15 → Aug 14). Numbers in `[brackets]` will be replaced with real figures.
-> **Channels:** HN "Show HN" post (06:00 PT), Twitter/X thread (07:00), blog post at `lictor.ai/blog/patrol-30-days` (09:30), press emails (11:00).
-> **Voice:** First-person Dor, with one disclosed AI co-author (Bridge). Direct, technical, no hype. The numbers do the work.
+> **Channels:** HN "Show HN" post (06:00 PT), Twitter/X thread (07:00), blog post at `lictor-ai.com/blog/patrol-30-days` (09:30), press emails (11:00).
+> **Voice:** First-person Raffa, with one disclosed AI co-author (Bridge). Direct, technical, no hype. The numbers do the work.
 
 ---
 
@@ -21,15 +21,15 @@ I scanned **[30,142]** apps in total. The headline finding: **[47%]** of them ha
 - **[6,600] apps** (22%) accept Stripe webhooks without signature verification. A forged webhook can mark any order paid.
 - **[4,200] apps** (14%) have at least one of the above AND are already processing real customer money.
 
-I contacted every affected founder privately first. **[71%]** of them responded; **[58%]** had shipped a fix within 14 days. The full anonymized breakdown is in the report — [link to `lictor.ai/in-the-wild`].
+I contacted every affected founder privately first. **[71%]** of them responded; **[58%]** had shipped a fix within 14 days. The full anonymized breakdown is in the report — [link to `lictor-ai.com/in-the-wild`].
 
-Lictor is open source under Apache 2.0. The scanner that found all of this is free: `lictor.ai/scan/<your-url>` (no signup) or `npm install -g lictor-cli`. Continuous monitoring is also free for OSS / hobby / pre-revenue, and $19/mo flat (no per-seat) for commercial. Source: [github.com/Raffa-jarrl/Lictor-AI].
+Lictor is open source under Apache 2.0. The scanner that found all of this is free: `lictor-ai.com/scan/<your-url>` (no signup) or `npm install -g lictor-cli`. Continuous monitoring is also free for OSS / hobby / pre-revenue, and $19/mo flat (no per-seat) for commercial. Source: [github.com/Raffa-jarrl/Lictor-AI].
 
 The full suite (Studio desktop app, browser extension, runtime SDK, hosted dashboard) launches Oct 6.
 
 Happy to answer anything. The "how did you build the scanner without a giant ML model" question I know is coming — it's a Rust crate with 7 narrowly-tuned checks targeting the specific patterns AI assistants get wrong on each platform. Boring but precise.
 
-— Dor
+— Raffa
 
 ---
 
@@ -93,7 +93,7 @@ The first complete public picture of what's actually shipping from the AI app ge
 
 **12/** What's next:
 
-The scanner is live now at lictor.ai/scan — paste any vibe-coded app, get a grade in 30 seconds. Free, no signup, no telemetry.
+The scanner is live now at lictor-ai.com/scan — paste any vibe-coded app, get a grade in 30 seconds. Free, no signup, no telemetry.
 
 Continuous monitoring (we DM you when new bugs appear) is also free for OSS / hobby / pre-revenue. $19/mo flat for commercial.
 
@@ -101,9 +101,9 @@ Continuous monitoring (we DM you when new bugs appear) is also free for OSS / ho
 
 Source: github.com/Raffa-jarrl/Lictor-AI
 
-Report: lictor.ai/in-the-wild
+Report: lictor-ai.com/in-the-wild
 
-Try it: lictor.ai/scan
+Try it: lictor-ai.com/scan
 
 If you've built something with Lovable/Bolt/v0/Cursor and want a free 30-second check, that last URL is the one.
 
@@ -117,13 +117,13 @@ If you've built something with Lovable/Bolt/v0/Cursor and want a free 30-second 
 
 [Reporter first name],
 
-I'm Dor — solo open-source maintainer of Lictor AI, an Apache 2.0 security scanner for AI-built web apps.
+I'm Raffa — solo open-source maintainer of Lictor AI, an Apache 2.0 security scanner for AI-built web apps.
 
 For the last 30 days I've been running Lictor against every public app I could find that was deployed from Lovable, Bolt, v0, Cursor, or Replit. That's [30,142] apps. I'd like to share what I found with you ahead of the public release at 06:00 PT today (Aug 15).
 
 The headline: **[47%] of vibe-coded apps ship at least one critical security finding**. The most common is a Supabase service-role key in the JavaScript bundle ([14,200] apps), which is "front door key to your database, publicly broadcast" severity.
 
-The full methodology, anonymized findings, and an explanation of how we handled responsible disclosure (private notice to every affected founder first; 30-day window) is in the report at lictor.ai/in-the-wild.
+The full methodology, anonymized findings, and an explanation of how we handled responsible disclosure (private notice to every affected founder first; 30-day window) is in the report at lictor-ai.com/in-the-wild.
 
 I'd be happy to:
 - Walk you through the methodology over a 20-min call (today or tomorrow)
@@ -134,12 +134,12 @@ The story is real, the numbers check, and we have receipts for every claim.
 
 Lictor is open source (github.com/Raffa-jarrl/Lictor-AI) — no funding, no PR firm, just me + an agent crew + Apache 2.0.
 
-— Dor
+— Raffa
 [phone] · [email]
 
 ---
 
-## Blog post — `lictor.ai/blog/patrol-30-days`
+## Blog post — `lictor-ai.com/blog/patrol-30-days`
 
 > Full long-form version of the HN post + thread. ~2,500 words. Includes:
 >
@@ -152,7 +152,7 @@ Lictor is open source (github.com/Raffa-jarrl/Lictor-AI) — no funding, no PR f
 > 7. What this means for the vibe-coder ecosystem
 > 8. What's free, what's paid, what's next
 >
-> Drafted by Quill from the spec; Dor edits the "why" paragraph and the case studies; Mirror reviews for voice; published Aug 15 09:30.
+> Drafted by Quill from the spec; Raffa edits the "why" paragraph and the case studies; Mirror reviews for voice; published Aug 15 09:30.
 
 ---
 
@@ -177,7 +177,7 @@ Lictor is open source (github.com/Raffa-jarrl/Lictor-AI) — no funding, no PR f
 | HN comments | 200+ substantive | 500+ | <50 |
 | Twitter impressions on the launch thread | 100k | 500k | <10k |
 | Press placements within 7 days | 2 | 5 | 0 |
-| `lictor.ai/scan` user-initiated scans in week 1 | 5,000 | 20,000 | <500 |
+| `lictor-ai.com/scan` user-initiated scans in week 1 | 5,000 | 20,000 | <500 |
 | `lictor-cli` installs in week 1 | 2,000 | 8,000 | <200 |
 | Sentinel npm downloads in week 1 | 1,000 | 5,000 | <100 |
 | GitHub stars added in week 1 | 1,500 | 5,000 | <200 |
@@ -197,7 +197,7 @@ The launch IS "we ran an investigation, here's what we learned, here are the num
 Every reader of the HN post should walk away with three things:
 
 1. **A scary number** about the state of vibe-coder app security
-2. **A specific action they can take in 30 seconds** (paste their URL at lictor.ai/scan)
+2. **A specific action they can take in 30 seconds** (paste their URL at lictor-ai.com/scan)
 3. **A reason to trust this person they've never heard of** (the methodology is in the open, the tool is in the open, the affected founders are vouching anonymously, and the maintainer is signing his name)
 
 If we get those three things into every reader's head, Oct 6 doesn't need to be announced — it's the natural next chapter of an investigation that's been compounding since August.

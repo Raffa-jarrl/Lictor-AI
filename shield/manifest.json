@@ -4,7 +4,7 @@
   "short_name": "Lictor",
   "version": "0.1.0",
   "description": "Audits AI-built sites locally before you trust them. Alarms when AI agents access your data.",
-  "homepage_url": "https://lictor.ai",
+  "homepage_url": "https://lictor-ai.com",
   "author": "Lictor AI",
 
   "icons": {

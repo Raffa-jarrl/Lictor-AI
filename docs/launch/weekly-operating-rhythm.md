@@ -2,7 +2,7 @@
 
 > **Generated:** 2026-05-15
 > **Purpose:** turn the 12-month year plan into actual recurring habits. Plans without rhythm fail. This is the metronome.
-> **Who runs it:** Dor + the 11-agent crew (15-agent crew from Q1 2027). Bridge agent + Mirror agent enforce the cadence.
+> **Who runs it:** Raffa + the 11-agent crew (15-agent crew from Q1 2027). Bridge agent + Mirror agent enforce the cadence.
 > **When to deviate:** rarely. If you skip Monday's prep twice in 4 weeks, Mirror escalates to Conductor and you reset the rhythm before continuing.
 
 ---
@@ -72,7 +72,7 @@ By the time you sit down Tuesday morning, the following are READY:
 
 - Quill's draft teardown report (drafted Friday, reviewed Monday by Mirror)
 - The companion Twitter thread (6 tweets, drafted by Pulse + Magnet)
-- The LinkedIn post (drafted in Dor's voice, distinct framing)
+- The LinkedIn post (drafted in Raffa's voice, distinct framing)
 - The HN submission text (Show HN or text post, no link to landing page — content-first)
 - The Substack newsletter (the teardown's writeup formatted for newsletter audience)
 - The 60-second short video (Reel agent drafted Sunday; record Monday afternoon if needed)
@@ -83,7 +83,7 @@ By the time you sit down Tuesday morning, the following are READY:
 ```
 09:00  Final 30-min read-through of the teardown report
         Catch any embarrassing typo. Verify disclosure timeline.
-09:30  Publish teardown to lictor.ai/teardowns/YYYY-MM-DD-slug
+09:30  Publish teardown to lictor-ai.com/teardowns/YYYY-MM-DD-slug
         Use Magnet's landing page template; ensure SEO meta tags correct
 10:00  Post the YouTube long-form video (set as "scheduled" for 12:00 PT
         for east-coast viewing window)
@@ -105,7 +105,7 @@ Code, meetings, calls, deep email. Tuesday is reserved.
 If a teardown is not ready to publish Tuesday, you don't publish Wednesday — you publish next Tuesday. The cadence is the asset.
 
 ### When Tuesday fails
-If the cadence breaks (no teardown published 2 weeks in a row), Mirror escalates to Conductor, who emails Dor with: "the engine has stalled, here's the diagnostic, here's the fix path." The 2-week buffer matters because life happens. The 4-week buffer = the engine is broken.
+If the cadence breaks (no teardown published 2 weeks in a row), Mirror escalates to Conductor, who emails Raffa with: "the engine has stalled, here's the diagnostic, here's the fix path." The 2-week buffer matters because life happens. The 4-week buffer = the engine is broken.
 
 ---
 
@@ -200,7 +200,7 @@ Mirror's weekly review runs Friday morning. Newsletter ships Friday afternoon. T
 
 ```
 14:00  Friday newsletter (ships 18:00 PT)
-        Built from the week's teardown + 2 community spotlights + a Dor essay
+        Built from the week's teardown + 2 community spotlights + a Raffa essay
 14:45  Magnet has drafted next week's landing page for the teardown subject
         Review + approve
 15:00  Pulse has drafted next week's Twitter thread + LinkedIn post
@@ -221,7 +221,7 @@ Mirror's weekly review runs Friday morning. Newsletter ships Friday afternoon. T
 
 No work. No "quick check" of Slack. No "one more reply" on Twitter.
 
-The agent crew runs autonomously. Saturday is when they fire heartbeats without supervision. If something breaks on Saturday, Conductor escalates to Dor's phone with an actual high-stakes alert. Otherwise, off.
+The agent crew runs autonomously. Saturday is when they fire heartbeats without supervision. If something breaks on Saturday, Conductor escalates to Raffa's phone with an actual high-stakes alert. Otherwise, off.
 
 The discipline matters: founder burnout is the #1 risk in the year plan. Real off-days are the mitigation.
 
@@ -275,7 +275,7 @@ These don't sit inside a week — they happen on a specific monthly schedule.
 
 ## Recurring weekly cadence (system-level)
 
-These run on the agent crew's schedule, not Dor's:
+These run on the agent crew's schedule, not Raffa's:
 
 | When | Who | What |
 |---|---|---|
@@ -314,7 +314,7 @@ The year plan needs a serious re-evaluation. Schedule a multi-day strategic offs
 
 Deliberately excluded:
 
-- **Daily standups** — Dor is solo. The agent crew has Conductor. No standup needed.
+- **Daily standups** — Raffa is solo. The agent crew has Conductor. No standup needed.
 - **Daily metrics checking** — Wednesday and Friday are enough. Daily metric checking is anxiety, not discipline.
 - **Twitter doom-scrolling** — feeds compulsiveness, not the operation. Twitter engagement is on a schedule, not on-demand.
 - **Daily "quick sync" with anyone** — there's nobody to sync with. Save sync energy for Thursday's intentional engagement.

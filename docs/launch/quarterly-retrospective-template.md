@@ -4,7 +4,7 @@
 
 > **Generated:** 2026-05-15
 > **Cadence:** Last 3 days of each quarter — Mar 29-31, Jun 28-30, Sep 28-30, Dec 29-31
-> **Owner:** Dor + agent crew (Mirror, Probe, Conductor feed inputs; Dor writes the synthesis)
+> **Owner:** Raffa + agent crew (Mirror, Probe, Conductor feed inputs; Raffa writes the synthesis)
 > **Companion docs:** `year-plan-2026-2027.md` (the plan to retro against), `weekly-operating-rhythm.md` (the cadence this slots into), `operation-triumph-expanded.md` (the 5-track structure)
 > **Output destination:** `~/Lictor/docs/business/quarterly/YYYY-QN.md`
 
@@ -12,9 +12,9 @@
 
 ## 1. The retro thesis
 
-Plans drift. Drift compounds. The retro is the only structural moment where Dor stops shipping and looks at the year from outside the week.
+Plans drift. Drift compounds. The retro is the only structural moment where Raffa stops shipping and looks at the year from outside the week.
 
-Lictor is solo founder plus agent crew. Without the retro, Dor optimizes locally — this Tuesday's teardown, this Friday's newsletter, this month's metric. Nobody on the team can zoom out to "are we still building the right thing?" except Dor, and Dor only zooms out if the calendar forces it.
+Lictor is solo founder plus agent crew. Without the retro, Raffa optimizes locally — this Tuesday's teardown, this Friday's newsletter, this month's metric. Nobody on the team can zoom out to "are we still building the right thing?" except Raffa, and Raffa only zooms out if the calendar forces it.
 
 The retro is also where causation gets captured, not just outcomes. "We shipped 12 teardowns" is a count. "The cornerstone post drove 4x the newsletter signups of a teardown in a slow week" is a *learning*. The next quarter benefits more from one captured learning than ten captured counts.
 
@@ -60,12 +60,12 @@ Gather these in the week BEFORE the retro starts. Block 2-3 hours mid-quarter-en
 - Product ships — skill updates, Studio + VS Code milestones, SDK versions
 
 **Decisions**
-- What did Dor decide that wasn't pre-planned? (Search `docs/business/decisions/`; if none, that itself is a signal.)
-- What did agents propose that Dor accepted vs rejected?
+- What did Raffa decide that wasn't pre-planned? (Search `docs/business/decisions/`; if none, that itself is a signal.)
+- What did agents propose that Raffa accepted vs rejected?
 - What customer requests or community feedback shifted the roadmap (even slightly)?
 
 **Calibration**
-- 5 entries from `~/GenerationAI/calibration/dor-voice/` — what Dor edited in writer drafts (these reveal what the voice rules don't yet capture)
+- 5 entries from `~/GenerationAI/calibration/dor-voice/` — what Raffa edited in writer drafts (these reveal what the voice rules don't yet capture)
 - 5 rejection entries — what didn't make the cut and why (these reveal what the brand is hardening against)
 
 The inputs are the receipts. The retro is what you make of them. Pulling receipts during the retro corrupts the reflection.
@@ -144,7 +144,7 @@ For each:
 
 Often the most valuable section for the YEAR. Most retros over-index on what didn't work because failure is loud. The "what worked" log is the asymmetric upside — moves that overshot are moves to lean into structurally.
 
-Lictor-specific tendency: under-celebrating overshoot. The week the cornerstone post hit, Dor's instinct will be "noted, on to the next teardown." Resist.
+Lictor-specific tendency: under-celebrating overshoot. The week the cornerstone post hit, Raffa's instinct will be "noted, on to the next teardown." Resist.
 
 So next quarter: a "what worked" gets added to the plan as either a structural change (reproduce) or a watch item (catalog).
 
@@ -186,7 +186,7 @@ Structure:
 - **Sentence 6:** what we're optimizing for next quarter (one priority, named)
 - **Sentence 7:** the named risk we're watching (the one that, if it materializes, would matter most)
 
-Builder dialect. First person. Specific numbers. No vague claims. The summary should read like Dor wrote it, because Dor did.
+Builder dialect. First person. Specific numbers. No vague claims. The summary should read like Raffa wrote it, because Raffa did.
 
 So next quarter: paste this paragraph into the investor update — no rewrite, no softening.
 

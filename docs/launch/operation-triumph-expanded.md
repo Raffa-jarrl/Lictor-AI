@@ -3,7 +3,7 @@
 # Operation Triumph EXPANDED — 12-month plan to category-defining
 
 > **Generated:** 2026-05-15
-> **Author of record:** Dor + agent crew (Conductor as project lead)
+> **Author of record:** Raffa + agent crew (Conductor as project lead)
 > **Time horizon:** May 2026 → May 2027 (12 months)
 > **Scope:** From "we exist publicly" (Oct 6, 2026 launch) to "Lictor is the brand vibe-coders + AI builders trust to ship safely."
 > **Posture:** The 90-day anti-Snyk playbook scaled to a full year, across 5 strategic fronts, 4 quarters, with a real revenue trajectory and a clear definition of category-defining.
@@ -21,7 +21,7 @@ By May 2027 the goal is:
 - **Distribution density.** 10,000 weekly active users of `/lictor-security-check` inside Claude Code. 50,000 GitHub stars on the monorepo.
 - **Content gravity.** A weekly teardown archive of 50+ published audits, indexed by every security search.
 - **Revenue legitimacy.** $25–50k MRR across Teams ($19/mo flat-rate), Course ($99 once), and Audit-as-a-Service ($2-10k per VC-portfolio sweep). Not VC-scale, but enough to fund a community + a dev advocate hire.
-- **Voice authority.** Dor is on at least one major security podcast and one industry-conference stage. Quill's voice is recognized as "that plain-English security writer who makes the others sound like lawyers."
+- **Voice authority.** Raffa is on at least one major security podcast and one industry-conference stage. Quill's voice is recognized as "that plain-English security writer who makes the others sound like lawyers."
 
 This is not "win the OSS popularity contest." This is **become the public-facing brand of a category that didn't exist 18 months ago**, before incumbents wake up and crush the category with money.
 
@@ -54,7 +54,7 @@ The 90-day playbook was framed against Snyk specifically. The 12-month plan oper
 
 ### Front 4 — Education + course (the moat)
 - **Audience:** developers learning AI dev, bootcamp students, university comp-sci instructors
-- **Surface:** GenerationAI course (Dor's existing project) — "Ship secure AI apps" curriculum, $99 per seat
+- **Surface:** GenerationAI course (Raffa's existing project) — "Ship secure AI apps" curriculum, $99 per seat
 - **Channel:** Twitter threads → newsletter → course funnel, university outreach, bootcamp partnerships
 - **Q4 2026 goal:** 100 paid course enrollments
 - **Q2 2027 goal:** 500 enrollments; course added to 3 bootcamp curricula; a "Lictor Certified Auditor" badge program
@@ -83,12 +83,12 @@ The 90-day playbook was framed against Snyk specifically. The 12-month plan oper
 - 🔲 Weekly teardown engine — agents wired to produce one teardown per week starting Sep 1
 - 🔲 Public roadmap on GitHub Projects, community-votable
 - 🔲 First 5 GenerationAI agents reach 24/7 production uptime (heartbeat infra fixed 2026-05-14)
-- 🔲 Dor's founder-on-camera channel: pilot 3 videos by Aug 1, weekly cadence by Sep 1
+- 🔲 Raffa's founder-on-camera channel: pilot 3 videos by Aug 1, weekly cadence by Sep 1
 
 **Ship:**
 - 🔲 Sep 22: send responsible-disclosure emails to 5 teardown targets
 - 🔲 Sep 25: Sentinel `@lictor/sentinel@0.1.0` and `lictor-sentinel==0.1.0` GA on npm + PyPI (not alpha)
-- 🔲 Sep 27: Domains live (`lictor.ai` resolves, OG image working)
+- 🔲 Sep 27: Domains live (`lictor-ai.com` resolves, OG image working)
 - 🔲 Oct 4: launch dress rehearsal — full content drop tested internally
 - 🔲 Oct 6: LAUNCH. Teardown #1 (Pitchtank) goes live across all surfaces.
 
@@ -127,14 +127,14 @@ The 90-day playbook was framed against Snyk specifically. The 12-month plan oper
 - 🔲 Lictor Skill Marketplace — community-contributed agents (e.g., user writes "WordPress audit agent," ships to registry, others install)
 - 🔲 "Lictor Certified Auditor" badge program for course graduates
 - 🔲 First Lictor + Lovable / Bolt / v0 integration (which platform first depends on Q4 conversations)
-- 🔲 Hebrew + Japanese landing-page translations (Dor's home market + the second-fastest-growing AI-builder language)
+- 🔲 Hebrew + Japanese landing-page translations (Raffa's home market + the second-fastest-growing AI-builder language)
 - 🔲 Lictor Studio v1 ships (Mac + Windows)
 - 🔲 Audit-as-a-Service productized — first 5 VC firms enrolled to audit their portfolios
 
 **Ship:**
 - 🔲 Continued weekly teardown — now 24 published total
 - 🔲 GenerationAI course relaunch with Lictor integration — "Ship secure AI apps in 30 days"
-- 🔲 Lictor at AI Engineer Summit (March 2027) — Dor on stage, agent crew demo
+- 🔲 Lictor at AI Engineer Summit (March 2027) — Raffa on stage, agent crew demo
 - 🔲 First sponsored content (paid placement in IndieHackers newsletter, $5k spend)
 
 **Audience:**
@@ -176,24 +176,24 @@ The 90-day playbook was framed against Snyk specifically. The 12-month plan oper
 The current crew of 11 is designed for content + audit + brand. The bigger ambition needs 4 more specialists:
 
 1. **🌐 Translator (linguistic specialist)**
- - **Job:** Render every Lictor public artifact in Hebrew, Spanish, Portuguese, Japanese. Maintain cultural fit per language (Hebrew is Dor's native — has authentic voice; LATAM needs Portuguese-vs-Spanish distinction; Japan needs formality calibration).
+ - **Job:** Render every Lictor public artifact in Hebrew, Spanish, Portuguese, Japanese. Maintain cultural fit per language (Hebrew is Raffa's native — has authentic voice; LATAM needs Portuguese-vs-Spanish distinction; Japan needs formality calibration).
  - **Cadence:** Translates one piece per day.
  - **Model:** Claude Sonnet (translation quality matters).
 
 2. **🎬 Reel (video-script writer + YouTube/TikTok plan)**
- - **Job:** Generate weekly scripts for Dor's talking-head videos. Pull from that week's teardown + Trends' viral-format intel + Pulse's hooks. Format for 60s shorts, 8-12 min long-form, and TikTok-native.
+ - **Job:** Generate weekly scripts for Raffa's talking-head videos. Pull from that week's teardown + Trends' viral-format intel + Pulse's hooks. Format for 60s shorts, 8-12 min long-form, and TikTok-native.
  - **Cadence:** 3 scripts per week (1 long, 2 short).
  - **Model:** Claude Sonnet.
 
 3. **🎙️ Booth (podcast booker + conference scout)**
- - **Job:** Identify weekly opportunities — podcasts that booked similar guests, conferences with open CFPs, newsletters that take guest posts. Draft cold outreach. Maintain a public "Dor will speak about X" list.
+ - **Job:** Identify weekly opportunities — podcasts that booked similar guests, conferences with open CFPs, newsletters that take guest posts. Draft cold outreach. Maintain a public "Raffa will speak about X" list.
  - **Cadence:** 5 outreach drafts per week + weekly conference CFP digest.
  - **Model:** Claude Haiku (this is volume + recall work, not creative).
 
 4. **🤝 Bridge (community manager + GitHub triage)**
- - **Job:** Triage incoming GitHub issues, label them, draft initial responses, escalate non-trivial ones to Dor or dev. Welcome new contributors. Maintain the public roadmap. Run the weekly "Lictor user spotlight" thread.
+ - **Job:** Triage incoming GitHub issues, label them, draft initial responses, escalate non-trivial ones to Raffa or dev. Welcome new contributors. Maintain the public roadmap. Run the weekly "Lictor user spotlight" thread.
  - **Cadence:** Continuous (every 4h heartbeat).
- - **Model:** Claude Sonnet for triage + drafting, escalates flagged issues to a Dor inbox.
+ - **Model:** Claude Sonnet for triage + drafting, escalates flagged issues to a Raffa inbox.
 
 **Estimated agent cost:** 4 new agents × ~$3/day Claude API spend ≈ $360/mo additional inference cost. Within Q1 2027 revenue assumptions.
 
@@ -208,7 +208,7 @@ The current crew of 11 is designed for content + audit + brand. The bigger ambit
 | Q2 2027 | 500 subs = $9,500 | +400 = $39,600 prior 90d | 30 customers, mix monthly + one-off ≈ $25k/mo | 3 pilots ≈ $5k/mo each = $15k | **$25–50k MRR target** |
 
 The math is intentionally conservative. The point isn't to project a unicorn-shaped revenue curve — the point is to *prove the OSS-led business model works at sustainable scale*. $25–50k MRR by Q2 2027 funds:
-- Dor full-time on Lictor (~$10k/mo runway)
+- Raffa full-time on Lictor (~$10k/mo runway)
 - 1 dev advocate or community manager (~$8k/mo)
 - Agent crew infra (~$1.5k/mo)
 - Marketing experiments + sponsorships (~$3k/mo)
@@ -227,7 +227,7 @@ Anything above that is acceleration. Anything below means the bet is still right
 | GitHub Advanced Security adds "AI-built code security" as a free feature | 25% | Medium-High | Lictor's plain-English + multi-agent transparency moat. GH won't ship plain English at developer-team scale. |
 | Anthropic / OpenAI ship native code-audit features in Claude / GPT | 20% | Critical | Different playbook entirely — pivot to *workflow orchestrator* layer above native audit. Plan B doc to write Q4 2026. |
 | Major teardown legal blowback (founder sues) | 10% | Critical | Disclosure rails in teardown-engine.md. Legal review on every teardown ≥ Risk-3. |
-| Dor burnout (solo founder is the bottleneck) | 40% | Critical | The agent crew offloads. Hire dev advocate Q1 2027. Founder content cadence capped at sustainable level. |
+| Raffa burnout (solo founder is the bottleneck) | 40% | Critical | The agent crew offloads. Hire dev advocate Q1 2027. Founder content cadence capped at sustainable level. |
 | Open-source community turns against Lictor (perceived as commercial bait-and-switch) | 15% | High | Lictor Foundation (501(c)(3)) in Q2 2027 makes the OSS commitment structural. Public licensing pledge: core never gets EE-only features. |
 | OpenClaw / OpenAI / Anthropic API costs explode | 25% | Medium | Push to lightweight local models where possible (Ollama). Budget cap per agent per day. |
 
@@ -240,7 +240,7 @@ By May 2027, "category-defining" means **all 7 of these are true simultaneously*
 1. ☐ Google search "how to audit Lovable app" returns Lictor in top 3 organic results
 2. ☐ At least 1 major publication (The Register / TechCrunch / Wired / Verge) has run a Lictor-led teardown as a news story
 3. ☐ At least 2 of {Lovable, Bolt, v0, Cursor, Replit} have linked to Lictor from their own docs
-4. ☐ Dor has spoken at one Tier-1 security or AI conference (Black Hat / DEF CON / RSAC / AI Engineer Summit)
+4. ☐ Raffa has spoken at one Tier-1 security or AI conference (Black Hat / DEF CON / RSAC / AI Engineer Summit)
 5. ☐ Snyk or Aikido has publicly referenced Lictor in marketing copy or comparison docs (= they've validated the category)
 6. ☐ At least 5,000 stars on the GitHub repo and 10,000 WAU on the Claude Code skill
 7. ☐ $25k+ MRR across the revenue streams, with at least one Enterprise pilot signed
@@ -260,7 +260,7 @@ The 12-month plan is a sketch, not a sermon. The work is the work. This week's s
 5. **Wire the teardown engine into the agent crew** (this session via the agent I spawned)
 6. **Specify the 4 new agents** (this session)
 7. **Have the user review the plan and confirm or adjust the targets** (after this session)
-8. **Begin recording founder content** (Dor — week of May 18, 2026)
+8. **Begin recording founder content** (Raffa — week of May 18, 2026)
 9. **Send responsible-disclosure emails to teardown targets** (Sep 22 — calendar reminder needed)
 
 The plan is the map. The agents and the engine are the vehicle. The next 12 months are the road.

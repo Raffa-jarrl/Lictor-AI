@@ -6,13 +6,13 @@
 
 - [ ] Read the [Beacon README](README.md) (3 min)
 - [ ] Read the [drip-sequence.md](drip-sequence.md) to know what subscribers will receive
-- [ ] Confirm `lictor.ai` resolves and shows the current landing site
-- [ ] Confirm `lictor.ai/waitlist` resolves (it should redirect to the form — if 404, see "Troubleshooting" below)
+- [ ] Confirm `lictor-ai.com` resolves and shows the current landing site
+- [ ] Confirm `lictor-ai.com/waitlist` resolves (it should redirect to the form — if 404, see "Troubleshooting" below)
 
 ## Step 1 — Buttondown account (3 min)
 
 - [ ] Go to https://buttondown.com/register
-- [ ] Email: `hello@lictor.ai` (or your personal — switch later)
+- [ ] Email: `hello@lictor-ai.com` (or your personal — switch later)
 - [ ] Username: `lictor-ai` (this becomes part of your embed URL)
 - [ ] Plan: Free tier (covers up to 100 subscribers; upgrade to $9/mo at 100+)
 - [ ] After signup, go to Settings → Email Settings → "Require subscribers to confirm via email" → toggle ON (double opt-in)
@@ -43,7 +43,7 @@ Cloudflare Pages will auto-deploy. Takes ~30 seconds.
 
 ## Step 3 — Test the form end-to-end (3 min)
 
-- [ ] Open `lictor.ai/waitlist` in a private/incognito window
+- [ ] Open `lictor-ai.com/waitlist` in a private/incognito window
 - [ ] Submit a real test email (use a personal address you can check)
 - [ ] Confirm the Buttondown popup window opens
 - [ ] Check your inbox — there should be a confirmation email from Buttondown within 1 minute
@@ -73,7 +73,7 @@ Buttondown calls this an "Email Sequence."
 
 This week's posts in order. Stage them all on schedule (Hypefury / TweetDeck / Buffer if you have them; otherwise post manually at the time):
 
-- [ ] **Monday 10:30 AM PT — Dor's personal Twitter announcement.** Copy from [social-launch-posts.md](social-launch-posts.md) section "Dor personal Twitter".
+- [ ] **Monday 10:30 AM PT — Raffa's personal Twitter announcement.** Copy from [social-launch-posts.md](social-launch-posts.md) section "Raffa personal Twitter".
 - [ ] **Monday 11 AM PT — @lictor_ai launch tweet** (Variant A by default). Copy from same file, section "@lictor_ai Tweet 1".
 - [ ] **Monday 12 PM PT — LinkedIn company page post.** Copy from same file, section "LinkedIn".
 - [ ] **Tuesday morning — r/SaaS submission.** Copy from [reddit-r-saas-post.md](reddit-r-saas-post.md).
@@ -108,13 +108,13 @@ The dashboard at `mission-control/app/waitlist-metrics/page.tsx` reads from a da
 
 ## Troubleshooting
 
-**"`lictor.ai/waitlist` returns 404."**
+**"`lictor-ai.com/waitlist` returns 404."**
 Cloudflare Pages might not have picked up the new `landing/waitlist/` directory. Check the Pages dashboard for a recent deploy. Force a redeploy by pushing an empty commit if needed.
 
 **"Buttondown confirmation email isn't arriving."**
 Check spam. If it's not there, go to Buttondown → Settings → Email Settings → confirm the "from address" is configured and the domain is verified. New Buttondown accounts may need 24h for sender reputation to stabilize.
 
-**"The form submits but redirects to Buttondown's hosted page instead of staying on lictor.ai."**
+**"The form submits but redirects to Buttondown's hosted page instead of staying on lictor-ai.com."**
 That's intentional behavior of the embed form. If you want fully embedded (stay-on-page) signup, switch to Buttondown's React component or use a Cloudflare Pages Function to proxy the request. Defer to v0.2 — the current behavior works and is the Buttondown-recommended pattern.
 
 **"I'm not seeing the platform-segmentation data in Buttondown."**
@@ -132,7 +132,7 @@ If signups are zero by end of day **Wednesday**, that's a real signal. See the m
 By end of Day 1:
 - ✓ Buttondown account live
 - ✓ Form working end-to-end
-- ✓ At least 4 public posts shipped (Dor's X, @lictor_ai, LinkedIn, r/SaaS)
+- ✓ At least 4 public posts shipped (Raffa's X, @lictor_ai, LinkedIn, r/SaaS)
 - ✓ At least 5 confirmed signups (your personal test + 4 real)
 - ✓ Mission Control dashboard rendering
 
