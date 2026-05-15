@@ -29,7 +29,7 @@ What you get: a free real audit of one of your apps from me personally. If the t
 
 Install is 3 lines:
 
-git clone https://github.com/lictor-ai/lictor ~/Code/lictor
+git clone https://github.com/Raffa-jarrl/Lictor-AI ~/Code/lictor
 mkdir -p ~/.claude/skills
 cp -r ~/Code/lictor/skills/lictor-* ~/.claude/skills/
 
@@ -90,7 +90,7 @@ Launch is October 6. I'm bug-bashing with 5 people before then. Your name came u
 
 What I'd ask: 30 minutes. Either point it at your own code, or pick a public vibe-coded GitHub repo and run it against that. Tell me where the audit voice is wrong (the most common failure mode of security tools is sounding like a corporate scan). False negatives + false positives both go in the changelog with credit.
 
-Free, no NDA, no pitch. The whole thing is Apache 2.0 and the code is at github.com/lictor-ai/lictor (currently private; will be public around launch).
+Free, no NDA, no pitch. The whole thing is Apache 2.0 and the code is at github.com/Raffa-jarrl/Lictor-AI (currently private; will be public around launch).
 
 Worth a try?
 

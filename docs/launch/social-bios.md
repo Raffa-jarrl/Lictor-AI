@@ -102,7 +102,7 @@ Built solo by a 20-year cybersecurity engineer. Open source so trust is verifiab
 
 Launch: October 6, 2026.
 
-— github.com/lictor-ai/lictor
+— github.com/Raffa-jarrl/Lictor-AI
 — lictor.ai
 ```
 
@@ -162,7 +162,7 @@ Eleven AI agents audit your Lovable / Bolt / v0 / Cursor / Replit project for th
 
 ## What's here
 
-- **[lictor](https://github.com/lictor-ai/lictor)** — the monorepo. Claude Code skill suite (the wedge), Shield (Chrome extension), Sentinel (npm + PyPI SDK), and Guardian (hosted dashboard for incidents + compliance evidence). All Apache 2.0.
+- **[lictor](https://github.com/Raffa-jarrl/Lictor-AI)** — the monorepo. Claude Code skill suite (the wedge), Shield (Chrome extension), Sentinel (npm + PyPI SDK), and Guardian (hosted dashboard for incidents + compliance evidence). All Apache 2.0.
 
 ## Who this is for
 
@@ -204,7 +204,7 @@ Building Lictor: the security crew for apps you built with AI.
 One slash command:
 /lictor-security-check
 
-github.com/lictor-ai/lictor
+github.com/Raffa-jarrl/Lictor-AI
 ```
 
 ### Tweet 2 — the why

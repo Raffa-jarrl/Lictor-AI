@@ -244,7 +244,7 @@ This is the dominant vulnerability class for AI agents in 2026.
 Run the audit on your own AI app: lictor.ai/skill — free, local, plain English.
 
 Full writeup with code: lictor.ai/teardowns/tymora
-Repo: github.com/lictor-ai/lictor
+Repo: github.com/Raffa-jarrl/Lictor-AI
 
 Next Tuesday: another teardown. 🛡
 ```
@@ -294,5 +294,5 @@ Founder responded same-day to disclosure, patched 2 of 4 within 6 days, in fligh
 The OAuth-token issue is going to be a recurring pattern as more "AI EA" startups ship. Worth reading even if you're not on Lovable specifically.
 
 Full writeup with code: https://lictor.ai/teardowns/tymora
-Tool we used (free, Apache 2.0): https://github.com/lictor-ai/lictor
+Tool we used (free, Apache 2.0): https://github.com/Raffa-jarrl/Lictor-AI
 ```

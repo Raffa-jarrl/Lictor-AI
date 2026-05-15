@@ -48,7 +48,7 @@ In v0.2 we'll bundle the audit engine directly into the extension (WASM) so no C
 6. **Cross-tenant data leakage** in Next.js cache
 7. **AI endpoints with no rate limiting**
 
-Same engine as `/lictor-security-check` (Claude Code skill), Lictor Studio (desktop), Lictor Shield (Chrome extension). Findings interop via the [AUDIT.json](https://github.com/lictor-ai/lictor/blob/main/docs/standards/AUDIT.json.md) standard.
+Same engine as `/lictor-security-check` (Claude Code skill), Lictor Studio (desktop), Lictor Shield (Chrome extension). Findings interop via the [AUDIT.json](https://github.com/Raffa-jarrl/Lictor-AI/blob/main/docs/standards/AUDIT.json.md) standard.
 
 ## Privacy
 

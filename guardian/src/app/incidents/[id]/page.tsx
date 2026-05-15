@@ -90,7 +90,7 @@ export default async function IncidentDetailPage({ params }: PageProps): Promise
         <p style={{ color: "#6E7780", fontSize: 13, margin: 0 }}>
           The original input / output is <strong>not stored</strong>. Only the 16-character SHA-256
           fingerprint above. See{" "}
-          <Link href="https://github.com/lictor-ai/lictor" style={{ color: "#C9A23B" }}>
+          <Link href="https://github.com/Raffa-jarrl/Lictor-AI" style={{ color: "#C9A23B" }}>
             docs/specs/wire-format.md
           </Link>{" "}
           §4 for the privacy invariants.

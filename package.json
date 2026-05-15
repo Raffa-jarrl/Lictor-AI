@@ -7,7 +7,7 @@
   "homepage": "https://lictor.ai",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lictor-ai/lictor.git"
+    "url": "https://github.com/Raffa-jarrl/Lictor-AI.git"
   },
   "workspaces": [
     "shield"

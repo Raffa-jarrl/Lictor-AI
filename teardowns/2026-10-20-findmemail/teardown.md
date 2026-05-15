@@ -304,5 +304,5 @@ The founders patched all 4 within 5 days of disclosure + offered refunds to subs
 The general pattern: if your Lovable app holds PII, RLS is not optional. Every table. Default-deny.
 
 Full writeup with the SQL fixes: https://lictor.ai/teardowns/findmemail
-Lictor (tool, free, Apache 2.0): https://github.com/lictor-ai/lictor
+Lictor (tool, free, Apache 2.0): https://github.com/Raffa-jarrl/Lictor-AI
 ```

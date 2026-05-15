@@ -14,7 +14,7 @@ But the honest answer is: there are specific bug shapes that AI assistants ship 
 
 Seven of those patterns are below. Each one shows up in audits we've run on Lovable / Bolt / v0 / Cursor / Replit projects. Each one has a specific reason the generic tool misses it. Each one is one of the seven checks `/lictor-security-check` runs by default.
 
-If you spot your own code in any of these, run the audit on your project tonight — it takes about a minute and the report is plain English, no signup. Skill is at github.com/lictor-ai/lictor.
+If you spot your own code in any of these, run the audit on your project tonight — it takes about a minute and the report is plain English, no signup. Skill is at github.com/Raffa-jarrl/Lictor-AI.
 
 ---
 
@@ -282,7 +282,7 @@ If you want to see whether any of the seven are in your project, the audit takes
 /lictor-security-check
 ```
 
-Free, open source, no signup, no token, no telemetry. Apache 2.0. github.com/lictor-ai/lictor.
+Free, open source, no signup, no token, no telemetry. Apache 2.0. github.com/Raffa-jarrl/Lictor-AI.
 
 If we miss something, file an issue. Real PRs welcome. The pattern catalog grows with the community.
 
@@ -351,7 +351,7 @@ Run both. Snyk for the dependency CVEs. Semgrep for the broad SAST. Trivy if you
 The audit takes a minute:
 /lictor-security-check
 
-Free. Open source. github.com/lictor-ai/lictor
+Free. Open source. github.com/Raffa-jarrl/Lictor-AI
 
 ---
 
@@ -380,7 +380,7 @@ The honest recommendation: run Snyk for dependency CVEs, Semgrep for broad SAST,
 The audit takes a minute and the report is plain English. `/lictor-security-check` in Claude Code. Free, open source, Apache 2.0.
 
 — The Lictor team
-github.com/lictor-ai/lictor
+github.com/Raffa-jarrl/Lictor-AI
 
 ---
 
@@ -408,7 +408,7 @@ For each pattern we explain why generic SAST misses it (it's mostly that the bug
 
 Honest framing: this isn't "Lictor vs Snyk." Snyk catches dependency CVEs we don't. Semgrep catches broad SAST patterns we don't. Trivy catches container misconfig we don't. The right stack for a Lovable/Bolt/v0 app is multiple tools running together, not one replacing the others.
 
-The audit is free, open source (Apache 2.0), runs inside Claude Code. github.com/lictor-ai/lictor
+The audit is free, open source (Apache 2.0), runs inside Claude Code. github.com/Raffa-jarrl/Lictor-AI
 
 Happy to take any pattern we missed in the comments. The catalog grows with PRs.
 

@@ -2,7 +2,7 @@
 
 > The bodyguard your AI didn't ship with.
 
-[![CI](https://github.com/lictor-ai/lictor/actions/workflows/ci.yml/badge.svg)](https://github.com/lictor-ai/lictor/actions/workflows/ci.yml)
+[![CI](https://github.com/Raffa-jarrl/Lictor-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/Raffa-jarrl/Lictor-AI/actions/workflows/ci.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](./LICENSE)
 [![npm version](https://img.shields.io/npm/v/@lictor/sentinel.svg)](https://www.npmjs.com/package/@lictor/sentinel)
 [![PyPI version](https://img.shields.io/pypi/v/lictor-sentinel.svg)](https://pypi.org/project/lictor-sentinel/)
@@ -35,7 +35,7 @@ All four share **[Lictor Core](./core)** — a Rust crate that compiles to nativ
 If you have Claude Code installed:
 
 ```bash
-git clone https://github.com/lictor-ai/lictor ~/Code/lictor
+git clone https://github.com/Raffa-jarrl/Lictor-AI ~/Code/lictor
 mkdir -p ~/.claude/skills
 cp -r ~/Code/lictor/skills/lictor-* ~/.claude/skills/
 ```
@@ -51,7 +51,7 @@ Claude reads your project, runs 7 checks, writes a `SECURITY-AUDIT.md`, and tell
 ## Try the native CLI
 
 ```bash
-git clone https://github.com/lictor-ai/lictor
+git clone https://github.com/Raffa-jarrl/Lictor-AI
 cd lictor
 
 # One-time setup

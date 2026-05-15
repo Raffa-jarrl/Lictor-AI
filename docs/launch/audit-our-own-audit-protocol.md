@@ -53,7 +53,7 @@ All three types use the same intake flow. They diverge at the investigation step
 
 ## 3. The intake flow
 
-**Where reports land.** GitHub issues on `lictor-ai/lictor`, using one of three labels: `false-positive`, `false-negative`, `voice-bug`. These labels are already documented in the public ROADMAP.
+**Where reports land.** GitHub issues on `Raffa-jarrl/Lictor-AI`, using one of three labels: `false-positive`, `false-negative`, `voice-bug`. These labels are already documented in the public ROADMAP.
 
 **The issue template asks for:**
 

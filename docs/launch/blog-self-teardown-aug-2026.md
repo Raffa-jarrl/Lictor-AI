@@ -20,7 +20,7 @@ We're six weeks from the public launch. The reason we ran this audit now — and
 
 ## How the audit ran
 
-We checked out a clean copy of the `lictor-ai/lictor` monorepo on a fresh Mac, opened Claude Code, and ran one slash command:
+We checked out a clean copy of the `Raffa-jarrl/Lictor-AI` monorepo on a fresh Mac, opened Claude Code, and ran one slash command:
 
 ```
 /lictor-security-check
@@ -447,7 +447,7 @@ A few things we want on the record now, before the launch.
 
 We shipped bugs. Every security team does. The interesting part is that our own tool caught most of them, the recursive case caught one more, and a private beta tester caught the fifth. Three different surfaces, three different categories of bug, three working detection mechanisms. That's the shape of a system that works — not one that's perfect.
 
-We will find more. Every audit Lictor runs across the next year is going to surface patterns we haven't yet learned to catch. When you run `/lictor-security-check` on your project and you find something Lictor missed — a real bug, in production code, that the audit walked past — please file an issue on `lictor-ai/lictor` with the `false-negative` label. The audit-our-own-audit protocol explains exactly what happens next: regression test, new rule, public credit, sometimes a bug bounty payment.
+We will find more. Every audit Lictor runs across the next year is going to surface patterns we haven't yet learned to catch. When you run `/lictor-security-check` on your project and you find something Lictor missed — a real bug, in production code, that the audit walked past — please file an issue on `Raffa-jarrl/Lictor-AI` with the `false-negative` label. The audit-our-own-audit protocol explains exactly what happens next: regression test, new rule, public credit, sometimes a bug bounty payment.
 
 Credibility comes from receipts, not claims. We never say "Lictor is 99% accurate." We say "Lictor caught the bugs in this post, missed the one a beta tester caught, and we'll publish the next round of findings the same way." That's the standing claim. It's falsifiable. The receipts compound in `CHANGELOG.md` and at `lictor.ai/audit-report`.
 
@@ -468,7 +468,7 @@ Three things you can do this week:
 That's it. No upsell, no pricing page on the way out, no "talk to sales." Run the audit on your stuff. File the bugs you find on ours. See you Oct 6.
 
 — Dor
-[lictor.ai](https://lictor.ai) · [github.com/lictor-ai/lictor](https://github.com/lictor-ai/lictor)
+[lictor.ai](https://lictor.ai) · [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI)
 
 ---
 
@@ -533,7 +533,7 @@ If you find a bug in Lictor itself, file an issue — high-severity false-negati
 
 Apache 2.0. No signup. No telemetry.
 
-github.com/lictor-ai/lictor
+github.com/Raffa-jarrl/Lictor-AI
 
 ---
 
@@ -560,7 +560,7 @@ Three patterns from the audit are worth flagging here, because they're common ac
 If your team buys security tools, ask the vendor: when was the last time you ran your own product against your own code, and where is the public writeup? If the answer is "we don't publish that," you're being sold marketing.
 
 The Lictor writeup: [lictor.ai/blog/lictor-audits-lictor](https://lictor.ai/blog/lictor-audits-lictor)
-The repo (Apache 2.0): [github.com/lictor-ai/lictor](https://github.com/lictor-ai/lictor)
+The repo (Apache 2.0): [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI)
 
 #AppSec #InfoSec #OpenSource #AISecurity #SOC2
 
@@ -583,7 +583,7 @@ All five shipped fixes to main between Aug 19 and Aug 22. The detection rules no
 Posting this here because (a) HN's brutal feedback is the point — if there's a sixth bug I missed, please file an issue, and (b) I want to challenge the convention that security vendors clean up *before* publishing. The opposite is more useful.
 
 Writeup with the broken code + diffs: [lictor.ai/blog/lictor-audits-lictor](https://lictor.ai/blog/lictor-audits-lictor)
-Repo (Apache 2.0): [github.com/lictor-ai/lictor](https://github.com/lictor-ai/lictor)
+Repo (Apache 2.0): [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI)
 
 — Dor
 
@@ -611,7 +611,7 @@ Repo (Apache 2.0): [github.com/lictor-ai/lictor](https://github.com/lictor-ai/li
 **Day-of response plan:**
 - Dor available to respond to HN comments within 1 hour of submission until 10pm PT
 - Bridge agent monitors Twitter mentions and routes substantive technical questions to Dor; Bridge handles light triage (welcome, link to writeup, link to repo)
-- Mirror logs every public response Dor makes; pattern-match against the audit-our-own-audit protocol — if a critic alleges another bug we missed, Bridge files the issue immediately on `lictor-ai/lictor` with the right label
+- Mirror logs every public response Dor makes; pattern-match against the audit-our-own-audit protocol — if a critic alleges another bug we missed, Bridge files the issue immediately on `Raffa-jarrl/Lictor-AI` with the right label
 - Pre-staged response to "but did you actually run it" — link to the GitHub commits where the check definitions got updated. Receipts.
 
 **Post-publish (within 7 days):**

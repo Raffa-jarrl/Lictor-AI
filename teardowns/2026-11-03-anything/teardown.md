@@ -308,5 +308,5 @@ The pattern: App Store binaries are public. Anything hardcoded is public. Secret
 Lictor's iOS audit ships Q1-Q2 2027. Today: manual class-dump + grep.
 
 Full writeup with code: https://lictor.ai/teardowns/anything-app
-Lictor (free, Apache 2.0): https://github.com/lictor-ai/lictor
+Lictor (free, Apache 2.0): https://github.com/Raffa-jarrl/Lictor-AI
 ```

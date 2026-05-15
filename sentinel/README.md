@@ -3,7 +3,7 @@
 > The security crew for apps you built with AI — runtime defense for your OpenAI / Anthropic calls.
 > One-line `wrap()` blocks prompt injection, secret exfiltration, and PII leaks before they hit production.
 
-[![CI](https://github.com/lictor-ai/lictor/actions/workflows/ci.yml/badge.svg)](https://github.com/lictor-ai/lictor/actions)
+[![CI](https://github.com/Raffa-jarrl/Lictor-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/Raffa-jarrl/Lictor-AI/actions)
 [![npm](https://img.shields.io/npm/v/@lictor/sentinel.svg)](https://www.npmjs.com/package/@lictor/sentinel)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
@@ -121,7 +121,7 @@ Sentinel **never** ships raw user content to Guardian. The wire format includes 
 - 16-hex-char fingerprint (sha256 of the first 4 KB of content)
 - Timestamp + request metadata
 
-See [`docs/specs/wire-format.md`](https://github.com/lictor-ai/lictor/blob/main/docs/specs/wire-format.md) §4 for the privacy invariants.
+See [`docs/specs/wire-format.md`](https://github.com/Raffa-jarrl/Lictor-AI/blob/main/docs/specs/wire-format.md) §4 for the privacy invariants.
 
 Telemetry is opt-in: if `guardian` config is absent, no network calls are made. Sentinel works fully offline.
 
@@ -170,14 +170,14 @@ pnpm test
 
 ## License
 
-[Apache-2.0](LICENSE). The Lictor commitment: this code stays free and open forever. Pro features for Studio + Guardian ship under BUSL with 4-year Apache-2.0 conversion (per Lictor's [legal structure memo](https://github.com/lictor-ai/lictor/blob/main/docs/launch/legal-structure-memo.md)).
+[Apache-2.0](LICENSE). The Lictor commitment: this code stays free and open forever. Pro features for Studio + Guardian ship under BUSL with 4-year Apache-2.0 conversion (per Lictor's [legal structure memo](https://github.com/Raffa-jarrl/Lictor-AI/blob/main/docs/launch/legal-structure-memo.md)).
 
 ## Links
 
-- **Main repo**: [github.com/lictor-ai/lictor](https://github.com/lictor-ai/lictor)
+- **Main repo**: [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI)
 - **Documentation**: [lictor.ai/sentinel](https://lictor.ai/sentinel)
 - **Python sibling**: [`lictor-sentinel` on PyPI](https://pypi.org/project/lictor-sentinel/)
-- **Issues + feature requests**: [github.com/lictor-ai/lictor/issues](https://github.com/lictor-ai/lictor/issues)
+- **Issues + feature requests**: [github.com/Raffa-jarrl/Lictor-AI/issues](https://github.com/Raffa-jarrl/Lictor-AI/issues)
 - **Security disclosure**: security@lictor.ai
 
 Built by a 20-year cybersecurity engineer. Tested across [12+ public teardowns](https://lictor.ai/teardowns) of real vibe-coded apps.

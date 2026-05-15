@@ -63,7 +63,7 @@ Each finding includes: where it is (file + line), what's wrong in plain English 
 
 Ships **October 6, 2026.** Waitlist is open today: **lictor.ai/waitlist**
 
-The repo flips public around June 1. If you want to follow the build, github.com/lictor-ai/lictor will be live then.
+The repo flips public around June 1. If you want to follow the build, github.com/Raffa-jarrl/Lictor-AI will be live then.
 
 Anyone who wants to be a design partner (audit your project before the public launch, in exchange for feedback) — reply here or DM me. I'm picking 10 people.
 

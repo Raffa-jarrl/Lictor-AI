@@ -4,7 +4,7 @@ version = "0.1.0-pre.0"
 description = "Lictor Studio — offline desktop AI security audit"
 authors = ["Lictor AI <hello@lictor.ai>"]
 license = "Apache-2.0"
-repository = "https://github.com/lictor-ai/lictor"
+repository = "https://github.com/Raffa-jarrl/Lictor-AI"
 edition = "2021"
 rust-version = "1.79"
 

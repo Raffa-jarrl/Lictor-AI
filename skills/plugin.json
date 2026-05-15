@@ -11,8 +11,8 @@
   },
   "license": "Apache-2.0",
   "homepage": "https://lictor.ai",
-  "repository": "https://github.com/lictor-ai/lictor",
-  "issues": "https://github.com/lictor-ai/lictor/issues",
+  "repository": "https://github.com/Raffa-jarrl/Lictor-AI",
+  "issues": "https://github.com/Raffa-jarrl/Lictor-AI/issues",
 
   "categories": [
     "security",
@@ -69,6 +69,6 @@
 
   "telemetry": {
     "enabled": false,
-    "note": "These plugins do not phone home. All audit work happens locally on your machine. We don't know that you used them and we never will. If you want to support us, star the repo: github.com/lictor-ai/lictor"
+    "note": "These plugins do not phone home. All audit work happens locally on your machine. We don't know that you used them and we never will. If you want to support us, star the repo: github.com/Raffa-jarrl/Lictor-AI"
   }
 }

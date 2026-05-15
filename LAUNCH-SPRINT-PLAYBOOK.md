@@ -57,7 +57,7 @@ GitHub auto-redirects the old URL, so no broken links anywhere.
 **Verify:**
 
 ```bash
-gh repo view lictor-ai/lictor --json url 2>/dev/null
+gh repo view Raffa-jarrl/Lictor-AI --json url 2>/dev/null
 ```
 
 ---
@@ -149,7 +149,7 @@ python3 -c "from lictor_sentinel import wrap, SENTINEL_VERSION; print(SENTINEL_V
 Cloudflare Pages is free, integrates with the repo + the domain in one place.
 
 1. Open https://dash.cloudflare.com → **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**
-2. Authorize the Cloudflare GitHub app on the `lictor-ai/lictor` repo (it'll redirect to GitHub, approve, come back)
+2. Authorize the Cloudflare GitHub app on the `Raffa-jarrl/Lictor-AI` repo (it'll redirect to GitHub, approve, come back)
 3. **Project name:** `lictor-landing` (no spaces, all lowercase)
 4. **Production branch:** `main`
 5. **Build settings:**
@@ -202,7 +202,7 @@ You'll be in this state:
 
 - `lictor.ai` resolves to the landing page (HTTPS, OG image working)
 - `lictor.ai/compliance` renders the full SOC2/GDPR/EU-AI-Act mapping
-- `github.com/lictor-ai/lictor` is a private repo with CI green on every push
+- `github.com/Raffa-jarrl/Lictor-AI` is a private repo with CI green on every push
 - `@lictor/sentinel@0.1.0-alpha.0` installable from npm
 - `lictor-sentinel==0.1.0a0` installable from PyPI
 - `@lictor_ai` Twitter + Lictor AI LinkedIn pages live (no content yet)
@@ -223,7 +223,7 @@ I deliberately left the repo as PRIVATE because flipping public is irreversible 
 Then:
 
 ```bash
-gh repo edit lictor-ai/lictor --visibility public --accept-visibility-change-consequences
+gh repo edit Raffa-jarrl/Lictor-AI --visibility public --accept-visibility-change-consequences
 ```
 
 Once public, the CI badges in the README start working, Dependabot starts filing PRs, and the world can see the repo.

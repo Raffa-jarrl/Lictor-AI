@@ -75,7 +75,7 @@ obligations. I've drafted the writeup template ahead of time —
 happy to share it so you see exactly what we'd publish.
 
 You can read more about Lictor at lictor.ai. The repo is
-github.com/lictor-ai/lictor (public Oct 6, currently private — I
+github.com/Raffa-jarrl/Lictor-AI (public Oct 6, currently private — I
 can add you as a collaborator if you want a preview).
 
 Worth a quick 15-minute call to discuss?
@@ -135,7 +135,7 @@ If you've already audited and you know it's clean — even better.
 The writeup becomes "Tymora is the reference implementation for
 secure AI assistants." That's content I'd happily publish.
 
-Lictor: lictor.ai. Repo: github.com/lictor-ai/lictor.
+Lictor: lictor.ai. Repo: github.com/Raffa-jarrl/Lictor-AI.
 
 Worth a 15-minute call?
 
@@ -247,7 +247,7 @@ coordinate everything. If anything goes sideways during the
 audit (we find something embarrassing), we coordinate the public
 narrative together. No surprises.
 
-Lictor: lictor.ai. Repo: github.com/lictor-ai/lictor.
+Lictor: lictor.ai. Repo: github.com/Raffa-jarrl/Lictor-AI.
 
 Even if the joint publication doesn't fit your schedule, I'd
 still love to audit privately. Whatever shape you prefer.
@@ -328,7 +328,7 @@ schedule a call. If you would prefer to decline, I will not
 audit [App Name] — there are 4 other targets in the series and
 no individual app is essential.
 
-Lictor's repo: github.com/lictor-ai/lictor. Our broader
+Lictor's repo: github.com/Raffa-jarrl/Lictor-AI. Our broader
 responsible disclosure policy: lictor.ai/security.
 
 Please reply confirming receipt by [FILL: Sep 29, 2026] and

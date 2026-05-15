@@ -167,11 +167,11 @@ This category needs more entrants, not fewer. Five good free options competing o
 
 This post will get sharper if you push back on it. Three things we genuinely want to hear:
 
-1. **If you've tried both [COMPETITOR] and Lictor on the same project, what did each one miss?** We mean this honestly. Tell us where we have gaps. Reply on Twitter ([@lictor_ai](https://twitter.com/lictor_ai)) or open an issue on [github.com/lictor-ai/lictor](https://github.com/lictor-ai/lictor) — we read everything.
+1. **If you've tried both [COMPETITOR] and Lictor on the same project, what did each one miss?** We mean this honestly. Tell us where we have gaps. Reply on Twitter ([@lictor_ai](https://twitter.com/lictor_ai)) or open an issue on [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI) — we read everything.
 2. **What's the single security worry you have about your AI-built app that no tool — ours, theirs, anyone's — currently answers?** This is what feeds our Radar and Sieve agents. We're trying to build for the bug shapes that are getting shipped today, not the ones that already have a vendor.
 3. **If you're building a competing tool, do you want to talk?** The category needs more shared standards. We've been thinking about an `AUDIT.json` spec that any scanner could emit, so users could compare tool outputs directly. If you're working on something adjacent, [DM Dor](https://twitter.com/[FILL_IN: Dor's handle]).
 
-Try Lictor: [github.com/lictor-ai/lictor](https://github.com/lictor-ai/lictor). One command. No signup. Apache 2.0.
+Try Lictor: [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI). One command. No signup. Apache 2.0.
 
 — The Lictor team
 

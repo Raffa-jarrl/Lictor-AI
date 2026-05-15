@@ -289,5 +289,5 @@ Founder patched the RLS layer in 48h. Force-rotated every stored key + emailed e
 The credential-storage pattern is going to be the #1 vulnerability class for AI-agent platforms in 2027. Worth a read.
 
 Full writeup with code: https://lictor.ai/teardowns/agentswarms
-Lictor (free, Apache 2.0): https://github.com/lictor-ai/lictor
+Lictor (free, Apache 2.0): https://github.com/Raffa-jarrl/Lictor-AI
 ```

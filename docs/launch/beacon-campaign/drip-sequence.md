@@ -44,7 +44,7 @@ Thanks for being early.
 
 — Dor
 
-P.S. The repo flips public around June. If you want to track the build, star [github.com/lictor-ai/lictor](https://github.com/lictor-ai/lictor) — I'll email you the day it goes live too.
+P.S. The repo flips public around June. If you want to track the build, star [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI) — I'll email you the day it goes live too.
 
 P.P.S. The unsubscribe link is at the bottom of every email. No hard feelings if you change your mind.
 
@@ -182,7 +182,7 @@ Here's the install command, save it somewhere:
 
 ```bash
 # In Claude Code, from any project root:
-git clone https://github.com/lictor-ai/lictor ~/Code/lictor
+git clone https://github.com/Raffa-jarrl/Lictor-AI ~/Code/lictor
 mkdir -p ~/.claude/skills
 cp -r ~/Code/lictor/skills/lictor-* ~/.claude/skills/
 

@@ -129,7 +129,7 @@ Repo flips public around June 1. I'll email everyone on the waitlist the moment 
 
 Launch is **Monday October 6, 2026**. That's a real date. Even if everything goes sideways between now and then, the tool ships that day.
 
-The whole thing is built in the open. You can track the build at github.com/lictor-ai/lictor (live June 1). You can read the strategic plan (yes, the full 12-month plan is public — `docs/launch/year-plan-2026-2027.md`). You can see every weekly Mirror review of the crew's content output. The Lictor Foundation governance docs go public when the foundation incorporates.
+The whole thing is built in the open. You can track the build at github.com/Raffa-jarrl/Lictor-AI (live June 1). You can read the strategic plan (yes, the full 12-month plan is public — `docs/launch/year-plan-2026-2027.md`). You can see every weekly Mirror review of the crew's content output. The Lictor Foundation governance docs go public when the foundation incorporates.
 
 Building this in public is the bet. I'd rather get the criticism while I can still respond to it than ship into a vacuum.
 
@@ -138,7 +138,7 @@ Looking forward to your feedback. Thanks for reading this far.
 — Dor
 
 Founder, Lictor AI
-dor@lictor.ai · lictor.ai · github.com/lictor-ai/lictor
+dor@lictor.ai · lictor.ai · github.com/Raffa-jarrl/Lictor-AI
 
 ---
 

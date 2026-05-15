@@ -5,7 +5,7 @@
 > **Updated:** May 15, 2026
 > **Launch date:** October 6, 2026
 > **Primary contact:** `press@lictor.ai` (live by September 2026; until then, `hello@lictor.ai`)
-> **Repo:** github.com/lictor-ai/lictor · **Web:** lictor.ai
+> **Repo:** github.com/Raffa-jarrl/Lictor-AI · **Web:** lictor.ai
 
 ---
 
@@ -207,7 +207,7 @@ Verify these for accuracy before publication. All are accurate as of May 15, 202
 - **Number of prompt-injection patterns in Sentinel:** thirty-two, across seven attack families.
 - **Number of secret patterns in Sentinel:** fifteen (Anthropic, OpenAI, Stripe, GitHub, AWS, Supabase, and more).
 - **Test coverage at launch:** 220+ automated tests across the suite. `core` 39 tests, `sentinel` 159 tests, `sentinel-py` 11 tests, `guardian` 12 integration tests.
-- **Primary repo:** github.com/lictor-ai/lictor (monorepo)
+- **Primary repo:** github.com/Raffa-jarrl/Lictor-AI (monorepo)
 - **Primary domain:** lictor.ai
 - **Email addresses:** `press@lictor.ai` (live by September 2026), `hello@lictor.ai`, `security@lictor.ai`, `compliance@lictor.ai`
 - **Launch date:** Tuesday, October 6, 2026

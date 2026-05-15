@@ -330,7 +330,7 @@ to a friend. 2-3 sentences.]
 📖 Full writeup: https://lictor.ai/teardowns/[slug]
 🐦 Twitter: https://twitter.com/lictor_ai
 💌 Weekly newsletter: https://lictor.ai/newsletter
-⭐ GitHub: https://github.com/lictor-ai/lictor
+⭐ GitHub: https://github.com/Raffa-jarrl/Lictor-AI
 
 == Timestamps ==
 0:00 [Beat 1 description]

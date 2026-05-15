@@ -31,7 +31,7 @@ Apache 2.0 license. 220+ tests across the suite. Built solo over 21 weeks.
 The category gap I'm aiming at: every AI security incumbent (Lakera, Protect AI, HiddenLayer) is enterprise-only — none ships a free OSS layer or a consumer browser extension. Lictor flanks that.
 
 **HN launch:** {{hn_link}}
-**Repo:** github.com/lictor-ai/lictor
+**Repo:** github.com/Raffa-jarrl/Lictor-AI
 **Compliance mapping (might interest your security audience):** lictor.ai/compliance
 
 Happy to do an embargo briefing, walk through the privacy contract, or send the demo video if useful. Available all day — `dor@lictor.ai` or just reply here.

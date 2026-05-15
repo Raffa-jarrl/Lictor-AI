@@ -39,7 +39,7 @@ Lictor is three free tools that share one engine:
 → Sentinel — SDK, wraps OpenAI / Anthropic to block prompt injection + data exfil
 → Guardian — hosted dashboard for teams (free preview, 90 days)
 
-Apache 2.0. github.com/lictor-ai/lictor
+Apache 2.0. github.com/Raffa-jarrl/Lictor-AI
 
 ---
 
@@ -150,7 +150,7 @@ That's why the free tier is permanent. The data is worth more than any subscript
 
 **12/12**
 
-The whole thing is open at github.com/lictor-ai/lictor.
+The whole thing is open at github.com/Raffa-jarrl/Lictor-AI.
 
 220+ tests across the suite. Apache 2.0. Built solo + Claude over 21 weeks.
 

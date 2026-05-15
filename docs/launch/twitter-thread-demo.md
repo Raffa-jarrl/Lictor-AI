@@ -128,12 +128,12 @@ If you build with AI (Lovable, Bolt, v0, Cursor, Claude directly) — run it on 
 
 Open source, Apache 2.0, no signup, no telemetry phoning home:
 
-🔗 github.com/lictor-ai/lictor
+🔗 github.com/Raffa-jarrl/Lictor-AI
 
 Install (3 lines):
 
 ```bash
-git clone https://github.com/lictor-ai/lictor ~/Code/lictor
+git clone https://github.com/Raffa-jarrl/Lictor-AI ~/Code/lictor
 mkdir -p ~/.claude/skills
 cp -r ~/Code/lictor/skills/lictor-* ~/.claude/skills/
 ```
@@ -161,7 +161,7 @@ Then in Claude Code, from any project: `/lictor-security-check`
 **Answer:** Yes. The repo is private but the audit file + the fix commit are public on the lictor.ai/blog/dogfood page (link in bio). Specifically, mission-control is a Next.js 16 app and the proxy.ts fix is 95 lines.
 
 **Expected question:** "What's different from Lakera/Protect AI/etc.?"
-**Answer:** They're enterprise SaaS. I built four free Claude Code skills. Same engine, three orders of magnitude lower friction. The tools are at github.com/lictor-ai/lictor.
+**Answer:** They're enterprise SaaS. I built four free Claude Code skills. Same engine, three orders of magnitude lower friction. The tools are at github.com/Raffa-jarrl/Lictor-AI.
 
 **Expected question:** "Can I just see what it found?"
 **Answer:** Yes — pasted the full SECURITY-AUDIT.md as a GitHub gist: [link to gist]. Look at the "plain English" descriptions — that's the voice the audit ships in by default.

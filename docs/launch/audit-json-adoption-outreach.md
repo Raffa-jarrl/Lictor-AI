@@ -47,8 +47,8 @@ I drafted v0.1 of a lighter format called AUDIT.json — CC0, no Lictor branding
 anywhere in the spec, no commercial entanglement. The full spec + the JSON
 Schema are at:
 
-  https://github.com/lictor-ai/lictor/blob/main/docs/standards/AUDIT.json.md
-  https://github.com/lictor-ai/lictor/blob/main/docs/standards/AUDIT.schema.json
+  https://github.com/Raffa-jarrl/Lictor-AI/blob/main/docs/standards/AUDIT.json.md
+  https://github.com/Raffa-jarrl/Lictor-AI/blob/main/docs/standards/AUDIT.schema.json
 
 Why I'm writing to Semgrep specifically: your team has the strongest taste for
 developer ergonomics in the security-tool space. The way Semgrep emits findings
@@ -97,7 +97,7 @@ log them in public, fix them in public.
 Hi [NAME],
 
 I'm Dor — building Lictor (open-source security audit for vibe-coded apps,
-launched October 6 — github.com/lictor-ai/lictor). I've been a quiet admirer
+launched October 6 — github.com/Raffa-jarrl/Lictor-AI). I've been a quiet admirer
 of VibeEval's vibe-coding-security work since the Feb 2026 Lovable report.
 
 Quick collab idea: I drafted a CC0 spec for security tool output called
@@ -113,7 +113,7 @@ If we both emit AUDIT.json:
   adopt instead of inventing their own
 
 Spec is at:
-  https://github.com/lictor-ai/lictor/blob/main/docs/standards/AUDIT.json.md
+  https://github.com/Raffa-jarrl/Lictor-AI/blob/main/docs/standards/AUDIT.json.md
 
 It's deliberately small (8 fields per finding). Easy to emit. Easy to consume.
 
@@ -155,15 +155,15 @@ this whole category should be measured against.
 Hi [NAME],
 
 I'm Dor — building Lictor (open-source AI security audit tool, launched
-October 6 — github.com/lictor-ai/lictor). I've been following Symbioticsec's
+October 6 — github.com/Raffa-jarrl/Lictor-AI). I've been following Symbioticsec's
 Lovable scanner work; you're one of the very few teams shipping
 vibe-coder-specific security tooling.
 
 Quick proposal: I drafted v0.1 of a shared output format for security tools —
 called AUDIT.json — and put it under CC0 so no single vendor owns it.
 
-  https://github.com/lictor-ai/lictor/blob/main/docs/standards/AUDIT.json.md
-  https://github.com/lictor-ai/lictor/blob/main/docs/standards/AUDIT.schema.json
+  https://github.com/Raffa-jarrl/Lictor-AI/blob/main/docs/standards/AUDIT.json.md
+  https://github.com/Raffa-jarrl/Lictor-AI/blob/main/docs/standards/AUDIT.schema.json
 
 The motivation: every developer running >1 security tool eats a parser tax
 today. If Symbioticsec + Lictor + a handful of other vibe-coder-focused tools
@@ -200,7 +200,7 @@ Worth a 15-min call? Happy to talk on any platform.
 Hi [NAME],
 
 I'm Dor — 20-year cybersec engineer, building Lictor (OSS security audit for
-vibe-coded apps; launched October 6 — github.com/lictor-ai/lictor).
+vibe-coded apps; launched October 6 — github.com/Raffa-jarrl/Lictor-AI).
 
 Aikido's approach to AI-first security tooling has been one of the references
 I look at when calibrating my own thinking. The 95% noise-reduction claim,
@@ -210,7 +210,7 @@ category.
 Quick proposal: I drafted v0.1 of a shared output format called AUDIT.json
 (CC0, no Lictor branding, no commercial entanglement). Spec at:
 
-  https://github.com/lictor-ai/lictor/blob/main/docs/standards/AUDIT.json.md
+  https://github.com/Raffa-jarrl/Lictor-AI/blob/main/docs/standards/AUDIT.json.md
 
 The case for Aikido caring: your customers run more than just Aikido. They
 also run dependency scanners, secret scanners, sometimes ad-hoc Semgrep runs.
@@ -259,7 +259,7 @@ would directly improve the v0.2 draft.
 Hi [NAME],
 
 I'm Dor — building Lictor, an OSS AI-security audit tool that launched October
-6 (github.com/lictor-ai/lictor). I'm writing because Snyk has shaped my
+6 (github.com/Raffa-jarrl/Lictor-AI). I'm writing because Snyk has shaped my
 thinking on what good security tooling looks like for the last 5 years, and
 because Snyk's adoption (or thoughtful rejection) of a draft I've shipped
 would shape it more than anyone else's.
@@ -268,8 +268,8 @@ The draft: AUDIT.json v0.1. CC0, no Lictor branding, no commercial
 entanglement. Lightweight alternative to SARIF for tools that find security
 issues in code or deployed services.
 
-  https://github.com/lictor-ai/lictor/blob/main/docs/standards/AUDIT.json.md
-  https://github.com/lictor-ai/lictor/blob/main/docs/standards/AUDIT.schema.json
+  https://github.com/Raffa-jarrl/Lictor-AI/blob/main/docs/standards/AUDIT.json.md
+  https://github.com/Raffa-jarrl/Lictor-AI/blob/main/docs/standards/AUDIT.schema.json
 
 I'm under no illusion about Snyk's adoption probability — you have SARIF
 support, you have your own internal format, you have customers paying for

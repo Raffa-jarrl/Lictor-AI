@@ -168,7 +168,7 @@ The gap closing is the goal. The brand on the door isn't.
 
 **6/6**
 Audit skill: `/lictor-security-check` in Claude Code
-Code: github.com/lictor-ai/lictor
+Code: github.com/Raffa-jarrl/Lictor-AI
 Email: dor@lictor.ai
 DMs: open
 
@@ -196,7 +196,7 @@ The gap isn't tooling. It's voice. A Lovable founder doesn't speak compliance di
 
 I wrote the full story at lictor.ai/blog/why-lictor — the moment that snapped, what was actually available, why open source, and what's hard about doing this solo.
 
-Lictor is free, open source, Apache 2.0, runs locally inside Claude Code. The audit takes a minute. github.com/lictor-ai/lictor.
+Lictor is free, open source, Apache 2.0, runs locally inside Claude Code. The audit takes a minute. github.com/Raffa-jarrl/Lictor-AI.
 
 — Dor
 

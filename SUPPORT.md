@@ -6,12 +6,12 @@
 
 | You want to… | Best path |
 |---|---|
-| Report a bug | [GitHub issue](https://github.com/lictor-ai/lictor/issues/new?template=bug.md) |
-| Tell us a finding Lictor missed (false-negative) | [GitHub issue with `false-negative` label](https://github.com/lictor-ai/lictor/issues/new?template=false-negative.md) — these are our highest-value reports |
-| Tell us a finding Lictor got wrong (false-positive) | [GitHub issue with `false-positive` label](https://github.com/lictor-ai/lictor/issues/new?template=false-positive.md) |
-| Tell us a finding sounded too jargony | [GitHub issue with `voice-bug` label](https://github.com/lictor-ai/lictor/issues/new?template=voice-bug.md) — voice is the product |
-| Request a feature or new pattern | [GitHub issue with `feature-request` or `pattern-request`](https://github.com/lictor-ai/lictor/issues/new/choose) |
-| Ask "how do I…?" | [GitHub Discussions](https://github.com/lictor-ai/lictor/discussions) (or the Lictor Discord if you've already joined) |
+| Report a bug | [GitHub issue](https://github.com/Raffa-jarrl/Lictor-AI/issues/new?template=bug.md) |
+| Tell us a finding Lictor missed (false-negative) | [GitHub issue with `false-negative` label](https://github.com/Raffa-jarrl/Lictor-AI/issues/new?template=false-negative.md) — these are our highest-value reports |
+| Tell us a finding Lictor got wrong (false-positive) | [GitHub issue with `false-positive` label](https://github.com/Raffa-jarrl/Lictor-AI/issues/new?template=false-positive.md) |
+| Tell us a finding sounded too jargony | [GitHub issue with `voice-bug` label](https://github.com/Raffa-jarrl/Lictor-AI/issues/new?template=voice-bug.md) — voice is the product |
+| Request a feature or new pattern | [GitHub issue with `feature-request` or `pattern-request`](https://github.com/Raffa-jarrl/Lictor-AI/issues/new/choose) |
+| Ask "how do I…?" | [GitHub Discussions](https://github.com/Raffa-jarrl/Lictor-AI/discussions) (or the Lictor Discord if you've already joined) |
 | Ask about a specific Lictor finding | Use the `/lictor-explain` skill in Claude Code — it's the official explanation channel |
 | Report a security issue in Lictor itself | Email `security@lictor.ai` — see [SECURITY.md](SECURITY.md) for our policy |
 | Discuss strategic partnership | Email `hello@lictor.ai` |

@@ -99,7 +99,7 @@ You see the work.
 
 That's the difference between noise and action.
 
-6/ Conductor's full SOUL.md (the agent's instructions) is at github.com/lictor-ai/lictor/blob/main/agents/planner/SOUL.md (live when repo flips public around June 1).
+6/ Conductor's full SOUL.md (the agent's instructions) is at github.com/Raffa-jarrl/Lictor-AI/blob/main/agents/planner/SOUL.md (live when repo flips public around June 1).
 
 You can fork it. You can customize how Conductor scores findings for YOUR project's specific concerns.
 

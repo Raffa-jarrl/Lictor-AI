@@ -46,7 +46,7 @@ REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 DILIGENCE_DIR = REPO_ROOT / "docs" / "business" / "diligence"
 DATA_ROOM_DIR = REPO_ROOT / "docs" / "business" / "data-room"
 
-GITHUB_REPO = "lictor-ai/lictor"
+GITHUB_REPO = "Raffa-jarrl/Lictor-AI"
 GITHUB_API = "https://api.github.com"
 
 

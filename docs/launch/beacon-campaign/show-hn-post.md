@@ -53,7 +53,7 @@ The 7 checks:
 6. Cross-tenant cache leakage in Next.js
 7. AI endpoints with no rate limiting
 
-Repo: https://github.com/lictor-ai/lictor (Apache 2.0)
+Repo: https://github.com/Raffa-jarrl/Lictor-AI (Apache 2.0)
 Waitlist (ships October 6): https://lictor.ai/waitlist
 First teardown — Lictor audited Lictor's own codebase: https://lictor.ai/blog/we-audited-lictor-with-lictor
 
@@ -67,7 +67,7 @@ What I'd love feedback on:
 
 4. The acquisition-readiness vs OSS-purity tension. We're committing to a Lictor Foundation (Q2 2027) that governs the OSS core, with commercial features under BUSL with 4-year Apache conversion. Open to feedback from anyone who's structured an OSS-led business this way.
 
-Building this solo + an 11-agent AI crew that handles content, triage, weekly reviews, competitive scans. The full plan + month-by-month execution is public: github.com/lictor-ai/lictor/blob/main/docs/launch/year-plan-2026-2027.md
+Building this solo + an 11-agent AI crew that handles content, triage, weekly reviews, competitive scans. The full plan + month-by-month execution is public: github.com/Raffa-jarrl/Lictor-AI/blob/main/docs/launch/year-plan-2026-2027.md
 
 Happy to answer questions on architecture, security philosophy, business model, agent design — anything.
 ```

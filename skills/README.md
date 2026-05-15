@@ -88,7 +88,7 @@ In plain language:
 ## Install
 
 ```bash
-git clone https://github.com/lictor-ai/lictor.git ~/Code/lictor
+git clone https://github.com/Raffa-jarrl/Lictor-AI.git ~/Code/lictor
 mkdir -p ~/.claude/skills
 cp -r ~/Code/lictor/skills/lictor-* ~/.claude/skills/
 ```
@@ -114,7 +114,7 @@ The same engine in this skill suite also powers:
 
 All four are open source. All four are free to use. There is no paid trap.
 
-If this helps you, star the repo: [github.com/lictor-ai/lictor](https://github.com/lictor-ai/lictor).
+If this helps you, star the repo: [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI).
 
 ## License
 

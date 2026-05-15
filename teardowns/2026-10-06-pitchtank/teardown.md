@@ -262,7 +262,7 @@ Five takeaways you can act on this weekend:
 Lictor's free Claude Code skill catches every one of the five patterns above. Install once, run from any project:
 
 ```bash
-git clone https://github.com/lictor-ai/lictor ~/Code/lictor
+git clone https://github.com/Raffa-jarrl/Lictor-AI ~/Code/lictor
 mkdir -p ~/.claude/skills
 cp -r ~/Code/lictor/skills/lictor-* ~/.claude/skills/
 ```
@@ -291,7 +291,7 @@ The Lictor crew that ran this audit:
 - 🧲 **Magnet** — built this landing page
 - 🎼 **Conductor** — orchestrated the whole thing
 
-Each agent is a markdown file you can read at github.com/lictor-ai/lictor/tree/main/agents.
+Each agent is a markdown file you can read at github.com/Raffa-jarrl/Lictor-AI/tree/main/agents.
 
 ## The CTA
 
@@ -427,7 +427,7 @@ Free for individuals, $19/mo flat for teams (no per-seat pricing), Apache 2.0 fo
 
 Try it: lictor.ai/skill
 The full Pitchtank teardown: lictor.ai/teardowns/pitchtank
-Repo: github.com/lictor-ai/lictor
+Repo: github.com/Raffa-jarrl/Lictor-AI
 
 Happy to answer questions about the architecture, the agent crew design, or the disclosure process.
 ```

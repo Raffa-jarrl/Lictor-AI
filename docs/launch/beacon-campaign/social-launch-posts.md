@@ -122,7 +122,7 @@ He realized none of his Fortune-500 tools were going to help his indie-hacker fr
 
 If you build AI apps: lictor.ai/waitlist
 
-If you want to follow the build in public: github.com/lictor-ai/lictor
+If you want to follow the build in public: github.com/Raffa-jarrl/Lictor-AI
 
 Thanks for being early. 🛡
 ```
@@ -151,7 +151,7 @@ Ships October 6, 2026 — free forever on the open-source core.
 Built by a 20-year cybersecurity engineer based in Israel. Open source so trust is verifiable by reading the code, not by certificates.
 
 Get on the waitlist: lictor.ai/waitlist
-Track the build: github.com/lictor-ai/lictor
+Track the build: github.com/Raffa-jarrl/Lictor-AI
 
 If you're a CTO or VP Eng with builders shipping AI features and you've been waiting for tooling that didn't require a sales call, I'd love your input. Reply or DM.
 ```
@@ -182,7 +182,7 @@ If it wouldn't be useful: no hard feelings, ignore this email.
 
 Why I built this: the existing security tools cost $25/dev/month minimum, speak SOC 2, and require sales calls. None of that helps an indie hacker shipping from Lovable on Saturday. Lictor exists because the people who most need security tooling are the people who have the least access to it.
 
-The whole thing is open source. The repo flips public around June 1. You can track the build at github.com/lictor-ai/lictor.
+The whole thing is open source. The repo flips public around June 1. You can track the build at github.com/Raffa-jarrl/Lictor-AI.
 
 Thanks for reading. Lictor is just one of the things I'm working on this year, but it's the one I'm most excited about.
 

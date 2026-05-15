@@ -11,9 +11,9 @@ In 2024, AI talked. In 2025, it acted. In 2026, it's running businesses — Zapi
 
 What's shipping today:
 
-**[Lictor Shield](https://github.com/lictor-ai/lictor/tree/main/shield)** — Chrome extension. Audits AI-built sites locally (no URL leaves your browser) and alarms when AI agents touch your localStorage / cookies. Detects 5 common AI-app security failures: leaked secrets in JS bundles, exposed Supabase REST endpoints with RLS disabled, Firebase rules left open, admin paths returning 200 instead of redirecting, CORS misconfigurations.
+**[Lictor Shield](https://github.com/Raffa-jarrl/Lictor-AI/tree/main/shield)** — Chrome extension. Audits AI-built sites locally (no URL leaves your browser) and alarms when AI agents touch your localStorage / cookies. Detects 5 common AI-app security failures: leaked secrets in JS bundles, exposed Supabase REST endpoints with RLS disabled, Firebase rules left open, admin paths returning 200 instead of redirecting, CORS misconfigurations.
 
-**[Lictor Sentinel](https://github.com/lictor-ai/lictor/tree/main/sentinel)** — npm + PyPI SDK. Wraps OpenAI / Anthropic clients with one line:
+**[Lictor Sentinel](https://github.com/Raffa-jarrl/Lictor-AI/tree/main/sentinel)** — npm + PyPI SDK. Wraps OpenAI / Anthropic clients with one line:
 
 ```js
 const client = wrap(new OpenAI(), {
@@ -32,7 +32,7 @@ The category isn't empty. Lakera, Protect AI, HiddenLayer all raised in 2024. No
 
 Apache 2.0 license (consumer + dev). The hosted Guardian dashboard is source-available (Sentry's model) — the value is in the operations team running it, not the code.
 
-220+ tests pass across the suite. Built in public over 21 weeks; every commit on `github.com/lictor-ai/lictor` since May 2026.
+220+ tests pass across the suite. Built in public over 21 weeks; every commit on `github.com/Raffa-jarrl/Lictor-AI` since May 2026.
 
 Why post this here: I want HN's brutal feedback on the API surface, the threat model, and what we're missing. The Sentinel API is locked but the pattern catalogs grow forever. If you see a prompt-injection family we missed, please open an issue.
 
