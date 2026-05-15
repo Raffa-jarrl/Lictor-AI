@@ -19,7 +19,7 @@ This skill catches all seven categories. **Read-only audit** — it doesn't chan
 ### Option A: System-wide (recommended)
 
 ```bash
-git clone https://github.com/lictor-ai/lictor.git ~/Code/lictor 2>/dev/null || \
+git clone https://github.com/Raffa-jarrl/Lictor-AI.git ~/Code/lictor 2>/dev/null || \
   (cd ~/Code/lictor && git pull)
 mkdir -p ~/.claude/skills
 cp -r ~/Code/lictor/skills/lictor-security-check ~/.claude/skills/
@@ -106,11 +106,11 @@ Lictor exists to flip that. This skill is the on-ramp — free, no signup, runs 
 
 ## License
 
-Apache 2.0. Same as the rest of [Lictor](https://github.com/lictor-ai/lictor).
+Apache 2.0. Same as the rest of [Lictor](https://github.com/Raffa-jarrl/Lictor-AI).
 
 ## Contributing
 
-Found a category of vibe-coded bug we missed? Open an issue at [github.com/lictor-ai/lictor](https://github.com/lictor-ai/lictor) with:
+Found a category of vibe-coded bug we missed? Open an issue at [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI) with:
 
 1. A real example of the pattern (in any vibe-coded repo you've seen)
 2. Why current AI assistants generate this bug
@@ -122,4 +122,4 @@ If we add it to the catalog, you're credited in the next release notes.
 
 Built by [Lictor AI](https://lictor.ai) — open-source AI security infrastructure. 20-year cybersec founder. The audit engine in this skill (`checks/*.md`) is the source-of-truth for the Rust `lictor-core` library + the JavaScript `@lictor/sentinel` SDK + the Python `lictor-sentinel` package.
 
-When this skill helps you ship a safer app, drop a star on the repo at [github.com/lictor-ai/lictor](https://github.com/lictor-ai/lictor). That's how solo founders measure traction.
+When this skill helps you ship a safer app, drop a star on the repo at [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI). That's how solo founders measure traction.

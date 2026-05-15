@@ -18,7 +18,7 @@ Three products that ship together on **Oct 6, 2026**:
 
 ```bash
 # 1. Clone
-git clone https://github.com/lictor-ai/lictor.git
+git clone https://github.com/Raffa-jarrl/Lictor-AI.git
 cd lictor
 
 # 2. Make sure Postgres is running locally
@@ -146,7 +146,7 @@ The Lictor toolbar badge should turn red/yellow/grey depending on what it finds.
 
 ## Where to report bugs
 
-GitHub Issues at `github.com/lictor-ai/lictor` (private repo during the bug bash; we'll add you as a collaborator).
+GitHub Issues at `github.com/Raffa-jarrl/Lictor-AI` (private repo during the bug bash; we'll add you as a collaborator).
 
 Issue template:
 

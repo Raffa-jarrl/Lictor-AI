@@ -253,7 +253,7 @@ These are flagged for discussion before v1.0:
 4. **Should there be a `confidence` field per finding?** Some tools have it (Lictor), some don't (Trivy). Currently optional.
 5. **How do we represent partial / incremental scans?** A scan that audited 3 of 100 files vs a scan that audited everything looks the same in this schema. Open issue.
 
-File issues at github.com/lictor-ai/lictor for any of these.
+File issues at github.com/Raffa-jarrl/Lictor-AI for any of these.
 
 ---
 

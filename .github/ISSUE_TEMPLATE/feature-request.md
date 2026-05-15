@@ -44,7 +44,7 @@ assignees: ''
 
 ## How feature requests get prioritized
 
-Lictor's public roadmap lives at [ROADMAP.md](https://github.com/lictor-ai/lictor/blob/main/ROADMAP.md). Feature requests get triaged into one of:
+Lictor's public roadmap lives at [ROADMAP.md](https://github.com/Raffa-jarrl/Lictor-AI/blob/main/ROADMAP.md). Feature requests get triaged into one of:
 
 - 🚀 **Now** (this quarter — committed)
 - 🛠 **Next** (next quarter — high confidence)

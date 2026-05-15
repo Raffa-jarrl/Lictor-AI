@@ -34,7 +34,7 @@ dependencies = []
 
 [project.urls]
 Homepage = "https://lictor.ai"
-Repository = "https://github.com/lictor-ai/lictor"
+Repository = "https://github.com/Raffa-jarrl/Lictor-AI"
 Documentation = "https://lictor.ai/docs"
 
 [project.optional-dependencies]

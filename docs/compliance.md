@@ -41,7 +41,7 @@ Lictor's products contribute evidence to the following [SOC 2 TSC](https://www.a
 
 ### CC8 — Change Management
 
-The Lictor source code is open (Apache 2.0 for OSS components; source-available for Guardian). Every change is tracked in Git with cryptographic signatures from CI. Customers self-verifying our change controls should reference our public commit history at [github.com/lictor-ai/lictor](https://github.com/lictor-ai/lictor).
+The Lictor source code is open (Apache 2.0 for OSS components; source-available for Guardian). Every change is tracked in Git with cryptographic signatures from CI. Customers self-verifying our change controls should reference our public commit history at [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI).
 
 ### CC9 — Risk Mitigation
 
