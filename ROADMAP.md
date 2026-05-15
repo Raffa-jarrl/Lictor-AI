@@ -2,7 +2,7 @@
 
 > **Snyk's roadmap is closed. Lictor's is here.**
 > Open issues, vote with 👍, propose new items. Lictor goes where the community pushes hardest.
-> Updated: 2026-05-15 (after the foundation-shipped roadmap update)
+> Updated: 2026-05-15 (post-foundation cleanup: course-removal, repo URL canonicalization, perf-report template, design system)
 
 This is the *intended* roadmap. It's not a contract. Anything past Q4 2026 will shift as we learn from real usage. Everything before launch (Oct 6, 2026) is committed.
 
@@ -37,6 +37,10 @@ Pre-Year-1 work shipped before public launch:
 - [x] **4 new specialist agent SOULs** — Translator (🌐 locale rendering), Reel (🎬 video scripts), Booth (🎙️ podcast/CFP scouting), Bridge (🤝 GitHub triage); bring-online dates staggered Oct 2026–Jan 2027
 - [x] **AUDIT.json v0.2 adoption outreach** — 5 personalized email drafts (Semgrep, VibeEval, Symbioticsec, Aikido, Snyk) at `docs/launch/audit-json-adoption-outreach.md`
 - [x] **Waitlist landing translated** to Spanish (LATAM) and Portuguese (BR) at `landing/translations/{es,pt-BR}/waitlist.html`
+- [x] **Course removed from Lictor scope** — separate consulting business, no longer a revenue line. Three dedicated docs deleted; planning docs (year-plan, operation-triumph, acquirer-deck, m-and-a, etc.) annotated with course-removed headers. Revenue model: Teams + AaaS + Enterprise.
+- [x] **Repo URL canonicalized** to `github.com/Raffa-jarrl/Lictor-AI` across 55 files (READMEs, landing, translations, CI, agent SOULs, monthly-metrics script). The `lictor-ai/lictor` org never existed.
+- [x] **Marketing performance-report template** (`docs/launch/performance-report-template.md`) — 3-cadence scaffold (daily / weekly / monthly transparency / QBR), 3 north-star metrics (WAI, AaaS MRR-eq, GH stars), data-source → agent → frequency mapping, 10-item setup checklist
+- [x] **Design system v0.1** — audit (8.5/10, 4 drift points fixed), canonical reference at `docs/design-system/README.md` (tokens + components inventory + 5 rules), first formal component spec (SeverityBadge, 5 levels) at `docs/design-system/components/severity-badge.md`. Tokens extended in `landing/style.css`: spacing scale, radius scale, motion, severity tints, accent derivatives. Extracted `landing/waitlist/waitlist.css` (was inline; ES + PT-BR translations were referencing a missing file).
 
 ## 🚀 Now — Q3 2026 (Jun–Sep)
 
@@ -63,8 +67,9 @@ Committed if Q3 ships clean.
 - [ ] Lictor for Teams paid tier — $19/mo flat, unlimited seats — Dec 15
 - [ ] VS Code extension v0.1.0 — Marketplace + Open VSX, Dec 22
 - [ ] Lictor Studio v0.1.0 — macOS .dmg, signed + notarized, Dec 31
-- [ ] Spanish + Portuguese landing-page translations
-- [ ] AUDIT.json adoption push (Snyk / Aikido / VibeEval / Semgrep outreach)
+- [ ] AUDIT.json adoption push (Snyk / Aikido / VibeEval / Semgrep outreach) — drafts shipped May 15; sending Q4
+- [ ] **CLI telemetry endpoint** (`metrics.lictor.ai/ping`, Cloudflare Worker, opt-in) — prerequisite for Tier-1 "Weekly Active Installs" metric in transparency reports
+- [ ] First monthly transparency report published at `lictor.ai/transparency` (backfilled to May 2026 with `(pending)` markers so cadence starts pre-launch)
 - [ ] 3 cornerstone blog posts published (drafts in repo: 7-patterns, why-I-built, when-competitor-ships-free)
 - [ ] Self-teardown writeup published (Aug 25 — Lictor audits Lictor)
 - [ ] First major-media placement (The Register / TechCrunch / Verge pitching)
@@ -147,5 +152,6 @@ The most-valuable issue types are `false-negative` and `voice-bug` — both make
 | Date | Change |
 |---|---|
 | 2026-05-15 | Initial roadmap published with repo flip; ✅ Done section added with foundation work; Beacon waitlist campaign added to Now; lictor-cli + AUDIT.json moved to Done (originally Q4); CI green status surfaced |
+| 2026-05-15 (pm) | **Course removed from project scope** (separate consulting biz — was a mistake to fold in). Revenue model now Teams + AaaS + Enterprise. **Repo URL canonicalized** to Raffa-jarrl/Lictor-AI (the lictor-ai org never existed; 55 files updated). **VS Code extension skeleton, 4 specialist agents, ES + PT-BR translations, AUDIT.json outreach drafts, marketing perf-report template, design system v0.1** all moved to Done. Q4 Spanish/Portuguese translation item removed (already shipped). New Q4 items: **CLI telemetry endpoint** (prerequisite for Tier-1 WAI metric) + **first monthly transparency report** published. |
 
 Future roadmap changes get logged here, with reason. Reading this section over time tells you what the project is actually responding to.
