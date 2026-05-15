@@ -1,0 +1,16 @@
+# Robots policy for lictor-ai.com
+# Most of the site is meant to be indexed. A few internal-facing paths are not.
+
+User-agent: *
+Allow: /
+
+# Patrol scan-result pages are not indexed — they're for the founder who got
+# the scorecard, not for SEO. (Public scorecards have their own canonical
+# noindex meta tag once published.)
+Disallow: /scan/*/
+
+# Coming-soon stubs shouldn't be in the index.
+Disallow: /coming-soon.html
+
+# Sitemap so the indexable surface gets crawled cleanly.
+Sitemap: https://lictor-ai.com/sitemap.xml

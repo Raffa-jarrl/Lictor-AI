@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coming soon — Lictor AI</title>
+  <meta name="description" content="This page hasn't shipped yet. Here's when it does." />
+  <link rel="icon" type="image/svg+xml" href="/lictor-favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .soon { max-width: 640px; margin: 6rem auto 2rem; padding: 0 1.5rem; text-align: center; }
+    .soon__eyebrow { font-family: "JetBrains Mono", monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--accent); background: var(--accent-tint); padding: 0.25rem 0.75rem; border-radius: 999px; border: 1px solid var(--accent-tint-strong); display: inline-block; margin-bottom: 2rem; }
+    .soon h1 { font-family: "Cormorant Garamond", serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.15; color: var(--text); margin-bottom: 1rem; }
+    .soon h1 em { font-style: italic; color: var(--accent); }
+    .soon p { font-size: 1.1rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 1rem; }
+    .soon__when { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin: 2rem auto; max-width: 480px; text-align: left; }
+    .soon__when h3 { font-family: "Cormorant Garamond", serif; font-size: 1.3rem; color: var(--text); margin-bottom: 0.5rem; }
+    .soon__when p { font-size: 0.95rem; margin-bottom: 0; }
+    .cta-row { margin-top: 2rem; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .footer { text-align: center; font-family: "JetBrains Mono", monospace; font-size: 0.8rem; color: var(--text-muted); padding: 2rem 1.5rem; }
+    .footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a href="/" class="brand">
+      <img src="/lictor-mark.svg" alt="" width="28" height="28" />
+      <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
+    </a>
+    <nav class="nav__links">
+      <a href="/">Home</a>
+      <a href="/scan">Scan</a>
+      <a href="/donate">Donate</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI">GitHub →</a>
+    </nav>
+  </header>
+
+  <main class="soon">
+    <span class="soon__eyebrow">NOT SHIPPED YET</span>
+    <h1>This page is <em>coming.</em></h1>
+    <p>The corner of <code>lictor-ai.com</code> you just clicked isn't live yet. Here's when it will be:</p>
+
+    <div class="soon__when" id="when-in-the-wild" hidden>
+      <h3>In the wild — Jul 1, 2026</h3>
+      <p>Public dashboard for what Patrol is finding across the vibe-coder ecosystem. Aggregate counts, weekly leaderboards, and the monthly "what 30,000 apps taught us" report.</p>
+    </div>
+    <div class="soon__when" id="when-transparency" hidden>
+      <h3>Transparency — Nov 1, 2026</h3>
+      <p>Monthly numbers: revenue, cost, scans, fixes shipped, founders contacted, GitHub Sponsors balance, donations received, where every dollar went. Published on the 1st of each month, no exceptions.</p>
+    </div>
+    <div class="soon__when" id="when-crew" hidden>
+      <h3>The crew — Oct 13, 2026</h3>
+      <p>Public profiles for the 14 agents that build Lictor with Raffa. Each one's memory log, current backlog, escalation history. We're going to show our work.</p>
+    </div>
+    <div class="soon__when" id="when-default" hidden>
+      <h3>Launching alongside the rest — Oct 6, 2026</h3>
+      <p>This corner is part of the full launch. If you want a heads-up: there's a waitlist on the home page.</p>
+    </div>
+
+    <p>In the meantime:</p>
+    <div class="cta-row">
+      <a href="/scan" class="btn btn--primary">Scan a URL →</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="btn btn--ghost">Star on GitHub</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    &copy; 2026 Lictor AI · Apache 2.0 · Built by Raffa and an agent crew · <a href="/donate">Donate</a>
+  </footer>
+
+  <script>
+    // Show the matching "when" block based on the ?from= param.
+    (() => {
+      const from = new URLSearchParams(location.search).get('from');
+      const valid = ['in-the-wild', 'transparency', 'crew'];
+      const id = valid.includes(from) ? `when-${from}` : 'when-default';
+      const el = document.getElementById(id);
+      if (el) el.hidden = false;
+    })();
+  </script>
+</body>
+</html>
