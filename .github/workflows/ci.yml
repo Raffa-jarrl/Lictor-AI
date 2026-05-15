@@ -75,7 +75,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -136,7 +136,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -242,7 +242,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -306,3 +306,115 @@ jobs:
           assert not broken, f'broken TOC anchors: {broken}'
           print(f'✓ all {len(links)} TOC anchors resolve')
           "
+
+  # ─── studio (Lictor Studio — Tauri desktop app) ───────────────────────────
+  studio:
+    name: lictor-studio
+    runs-on: macos-14   # macOS-only ship for v0.1.0; Windows joins in v0.2
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        run: |
+          rustup toolchain install stable --profile minimal --component clippy
+          rustup default stable
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-studio-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+          cache-dependency-path: studio/pnpm-lock.yaml
+
+      - name: Install frontend deps
+        working-directory: studio
+        run: pnpm install --frozen-lockfile
+
+      - name: TypeScript typecheck
+        working-directory: studio
+        run: pnpm typecheck
+
+      - name: Render brand assets (icons needed for Tauri build)
+        run: bash scripts/render-brand-assets.sh
+
+      - name: Cargo check (Studio crate)
+        run: cargo check --manifest-path studio/src-tauri/Cargo.toml
+
+      - name: Cargo clippy (Studio crate)
+        run: cargo clippy --manifest-path studio/src-tauri/Cargo.toml -- -D warnings
+
+  # ─── monthly-metrics (Python script smoke test) ───────────────────────────
+  metrics-script:
+    name: monthly-metrics-script
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python version
+        run: python3 --version
+
+      - name: Dry-run the metrics generator
+        run: python3 scripts/generate-monthly-metrics.py --dry-run
+
+      - name: Verify markdown output structure
+        run: |
+          # Run for a known month and check the file shape
+          python3 scripts/generate-monthly-metrics.py 2026-04 --dry-run 2>&1 | grep -q "## Community + reach"
+          echo "✓ markdown structure intact"
+
+  # ─── setup-script (verify scripts/setup.sh runs end-to-end on Linux) ──────
+  setup-script:
+    name: setup.sh
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Install rsvg-convert (for brand asset rendering)
+        run: sudo apt-get update && sudo apt-get install -y librsvg2-bin
+
+      - name: Skip macOS-only tools in setup.sh
+        run: |
+          # iconutil is macOS-only — patch the setup script for Linux CI
+          # by stubbing iconutil to a no-op for the duration of CI.
+          sudo tee /usr/local/bin/iconutil >/dev/null <<'EOF'
+          #!/bin/bash
+          # CI stub — Lictor Studio icon.icns requires macOS' iconutil at ship time.
+          # For workspace verification on Linux, this stub just exits 0.
+          exit 0
+          EOF
+          sudo chmod +x /usr/local/bin/iconutil
+
+      - name: Run setup.sh
+        run: bash scripts/setup.sh
+        # Skip Tauri's macOS-specific build; setup.sh should still cargo-check
+        # the workspace successfully on Linux.
+
+      - name: Verify brand assets
+        run: bash scripts/render-brand-assets.sh --check
