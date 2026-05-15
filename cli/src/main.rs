@@ -149,9 +149,14 @@ fn run_audit(path: &Path, format: &OutputFormat, fail_on: &FailOn, offline: bool
     // Render output
     match format {
         OutputFormat::Human => render_human(&findings, &files, &platform, elapsed_ms),
-        OutputFormat::Json => {
-            render_json(&findings, path, &platform, &started_rfc, elapsed_ms, files.len())
-        }
+        OutputFormat::Json => render_json(
+            &findings,
+            path,
+            &platform,
+            &started_rfc,
+            elapsed_ms,
+            files.len(),
+        ),
         OutputFormat::Markdown => render_markdown(&findings, &platform, elapsed_ms, files.len()),
     }
 
@@ -349,11 +354,7 @@ fn render_human(findings: &[Finding], files: &[(String, String)], platform: &str
         }
     }
     println!();
-    println!(
-        "{gray}{}{gray:#}",
-        "─".repeat(60),
-        gray = gray,
-    );
+    println!("{gray}{}{gray:#}", "─".repeat(60), gray = gray,);
     println!(
         "  Run {bold}lictor audit . --format markdown{bold:#} for a paste-friendly report.",
         bold = bold,
@@ -376,10 +377,7 @@ fn severity_marker(s: Severity) -> (&'static str, anstyle::Style) {
             "🟠",
             Style::new().fg_color(Some(AnsiColor::Yellow.into())).bold(),
         ),
-        Severity::Medium => (
-            "🟡",
-            Style::new().fg_color(Some(AnsiColor::Yellow.into())),
-        ),
+        Severity::Medium => ("🟡", Style::new().fg_color(Some(AnsiColor::Yellow.into()))),
         Severity::Low => ("🔵", Style::new().fg_color(Some(AnsiColor::Blue.into()))),
         Severity::Info => (
             "⚪",

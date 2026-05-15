@@ -7,7 +7,9 @@
 
 use chrono::Utc;
 use lictor_core::checks::{hallucinated_packages, secrets, webhooks};
-use lictor_core::finding::{Category as CoreCategory, Finding as CoreFinding, Severity as CoreSeverity};
+use lictor_core::finding::{
+    Category as CoreCategory, Finding as CoreFinding, Severity as CoreSeverity,
+};
 use serde::{Deserialize, Serialize};
 use std::collections::HashSet;
 use std::path::{Path, PathBuf};
@@ -148,9 +150,7 @@ fn collect_source_files(root: &Path) -> Vec<(String, String)> {
 
     for entry in WalkDir::new(root)
         .into_iter()
-        .filter_entry(|e| {
-            !SKIP_DIRS.contains(&e.file_name().to_str().unwrap_or(""))
-        })
+        .filter_entry(|e| !SKIP_DIRS.contains(&e.file_name().to_str().unwrap_or("")))
         .filter_map(Result::ok)
     {
         if !entry.file_type().is_file() {
@@ -173,7 +173,11 @@ fn collect_source_files(root: &Path) -> Vec<(String, String)> {
         }
         if let Ok(content) = std::fs::read_to_string(path) {
             total_bytes += content.len();
-            let rel = path.strip_prefix(root).unwrap_or(path).display().to_string();
+            let rel = path
+                .strip_prefix(root)
+                .unwrap_or(path)
+                .display()
+                .to_string();
             files.push((rel, content));
         }
     }
@@ -403,7 +407,8 @@ pub fn import_audit_json(path: PathBuf) -> Result<AuditDocument, AuditError> {
 
 pub fn export_audit_json(doc: AuditDocument) -> Result<String, AuditError> {
     let pretty = serde_json::to_string_pretty(&doc)?;
-    let out_path = std::env::temp_dir().join(format!("lictor-audit-{}.json", Utc::now().timestamp()));
+    let out_path =
+        std::env::temp_dir().join(format!("lictor-audit-{}.json", Utc::now().timestamp()));
     std::fs::write(&out_path, pretty)?;
     Ok(out_path.display().to_string())
 }
