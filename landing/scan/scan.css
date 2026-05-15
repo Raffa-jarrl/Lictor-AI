@@ -1,0 +1,192 @@
+/* /scan page styles — extends global tokens. */
+
+.scan-hero {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 2.5rem;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  background: var(--accent-tint);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--accent-tint-strong);
+  margin-bottom: var(--space-5);
+}
+
+.scan-hero__title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: var(--space-4);
+}
+.scan-hero__title em { font-style: italic; color: var(--accent); }
+
+.scan-hero__sub {
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+  max-width: 620px;
+  margin: 0 auto var(--space-6);
+}
+
+.scan-form {
+  max-width: 580px;
+  margin: 0 auto var(--space-3);
+  display: flex;
+  gap: var(--space-2);
+}
+.scan-form input[type="url"] {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--motion-base);
+  font-family: "JetBrains Mono", monospace;
+}
+.scan-form input[type="url"]:focus { outline: none; border-color: var(--accent); }
+.scan-form button {
+  padding: 1rem 1.75rem;
+  font: inherit; font-size: 1rem; font-weight: 600;
+  color: var(--bg); background: var(--accent);
+  border: none; border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--motion-base), transform var(--motion-fast);
+  white-space: nowrap;
+}
+.scan-form button:hover { background: var(--accent-hover); }
+.scan-form button:active { transform: scale(0.98); }
+
+.scan-meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-family: "JetBrains Mono", monospace;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+.status-pending { color: var(--warning); display: block; margin-bottom: var(--space-2); }
+
+/* Example section */
+.scan-example {
+  max-width: 760px;
+  margin: 5rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+.section__title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: var(--space-3);
+}
+.section__sub {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+  max-width: 620px;
+  margin: 0 auto var(--space-4);
+}
+.scan-example__cta { margin-top: var(--space-4); }
+
+/* How-it-works grid */
+.scan-how { max-width: 1000px; margin: 5rem auto; padding: 0 1.5rem; text-align: center; }
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+  text-align: left;
+}
+@media (max-width: 760px) { .how-grid { grid-template-columns: 1fr; } }
+.how-step {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.how-step__num {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.5rem; font-weight: 700; color: var(--accent);
+  display: block; line-height: 1; margin-bottom: var(--space-3);
+}
+.how-step h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.35rem; font-weight: 700; color: var(--text);
+  margin-bottom: var(--space-3);
+}
+.how-step p { color: var(--text-muted); line-height: 1.55; font-size: 0.95rem; }
+.how-step code { font-family: "JetBrains Mono", monospace; font-size: 0.85em; color: var(--accent); }
+
+/* Privacy block */
+.scan-privacy {
+  max-width: 760px;
+  margin: 5rem auto;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.scan-privacy .section__title { text-align: center; }
+.privacy-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-5) 0 0;
+  display: flex; flex-direction: column;
+  gap: var(--space-3);
+}
+.privacy-list li {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.55;
+}
+.privacy-list .ok { color: var(--success); }
+.privacy-list code {
+  font-family: "JetBrains Mono", monospace; font-size: 0.85em;
+  background: var(--bg); padding: 2px 6px; border-radius: var(--radius-sm); color: var(--accent);
+}
+
+/* Pricing / donation block */
+.scan-pricing {
+  max-width: 760px;
+  margin: 5rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+.cta-row { display: flex; gap: var(--space-3); justify-content: center; margin: var(--space-5) 0 var(--space-4); flex-wrap: wrap; }
+.scan-pricing__note {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 580px;
+  margin: var(--space-4) auto 0;
+  line-height: 1.55;
+}
+
+/* Footer reuse */
+.waitlist-footer {
+  max-width: 1100px;
+  margin: 4rem auto 0;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: "JetBrains Mono", monospace;
+  border-top: 1px solid var(--border);
+}
+.waitlist-footer .link { color: var(--accent); }

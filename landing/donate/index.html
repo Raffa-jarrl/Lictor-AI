@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Donate to Lictor — keep AI security free for the world</title>
+  <meta name="description" content="Lictor is free, open source, and runs on Cloudflare + donations. If Lictor helped you ship a safer app, the world treats back the same. Multiple ways to give, including ways that don't cost money." />
+
+  <meta property="og:title" content="Donate to Lictor AI" />
+  <meta property="og:description" content="Free, open-source AI security. If it helped you, give back." />
+  <meta property="og:url" content="https://lictor.ai/donate" />
+  <meta property="og:image" content="https://lictor.ai/og/og-image.png" />
+
+  <link rel="icon" type="image/svg+xml" href="/lictor-favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/components/components.css" />
+  <link rel="stylesheet" href="/donate/donate.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="/" class="brand">
+      <img src="/lictor-mark.svg" alt="" width="28" height="28" />
+      <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
+    </a>
+    <nav class="nav__links">
+      <a href="/">Home</a>
+      <a href="/scan">Scan</a>
+      <a href="/in-the-wild">In the wild</a>
+      <a href="/donate" class="active">Donate</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI">GitHub →</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="donate-hero">
+      <span class="eyebrow">PUBLIC GOOD · APACHE 2.0 · NO PAYWALL EVER</span>
+      <h1 class="donate-hero__title">
+        Free for the world. <em>If it helped you,</em> help us keep it free.
+      </h1>
+      <p class="donate-hero__sub">
+        Lictor's core is open source under Apache 2.0 — free forever, no strings attached. The scanner runs on Cloudflare Workers, a domain, and the maintainer's nights and weekends. If you've used Lictor and it helped, here are the ways to give back. None of them are required. All of them are appreciated.
+      </p>
+    </section>
+
+    <section class="donate-options">
+      <h2 class="section__title">Money</h2>
+      <p class="section__sub">
+        Every option below sends 100% of your gift to Lictor's running costs — and any surplus, once the project's operational floor is covered, is donated to the <a href="https://owasp.org" class="link">OWASP Foundation</a>. Monthly receipts published at <a href="/transparency" class="link">lictor.ai/transparency</a>. Lictor itself will incorporate as the <strong>Lictor Foundation</strong> in Q2 2027 and donations will move under that 501(c)(3) once it's registered.
+      </p>
+
+      <div class="donate-grid">
+
+        <a class="donate-card donate-card--featured" href="https://github.com/sponsors/Raffa-jarrl" target="_blank" rel="noopener">
+          <div class="donate-card__pill">Recommended · One-time or monthly</div>
+          <h3>GitHub Sponsors</h3>
+          <p class="donate-card__amount">$5 / $15 / $50 / mo</p>
+          <p class="donate-card__body">The most-used OSS donation rail. GitHub takes <strong>0% fees</strong> through 2026 (then a small platform fee). One-time gifts also supported. Best for monthly recurring.</p>
+          <span class="donate-card__cta">Sponsor on GitHub →</span>
+        </a>
+
+        <a class="donate-card" href="https://opencollective.com/lictor-ai" target="_blank" rel="noopener">
+          <div class="donate-card__pill">Transparent finances</div>
+          <h3>Open Collective</h3>
+          <p class="donate-card__amount">Any amount</p>
+          <p class="donate-card__body">Every dollar in and every dollar out is <strong>publicly visible</strong> — receipts, expenses, payouts, all of it. Best if you want to see exactly where your gift went.</p>
+          <span class="donate-card__cta">Give via Open Collective →</span>
+        </a>
+
+        <a class="donate-card" href="https://buymeacoffee.com/lictor" target="_blank" rel="noopener">
+          <div class="donate-card__pill">Casual · No account needed</div>
+          <h3>Buy Me a Coffee</h3>
+          <p class="donate-card__amount">$3 / coffee</p>
+          <p class="donate-card__body">Lowest-friction option. Pay with Apple Pay / Google Pay / card. Add a note if you want — Dor reads every one.</p>
+          <span class="donate-card__cta">Buy a coffee →</span>
+        </a>
+
+        <a class="donate-card" href="https://buy.stripe.com/lictor-one-time" target="_blank" rel="noopener">
+          <div class="donate-card__pill">One-time · Larger gifts</div>
+          <h3>Stripe one-time</h3>
+          <p class="donate-card__amount">$50+ suggested</p>
+          <p class="donate-card__body">Best for one-off gifts or company donations. Receipts auto-emailed (works for expense reports). USD, EUR, GBP, and major currencies.</p>
+          <span class="donate-card__cta">Donate via Stripe →</span>
+        </a>
+
+      </div>
+
+      <p class="donate-options__note">
+        <strong>Where the money goes, today:</strong>
+      </p>
+      <ul class="cost-list">
+        <li><strong>Cloudflare Workers</strong> (Patrol + Scan engine) — ~$30/mo at projected launch volumes</li>
+        <li><strong>Domain renewal</strong> (lictor.ai) — $20/yr</li>
+        <li><strong>Buttondown</strong> (waitlist + transparency report newsletter) — $9/mo</li>
+        <li><strong>Apple Developer cert</strong> (Studio code-signing on macOS) — $99/yr</li>
+        <li><strong>OpenAI/Anthropic API</strong> for Bridge outreach drafting — ~$20/mo</li>
+        <li><strong>OWASP Foundation</strong> — anything above operational floor, donated forward</li>
+      </ul>
+      <p class="donate-options__note">
+        <strong>Operational floor today: ~$60/mo.</strong> Anything beyond that goes to OWASP. By Q2 2027 the Lictor Foundation will be the receiving entity and donations will be tax-deductible (in the US).
+      </p>
+    </section>
+
+    <section class="donate-other">
+      <h2 class="section__title">Ways to help that don't cost money</h2>
+      <p class="section__sub">
+        Honestly, these matter more than the cash. Money runs the servers; community runs the project.
+      </p>
+
+      <div class="give-grid">
+
+        <div class="give-card">
+          <h3>⭐ Star the repo</h3>
+          <p>It's the only number that helps Lictor get discovered. Takes 4 seconds.</p>
+          <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="link">github.com/Raffa-jarrl/Lictor-AI →</a>
+        </div>
+
+        <div class="give-card">
+          <h3>🐛 File a false-negative</h3>
+          <p>If Lictor missed a real bug in your code, it's the most valuable kind of issue we can get. We fix and credit.</p>
+          <a href="https://github.com/Raffa-jarrl/Lictor-AI/issues/new?template=false-negative.md" class="link">Open false-negative issue →</a>
+        </div>
+
+        <div class="give-card">
+          <h3>🗣 File a voice-bug</h3>
+          <p>If a Lictor finding sounded too jargony, that's a bug. Voice is the product. We rewrite and credit.</p>
+          <a href="https://github.com/Raffa-jarrl/Lictor-AI/issues/new?template=voice-bug.md" class="link">Open voice-bug issue →</a>
+        </div>
+
+        <div class="give-card">
+          <h3>🔍 Contribute a pattern</h3>
+          <p>If you know a vibe-coder security pattern we haven't tuned for yet, send it. Public repo URLs in the wild are best.</p>
+          <a href="https://github.com/Raffa-jarrl/Lictor-AI/issues/new?template=pattern-request.md" class="link">Suggest a pattern →</a>
+        </div>
+
+        <div class="give-card">
+          <h3>📣 Tell a builder</h3>
+          <p>Know someone shipping a Lovable / Bolt / v0 app? Send them <a href="https://lictor.ai/scan" class="link">lictor.ai/scan</a>. Free, 30 seconds, no signup.</p>
+          <a href="https://twitter.com/intent/tweet?text=Free%20security%20scanner%20for%20AI-built%20apps%20%E2%80%94%20paste%20any%20URL%2C%20get%20a%20letter%20grade%20in%2030s.%20Open%20source%2C%20Apache%202.0.%20https%3A%2F%2Flictor.ai%2Fscan" class="link">Tweet about Lictor →</a>
+        </div>
+
+        <div class="give-card">
+          <h3>💻 Write code</h3>
+          <p>Rust check authors, Tauri front-end, browser-extension hackers, technical writers — all welcome. Start with <code>good-first-issue</code>.</p>
+          <a href="https://github.com/Raffa-jarrl/Lictor-AI/issues?q=is%3Aissue+is%3Aopen+label%3Agood-first-issue" class="link">Browse good-first-issues →</a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="donate-philosophy">
+      <h2 class="section__title">Why we chose donations over a paywall</h2>
+      <div class="philosophy">
+        <p>
+          The security industry is built on extracting fear-rent — selling protection at the price the market will bear when someone is panicking about a breach. We didn't want to be that. Vibe-coders are exactly the audience that gets *priced out* of every existing security tool, and that's the audience most likely to ship a bug that hurts real users.
+        </p>
+        <p>
+          So Lictor's core stays free. The scanner is free. The CLI is free. The skill suite is free. The browser extension is free. The standard (AUDIT.json) is free. None of that has a paywall, ever.
+        </p>
+        <p>
+          We pay for it three ways, in this order:
+        </p>
+        <ol class="philosophy__list">
+          <li>The maintainer's own work (Dor — for now)</li>
+          <li>Donations (you, if you want — this page)</li>
+          <li>A modest commercial tier (Lictor for Teams at $19/month flat, no per-seat) for companies that need continuous monitoring + Slack integration + audit log export. Optional. The free tier already does everything an individual founder needs.</li>
+        </ol>
+        <p>
+          That's the model. Free for the world; voluntary giving from the people it helps; a small commercial revenue stream to fund the rest. If the world treats us back the same way we treat it, this works. So far it has.
+        </p>
+        <p class="philosophy__signoff">
+          — Dor, May 2026
+        </p>
+      </div>
+    </section>
+
+    <section class="donate-cta">
+      <p>Whatever way you choose: thank you.</p>
+      <p>And if you didn't choose any of them — that's fine too. Use Lictor anyway. That's why it exists.</p>
+    </section>
+  </main>
+
+  <footer class="waitlist-footer">
+    &copy; 2026 Lictor AI · Apache 2.0 · <a href="/scan" class="link">Scan</a> · <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="link">Source</a> · <a href="/transparency" class="link">Transparency</a>
+  </footer>
+</body>
+</html>
