@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Únete a la lista de espera de Lictor — lanzamiento 6 de octubre de 2026</title>
+  <meta name="description" content="Auditoría de seguridad open source y gratuita para apps hechas con IA. 11 agentes de IA, en español claro, corre dentro de Claude Code. Lanzamos el 6 de octubre de 2026." />
+
+  <meta property="og:title" content="Lictor AI — el equipo de seguridad para apps que construiste con IA" />
+  <meta property="og:description" content="Auditoría de seguridad open source y gratuita para apps hechas con IA. Lanzamiento 6 de octubre de 2026." />
+  <meta property="og:url" content="https://lictor.ai/es/waitlist" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://lictor.ai/og/og-image.png" />
+
+  <link rel="icon" type="image/svg+xml" href="/lictor-favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/waitlist/waitlist.css" />
+  <link rel="alternate" hreflang="en" href="https://lictor.ai/waitlist" />
+  <link rel="alternate" hreflang="es" href="https://lictor.ai/es/waitlist" />
+  <link rel="alternate" hreflang="pt-BR" href="https://lictor.ai/pt-BR/waitlist" />
+</head>
+<body>
+  <header class="nav">
+    <a href="/" class="brand">
+      <img src="/lictor-mark.svg" alt="" width="28" height="28" />
+      <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
+    </a>
+    <nav class="nav__links">
+      <a href="/">Inicio</a>
+      <a href="/compliance">Cumplimiento</a>
+      <a href="https://github.com/lictor-ai/lictor">GitHub →</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="waitlist-hero">
+      <span class="waitlist-hero__eyebrow">LANZA EL 6 DE OCTUBRE DE 2026 · APACHE 2.0 · GRATIS PARA SIEMPRE</span>
+
+      <h1 class="waitlist-hero__title">
+        El equipo de seguridad para las apps que construiste con <em>IA</em>.
+      </h1>
+
+      <p class="waitlist-hero__sub">
+        11 agentes de IA auditan tu proyecto de Lovable / Bolt / v0 / Cursor en español claro.
+        Corre localmente dentro de Claude Code. Sin registro, sin telemetría, sin precios por usuario.
+        Gratis para siempre. Construido por un ingeniero de ciberseguridad con 20 años de experiencia.
+      </p>
+
+      <form
+        class="waitlist-form"
+        action="https://buttondown.com/api/emails/embed-subscribe/lictor-ai"
+        method="post"
+        target="popupwindow"
+        onsubmit="window.open('https://buttondown.com/lictor-ai', 'popupwindow')"
+      >
+        <div class="waitlist-form__row">
+          <input
+            type="email"
+            name="email"
+            placeholder="tu@ejemplo.com"
+            required
+            autocomplete="email"
+            aria-label="Correo electrónico"
+          />
+          <button type="submit">Unirme a la lista →</button>
+        </div>
+
+        <select name="metadata__platform" aria-label="¿En qué plataforma construyes?">
+          <option value="">¿En qué plataforma construyes? (opcional)</option>
+          <option value="lovable">Lovable</option>
+          <option value="bolt">Bolt.new</option>
+          <option value="v0">v0 (Vercel)</option>
+          <option value="cursor">Cursor</option>
+          <option value="claude-code">Claude Code</option>
+          <option value="windsurf">Windsurf</option>
+          <option value="replit">Replit</option>
+          <option value="custom">Escribo código a mano</option>
+          <option value="other">Otra</option>
+        </select>
+
+        <input type="hidden" value="1" name="embed" />
+        <input type="hidden" value="es" name="metadata__locale" />
+      </form>
+
+      <p class="waitlist-meta">
+        Te escribimos dos veces: cuando el repo se vuelve público (~junio de 2026) y cuando lanzamos (6 de octubre). Eso es todo. <a href="https://github.com/lictor-ai/lictor">Ve el proyecto en GitHub →</a>
+      </p>
+    </section>
+
+    <section class="waitlist-stats">
+      <div class="waitlist-stat">
+        <span class="waitlist-stat__value">40–62%</span>
+        <span class="waitlist-stat__label">del código generado con IA se publica con vulnerabilidades de seguridad</span>
+      </div>
+      <div class="waitlist-stat">
+        <span class="waitlist-stat__value">18.000</span>
+        <span class="waitlist-stat__label">usuarios de Lovable expuestos en un solo incidente de febrero 2026</span>
+      </div>
+      <div class="waitlist-stat">
+        <span class="waitlist-stat__value">$0</span>
+        <span class="waitlist-stat__label">lo que cuesta usar Lictor — para siempre, en el núcleo OSS</span>
+      </div>
+    </section>
+
+    <section class="waitlist-what">
+      <h2>Qué detecta Lictor</h2>
+      <ul class="waitlist-checks">
+        <li>Clave service-role de Supabase expuesta en tu bundle JS</li>
+        <li>Tablas sin Row-Level Security (RLS) activa</li>
+        <li>Paquetes npm alucinados (un error típico de la IA)</li>
+        <li>Controles de autenticación solo en el frontend (puerta "admin" que no protege nada)</li>
+        <li>Webhooks de Stripe / GitHub / Shopify sin firma</li>
+        <li>Fugas de datos entre tenants por caché de Next.js</li>
+        <li>Endpoints de IA sin límite de tasa (rate limiting)</li>
+        <li>Hallazgos en lenguaje claro — sin jerga de SOC 2, nunca</li>
+      </ul>
+    </section>
+
+    <section class="waitlist-promise">
+      <p>
+        <strong style="color: var(--text);">El compromiso de Lictor.</strong>
+        El núcleo OSS se queda gratis para siempre. Licencia Apache 2.0, gobernado por la
+        Lictor Foundation (constitución en Q2 2027). Existen planes pagos para Teams y Studio Pro
+        pero nunca bloquean funciones que los usuarios OSS necesitan. Lee más en
+        <a href="https://github.com/lictor-ai/lictor" style="color: var(--accent);">GitHub</a>.
+      </p>
+    </section>
+
+    <section class="waitlist-founder">
+      <h3>¿Quién está construyendo esto?</h3>
+      <p>
+        Lictor lo construye Dor, un ingeniero de ciberseguridad con 20 años de experiencia, con base en Israel.
+        Su trayectoria incluye asesoría como CISO para empresas Fortune 500 y arquitectura de seguridad
+        para startups con respaldo de venture capital.
+      </p>
+      <p>
+        Lictor existe porque las personas que están enviando más software ahora mismo —
+        founders solitarios construyendo desde Lovable un sábado, indie hackers prototipando
+        en Cursor a medianoche, diseñadores desplegando un proyecto de Bolt antes del café
+        de la mañana — no tienen un CISO. Se tienen a sí mismos, un asistente de IA, y
+        48 horas para enviar algo. Necesitan herramientas de seguridad que hablen claro
+        y no requieran una llamada de ventas.
+      </p>
+    </section>
+  </main>
+
+  <footer class="waitlist-footer">
+    &copy; 2026 Lictor AI · v0.1.0 lanza el 6 de octubre de 2026 · Apache 2.0
+  </footer>
+</body>
+</html>

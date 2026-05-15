@@ -1,0 +1,12 @@
+# Files NOT shipped in the .vsix package
+.vscode/**
+.vscode-test/**
+src/**
+tsconfig.json
+*.ts
+**/*.map
+node_modules/**
+.gitignore
+**/tsconfig.json
+**/.eslintrc.json
+.github/**
