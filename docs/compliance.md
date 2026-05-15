@@ -2,7 +2,7 @@
 
 > Where Lictor fits in the SOC 2 / GDPR / EU AI Act landscape. Pre-built answers to the questions that show up in enterprise RFPs.
 >
-> **Status:** Phase 1 reference. The lictor.ai/compliance landing page (W19) is generated from this doc. When a Zapier-tier procurement team asks "how does Lictor satisfy our [framework] requirements," this is what we hand them.
+> **Status:** Phase 1 reference. The lictor-ai.com/compliance landing page (W19) is generated from this doc. When a Zapier-tier procurement team asks "how does Lictor satisfy our [framework] requirements," this is what we hand them.
 
 ---
 
@@ -157,7 +157,7 @@ We're a security company. Walking the talk:
 
 ## Trust Center (planned, Q1 2027)
 
-Once Guardian has paying customers, the public Trust Center at lictor.ai/trust will publish:
+Once Guardian has paying customers, the public Trust Center at lictor-ai.com/trust will publish:
 
 - Real-time uptime / SLA metrics
 - Vendor list (sub-processors)
@@ -171,6 +171,6 @@ If you need any of the above for vendor risk review and Lictor doesn't yet have 
 
 ## Questions / contact
 
-- Vendor risk reviews: `compliance@lictor.ai` (channel opens at launch)
-- Security disclosures: `security@lictor.ai` (see [`SECURITY.md`](../SECURITY.md))
-- Self-hosting requests for Guardian (regulated industries, sovereign cloud): `hello@lictor.ai`
+- Vendor risk reviews: `compliance@lictor-ai.com` (channel opens at launch)
+- Security disclosures: `security@lictor-ai.com` (see [`SECURITY.md`](../SECURITY.md))
+- Self-hosting requests for Guardian (regulated industries, sovereign cloud): `hello@lictor-ai.com`

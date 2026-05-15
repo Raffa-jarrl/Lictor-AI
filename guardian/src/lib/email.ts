@@ -43,7 +43,7 @@ export async function sendMagicLinkEmail(email: MagicLinkEmail): Promise<void> {
         "X-Postmark-Server-Token": token,
       },
       body: JSON.stringify({
-        From: "no-reply@lictor.ai",
+        From: "no-reply@lictor-ai.com",
         To: email.to,
         Subject: "Your Lictor Guardian sign-in link",
         TextBody:

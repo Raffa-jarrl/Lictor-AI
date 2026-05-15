@@ -21,7 +21,7 @@ Lictor is built for people who don't have a security team. That includes a lot o
 ## How to report
 
 - **General CoC issues:** open a private GitHub Security Advisory at [github.com/Raffa-jarrl/Lictor-AI/security/advisories/new](https://github.com/Raffa-jarrl/Lictor-AI/security/advisories/new) — yes, the same channel as security bugs, because the maintainer who reads those is the same person who'd handle a CoC report
-- **Direct contact:** [hello@lictor.ai](mailto:hello@lictor.ai)
+- **Direct contact:** [hello@lictor-ai.com](mailto:hello@lictor-ai.com)
 - **Anonymous tip:** the GitHub Security Advisory form supports anonymous submissions
 
 ## What we do with reports

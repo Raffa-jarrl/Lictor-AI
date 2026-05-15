@@ -31,7 +31,7 @@ This is **SARIF for developers** — without the IBM-y enterprise tooling overhe
   "tool": {
     "name": "lictor",
     "version": "0.1.0",
-    "vendor": "lictor.ai"
+    "vendor": "lictor-ai.com"
   },
   "target": {
     "type": "repository",
@@ -76,7 +76,7 @@ This is **SARIF for developers** — without the IBM-y enterprise tooling overhe
       "agent": "radar",
       "agent_confidence": 0.98,
       "references": [
-        "https://lictor.ai/checks/L-secrets-1"
+        "https://lictor-ai.com/checks/L-secrets-1"
       ],
       "cwe": [
         "CWE-200",

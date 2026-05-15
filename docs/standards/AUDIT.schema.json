@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lictor.ai/standards/AUDIT.schema.json",
+  "$id": "https://lictor-ai.com/standards/AUDIT.schema.json",
   "title": "AUDIT.json — Security tool output standard",
   "description": "Community standard for security-tool output. v0.1 proposal. Authored by Lictor AI, released CC0 — the spec belongs to nobody. Conforming tools emit this format alongside their native output so downstream consumers (dashboards, IDE plugins, AI translators, compliance exporters) can interop freely.",
   "type": "object",
@@ -41,7 +41,7 @@
         "vendor": {
           "type": "string",
           "description": "Optional vendor / publisher name or domain. Helpful when the same tool name is used by multiple projects.",
-          "examples": ["lictor.ai", "snyk.io", "github.com"]
+          "examples": ["lictor-ai.com", "snyk.io", "github.com"]
         }
       }
     },
@@ -362,7 +362,7 @@
       "tool": {
         "name": "lictor",
         "version": "0.1.0",
-        "vendor": "lictor.ai"
+        "vendor": "lictor-ai.com"
       },
       "target": {
         "type": "repository",
@@ -409,7 +409,7 @@
           "agent": "radar",
           "agent_confidence": 0.98,
           "references": [
-            "https://lictor.ai/checks/L-secrets-1"
+            "https://lictor-ai.com/checks/L-secrets-1"
           ],
           "cwe": ["CWE-200", "CWE-798"]
         }

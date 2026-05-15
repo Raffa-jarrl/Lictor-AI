@@ -51,7 +51,7 @@ studio/
 
 ## Privacy posture
 
-Studio sends ZERO data to lictor.ai or any third party. The only outbound network call is to check for app updates, and that's gated behind a user-toggleable setting. The whole pitch of Studio is "offline-by-design" — break this and the product loses its reason to exist.
+Studio sends ZERO data to lictor-ai.com or any third party. The only outbound network call is to check for app updates, and that's gated behind a user-toggleable setting. The whole pitch of Studio is "offline-by-design" — break this and the product loses its reason to exist.
 
 ## What's implemented in this skeleton
 

@@ -26,7 +26,7 @@ All four share **[Lictor Core](./core)** — a Rust crate that compiles to nativ
 | [`sentinel-py/`](./sentinel-py/) | Python SDK (PyPI: `lictor-sentinel`) | ✅ 11 tests, Python parity, zero runtime deps |
 | [`guardian/`](./guardian/) | Hosted dashboard (Next.js + Postgres) | ✅ 12 integration tests, magic-link auth, incident timeline, audit log export, Slack webhook |
 | [`skills/`](./skills/) | Claude Code plugin suite | ✅ 4 plugins (`/lictor-security-check`, `/lictor-explain`, `/lictor-fix-it`, `/lictor-rotate`) |
-| [`landing/`](./landing/) | Marketing site (lictor.ai) | ✅ Single-page hero + `/compliance` subpage |
+| [`landing/`](./landing/) | Marketing site (lictor-ai.com) | ✅ Single-page hero + `/compliance` subpage |
 
 **Public launch target:** Tuesday October 6, 2026.
 
@@ -88,7 +88,7 @@ In a sentence: **safety infrastructure for the AI agent era.**
 
 ## License
 
-Apache 2.0 for `core/`, `shield/`, `sentinel/`, `sentinel-py/`, and `skills/`. Guardian's hosted service code is published for transparency but licensed for hosted use through lictor.ai only (see [`guardian/LICENSE`](./guardian/LICENSE)).
+Apache 2.0 for `core/`, `shield/`, `sentinel/`, `sentinel-py/`, and `skills/`. Guardian's hosted service code is published for transparency but licensed for hosted use through lictor-ai.com only (see [`guardian/LICENSE`](./guardian/LICENSE)).
 
 See [`LICENSE`](./LICENSE) + [`NOTICE`](./NOTICE).
 
@@ -112,7 +112,7 @@ Not yet broadly open. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for what we DO 
 ├── sentinel-py/      — Python SDK
 ├── guardian/         — Next.js + Postgres dashboard
 ├── skills/           — Claude Code plugin suite (4 skills)
-├── landing/          — Marketing site (HTML, deploys to lictor.ai)
+├── landing/          — Marketing site (HTML, deploys to lictor-ai.com)
 ├── brand/            — Logo SVG + rendered PNG icon variants
 ├── docs/             — Specs (sentinel-api, guardian-schema, wire-format)
 │                        + compliance.md + BUG_BASH.md + launch/

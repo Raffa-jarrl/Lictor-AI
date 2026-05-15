@@ -1,6 +1,6 @@
 # Bug Bash — friendly-tester guide
 
-> **Status:** W18 of Operation Triumph (Sep 7-13, 2026). This doc gets sent to the 3–5 friendly testers Dor is recruiting from his network / GenerationAI course alumni. It's the only doc they read before poking at Lictor — it tells them what to try, what's pretty-broken-OK, and where to put bug reports.
+> **Status:** W18 of Operation Triumph (Sep 7-13, 2026). This doc gets sent to the 3–5 friendly testers Raffa is recruiting from his network / GenerationAI course alumni. It's the only doc they read before poking at Lictor — it tells them what to try, what's pretty-broken-OK, and where to put bug reports.
 
 ---
 
@@ -156,7 +156,7 @@ Issue template:
 > **What I got:** [actual behavior, screenshot if useful]
 > **My environment:** [OS, browser, Node version]
 
-For **critical** bugs (data loss, security holes, crashes that lose state) — text Dor directly, don't wait on GitHub.
+For **critical** bugs (data loss, security holes, crashes that lose state) — text Raffa directly, don't wait on GitHub.
 
 ---
 

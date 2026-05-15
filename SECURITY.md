@@ -8,7 +8,7 @@ If you've found a security issue **in Lictor itself** (not in a site that Lictor
 
 ### Report channel
 
-Email: `security@lictor.ai` (PGP key forthcoming).
+Email: `security@lictor-ai.com` (PGP key forthcoming).
 
 Include in your report:
 - The affected version (commit SHA or release tag)
@@ -33,7 +33,7 @@ We follow [coordinated vulnerability disclosure](https://www.cisa.gov/coordinate
 - `lictor-shield` — the Chrome extension
 - `lictor-sentinel` — the SDK (when Phase 2 ships)
 - `lictor-guardian` — the hosted service (when Phase 3 ships)
-- The `lictor.ai` website and infrastructure
+- The `lictor-ai.com` website and infrastructure
 
 ## What's NOT in scope
 
@@ -50,8 +50,8 @@ We do not currently run a bug bounty program. We aim to start one once Lictor is
 
 Good-faith security research is welcome. We will not pursue legal action against researchers who:
 - Stay within the scope above
-- Avoid degrading service for users (no DDoS, no automated mass-scanning of `lictor.ai`)
+- Avoid degrading service for users (no DDoS, no automated mass-scanning of `lictor-ai.com`)
 - Give us a reasonable disclosure window before going public
 - Don't access, modify, or destroy data that isn't theirs
 
-If you're unsure whether something is in scope, **ask first** — `security@lictor.ai`.
+If you're unsure whether something is in scope, **ask first** — `security@lictor-ai.com`.
