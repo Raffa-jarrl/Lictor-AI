@@ -44,7 +44,7 @@
 ### 7 — Evo's multi-agent reasoning is opaque to the user
 **Evidence:** Snyk lists Discovery Agent, Risk Intelligence Agent, Policy Agent, Agent Guard, Agent Red Teaming — but the user-facing surface across evo.ai.snyk.io and the press release shows only aggregated findings. No per-sub-agent attribution surfaced. CIO testimonial: *"Claude finds. Snyk confirms. The agent fixes only what's real"* — a black-box pipeline framing.
 
-**Lictor counter:** Lictor's TEAM_CONTRACT and planner sweep already surface *which sub-agent found what*. The user sees the crew work — Radar surfaced this story, Sieve scored it, Probe validated it. Transparency of process is itself the product. "Look how my agents argued with each other to find this" is content marketing Snyk cannot run.
+**Lictor counter:** Lictor's TEAM_CONTRACT and planner sweep already surface *which sub-agent found what*. The user sees the crew work — Hawk surfaced this story, Owl scored it, Mongoose validated it. Transparency of process is itself the product. "Look how my agents argued with each other to find this" is content marketing Snyk cannot run.
 
 ---
 

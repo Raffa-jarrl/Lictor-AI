@@ -75,6 +75,6 @@ A new pattern request, well-formed, is the single most impactful thing a communi
 - For high-severity patterns tied to real public incidents: **$100–$1000 from the Lictor bug-bounty program** (launching Apr 2027)
 - The deep satisfaction of having improved the security of every Lovable / Bolt / v0 app ever built
 
-Pattern requests go to Radar (the scout agent) + Probe (the validator agent) + a maintainer review pass.
+Pattern requests go to Hawk (the scout agent) + Mongoose (the validator agent) + a maintainer review pass.
 
 Thanks for filing. This is real OSS contribution.

@@ -111,7 +111,7 @@ Launch: October 6, 2026.
 ### Specialties / focus areas
 
 ```
-AI Security · Vibe Coding · Open Source · Developer Tools · Claude Code · Lovable Security · Prompt Injection · OWASP LLM Top 10
+AI Security · Cuttlefish Coding · Open Source · Developer Tools · Claude Code · Lovable Security · Prompt Injection · OWASP LLM Top 10
 ```
 
 ### Industry

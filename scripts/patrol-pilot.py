@@ -442,7 +442,7 @@ def render_report(results, output_path):
     md.append(f"**With deployed URLs (scannable):** {len([r for r in results if r.deployed_url])}\n")
     md.append(f"**Actually reachable + scanned:** {len([r for r in results if not r.scan_error and r.deployed_url])}\n")
     md.append(f"**Returned a grade ≤ C (worth contacting):** {len(actionable)}\n\n")
-    md.append("---\n\n## Outreach queue\n\nApps below have findings serious enough that Bridge should draft a private outreach. Each one gets the standard 30-day private-disclosure window before public scorecard.\n\n")
+    md.append("---\n\n## Outreach queue\n\nApps below have findings serious enough that Meerkat should draft a private outreach. Each one gets the standard 30-day private-disclosure window before public scorecard.\n\n")
     for i, r in enumerate(actionable, 1):
         md.append(f"### {i}. `{r.repo}` — grade **{r.grade}** · {r.platform_hint}\n")
         md.append(f"- Deployed: {r.deployed_url}\n- Repo: {r.repo_url}\n\n")

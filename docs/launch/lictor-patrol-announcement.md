@@ -1,8 +1,8 @@
 # Lictor Patrol — Aug 15 soft-launch publication (DRAFT)
 
-> **Status:** draft for Aug 15 2026 publication. Updated by Quill from the actual numbers once the 30-day silent run completes (Jul 15 → Aug 14). Numbers in `[brackets]` will be replaced with real figures.
+> **Status:** draft for Aug 15 2026 publication. Updated by Lyrebird from the actual numbers once the 30-day silent run completes (Jul 15 → Aug 14). Numbers in `[brackets]` will be replaced with real figures.
 > **Channels:** HN "Show HN" post (06:00 PT), Twitter/X thread (07:00), blog post at `lictorai.com/blog/patrol-30-days` (09:30), press emails (11:00).
-> **Voice:** First-person Raffa, with one disclosed AI co-author (Bridge). Direct, technical, no hype. The numbers do the work.
+> **Voice:** First-person Raffa, with one disclosed AI co-author (Meerkat). Direct, technical, no hype. The numbers do the work.
 
 ---
 
@@ -67,7 +67,7 @@ That's the part I lost sleep over.
 
 **7/** So here's what we did about it.
 
-For every app I scanned with a HIGH or CRITICAL finding, I had Bridge (Lictor's AI community agent) draft a personalized email to the founder. I reviewed every one. I sent them privately, with the specific finding and a 5-minute fix.
+For every app I scanned with a HIGH or CRITICAL finding, I had Meerkat (Lictor's AI community agent) draft a personalized email to the founder. I reviewed every one. I sent them privately, with the specific finding and a 5-minute fix.
 
 **8/** Of [21,400] private outreaches sent:
 
@@ -152,7 +152,7 @@ Lictor is open source (github.com/Raffa-jarrl/Lictor-AI) — no funding, no PR f
 > 7. What this means for the vibe-coder ecosystem
 > 8. What's free, what's paid, what's next
 >
-> Drafted by Quill from the spec; Raffa edits the "why" paragraph and the case studies; Mirror reviews for voice; published Aug 15 09:30.
+> Drafted by Lyrebird from the spec; Raffa edits the "why" paragraph and the case studies; Mantis reviews for voice; published Aug 15 09:30.
 
 ---
 

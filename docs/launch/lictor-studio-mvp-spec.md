@@ -62,7 +62,7 @@ Not for: enterprise CISOs (that's Lictor Enterprise, Q2 2027). Not for runtime m
 - **Windows + Linux builds** — Mac-only v0.1.0. The audience is heavily Mac-skewed (Lovable founders, Cursor users). v0.2 adds Windows; Linux defers to v0.3+.
 - **Sentinel runtime monitoring tray app** — Studio v0.1 is audit-time only. Sentinel SDK already covers runtime. A tray companion is a separate product effort. v0.3.
 - **Guardian sync** — Studio is offline-first by thesis. An opt-in "sync findings to my Guardian dashboard" is a v0.2 feature gated behind explicit consent.
-- **Multi-language UI** — Studio v0.1 is English-only. Translator agent (Q1 2027) generates locale files; Studio v0.2 picks them up.
+- **Multi-language UI** — Studio v0.1 is English-only. Parrot agent (Q1 2027) generates locale files; Studio v0.2 picks them up.
 - **Encrypted local audit history** — v0.1 keeps audit history in plaintext SQLite (still local-only). Pro tier in v0.2 adds AES-encrypted history.
 - **Custom check authoring** — v0.1 ships the 7 built-in checks only. Custom-check SDK is a Pro feature in v0.2.
 - **Team license keys** — single-user only in v0.1. Pro tier in v0.2 adds team licensing.
@@ -337,6 +337,6 @@ If you greenlight this spec:
 - [ ] Reserve the `lictorai.com/studio` route in the landing site
 - [ ] Add `studio` to the Lictor monorepo CI matrix (Rust + Node both required)
 - [ ] Start a `studio/CHANGELOG.md` with v0.1.0-pre.0 → v0.1.0 entries
-- [ ] Probe the Tauri 2.x + macOS signing toolchain end-to-end on a throwaway app to verify the path works (avoid finding signing issues in Week 11 of build)
+- [ ] Mongoose the Tauri 2.x + macOS signing toolchain end-to-end on a throwaway app to verify the path works (avoid finding signing issues in Week 11 of build)
 
 These are all <2h tasks. Do them in May so they don't compound risk in September.

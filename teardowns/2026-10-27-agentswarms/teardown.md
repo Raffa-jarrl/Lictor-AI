@@ -41,7 +41,7 @@ Three findings. The first one is apocalyptic, the second is the predictable plat
 🟡 medium     1
 ```
 
-> *Note for v0.1: predicted findings shape; replace with Probe's actual output before publishing. The meta-frame works regardless of which specific findings land.*
+> *Note for v0.1: predicted findings shape; replace with Mongoose's actual output before publishing. The meta-frame works regardless of which specific findings land.*
 
 ---
 
@@ -85,7 +85,7 @@ The founder is shipping all three layers. The RLS fix landed within 24h. Encrypt
 
 **Critical action for current users:** the AgentSwarms team is force-rotating every API key by emailing every user a "rotate your keys" notice + removing the stored keys from the database. Users will need to re-enter keys in the new (encrypted) flow.
 
-**Found by:** Probe. **Scored by:** Sieve (9.9/10 — the highest score Sieve has ever issued).
+**Found by:** Mongoose. **Scored by:** Owl (9.9/10 — the highest score Owl has ever issued).
 
 ---
 
@@ -117,7 +117,7 @@ const result = await client.chat.completions.create({ messages });
 
 This is a one-line change in the agent runtime code. The founder shipped it within 48 hours.
 
-**Found by:** Sieve. **Scored by:** Sieve (8.1/10).
+**Found by:** Owl. **Scored by:** Owl (8.1/10).
 
 ---
 
@@ -131,7 +131,7 @@ This is a one-line change in the agent runtime code. The founder shipped it with
 
 **The fix.** Sign every outbound webhook with an HMAC using a per-user secret. Users add the secret to their server's webhook handler and verify the signature on every incoming request. Standard pattern. ~40 lines of code total.
 
-**Found by:** Radar. **Scored by:** Sieve (6.6/10).
+**Found by:** Hawk. **Scored by:** Owl (6.6/10).
 
 ---
 
@@ -176,8 +176,7 @@ That's the educator response. We're naming AgentSwarms in this writeup *because*
 | Oct 20 | New curriculum lesson published citing this teardown |
 | Oct 27 | This writeup publishes — co-promoted with AgentSwarms |
 
-Lictor crew: 📡 Radar (1), 🧪 Probe (1 — the critical one), 🔍 Sieve (1 + scored all), 🖊 Quill, 🪞 Mirror, 🧲 Magnet, 🎼 Conductor.
-
+Lictor crew: 📡 Hawk (1), 🧪 Mongoose (1 — the critical one), 🔍 Owl (1 + scored all), 🖊 Lyrebird, 🪞 Mantis, 🧲 Bee, 🎼 Wolf. 
 ## CTA
 
 If you build an AI-agent platform: run `/lictor-security-check` this week. The credential-storage finding is going to be one of the most-recurring patterns of 2027. Better to find it in your code than to read about your platform in a teardown.

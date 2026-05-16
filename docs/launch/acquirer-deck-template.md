@@ -135,10 +135,10 @@
 > A documented, named, open-source crew of 15 AI agents. Each has a public SOUL.md file — purpose, prompts, evaluation criteria.
 >
 > **The core 11 (launched June 2026):**
-> - Conductor (project lead) · Sieve (code auditor) · Probe (competitive watch) · Quill (plain-English writer) · Mirror (self-audit) · Magnet (community signal) · Trends (viral-format intel) · Pulse (hook generator) · Sage (architecture review) · Sentinel (runtime watcher) · Forge (CI/release)
+> - Wolf (project lead) · Owl (code auditor) · Mongoose (competitive watch) · Lyrebird (plain-English writer) · Mantis (self-audit) · Bee (community signal) · Starling (viral-format intel) · Bat (hook generator) · Sage (architecture review) · Sentinel (runtime watcher) · Forge (CI/release)
 >
 > **The Q1 2027 additions:**
-> - 🌐 Translator (multilingual) · 🎬 Reel (video scripts) · 🎙️ Booth (booking + CFPs) · 🤝 Bridge (community manager)
+> - 🌐 Parrot (multilingual) · 🎬 Peacock (video scripts) · 🎙️ Nightingale (booking + CFPs) · 🤝 Meerkat (community manager)
 >
 > **Why this matters as IP:**
 > The architecture is open. The *configuration* — agent prompts, calibration scoring, voice, eval traps — is the value. That's a year of public work, hard to replicate in a quarter.
@@ -151,7 +151,7 @@
 >
 > The brand owns 4 things:
 > 1. **The keyword "vibe-coder security"** — Google trends shows Lictor as the highest-volume associated entity since Q4 2026.
-> 2. **The voice** — "plain-English security writer who makes the others sound like lawyers." Quill agent's voice is recognizable across [TEARDOWN_COUNT]+ public teardowns.
+> 2. **The voice** — "plain-English security writer who makes the others sound like lawyers." Lyrebird agent's voice is recognizable across [TEARDOWN_COUNT]+ public teardowns.
 > 3. **The Lictor Foundation pledge** — public commitment that the OSS core stays open. [FOUNDATION_INCORP_DATE] incorporated.
 > 4. **AUDIT.json v0.1** — Lictor-authored community standard. Adopted by [STANDARD_ADOPTERS_COUNT] other tools as of May 2027.
 
@@ -572,7 +572,7 @@
 | **T+1** | Thank-you note. 3 sentences. No deck attached. Reference one specific thing from the conversation. Mention the data room is available under NDA when they want it. | Raffa |
 | **T+7** | Soft update — "FYI, [SPECIFIC_RECENT_SHIP] launched this week, thought you'd be interested." Demonstrate momentum without selling. | Raffa |
 | **T+14** | If they responded to T+1 or T+7 — propose a follow-up call with a specific person on their side (the internal champion they named). If no response — do nothing yet. | Raffa |
-| **T+30** | Monthly investor/acquirer update email goes out (uses `investor-acquirer-update-template.md`). They're on the list. This is the "you're on the list" cadence, not direct outreach. | Raffa + Bridge agent |
+| **T+30** | Monthly investor/acquirer update email goes out (uses `investor-acquirer-update-template.md`). They're on the list. This is the "you're on the list" cadence, not direct outreach. | Raffa + Meerkat agent |
 | **T+45** | If still silence: one final direct note. "Hey, given [RECENT_INDUSTRY_EVENT], wondered if anything had changed on your side. No need to reply if not." Then stop. | Raffa |
 | **T+60** | If reaching out has happened from their side — proceed at their pace, with a real diligence ask (data room access, second meeting, named champion). If no reach-out happened — they're parked. Re-evaluate in 6 months. | Raffa |
 

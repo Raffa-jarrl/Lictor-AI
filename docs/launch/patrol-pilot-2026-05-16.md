@@ -15,7 +15,7 @@
 
 ## Outreach queue
 
-Apps below have findings serious enough that Bridge should draft a private outreach. Each one gets the standard 30-day private-disclosure window before public scorecard.
+Apps below have findings serious enough that Meerkat should draft a private outreach. Each one gets the standard 30-day private-disclosure window before public scorecard.
 
 
 

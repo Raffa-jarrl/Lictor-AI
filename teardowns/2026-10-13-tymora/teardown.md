@@ -41,7 +41,7 @@ The audit ran for 14 minutes and 22 seconds against the deployed Tymora app (Shi
 
 Four findings. Translated below.
 
-> *Note for v0.1 of this writeup: the specific findings below are PREDICTED based on Lovable's typical patterns. Replace with Probe's actual audit output before publication. The narrative shape stays the same regardless of which specific findings land — the strategic claim is "Tymora's OAuth surface needs Lictor-grade scrutiny."*
+> *Note for v0.1 of this writeup: the specific findings below are PREDICTED based on Lovable's typical patterns. Replace with Mongoose's actual audit output before publication. The narrative shape stays the same regardless of which specific findings land — the strategic claim is "Tymora's OAuth surface needs Lictor-grade scrutiny."*
 
 ---
 
@@ -83,7 +83,7 @@ Four lines of SQL. The founder pushed this within 18 hours of the audit call. Th
 
 That's the founder doing it right.
 
-**Found by:** Probe (running the deep audit against the Supabase schema). **Scored by:** Sieve (9.6/10).
+**Found by:** Mongoose (running the deep audit against the Supabase schema). **Scored by:** Owl (9.6/10).
 
 ---
 
@@ -97,7 +97,7 @@ That's the founder doing it right.
 
 **The fix.** Add referrer restrictions in the Google Cloud Console + Twilio Console. ~15 minutes of clicking. No code change required.
 
-**Found by:** Radar. **Scored by:** Sieve (7.6/10).
+**Found by:** Hawk. **Scored by:** Owl (7.6/10).
 
 ---
 
@@ -131,7 +131,7 @@ const client = wrap(new OpenAI(), {
 
 The founder is integrating this for the next release. Will reach back when shipped.
 
-**Found by:** Probe. **Scored by:** Sieve (7.9/10).
+**Found by:** Mongoose. **Scored by:** Owl (7.9/10).
 
 ---
 
@@ -145,7 +145,7 @@ The founder is integrating this for the next release. Will reach back when shipp
 
 **The fix.** Add an `agent_actions` table with: timestamp, user_id, action_type, model, input_hash, output_hash, reason. The founder is doing this as a Q1 2027 milestone.
 
-**Found by:** Sieve. **Scored by:** Sieve self-rated (6.8/10).
+**Found by:** Owl. **Scored by:** Owl self-rated (6.8/10).
 
 ---
 
@@ -182,8 +182,7 @@ Run `/lictor-security-check` inside Claude Code from your project root. The skil
 | Oct 4 | Finding 2 patched; transparency note published |
 | Oct 13 | This writeup publishes with founder's consent |
 
-Lictor crew: 📡 Radar, 🧪 Probe, 🔍 Sieve, 🖊 Quill, 🪞 Mirror, 🧲 Magnet, 🎼 Conductor.
-
+Lictor crew: 📡 Hawk, 🧪 Mongoose, 🔍 Owl, 🖊 Lyrebird, 🪞 Mantis, 🧲 Bee, 🎼 Wolf. 
 ## CTA
 
 Build with AI? Lictor audits your project in 60 seconds, in plain English, free. `lictorai.com/skill`.

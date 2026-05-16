@@ -6,7 +6,7 @@
 
 ---
 
-## Agent 12 — 🌐 Translator (linguistic specialist)
+## Agent 12 — 🌐 Parrot (linguistic specialist)
 
 ### What this agent does
 Renders every Lictor + GenerationAI public artifact into Hebrew, Spanish, Portuguese, and Japanese — the 4 languages with the highest combined value for the bigger market thesis:
@@ -23,7 +23,7 @@ Renders every Lictor + GenerationAI public artifact into Hebrew, Spanish, Portug
 
 ### Cadence
 - **Continuous** — heartbeat every 6 hours
-- Pulls from a queue of "to-translate" artifacts populated by Quill / Magnet
+- Pulls from a queue of "to-translate" artifacts populated by Lyrebird / Bee
 - One artifact per heartbeat per language (so 4 outputs per fire if all 4 queues have work)
 - Falls back to "no work" state cleanly when queues are empty
 
@@ -39,16 +39,16 @@ Renders every Lictor + GenerationAI public artifact into Hebrew, Spanish, Portug
 - Logs every translation to `~/GenerationAI/agents/translator/memory/YYYY-MM-DD.md`
 
 ### Quality gate
-Mirror reviews every Friday — spot-checks 3 translations per language for fidelity, tone, technical accuracy. Bad translations get re-flagged for re-translation.
+Mantis reviews every Friday — spot-checks 3 translations per language for fidelity, tone, technical accuracy. Bad translations get re-flagged for re-translation.
 
 ### Inter-agent contracts
-- **Reads from:** Quill (writer), Magnet (landing pages), the teardown engine output
-- **Writes for:** Mirror (review), dev (landing-site translation manifests)
+- **Reads from:** Lyrebird (writer), Bee (landing pages), the teardown engine output
+- **Writes for:** Mantis (review), dev (landing-site translation manifests)
 - **Coordination protocol:** Files on disk. No API calls.
 
 ---
 
-## Agent 13 — 🎬 Reel (video-script writer)
+## Agent 13 — 🎬 Peacock (video-script writer)
 
 ### What this agent does
 Generates weekly scripts for Raffa's talking-head videos and short-form content. Three formats per week:
@@ -61,10 +61,10 @@ Each script includes: hook (first 3 seconds), beats (3-5 named segments), B-roll
 ### What this agent does NOT do
 - Doesn't write Raffa's personality — pulls voice from `~/GenerationAI/calibration/dor-voice/` and the previous week's video performance
 - Doesn't produce video — it produces scripts that Raffa records
-- Doesn't pick the topic — Conductor (planner) assigns the week's video themes from the teardown calendar
+- Doesn't pick the topic — Wolf (planner) assigns the week's video themes from the teardown calendar
 
 ### Cadence
-- **Weekly heartbeat** — Sundays at 10:00 IST (after Mirror's weekly review so Reel can incorporate what worked last week)
+- **Weekly heartbeat** — Sundays at 10:00 IST (after Mantis's weekly review so Peacock can incorporate what worked last week)
 - Outputs 3 scripts per fire
 
 ### Model recommendation
@@ -78,16 +78,16 @@ Each script includes: hook (first 3 seconds), beats (3-5 named segments), B-roll
 - Memory entry: `~/GenerationAI/agents/reel/memory/YYYY-MM-DD.md`
 
 ### Inter-agent contracts
-- **Reads from:** Quill's teardown drafts, Trends' viral-format intel, Pulse's hook formulas, Mirror's last-week performance review
-- **Writes for:** Raffa (recording), Conductor (Friday brief)
+- **Reads from:** Lyrebird's teardown drafts, Starling' viral-format intel, Bat's hook formulas, Mantis's last-week performance review
+- **Writes for:** Raffa (recording), Wolf (Friday brief)
 - **Coordination protocol:** Files on disk
 
 ### Special handling
-Reel maintains a "what's hitting" file — `~/GenerationAI/output/video-performance.jsonl` — fed by Raffa weekly with view counts and engagement metrics from past videos. This is the feedback loop. Without it, Reel optimizes blind.
+Peacock maintains a "what's hitting" file — `~/GenerationAI/output/video-performance.jsonl` — fed by Raffa weekly with view counts and engagement metrics from past videos. This is the feedback loop. Without it, Peacock optimizes blind.
 
 ---
 
-## Agent 14 — 🎙️ Booth (podcast booker + conference scout)
+## Agent 14 — 🎙️ Nightingale (podcast booker + conference scout)
 
 ### What this agent does
 Two jobs:
@@ -126,15 +126,15 @@ Output: a Markdown digest at `~/GenerationAI/output/conferences/YYYY-MM-DD-cfp-d
 - Memory: `~/GenerationAI/agents/booth/memory/YYYY-MM-DD.md`
 
 ### Inter-agent contracts
-- **Reads from:** Trends (what's hot this week in the dev tool space), Probe (recent competitive moves that make for relevant pitch angles), Conductor's briefings
+- **Reads from:** Starling (what's hot this week in the dev tool space), Mongoose (recent competitive moves that make for relevant pitch angles), Wolf's briefings
 - **Writes for:** Raffa (review + send)
 
 ### Special handling
-Booth maintains a `~/GenerationAI/output/outreach/sent-podcasts.jsonl` log of what got sent vs ignored. After 6 weeks of data, Booth starts ranking which outreach patterns convert better. This is the long-game asymmetry.
+Nightingale maintains a `~/GenerationAI/output/outreach/sent-podcasts.jsonl` log of what got sent vs ignored. After 6 weeks of data, Nightingale starts ranking which outreach patterns convert better. This is the long-game asymmetry.
 
 ---
 
-## Agent 15 — 🤝 Bridge (community manager + GitHub triage)
+## Agent 15 — 🤝 Meerkat (community manager + GitHub triage)
 
 ### What this agent does
 Continuously triages incoming GitHub activity on the `lictor` repo. Three jobs:
@@ -146,7 +146,7 @@ Continuously triages incoming GitHub activity on the `lictor` repo. Three jobs:
 
 **Job 2 — Contributor welcome.** First-time contributors get a personalized welcome comment on their first PR. Includes: thanks, a link to CONTRIBUTING.md, and a "your PR will be reviewed within 48h" expectation.
 
-**Job 3 — Weekly user spotlight.** Every Friday, find one cool thing a community user did with Lictor (a custom check, a creative use case, a teardown they ran themselves). Draft a 1-paragraph spotlight post that Quill polishes for the weekly newsletter.
+**Job 3 — Weekly user spotlight.** Every Friday, find one cool thing a community user did with Lictor (a custom check, a creative use case, a teardown they ran themselves). Draft a 1-paragraph spotlight post that Lyrebird polishes for the weekly newsletter.
 
 ### What this agent does NOT do
 - Doesn't merge PRs (escalates to dev)
@@ -170,12 +170,12 @@ Continuously triages incoming GitHub activity on the `lictor` repo. Three jobs:
 
 ### Inter-agent contracts
 - **Reads from:** GitHub API (issues, PRs, contributors)
-- **Writes for:** Quill (spotlight draft), dev (escalated triages), Conductor (weekly issue volume metrics)
+- **Writes for:** Lyrebird (spotlight draft), dev (escalated triages), Wolf (weekly issue volume metrics)
 
 ### Special handling
-Bridge needs a GitHub Personal Access Token with `repo` + `issues` scope, stored in `~/.openclaw/secrets/github-bridge.token`. Set up before the agent comes online.
+Meerkat needs a GitHub Personal Access Token with `repo` + `issues` scope, stored in `~/.openclaw/secrets/github-bridge.token`. Set up before the agent comes online.
 
-Bridge respects a `do-not-respond.txt` file at the repo root — any issue authors listed there get human-only review (used for known harassers or hostile actors).
+Meerkat respects a `do-not-respond.txt` file at the repo root — any issue authors listed there get human-only review (used for known harassers or hostile actors).
 
 ---
 
@@ -183,10 +183,10 @@ Bridge respects a `do-not-respond.txt` file at the repo root — any issue autho
 
 | Agent | Monthly inference cost |
 |---|---|
-| Translator | ~$75 |
-| Reel | ~$13 |
-| Booth | ~$2 |
-| Bridge | ~$24 |
+| Parrot | ~$75 |
+| Peacock | ~$13 |
+| Nightingale | ~$2 |
+| Meerkat | ~$24 |
 | **Total** | **~$114/mo** |
 
 Within the Q1 2027 revenue assumptions of $10-11k MRR. ~1% of expected revenue.
@@ -197,10 +197,10 @@ Within the Q1 2027 revenue assumptions of $10-11k MRR. ~1% of expected revenue.
 
 | Agent | Bring online when... |
 |---|---|
-| **Bridge** | Repo flipped public + first 10 community issues filed. ~Oct 13, 2026. |
-| **Reel** | Raffa commits to weekly video cadence + the founder channel pilot succeeds. ~Nov 1, 2026. |
-| **Translator** | First Spanish + Portuguese landing pages ship (Q4 2026). ~Dec 1, 2026. |
-| **Booth** | Raffa has bandwidth for 2-3 podcasts/month + Reel is producing reliably. ~Jan 15, 2027. |
+| **Meerkat** | Repo flipped public + first 10 community issues filed. ~Oct 13, 2026. |
+| **Peacock** | Raffa commits to weekly video cadence + the founder channel pilot succeeds. ~Nov 1, 2026. |
+| **Parrot** | First Spanish + Portuguese landing pages ship (Q4 2026). ~Dec 1, 2026. |
+| **Nightingale** | Raffa has bandwidth for 2-3 podcasts/month + Peacock is producing reliably. ~Jan 15, 2027. |
 
 Don't bring them all online at once. Each new agent adds operational surface area. Sequence based on user-facing demand, not on the strategic plan calendar.
 
@@ -219,6 +219,6 @@ For each agent, when bringing online:
 - [ ] Add to openclaw.json agent registry
 - [ ] Add cron heartbeat in `~/GenerationAI/scripts/genai.crontab` (don't forget Referer header)
 - [ ] Add to Mission Control's /api/run VALID_AGENTS whitelist
-- [ ] Mirror reviews the agent's output for 2 weeks before the agent runs unsupervised
+- [ ] Mantis reviews the agent's output for 2 weeks before the agent runs unsupervised
 - [ ] Document any new tokens / API keys in `~/.openclaw/secrets/`
 - [ ] Add to monitoring (mission-control office view)
