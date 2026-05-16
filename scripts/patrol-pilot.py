@@ -29,6 +29,38 @@ TIMEOUT = 8
 
 # --- Severity-typed findings ---------------------------------------------------
 
+# Generic JWT detector — we parse the payload to determine role
+JWT_RX = re.compile(r'eyJ[A-Za-z0-9_-]{10,}\.eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{20,}')
+
+# Firebase config inline in a bundle is fine for anon, dangerous if it includes service-account creds
+FIREBASE_CONFIG_RX = re.compile(r'(firebaseConfig|initializeApp)\s*\(?\s*\{[^}]{50,500}\}')
+
+# Endpoints we probe per app — public, low-burden, often informative
+API_PROBES = [
+    ("/api/users",        "high",     "Returns user list to anyone"),
+    ("/api/user",         "medium",   "Returns current-user JSON without auth"),
+    ("/api/auth/session", "info",     "Auth endpoint exposed (informative)"),
+    ("/api/admin",        "high",     "Admin endpoint reachable"),
+    ("/api/leads",        "high",     "Returns lead list"),
+    ("/api/customers",    "high",     "Returns customer list"),
+    ("/admin",            "medium",   "Admin page returns content (not a redirect)"),
+    ("/dashboard",        "info",     "Dashboard page exists"),
+    ("/.env",             "critical", "Env file served — handled separately above"),
+    ("/.git/HEAD",        "high",     ".git directory served — handled separately above"),
+]
+# Heuristic: if response body contains JSON with email-shaped strings, that's likely user data
+EMAIL_RX = re.compile(rb'"[^"]*@[A-Za-z0-9._-]+\.[A-Za-z]{2,}"')
+
+import base64
+def _decode_jwt_payload(jwt):
+    try:
+        parts = jwt.split(".")
+        if len(parts) < 2: return None
+        pad = "=" * (-len(parts[1]) % 4)
+        return json.loads(base64.urlsafe_b64decode(parts[1] + pad).decode("utf-8", "replace"))
+    except Exception:
+        return None
+
 SECRET_PATTERNS = [
     # (label, severity, regex, why-this-matters)
     ("Supabase service-role key in JS bundle",        "critical",
@@ -168,6 +200,7 @@ def check_js_bundle_secrets(homepage, html: bytes) -> list[Finding]:
             bundle_url = url
         if len(bundle_text) > 200_000: break  # enough
     if not bundle_text: return f
+    # 1. Regex-based secret hunt
     for label, sev, regex, why in SECRET_PATTERNS:
         m = regex.search(bundle_text)
         if m:
@@ -176,6 +209,58 @@ def check_js_bundle_secrets(homepage, html: bytes) -> list[Finding]:
                              label,
                              evidence=f"Found in {bundle_url}: {redacted}",
                              fix=f"Rotate that credential NOW. Then move it out of the client bundle — only server-side code should hold it. Why this matters: {why}"))
+    # 2. Decode every JWT in the bundle; flag if role=service_role or other privileged
+    seen_jwts = set()
+    for jm in JWT_RX.finditer(bundle_text):
+        jwt = jm.group(0)
+        if jwt in seen_jwts: continue
+        seen_jwts.add(jwt)
+        payload = _decode_jwt_payload(jwt)
+        if not payload: continue
+        role = payload.get("role")
+        if role == "service_role":
+            redacted = jwt[:18] + "…" + jwt[-4:]
+            f.append(Finding("critical", "service-role-jwt-in-bundle",
+                             "Supabase service_role JWT in JS bundle (decoded payload confirms role=service_role)",
+                             evidence=f"{bundle_url} contains: {redacted}",
+                             fix="Rotate the Supabase service_role key NOW (Supabase dashboard → Project Settings → API → Reset). Then audit which env var is named NEXT_PUBLIC_* / VITE_* — those leak into the bundle. Use a non-public env name and only access from server code (Server Components, route handlers, edge functions)."))
+    # 3. Firebase config inline — usually anon-safe but flag for review
+    for m in FIREBASE_CONFIG_RX.finditer(bundle_text):
+        if "privateKey" in m.group(0) or "private_key" in m.group(0):
+            f.append(Finding("critical", "firebase-service-account-in-bundle",
+                             "Firebase service-account credentials in JS bundle",
+                             evidence=f"{bundle_url}: firebaseConfig with privateKey field",
+                             fix="Rotate the service account key immediately. Firebase service accounts MUST stay server-side only."))
+    return f
+
+def check_api_probes(homepage) -> list[Finding]:
+    """Politely probe a small set of common endpoints. One request each, short timeout."""
+    f = []
+    for path, sev, why in API_PROBES[:7]:  # cap so we don't hammer
+        url = urljoin(homepage, path)
+        r = http_get(url, max_bytes=10_000)
+        if not r: continue
+        status, headers, body = r
+        time.sleep(0.4)
+        if status >= 400: continue
+        ct = headers.get("content-type", "").lower()
+        if "json" in ct:
+            # Look for email addresses → likely user data leak
+            emails = EMAIL_RX.findall(body or b"")
+            if len(emails) >= 1:
+                sample = emails[0].decode("utf-8", "replace").strip('"')
+                f.append(Finding("high" if path in ("/api/users","/api/leads","/api/customers") else sev,
+                                 "open-api-endpoint",
+                                 f"{path} returns JSON with email addresses to unauthenticated requests",
+                                 evidence=f"{url} → HTTP {status}, contains email like {sample[:24]}…",
+                                 fix=f"Add an auth check to {path}. Either gate behind a session check, a server-side API key, or remove the endpoint entirely if it's not meant to be public. {why}"))
+        elif path == "/admin" and status == 200 and b"<html" in body[:300].lower():
+            # Admin page renders content (not a redirect to login)
+            if b"login" not in body[:2000].lower() and b"sign in" not in body[:2000].lower():
+                f.append(Finding("medium", "admin-page-no-auth",
+                                 "/admin returns content without redirecting to login",
+                                 evidence=f"{url} → HTTP 200, no login prompt in first 2K of body",
+                                 fix="Add server-side auth gate before rendering /admin. Frontend-only `if (!user) redirect()` is bypassable — guard on the server."))
     return f
 
 def derive_grade(findings) -> str:
@@ -253,8 +338,98 @@ def scan_one(repo) -> ScanResult:
     if status == 200:
         r.findings.extend(check_exposed_files(r.deployed_url))
         r.findings.extend(check_js_bundle_secrets(r.deployed_url, html))
+        r.findings.extend(check_api_probes(r.deployed_url))
     r.grade = derive_grade(r.findings)
     return r
+
+# ---- Cohort B: mature, custom-domain ----------------------------------------
+
+PAAS_SUFFIXES = (
+    ".vercel.app", ".pages.dev", ".netlify.app", ".bolt.host", ".bolt.new",
+    ".replit.app", ".replit.dev", ".github.io", ".herokuapp.com", ".onrender.com",
+    ".surge.sh", ".lovable.app", ".v0.app",
+)
+
+def is_custom_domain(url: str) -> bool:
+    try:
+        host = urlparse(url).hostname or ""
+        return bool(host) and not any(host.endswith(s) for s in PAAS_SUFFIXES)
+    except Exception:
+        return False
+
+def gh_search_mature(since_days: int, until_days: int) -> list[dict]:
+    """Repos PUSHED in the [since_days..until_days] window. We want the
+    apps that survived past initial demo and still get touched."""
+    from datetime import datetime, timedelta, timezone
+    end = (datetime.now(timezone.utc) - timedelta(days=since_days)).strftime("%Y-%m-%d")
+    start = (datetime.now(timezone.utc) - timedelta(days=until_days)).strftime("%Y-%m-%d")
+    queries = [
+        f'lovable pushed:{start}..{end} fork:false',
+        f'"bolt.new" OR "bolt-new" pushed:{start}..{end} fork:false',
+        f'"v0.dev" pushed:{start}..{end} fork:false',
+    ]
+    seen = set()
+    results = []
+    for q in queries:
+        try:
+            out = subprocess.check_output(
+                ["gh", "api", "-X", "GET", "search/repositories",
+                 "-f", f"q={q}", "-f", "per_page=100", "--jq", ".items"],
+                stderr=subprocess.DEVNULL, timeout=30)
+            items = json.loads(out)
+        except Exception:
+            continue
+        for it in items:
+            key = it["full_name"]
+            if key in seen: continue
+            seen.add(key)
+            results.append({
+                "repo": key, "repo_url": it["html_url"],
+                "homepage": (it.get("homepage") or "").strip(),
+                "description": (it.get("description") or "").strip(),
+                "platform_hint": platform_from(q, it),
+                "stars": it.get("stargazers_count", 0),
+                "pushed_at": it.get("pushed_at"),
+            })
+        time.sleep(2)
+    return results
+
+# ---- Cohort C: platform showcase scraping ----------------------------------
+
+def fetch_showcase_urls(source: str) -> list[dict]:
+    """Scrape a platform's showcase page for app URLs.
+    source ∈ {lovable, v0, bolt}.
+    Best-effort — sites may rate-limit or change HTML; not worth retrying."""
+    sources = {
+        "lovable": "https://lovable.dev/showcase",
+        "v0":      "https://v0.app/community",
+        "bolt":    "https://bolt.new/templates",
+    }
+    url = sources.get(source)
+    if not url: return []
+    r = http_get(url, max_bytes=1_500_000)
+    if not r: return []
+    status, _, body = r
+    if status != 200: return []
+    html = body.decode("utf-8", "replace")
+    # Look for links that go OUT to the apps (not back into the platform)
+    # Pattern: href="https://[non-platform-domain].com" — single quotes, double, no quotes
+    href_rx = re.compile(r'href=["\']?(https?://[^\s"\'<>]+)', re.I)
+    raw = href_rx.findall(html)
+    plat_root = urlparse(url).hostname.replace("www.", "")
+    out = []
+    seen = set()
+    for u in raw:
+        host = (urlparse(u).hostname or "").replace("www.", "")
+        if not host or host.endswith(plat_root): continue
+        if any(host.endswith(s.lstrip(".")) for s in (".twitter.com", ".x.com", ".github.com", ".discord.com", ".linkedin.com", ".youtube.com", ".instagram.com")):
+            continue
+        if host in seen: continue
+        seen.add(host)
+        out.append({"repo": f"showcase:{source}:{host}", "repo_url": url,
+                    "homepage": u.split('#')[0].split('?')[0].rstrip('/'),
+                    "platform_hint": source, "stars": 0, "description": ""})
+    return out
 
 def render_report(results, output_path):
     from datetime import datetime
@@ -293,15 +468,37 @@ def render_report(results, output_path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--since", type=int, default=7, help="Days back to search")
+    ap.add_argument("--mode", choices=["fresh", "mature", "showcase"], default="fresh",
+                    help="fresh = recent created (cohort A); mature = pushed 60-180d ago, custom-domain only (B); showcase = scraped from Lovable/v0/Bolt (C)")
+    ap.add_argument("--since", type=int, default=7, help="[fresh] Days back to search by created date")
+    ap.add_argument("--mature-since", type=int, default=60, help="[mature] Min days since push")
+    ap.add_argument("--mature-until", type=int, default=180, help="[mature] Max days since push")
+    ap.add_argument("--showcase-source", choices=["lovable","v0","bolt","all"], default="all")
     ap.add_argument("--output", default="docs/launch/patrol-pilot-latest.md")
     ap.add_argument("--max", type=int, default=60, help="Cap on scans this run")
     args = ap.parse_args()
 
-    print(f"[+] Searching GitHub for repos created in last {args.since} days...")
-    repos = gh_search_recent(args.since)
-    print(f"[+] Found {len(repos)} unique repos")
-    with_url = [r for r in repos if r["homepage"]]
+    if args.mode == "fresh":
+        print(f"[+] [fresh] Searching GitHub for repos created in last {args.since} days...")
+        repos = gh_search_recent(args.since)
+        with_url = [r for r in repos if r["homepage"]]
+    elif args.mode == "mature":
+        print(f"[+] [mature] Searching GitHub for repos pushed {args.mature_since}-{args.mature_until} days ago...")
+        repos = gh_search_mature(args.mature_since, args.mature_until)
+        with_url = [r for r in repos if r["homepage"] and is_custom_domain(
+            r["homepage"] if r["homepage"].startswith("http") else "https://" + r["homepage"])]
+        print(f"[+] {len(repos)} repos found, {len(with_url)} have custom domains (skipped PaaS subdomains)")
+    else:  # showcase
+        srcs = ["lovable","v0","bolt"] if args.showcase_source == "all" else [args.showcase_source]
+        repos = []
+        for s in srcs:
+            print(f"[+] [showcase:{s}] scraping featured apps...")
+            items = fetch_showcase_urls(s)
+            print(f"    {len(items)} unique app domains found")
+            repos.extend(items)
+            time.sleep(2)
+        with_url = [r for r in repos if r["homepage"]]
+    print(f"[+] Found {len(repos)} total candidates")
     print(f"[+] {len(with_url)} have deployed URLs — scanning up to {args.max}")
     to_scan = with_url[:args.max]
     results = []
