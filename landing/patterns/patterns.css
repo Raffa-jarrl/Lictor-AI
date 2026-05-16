@@ -181,3 +181,21 @@
   border-top: 1px solid var(--border);
 }
 .waitlist-footer .link { color: var(--accent); }
+
+/* Status pills next to each surface heading */
+.status-pill {
+  display: inline-block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  margin-left: var(--space-3);
+  vertical-align: middle;
+  font-weight: 600;
+  border: 1px solid;
+}
+.status-pill--live    { background: var(--success-tint); color: var(--success); border-color: var(--success); }
+.status-pill--soon    { background: var(--warning-tint); color: var(--warning); border-color: var(--warning); }
+.status-pill--partial { background: var(--info-tint);    color: var(--text-muted); border-color: var(--text-muted); }
