@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lictor AI — The security crew for apps you built with AI</title>
-  <meta name="description" content="Free open-source security for vibe-coded apps. Audits your Lovable / Bolt / v0 / Cursor project in plain English. 11 AI agents, one slash command, no signup, no telemetry, Apache 2.0." />
+  <meta name="description" content="Free open-source security for vibe-coded apps. Audits your AI-generated app in plain English. 11 AI agents, one slash command, no signup, no telemetry, Apache 2.0." />
 
   <meta property="og:title" content="Lictor AI — The security crew for apps you built with AI" />
-  <meta property="og:description" content="11 AI agents audit your Lovable / Bolt / v0 app in plain English. Free, open-source, runs locally inside Claude Code. No signup, no compliance dialect, no per-seat pricing." />
+  <meta property="og:description" content="11 AI agents audit your AI-generated app in plain English. Free, open-source, runs locally inside Claude Code. No signup, no compliance dialect, no per-seat pricing." />
   <meta property="og:url" content="https://lictorai.com" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://lictorai.com/og/og-image.png" />
@@ -35,6 +35,7 @@
     </a>
     <nav class="nav__links">
       <a href="/scan">Scan</a>
+      <a href="/patterns">Patterns</a>
       <a href="#suite">Suite</a>
       <a href="#crew">The crew</a>
       <a href="/donate">Donate</a>
@@ -50,8 +51,8 @@
         The security crew for apps you built with AI.
       </h1>
       <p class="hero__sub">
-        Your Lovable app exposes the database. Your Bolt project leaks the Stripe key.
-        Your v0 page lets anyone read every user&rsquo;s row. You wouldn&rsquo;t know any of that.
+        Your AI-built backend exposes the database. Your AI-built mobile app ships the API key in the bundle.
+        Your AI-generated admin page lets anyone read every user&rsquo;s row. You wouldn&rsquo;t know any of that.
         Lictor&rsquo;s 11 AI agents audit your project in plain English in under a minute.
         Free, open source, runs locally inside Claude Code.
       </p>
@@ -90,7 +91,7 @@
 #     logged-in user. Add RLS policy.
 # 🟡 MED · Stripe webhook unsigned. (5 more...)</pre>
           <ul class="card__points">
-            <li>7 checks tuned for Lovable / Bolt / v0 / Cursor / Replit patterns</li>
+            <li>7 checks tuned for AI-generated app patterns (web + mobile)</li>
             <li>Plain English — no &ldquo;information disclosure vulnerability,&rdquo; just &ldquo;anyone can read your customer list&rdquo;</li>
             <li>Three sibling skills: <span class="mono">/lictor-explain</span>, <span class="mono">/lictor-fix-it</span>, <span class="mono">/lictor-rotate</span></li>
             <li>Runs 100% local. No token, no signup, no telemetry, no per-seat pricing</li>
@@ -106,7 +107,7 @@
     <section id="suite" class="suite">
       <h2 class="section__title">When the audit isn&rsquo;t enough</h2>
       <p class="section__sub">
-        Three more layers when your AI-built app starts handling real traffic.
+        Three more layers when your app starts handling real traffic — works for web, mobile, and AI features.
         Same Rust engine, ships everywhere at once.
       </p>
 
@@ -119,7 +120,7 @@
             Audits any deployed AI-built site you visit. Catches the issues before you sign up.
           </p>
           <ul class="card__points">
-            <li>Detects Lovable / Bolt / v0 / Next.js / Supabase fingerprints on any URL</li>
+            <li>Detects modern web + mobile app fingerprints on any URL</li>
             <li>5 static checks: leaked secrets, exposed DB, open auth, CORS, AI-agent surface</li>
             <li>Local-only — no URL ever leaves your browser</li>
             <li>Real-time alarm when an AI agent on the page touches your cookies</li>
@@ -196,7 +197,7 @@ const client = wrap(new OpenAI(), {
         </div>
         <div class="why__item">
           <h3>📡 Hawk &middot; pattern scout</h3>
-          <p>Hunts for the bug shapes that vibe-coders ship most. Lovable RLS gaps, Bolt env-var leaks, v0 unsigned webhooks, Cursor hallucinated npm packages. Trained on 1,430+ real audits.</p>
+          <p>Hunts for the bug shapes that vibe-coders ship most. RLS gaps, env-var leaks, unsigned webhooks, hallucinated dependencies. Trained on 1,430+ real audits.</p>
         </div>
         <div class="why__item">
           <h3>🖊️ Lyrebird &middot; voice keeper</h3>
@@ -227,7 +228,7 @@ const client = wrap(new OpenAI(), {
           <h3>40-62% of AI-built code ships vulnerable</h3>
           <p>
             91.5% of vibe-coded apps had at least one AI-hallucination flaw in Q1 2026.
-            Lovable exposed 18,000 users across 170+ databases in February.
+            Recent vibe-coded app incidents exposed tens of thousands of users via simple RLS misconfigurations.
             8 million people use these platforms. Most of them don&rsquo;t know what an &ldquo;RLS policy&rdquo; is.
           </p>
         </div>
@@ -235,7 +236,7 @@ const client = wrap(new OpenAI(), {
           <h3>Enterprise security tools weren&rsquo;t built for you</h3>
           <p>
             Snyk, Veracode, Checkmarx — they all assume a 5-developer team and a CISO who speaks SOC 2.
-            Lictor assumes you, a Claude Code window, and a Lovable app you shipped on Saturday.
+            Lictor assumes you, an AI assistant, and an app you shipped over a weekend.
           </p>
         </div>
         <div class="why__item">
@@ -284,8 +285,8 @@ const client = wrap(new OpenAI(), {
       </p>
       <p class="founder__body">
         Lictor exists because the people shipping the most software right now — solo founders
-        building from Lovable on Saturday, indie hackers prototyping in Cursor at midnight, designers
-        deploying a Bolt project before their morning coffee — don&rsquo;t have a CISO. They have themselves,
+        building an AI-generated SaaS on Saturday, indie hackers prototyping with an AI assistant at midnight, designers
+        deploying an AI-built mobile app before their morning coffee — don&rsquo;t have a CISO. They have themselves,
         an AI assistant, and 48 hours to ship something. They need security tooling that speaks
         plain English and doesn&rsquo;t require a sales call.
       </p>
