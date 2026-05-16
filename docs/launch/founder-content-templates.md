@@ -22,7 +22,7 @@ You'll record one long-form (8–12 min) and two shorts (under 60s) per week. Th
 
 ## Long-form template — The Teardown Walkthrough (8–12 min)
 
-This is the workhorse. One per week. Pull the subject from the [teardown engine pipeline](./teardown-engine.md) — by the time you record on Friday, Probe has already audited the target and Quill has drafted the writeup. You're narrating the artifact.
+This is the workhorse. One per week. Pull the subject from the [teardown engine pipeline](./teardown-engine.md) — by the time you record on Friday, Mongoose has already audited the target and Lyrebird has drafted the writeup. You're narrating the artifact.
 
 ### Beat structure (8 beats, ~1 min each)
 
@@ -98,7 +98,7 @@ See you next Tuesday."
 
 ### Pre-recording checklist
 - [ ] Teardown subject confirmed (Pitchtank / target for the week)
-- [ ] Quill's draft report read top-to-bottom
+- [ ] Lyrebird's draft report read top-to-bottom
 - [ ] AUDIT.json from the audit pulled up on screen for the walkthrough
 - [ ] Founder disclosure email sent at least 14 days prior
 - [ ] If founder fixed it: get their consent to mention them by name on camera
@@ -116,26 +116,26 @@ Every other week, swap the teardown for a "meet the crew" piece. These build the
 [BEAT 1 — Open (0:00–1:00)]
 Hook: tease the agent and what they do.
 "Lictor's audit doesn't run on one big AI. It runs on eleven. Today
-I want you to meet Sieve."
+I want you to meet Owl."
 
 Why this matters (15 sec):
 "Most security tools are a black box: input goes in, findings come
-out. Sieve is the reason ours isn't. Sieve scores every finding before
+out. Owl is the reason ours isn't. Owl scores every finding before
 it ships to you. Anything below 6 out of 10 doesn't make the report.
 That's why our reports are shorter than other tools'."
 
 [BEAT 2 — Introduce the agent (1:00–2:30)]
 Show the agent's SOUL.md file on screen. Read 2-3 key lines aloud.
-"Here's Sieve's SOUL.md — every agent has one. It's a markdown file.
+"Here's Owl's SOUL.md — every agent has one. It's a markdown file.
 It's open source. You can read it..."
 
 The point: transparency. Snyk's agents are proprietary; ours are files
 you can fork.
 
 [BEAT 3 — Show the agent working (2:30–5:00)]
-Run a real audit on a real project. When the audit hits Sieve, pause
+Run a real audit on a real project. When the audit hits Owl, pause
 the screen and walk through what's happening.
-"See here? Sieve just rejected this finding. 5.8 out of 10 — below the
+"See here? Owl just rejected this finding. 5.8 out of 10 — below the
 bar. The audit ran but you didn't see this in the report. That's the
 job."
 
@@ -157,23 +157,23 @@ This is where you teach the user to use the transparency. It's only
 valuable if they know it's there.
 
 [BEAT 6 — Close + CTA (9:00–10:30)]
-"Sieve is one of 11. Next month I'll do Probe. The agents are open —
+"Owl is one of 11. Next month I'll do Mongoose. The agents are open —
 github.com/lictor-ai. The skill is free — lictorai.com/skill. If you've
 got ideas for an agent we should add, the roadmap is public —
 lictorai.com/roadmap. See you next week."
 ```
 
 The crew-demo series eventually does all 11. Sequence:
-1. Sieve (quality gate — most novel mechanic)
-2. Probe (course-currency tester — teaches the second-job concept)
-3. Radar (story scout — bridge to the teardown narrative)
-4. Quill (writer — plain-English voice as character)
-5. Conductor (orchestrator — the "chief of staff" frame)
-6. Magnet (lead-magnet designer — convert curiosity to action)
-7. Mirror (weekly auditor — the meta-agent)
-8. Vibe + Trends (sister-brand pair, do together)
-9. C-3PO (dev — the engineering side)
-10. The four new specialists once they ship (Translator / Reel / Booth / Bridge)
+1. Owl (quality gate — most novel mechanic)
+2. Mongoose (course-currency tester — teaches the second-job concept)
+3. Hawk (story scout — bridge to the teardown narrative)
+4. Lyrebird (writer — plain-English voice as character)
+5. Wolf (orchestrator — the "chief of staff" frame)
+6. Bee (lead-magnet designer — convert curiosity to action)
+7. Mantis (weekly auditor — the meta-agent)
+8. Cuttlefish + Starling (sister-brand pair, do together)
+9. Octopus (dev — the engineering side)
+10. The four new specialists once they ship (Parrot / Peacock / Nightingale / Meerkat)
 
 ---
 
@@ -215,7 +215,7 @@ OR
 2. **The competitor announcement reaction** — "[Competitor] just shipped X. Here's what it actually does."
 3. **The pattern callout** — "If you built on [Lovable/Bolt/v0], do this one check right now."
 4. **The voice-bug** — "The worst compliance dialect I read this week was..."
-5. **The agent moment** — "Sieve just rejected a finding in today's audit. Here's why."
+5. **The agent moment** — "Owl just rejected a finding in today's audit. Here's why."
 6. **The 1-line fix** — "Lovable's RLS gap is real. Here's the one paste that fixes it."
 7. **The honest comparison** — "Lictor caught X. Snyk caught Y. Both right. Different jobs."
 8. **The behind-the-scenes** — "Building Lictor's content engine. Today: setting up the public roadmap."
@@ -400,10 +400,10 @@ If you're starting from zero, record these five in this sequence. They build on 
  - One concrete example finding from a Lovable app
  - CTA: lictorai.com
 
-2. **"Meet Conductor — the orchestrator behind every Lictor audit"** (8–12 min Crew Demo)
+2. **"Meet Wolf — the orchestrator behind every Lictor audit"** (8–12 min Crew Demo)
  - Why a crew not a single AI
- - Show Conductor's SOUL.md
- - Walk through a Conductor briefing on screen
+ - Show Wolf's SOUL.md
+ - Walk through a Wolf briefing on screen
  - The "transparency is the product" frame
  - CTA: github.com/lictor-ai
 
@@ -460,9 +460,9 @@ Before a video goes live:
 
 These are for next session:
 
-- **Podcast appearance prep** (when Booth agent books your first one) — different format, different prep
+- **Podcast appearance prep** (when Nightingale agent books your first one) — different format, different prep
 - **Conference talk decks** — when the first CFP gets accepted, we'll write the deck template
-- **Multi-language video versions** (when Translator agent ships, Q4 2026)
+- **Multi-language video versions** (when Parrot agent ships, Q4 2026)
 - **Interview prep** for when journalists call after a viral teardown
 
 Ship the first 5 videos. Then we extend the kit based on what worked.

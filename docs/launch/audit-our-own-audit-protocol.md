@@ -2,7 +2,7 @@
 
 > How Lictor handles community reports that we got something wrong.
 > Status: live. This protocol runs forever.
-> Owner: Mirror agent. Escalation owner: Raffa.
+> Owner: Mantis agent. Escalation owner: Raffa.
 > Last updated: 2026-05-15
 
 ---
@@ -45,7 +45,7 @@ The finding is correct, but the language is wrong — too jargony, too alarmist,
 
 > Example: Lictor said *"Insufficient input validation on /api/users endpoint"* instead of *"Anyone can pass ?role=admin to your /api/users endpoint and get admin access."*
 
-**Difference in handling:** No detection-rule change. Quill agent rewrites the finding text. Docs/skill PR, not a check change. Goes through Friday voice calibration.
+**Difference in handling:** No detection-rule change. Lyrebird agent rewrites the finding text. Docs/skill PR, not a check change. Goes through Friday voice calibration.
 
 All three types use the same intake flow. They diverge at the investigation step.
 
@@ -65,10 +65,10 @@ All three types use the same intake flow. They diverge at the investigation step
 
 No CISSP gate. No NDA. No "are you sure?" friction. The template is the contract — fill it out, hit submit.
 
-**First-response SLA.** Bridge agent owns this.
+**First-response SLA.** Meerkat agent owns this.
 
-- **Acknowledge within 4 hours.** Bridge replies on the issue, confirms the report type, asks any clarifying questions, applies labels.
-- **Triage to Mirror within 24 hours.** Bridge tags the report with severity, agent-of-origin if known (which of the 11 agents produced the finding), target platform, and routes to Mirror agent's queue.
+- **Acknowledge within 4 hours.** Meerkat replies on the issue, confirms the report type, asks any clarifying questions, applies labels.
+- **Triage to Mantis within 24 hours.** Meerkat tags the report with severity, agent-of-origin if known (which of the 11 agents produced the finding), target platform, and routes to Mantis agent's queue.
 - **Escalate to Raffa within 48 hours** if the report is a critical false negative (see section 6) or a high-visibility critic post.
 
 **Labels applied during triage:**
@@ -86,8 +86,8 @@ These labels feed the monthly accuracy report. They are not optional.
 
 ### For false positives
 
-1. **Mirror agent reproduces locally.** Pulls the user's snippet (or repo), runs the audit, confirms the misfire.
-2. **Identifies which check + which agent produced the finding.** Logs the agent-of-origin label if Bridge didn't already.
+1. **Mantis agent reproduces locally.** Pulls the user's snippet (or repo), runs the audit, confirms the misfire.
+2. **Identifies which check + which agent produced the finding.** Logs the agent-of-origin label if Meerkat didn't already.
 3. **Determines the rule's actual intent vs the user's case.** Did the rule intend to catch this and the user is mistaken? Or did the rule overreach? The answer is in writing, on the issue.
 4. **Proposes one of four fixes:**
    - Tighten the rule (narrow the pattern)
@@ -95,23 +95,23 @@ These labels feed the monthly accuracy report. They are not optional.
    - Add a confidence threshold (downgrade severity to INFO when context is ambiguous)
    - Accept the rule as overly cautious and document the rationale on the issue
 5. **Ships in a PR labeled `false-positive-fix-LXXXX`** (LXXXX = the finding ID format from the audit report).
-6. **Reporter credit.** CHANGELOG entry: `Reported by @username on YYYY-MM-DD.` Only with consent — Bridge asks during triage.
+6. **Reporter credit.** CHANGELOG entry: `Reported by @username on YYYY-MM-DD.` Only with consent — Meerkat asks during triage.
 
 ### For false negatives
 
-1. **Mirror + Radar collaborate.** The user has handed us real code that should have been caught. This is gold.
+1. **Mantis + Hawk collaborate.** The user has handed us real code that should have been caught. This is gold.
 2. **Write a regression test** that fails today (because the rule doesn't exist) and will pass once the rule lands. Lives in `tests/regressions/false-negative-LXXXX.test.ts`.
 3. **Write the new rule** (or extend an existing one) until the regression passes.
-4. **Verify no new false positives.** Probe agent re-runs the full audit suite against the 30+ teardown corpus. Any new findings get human-reviewed before merge. This step is non-negotiable — a fix that catches one missed bug but starts flagging legitimate code in five other projects is a net loss.
+4. **Verify no new false positives.** Mongoose agent re-runs the full audit suite against the 30+ teardown corpus. Any new findings get human-reviewed before merge. This step is non-negotiable — a fix that catches one missed bug but starts flagging legitimate code in five other projects is a net loss.
 5. **Ships in a PR labeled `false-negative-fix-LXXXX`.**
 6. **Reporter credit + reward.** CHANGELOG mention. Public spotlight in the next weekly newsletter (with consent). For high-severity catches — patterns that were actively exploited in a real production incident — a bug bounty payment from the Lictor Foundation budget. **Tier suggestion (Raffa to confirm): $100 baseline, $500 for high-severity catches, $1,000 for critical catches tied to a real incident.** Paid via GitHub Sponsors or direct transfer. No invoice gymnastics.
 7. **The pattern becomes a permanent check.** Once shipped, every future audit runs it.
 
 ### For voice-bugs
 
-1. **Quill agent rewrites the finding text.** Same finding ID, new copy.
+1. **Lyrebird agent rewrites the finding text.** Same finding ID, new copy.
 2. **Ships in a PR labeled `voice-bug-fix-LXXXX`.** Touches the check file's report-text template, not the detection logic.
-3. **Goes through Friday calibration.** Mirror reviews the rewrite on the next weekly review pass — same loop the rest of Lictor's voice work goes through. If Mirror flags drift, the rewrite gets revised before shipping.
+3. **Goes through Friday calibration.** Mantis reviews the rewrite on the next weekly review pass — same loop the rest of Lictor's voice work goes through. If Mantis flags drift, the rewrite gets revised before shipping.
 4. **Reporter credit** in the CHANGELOG.
 
 ---
@@ -121,7 +121,7 @@ These labels feed the monthly accuracy report. They are not optional.
 **Where the public sees this work.**
 
 - **CHANGELOG entries.** Every fix — FP, FN, voice-bug — goes in the changelog with the reporter credited (with consent) and a one-line description of what changed. No exceptions, no batched omissions.
-- **Weekly newsletter.** Quill's user-spotlight section can feature a specific fix: *"This week, @username caught a Stripe webhook signature check we missed. Here's the test that now catches it."* One spotlight per newsletter when there's a worthy one. Don't manufacture them.
+- **Weekly newsletter.** Lyrebird's user-spotlight section can feature a specific fix: *"This week, @username caught a Stripe webhook signature check we missed. Here's the test that now catches it."* One spotlight per newsletter when there's a worthy one. Don't manufacture them.
 - **The `lictorai.com/audit-report` page.** A public dashboard rebuilt monthly: open issues, fixed-this-month count, new patterns added, median time-to-fix. Generated from labels + CHANGELOG, not hand-maintained.
 - **Twitter.** Explicit "we got this wrong, here's what we shipped to fix it" posts. Not buried in a thread, not framed as marketing. Surfaced. Pinned for a day when the fix is meaningful.
 - **The accuracy claim.** Lictor never claims "100% accurate," "99% accurate," or any unfalsifiable number. The standing claim is: *"We get things wrong sometimes. Here's how we fix it. Here's the public log of every error and its resolution."* That sentence is on the landing page, in the README, and in the issue template.
@@ -132,11 +132,11 @@ These labels feed the monthly accuracy report. They are not optional.
 
 ## 6. Escalation thresholds
 
-Most reports are routine: a misfire, a missed pattern, a clumsy sentence. These run through Mirror's queue and ship in days. A small number of reports are not routine. These get Raffa.
+Most reports are routine: a misfire, a missed pattern, a clumsy sentence. These run through Mantis's queue and ship in days. A small number of reports are not routine. These get Raffa.
 
 - **Critical false negative.** Lictor missed a vulnerability that was actively exploited in a real production incident. Escalation: Raffa responds personally within 24 hours. Public security advisory published in the GitHub Security tab. Transparent post-mortem published within 7 days — what we missed, why we missed it, what we shipped to catch it, what we changed in our process. **Raffa to confirm:** is 7 days the right post-mortem SLA, or should it be 14?
 - **Pattern of false positives in one category.** More than 3 false-positive reports against the same rule within 30 days. Escalation: that rule is auto-disabled until fixed. Users get notified via the next newsletter and a pinned issue. Root cause posted on the issue thread. **Raffa to confirm:** is the threshold 3 in 30 days, or should it be more sensitive (2 in 14 days) given low total volume in year one?
-- **A critic posts publicly without filing a report.** Someone on Twitter / HN / LinkedIn calls out Lictor's accuracy without opening a GitHub issue. Bridge escalates to Raffa. Raffa responds publicly, on-thread: thank them for the signal, ask for the specific case, invite a GitHub issue, link to this protocol. Never get defensive. Never argue accuracy in a quote-tweet. Move the conversation to where fixes happen.
+- **A critic posts publicly without filing a report.** Someone on Twitter / HN / LinkedIn calls out Lictor's accuracy without opening a GitHub issue. Meerkat escalates to Raffa. Raffa responds publicly, on-thread: thank them for the signal, ask for the specific case, invite a GitHub issue, link to this protocol. Never get defensive. Never argue accuracy in a quote-tweet. Move the conversation to where fixes happen.
 
 ---
 

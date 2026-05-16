@@ -68,30 +68,30 @@ P.S. If you run these checks and find something, reply or DM. I'd love to hear w
 
 ---
 
-## Thread 2 (Jun 4 — Week 3) — Meet Conductor
+## Thread 2 (Jun 4 — Week 3) — Meet Wolf
 
 ```
 1/ Most AI security tools are a black box: input goes in, findings come out.
 
 Lictor's 11 agents are different. Each one is a markdown file in the public repo. You can read why every finding triggers.
 
-Today let me introduce Conductor. 🧵
+Today let me introduce Wolf. 🧵
 
-2/ Conductor is Lictor's orchestrator.
+2/ Wolf is Lictor's orchestrator.
 
-When you run `/lictor-security-check`, Conductor reads your project first. Plans the audit. Routes work to the specialists. Surfaces a daily briefing.
+When you run `/lictor-security-check`, Wolf reads your project first. Plans the audit. Routes work to the specialists. Surfaces a daily briefing.
 
-Without Conductor, the other 10 agents would step on each other.
+Without Wolf, the other 10 agents would step on each other.
 
 3/ The conductor metaphor is real:
 
-🎼 Conductor doesn't play an instrument. They listen to the whole orchestra, decide who plays when, and shape the final piece.
+🎼 Wolf doesn't play an instrument. They listen to the whole orchestra, decide who plays when, and shape the final piece.
 
-Same for the audit — Conductor doesn't run security checks itself. It runs the team.
+Same for the audit — Wolf doesn't run security checks itself. It runs the team.
 
 4/ Why this matters for you:
 
-When you read a Lictor finding, you'll see which agent flagged it. Radar found this. Probe verified it. Sieve scored it 8/10. Quill wrote the plain-English version. Conductor decided this was worth surfacing today vs. deferring.
+When you read a Lictor finding, you'll see which agent flagged it. Hawk found this. Mongoose verified it. Owl scored it 8/10. Lyrebird wrote the plain-English version. Wolf decided this was worth surfacing today vs. deferring.
 
 You see the work.
 
@@ -99,13 +99,13 @@ You see the work.
 
 That's the difference between noise and action.
 
-6/ Conductor's full SOUL.md (the agent's instructions) is at github.com/Raffa-jarrl/Lictor-AI/blob/main/agents/planner/SOUL.md (live when repo flips public around June 1).
+6/ Wolf's full SOUL.md (the agent's instructions) is at github.com/Raffa-jarrl/Lictor-AI/blob/main/agents/planner/SOUL.md (live when repo flips public around June 1).
 
-You can fork it. You can customize how Conductor scores findings for YOUR project's specific concerns.
+You can fork it. You can customize how Wolf scores findings for YOUR project's specific concerns.
 
-7/ Next week: Sieve. The agent that REJECTS findings.
+7/ Next week: Owl. The agent that REJECTS findings.
 
-Yes — Lictor has an agent whose job is to reduce the findings count, not increase it. Sieve scores each finding against 3 personas, and anything below 6/10 doesn't make the report.
+Yes — Lictor has an agent whose job is to reduce the findings count, not increase it. Owl scores each finding against 3 personas, and anything below 6/10 doesn't make the report.
 
 Quality > volume.
 
@@ -151,15 +151,15 @@ The difference is voice.
 
 4/ Lictor has a `voice-bug` issue label on GitHub.
 
-If you read a Lictor finding and think "that sounded too jargony," you file a `voice-bug`. Mirror (our reviewer agent) goes through every voice-bug filing weekly.
+If you read a Lictor finding and think "that sounded too jargony," you file a `voice-bug`. Mantis (our reviewer agent) goes through every voice-bug filing weekly.
 
 Voice is the product. Every regression gets caught.
 
-5/ The forbidden-words list Quill (our writer agent) enforces:
+5/ The forbidden-words list Lyrebird (our writer agent) enforces:
 
 leverage · revolutionary · transform · supercharge · disrupt · robust · paradigm · synergy · ecosystem · holistic
 
-These words mean nothing in security. Quill rejects any finding draft that uses them.
+These words mean nothing in security. Lyrebird rejects any finding draft that uses them.
 
 6/ Example before/after:
 
@@ -179,7 +179,7 @@ If the report reads like a senior engineer pointing things out — you'll fix it
 
 8/ Ships Oct 6. Free. Apache 2.0. lictorai.com/waitlist
 
-P.S. Quill's full SOUL.md is in the repo. The forbidden-words list is right there at line 38. Fork it, extend it, customize it for your team's voice.
+P.S. Lyrebird's full SOUL.md is in the repo. The forbidden-words list is right there at line 38. Fork it, extend it, customize it for your team's voice.
 ```
 
 ---
@@ -248,7 +248,7 @@ Customize each before posting. Don't pre-write all 12 — your audience signal i
 |---|---|---|---|
 | 5 | Jun 25 | Hallucinated npm packages — the attack vector nobody talks about | walk through one real example + the 2-line fix |
 | 6 | Jul 2 | Why your "isAdmin" check is broken | the frontend-only auth pattern + fix |
-| 7 | Jul 9 | Meet Sieve — the agent that rejects findings | quality > volume thread |
+| 7 | Jul 9 | Meet Owl — the agent that rejects findings | quality > volume thread |
 | 8 | Jul 16 | The Lovable + Stripe pattern that lets anyone get free premium | unsigned webhook deep-dive |
 | 9 | Jul 23 | (SHOW HN WEEK) — quieter thread, not a hard hook | reflective thread about building in public |
 | 10 | Jul 30 | Reaction to whatever has happened in the AI security space | timely commentary |
@@ -276,15 +276,15 @@ The HN thread (Week 9-10) is the spike event. Everything before it is building t
 
 ---
 
-## Reel agent integration
+## Peacock agent integration
 
-These threads can be drafted by the Reel agent (per the new-agents spec) once it comes online in Q4 2026. For Beacon, Raffa drafts them weekly OR Quill (the writer agent) generates the first draft and Raffa edits.
+These threads can be drafted by the Peacock agent (per the new-agents spec) once it comes online in Q4 2026. For Beacon, Raffa drafts them weekly OR Lyrebird (the writer agent) generates the first draft and Raffa edits.
 
 Workflow when fully automated:
 
 ```
-Sun PM:  Quill drafts next week's thread from this week's news + the schedule above
-Mon AM:  Mirror reviews; flags any voice issues
+Sun PM:  Lyrebird drafts next week's thread from this week's news + the schedule above
+Mon AM:  Mantis reviews; flags any voice issues
 Mon PM:  Raffa edits the draft, schedules in Hypefury/TweetDeck
 Wed 09:00 PT: thread auto-posts
 Wed PM:  Raffa responds to top 5-10 replies within the algorithmic boost window

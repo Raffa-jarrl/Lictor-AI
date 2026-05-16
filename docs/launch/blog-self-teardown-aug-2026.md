@@ -4,7 +4,7 @@
 > **Author:** Raffa [last name], founder
 > **Audience:** vibe-coders, indie founders, security-curious devs, anyone deciding whether to trust Lictor before launch
 > **Read time:** ~10 minutes
-> **Note for the team:** this is the August content artifact per `year-plan-2026-2027.md`. Findings below are placeholders sketched in the shape Probe's actual output will take. Before publish, swap any `[FINDING_SPECIFIC]` token plus the five finding bodies for whatever Probe actually returns when the audit runs the week of Aug 18. Don't soften the headline if the real audit comes back lighter than this draft — adjust the count, keep the honesty.
+> **Note for the team:** this is the August content artifact per `year-plan-2026-2027.md`. Findings below are placeholders sketched in the shape Mongoose's actual output will take. Before publish, swap any `[FINDING_SPECIFIC]` token plus the five finding bodies for whatever Mongoose actually returns when the audit runs the week of Aug 18. Don't soften the headline if the real audit comes back lighter than this draft — adjust the count, keep the honesty.
 
 ---
 
@@ -30,16 +30,16 @@ Same skill anyone can run on their own project today. Free, open source, Apache 
 
 The 11-agent crew split the work the way they would on any teardown:
 
-- **Conductor** owned the calendar and the briefing
-- **Radar** picked the scope — the full monorepo, including the four shipped products and the skill files themselves
-- **Probe** ran the 7 checks across `lictor-core/`, `sentinel/`, `shield/`, `guardian/`, and `skills/`
-- **Sieve** scored each finding for severity + reproducibility and cut anything below "real bug, real impact"
-- **Mirror** reviewed Probe's output against past teardowns to flag anything inconsistent — and caught one thing Probe missed
-- **Quill** wrote what you're reading
+- **Wolf** owned the calendar and the briefing
+- **Hawk** picked the scope — the full monorepo, including the four shipped products and the skill files themselves
+- **Mongoose** ran the 7 checks across `lictor-core/`, `sentinel/`, `shield/`, `guardian/`, and `skills/`
+- **Owl** scored each finding for severity + reproducibility and cut anything below "real bug, real impact"
+- **Mantis** reviewed Mongoose's output against past teardowns to flag anything inconsistent — and caught one thing Mongoose missed
+- **Lyrebird** wrote what you're reading
 
 Total time: 14 minutes against roughly 38,000 lines of TypeScript, Rust, and Python.
 
-Five findings made it past Sieve. One critical, one high, one medium, two low. We've shipped fixes for all of them. The check definitions Probe used now flag this same pattern in everyone else's code — so if any of these bugs are hiding in *your* project, the next time you run `/lictor-security-check` it will catch them.
+Five findings made it past Owl. One critical, one high, one medium, two low. We've shipped fixes for all of them. The check definitions Mongoose used now flag this same pattern in everyone else's code — so if any of these bugs are hiding in *your* project, the next time you run `/lictor-security-check` it will catch them.
 
 What this proves, mostly: Lictor is auditable. Anyone can rerun the audit. The findings are reproducible from a clean checkout. We didn't cherry-pick. We didn't fix-then-publish — we published the dates of disclosure and the dates of fix, and the gap between them is in the changelog.
 
@@ -51,7 +51,7 @@ What it doesn't prove: that we're done finding bugs in Lictor. We aren't. We'll 
 
 **File:** `guardian/api/routes/compliance/evidence.ts`
 **Severity:** 🔴 Critical
-**Found by:** Mirror's weekly review of audit logs spotted the access pattern
+**Found by:** Mantis's weekly review of audit logs spotted the access pattern
 **Disclosed internally:** 2026-08-18
 **Fix shipped to main:** 2026-08-19
 
@@ -147,7 +147,7 @@ Run a grep across your routes for any handler that reads a URL parameter and que
 
 **File:** `skills/lictor-security-check/SKILL.md` (Step 3 — writing the report)
 **Severity:** 🟠 High
-**Found by:** Probe, running Lictor recursively on Lictor's own skill files
+**Found by:** Mongoose, running Lictor recursively on Lictor's own skill files
 **Disclosed internally:** 2026-08-18
 **Fix shipped to main:** 2026-08-19
 
@@ -187,7 +187,7 @@ The blast radius is bounded by file-system permissions — the skill runs as the
 
 ### Why this matters
 
-Probe found this by doing something obvious: it ran Lictor on Lictor. The recursive case — *what does our own tool do when pointed at our own code?* — is the kind of check that catches bugs no other audit does. We're going to make it part of every release going forward.
+Mongoose found this by doing something obvious: it ran Lictor on Lictor. The recursive case — *what does our own tool do when pointed at our own code?* — is the kind of check that catches bugs no other audit does. We're going to make it part of every release going forward.
 
 ### The fix
 
@@ -232,7 +232,7 @@ The fix is always the same. Canonicalize the path, then verify the canonical for
 
 **File:** `sentinel/src/wrap.ts`
 **Severity:** 🟡 Medium
-**Found by:** Sieve, flagging an inconsistency between Sentinel's docstring and its actual behavior
+**Found by:** Owl, flagging an inconsistency between Sentinel's docstring and its actual behavior
 **Disclosed internally:** 2026-08-18
 **Fix shipped to main:** 2026-08-20
 
@@ -312,7 +312,7 @@ Every library that takes a config object should validate it. Especially security
 
 **File:** `sentinel/package.json` (npm publish config)
 **Severity:** 🔵 Low
-**Found by:** Radar, sweeping the published `@lictor/sentinel` tarball after the last alpha release
+**Found by:** Hawk, sweeping the published `@lictor/sentinel` tarball after the last alpha release
 **Disclosed internally:** 2026-08-19
 **Fix shipped to main:** 2026-08-19
 
@@ -431,7 +431,7 @@ Five fixes shipped to `main` between Aug 19 and Aug 22:
 
 Three changes that aren't on that list but matter just as much:
 
-**The check definitions Probe used got updated.** The IDOR pattern (Finding #1), the path-traversal pattern (Finding #2), and the unvalidated-config pattern (Finding #3) are now in the public check files at `skills/lictor-security-check/checks/`. Next time you run `/lictor-security-check` on any project, those three patterns are part of the scan. We caught them in ourselves; they're caught for everyone now.
+**The check definitions Mongoose used got updated.** The IDOR pattern (Finding #1), the path-traversal pattern (Finding #2), and the unvalidated-config pattern (Finding #3) are now in the public check files at `skills/lictor-security-check/checks/`. Next time you run `/lictor-security-check` on any project, those three patterns are part of the scan. We caught them in ourselves; they're caught for everyone now.
 
 **A self-audit fixture corpus.** We added anonymized versions of all 5 findings to the test corpus that runs in CI on every push. If anyone — us, a contributor, future-Raffa at 2am — reintroduces any of these patterns, the build fails. The corpus lives at `tests/regressions/self-teardown-2026-08/`.
 
@@ -595,7 +595,7 @@ Repo (Apache 2.0): [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-j
 
 **Pre-publish checks:**
 - Lawyer review of the IDOR finding's language. "Critical IDOR" is a technical claim and the writeup describes it concretely. Low risk because (a) the bug was in our code, (b) the fix shipped before publish, (c) no customer data was actually exposed in production (Guardian wasn't yet GA). Confirm with counsel anyway. Budget: ~$250 of the outside-lawyer retainer.
-- Diff every code snippet against `main` to confirm the "before" snippets accurately represent the pre-fix state. Probe's actual output should drive this — placeholder code in the draft becomes real code after the audit runs the week of Aug 18.
+- Diff every code snippet against `main` to confirm the "before" snippets accurately represent the pre-fix state. Mongoose's actual output should drive this — placeholder code in the draft becomes real code after the audit runs the week of Aug 18.
 - Verify every CHANGELOG entry (L0001–L0005) is present and dated correctly before the post links to it.
 
 **Channels (Aug 25, in order):**
@@ -605,17 +605,17 @@ Repo (Apache 2.0): [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-j
 - 09:10 PT — Hacker News submission as "Show HN"
 - 09:30 PT — Reddit r/programming + r/devops
 - 10:00 PT — Substack newsletter auto-send to the list
-- 11:00 PT — YouTube short (Vibe storyboards, Raffa records over the weekend before)
-- All week — Magnet builds a `lictorai.com/blog/lictor-audits-lictor` landing variant for SEO around "Lictor self audit" / "security tool audits itself"
+- 11:00 PT — YouTube short (Cuttlefish storyboards, Raffa records over the weekend before)
+- All week — Bee builds a `lictorai.com/blog/lictor-audits-lictor` landing variant for SEO around "Lictor self audit" / "security tool audits itself"
 
 **Day-of response plan:**
 - Raffa available to respond to HN comments within 1 hour of submission until 10pm PT
-- Bridge agent monitors Twitter mentions and routes substantive technical questions to Raffa; Bridge handles light triage (welcome, link to writeup, link to repo)
-- Mirror logs every public response Raffa makes; pattern-match against the audit-our-own-audit protocol — if a critic alleges another bug we missed, Bridge files the issue immediately on `Raffa-jarrl/Lictor-AI` with the right label
+- Meerkat agent monitors Twitter mentions and routes substantive technical questions to Raffa; Meerkat handles light triage (welcome, link to writeup, link to repo)
+- Mantis logs every public response Raffa makes; pattern-match against the audit-our-own-audit protocol — if a critic alleges another bug we missed, Meerkat files the issue immediately on `Raffa-jarrl/Lictor-AI` with the right label
 - Pre-staged response to "but did you actually run it" — link to the GitHub commits where the check definitions got updated. Receipts.
 
 **Post-publish (within 7 days):**
 - Update `accuracy/2026-08.md` with the 5 findings + the fix timelines
 - Add a callout on the GitHub repo's README linking to this writeup as the canonical answer to "is Lictor trustworthy"
 - File the bug bounty payment to the private beta tester who caught Finding #5 ($100 baseline per the protocol; confirm tier with the tester's consent)
-- Mirror schedules a 30-day retro: did this post move the needle on stars, newsletter subs, design-partner installs? If yes, the format ships forever. If no, the next pre-launch transparency piece gets a different shape.
+- Mantis schedules a 30-day retro: did this post move the needle on stars, newsletter subs, design-partner installs? If yes, the format ships forever. If no, the next pre-launch transparency piece gets a different shape.

@@ -3,7 +3,7 @@
 # Content Calendar — 90 days post-launch (Oct 6 → Dec 31, 2026)
 
 > **Purpose:** What each agent ships, when, where, and who approves it. Read it Monday morning. Execute it that week. Don't improvise.
-> **Owner:** Conductor coordinates the weekly content kanban. Mirror audits Friday. Raffa approves anything that escalates.
+> **Owner:** Wolf coordinates the weekly content kanban. Mantis audits Friday. Raffa approves anything that escalates.
 > **Pillar:** every week has a theme. Every agent's output reinforces that week's theme. The weekly teardown is the spine; everything else hangs off it.
 
 ---
@@ -15,8 +15,8 @@ The teardown engine (`./teardown-engine.md`) drives the week. Tuesday a new tear
 Three working principles:
 
 1. **One topic per week, every surface.** If Week 2 is "Bolt env-var disasters," every blog, every tweet, every short pulls from that well. Cohesion compounds.
-2. **The agents are the brand.** Posts are signed `— Probe` or `— Quill`. The Lictor crew has names and personalities. Followers follow agents, not generic brand accounts. Snyk can't copy this without a personality transplant.
-3. **Mirror's Friday review is the throttle.** If a week's content drifts off-theme or off-voice, Mirror kicks it back. Volume without coherence is noise.
+2. **The agents are the brand.** Posts are signed `— Mongoose` or `— Lyrebird`. The Lictor crew has names and personalities. Followers follow agents, not generic brand accounts. Snyk can't copy this without a personality transplant.
+3. **Mantis's Friday review is the throttle.** If a week's content drifts off-theme or off-voice, Mantis kicks it back. Volume without coherence is noise.
 
 ---
 
@@ -26,14 +26,14 @@ Per-channel weekly volume. Numbers are floors, not ceilings. If a teardown lands
 
 | Channel | Weekly volume | Owner | Why |
 |---|---|---|---|
-| **X (Twitter)** | 14 posts/week (2/day) | Quill drafts, Conductor schedules | Builder discovery surface. Daily presence is non-negotiable. |
-| **LinkedIn** | 5/week (one per weekday) | Quill drafts, Raffa approves | Decision-maker surface. Long-form case study format performs best. |
-| **Blog (lictor.dev)** | 3/week | Quill writes, C-3PO deploys | Teardown (Tue), agent-watch (Thu), guest/community post (Fri). |
-| **YouTube** | 1 long-form + 3 shorts/week | Raffa records, Vibe edits | Long-form Tuesday after teardown ships. Shorts Wed/Fri/Sun. |
-| **TikTok** | 5/week (one per weekday) — **skip if Raffa isn't posting** | Vibe edits | Only ship if posting is consistent. One-offs flop the algorithm. **Decision gate Oct 6.** |
-| **Substack** | 1/week (Tuesday 10:00 PT) | Quill writes, auto-send | The teardown, plus "what I learned this week." |
-| **Hacker News** | 1 submission/week | Conductor submits | Tuesday post-teardown. Always text-only Show HN. |
-| **Reddit r/programming** | 1/week | Conductor submits | Tuesday or Wednesday depending on HN traction. |
+| **X (Twitter)** | 14 posts/week (2/day) | Lyrebird drafts, Wolf schedules | Builder discovery surface. Daily presence is non-negotiable. |
+| **LinkedIn** | 5/week (one per weekday) | Lyrebird drafts, Raffa approves | Decision-maker surface. Long-form case study format performs best. |
+| **Blog (lictor.dev)** | 3/week | Lyrebird writes, Octopus deploys | Teardown (Tue), agent-watch (Thu), guest/community post (Fri). |
+| **YouTube** | 1 long-form + 3 shorts/week | Raffa records, Cuttlefish edits | Long-form Tuesday after teardown ships. Shorts Wed/Fri/Sun. |
+| **TikTok** | 5/week (one per weekday) — **skip if Raffa isn't posting** | Cuttlefish edits | Only ship if posting is consistent. One-offs flop the algorithm. **Decision gate Oct 6.** |
+| **Substack** | 1/week (Tuesday 10:00 PT) | Lyrebird writes, auto-send | The teardown, plus "what I learned this week." |
+| **Hacker News** | 1 submission/week | Wolf submits | Tuesday post-teardown. Always text-only Show HN. |
+| **Reddit r/programming** | 1/week | Wolf submits | Tuesday or Wednesday depending on HN traction. |
 
 Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them human (except Raffa recording video). This is the volume Snyk's brand team cannot match — not because they lack people, but because their compliance review breaks at this cadence.
 
@@ -41,26 +41,26 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 
 ## Agent-by-agent assignments
 
-### 1. Conductor (planner) — coordinates the whole crew
+### 1. Wolf (planner) — coordinates the whole crew
 
 - **Cadence:** Daily briefing at 06:00 PT. Weekly content kanban refresh Monday 09:00.
-- **Format:** Internal — `briefings/YYYY-MM-DD.json` for the crew, plus a weekly public "Conductor's note" on the Lictor blog Friday.
+- **Format:** Internal — `briefings/YYYY-MM-DD.json` for the crew, plus a weekly public "Wolf's note" on the Lictor blog Friday.
 - **Topic territory:** What's working, what's stuck, what the crew is doing this week. The "behind the scenes" surface.
 - **Approval gate:** Self-approves (Raffa reads the briefing; if Raffa disagrees, it changes the next day).
 - **Sample output:**
 
-> **Conductor's note — Week 3, Oct 19-25**
+> **Wolf's note — Week 3, Oct 19-25**
 >
-> This week the crew published its third teardown — Tymora. Founder fixed two of seven findings inside the disclosure window. Probe ran 11 audits total this week (one public, ten private for the design partners). Quill shipped 14 X posts, 5 LinkedIn, 3 blog posts. Mirror flagged a voice drift in two LinkedIn posts (over-formal); fixed before publish. Magnet shipped two new landing pages — `/audits/tymora` and `/playbooks/lovable-rls`. Stuck: TikTok cadence still inconsistent; decision needed by Friday whether we keep it or kill it.
+> This week the crew published its third teardown — Tymora. Founder fixed two of seven findings inside the disclosure window. Mongoose ran 11 audits total this week (one public, ten private for the design partners). Lyrebird shipped 14 X posts, 5 LinkedIn, 3 blog posts. Mantis flagged a voice drift in two LinkedIn posts (over-formal); fixed before publish. Bee shipped two new landing pages — `/audits/tymora` and `/playbooks/lovable-rls`. Stuck: TikTok cadence still inconsistent; decision needed by Friday whether we keep it or kill it.
 
 ---
 
-### 2. Radar (scout) — picks the targets
+### 2. Hawk (scout) — picks the targets
 
 - **Cadence:** Tuesday — picks next week's teardown target. Daily — flags stories worth a thread.
-- **Format:** `target.json` for the teardown. Daily JSON pick-list that feeds Quill's X posts.
+- **Format:** `target.json` for the teardown. Daily JSON pick-list that feeds Lyrebird's X posts.
 - **Topic territory:** Vibe-coded apps in the wild. Platform launches (when Lovable / Bolt / v0 ship something). YC + indie launches.
-- **Approval gate:** Sieve scores Radar's daily picks before Quill writes from them. Mirror reviews target picks weekly.
+- **Approval gate:** Owl scores Hawk's daily picks before Lyrebird writes from them. Mantis reviews target picks weekly.
 - **Sample output:**
 
 ```json
@@ -81,15 +81,15 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 
 ---
 
-### 3. Probe — does the audits, writes the audit recaps
+### 3. Mongoose — does the audits, writes the audit recaps
 
-- **Cadence:** Friday — runs the week's teardown audit. Daily — short "Probe finding of the day" X thread.
+- **Cadence:** Friday — runs the week's teardown audit. Daily — short "Mongoose finding of the day" X thread.
 - **Format:** The audit JSON for the teardown. A 4-tweet X thread daily showing one finding from a private (anonymized) audit.
-- **Topic territory:** The actual vulnerabilities. Patterns across audits. "How many Lovable apps have unprotected RLS in October" — that's a Probe post.
-- **Approval gate:** Sieve scores findings for severity + clarity. Mirror reviews public-facing posts for "is this exploit code?" rails compliance.
+- **Topic territory:** The actual vulnerabilities. Patterns across audits. "How many Lovable apps have unprotected RLS in October" — that's a Mongoose post.
+- **Approval gate:** Owl scores findings for severity + clarity. Mantis reviews public-facing posts for "is this exploit code?" rails compliance.
 - **Sample output (the daily X thread):**
 
-> **Probe finding of the day — Oct 14**
+> **Mongoose finding of the day — Oct 14**
 >
 > Audited an anonymized Lovable app this morning. Found a Supabase service_role key in the JS bundle. Yes, the service_role one. The one that bypasses RLS entirely.
 >
@@ -102,38 +102,38 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 >
 > Full anonymized findings: [link]
 >
-> — Probe
+> — Mongoose
 
 ---
 
-### 4. Sieve (critic) — quality gate, occasional public posts
+### 4. Owl (critic) — quality gate, occasional public posts
 
-- **Cadence:** Continuous — scores every finding and every story. Weekly — one "Sieve's scoring notes" post.
+- **Cadence:** Continuous — scores every finding and every story. Weekly — one "Owl's scoring notes" post.
 - **Format:** Internal scoring JSON. One blog post per week explaining what made the cut and what didn't (transparent quality gate).
 - **Topic territory:** The "why we didn't write about [hot vibe-coding story]" surface. Builds credibility — Lictor isn't chasing every shiny object.
-- **Approval gate:** Mirror reviews the weekly post.
+- **Approval gate:** Mantis reviews the weekly post.
 - **Sample output:**
 
-> **Sieve's notes — what didn't make the cut, Week 4**
+> **Owl's notes — what didn't make the cut, Week 4**
 >
 > Three stories got pitched this week. Two passed. One didn't.
 >
-> Passed: the Bolt env-var update (real product change, affects every Bolt user, concrete finding from Probe). The Cursor MCP launch (real, concrete, our audience is using it).
+> Passed: the Bolt env-var update (real product change, affects every Bolt user, concrete finding from Mongoose). The Cursor MCP launch (real, concrete, our audience is using it).
 >
 > Didn't pass: the "AI agents will replace all developers" essay that hit HN front page. Auto-deduct 3 for being an AGI debate. Auto-deduct 2 for no concrete finding. Final score 4.1. Pass.
 >
 > If you wonder why Lictor doesn't chime in on every viral take, the answer is: scoring rubric.
 >
-> — Sieve
+> — Owl
 
 ---
 
-### 5. Quill (writer) — the voice of Lictor
+### 5. Lyrebird (writer) — the voice of Lictor
 
 - **Cadence:** Daily. 2 X posts/day, 1 LinkedIn/day (M-F), 3 blog posts/week, weekly Substack.
-- **Format:** Everything that isn't a SOUL.md voice. Quill is Raffa's voice.
+- **Format:** Everything that isn't a SOUL.md voice. Lyrebird is Raffa's voice.
 - **Topic territory:** Teardown reports (Tuesday). Agent-watch posts (Thursday). Community guest posts (Friday). Everything daily on X + LinkedIn.
-- **Approval gate:** Voice linter on every post (mechanical). Mirror reviews the Friday batch. Raffa approves any post over 500 chars before Friday batch.
+- **Approval gate:** Voice linter on every post (mechanical). Mantis reviews the Friday batch. Raffa approves any post over 500 chars before Friday batch.
 - **Sample output (Twitter, Wednesday):**
 
 > Tuesday I audited Pitchtank. 12 minutes. 7 findings. 2 critical.
@@ -144,16 +144,16 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 >
 > Full audit, his fix, what every Lovable builder should check on their own app: [link]
 >
-> — Quill
+> — Lyrebird
 
 ---
 
-### 6. Magnet — landing pages for every teardown + every playbook
+### 6. Bee — landing pages for every teardown + every playbook
 
 - **Cadence:** Weekly — one teardown landing page Saturday. Bi-weekly — one playbook landing page (Lovable RLS playbook, Bolt env-var playbook, etc.).
 - **Format:** `landing-pages/<slug>/{page.md, meta.json, follow-up.md}`. Capture form on every page, email-only, one CTA.
 - **Topic territory:** Anything that should rank in Google for `[App] security audit` or `[Platform] security checklist`.
-- **Approval gate:** Mirror reviews headlines and the "what's inside" framing. Raffa approves before publish.
+- **Approval gate:** Mantis reviews headlines and the "what's inside" framing. Raffa approves before publish.
 - **Sample output (a playbook landing page headline + sub):**
 
 > **Headline:** Stop your Lovable app from leaking every user's data — the 7-check playbook
@@ -164,12 +164,12 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 
 ---
 
-### 7. Pulse (surveyor) — hook formulas for the week's content
+### 7. Bat (surveyor) — hook formulas for the week's content
 
 - **Cadence:** Sunday + Wednesday — drops a hook formula pack for the upcoming content batch.
-- **Format:** `hooks.json` — 5 hook variants per piece of content Quill is about to write.
-- **Topic territory:** The pre-content work nobody sees. Pulse's hooks are why Quill's threads outperform random "AI security" content.
-- **Approval gate:** Quill picks one hook variant per piece. Mirror checks weekly that Quill is using Pulse's hooks (not freelancing on first lines).
+- **Format:** `hooks.json` — 5 hook variants per piece of content Lyrebird is about to write.
+- **Topic territory:** The pre-content work nobody sees. Bat's hooks are why Lyrebird's threads outperform random "AI security" content.
+- **Approval gate:** Lyrebird picks one hook variant per piece. Mantis checks weekly that Lyrebird is using Bat's hooks (not freelancing on first lines).
 - **Sample output:**
 
 ```json
@@ -192,7 +192,7 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 
 ---
 
-### 8. Vibe — visuals for everything
+### 8. Cuttlefish — visuals for everything
 
 - **Cadence:** Daily. Cover image per blog post, thumbnail per YouTube short, carousel per teardown.
 - **Format:** PNG / vertical 9:16 for shorts / 1200x630 for OG. All assets under `output/visuals/YYYY-MM-DD/`.
@@ -200,16 +200,16 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 - **Approval gate:** Self-approves except YouTube thumbnails (Raffa approves those because they're the highest-CTR surface).
 - **Sample output description:**
 
-> Tymora teardown cover image: black background, single Lictor crew member silhouette (Probe), holding a magnifying glass over a stylized "OAuth token" icon. One red dot in the bottom-right corner — the finding indicator. No logos, no platform names. The image should feel like a noir detective movie poster, not a Snyk infographic.
+> Tymora teardown cover image: black background, single Lictor crew member silhouette (Mongoose), holding a magnifying glass over a stylized "OAuth token" icon. One red dot in the bottom-right corner — the finding indicator. No logos, no platform names. The image should feel like a noir detective movie poster, not a Snyk infographic.
 
 ---
 
-### 9. Trends — virality intel for the partner brand AND Lictor's own surface
+### 9. Starling — virality intel for the partner brand AND Lictor's own surface
 
 - **Cadence:** Every 4 hours during launch week, daily after. Plus a weekly "what's spiking in dev Twitter" post.
 - **Format:** JSONL feed internally. One public post per week on X — "trends in vibe-coding chatter."
 - **Topic territory:** What hashtags / formats / posting times are working THIS week. Crossover: when "AI app got hacked" is trending, Lictor leans into it. When it's quiet, Lictor doesn't force it.
-- **Approval gate:** Mirror checks weekly that Trends's recommendations are being used (or that there's a reason they aren't).
+- **Approval gate:** Mantis checks weekly that Starling's recommendations are being used (or that there's a reason they aren't).
 - **Sample output (public post):**
 
 > Dev Twitter this week:
@@ -220,14 +220,14 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 >
 > That last 10% is your audience.
 >
-> — Trends
+> — Starling
 
 ---
 
-### 10. Reviewer (Mirror) — the weekly audit
+### 10. Reviewer (Mantis) — the weekly audit
 
 - **Cadence:** Every Friday 04:30 PT. Reads the full week's output.
-- **Format:** `output/review-week-NN.md`. Internal — but Mirror also writes one public post per month: "what the crew learned this month."
+- **Format:** `output/review-week-NN.md`. Internal — but Mantis also writes one public post per month: "what the crew learned this month."
 - **Topic territory:** Internal — every drift, every miss, every win pattern. Public — the meta-narrative of "this is what an AI crew running a content engine looks like, transparently."
 - **Approval gate:** Raffa reads the weekly review Monday morning. Public monthly post: Raffa approves.
 - **Sample output (the monthly public post):**
@@ -239,16 +239,15 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 > Three patterns:
 >
 > 1. Teardowns where the founder fixes inside the disclosure window outperform standard teardowns by 2.4x on engagement. Pitchtank, Tymora, the third one I'll name in November — all "fixed cleanly" stories. We're going to lean into this.
-> 2. Probe's daily finding posts pulled 4x more engagement than Quill's general-purpose AI posts. The crew is moving more bandwidth to Probe.
-> 3. TikTok died. We posted 14 times. Total views: 600. We're killing it for November. The 30 minutes/day goes to YouTube long-form instead.
+> 2. Mongoose's daily finding posts pulled 4x more engagement than Lyrebird's general-purpose AI posts. The crew is moving more bandwidth to Mongoose. > 3. TikTok died. We posted 14 times. Total views: 600. We're killing it for November. The 30 minutes/day goes to YouTube long-form instead.
 >
-> One change for November: Sieve's bar moves from 6.0 to 6.5. We've been shipping too much medium-grade content.
+> One change for November: Owl's bar moves from 6.0 to 6.5. We've been shipping too much medium-grade content.
 >
-> — Mirror
+> — Mantis
 
 ---
 
-### 11. C-3PO (dev) — the publishing engine
+### 11. Octopus (dev) — the publishing engine
 
 - **Cadence:** Continuous. Owns the deploy. Owns the cross-poster.
 - **Format:** Code, deploys, dashboards. Not public-facing copy.
@@ -256,17 +255,17 @@ Total: ~30 public-facing artifacts per week. Built by 11 agents. None of them hu
 - **Approval gate:** Self-approves. Raffa reviews any architecture change.
 - **Sample output:**
 
-> **C-3PO deploy log — Tue Oct 6, 09:00 PT**
+> **Octopus deploy log — Tue Oct 6, 09:00 PT**
 >
 > ✓ Blog post live at lictor.dev/audits/pitchtank
 > ✓ Twitter thread scheduled, 14 tweets, 30s intervals
 > ✓ LinkedIn post scheduled, 09:05
-> ✓ HN submission ready, awaiting Conductor's manual submit
+> ✓ HN submission ready, awaiting Wolf's manual submit
 > ✓ Reddit submission queued
 > ✓ Substack auto-send confirmed for 10:00 PT
 > ✓ GitHub gist published, public, linked from blog footer
 > ✓ YouTube short uploaded, scheduled for 11:00 PT
-> — One warning: TikTok auto-poster failed (auth expired). Manual upload required by Vibe before 12:00 PT or skip this week.
+> — One warning: TikTok auto-poster failed (auth expired). Manual upload required by Cuttlefish before 12:00 PT or skip this week.
 
 ---
 
@@ -276,9 +275,9 @@ Every week has a theme. Every agent's output that week reinforces it. The themes
 
 | Week | Date | Theme | Teardown | What the rest of the content compounds |
 |---|---|---|---|---|
-| **1** | Oct 6 | **The Lovable RLS playbook** | Pitchtank | Every Lovable app's most common gap. Quill writes the playbook. Magnet builds the landing page. Probe daily posts "RLS check of the day." |
-| **2** | Oct 13 | **Bolt env-var disasters** | A Bolt app from Radar's list | Every Bolt template that shipped with secrets in the bundle. The Bolt founders read this — that's the goal. |
-| **3** | Oct 20 | **The AI-agent attack surface** | Tymora (or AgentSwarms if Tymora cooperated cleanly) | OAuth tokens, refresh tokens, API keys stored where they shouldn't be. Probe's wheelhouse. |
+| **1** | Oct 6 | **The Lovable RLS playbook** | Pitchtank | Every Lovable app's most common gap. Lyrebird writes the playbook. Bee builds the landing page. Mongoose daily posts "RLS check of the day." |
+| **2** | Oct 13 | **Bolt env-var disasters** | A Bolt app from Hawk's list | Every Bolt template that shipped with secrets in the bundle. The Bolt founders read this — that's the goal. |
+| **3** | Oct 20 | **The AI-agent attack surface** | Tymora (or AgentSwarms if Tymora cooperated cleanly) | OAuth tokens, refresh tokens, API keys stored where they shouldn't be. Mongoose's wheelhouse. |
 | **4** | Oct 27 | **v0 + Vercel — the deploy-by-default vulnerabilities** | A v0-built app | The platform-default deploys. What's exposed because it's on by default. |
 | **5** | Nov 3 | **Cursor and the "AI wrote this code, who owns the bug?" question** | An indie Cursor-built SaaS | Cursor doesn't ship apps; users do. Different attack surface. |
 | **6** | Nov 10 | **Replit Agent and the autonomous build problem** | A Replit Agent app | Replit Agent ships full apps. The audit surface is different from human-written code. |
@@ -297,7 +296,7 @@ Week 13 (Dec 29) is dead week. Crew rests. Nothing ships except a planning post 
 
 Two tiers. Leading indicators tell us if the engine is firing. Lagging indicators tell us if it's converting.
 
-### Leading indicators — checked weekly by Mirror
+### Leading indicators — checked weekly by Mantis
 
 | Metric | Target by Dec 31 | Where it lives |
 |---|---|---|
@@ -305,11 +304,11 @@ Two tiers. Leading indicators tell us if the engine is firing. Lagging indicator
 | **X followers on @lictor_dev** | 8,000 | analytics |
 | **Substack subscribers** | 2,500 | substack admin |
 | **Weekly teardown landing-page sessions** | 4,000/week average by December | analytics |
-| **Mentions per week** (X + HN + Reddit) | 80/week by December | Trends scrapes |
+| **Mentions per week** (X + HN + Reddit) | 80/week by December | Starling scrapes |
 | **Domain authority lictor.dev** | DA 25+ by December | Ahrefs / similarweb |
 | **Founders who cooperated on teardown** (out of 12) | 8/12 | teardowns log |
 
-### Lagging indicators — checked monthly by Conductor + Raffa
+### Lagging indicators — checked monthly by Wolf + Raffa
 
 | Metric | Target by Dec 31 | Where it lives |
 |---|---|---|
@@ -319,7 +318,7 @@ Two tiers. Leading indicators tell us if the engine is firing. Lagging indicator
 | **Press mentions** (HN front page, TechCrunch, The Register, Wired) | 4 top-tier mentions Q4 | press log |
 | **Inbound design-partner requests** | 20 inbound asks/month by December | sales inbox |
 
-If by Nov 30 the leading indicators are tracking and the lagging indicators aren't moving, the issue is conversion — not awareness. That's a Magnet problem. If by Nov 30 the leading indicators aren't tracking either, that's a Quill + Pulse + Vibe problem. Mirror will say so plainly in the November review.
+If by Nov 30 the leading indicators are tracking and the lagging indicators aren't moving, the issue is conversion — not awareness. That's a Bee problem. If by Nov 30 the leading indicators aren't tracking either, that's a Lyrebird + Bat + Cuttlefish problem. Mantis will say so plainly in the November review.
 
 ---
 
@@ -329,6 +328,6 @@ Every piece of content this quarter has to answer one question: *would a develop
 
 If yes — publish.
 
-If no — kick it back to Quill with the note.
+If no — kick it back to Lyrebird with the note.
 
 That's the brand.

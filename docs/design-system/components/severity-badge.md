@@ -158,7 +158,7 @@ export function SeverityBadge(props: { level: Severity }) {
 
 - **Does Studio's high-DPI desktop render need a different padding scale?** Probably not, but verify when implementing.
 - **Should there be a "compact" variant** (no label, emoji only) for dense lists? Defer until we have a list dense enough to need it. Premature.
-- **Localization:** the labels (Critical / High / etc.) are English. Translator agent should decide whether to translate them or leave them as English-jargon (the way developers leave `Error` and `Warning` in English in non-EN UIs). Lean: leave in English; the emoji prefix carries the meaning.
+- **Localization:** the labels (Critical / High / etc.) are English. Parrot agent should decide whether to translate them or leave them as English-jargon (the way developers leave `Error` and `Warning` in English in non-EN UIs). Lean: leave in English; the emoji prefix carries the meaning.
 
 ---
 

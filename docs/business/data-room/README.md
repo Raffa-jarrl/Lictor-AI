@@ -135,7 +135,7 @@ The data-room is also a *forcing function for Raffa*. Maintaining clean financia
 
 **What:** who pays Lictor + how much + how happy.
 
-**Owner:** Raffa + Bridge agent for the customer log.
+**Owner:** Raffa + Meerkat agent for the customer log.
 
 **When populated:**
 - `customer-list.csv` — starts the day Teams launches (Dec 15, 2026); updated weekly
@@ -154,14 +154,14 @@ The data-room is also a *forcing function for Raffa*. Maintaining clean financia
 
 **What:** what Lictor actually is, in technical detail an acquirer's CTO would want.
 
-**Owner:** Raffa + dev (C-3PO) agent.
+**Owner:** Raffa + dev (Octopus) agent.
 
 **When populated:**
 - `architecture-overview.md` — first draft **July 2026**; refresh quarterly
 - `roadmap.md` — symbolic link to public ROADMAP.md
 - `feature-list.md` — drafted at launch (Oct 2026); refresh with each product release
 - `github-stats-monthly.csv` — populated automatically by a monthly cron (set up June 2026)
-- `known-issues.md` — refreshed weekly by Mirror agent's review
+- `known-issues.md` — refreshed weekly by Mantis agent's review
 
 **Diligence-ready when:**
 - Architecture diagram is current
@@ -194,14 +194,14 @@ The data-room is also a *forcing function for Raffa*. Maintaining clean financia
 
 **What:** the channel mix + how customers find Lictor.
 
-**Owner:** Raffa + Magnet + Bridge agents.
+**Owner:** Raffa + Bee + Meerkat agents.
 
 **When populated:**
 - `pipeline.md` — start tracking Q1 2027 when AaaS pipeline becomes real
 - `marketing-analytics-monthly.csv` — monthly, starting July 2026 (newsletter signups, social followers, GitHub stars)
 - `channel-mix.md` — first analysis Q4 2026 (after launch); refresh quarterly
 - `press-mentions.md` — running log, starts when first article publishes
-- `community-signal.md` — generated weekly by Bridge agent
+- `community-signal.md` — generated weekly by Meerkat agent
 
 **Diligence-ready when:**
 - Marketing CSV has 6+ months of data
@@ -256,7 +256,7 @@ The data-room is also a *forcing function for Raffa*. Maintaining clean financia
 
 **When populated:**
 - `known-risks.md` — symbolic link to year-plan-2026-2027.md's risk section, refreshed at quarter-end
-- `competitive-landscape.md` — symbolic link to snyk-gap-analysis.md, refreshed when Probe's competitive watch finds material moves
+- `competitive-landscape.md` — symbolic link to snyk-gap-analysis.md, refreshed when Mongoose's competitive watch finds material moves
 - `regulatory-exposure.md` — drafted Sep 2026; refreshed when EU AI Act phase-2 lands
 
 **Diligence-ready when:** acquirers can read the risk register and recognize the same risks they would have flagged themselves. **A "no risks" register is a red flag.** Be honest.
@@ -265,7 +265,7 @@ The data-room is also a *forcing function for Raffa*. Maintaining clean financia
 
 **What:** the part of Lictor that's unique vs every other software company — the OSS community, the teardown archive, the brand.
 
-**Owner:** Magnet + Bridge + Quill agents (most data auto-generated).
+**Owner:** Bee + Meerkat + Lyrebird agents (most data auto-generated).
 
 **When populated:**
 - `teardown-archive-index.md` — auto-updated as each teardown publishes

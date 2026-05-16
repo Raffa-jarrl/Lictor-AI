@@ -99,7 +99,7 @@ create policy "ideas updatable only by owner or admin"
   );
 ```
 
-Found by: **Radar.** Scored by: **Sieve** (9.4/10 — one of the highest individual scores in any Lictor audit to date).
+Found by: **Hawk.** Scored by: **Owl** (9.4/10 — one of the highest individual scores in any Lictor audit to date).
 
 **Rotated secrets needed:** none, but every visitor who's ever loaded Pitchtank potentially scraped the pending table. The founder published a transparency note on the site October 1: "Between launch and October 4, 2026, our database design allowed pending ideas to be read by visitors with technical access. We've fixed this and are notifying anyone whose pending submission was likely affected."
 
@@ -131,7 +131,7 @@ create unique index on public.votes (idea_id, voter_id);
 }
 ```
 
-Found by: **Radar.** Scored by: **Sieve** (7.8/10).
+Found by: **Hawk.** Scored by: **Owl** (7.8/10).
 
 **Note from the founder:** *"I literally never considered this. I knew about rate limits in theory. I didn't think someone would bother on my little side project."* That's the most-common refrain in every Lovable teardown we've ever done. The "this is too small to attack" assumption is the bug.
 
@@ -174,7 +174,7 @@ export async function POST(request: Request) {
 }
 ```
 
-Found by: **Probe.** Scored by: **Sieve** (8.2/10).
+Found by: **Probe.** Scored by: **Owl** (8.2/10).
 
 **Rotated secrets needed:** `STRIPE_WEBHOOK_SECRET` — Pitchtank had never set one (the endpoint just trusted everything). The founder generated one via Stripe Dashboard → Developers → Webhooks → "Reveal" and added it to the Vercel env vars.
 
@@ -209,7 +209,7 @@ create policy "anonymous ideas readable once public"
   using (submitter_id is null and status = 'public');
 ```
 
-Found by: **Radar** (the pattern-shape match for Lovable's default templates was the trigger). Scored by: **Sieve** (6.4/10 — close to the threshold; almost didn't ship in the report).
+Found by: **Hawk** (the pattern-shape match for Lovable's default templates was the trigger). Scored by: **Owl** (6.4/10 — close to the threshold; almost didn't ship in the report).
 
 ---
 
@@ -231,7 +231,7 @@ export default defineConfig({
 });
 ```
 
-Found by: **Radar.** Scored by: **Sieve** (4.8/10 — below the 6.0 threshold, but the founder asked us to include it anyway because "if you'd left this in I would have wondered what else you didn't tell me").
+Found by: **Hawk.** Scored by: **Owl** (4.8/10 — below the 6.0 threshold, but the founder asked us to include it anyway because "if you'd left this in I would have wondered what else you didn't tell me").
 
 ---
 
@@ -283,13 +283,13 @@ You'll get the same plain-English report Pitchtank's founder got, in about 60 se
 | Oct 6 | This writeup publishes (with founder's consent) |
 
 The Lictor crew that ran this audit:
-- 📡 **Radar** — surfaced 4 of 5 findings
+- 📡 **Hawk** — surfaced 4 of 5 findings
 - 🧪 **Probe** — surfaced the Stripe webhook finding
-- 🔍 **Sieve** — scored all 5 against the SMB-owner persona
-- 🖊️ **Quill** — wrote the plain-English versions you read above
+- 🔍 **Owl** — scored all 5 against the SMB-owner persona
+- 🖊️ **Lyrebird** — wrote the plain-English versions you read above
 - 🪞 **Mirror** — reviewed the draft Monday before publication
 - 🧲 **Magnet** — built this landing page
-- 🎼 **Conductor** — orchestrated the whole thing
+- 🎼 **Wolf** — orchestrated the whole thing
 
 Each agent is a markdown file you can read at github.com/Raffa-jarrl/Lictor-AI/tree/main/agents.
 
@@ -439,7 +439,7 @@ Happy to answer questions about the architecture, the agent crew design, or the 
 - [ ] Confirm founder consent for naming Pitchtank publicly (have it in writing)
 - [ ] Confirm all 5 fixes actually landed before publication (re-run audit Oct 5 evening)
 - [ ] Replace `[FILL: ...]` placeholders in front matter
-- [ ] Mirror reviewed final draft Monday Oct 5
+- [ ] Mantis reviewed final draft Monday Oct 5
 - [ ] Twitter thread scheduled for Oct 6 10:30 PT
 - [ ] LinkedIn post scheduled for Oct 6 11:00 PT
 - [ ] HN submission ready to post manually within 5 min of Twitter

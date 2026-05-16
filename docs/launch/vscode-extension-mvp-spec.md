@@ -2,8 +2,7 @@
 
 > **Status:** Draft for Raffa review. Sign-off target: week of Sep 1, 2026.
 > **Ship target:** Dec 31, 2026 (v0.1.0 live on VS Code Marketplace + Open VSX).
-> **Owner:** TBD (contractor or Raffa). Spec author: Quill.
-> **Cross-refs:** `ROADMAP.md` Q4 2026; `docs/launch/operation-triumph-expanded.md` Front 1+2.
+> **Owner:** TBD (contractor or Raffa). Spec author: Lyrebird. > **Cross-refs:** `ROADMAP.md` Q4 2026; `docs/launch/operation-triumph-expanded.md` Front 1+2.
 
 ---
 
@@ -248,7 +247,7 @@ If a milestone slips: shift the *gate*, not the date. v0.1.0 ships Dec 31 even i
 
 4. **Cursor / Windsurf pre-funding.** ~3 contractor days in Nov on explicit Cursor + Windsurf testing, or triage post-launch? Recommend **pre-fund.** Cursor is target audience #1; "doesn't work in Cursor" is the worst possible launch headline.
 
-5. **Naming.** Three options: `Lictor` (brand-pure), `Lictor Security` (SEO-friendly), `Lictor for Vibe Coders` (audience-targeted but locks out upmarket leak-through). Recommend **`Lictor Security`**.
+5. **Naming.** Three options: `Lictor` (brand-pure), `Lictor Security` (SEO-friendly), `Lictor for Cuttlefish Coders` (audience-targeted but locks out upmarket leak-through). Recommend **`Lictor Security`**.
 
 6. **Check contributions.** Accept TS PRs against the extension, or route all check authoring through `lictor-core` (Rust, harder)? Recommend **route through `lictor-core`** — single source of truth across Shield / Sentinel / extension.
 

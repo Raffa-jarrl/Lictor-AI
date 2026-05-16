@@ -138,7 +138,7 @@ What Raffa expects to be asked, with a 1–2 sentence answer and supporting fact
 - 40–62% of AI-generated code ships with security vulnerabilities (multiple academic studies cited in Lictor's blog archive).
 - 91.5% of vibe-coded apps had at least one AI-hallucination flaw in Q1 2026.
 - Lovable exposed 18,000 users across 170+ databases in a single February 2026 incident.
-- Lictor's Radar agent is trained on 1,430+ real audits of vibe-coded apps, tuned for the specific failure patterns generic SAST misses.
+- Lictor's Hawk agent is trained on 1,430+ real audits of vibe-coded apps, tuned for the specific failure patterns generic SAST misses.
 
 ### Arc 5 — "What's the worst-case scenario for Lictor?"
 
@@ -202,7 +202,7 @@ All three are Google Fonts, free for editorial use.
 Verify these for accuracy before publication. All are accurate as of May 15, 2026.
 
 - **Products in the Lictor suite:** six. `core` (Rust check engine, compiles to native + WASM), `shield` (Chrome extension), `sentinel` (npm SDK), `sentinel-py` (PyPI SDK), `guardian` (Next.js + Postgres dashboard), `skills` (Claude Code skill suite). All Apache 2.0.
-- **Number of AI agents in the crew:** eleven at launch, fifteen planned by Q2 2027. Current eleven: Conductor (orchestrator), Sieve (quality gate), Radar (pattern scout), Quill (voice keeper), Magnet (fix designer), Mirror (audit auditor), C-3PO (engineering), Probe (currency tester), Pulse (hook crafter), Trends (virality intel), Vibe (aesthetic curator). Each agent is a markdown file in the public repo at `~/Lictor/.claude/agents/` (or equivalent path in the public mirror).
+- **Number of AI agents in the crew:** eleven at launch, fifteen planned by Q2 2027. Current eleven: Wolf (orchestrator), Owl (quality gate), Hawk (pattern scout), Lyrebird (voice keeper), Bee (fix designer), Mantis (audit auditor), Octopus (engineering), Mongoose (currency tester), Bat (hook crafter), Starling (virality intel), Cuttlefish (aesthetic curator). Each agent is a markdown file in the public repo at `~/Lictor/.claude/agents/` (or equivalent path in the public mirror).
 - **Number of checks in `/lictor-security-check`:** seven, tuned for Lovable, Bolt, v0, Cursor, and Replit failure patterns. Each check is a markdown file at `skills/lictor-security-check/checks/`.
 - **Number of prompt-injection patterns in Sentinel:** thirty-two, across seven attack families.
 - **Number of secret patterns in Sentinel:** fifteen (Anthropic, OpenAI, Stripe, GitHub, AWS, Supabase, and more).

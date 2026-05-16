@@ -81,7 +81,7 @@ Concrete, in priority order:
 
 ### Priority 1 — Scale, not depth.
 
-Run the existing scanner against ~500-1,000 mature custom-domain apps. At a baseline rate of "1 in 50 apps has something actionable," that's 10-20 outreach opportunities — enough to start the Bridge outreach pilot for real.
+Run the existing scanner against ~500-1,000 mature custom-domain apps. At a baseline rate of "1 in 50 apps has something actionable," that's 10-20 outreach opportunities — enough to start the Meerkat outreach pilot for real.
 
 `scripts/patrol-pilot.py --mode mature --max 500` ← would take ~90 minutes. Worth doing as a daily cron once Cloudflare Worker exists.
 

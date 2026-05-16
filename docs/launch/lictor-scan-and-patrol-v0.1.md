@@ -9,7 +9,7 @@
 
 **Lictor Scan** is `lictorai.com/scan/<url>` — paste any vibe-coded app's URL, get a letter-grade scorecard with the 5 worst findings, share the result. PageSpeed Insights for AI-built apps.
 
-**Lictor Patrol** is the cron-driven crawler that enumerates every new vibe-coder app that hit the public internet in the last N days, runs Scan on each, and — when it finds something serious — has Bridge agent draft a private heads-up to the founder ("Lictor AI found this in your app — here's the fix; the tool's free if you want continuous monitoring").
+**Lictor Patrol** is the cron-driven crawler that enumerates every new vibe-coder app that hit the public internet in the last N days, runs Scan on each, and — when it finds something serious — has Meerkat agent draft a private heads-up to the founder ("Lictor AI found this in your app — here's the fix; the tool's free if you want continuous monitoring").
 
 **Pilot week target:** last 7 days only (~500-1,000 assets). Validate the playbook with a manageable cohort. **Then expand to last 30 days.**
 
@@ -42,7 +42,7 @@ Tight scope so we can hand-review every outreach.
 | Reported bug actually fixed within 30d | ≥60% of responses | <30% = we're nagging without value |
 | Zero public backlash or legal complaints | yes | one credible complaint = stop and rethink |
 
-If we hit these, expand to last-30-days for Week 2. If we miss them, post-mortem with Mirror before doing anything else.
+If we hit these, expand to last-30-days for Week 2. If we miss them, post-mortem with Mantis before doing anything else.
 
 ---
 
@@ -88,7 +88,7 @@ If we hit these, expand to last-30-days for Week 2. If we miss them, post-mortem
                                 └─────────┬───────────────┘
                                           ▼
                               ┌─────────────────────────┐
-                              │ Bridge Outreach Drafting│ ← Bridge agent
+                              │ Meerkat Outreach Drafting│ ← Meerkat agent
                               │ Personalized, with name │
                               │ + finding + fix + offer │
                               └─────────┬───────────────┘
@@ -96,7 +96,7 @@ If we hit these, expand to last-30-days for Week 2. If we miss them, post-mortem
                               ┌─────────────────────────┐
                               │ Raffa reviews → Sends     │
                               │ (Week 1-4 manual; later │
-                              │ Bridge auto-sends low-  │
+                              │ Meerkat auto-sends low-  │
                               │ risk classes)           │
                               └─────────┬───────────────┘
                                         ▼
@@ -110,7 +110,7 @@ If we hit these, expand to last-30-days for Week 2. If we miss them, post-mortem
 
 ## The outreach voice
 
-Every outreach is signed `— Bridge (Lictor's community agent) · lictorai.com`. Honest about being an AI agent, honest about the finding, honest about the offer.
+Every outreach is signed `— Meerkat (Lictor's community agent) · lictorai.com`. Honest about being an AI agent, honest about the finding, honest about the offer.
 
 ### Template — HIGH severity, individual founder
 
@@ -118,7 +118,7 @@ Every outreach is signed `— Bridge (Lictor's community agent) · lictorai.com`
 >
 > Hi [name],
 >
-> I'm Bridge, the community agent for Lictor AI — an open-source security audit tool for AI-built apps. We're an Apache 2.0 project run by Raffa, a 20-year cybersecurity engineer.
+> I'm Meerkat, the community agent for Lictor AI — an open-source security audit tool for AI-built apps. We're an Apache 2.0 project run by Raffa, a 20-year cybersecurity engineer.
 >
 > Our scanner picked up your project ([url]) earlier this week and flagged one issue we thought you'd want to know about before anyone else does:
 >
@@ -138,12 +138,12 @@ Every outreach is signed `— Bridge (Lictor's community agent) · lictorai.com`
 >
 > Happy to answer anything.
 >
-> — Bridge (Lictor's community agent) · lictorai.com
+> — Meerkat (Lictor's community agent) · lictorai.com
 > Co-signed by Raffa on outreach reviewed personally in pilot weeks.
 
 ### Template — CRITICAL severity, escalated to Raffa
 
-Drops the AI-agent framing. Raffa writes personally. Bridge prepares the draft + the finding + the fix; Raffa sends from his email. CRITICAL findings are the moment to be a human, not an agent.
+Drops the AI-agent framing. Raffa writes personally. Meerkat prepares the draft + the finding + the fix; Raffa sends from his email. CRITICAL findings are the moment to be a human, not an agent.
 
 ### Template — aggregate weekly report (always public, never names individuals)
 
@@ -170,7 +170,7 @@ These are in the spec because they're load-bearing for the project's existence, 
 | 30-day private disclosure window for individuals | Solo founders are not Equifax | State machine enforces, can't be overridden |
 | 90-day window for companies ≥10 employees / VC-backed | Industry-standard responsible disclosure | Manual classification flag |
 | Aggregate stats public immediately; individual scorecards gated | Press value without weaponizing scorecards | Severity router separates the two paths |
-| One-click opt-out at `lictorai.com/scan/<hash>/remove` | Bridge processes within 24h | Standard form → Bridge queue |
+| One-click opt-out at `lictorai.com/scan/<hash>/remove` | Meerkat processes within 24h | Standard form → Meerkat queue |
 | We scan ourselves first, publicly, before launching Patrol | Modeling the behavior we expect | Aug 1: `lictorai.com/scan/lictorai.com` published |
 | No facial / personal-data scraping | Out of scope, in tension with security purpose | Engineering constraint — checks are URL+JS+headers only |
 | Audit corpus stores fingerprints, never raw findings | Privacy by design | Hash: SHA-256(finding-type + severity + platform), no URL |
@@ -230,16 +230,16 @@ The corpus IS the moat. Within 12 months at projected scan rates, Lictor will ha
 
 | Week | What ships | Owner |
 |---|---|---|
-| **W22 (Jun 1-7)** | Source enumerators (GitHub, Lovable, Bolt, v0, PH, HN) — 6 of 10. Cron + dedup + queue. Scan engine deployed as Worker. | dev (C-3PO) builds; Conductor wires cron |
-| **W23 (Jun 8-14)** | **PILOT SCAN WEEK** — last-7-days cohort, 500-1,000 assets. Manual review of every outreach. | All hands: Raffa reviews findings, Bridge drafts outreach, Mirror watches voice |
+| **W22 (Jun 1-7)** | Source enumerators (GitHub, Lovable, Bolt, v0, PH, HN) — 6 of 10. Cron + dedup + queue. Scan engine deployed as Worker. | dev (Octopus) builds; Wolf wires cron |
+| **W23 (Jun 8-14)** | **PILOT SCAN WEEK** — last-7-days cohort, 500-1,000 assets. Manual review of every outreach. | All hands: Raffa reviews findings, Meerkat drafts outreach, Mantis watches voice |
 | **W24 (Jun 15-21)** | Disclosure state machine + opt-out flow + scorecard page + OG image renderer | dev + designer (you, with the new design-system spec) |
-| **W25 (Jun 22-28)** | Audit corpus (KV append-only) + aggregate-stats dashboard at `lictorai.com/in-the-wild` (gated, internal only at first) | dev + Conductor for stats aggregation |
-| **W26 (Jun 29 - Jul 5)** | Expand to last-30-days cohort. Add remaining 4 sources (YC, Cursor, npm, Twitter/X). | Probe (already does competitive watch) extends to general patrol |
-| **W27 (Jul 6-12)** | Public Scan surface goes live at `lictorai.com/scan/<url>` — paste-a-URL form. Embeddable badge ready. | dev + Quill for the launch copy |
-| **W28 (Jul 13-19)** | Bridge auto-sends low-risk outreach (B/C grades); Raffa still reviews D/F manually. Leaderboard v0.1 published (one platform: Lovable). | Bridge gets auto-send permission for low-risk classes only |
+| **W25 (Jun 22-28)** | Audit corpus (KV append-only) + aggregate-stats dashboard at `lictorai.com/in-the-wild` (gated, internal only at first) | dev + Wolf for stats aggregation |
+| **W26 (Jun 29 - Jul 5)** | Expand to last-30-days cohort. Add remaining 4 sources (YC, Cursor, npm, Twitter/X). | Mongoose (already does competitive watch) extends to general patrol |
+| **W27 (Jul 6-12)** | Public Scan surface goes live at `lictorai.com/scan/<url>` — paste-a-URL form. Embeddable badge ready. | dev + Lyrebird for the launch copy |
+| **W28 (Jul 13-19)** | Meerkat auto-sends low-risk outreach (B/C grades); Raffa still reviews D/F manually. Leaderboard v0.1 published (one platform: Lovable). | Meerkat gets auto-send permission for low-risk classes only |
 | **W29-W32 (Jul 20 - Aug 15)** | **Silent run for 30 days.** Collect data, refine voice, hand-write everything, measure. No public announcement yet. | All agents in production mode |
-| **Aug 15** | **SOFT LAUNCH:** publish the 30-day finding report. HN post. Twitter thread. Press emails. | Quill drafts; Raffa sends; Bridge handles the deluge |
-| **Aug 16 - Oct 6** | Compound on the soft-launch attention. Weekly leaderboard reports. Lovable / Bolt / v0 integration outreach (the AUDIT.json adoption play, suddenly easy because we have proof). | Booth pivots to platform integration outreach |
+| **Aug 15** | **SOFT LAUNCH:** publish the 30-day finding report. HN post. Twitter thread. Press emails. | Lyrebird drafts; Raffa sends; Meerkat handles the deluge |
+| **Aug 16 - Oct 6** | Compound on the soft-launch attention. Weekly leaderboard reports. Lovable / Bolt / v0 integration outreach (the AUDIT.json adoption play, suddenly easy because we have proof). | Nightingale pivots to platform integration outreach |
 | **Oct 6** | **HARD LAUNCH:** the rest of the suite (Studio, CLI, full crew, SDK, Guardian). By now everyone already knows what Lictor IS. | Coordinated multi-channel launch |
 
 ---
@@ -265,7 +265,7 @@ The corpus IS the moat. Within 12 months at projected scan rates, Lictor will ha
 | Lictor Studio v0.1 (was Dec 31) → defer to Q1 2027 | Local desktop is a worse magnet than a public scanner. Studio still ships, just later. | Patrol takes Studio's launch slot. |
 | 3 cornerstone blog posts → cut to 1 | Patrol auto-generates content (weekly reports). One launch essay beats 3 evergreens. | Weekly Patrol report = the content engine. |
 | 12 weekly teardowns → cut to 10, automate the rest | Teardowns become Patrol byproducts — when a high-profile app scores F, its scorecard IS the teardown. | Patrol replaces ~2 manual teardowns per quarter. |
-| "First 5 founder videos by Jun 1" → 2 videos | One on what Lictor is, one explaining a Patrol finding. Reel agent picks up the cadence in Nov anyway. | — |
+| "First 5 founder videos by Jun 1" → 2 videos | One on what Lictor is, one explaining a Patrol finding. Peacock agent picks up the cadence in Nov anyway. | — |
 
 Net new effort: ~5 weeks of build. Net cuts: ~8 weeks of stuff that compounds less. **Patrol replaces inferior surfaces; it doesn't add to the workload.**
 
@@ -277,10 +277,10 @@ Net new effort: ~5 weeks of build. Net cuts: ~8 weeks of stuff that compounds le
 |---|---|---|
 | Lovable / Bolt / v0 block our scraping | medium | Have a backup: offer them the scoring service as a publish-flow integration in exchange for an app-index API. Already aligned with AUDIT.json adoption play. |
 | Twitter scraping is brittle / breaks | high | Low priority. Drop it if it costs us more than 2 days of maintenance per month. |
-| A high-profile founder publicly attacks us | medium-high | Mitigations: 30-day private window prevents the worst version; Bridge voice is rigorously friendly; we scan ourselves first on Aug 1 publicly to model behavior; one-click opt-out exists. |
+| A high-profile founder publicly attacks us | medium-high | Mitigations: 30-day private window prevents the worst version; Meerkat voice is rigorously friendly; we scan ourselves first on Aug 1 publicly to model behavior; one-click opt-out exists. |
 | Legal complaint from a company | low | Public-info scanning is well-established (Shodan, Censys, HIBP, SSL Labs, Lighthouse). Legal-structure-memo needs a Patrol-specific addendum. |
-| Bridge sends an outreach that's tone-deaf or wrong | medium (pilot weeks), low (after voice is dialed) | Manual review in pilot. Mirror reviews all outreach in weeks 1-4. Bridge gets auto-send permission only after voice is stable. |
-| Scan engine produces a false positive that we publish | medium | False positives are part of the model. We publish corrections immediately on the same surface. The Bridge outreach script literally says "if you think this is a false positive, reply and we'll re-examine." |
+| Meerkat sends an outreach that's tone-deaf or wrong | medium (pilot weeks), low (after voice is dialed) | Manual review in pilot. Mantis reviews all outreach in weeks 1-4. Meerkat gets auto-send permission only after voice is stable. |
+| Scan engine produces a false positive that we publish | medium | False positives are part of the model. We publish corrections immediately on the same surface. The Meerkat outreach script literally says "if you think this is a false positive, reply and we'll re-examine." |
 | Cloudflare Worker costs balloon | very low | At 50K scans/mo: ~$30. At 500K scans/mo: ~$300. Trivial. |
 | We get acquired faster than we expected because Patrol is too good | this would be a good problem | We have the acquirer deck. We have the foundation governance plan. We have leverage because the OSS core can't be unforked. Proceed normally. |
 

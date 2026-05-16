@@ -1,7 +1,7 @@
 # 12 teardown scaffolds — Oct 6 → Dec 22, 2026
 
 > **Generated:** 2026-05-15
-> **Purpose:** runway for the launch engine. The teardown rhythm cannot break in the first 12 weeks — that's how the category-defining position locks in. These scaffolds let the agent crew (Radar/Probe/Quill/Magnet) start producing each week's teardown 14 days before publication without re-inventing the structure each time.
+> **Purpose:** runway for the launch engine. The teardown rhythm cannot break in the first 12 weeks — that's how the category-defining position locks in. These scaffolds let the agent crew (Hawk/Mongoose/Lyrebird/Bee) start producing each week's teardown 14 days before publication without re-inventing the structure each time.
 > **How to use:** Week N's scaffold lives at `~/Lictor/teardowns/YYYY-MM-DD-slug/scaffold.md`. The agent crew fills in the audit findings, the founder response, and the final copy. Headline + structure already locked.
 > **Companion docs:** [teardown-engine.md](./teardown-engine.md) (operational spec), [teardown-targets.md](./teardown-targets.md) (target research), [content-calendar.md](./content-calendar.md) (cross-channel distribution per week).
 
@@ -10,7 +10,7 @@
 ## Master scaffold (the shape every teardown follows)
 
 ```yaml
-# Front matter (used by Magnet for the landing page)
+# Front matter (used by Bee for the landing page)
 publish_date: YYYY-MM-DD
 target_app: [App name]
 target_url: https://...
@@ -23,7 +23,7 @@ risk_level: 1-5 (see teardown-targets.md scoring)
 headline: [final headline used at publish]
 agent_credits: { radar: N findings, sieve: N scored, probe: N validated, quill: drafted }
 
-# Body sections (filled by Quill from Probe's audit + agent crew)
+# Body sections (filled by Lyrebird from Mongoose's audit + agent crew)
 1. Hook (3-second open)
 2. Setup — who built this, why we picked it
 3. Audit at a glance — total findings + severity histogram
@@ -36,7 +36,7 @@ agent_credits: { radar: N findings, sieve: N scored, probe: N validated, quill: 
 10. Crew credits + disclosure timeline
 11. CTA — try /lictor-security-check yourself
 
-# Companion content (drafted by Magnet + Pulse + Reel)
+# Companion content (drafted by Bee + Bat + Peacock)
 twitter_thread: 6 tweets, last one links to landing page
 linkedin_post: 1 post in Raffa's voice (different framing from Twitter)
 hn_submission: text-only submission, 200 words
@@ -64,7 +64,7 @@ Every scaffold below follows this shape. Variance is in the *target*, *predicted
 - **Oct 4:** final check — if fully fixed, switch to "Tymora" as launch target (Week 2 swap)
 - **Oct 6:** publish
 
-### Predicted findings (working hypothesis — Probe validates)
+### Predicted findings (working hypothesis — Mongoose validates)
 
 | # | Severity | Category | Predicted finding |
 |---|---|---|---|
@@ -187,7 +187,7 @@ The meta-frame is irresistible — Lictor's AI agents audit an AI-agent platform
 ### Companion content sketch
 - Reach out to the founder for a co-recording — 10x amplification if they appear in the YouTube long-form
 - Twitter thread leads with the meta-frame
-- This is the first teardown where Reel agent's video script writes itself
+- This is the first teardown where Peacock agent's video script writes itself
 
 ---
 
@@ -232,7 +232,7 @@ Pick a public Bolt.new-built app with: real user base (1K+ users), public founde
 ### Why Week 6
 Diversify away from Lovable. The first 5 weeks were heavy on Lovable; if the pattern set is "Lovable only" by week 6, Bolt and v0 founders write Lictor off as "not for them."
 
-### Suggested candidates (Radar to confirm closer to date)
+### Suggested candidates (Hawk to confirm closer to date)
 - A Bolt-built SaaS featured on Product Hunt in the last 90 days
 - One of the Bolt hackathon winners with public traction
 - A Bolt-built B2B tool aimed at small dev teams
@@ -377,26 +377,26 @@ This is the post that:
 ## How the agent crew uses these scaffolds
 
 ```
-Sun, week-of:    Radar agent confirms target from this week's scaffold
-                 Probe agent starts the audit against the target
-Mon:             Probe's audit complete; findings come back to Sieve
-                 Sieve scores; only ≥6 findings make the report
-                 Quill drafts the writeup using the scaffold structure
+Sun, week-of:    Hawk agent confirms target from this week's scaffold
+                 Mongoose agent starts the audit against the target
+Mon:             Mongoose's audit complete; findings come back to Owl
+                 Owl scores; only ≥6 findings make the report
+                 Lyrebird drafts the writeup using the scaffold structure
 Tue (target -8 days): Disclosure email sent (for high-risk targets)
                       OR (for risk-1-2 targets) disclosure sent Tue of week prior
-Wed of pub-week: Quill's draft reviewed by Mirror
+Wed of pub-week: Lyrebird's draft reviewed by Mantis
 Thu of pub-week: Founder response logged (engaged | fixed | non-responsive)
                  Branch chosen: standard teardown OR "fixed cleanly" story
-Fri of pub-week: Raffa records video using Reel's script
-                 Magnet builds the landing page
-                 Pulse drafts companion social
+Fri of pub-week: Raffa records video using Peacock's script
+                 Bee builds the landing page
+                 Bat drafts companion social
 Mon AM:          Final review by Raffa
 Tue PUBLISH:     See teardown-engine.md publication sequence
 ```
 
 If a scaffold's target doesn't pan out (founder threatens legal action, target goes offline, founder partners with us pre-disclosure), the fallback is:
 - Week 1-5: defer one week, use the listed alternate target
-- Week 6-10: pick a fresh archetype-matching target from Radar's then-current candidate list
+- Week 6-10: pick a fresh archetype-matching target from Hawk's then-current candidate list
 - Week 11-12: protected weeks — don't sub in a contentious target on Teams-launch / year-end-recap weeks
 
 ## What's NOT in these scaffolds (deliberate)

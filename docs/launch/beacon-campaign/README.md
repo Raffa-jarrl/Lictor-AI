@@ -22,12 +22,12 @@
 |---|---|---|
 | **Mon May 18** | Buttondown account created; waitlist landing live; 4 launch posts go out | Raffa (30 min, see checklist) |
 | Tue May 19 | r/SaaS post submitted | Raffa |
-| Wed May 20 | First weekly teaser thread on Twitter | Raffa (or Reel agent scheduled) |
+| Wed May 20 | First weekly teaser thread on Twitter | Raffa (or Peacock agent scheduled) |
 | Wed May 21 | Indie Hackers long-form post submitted | Raffa |
 | Thu May 22 | First check-in on Buttondown dashboard | — |
 | Fri May 24 | First weekly newsletter announcement to GenerationAI list | Raffa |
-| Weekly thereafter | One teaser thread per week (12 weeks); Mission Control tracks signups | Reel agent + Mission Control |
-| **Sat Jul 6** | Mid-campaign retrospective. If <250 signups, rework or kill. | Raffa + Mirror agent |
+| Weekly thereafter | One teaser thread per week (12 weeks); Mission Control tracks signups | Peacock agent + Mission Control |
+| **Sat Jul 6** | Mid-campaign retrospective. If <250 signups, rework or kill. | Raffa + Mantis agent |
 | **Wed Jul 23** | Show HN drops (week 10) — the spike moment | Raffa (manual submit) |
 | Sep 22 → Oct 5 | Drip emails 4 + 5 to the waitlist (countdown) | Buttondown auto |
 | **Oct 6** | LAUNCH. Final email to waitlist → install Lictor. | Buttondown auto + Raffa |

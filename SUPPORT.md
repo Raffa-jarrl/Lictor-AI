@@ -25,7 +25,7 @@ These are aspirations, not contracts. We're a small team. We answer in good fait
 | Type | Target |
 |---|---|
 | Security disclosure | 48 hours (acknowledgment); see [SECURITY.md](SECURITY.md) for the full SLA |
-| GitHub issue (bug / FP / FN / voice-bug) | 4 hours (auto-acknowledgment from the Bridge agent), 48 hours (real triage), 7 days (proposed fix or honest "won't fix and why") |
+| GitHub issue (bug / FP / FN / voice-bug) | 4 hours (auto-acknowledgment from the Meerkat agent), 48 hours (real triage), 7 days (proposed fix or honest "won't fix and why") |
 | GitHub Discussion question | Best-effort — usually within a few days |
 | Email to `hello@` / `press@` | 48–72 hours |
 | Pull Request | First review within 7 days; merge cadence depends on size + clarity |

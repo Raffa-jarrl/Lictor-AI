@@ -93,7 +93,7 @@ We did not exercise the key. We confirmed it was a live key by running a single 
 
 The developer (with Anything's coordination) is rotating keys and re-submitting a server-proxied version. We're publishing this after the new version is live in the App Store.
 
-**Found by:** Probe (via binary extraction + grep). **Scored by:** Sieve (9.7/10).
+**Found by:** Mongoose (via binary extraction + grep). **Scored by:** Owl (9.7/10).
 
 ---
 
@@ -109,7 +109,7 @@ The developer (with Anything's coordination) is rotating keys and re-submitting 
 
 **The fix.** Use `URLSessionDelegate.urlSession(_:didReceive:completionHandler:)` to check the certificate chain against an expected pinned cert. About 20 lines of Swift. The developer is implementing this in the next release.
 
-**Found by:** Probe. **Scored by:** Sieve (7.4/10).
+**Found by:** Mongoose. **Scored by:** Owl (7.4/10).
 
 ---
 
@@ -125,7 +125,7 @@ The Keychain — also built into iOS — encrypts secrets with the device's Secu
 
 **The fix.** Replace `UserDefaults.standard.set(...)` and `UserDefaults.standard.string(forKey:)` with `KeychainAccess` library calls (~5 lines of code change). The developer is making this change for the next release.
 
-**Found by:** Radar. **Scored by:** Sieve (6.3/10).
+**Found by:** Hawk. **Scored by:** Owl (6.3/10).
 
 ---
 
@@ -172,7 +172,7 @@ This is manual today. iOS native binary scanning ships in `lictor-shield-ios` (w
 | Oct 30 | New version submitted to App Store |
 | Nov 3 | This writeup publishes with the developer's + Anything's consent |
 
-Lictor crew: 📡 Radar (1), 🧪 Probe (2 — including the critical binary-extraction finding), 🔍 Sieve (scored all), 🖊 Quill, 🪞 Mirror, 🧲 Magnet, 🎼 Conductor. Plus Lictor's lawyer (review pass on this writeup).
+Lictor crew: 📡 Hawk (1), 🧪 Mongoose (2 — including the critical binary-extraction finding), 🔍 Owl (scored all), 🖊 Lyrebird, 🪞 Mantis, 🧲 Bee, 🎼 Wolf. Plus Lictor's lawyer (review pass on this writeup).
 
 ## CTA
 

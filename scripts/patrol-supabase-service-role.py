@@ -16,7 +16,7 @@ For each candidate:
 Output:
   - public-aggregate.md   — counts only, safe to publish
   - private-outreach.md   — owner, file URL, JWT fingerprint (NOT raw key);
-                             gitignored; for Bridge / Raffa eyes only
+                             gitignored; for Meerkat / Raffa eyes only
 
 Disclosure window: 30 days private before any public scorecard.
 """
@@ -170,7 +170,7 @@ def render_reports(cands, public_path, private_path):
     md.append(f"**Scanned at:** {datetime.now().strftime('%Y-%m-%d %H:%M UTC')}")
     md.append(f"**Disclosure status:** PRIVATE — 30-day window starts at first outreach.\n")
     md.append(f"## Confirmed service_role JWT in client-likely path ({len(actionable)})\n")
-    md.append("Bridge: draft personalized outreach for each. Open file, verify it's actually exposed (not in a server-only context that just happens to live under src/), then send. Use the standard template from docs/launch/lictor-scan-and-patrol-v0.1.md.\n")
+    md.append("Meerkat: draft personalized outreach for each. Open file, verify it's actually exposed (not in a server-only context that just happens to live under src/), then send. Use the standard template from docs/launch/lictor-scan-and-patrol-v0.1.md.\n")
     md.append("| Repo | Path | Risk | Owner | Stars | Pushed | File |\n|---|---|---|---|---|---|---|\n")
     for c in sorted(actionable, key=lambda x: -(x.repo_meta.get("stars") or 0)):
         md.append(f"| `{c.repo}` | `{c.path}` | **{c.path_risk}** | "

@@ -4,7 +4,7 @@
 
 > **Generated:** 2026-05-15
 > **Cadence:** Last 3 days of each quarter — Mar 29-31, Jun 28-30, Sep 28-30, Dec 29-31
-> **Owner:** Raffa + agent crew (Mirror, Probe, Conductor feed inputs; Raffa writes the synthesis)
+> **Owner:** Raffa + agent crew (Mantis, Mongoose, Wolf feed inputs; Raffa writes the synthesis)
 > **Companion docs:** `year-plan-2026-2027.md` (the plan to retro against), `weekly-operating-rhythm.md` (the cadence this slots into), `operation-triumph-expanded.md` (the 5-track structure)
 > **Output destination:** `~/Lictor/docs/business/quarterly/YYYY-QN.md`
 
@@ -47,9 +47,9 @@ Gather these in the week BEFORE the retro starts. Block 2-3 hours mid-quarter-en
 
 **Numbers**
 - 3 monthly metric snapshots from `docs/business/metrics/YYYY-MM.md`
-- 12-13 weekly Mirror reviews from `output/review-week-NN.md`
-- Probe's 12-13 weekly competitive scans (look for cumulative drift, not single-week noise)
-- Conductor's daily briefings from `briefings/YYYY-MM-DD.json` — scan for escalation patterns
+- 12-13 weekly Mantis reviews from `output/review-week-NN.md`
+- Mongoose's 12-13 weekly competitive scans (look for cumulative drift, not single-week noise)
+- Wolf's daily briefings from `briefings/YYYY-MM-DD.json` — scan for escalation patterns
 - The data-room quarterly financial summary at `docs/business/diligence/financials-qN-YYYY.md`
 
 **Artifacts**
@@ -160,12 +160,12 @@ Surprises — both directions.
 
 For each surprise, note:
 
-- **The signal you should have caught earlier:** _[Probe intel ignored? Community comment dismissed? Customer call flag missed?]_
-- **What to change in the sensing apparatus:** _[e.g., "Probe scans Snyk press releases weekly, not just product pages" or "customer 1:1 log adds explicit 'recurring vs one-time?' field"]_
+- **The signal you should have caught earlier:** _[Mongoose intel ignored? Community comment dismissed? Customer call flag missed?]_
+- **What to change in the sensing apparatus:** _[e.g., "Mongoose scans Snyk press releases weekly, not just product pages" or "customer 1:1 log adds explicit 'recurring vs one-time?' field"]_
 
 The point isn't self-flagellation. The point is the sensing apparatus. Surprises are diagnostic — they tell you where your instruments are pointing and where they're not.
 
-So next quarter: Probe's scan list gets at least one addition based on this quarter's surprises.
+So next quarter: Mongoose's scan list gets at least one addition based on this quarter's surprises.
 
 ---
 

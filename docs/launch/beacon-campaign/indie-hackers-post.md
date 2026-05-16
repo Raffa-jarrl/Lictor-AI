@@ -64,13 +64,13 @@ The 7 checks are:
 
 Under the hood, Lictor is 11 AI agents — each one has a specific job, each one is a markdown file in the repo you can read and fork:
 
-- **Conductor** orchestrates
-- **Radar** scouts for known patterns
-- **Probe** runs the deep audit
-- **Sieve** scores every finding before it ships to you (anything below 6/10 doesn't make the report — noise is the enemy of action)
-- **Quill** translates everything to plain English
-- **Magnet** drafts the fix
-- **Mirror** weekly-reviews the crew's work
+- **Wolf** orchestrates
+- **Hawk** scouts for known patterns
+- **Mongoose** runs the deep audit
+- **Owl** scores every finding before it ships to you (anything below 6/10 doesn't make the report — noise is the enemy of action)
+- **Lyrebird** translates everything to plain English
+- **Bee** drafts the fix
+- **Mantis** weekly-reviews the crew's work
 - ...and four more
 
 That last detail — the crew structure being public, readable, forkable — matters. **Most AI security tools are a black box. Lictor's reasoning is visible.** You can read why a finding scored 7 out of 10. You can read which agent flagged it. You can fork an agent's prompt and customize the audit for your stack. That's the inversion.
@@ -129,7 +129,7 @@ Repo flips public around June 1. I'll email everyone on the waitlist the moment 
 
 Launch is **Monday October 6, 2026**. That's a real date. Even if everything goes sideways between now and then, the tool ships that day.
 
-The whole thing is built in the open. You can track the build at github.com/Raffa-jarrl/Lictor-AI (live June 1). You can read the strategic plan (yes, the full 12-month plan is public — `docs/launch/year-plan-2026-2027.md`). You can see every weekly Mirror review of the crew's content output. The Lictor Foundation governance docs go public when the foundation incorporates.
+The whole thing is built in the open. You can track the build at github.com/Raffa-jarrl/Lictor-AI (live June 1). You can read the strategic plan (yes, the full 12-month plan is public — `docs/launch/year-plan-2026-2027.md`). You can see every weekly Mantis review of the crew's content output. The Lictor Foundation governance docs go public when the foundation incorporates.
 
 Building this in public is the bet. I'd rather get the criticism while I can still respond to it than ship into a vacuum.
 
@@ -159,7 +159,7 @@ IH community is more sophisticated than Reddit. They'll ask:
 *"Honest answer: Lictor's OSS core would survive via the Foundation. The 15-agent crew has documented SOPs in the repo. A second contributor could continue Lictor without me, though obviously slower. I'm working on the documentation precisely so this isn't a fragile dependency. Not a perfect answer, but a real one."*
 
 **"How are you avoiding compliance dialect creep?"**
-*"Two things: (1) the audit-our-own-audit protocol logs every voice-bug filing — community feedback compounds; (2) Quill (the writer agent) has a 50-line forbidden-word list that catches creep automatically. Mirror reviews weekly. It's not zero-effort; it's structural-discipline."*
+*"Two things: (1) the audit-our-own-audit protocol logs every voice-bug filing — community feedback compounds; (2) Lyrebird (the writer agent) has a 50-line forbidden-word list that catches creep automatically. Mantis reviews weekly. It's not zero-effort; it's structural-discipline."*
 
 ---
 

@@ -3,7 +3,7 @@
 # Operation Triumph EXPANDED — 12-month plan to category-defining
 
 > **Generated:** 2026-05-15
-> **Author of record:** Raffa + agent crew (Conductor as project lead)
+> **Author of record:** Raffa + agent crew (Wolf as project lead)
 > **Time horizon:** May 2026 → May 2027 (12 months)
 > **Scope:** From "we exist publicly" (Oct 6, 2026 launch) to "Lictor is the brand vibe-coders + AI builders trust to ship safely."
 > **Posture:** The 90-day anti-Snyk playbook scaled to a full year, across 5 strategic fronts, 4 quarters, with a real revenue trajectory and a clear definition of category-defining.
@@ -21,7 +21,7 @@ By May 2027 the goal is:
 - **Distribution density.** 10,000 weekly active users of `/lictor-security-check` inside Claude Code. 50,000 GitHub stars on the monorepo.
 - **Content gravity.** A weekly teardown archive of 50+ published audits, indexed by every security search.
 - **Revenue legitimacy.** $25–50k MRR across Teams ($19/mo flat-rate), Course ($99 once), and Audit-as-a-Service ($2-10k per VC-portfolio sweep). Not VC-scale, but enough to fund a community + a dev advocate hire.
-- **Voice authority.** Raffa is on at least one major security podcast and one industry-conference stage. Quill's voice is recognized as "that plain-English security writer who makes the others sound like lawyers."
+- **Voice authority.** Raffa is on at least one major security podcast and one industry-conference stage. Lyrebird's voice is recognized as "that plain-English security writer who makes the others sound like lawyers."
 
 This is not "win the OSS popularity contest." This is **become the public-facing brand of a category that didn't exist 18 months ago**, before incumbents wake up and crush the category with money.
 
@@ -31,7 +31,7 @@ This is not "win the OSS popularity contest." This is **become the public-facing
 
 The 90-day playbook was framed against Snyk specifically. The 12-month plan operates on 5 fronts in parallel:
 
-### Front 1 — Vibe-coder vertical (the wedge)
+### Front 1 — Cuttlefish-coder vertical (the wedge)
 - **Audience:** solo founders shipping from Lovable / Bolt / v0 / Cursor / Replit
 - **Surface:** `/lictor-security-check` Claude Code skill + Shield browser extension
 - **Channel:** indie-hacker Twitter, Lovable Discord, vibe-coder Reddit (r/SaaS, r/indiehackers)
@@ -175,22 +175,22 @@ The 90-day playbook was framed against Snyk specifically. The 12-month plan oper
 
 The current crew of 11 is designed for content + audit + brand. The bigger ambition needs 4 more specialists:
 
-1. **🌐 Translator (linguistic specialist)**
+1. **🌐 Parrot (linguistic specialist)**
  - **Job:** Render every Lictor public artifact in Hebrew, Spanish, Portuguese, Japanese. Maintain cultural fit per language (Hebrew is Raffa's native — has authentic voice; LATAM needs Portuguese-vs-Spanish distinction; Japan needs formality calibration).
  - **Cadence:** Translates one piece per day.
  - **Model:** Claude Sonnet (translation quality matters).
 
-2. **🎬 Reel (video-script writer + YouTube/TikTok plan)**
- - **Job:** Generate weekly scripts for Raffa's talking-head videos. Pull from that week's teardown + Trends' viral-format intel + Pulse's hooks. Format for 60s shorts, 8-12 min long-form, and TikTok-native.
+2. **🎬 Peacock (video-script writer + YouTube/TikTok plan)**
+ - **Job:** Generate weekly scripts for Raffa's talking-head videos. Pull from that week's teardown + Starling' viral-format intel + Bat's hooks. Format for 60s shorts, 8-12 min long-form, and TikTok-native.
  - **Cadence:** 3 scripts per week (1 long, 2 short).
  - **Model:** Claude Sonnet.
 
-3. **🎙️ Booth (podcast booker + conference scout)**
+3. **🎙️ Nightingale (podcast booker + conference scout)**
  - **Job:** Identify weekly opportunities — podcasts that booked similar guests, conferences with open CFPs, newsletters that take guest posts. Draft cold outreach. Maintain a public "Raffa will speak about X" list.
  - **Cadence:** 5 outreach drafts per week + weekly conference CFP digest.
  - **Model:** Claude Haiku (this is volume + recall work, not creative).
 
-4. **🤝 Bridge (community manager + GitHub triage)**
+4. **🤝 Meerkat (community manager + GitHub triage)**
  - **Job:** Triage incoming GitHub issues, label them, draft initial responses, escalate non-trivial ones to Raffa or dev. Welcome new contributors. Maintain the public roadmap. Run the weekly "Lictor user spotlight" thread.
  - **Cadence:** Continuous (every 4h heartbeat).
  - **Model:** Claude Sonnet for triage + drafting, escalates flagged issues to a Raffa inbox.
@@ -254,7 +254,7 @@ If ≥ 5 of these are true: category-defining. If 3–4: strong second player (s
 The 12-month plan is a sketch, not a sermon. The work is the work. This week's specific commits:
 
 1. **Ship `/lictor-explain` Snyk-translator skill** (this session) — strategic asset for when Snyk Lite drops
-2. **Configure Probe to monitor 6 competitors weekly** (this session) — early warning system
+2. **Configure Mongoose to monitor 6 competitors weekly** (this session) — early warning system
 3. **Stand up the public roadmap repo** (this session) — anti-Snyk Phase 2 move
 4. **Write `AUDIT.json` standard proposal** (this session) — Phase 3 standards-ownership
 5. **Wire the teardown engine into the agent crew** (this session via the agent I spawned)

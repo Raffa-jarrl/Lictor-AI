@@ -26,7 +26,7 @@ I'm Raffa — 20-year cybersecurity engineer, building Lictor in the open. Quick
 **What you'll get from me between now and then.** Four more emails. Total. That's it.
 
 - ~2 weeks from now: 5 specific patterns I'm catching that the other tools miss
-- ~1 month from now: meet the 11 agents (one of them is named Sieve and rejects bad findings before you see them)
+- ~1 month from now: meet the 11 agents (one of them is named Owl and rejects bad findings before you see them)
 - ~3 months from now: the audit Lictor ran on its own codebase, with the findings we shipped to fix
 - The launch day: "we shipped, here's how to install it"
 
@@ -98,19 +98,19 @@ Hey,
 
 Most AI security tools are a black box: input goes in, findings come out. Lictor's audit doesn't work that way. It's 11 specialized AI agents, each with its own job, each defined in a markdown file you can read on GitHub. Today let me introduce a few:
 
-**🎼 Conductor** — orchestrator. Reads your project, plans the audit, routes work to the specialists. Surfaces a daily briefing so the audit isn't a one-shot — it's an ongoing operation.
+**🎼 Wolf** — orchestrator. Reads your project, plans the audit, routes work to the specialists. Surfaces a daily briefing so the audit isn't a one-shot — it's an ongoing operation.
 
-**🔍 Sieve** — the quality gate. Scores every finding against three personas before it ships to you. Anything below 6 out of 10 doesn't make the report. **That's why Lictor's reports are shorter than other tools'. Noise is the enemy of action.**
+**🔍 Owl** — the quality gate. Scores every finding against three personas before it ships to you. Anything below 6 out of 10 doesn't make the report. **That's why Lictor's reports are shorter than other tools'. Noise is the enemy of action.**
 
-**📡 Radar** — pattern scout. Hunts for the bug shapes that AI assistants ship most. Trained on 1,430+ real audits. Knows that Lovable's default Supabase migrations skip RLS, that Bolt's Vite config ships source maps to production, that v0's Server Actions can be misused as auth bypasses.
+**📡 Hawk** — pattern scout. Hunts for the bug shapes that AI assistants ship most. Trained on 1,430+ real audits. Knows that Lovable's default Supabase migrations skip RLS, that Bolt's Vite config ships source maps to production, that v0's Server Actions can be misused as auth bypasses.
 
-**🖊️ Quill** — voice keeper. Translates every finding into plain English. Not "information disclosure vulnerability" — "your /api/users page gives out the customer list to anyone." Reports your non-technical co-founder can read.
+**🖊️ Lyrebird** — voice keeper. Translates every finding into plain English. Not "information disclosure vulnerability" — "your /api/users page gives out the customer list to anyone." Reports your non-technical co-founder can read.
 
-**🧲 Magnet** — fix designer. For every issue, drafts the smallest possible fix and the exact file + line to put it in. No 40-page remediation guides. One paragraph, one diff, one rotated key.
+**🧲 Bee** — fix designer. For every issue, drafts the smallest possible fix and the exact file + line to put it in. No 40-page remediation guides. One paragraph, one diff, one rotated key.
 
-**🪞 Mirror** — weekly auditor. Grades the crew's own work. Catches false positives, drifting voice, missed patterns. The reason the crew gets better, not louder, over time.
+**🪞 Mantis** — weekly auditor. Grades the crew's own work. Catches false positives, drifting voice, missed patterns. The reason the crew gets better, not louder, over time.
 
-Plus five more: 🦾 C-3PO (engineering), 🧪 Probe (currency tester), 📊 Pulse (hook crafter), 📈 Trends (virality intel), 🎵 Vibe (aesthetic curator).
+Plus five more: 🦾 Octopus (engineering), 🧪 Mongoose (currency tester), 📊 Bat (hook crafter), 📈 Starling (virality intel), 🎵 Cuttlefish (aesthetic curator).
 
 **Why this matters:** every other security tool buries the reasoning. You get a finding, you trust or don't. Lictor surfaces which agent found what, why they scored it the way they did, and what they considered. **Transparency of process is itself the product.**
 
@@ -144,7 +144,7 @@ We fixed all 5 within 72 hours. Then we wrote up the whole thing publicly becaus
 
 The full writeup is at `lictorai.com/blog/we-audited-lictor-with-lictor`. The TL;DR:
 
-- 🔴 **Critical.** A Guardian dashboard endpoint returned full SOC 2 evidence to any authenticated user, not just users with the `compliance_admin` role. Classic IDOR. Found by Mirror's weekly review of audit logs. Fix: role check + audit-log entry per access.
+- 🔴 **Critical.** A Guardian dashboard endpoint returned full SOC 2 evidence to any authenticated user, not just users with the `compliance_admin` role. Classic IDOR. Found by Mantis's weekly review of audit logs. Fix: role check + audit-log entry per access.
 
 - 🟠 **High.** A skill that wrote findings to disk did so without sanitizing the project path. Path traversal would let a malicious project name write outside the intended directory. Fix: path canonicalization.
 

@@ -1,7 +1,7 @@
 # Lictor Design System — canonical reference
 
 > **Status:** living document, established 2026-05-15. Source of truth for every visual surface that carries the Lictor wordmark.
-> **Audience:** anyone (or any agent) producing a Lictor visual — Quill, Reel, Translator, designers, future contractors.
+> **Audience:** anyone (or any agent) producing a Lictor visual — Lyrebird, Peacock, Parrot, designers, future contractors.
 > **Source CSS:** [`landing/style.css`](../../landing/style.css) is the canonical token + base-style file. Page-specific stylesheets (`landing/waitlist/waitlist.css`, etc.) reference these tokens — never redefine them.
 
 ---
@@ -159,7 +159,7 @@ Standardizing this **before** the surfaces multiply prevents the "every product 
 In priority order. Each gets its own `components/<name>.md` spec when started.
 
 1. **FindingCard** — wraps a severity badge + title + body + "fix in N minutes" footer. Used in audit reports + Studio + transparency reports. Currently rendered ad-hoc in markdown headings.
-2. **CrewBadge** — attributes work to a specific agent (🎼 Conductor, 📡 Radar, 🔍 Sieve, etc.). Used in monthly transparency reports + the public agent-roster page (not built yet).
+2. **CrewBadge** — attributes work to a specific agent (🎼 Wolf, 📡 Hawk, 🔍 Owl, etc.). Used in monthly transparency reports + the public agent-roster page (not built yet).
 3. **MetricTile** — stat-card variant for the upcoming `lictorai.com/transparency` page. Differs from `.waitlist-stat` by adding a delta-vs-last-period footer.
 4. **PromiseBlock** — already exists as `.waitlist-promise` inline; promote to global component so the Studio + dashboard + landing variants don't drift.
 

@@ -124,7 +124,7 @@ The moment Snyk Lite advertises *"free forever for 1 developer"*, the temptation
 
 ## Early warning signals — what to monitor
 
-Add these to weekly Probe scans / Trends agent feeds:
+Add these to weekly Mongoose scans / Starling agent feeds:
 
 | Signal | Interpretation |
 |---|---|
@@ -135,7 +135,7 @@ Add these to weekly Probe scans / Trends agent feeds:
 | Snyk announces a Lovable / Bolt / Cursor partnership | High-threat — they're claiming Lictor's wedge channel |
 | Pricing page changes (especially: free tier limits, removal of 5-seat minimum) | Inflection point — react within 7 days |
 
-Set up Probe to check the Snyk blog + Snyk pricing page + Snyk GitHub releases page weekly. Any change in those should escalate to the Lictor team within 24h.
+Set up Mongoose to check the Snyk blog + Snyk pricing page + Snyk GitHub releases page weekly. Any change in those should escalate to the Lictor team within 24h.
 
 ---
 

@@ -49,11 +49,11 @@ Pre-Year-1 work shipped before public launch:
 - [x] Brand asset render pipeline — 17 auto-generated outputs from 2 SVG sources
 - [x] Monthly metrics generator (Python) + cron + launchd plist
 - [x] 11-agent crew operational — sleep-resistant cron + 4 launchd jobs
-- [x] Probe agent extended for weekly competitive-watch on 6 competitors
+- [x] Mongoose agent extended for weekly competitive-watch on 6 competitors
 - [x] Mission Control: competitive-watch + year-1-metrics + waitlist-metrics dashboards
 - [x] ~80 strategic + tactical docs in `docs/launch/` — year plan, anti-Snyk playbook, M&A strategy, teardown engine, Beacon campaign, acquirer deck, press kit, 5 polished launch teardown drafts, Sep 22 disclosure emails
 - [x] **VS Code extension skeleton** (`vscode-extension/`) — manifest, diagnostics provider, sidebar tree view, 5 commands, README; TS compiles clean (ships v0.1 in Q4 2026)
-- [x] **4 new specialist agent SOULs** — Translator (🌐 locale rendering), Reel (🎬 video scripts), Booth (🎙️ podcast/CFP scouting), Bridge (🤝 GitHub triage); bring-online dates staggered Oct 2026–Jan 2027
+- [x] **4 new specialist agent SOULs** — Parrot (🌐 locale rendering), Peacock (🦚 video scripts), Nightingale (🌙 podcast/CFP scouting), Meerkat (🤝 GitHub triage); bring-online dates staggered Oct 2026–Jan 2027
 - [x] **AUDIT.json v0.2 adoption outreach** — 5 personalized email drafts (Semgrep, VibeEval, Symbioticsec, Aikido, Snyk) at `docs/launch/audit-json-adoption-outreach.md`
 - [x] **Waitlist landing translated** to Spanish (LATAM) and Portuguese (BR) at `landing/translations/{es,pt-BR}/waitlist.html`
 - [x] **Course removed from Lictor scope** — separate consulting business, no longer a revenue line. Three dedicated docs deleted; planning docs (year-plan, operation-triumph, acquirer-deck, m-and-a, etc.) annotated with course-removed headers. Revenue model: Teams + AaaS + Enterprise.
@@ -65,17 +65,17 @@ Pre-Year-1 work shipped before public launch:
 
 | Week | Item | Outcome target | Kill | Owner |
 |---|---|---|---|---|
-| **Jun 1 (W22)** | Patrol architecture live — source enumerators (6/10), cron, dedup, queue, Scan engine deployed as Cloudflare Worker | First 100 URLs scanned end-to-end | Engine fails on >30% of URLs | dev (C-3PO) + Conductor |
-| **Jun 8 (W23)** | **PILOT SCAN — last 7 days cohort** | 500-1,000 apps scanned, 50+ private outreaches sent | <100 apps scanned | Bridge drafts; Raffa reviews; Mirror watches voice |
-| **Jun 15 (W24)** | Disclosure state machine + opt-out flow + scorecard page + OG-image renderer | 30-day timer running on every D/F finding | Any private finding leaks before window | dev + Quill |
-| **Jun 22 (W25)** | Audit corpus (KV append-only) + `lictorai.com/in-the-wild` internal-only aggregate dashboard | First aggregate stats published internally | Corpus stores any URL or PII | dev + Conductor |
-| **Jun 29 (W26)** | Patrol expands to last-30-days cohort + 4 remaining sources (YC, Cursor, npm, Twitter/X) | 4,000-6,000 apps scanned cumulative | <1,500 | Probe (extends from competitive-watch) |
-| **Jul 6 (W27)** | **`lictorai.com/scan/<url>` PUBLIC** — paste-a-URL form + embeddable badge | 100 user-initiated scans in week 1 | <10 | dev + Quill (launch copy) |
-| **Jul 13 (W28)** | Bridge auto-sends low-risk outreach (B/C); Raffa still reviews D/F | First weekly leaderboard published (Lovable only) | Voice issues caught in Mirror review | Bridge + Mirror |
+| **Jun 1 (W22)** | Patrol architecture live — source enumerators (6/10), cron, dedup, queue, Scan engine deployed as Cloudflare Worker | First 100 URLs scanned end-to-end | Engine fails on >30% of URLs | dev (Octopus) + Wolf |
+| **Jun 8 (W23)** | **PILOT SCAN — last 7 days cohort** | 500-1,000 apps scanned, 50+ private outreaches sent | <100 apps scanned | Meerkat drafts; Raffa reviews; Mantis watches voice |
+| **Jun 15 (W24)** | Disclosure state machine + opt-out flow + scorecard page + OG-image renderer | 30-day timer running on every D/F finding | Any private finding leaks before window | dev + Lyrebird |
+| **Jun 22 (W25)** | Audit corpus (KV append-only) + `lictorai.com/in-the-wild` internal-only aggregate dashboard | First aggregate stats published internally | Corpus stores any URL or PII | dev + Wolf |
+| **Jun 29 (W26)** | Patrol expands to last-30-days cohort + 4 remaining sources (YC, Cursor, npm, Twitter/X) | 4,000-6,000 apps scanned cumulative | <1,500 | Mongoose (extends from competitive-watch) |
+| **Jul 6 (W27)** | **`lictorai.com/scan/<url>` PUBLIC** — paste-a-URL form + embeddable badge | 100 user-initiated scans in week 1 | <10 | dev + Lyrebird (launch copy) |
+| **Jul 13 (W28)** | Meerkat auto-sends low-risk outreach (B/C); Raffa still reviews D/F | First weekly leaderboard published (Lovable only) | Voice issues caught in Mantis review | Meerkat + Mantis |
 | **Jul 20 - Aug 14** | **SILENT RUN — 30 days, collecting data** | ~30,000 apps scanned cumulative; voice + outreach refined | <10,000 scanned by Aug 14 | All agents in production mode |
-| **Aug 15 (W34)** | **🚨 SOFT LAUNCH** — publish the 30-day finding report (HN + Twitter + press + blog) | HN front page top 5 by noon; 5,000+ scans in week 1; 1,500+ stars added | Off HN front page by noon; <500 scans | Raffa on the bullhorn; Bridge handles inbound; full crew on call |
-| **Aug 16 - Oct 5** | Compound on the soft-launch attention | Weekly Patrol report becomes the content engine. Booth pivots to Lovable / Bolt / v0 platform-integration outreach | <2x weekly scan growth | Quill + Reel weekly content; Booth on integrations |
-| **Sep 28-30** | First quarterly retrospective (calendar-blocked) | Honest review of soft-launch numbers + Patrol corpus state | — | Raffa + Mirror |
+| **Aug 15 (W34)** | **🚨 SOFT LAUNCH** — publish the 30-day finding report (HN + Twitter + press + blog) | HN front page top 5 by noon; 5,000+ scans in week 1; 1,500+ stars added | Off HN front page by noon; <500 scans | Raffa on the bullhorn; Meerkat handles inbound; full crew on call |
+| **Aug 16 - Oct 5** | Compound on the soft-launch attention | Weekly Patrol report becomes the content engine. Nightingale pivots to Lovable / Bolt / v0 platform-integration outreach | <2x weekly scan growth | Lyrebird + Peacock weekly content; Nightingale on integrations |
+| **Sep 28-30** | First quarterly retrospective (calendar-blocked) | Honest review of soft-launch numbers + Patrol corpus state | — | Raffa + Mantis |
 | **Oct 6 (W41)** | **🎯 HARD LAUNCH** — full suite (Studio, CLI, SDK, Guardian, Shield, skill suite, VS Code) | "The next chapter" — not a debut. Patrol already established the brand. | Soft launch failed (then we delay hard launch) | Whole crew |
 
 **Other Q3 items running in parallel:**
@@ -87,7 +87,7 @@ Pre-Year-1 work shipped before public launch:
 - [ ] **First 5 design partners signed** — Beacon-sourced + direct outreach (by Sep 1)
 
 **Cuts from prior Q3 plan** (to make room for Patrol):
-- ❌ 5 founder videos → cut to 2 (Reel agent takes the cadence Nov 1 anyway)
+- ❌ 5 founder videos → cut to 2 (Peacock agent takes the cadence Nov 1 anyway)
 - ❌ "Weekly teardown engine by Sep 1" → replaced by Patrol (teardowns become Patrol byproducts when high-profile apps score F)
 - ❌ "Sep 22 disclosure emails to 5 teardown targets" → made redundant by Patrol's own continuous responsible-disclosure flow
 
@@ -101,10 +101,10 @@ Q4 is about turning Patrol's August-soft-launched credibility into installs, pai
 - [ ] **First monthly transparency report** at `lictorai.com/transparency` — Nov 1 publish (backfilled to May 2026 so the public archive starts before Patrol)
 - [ ] **Browser-extension scoring on every tab** — extend Shield with the Lictor Score badge. By W+8 (~Dec 1).
 - [ ] **Lovable / Bolt / v0 integration outreach** (the AUDIT.json adoption play, now compelling because we have Patrol's receipts). Goal: 1 of 3 integrated by Q1 2027.
-- [ ] **Bridge agent online Oct 13** for community triage (Patrol intake hits Bridge first)
-- [ ] **Reel agent online Nov 1** for video script production
-- [ ] **Translator agent online Dec 1** for ES + PT-BR
-- [ ] **10 weekly Patrol findings reports published Oct 6 → Dec 15** (auto-generated by Patrol; reviewed by Mirror; published as the weekly newsletter)
+- [ ] **Meerkat agent online Oct 13** for community triage (Patrol intake hits Meerkat first)
+- [ ] **Peacock agent online Nov 1** for video script production
+- [ ] **Parrot agent online Dec 1** for ES + PT-BR
+- [ ] **10 weekly Patrol findings reports published Oct 6 → Dec 15** (auto-generated by Patrol; reviewed by Mantis; published as the weekly newsletter)
 - [ ] **1 cornerstone essay** — "What 30,000 vibe-coded apps taught us" (drafted from Patrol corpus). Sep 22, evergreen.
 - [ ] **Lictor Studio v0.1** — deferred to Q1 2027 (was Dec 31; a local desktop is a worse magnet than Patrol's public reach. Studio still ships, just later.)
 
@@ -118,7 +118,7 @@ Subject to Q4 learnings.
 - [ ] **Lictor Skill Marketplace** — community-authored agents
 - [ ] **Hebrew + Japanese landing translations**
 - [ ] **Talk at AI Engineer Summit** (March 2027)
-- [ ] **Booth agent online Jan 15** for podcast booking + CFP scouting
+- [ ] **Nightingale agent online Jan 15** for podcast booking + CFP scouting
 - [ ] **First conference CFP acceptance**
 - [ ] **Patrol corpus paper** — peer-reviewed v0 draft of "The Vibe-Coder Security Landscape: 100,000 Apps Scanned"
 
@@ -152,8 +152,8 @@ These are the conditions under which the current plan is wrong and we change it 
 |---|---|---|
 | **Snyk ships a free vibe-coder tier** | Sep 1 2026 | Pull soft launch forward to Jul 15. Reframe Patrol report around the comparison. |
 | **Beacon waitlist <250 signups by Jul 31** | Jul 31 | Messaging is wrong — pause content, run 10 customer-dev calls, reposition by Aug 15 |
-| **Patrol pilot scans <100 apps** | Jun 14 | Engine isn't ready — extend pilot, post-mortem with Mirror, don't expand |
-| **Patrol founder-response rate <3%** | Jul 1 | Outreach voice is wrong — rewrite with Mirror + re-pilot |
+| **Patrol pilot scans <100 apps** | Jun 14 | Engine isn't ready — extend pilot, post-mortem with Mantis, don't expand |
+| **Patrol founder-response rate <3%** | Jul 1 | Outreach voice is wrong — rewrite with Mantis + re-pilot |
 | **Soft launch off HN front page by noon** | Aug 15 | Methodology wasn't compelling — post-mortem before Oct 6; consider delaying hard launch |
 | **Lovable / Bolt / v0 block our scraping** | any time | Pivot to API partnership offer (give them the scoring service in exchange for app-index API). Already aligned with AUDIT.json adoption play. |
 | **Credible legal complaint about Patrol** | any time | Pause Patrol immediately; respond publicly within 48h; update legal-structure-memo with Patrol-specific addendum |

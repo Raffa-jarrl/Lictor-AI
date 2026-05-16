@@ -42,7 +42,7 @@ Four findings. The headline finding writes itself: a database whose entire produ
 🔵 low        1
 ```
 
-> *Note for v0.1: predicted findings shape; replace with Probe's actual results before publishing.*
+> *Note for v0.1: predicted findings shape; replace with Mongoose's actual results before publishing.*
 
 ---
 
@@ -91,7 +91,7 @@ create policy "subscribers read emails"
 
 The founder shipped this on day 8 after disclosure (Oct 14). They also implemented per-user query rate limits to prevent a single-subscriber-account from exfiltrating the entire database via the API — see Finding 3.
 
-**Found by:** Radar. **Scored by:** Sieve (9.7/10).
+**Found by:** Hawk. **Scored by:** Owl (9.7/10).
 
 ---
 
@@ -123,7 +123,7 @@ We did not actually attempt this. We showed the founder the test plan; they repr
 
 **The fix.** The standard Stripe webhook signature verification snippet. Twelve lines of code.
 
-**Found by:** Probe. **Scored by:** Sieve (8.4/10).
+**Found by:** Mongoose. **Scored by:** Owl (8.4/10).
 
 ---
 
@@ -139,7 +139,7 @@ We did not actually attempt this. We showed the founder the test plan; they repr
 1. Move the endpoint behind authentication (only subscribers can call it)
 2. Add a rate limit (10 verifications per minute per subscriber)
 
-**Found by:** Radar. **Scored by:** Sieve (7.3/10).
+**Found by:** Hawk. **Scored by:** Owl (7.3/10).
 
 ---
 
@@ -159,7 +159,7 @@ export default defineConfig({
 });
 ```
 
-**Found by:** Radar. **Scored by:** Sieve (4.9/10 — below threshold, included by founder request).
+**Found by:** Hawk. **Scored by:** Owl (4.9/10 — below threshold, included by founder request).
 
 ---
 
@@ -204,8 +204,7 @@ The skill catches every one of these patterns. Free, local, no signup.
 | Oct 17 | Public note + refund offer to subscribers |
 | Oct 20 | This writeup publishes with founder's consent |
 
-Lictor crew: 📡 Radar (found 3), 🧪 Probe (found 1), 🔍 Sieve (scored all 4), 🖊 Quill, 🪞 Mirror, 🧲 Magnet, 🎼 Conductor.
-
+Lictor crew: 📡 Hawk (found 3), 🧪 Mongoose (found 1), 🔍 Owl (scored all 4), 🖊 Lyrebird, 🪞 Mantis, 🧲 Bee, 🎼 Wolf. 
 ## CTA
 
 If your app holds PII, run `/lictor-security-check` this weekend. The five patterns above account for 70%+ of vibe-coded-app PII leaks I've seen in 2026.
