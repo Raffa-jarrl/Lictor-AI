@@ -69,11 +69,11 @@ test("sendToGuardian POSTs with bearer auth + JSON content type", async () => {
   setFetchForTests(fetch);
   try {
     await sendToGuardian(makeEvent(), {
-      endpoint: "https://app.lictor-ai.com/api/ingest",
+      endpoint: "https://app.lictorai.com/api/ingest",
       token: "tok_test_abcdef",
     });
     assert.equal(calls.length, 1);
-    assert.equal(calls[0]!.url, "https://app.lictor-ai.com/api/ingest");
+    assert.equal(calls[0]!.url, "https://app.lictorai.com/api/ingest");
     assert.equal(calls[0]!.headers["Authorization"], "Bearer tok_test_abcdef");
     assert.equal(calls[0]!.headers["Content-Type"], "application/json");
     const body = JSON.parse(calls[0]!.body);
@@ -94,7 +94,7 @@ test("sendToGuardian retries on 5xx until success", async () => {
   setFetchForTests(fetch);
   try {
     await sendToGuardian(makeEvent(), {
-      endpoint: "https://app.lictor-ai.com/api/ingest",
+      endpoint: "https://app.lictorai.com/api/ingest",
       token: "tok",
       timeoutMs: 1000,
     });
@@ -113,7 +113,7 @@ test("sendToGuardian does NOT retry on 4xx (permanent failure)", async () => {
   setFetchForTests(fetch);
   try {
     await sendToGuardian(makeEvent(), {
-      endpoint: "https://app.lictor-ai.com/api/ingest",
+      endpoint: "https://app.lictorai.com/api/ingest",
       token: "bad-token",
       timeoutMs: 1000,
     });
@@ -132,7 +132,7 @@ test("sendToGuardian gives up after MAX_RETRIES + 1 attempts", async () => {
   setFetchForTests(fetch);
   try {
     await sendToGuardian(makeEvent(), {
-      endpoint: "https://app.lictor-ai.com/api/ingest",
+      endpoint: "https://app.lictorai.com/api/ingest",
       token: "tok",
       timeoutMs: 1000,
     });
@@ -153,7 +153,7 @@ test("sendToGuardian retries on network errors (thrown by fetch)", async () => {
   setFetchForTests(fetch);
   try {
     await sendToGuardian(makeEvent(), {
-      endpoint: "https://app.lictor-ai.com/api/ingest",
+      endpoint: "https://app.lictorai.com/api/ingest",
       token: "tok",
       timeoutMs: 1000,
     });
@@ -169,7 +169,7 @@ test("sendToGuardian decrements pendingCount on completion", async () => {
   try {
     assert.equal(pendingCount(), 0);
     await sendToGuardian(makeEvent(), {
-      endpoint: "https://app.lictor-ai.com/api/ingest",
+      endpoint: "https://app.lictorai.com/api/ingest",
       token: "tok",
     });
     assert.equal(pendingCount(), 0, "pendingCount should return to 0 after send");

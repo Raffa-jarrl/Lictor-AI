@@ -134,13 +134,13 @@ client = wrap(OpenAI(), config={
     "preflight":  ["prompt-injection", "secrets-in-input"],
     "postflight": ["pii-leak"],
     "guardian": {
-        "endpoint": "https://app.lictor-ai.com/api/ingest",
+        "endpoint": "https://app.lictorai.com/api/ingest",
         "token": os.environ["LICTOR_GUARDIAN_TOKEN"],
     },
 })
 ```
 
-Guardian gives you: per-incident timeline, audit-log export for SOC 2 / GDPR / EU AI Act evidence, Slack webhook for critical incidents. Free preview at app.lictor-ai.com.
+Guardian gives you: per-incident timeline, audit-log export for SOC 2 / GDPR / EU AI Act evidence, Slack webhook for critical incidents. Free preview at app.lictorai.com.
 
 ## Privacy contract
 
@@ -179,13 +179,13 @@ client: OpenAI = wrap(OpenAI())  # OpenAI client interface preserved
 ## Troubleshooting
 
 **"Sentinel is blocking legitimate inputs."**
-Switch to `mode: "log"` first. Sentinel will report incidents but not block. Review the captured incidents at app.lictor-ai.com/incidents (if Guardian is wired) or in the `on_incident` callback.
+Switch to `mode: "log"` first. Sentinel will report incidents but not block. Review the captured incidents at app.lictorai.com/incidents (if Guardian is wired) or in the `on_incident` callback.
 
 **"My async/streaming responses aren't intercepted."**
 Post-flight checks on streaming responses ship in v0.2 (Q1 2027). For v0.1, post-flight only runs on the final completion message. Pre-flight always runs.
 
 **"Guardian telemetry isn't appearing."**
-Confirm the token in `guardian.token` matches the project token in your Guardian project settings. Check `print()` output for `[lictor] outbound telemetry error` — common causes: firewall blocking outbound to `app.lictor-ai.com`, or token revocation.
+Confirm the token in `guardian.token` matches the project token in your Guardian project settings. Check `print()` output for `[lictor] outbound telemetry error` — common causes: firewall blocking outbound to `app.lictorai.com`, or token revocation.
 
 ## How Sentinel fits in the Lictor suite
 
@@ -213,9 +213,9 @@ ruff check .
 ## Links
 
 - **Main repo**: [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI)
-- **Documentation**: [lictor-ai.com/sentinel](https://lictor-ai.com/sentinel)
+- **Documentation**: [lictorai.com/sentinel](https://lictorai.com/sentinel)
 - **TypeScript sibling**: [`@lictor/sentinel` on npm](https://www.npmjs.com/package/@lictor/sentinel)
 - **Issues + feature requests**: [github.com/Raffa-jarrl/Lictor-AI/issues](https://github.com/Raffa-jarrl/Lictor-AI/issues)
-- **Security disclosure**: security@lictor-ai.com
+- **Security disclosure**: security@lictorai.com
 
-Built by a 20-year cybersecurity engineer. Tested across [12+ public teardowns](https://lictor-ai.com/teardowns) of real vibe-coded apps.
+Built by a 20-year cybersecurity engineer. Tested across [12+ public teardowns](https://lictorai.com/teardowns) of real vibe-coded apps.

@@ -1,4 +1,4 @@
-# Robots policy for lictor-ai.com
+# Robots policy for lictorai.com
 # Most of the site is meant to be indexed. A few internal-facing paths are not.
 
 User-agent: *
@@ -13,4 +13,4 @@ Disallow: /scan/*/
 Disallow: /coming-soon.html
 
 # Sitemap so the indexable surface gets crawled cleanly.
-Sitemap: https://lictor-ai.com/sitemap.xml
+Sitemap: https://lictorai.com/sitemap.xml
