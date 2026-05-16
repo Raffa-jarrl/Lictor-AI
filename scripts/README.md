@@ -63,3 +63,22 @@ python3 scripts/patrol-pilot.py --mode fresh --max 50
 False-negative reports against these scripts are the highest-value
 contributions we accept. File at
 github.com/Raffa-jarrl/Lictor-AI/issues/new?template=false-negative.md
+
+## Continuous Patrol — running in the shadow, serving the light
+
+`scripts/patrol-auto.py` is the cron-runnable pipeline that runs the
+full discovery → scan → draft → queue cycle every 6 hours. It does NOT
+send any disclosures. Drafts pile up in `disclosures/queue/`; Raffa
+reviews and submits manually (the irreversible human step).
+
+```cron
+# ~/Library/LaunchAgents/ai.lictor.patrol.plist OR crontab
+0 */6 * * * cd ~/Lictor && python3 scripts/patrol-auto.py --max 30 >> ~/.lictor/patrol-auto.log 2>&1
+```
+
+Aggregate stats (counts only, no repo names) append to
+`output/patrol-aggregate.jsonl`. That file becomes the source for the
+public monthly transparency report at lictorai.com/in-the-wild.
+
+State file (`~/.lictor/patrol-state.json`) tracks which repos have
+been seen so we don't re-scan + re-queue the same finding.
