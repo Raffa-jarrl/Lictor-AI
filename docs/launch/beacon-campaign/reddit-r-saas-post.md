@@ -61,7 +61,7 @@ Each finding includes: where it is (file + line), what's wrong in plain English 
 
 **Launch + waitlist:**
 
-Ships **October 6, 2026.** Waitlist is open today: **lictor-ai.com/waitlist**
+Ships **October 6, 2026.** Waitlist is open today: **lictorai.com/waitlist**
 
 The repo flips public around June 1. If you want to follow the build, github.com/Raffa-jarrl/Lictor-AI will be live then.
 
@@ -113,7 +113,7 @@ Block Tuesday 12pm-3pm PT (lunch through early afternoon US, evening EU). Reply 
 | Upvotes | ≥30 in first 24h | Reddit dashboard |
 | Comments | ≥15 in first 24h | Reddit dashboard |
 | Top comment ratio | ≥70% positive | Manual read |
-| Click-through to lictor-ai.com/waitlist | ≥100 | UTM parameter `?utm_source=reddit&utm_medium=r-saas&utm_campaign=beacon` |
+| Click-through to lictorai.com/waitlist | ≥100 | UTM parameter `?utm_source=reddit&utm_medium=r-saas&utm_campaign=beacon` |
 | Waitlist signups attributed to Reddit | ≥30 | Mission Control dashboard's source breakdown |
 | Design-partner DM volume | ≥3 inquiries | Manual count |
 

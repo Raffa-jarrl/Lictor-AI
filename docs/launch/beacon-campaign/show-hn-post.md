@@ -1,6 +1,6 @@
 # Show HN — DO NOT POST UNTIL WEEK 10 (Wed July 23, 2026)
 
-> HN punishes empty-waitlist posts. Wait until: (1) the repo is public (target June 1), (2) waitlist has 500+ confirmed signups, (3) at least one polished teardown is live on lictor-ai.com/blog or as a public gist.
+> HN punishes empty-waitlist posts. Wait until: (1) the repo is public (target June 1), (2) waitlist has 500+ confirmed signups, (3) at least one polished teardown is live on lictorai.com/blog or as a public gist.
 
 ---
 
@@ -54,8 +54,8 @@ The 7 checks:
 7. AI endpoints with no rate limiting
 
 Repo: https://github.com/Raffa-jarrl/Lictor-AI (Apache 2.0)
-Waitlist (ships October 6): https://lictor-ai.com/waitlist
-First teardown — Lictor audited Lictor's own codebase: https://lictor-ai.com/blog/we-audited-lictor-with-lictor
+Waitlist (ships October 6): https://lictorai.com/waitlist
+First teardown — Lictor audited Lictor's own codebase: https://lictorai.com/blog/we-audited-lictor-with-lictor
 
 What I'd love feedback on:
 

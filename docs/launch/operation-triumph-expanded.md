@@ -88,7 +88,7 @@ The 90-day playbook was framed against Snyk specifically. The 12-month plan oper
 **Ship:**
 - 🔲 Sep 22: send responsible-disclosure emails to 5 teardown targets
 - 🔲 Sep 25: Sentinel `@lictor/sentinel@0.1.0` and `lictor-sentinel==0.1.0` GA on npm + PyPI (not alpha)
-- 🔲 Sep 27: Domains live (`lictor-ai.com` resolves, OG image working)
+- 🔲 Sep 27: Domains live (`lictorai.com` resolves, OG image working)
 - 🔲 Oct 4: launch dress rehearsal — full content drop tested internally
 - 🔲 Oct 6: LAUNCH. Teardown #1 (Pitchtank) goes live across all surfaces.
 

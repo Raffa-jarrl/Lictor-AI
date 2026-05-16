@@ -12,7 +12,7 @@
 |---|---|---|---|---|
 | **Daily pulse** | Every morning 09:00 IST | Conductor (auto-pulled, no commentary) | Raffa only | One-line JSON in `output/metrics/daily.jsonl` |
 | **Weekly review** | Fridays 14:00 IST | Reel (drafts) + Mirror (reviews) | Raffa + public newsletter footer | Markdown at `output/reports/weekly/YYYY-Www.md` |
-| **Monthly report** | 1st of month, 06:00 IST | Conductor (drafts) + Raffa (edits) | Public (publishes to lictor-ai.com/transparency) | Markdown + 1 chart |
+| **Monthly report** | 1st of month, 06:00 IST | Conductor (drafts) + Raffa (edits) | Public (publishes to lictorai.com/transparency) | Markdown + 1 chart |
 | **Quarterly business review** | Last Friday of quarter | Raffa (full rewrite, agents prep data) | Internal + future investors/acquirers | Slides at `docs/business/qbr/YYYY-QN.pptx` |
 
 The point of the cadence ladder: the daily/weekly pulses are cheap (auto) — the monthly/QBR is where Raffa actually thinks.
@@ -113,7 +113,7 @@ Not strictly marketing but they leak into perception. Include in monthly + QBR o
 
 ## MONTHLY REPORT TEMPLATE — `output/reports/monthly/YYYY-MM.md`
 
-This one publishes to **lictor-ai.com/transparency** on the 1st of each month. Public. The fact that it's public is the discipline mechanism — bad months get reported truthfully because we said we would. Builds the "indie OSS told you the truth" brand asset.
+This one publishes to **lictorai.com/transparency** on the 1st of each month. Public. The fact that it's public is the discipline mechanism — bad months get reported truthfully because we said we would. Builds the "indie OSS told you the truth" brand asset.
 
 ```markdown
 # Lictor — Month YYYY-MM transparency report
@@ -156,7 +156,7 @@ Published: YYYY-MM-01. Covers YYYY-MM-(prev).
 [1 paragraph: what's measured server-side, what's opt-in, what's manual, what's missing. Honest.]
 
 ---
-*Previous reports: lictor-ai.com/transparency. Source data + raw CSVs: github.com/Raffa-jarrl/Lictor-AI/tree/main/docs/business/data-room.*
+*Previous reports: lictorai.com/transparency. Source data + raw CSVs: github.com/Raffa-jarrl/Lictor-AI/tree/main/docs/business/data-room.*
 ```
 
 **Length cap:** ~1,500 words + tables. Publishing discipline: 1st of month, no exceptions. If the data isn't ready, publish with `(pending)` placeholders rather than slip.
@@ -199,7 +199,7 @@ Different format. Slides, not markdown. Internal-only until something needs to l
 | Newsletter open/click | Reel | weekly | Buttondown API |
 | Twitter/X | Reel | weekly | manual or Tweepy if API access |
 | YouTube | Pulse (existing) | already wired | `scripts/fetch_viral.py` extended |
-| CLI opt-in ping | dev (C-3PO) — to build | continuous | new endpoint `metrics.lictor-ai.com/ping` (Cloudflare Worker, append-only) |
+| CLI opt-in ping | dev (C-3PO) — to build | continuous | new endpoint `metrics.lictorai.com/ping` (Cloudflare Worker, append-only) |
 | Stripe / Paddle (AaaS) | Conductor | daily | Stripe + Paddle APIs (post-launch) |
 | Calendly demos | Conductor | weekly | Calendly API |
 | GitHub issue triage SLA | Bridge | weekly | Bridge's own memory log |
@@ -223,13 +223,13 @@ Different format. Slides, not markdown. Internal-only until something needs to l
 
 - [ ] Create `output/metrics/`, `output/reports/{weekly,monthly}/`, `docs/business/qbr/`
 - [ ] Wire `scripts/pull-github-traffic.py` to run daily and append to `output/metrics/daily.jsonl`
-- [ ] Stand up `metrics.lictor-ai.com/ping` Cloudflare Worker (CLI opt-in pings → append-only Workers KV)
+- [ ] Stand up `metrics.lictorai.com/ping` Cloudflare Worker (CLI opt-in pings → append-only Workers KV)
 - [ ] CLI: add `--telemetry on` flag, off by default, with one-line explainer in README
 - [ ] Buttondown: confirm API key in `.openclaw/secrets/buttondown.token` (Bridge handles signup count, Reel handles content)
 - [ ] Stripe + Paddle webhooks → Conductor revenue tracker (no-op until first paying customer)
 - [ ] Mirror + Reel: add weekly-review draft to Friday 14:00 IST cron
 - [ ] Conductor: add monthly-report draft to 1st-of-month 06:00 IST cron, publish step gated on Raffa's manual approval
-- [ ] Add `lictor-ai.com/transparency` route to landing site (currently 404)
+- [ ] Add `lictorai.com/transparency` route to landing site (currently 404)
 - [ ] Write the first transparency report (May 2026) as a backfill so the public archive starts before launch
 
 When all 10 boxes are ticked, the reporting machine is on and Raffa's only weekly job is reviewing what Reel produces and signing off on the publish.

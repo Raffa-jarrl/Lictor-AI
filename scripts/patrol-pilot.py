@@ -24,7 +24,7 @@ from dataclasses import dataclass, field, asdict
 from urllib.parse import urlparse, urljoin
 import urllib.request, urllib.error, ssl
 
-UA = "Lictor-Patrol/0.1 (+https://lictor-ai.com/scan; friendly security scanner; raffa@lictor-ai.com)"
+UA = "Lictor-Patrol/0.1 (+https://lictorai.com/scan; friendly security scanner; raffa@lictorai.com)"
 TIMEOUT = 8
 
 # --- Severity-typed findings ---------------------------------------------------

@@ -74,7 +74,7 @@ The audit itself is free, no NDA, no payment, no future
 obligations. I've drafted the writeup template ahead of time —
 happy to share it so you see exactly what we'd publish.
 
-You can read more about Lictor at lictor-ai.com. The repo is
+You can read more about Lictor at lictorai.com. The repo is
 github.com/Raffa-jarrl/Lictor-AI (public Oct 6, currently private — I
 can add you as a collaborator if you want a preview).
 
@@ -86,7 +86,7 @@ P.S. If the answer is "no thanks, I'm not interested" — that's
 totally fine. No follow-up. I'll pick a different target.
 ```
 
-**Variant — if founder is from Twitter rather than email-discoverable:** DM with: `"Hey, sent you an email about a free security audit of Pitchtank for an indie-hacker content piece. If it didn't land, my address is raffa@lictor-ai.com. No pressure."`
+**Variant — if founder is from Twitter rather than email-discoverable:** DM with: `"Hey, sent you an email about a free security audit of Pitchtank for an indie-hacker content piece. If it didn't land, my address is raffa@lictorai.com. No pressure."`
 
 ---
 
@@ -135,7 +135,7 @@ If you've already audited and you know it's clean — even better.
 The writeup becomes "Tymora is the reference implementation for
 secure AI assistants." That's content I'd happily publish.
 
-Lictor: lictor-ai.com. Repo: github.com/Raffa-jarrl/Lictor-AI.
+Lictor: lictorai.com. Repo: github.com/Raffa-jarrl/Lictor-AI.
 
 Worth a 15-minute call?
 
@@ -186,7 +186,7 @@ issues, I'll send you the findings 14 days before publication so
 your team has time to fix. The writeup is a teaching piece, not
 a takedown — happy to share the draft for your review.
 
-Lictor: lictor-ai.com. Open source under Apache 2.0.
+Lictor: lictorai.com. Open source under Apache 2.0.
 
 If you'd like to discuss, I'm happy to schedule a call this
 week or next. If not — completely fine, no further outreach.
@@ -195,7 +195,7 @@ Best,
 Raffa
 
 Founder, Lictor AI
-raffa@lictor-ai.com · lictor-ai.com
+raffa@lictorai.com · lictorai.com
 ```
 
 ---
@@ -247,12 +247,12 @@ coordinate everything. If anything goes sideways during the
 audit (we find something embarrassing), we coordinate the public
 narrative together. No surprises.
 
-Lictor: lictor-ai.com. Repo: github.com/Raffa-jarrl/Lictor-AI.
+Lictor: lictorai.com. Repo: github.com/Raffa-jarrl/Lictor-AI.
 
 Even if the joint publication doesn't fit your schedule, I'd
 still love to audit privately. Whatever shape you prefer.
 
-Reply via DM, email (raffa@lictor-ai.com), or schedule a call:
+Reply via DM, email (raffa@lictorai.com), or schedule a call:
 [FILL — Calendly link if Raffa uses one].
 
 — Raffa
@@ -284,7 +284,7 @@ its category]. No personal grievance, no involvement in any
 prior conversations about [App Name]."]
 
 I'm Raffa, a 20-year cybersecurity engineer based in Israel. I run
-Lictor (lictor-ai.com), an open-source security audit tool for
+Lictor (lictorai.com), an open-source security audit tool for
 AI-built and vibe-coded apps. We are launching October 6, 2026,
 with a content series featuring 5 audits of real vibe-coded apps
 across multiple platforms.
@@ -329,7 +329,7 @@ audit [App Name] — there are 4 other targets in the series and
 no individual app is essential.
 
 Lictor's repo: github.com/Raffa-jarrl/Lictor-AI. Our broader
-responsible disclosure policy: lictor-ai.com/security.
+responsible disclosure policy: lictorai.com/security.
 
 Please reply confirming receipt by [FILL: Sep 29, 2026] and
 indicating whether you'd like to discuss before deciding.
@@ -338,7 +338,7 @@ Sincerely,
 
 Raffa [LASTNAME]
 Founder, Lictor AI
-raffa@lictor-ai.com · +[FILL: phone if comfortable] · lictor-ai.com
+raffa@lictorai.com · +[FILL: phone if comfortable] · lictorai.com
 ```
 
 **Pre-send checklist (Email 5 ONLY):**

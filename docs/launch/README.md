@@ -20,7 +20,7 @@ This directory holds every piece of copy that goes live on launch day. Each file
 - [ ] Blog post published as `/blog/why-lictor` (status: draft, scheduled for 09:30)
 - [ ] Press emails personalized + drafted in Gmail (one per recipient — don't BCC)
 - [ ] YouTube video uploaded as "unlisted", scheduled to go public at 09:00
-- [ ] OG images verified on lictor-ai.com (1200×630 — required for Twitter/Slack previews)
+- [ ] OG images verified on lictorai.com (1200×630 — required for Twitter/Slack previews)
 - [ ] HN post in personal HN account drafts (so it's ready to paste — HN doesn't have scheduling)
 - [ ] One trusted friend has the timing sheet so they can watch HN at 06:00 if Raffa can't be awake
 - [ ] All `npm publish` / `twine upload` commands ready to run from W19 prep (don't actually publish until post-launch — Chrome Web Store review can take 14 days, and the npm/PyPI publish is what triggers HN engagement)
@@ -28,7 +28,7 @@ This directory holds every piece of copy that goes live on launch day. Each file
 ## What's still TODO
 
 - **Screenshots / hero images** for the Twitter thread (tweets #1, #4, #5, #8 need attachments)
-- **OG image** at 1200×630 (lictor-ai.com meta tags reference it; need to render from the lockup SVG)
+- **OG image** at 1200×630 (lictorai.com meta tags reference it; need to render from the lockup SVG)
 - **YouTube case-study video** — needs shooting in W19. 90-second cut: wrap → adversarial input → blocked + Guardian dashboard shows the incident. Should be doable in one focused day.
 ## Why these specific channels
 

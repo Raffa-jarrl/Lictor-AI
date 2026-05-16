@@ -247,8 +247,8 @@ For now: manual `class-dump` + grep for sk-, sk_live_, AKIA. Don't ship secrets 
 
 Engaged with the disclosure. Rotated keys in hours. Rebuilt the architecture. Shipped a fix.
 
-Read the full writeup: lictor-ai.com/teardowns/anything-app
-Free audit for your project: lictor-ai.com/skill 🛡
+Read the full writeup: lictorai.com/teardowns/anything-app
+Free audit for your project: lictorai.com/skill 🛡
 ```
 
 ### LinkedIn post — Nov 3, 11 AM PT (~310 words)
@@ -282,7 +282,7 @@ For founders shipping via Anything / similar platforms: treat your .ipa as a pub
 Lictor's iOS binary audit ships in Q1-Q2 2027 (Lictor Shield iOS). Until then: manual `class-dump` + grep for known secret prefixes is the floor.
 
 Full writeup: [link]
-Free audit (web stacks today, iOS soon): lictor-ai.com/skill
+Free audit (web stacks today, iOS soon): lictorai.com/skill
 ```
 
 ### Hacker News submission — Nov 3, 10:35 AM PT
@@ -307,6 +307,6 @@ The pattern: App Store binaries are public. Anything hardcoded is public. Secret
 
 Lictor's iOS audit ships Q1-Q2 2027. Today: manual class-dump + grep.
 
-Full writeup with code: https://lictor-ai.com/teardowns/anything-app
+Full writeup with code: https://lictorai.com/teardowns/anything-app
 Lictor (free, Apache 2.0): https://github.com/Raffa-jarrl/Lictor-AI
 ```

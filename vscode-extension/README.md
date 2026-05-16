@@ -24,7 +24,7 @@ The extension shells out to the `lictor` CLI binary. Install it once:
 cargo install lictor-cli
 ```
 
-Or download a prebuilt binary from https://lictor-ai.com/cli (when available).
+Or download a prebuilt binary from https://lictorai.com/cli (when available).
 
 In v0.2 we'll bundle the audit engine directly into the extension (WASM) so no CLI is needed.
 

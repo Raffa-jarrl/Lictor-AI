@@ -1,6 +1,6 @@
 # Why I built Lictor
 
-**Published:** lictor-ai.com/blog/why-lictor — Tuesday Oct 6, 2026
+**Published:** lictorai.com/blog/why-lictor — Tuesday Oct 6, 2026
 **Author:** Raffa, founder
 **Audience:** Builders shipping with AI assistants, fellow security people, journalists, anyone wondering whether "yet another security tool" is justified.
 
@@ -62,7 +62,7 @@ That's not Snyk's register. It's not anybody's register, actually. The tools tha
 
 The gap wasn't tooling. I want to be careful with that sentence because it sounds reductive.
 
-There's plenty of room for better detection. There are real AI-specific bug shapes — the seven we wrote up at lictor-ai.com/blog/7-patterns — that the generic scanners weren't designed to catch. So yes, detection matters. New patterns matter.
+There's plenty of room for better detection. There are real AI-specific bug shapes — the seven we wrote up at lictorai.com/blog/7-patterns — that the generic scanners weren't designed to catch. So yes, detection matters. New patterns matter.
 
 But the actual product gap, the thing my friend needed at 9 in the morning on a Saturday, wasn't a better pattern catalog. It was a *translator*. Someone who could look at his code and tell him what was wrong in the same voice his friend would use over coffee, then show him the line and the fix.
 
@@ -88,7 +88,7 @@ I'm building it solo, mostly. I have an AI crew — 11 named agents that do the 
 
 I want to be honest about the parts I don't have figured out.
 
-**Build-in-public means the playbook is visible.** Snyk has a 200-person team and they can ship a free tier next quarter if they decide we're a threat. They probably should — it's the right move for them. I'm rooting for a free Snyk tier that overlaps with us, because it'll mean more builders running a scan than ran one yesterday. But I have to be honest that the moment Snyk's PR team coordinates a free-tier launch, half the press coverage will be about them. We've written a playbook for that day. It lives at lictor-ai.com/playbooks. It's not a panic plan; it's a "this was always going to happen" plan.
+**Build-in-public means the playbook is visible.** Snyk has a 200-person team and they can ship a free tier next quarter if they decide we're a threat. They probably should — it's the right move for them. I'm rooting for a free Snyk tier that overlaps with us, because it'll mean more builders running a scan than ran one yesterday. But I have to be honest that the moment Snyk's PR team coordinates a free-tier launch, half the press coverage will be about them. We've written a playbook for that day. It lives at lictorai.com/playbooks. It's not a panic plan; it's a "this was always going to happen" plan.
 
 **Solo-founder means slow.** I can ship two patterns a month, maybe three. A team of four could ship eight. The bet is that the patterns matter more than the speed. The other bet is that the AI crew compounds — Conductor plans, Radar audits, Quill writes, Sieve filters, Mirror reviews. Each of those is a person's worth of work that I don't have to do every week. The crew is the multiplier. We'll see how far that gets us.
 
@@ -110,16 +110,16 @@ The thing I'm trying to fix is the gap between *what 8 million builders need* an
 
 ## An invitation
 
-If you build with AI, run `/lictor-security-check` on a project you ship. Today, this week, whenever. It takes about a minute. The report is plain English. It's free. There's no signup. There's no telemetry. There's no "talk to sales." If you'd rather just read the seven patterns and check them by hand, the writeup is at lictor-ai.com/blog/7-patterns and the code is all on GitHub.
+If you build with AI, run `/lictor-security-check` on a project you ship. Today, this week, whenever. It takes about a minute. The report is plain English. It's free. There's no signup. There's no telemetry. There's no "talk to sales." If you'd rather just read the seven patterns and check them by hand, the writeup is at lictorai.com/blog/7-patterns and the code is all on GitHub.
 
 If you spot a pattern Lictor misses — and you will, because the catalog is finite and the bugs are not — file an issue. Real PRs welcome. I read every one. The agents read every one too. We'll add the pattern, ship the check, credit you in the release notes.
 
-If you think the voice is wrong somewhere — too jargony, too cute, too lecture-y, too soft — tell me. The voice is the product. My email is raffa@lictor-ai.com. The DMs are open.
+If you think the voice is wrong somewhere — too jargony, too cute, too lecture-y, too soft — tell me. The voice is the product. My email is raffa@lictorai.com. The DMs are open.
 
 And if you're a Lovable / Bolt / v0 / Cursor / Replit founder who's been on the wrong side of a Saturday morning phone call: I've been the person on the other end of that call enough times. The fixes are usually shorter than the panic suggests. If you want a hand, write.
 
 — Raffa
-lictor-ai.com · github.com/lictor-ai
+lictorai.com · github.com/lictor-ai
 
 ---
 
@@ -151,7 +151,7 @@ A Lovable founder doesn't speak "information disclosure vulnerability." They spe
 Same finding. Different translation. The translation is the product.
 
 **4/6**
-The full writeup is at lictor-ai.com/blog/why-lictor. It covers:
+The full writeup is at lictorai.com/blog/why-lictor. It covers:
 
 - The moment that snapped
 - What was actually available in 2026 (Snyk, Semgrep, GHAS — and why none of them fit)
@@ -169,7 +169,7 @@ The gap closing is the goal. The brand on the door isn't.
 **6/6**
 Audit skill: `/lictor-security-check` in Claude Code
 Code: github.com/Raffa-jarrl/Lictor-AI
-Email: raffa@lictor-ai.com
+Email: raffa@lictorai.com
 DMs: open
 
 If you spot a pattern Lictor misses, file an issue. I read every one.
@@ -194,7 +194,7 @@ That weekend is why I built Lictor.
 
 The gap isn't tooling. It's voice. A Lovable founder doesn't speak compliance dialect. They speak *"the customer list is public, fix it tonight."* Same finding, different translation. The translation is the product.
 
-I wrote the full story at lictor-ai.com/blog/why-lictor — the moment that snapped, what was actually available, why open source, and what's hard about doing this solo.
+I wrote the full story at lictorai.com/blog/why-lictor — the moment that snapped, what was actually available, why open source, and what's hard about doing this solo.
 
 Lictor is free, open source, Apache 2.0, runs locally inside Claude Code. The audit takes a minute. github.com/Raffa-jarrl/Lictor-AI.
 
@@ -206,7 +206,7 @@ Lictor is free, open source, Apache 2.0, runs locally inside Claude Code. The au
 
 **Title:** `Why I built Lictor — a security tool for apps you built with AI`
 
-**URL:** `https://lictor-ai.com/blog/why-lictor`
+**URL:** `https://lictorai.com/blog/why-lictor`
 
 **Body (only if HN flags the post for a body, otherwise self-post the URL):**
 
@@ -228,7 +228,7 @@ Open to brutal feedback. Particularly interested if you think the wedge is wrong
 
 **Where to share, in order:**
 
-1. **lictor-ai.com/blog/why-lictor** — the canonical home. SEO target: "why I built Lictor," "AI security for vibe coders," "founder story Lictor."
+1. **lictorai.com/blog/why-lictor** — the canonical home. SEO target: "why I built Lictor," "AI security for vibe coders," "founder story Lictor."
 2. **Hacker News** — separate submission later in the launch week (Wednesday or Thursday). Don't double-submit on launch Tuesday — that splits the HN audience. Title above.
 3. **Twitter thread** — drop from Raffa's personal handle at 8:30 am Pacific Tuesday. The Lictor company account retweets 60 minutes later.
 4. **LinkedIn** — Raffa's personal handle, 10:00 am Pacific Tuesday. Tag Lictor company page.

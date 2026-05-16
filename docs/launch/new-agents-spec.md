@@ -151,7 +151,7 @@ Continuously triages incoming GitHub activity on the `lictor` repo. Three jobs:
 ### What this agent does NOT do
 - Doesn't merge PRs (escalates to dev)
 - Doesn't close issues without explicit Raffa approval
-- Doesn't respond to anything that looks like a security disclosure — escalates immediately to security@lictor-ai.com
+- Doesn't respond to anything that looks like a security disclosure — escalates immediately to security@lictorai.com
 
 ### Cadence
 - **Heartbeat every 4 hours** for triage and welcomes

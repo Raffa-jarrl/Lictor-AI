@@ -91,7 +91,7 @@ Specific, actionable. Each item < 30 sec.
 [BEAT 8 — Close + CTA (10:00–11:00)]
 Tight close. ONE CTA. (See CTA library below.)
 "That's it. If you want to run this audit on your own project, the
-skill is free, it's at lictor-ai.com/skill. Drop it in Claude Code, type
+skill is free, it's at lictorai.com/skill. Drop it in Claude Code, type
 slash-lictor-security-check, get your report in 60 seconds.
 See you next Tuesday."
 ```
@@ -158,9 +158,9 @@ valuable if they know it's there.
 
 [BEAT 6 — Close + CTA (9:00–10:30)]
 "Sieve is one of 11. Next month I'll do Probe. The agents are open —
-github.com/lictor-ai. The skill is free — lictor-ai.com/skill. If you've
+github.com/lictor-ai. The skill is free — lictorai.com/skill. If you've
 got ideas for an agent we should add, the roadmap is public —
-lictor-ai.com/roadmap. See you next week."
+lictorai.com/roadmap. See you next week."
 ```
 
 The crew-demo series eventually does all 11. Sequence:
@@ -206,7 +206,7 @@ ONE CTA, even more compressed than long-form.
 
 OR
 
-"Full breakdown in this week's teardown. lictor-ai.com/teardowns."
+"Full breakdown in this week's teardown. lictorai.com/teardowns."
 ```
 
 ### The 8 best Quick Take shapes (rotate)
@@ -247,14 +247,14 @@ For each video, pick ONE opener pattern. Don't try to combine.
 
 Match the closer to the energy of the video. Don't over-engineer.
 
-1. **The straight CTA** — "If you want to run this audit yourself, the skill is free — lictor-ai.com/skill. See you next Tuesday."
+1. **The straight CTA** — "If you want to run this audit yourself, the skill is free — lictorai.com/skill. See you next Tuesday."
 2. **The community ask** — "If you've found a vibe-coder pattern Lictor misses, file an issue — github.com/lictor-ai. Real PRs welcome."
 3. **The next-week tease** — "Next week I'm auditing [N App]. Watch what we find. Subscribe so you don't miss it."
 4. **The honest sign-off** — "That's all I had. If you want more, come back. If not, that's fine too."
 5. **The thank-you to the founder** — "Big thanks to [founder] for fixing this so fast and letting me publish the story. Go check out [their app]."
 6. **The contrarian close** — "If you disagree with anything I said, my email's in the description. Tell me where I'm wrong. I read everything."
 7. **The "I'm not a salesman" close** — "I'm not going to ask you to buy anything. The tool is free. If it helps, great. If not, no hard feelings."
-8. **The newsletter handoff** — "If video isn't your format, I write all of this up in the Lictor weekly newsletter. lictor-ai.com/newsletter."
+8. **The newsletter handoff** — "If video isn't your format, I write all of this up in the Lictor weekly newsletter. lictorai.com/newsletter."
 
 ---
 
@@ -264,12 +264,12 @@ Match the CTA to what stage of awareness the viewer is in. Don't ask for too muc
 
 | Stage | Purpose | CTA template |
 |---|---|---|
-| **Cold** | First exposure to Lictor | "If you build with AI, check out lictor-ai.com. Five-minute read tells you what we do." |
-| **Curious** | Aware, hasn't tried it | "The skill is free. Drop it in Claude Code, audit one of your projects, see what comes back. lictor-ai.com/skill." |
+| **Cold** | First exposure to Lictor | "If you build with AI, check out lictorai.com. Five-minute read tells you what we do." |
+| **Curious** | Aware, hasn't tried it | "The skill is free. Drop it in Claude Code, audit one of your projects, see what comes back. lictorai.com/skill." |
 | **Tried it** | Has run an audit | "If Lictor found something useful, share it with one builder who needs it. That's the best thing you can do for us." |
-| **Engaged** | Reads weekly, on the newsletter | "Open issues, vote on the roadmap, propose patterns we should add — lictor-ai.com/roadmap. Lictor goes where the community pushes." |
-| **Advocate** | Has shared / starred / told friends | "If your team would use Lictor for Teams (flat $19/mo, unlimited seats), it ships [date]. lictor-ai.com/teams to get on the list." |
-| **Pro-curious** | Privacy-paranoid or wants more | "Lictor Studio (offline native app) ships Dec 31. Pro tier with custom checks ships Q1 2027. lictor-ai.com/studio." |
+| **Engaged** | Reads weekly, on the newsletter | "Open issues, vote on the roadmap, propose patterns we should add — lictorai.com/roadmap. Lictor goes where the community pushes." |
+| **Advocate** | Has shared / starred / told friends | "If your team would use Lictor for Teams (flat $19/mo, unlimited seats), it ships [date]. lictorai.com/teams to get on the list." |
+| **Pro-curious** | Privacy-paranoid or wants more | "Lictor Studio (offline native app) ships Dec 31. Pro tier with custom checks ships Q1 2027. lictorai.com/studio." |
 
 **Hard rule:** one CTA per video. Never two. The viewer's brain can't hold two action items. The metric is "how many people actually did the thing," not "how many things did we mention."
 
@@ -326,10 +326,10 @@ Use this every time. Keep the structure consistent across all videos so viewers 
 [ONE PARAGRAPH: the actual point of the video, written as if explaining
 to a friend. 2-3 sentences.]
 
-🔗 Run the audit yourself: https://lictor-ai.com/skill
-📖 Full writeup: https://lictor-ai.com/teardowns/[slug]
+🔗 Run the audit yourself: https://lictorai.com/skill
+📖 Full writeup: https://lictorai.com/teardowns/[slug]
 🐦 Twitter: https://twitter.com/lictor_ai
-💌 Weekly newsletter: https://lictor-ai.com/newsletter
+💌 Weekly newsletter: https://lictorai.com/newsletter
 ⭐ GitHub: https://github.com/Raffa-jarrl/Lictor-AI
 
 == Timestamps ==
@@ -345,7 +345,7 @@ to a friend. 2-3 sentences.]
 Lictor is the security crew for apps you built with AI. 11 AI agents
 audit your Lovable / Bolt / v0 / Cursor project in plain English.
 Free, open source, Apache 2.0. Built by a 20-year cybersec engineer.
-https://lictor-ai.com
+https://lictorai.com
 
 == Disclosure ==
 [If this video reviewed a real third-party product, name the responsible
@@ -398,7 +398,7 @@ If you're starting from zero, record these five in this sequence. They build on 
  - What Lictor is (the security crew for apps you built with AI)
  - What this channel will be (weekly teardowns + agent demos)
  - One concrete example finding from a Lovable app
- - CTA: lictor-ai.com
+ - CTA: lictorai.com
 
 2. **"Meet Conductor — the orchestrator behind every Lictor audit"** (8–12 min Crew Demo)
  - Why a crew not a single AI

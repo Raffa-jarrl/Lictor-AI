@@ -76,7 +76,7 @@ If it's not — also fine. I appreciate the considered no.
 
 — Raffa
 
-[Lictor signature block — repo, lictor-ai.com, security@]
+[Lictor signature block — repo, lictorai.com, security@]
 
 P.S. If you want context on Lictor before deciding whether to engage, the
 audit-our-own-audit protocol page is the most representative thing we've

@@ -84,7 +84,7 @@ Every scaffold below follows this shape. Variance is in the *target*, *predicted
 **Frame 2 (alt if non-responsive):** measured, no snark, founder credited by handle, fixes are concrete.
 
 ### Companion content sketch
-- **Twitter thread:** open with the specific number ("$X paid out monthly"), 3 findings as numbered cards, founder credit, CTA to lictor-ai.com/skill
+- **Twitter thread:** open with the specific number ("$X paid out monthly"), 3 findings as numbered cards, founder credit, CTA to lictorai.com/skill
 - **LinkedIn post:** "I'm announcing Lictor today. Here's the kind of audit we run." Pitchtank teardown as the proof artifact.
 - **HN submission:** text-only "Show HN: Lictor — open-source AI security audit, with example teardown" + link in first comment
 - **Substack:** "Why I'm building Lictor" essay + the Pitchtank case attached

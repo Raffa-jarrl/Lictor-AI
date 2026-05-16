@@ -239,7 +239,7 @@ Educator platforms doing it right.
 
 If you run an AI-agent platform: run /lictor-security-check today. Credential storage is going to be the #1 pattern of 2027.
 
-lictor-ai.com/skill — free, local, plain English. 🛡
+lictorai.com/skill — free, local, plain English. 🛡
 ```
 
 ### LinkedIn post — Oct 27, 11 AM PT (~300 words)
@@ -267,7 +267,7 @@ The Sentinel-style runtime wrap is becoming the standard pattern for AI platform
 
 Full writeup with the SQL fixes + Sentinel integration code: [link]
 
-Free skill that catches this pattern: lictor-ai.com/skill
+Free skill that catches this pattern: lictorai.com/skill
 ```
 
 ### Hacker News submission — Oct 27, 10:35 AM PT
@@ -288,6 +288,6 @@ Founder patched the RLS layer in 48h. Force-rotated every stored key + emailed e
 
 The credential-storage pattern is going to be the #1 vulnerability class for AI-agent platforms in 2027. Worth a read.
 
-Full writeup with code: https://lictor-ai.com/teardowns/agentswarms
+Full writeup with code: https://lictorai.com/teardowns/agentswarms
 Lictor (free, Apache 2.0): https://github.com/Raffa-jarrl/Lictor-AI
 ```

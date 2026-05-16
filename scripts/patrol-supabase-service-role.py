@@ -25,7 +25,7 @@ import argparse, base64, json, re, subprocess, sys, time
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
-UA = "Lictor-Patrol/0.1 (+https://lictor-ai.com/scan; raffa@lictor-ai.com)"
+UA = "Lictor-Patrol/0.1 (+https://lictorai.com/scan; raffa@lictorai.com)"
 
 # JWT shaped: header.payload.signature, base64url segments
 JWT_RX = re.compile(r'eyJ[A-Za-z0-9_-]{10,}\.eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{20,}')

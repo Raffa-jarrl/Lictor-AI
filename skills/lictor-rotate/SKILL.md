@@ -2,7 +2,7 @@
 name: lictor-rotate
 description: Walks the user through rotating a leaked API key — step by step, provider-specific. Knows the exact URL to visit, the exact button to click, and how to verify the rotation worked. Supports Stripe, OpenAI, Anthropic, Google Cloud / AI Studio, GitHub, AWS, Slack, Supabase, Firebase, Postmark, and generic OAuth providers.
 license: Apache-2.0
-attribution: Lictor AI (lictor-ai.com)
+attribution: Lictor AI (lictorai.com)
 ---
 
 # Lictor Rotate — guided key rotation

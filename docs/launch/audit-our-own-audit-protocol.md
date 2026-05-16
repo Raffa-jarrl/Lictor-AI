@@ -122,7 +122,7 @@ These labels feed the monthly accuracy report. They are not optional.
 
 - **CHANGELOG entries.** Every fix — FP, FN, voice-bug — goes in the changelog with the reporter credited (with consent) and a one-line description of what changed. No exceptions, no batched omissions.
 - **Weekly newsletter.** Quill's user-spotlight section can feature a specific fix: *"This week, @username caught a Stripe webhook signature check we missed. Here's the test that now catches it."* One spotlight per newsletter when there's a worthy one. Don't manufacture them.
-- **The `lictor-ai.com/audit-report` page.** A public dashboard rebuilt monthly: open issues, fixed-this-month count, new patterns added, median time-to-fix. Generated from labels + CHANGELOG, not hand-maintained.
+- **The `lictorai.com/audit-report` page.** A public dashboard rebuilt monthly: open issues, fixed-this-month count, new patterns added, median time-to-fix. Generated from labels + CHANGELOG, not hand-maintained.
 - **Twitter.** Explicit "we got this wrong, here's what we shipped to fix it" posts. Not buried in a thread, not framed as marketing. Surfaced. Pinned for a day when the fix is meaningful.
 - **The accuracy claim.** Lictor never claims "100% accurate," "99% accurate," or any unfalsifiable number. The standing claim is: *"We get things wrong sometimes. Here's how we fix it. Here's the public log of every error and its resolution."* That sentence is on the landing page, in the README, and in the issue template.
 

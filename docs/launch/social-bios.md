@@ -19,7 +19,7 @@ Lictor AI
 ```
 11 AI agents audit your Lovable / Bolt / v0 project for security gaps. Plain English, runs in Claude Code, Apache 2.0.
 
-🛡 lictor-ai.com
+🛡 lictorai.com
 ```
 
 **Char count:** ~146 / 160
@@ -30,7 +30,7 @@ Lictor AI
 The security crew for apps you built with AI.
 60-second audit. No signup, no telemetry, no per-seat pricing.
 
-→ lictor-ai.com · github.com/lictor-ai
+→ lictorai.com · github.com/lictor-ai
 ```
 
 **Char count:** ~145 / 160
@@ -44,7 +44,7 @@ San Francisco · Open source
 ### Website
 
 ```
-https://lictor-ai.com
+https://lictorai.com
 ```
 
 ### Header image
@@ -103,7 +103,7 @@ Built solo by a 20-year cybersecurity engineer. Open source so trust is verifiab
 Launch: October 6, 2026.
 
 — github.com/Raffa-jarrl/Lictor-AI
-— lictor-ai.com
+— lictorai.com
 ```
 
 **Char count:** ~1,940 / 2,000
@@ -181,11 +181,11 @@ The AI security market is dominated by enterprise sales motions and certificatio
 
 ## Get in touch
 
-- General: [hello@lictor-ai.com](mailto:hello@lictor-ai.com)
-- Security: [security@lictor-ai.com](mailto:security@lictor-ai.com)
-- Compliance / vendor risk: [compliance@lictor-ai.com](mailto:compliance@lictor-ai.com)
+- General: [hello@lictorai.com](mailto:hello@lictorai.com)
+- Security: [security@lictorai.com](mailto:security@lictorai.com)
+- Compliance / vendor risk: [compliance@lictorai.com](mailto:compliance@lictorai.com)
 
-Website: [lictor-ai.com](https://lictor-ai.com)
+Website: [lictorai.com](https://lictorai.com)
 ```
 
 ---
@@ -228,7 +228,7 @@ Why am I building this?
 
 Lictor: plain English. Free. Open.
 
-lictor-ai.com
+lictorai.com
 ```
 
 These three tweets, posted as a triplet, set up your account for whoever discovers the repo.
@@ -256,7 +256,7 @@ See `docs/launch/anti-snyk-free-tier-playbook.md` for what happens when the incu
 
 - All character counts checked against the platforms' stated maximums as of Q2 2026. Confirm before posting if it's been a while.
 - The Twitter handle `@lictor_ai` may already be taken. Fallbacks (in order of preference): `@getlictor`, `@lictor_security`, `@lictoraisec`. The Twitter bio works for any of those.
-- LinkedIn requires you to verify the domain `lictor-ai.com` before the page can be associated with the company. Do this after step 5 (domain deploy) of the playbook — Cloudflare Pages serves the domain, LinkedIn fetches a TXT record you add via Cloudflare DNS.
+- LinkedIn requires you to verify the domain `lictorai.com` before the page can be associated with the company. Do this after step 5 (domain deploy) of the playbook — Cloudflare Pages serves the domain, LinkedIn fetches a TXT record you add via Cloudflare DNS.
 - For GitHub org avatar: re-render `brand/icon-512.png` if it doesn't currently exist:
 
   ```bash
