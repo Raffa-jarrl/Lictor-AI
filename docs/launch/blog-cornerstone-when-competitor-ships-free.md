@@ -192,7 +192,7 @@ Before you hit publish on the day [COMPETITOR_VENDOR] announces:
 - [ ] **Update the comparison table** with whatever they specifically promised — pricing tier, seat caps, data-flow details.
 - [ ] **Pick a headline.** Default is #1. Use #2 if their announcement is heavy on marketing hype. Use #3 only if [COMPETITOR_VENDOR] is a strategic friend.
 - [ ] **Add screenshots.** Side-by-side: [COMPETITOR]'s output for one finding vs Lictor's output for the same finding. Plain text in this doc, but the published post should be visual.
-- [ ] **Stage on a hidden URL** (`lictor-ai.com/blog/competitor-free-tier-DRAFT`) for 60-minute internal review before pushing to the live blog URL.
+- [ ] **Stage on a hidden URL** (`lictorai.com/blog/competitor-free-tier-DRAFT`) for 60-minute internal review before pushing to the live blog URL.
 - [ ] **Check forbidden words.** No "leverage," "revolutionary," "game-changing," "transform," "disrupt," "ecosystem," "synergy," "robust," "elevate," "paradigm." `grep -iE "leverage|revolutionary|game.chang|transform|disrupt|ecosystem|synergy|robust|elevate|paradigm" blog-cornerstone-when-competitor-ships-free.md`
 - [ ] **Run readability.** Average sentence ≤ 25 words.
 - [ ] **Set OG image** to a fresh side-by-side screenshot rather than the default Lictor OG. The OG image is the headline on social.
@@ -202,7 +202,7 @@ Before you hit publish on the day [COMPETITOR_VENDOR] announces:
 **Day 0 (the day [COMPETITOR_VENDOR] announces):**
 
 - T+0h: Don't post. Watch indie Twitter react for 4 hours.
-- T+4h: Publish the post at `lictor-ai.com/blog/[competitor-slug]-free-tier-what-it-means`.
+- T+4h: Publish the post at `lictorai.com/blog/[competitor-slug]-free-tier-what-it-means`.
 - T+4h: Twitter thread (see below) from `@lictor_ai`.
 - T+4h: LinkedIn post (see below) from Raffa's personal account.
 - T+5h: DM the post to ~15 known indie-security writers and creators. No mass blast. Personalized one-liner: "[name] — wrote this after [COMPETITOR_VENDOR]'s announcement, would love your honest read."

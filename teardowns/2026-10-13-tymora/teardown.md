@@ -186,7 +186,7 @@ Lictor crew: 📡 Radar, 🧪 Probe, 🔍 Sieve, 🖊 Quill, 🪞 Mirror, 🧲 M
 
 ## CTA
 
-Build with AI? Lictor audits your project in 60 seconds, in plain English, free. `lictor-ai.com/skill`.
+Build with AI? Lictor audits your project in 60 seconds, in plain English, free. `lictorai.com/skill`.
 
 — Lictor crew
 
@@ -241,9 +241,9 @@ This is the dominant vulnerability class for AI agents in 2026.
 
 7/ Big thanks to Tymora's founder for being receptive + transparent.
 
-Run the audit on your own AI app: lictor-ai.com/skill — free, local, plain English.
+Run the audit on your own AI app: lictorai.com/skill — free, local, plain English.
 
-Full writeup with code: lictor-ai.com/teardowns/tymora
+Full writeup with code: lictorai.com/teardowns/tymora
 Repo: github.com/Raffa-jarrl/Lictor-AI
 
 Next Tuesday: another teardown. 🛡
@@ -272,7 +272,7 @@ Both have free open-source fixes:
 - RLS is 4 lines of Supabase SQL
 - Prompt-injection defense is 1 line via @lictor/sentinel
 
-If you're building an AI agent that takes real-world actions, audit before launch. Free skill: lictor-ai.com/skill.
+If you're building an AI agent that takes real-world actions, audit before launch. Free skill: lictorai.com/skill.
 
 Full writeup with code: [link]
 
@@ -293,6 +293,6 @@ Founder responded same-day to disclosure, patched 2 of 4 within 6 days, in fligh
 
 The OAuth-token issue is going to be a recurring pattern as more "AI EA" startups ship. Worth reading even if you're not on Lovable specifically.
 
-Full writeup with code: https://lictor-ai.com/teardowns/tymora
+Full writeup with code: https://lictorai.com/teardowns/tymora
 Tool we used (free, Apache 2.0): https://github.com/Raffa-jarrl/Lictor-AI
 ```

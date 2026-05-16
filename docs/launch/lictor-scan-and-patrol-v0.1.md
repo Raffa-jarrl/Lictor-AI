@@ -7,7 +7,7 @@
 
 ## TL;DR
 
-**Lictor Scan** is `lictor-ai.com/scan/<url>` — paste any vibe-coded app's URL, get a letter-grade scorecard with the 5 worst findings, share the result. PageSpeed Insights for AI-built apps.
+**Lictor Scan** is `lictorai.com/scan/<url>` — paste any vibe-coded app's URL, get a letter-grade scorecard with the 5 worst findings, share the result. PageSpeed Insights for AI-built apps.
 
 **Lictor Patrol** is the cron-driven crawler that enumerates every new vibe-coder app that hit the public internet in the last N days, runs Scan on each, and — when it finds something serious — has Bridge agent draft a private heads-up to the founder ("Lictor AI found this in your app — here's the fix; the tool's free if you want continuous monitoring").
 
@@ -110,7 +110,7 @@ If we hit these, expand to last-30-days for Week 2. If we miss them, post-mortem
 
 ## The outreach voice
 
-Every outreach is signed `— Bridge (Lictor's community agent) · lictor-ai.com`. Honest about being an AI agent, honest about the finding, honest about the offer.
+Every outreach is signed `— Bridge (Lictor's community agent) · lictorai.com`. Honest about being an AI agent, honest about the finding, honest about the offer.
 
 ### Template — HIGH severity, individual founder
 
@@ -130,7 +130,7 @@ Every outreach is signed `— Bridge (Lictor's community agent) · lictor-ai.com
 >
 > Fix (about [N] minutes): [3-5 concrete steps, with code snippets where helpful]
 >
-> No catch on this — we're flagging it because we'd want the same heads-up if someone found it in our code. The scanner that found this is free and open source: `npm install -g lictor-cli` (or paste your URL at lictor-ai.com/scan).
+> No catch on this — we're flagging it because we'd want the same heads-up if someone found it in our code. The scanner that found this is free and open source: `npm install -g lictor-cli` (or paste your URL at lictorai.com/scan).
 >
 > If you'd like Lictor to keep watching this project as you add features — we DM you when new issues appear, weekly summary email, that kind of thing — it's free for OSS / hobby / pre-revenue projects, and $19/mo flat for commercial use (no per-seat). Up to you, no pressure.
 >
@@ -138,7 +138,7 @@ Every outreach is signed `— Bridge (Lictor's community agent) · lictor-ai.com
 >
 > Happy to answer anything.
 >
-> — Bridge (Lictor's community agent) · lictor-ai.com
+> — Bridge (Lictor's community agent) · lictorai.com
 > Co-signed by Raffa on outreach reviewed personally in pilot weeks.
 
 ### Template — CRITICAL severity, escalated to Raffa
@@ -170,8 +170,8 @@ These are in the spec because they're load-bearing for the project's existence, 
 | 30-day private disclosure window for individuals | Solo founders are not Equifax | State machine enforces, can't be overridden |
 | 90-day window for companies ≥10 employees / VC-backed | Industry-standard responsible disclosure | Manual classification flag |
 | Aggregate stats public immediately; individual scorecards gated | Press value without weaponizing scorecards | Severity router separates the two paths |
-| One-click opt-out at `lictor-ai.com/scan/<hash>/remove` | Bridge processes within 24h | Standard form → Bridge queue |
-| We scan ourselves first, publicly, before launching Patrol | Modeling the behavior we expect | Aug 1: `lictor-ai.com/scan/lictor-ai.com` published |
+| One-click opt-out at `lictorai.com/scan/<hash>/remove` | Bridge processes within 24h | Standard form → Bridge queue |
+| We scan ourselves first, publicly, before launching Patrol | Modeling the behavior we expect | Aug 1: `lictorai.com/scan/lictorai.com` published |
 | No facial / personal-data scraping | Out of scope, in tension with security purpose | Engineering constraint — checks are URL+JS+headers only |
 | Audit corpus stores fingerprints, never raw findings | Privacy by design | Hash: SHA-256(finding-type + severity + platform), no URL |
 
@@ -233,9 +233,9 @@ The corpus IS the moat. Within 12 months at projected scan rates, Lictor will ha
 | **W22 (Jun 1-7)** | Source enumerators (GitHub, Lovable, Bolt, v0, PH, HN) — 6 of 10. Cron + dedup + queue. Scan engine deployed as Worker. | dev (C-3PO) builds; Conductor wires cron |
 | **W23 (Jun 8-14)** | **PILOT SCAN WEEK** — last-7-days cohort, 500-1,000 assets. Manual review of every outreach. | All hands: Raffa reviews findings, Bridge drafts outreach, Mirror watches voice |
 | **W24 (Jun 15-21)** | Disclosure state machine + opt-out flow + scorecard page + OG image renderer | dev + designer (you, with the new design-system spec) |
-| **W25 (Jun 22-28)** | Audit corpus (KV append-only) + aggregate-stats dashboard at `lictor-ai.com/in-the-wild` (gated, internal only at first) | dev + Conductor for stats aggregation |
+| **W25 (Jun 22-28)** | Audit corpus (KV append-only) + aggregate-stats dashboard at `lictorai.com/in-the-wild` (gated, internal only at first) | dev + Conductor for stats aggregation |
 | **W26 (Jun 29 - Jul 5)** | Expand to last-30-days cohort. Add remaining 4 sources (YC, Cursor, npm, Twitter/X). | Probe (already does competitive watch) extends to general patrol |
-| **W27 (Jul 6-12)** | Public Scan surface goes live at `lictor-ai.com/scan/<url>` — paste-a-URL form. Embeddable badge ready. | dev + Quill for the launch copy |
+| **W27 (Jul 6-12)** | Public Scan surface goes live at `lictorai.com/scan/<url>` — paste-a-URL form. Embeddable badge ready. | dev + Quill for the launch copy |
 | **W28 (Jul 13-19)** | Bridge auto-sends low-risk outreach (B/C grades); Raffa still reviews D/F manually. Leaderboard v0.1 published (one platform: Lovable). | Bridge gets auto-send permission for low-risk classes only |
 | **W29-W32 (Jul 20 - Aug 15)** | **Silent run for 30 days.** Collect data, refine voice, hand-write everything, measure. No public announcement yet. | All agents in production mode |
 | **Aug 15** | **SOFT LAUNCH:** publish the 30-day finding report. HN post. Twitter thread. Press emails. | Quill drafts; Raffa sends; Bridge handles the deluge |
@@ -251,7 +251,7 @@ The corpus IS the moat. Within 12 months at projected scan rates, Lictor will ha
 | Jun 1 | Patrol architecture deployed | Cron firing; first 100 URLs scanned | Engine fails on >30% of URLs |
 | Jun 8 | Pilot scan (last 7 days) | 500-1,000 apps scanned, 50+ private outreaches sent | <100 apps scanned |
 | Jun 15 | Disclosure state machine live | 30-day timer running on every D/F finding | Any leak of private finding before window |
-| Jul 6 | `lictor-ai.com/scan` public surface live | 100 user-initiated scans in first week | <10 |
+| Jul 6 | `lictorai.com/scan` public surface live | 100 user-initiated scans in first week | <10 |
 | Jul 15 | Last-30-days Patrol running | 4,000-6,000 apps scanned cumulative | <1,500 |
 | Aug 15 | Soft-launch publication | 30,000 apps scanned; HN front page; ≥3 inbound press | <10,000 scanned, no HN traction |
 | Oct 6 | Hard launch with full suite | The rest of the OSS suite, on the back of Patrol's credibility | — |
@@ -294,9 +294,9 @@ If Patrol runs from Jun 8 → May 15 2027 at projected rates:
 - **~20,000 private founder outreaches sent**
 - **~6,000 confirmed fixes shipped because of our outreach**
 - **~50,000 public scorecards live** (founders who consented OR aged out of the 30-day window)
-- **~2,500 weekly returning users on `lictor-ai.com/scan`** (paste-a-URL surface)
+- **~2,500 weekly returning users on `lictorai.com/scan`** (paste-a-URL surface)
 - **The largest public dataset of AI-app security postures in existence** — the moat
-- **Lovable / Bolt / v0 integrated `lictor-ai.com/scan` into their publish flow** (at least 1 of 3 — the AUDIT.json adoption play, fully landed)
+- **Lovable / Bolt / v0 integrated `lictorai.com/scan` into their publish flow** (at least 1 of 3 — the AUDIT.json adoption play, fully landed)
 - **3-5 inbound acquirer conversations** (because by then "what's your Lictor score?" is a real question developers ask)
 - **The Year 1 paper:** "The Vibe-Coder Security Landscape: 200,000 Apps Scanned" — peer reviewed, cited everywhere
 

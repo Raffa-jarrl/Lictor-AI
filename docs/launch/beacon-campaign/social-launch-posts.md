@@ -18,7 +18,7 @@ Ships October 6.
 
 If you ship from Lovable / Bolt / v0 / Cursor / Replit — this is for you. Waitlist + repo:
 
-lictor-ai.com/waitlist
+lictorai.com/waitlist
 ```
 
 **Why this works:** opens with "after 9 months" (signals real work, not vaporware) + specific stack list (catches the right audience by keyword) + concrete date + 3 nouns (free / open source / Apache 2.0) for trust + single CTA.
@@ -46,7 +46,7 @@ Ships October 6, 2026 — free forever.
 
 Get on the list ↓
 
-lictor-ai.com/waitlist
+lictorai.com/waitlist
 ```
 
 ### Variant B (problem-led)
@@ -60,7 +60,7 @@ We built the open-source one that speaks English and costs nothing.
 
 Lictor. Ships October 6.
 
-lictor-ai.com/waitlist
+lictorai.com/waitlist
 ```
 
 ### Variant C (founder narrative)
@@ -72,7 +72,7 @@ He didn't know. The AI didn't tell him. None of his tools flagged it.
 
 I'm fixing this. Lictor — free, open source, ships October 6.
 
-lictor-ai.com/waitlist
+lictorai.com/waitlist
 ```
 
 **Recommendation:** Default to **Variant A**. Run B + C as boosted alternates in Week 3 if engagement on A plateaus.
@@ -120,7 +120,7 @@ He realized none of his Fortune-500 tools were going to help his indie-hacker fr
 
 6/ Ships October 6. Waitlist is open. The repo flips public around June.
 
-If you build AI apps: lictor-ai.com/waitlist
+If you build AI apps: lictorai.com/waitlist
 
 If you want to follow the build in public: github.com/Raffa-jarrl/Lictor-AI
 
@@ -150,7 +150,7 @@ Ships October 6, 2026 — free forever on the open-source core.
 
 Built by a 20-year cybersecurity engineer based in Israel. Open source so trust is verifiable by reading the code, not by certificates.
 
-Get on the waitlist: lictor-ai.com/waitlist
+Get on the waitlist: lictorai.com/waitlist
 Track the build: github.com/Raffa-jarrl/Lictor-AI
 
 If you're a CTO or VP Eng with builders shipping AI features and you've been waiting for tooling that didn't require a sales call, I'd love your input. Reply or DM.
@@ -174,7 +174,7 @@ It's called Lictor — a free, open-source AI security audit for apps built with
 
 It ships October 6, 2026.
 
-The waitlist is open today: **lictor-ai.com/waitlist**
+The waitlist is open today: **lictorai.com/waitlist**
 
 Why I'm telling you first: most people on this list build with AI or work with people who do. If Lictor would be useful to one of your projects (or to a friend's), get on the waitlist now — you'll get the install command in your inbox the morning we ship.
 
@@ -209,7 +209,7 @@ Top 3 questions in my inbox:
 2. "What about Windsurf / Replit?" — yes, also catches those
 3. "Can I run it before Oct 6?" — repo flips public ~June 1, I'll email everyone
 
-lictor-ai.com/waitlist
+lictorai.com/waitlist
 ```
 
 **Why this works:** transparent metrics (builds credibility) + addresses the 3 most-common objections preemptively + repeats the CTA for new readers.

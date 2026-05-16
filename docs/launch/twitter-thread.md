@@ -100,7 +100,7 @@ By construction. Not by policy.
 
 **Guardian** is for teams.
 
-Dashboard at app.lictor-ai.com. Receives Sentinel telemetry, shows incident timeline, filters by severity / check / phase / time window.
+Dashboard at app.lictorai.com. Receives Sentinel telemetry, shows incident timeline, filters by severity / check / phase / time window.
 
 Audit log export (CSV + JSON) for SOC 2, GDPR Article 32, EU AI Act Article 12.
 

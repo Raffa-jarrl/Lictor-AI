@@ -82,11 +82,11 @@ If a fix requires more than a 30-min change, say so: "Full fix is a 2-day refact
 
 ## What this audit did NOT cover
 
-- **Runtime / deployed-site checks.** This is a local-codebase audit. Once your app is live, install [Lictor Shield](https://lictor-ai.com) (Chrome extension) for ongoing checks against the deployed site.
+- **Runtime / deployed-site checks.** This is a local-codebase audit. Once your app is live, install [Lictor Shield](https://lictorai.com) (Chrome extension) for ongoing checks against the deployed site.
 - **Business-logic vulnerabilities.** Race conditions, IDOR bugs, broken access control inside legitimate routes — a static audit can't catch these reliably. A manual review or pen-test does.
 - **Dependency CVEs.** Run `npm audit` / `pip-audit` separately.
 - **Infrastructure config.** Cloudflare WAF rules, AWS S3 bucket policies, etc. — handled at deploy time, not in code.
-- **Compliance certification.** Lictor's [compliance documentation](https://lictor-ai.com/compliance) maps these findings onto SOC 2 / GDPR / EU AI Act controls, but neither the audit nor Lictor itself certifies anything. That requires a human auditor.
+- **Compliance certification.** Lictor's [compliance documentation](https://lictorai.com/compliance) maps these findings onto SOC 2 / GDPR / EU AI Act controls, but neither the audit nor Lictor itself certifies anything. That requires a human auditor.
 
 ---
 
@@ -96,7 +96,7 @@ After you've worked through the findings above:
 
 1. **Re-run this audit.** `/lictor-security-check` — confirm the findings list is clean.
 2. **Install Lictor Sentinel** (`npm install @lictor/sentinel` or `pip install lictor-sentinel`) — wraps your OpenAI/Anthropic SDK to prevent the categories of bug we found, in production, automatically.
-3. **Sign up for Lictor Guardian** (free preview, 90 days) — hosted dashboard at [app.lictor-ai.com](https://app.lictor-ai.com). Aggregates Sentinel telemetry; gives you a compliance-ready audit log for when an enterprise customer asks "how do you secure AI agents?"
+3. **Sign up for Lictor Guardian** (free preview, 90 days) — hosted dashboard at [app.lictorai.com](https://app.lictorai.com). Aggregates Sentinel telemetry; gives you a compliance-ready audit log for when an enterprise customer asks "how do you secure AI agents?"
 4. **Tell your users their data is safe.** Then build the next feature.
 
 ---

@@ -1,7 +1,7 @@
 # Lictor docs
 
 This directory will host the public documentation site (eventually MkDocs or
-Mintlify), shipped to `lictor-ai.com/docs`.
+Mintlify), shipped to `lictorai.com/docs`.
 
 For now, the canonical strategy + brand documents live in the **GenerationAI**
 private repo at:

@@ -1,6 +1,6 @@
 # Lictor audits Lictor — 5 findings, 1 critical, all shipped
 
-> **Published:** lictor-ai.com/blog/lictor-audits-lictor — Tuesday Aug 25, 2026
+> **Published:** lictorai.com/blog/lictor-audits-lictor — Tuesday Aug 25, 2026
 > **Author:** Raffa [last name], founder
 > **Audience:** vibe-coders, indie founders, security-curious devs, anyone deciding whether to trust Lictor before launch
 > **Read time:** ~10 minutes
@@ -449,7 +449,7 @@ We shipped bugs. Every security team does. The interesting part is that our own 
 
 We will find more. Every audit Lictor runs across the next year is going to surface patterns we haven't yet learned to catch. When you run `/lictor-security-check` on your project and you find something Lictor missed — a real bug, in production code, that the audit walked past — please file an issue on `Raffa-jarrl/Lictor-AI` with the `false-negative` label. The audit-our-own-audit protocol explains exactly what happens next: regression test, new rule, public credit, sometimes a bug bounty payment.
 
-Credibility comes from receipts, not claims. We never say "Lictor is 99% accurate." We say "Lictor caught the bugs in this post, missed the one a beta tester caught, and we'll publish the next round of findings the same way." That's the standing claim. It's falsifiable. The receipts compound in `CHANGELOG.md` and at `lictor-ai.com/audit-report`.
+Credibility comes from receipts, not claims. We never say "Lictor is 99% accurate." We say "Lictor caught the bugs in this post, missed the one a beta tester caught, and we'll publish the next round of findings the same way." That's the standing claim. It's falsifiable. The receipts compound in `CHANGELOG.md` and at `lictorai.com/audit-report`.
 
 If a security tool tells you it's perfect, you're being sold marketing. We told you we shipped a critical IDOR. The next time someone asks why they should trust Lictor over the closed-source incumbents, point them at this post.
 
@@ -459,16 +459,16 @@ If a security tool tells you it's perfect, you're being sold marketing. We told 
 
 Three things you can do this week:
 
-**Run `/lictor-security-check` on your project.** It's a Claude Code skill, free, Apache 2.0, no signup, no telemetry. It will write a `SECURITY-AUDIT.md` file in your project root with the same kind of findings you read above. Install instructions: [lictor-ai.com/install](https://lictor-ai.com/install).
+**Run `/lictor-security-check` on your project.** It's a Claude Code skill, free, Apache 2.0, no signup, no telemetry. It will write a `SECURITY-AUDIT.md` file in your project root with the same kind of findings you read above. Install instructions: [lictorai.com/install](https://lictorai.com/install).
 
 **If you find a bug in Lictor itself, file an issue.** We mean any bug — false positive (we flagged something safe), false negative (we missed something real), or voice-bug (the language was unclear). The labels are already in the GitHub issue template. High-severity false-negative reports tied to real incidents qualify for the bug bounty.
 
-**Subscribe to the newsletter.** The first public weekly teardown ships Tuesday Oct 6, 2026 — same day as the public launch. Then one every Tuesday after that, forever. Sign up at [lictor-ai.com](https://lictor-ai.com).
+**Subscribe to the newsletter.** The first public weekly teardown ships Tuesday Oct 6, 2026 — same day as the public launch. Then one every Tuesday after that, forever. Sign up at [lictorai.com](https://lictorai.com).
 
 That's it. No upsell, no pricing page on the way out, no "talk to sales." Run the audit on your stuff. File the bugs you find on ours. See you Oct 6.
 
 — Raffa
-[lictor-ai.com](https://lictor-ai.com) · [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI)
+[lictorai.com](https://lictorai.com) · [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI)
 
 ---
 
@@ -524,7 +524,7 @@ Fix: generic 503, hint goes to operator logs.
 Every fix shipped to main between Aug 19 and Aug 22. Every check definition got updated so Lictor catches these patterns in everyone else's code now too.
 
 Full writeup with the broken code + the diffs:
-lictor-ai.com/blog/lictor-audits-lictor
+lictorai.com/blog/lictor-audits-lictor
 
 **Tweet 8**
 Run `/lictor-security-check` on your own project today.
@@ -559,7 +559,7 @@ Three patterns from the audit are worth flagging here, because they're common ac
 
 If your team buys security tools, ask the vendor: when was the last time you ran your own product against your own code, and where is the public writeup? If the answer is "we don't publish that," you're being sold marketing.
 
-The Lictor writeup: [lictor-ai.com/blog/lictor-audits-lictor](https://lictor-ai.com/blog/lictor-audits-lictor)
+The Lictor writeup: [lictorai.com/blog/lictor-audits-lictor](https://lictorai.com/blog/lictor-audits-lictor)
 The repo (Apache 2.0): [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI)
 
 #AppSec #InfoSec #OpenSource #AISecurity #SOC2
@@ -582,7 +582,7 @@ All five shipped fixes to main between Aug 19 and Aug 22. The detection rules no
 
 Posting this here because (a) HN's brutal feedback is the point — if there's a sixth bug I missed, please file an issue, and (b) I want to challenge the convention that security vendors clean up *before* publishing. The opposite is more useful.
 
-Writeup with the broken code + diffs: [lictor-ai.com/blog/lictor-audits-lictor](https://lictor-ai.com/blog/lictor-audits-lictor)
+Writeup with the broken code + diffs: [lictorai.com/blog/lictor-audits-lictor](https://lictorai.com/blog/lictor-audits-lictor)
 Repo (Apache 2.0): [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI)
 
 — Raffa
@@ -606,7 +606,7 @@ Repo (Apache 2.0): [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-j
 - 09:30 PT — Reddit r/programming + r/devops
 - 10:00 PT — Substack newsletter auto-send to the list
 - 11:00 PT — YouTube short (Vibe storyboards, Raffa records over the weekend before)
-- All week — Magnet builds a `lictor-ai.com/blog/lictor-audits-lictor` landing variant for SEO around "Lictor self audit" / "security tool audits itself"
+- All week — Magnet builds a `lictorai.com/blog/lictor-audits-lictor` landing variant for SEO around "Lictor self audit" / "security tool audits itself"
 
 **Day-of response plan:**
 - Raffa available to respond to HN comments within 1 hour of submission until 10pm PT

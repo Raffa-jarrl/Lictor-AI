@@ -24,7 +24,7 @@ const client = wrap(new OpenAI(), {
 
 32 prompt-injection patterns across 7 attack families (direct override, jailbreak personas, system-prompt extraction, model-control delimiter tokens like `<|im_start|>`, etc.). PII detection in model output with Luhn-validated credit cards. 15 secret patterns to catch API keys being pasted into prompts. Privacy invariant: never ships raw user content to our servers — only 16-char SHA-256 fingerprints.
 
-**[Lictor Guardian](https://app.lictor-ai.com)** — hosted dashboard. Per-incident timeline with severity / check / phase filters. Audit log export (CSV + JSON) for SOC 2 / GDPR Article 32 / EU AI Act Article 12 evidence. Slack webhook integration. Append-only audit log enforced at the database trigger level. Free preview for 90 days.
+**[Lictor Guardian](https://app.lictorai.com)** — hosted dashboard. Per-incident timeline with severity / check / phase filters. Audit log export (CSV + JSON) for SOC 2 / GDPR Article 32 / EU AI Act Article 12 evidence. Slack webhook integration. Append-only audit log enforced at the database trigger level. Free preview for 90 days.
 
 The whole suite shares one engine — a Rust crate (`lictor-core`) that compiles to native and WASM. Every new check ships everywhere at once.
 

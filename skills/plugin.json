@@ -6,11 +6,11 @@
   "description": "Four free Claude Code plugins that catch security bugs in AI-built apps before they ship. Built for vibe-coders, designers, and solo founders — not for compliance teams.",
   "author": {
     "name": "Lictor AI",
-    "url": "https://lictor-ai.com",
-    "email": "hello@lictor-ai.com"
+    "url": "https://lictorai.com",
+    "email": "hello@lictorai.com"
   },
   "license": "Apache-2.0",
-  "homepage": "https://lictor-ai.com",
+  "homepage": "https://lictorai.com",
   "repository": "https://github.com/Raffa-jarrl/Lictor-AI",
   "issues": "https://github.com/Raffa-jarrl/Lictor-AI/issues",
 

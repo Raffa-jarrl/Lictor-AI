@@ -148,7 +148,7 @@ Why it matters: `/lictor-security-check` produces findings tagged Critical / Hig
 - Lictor Studio (Tauri desktop — currently inline span)
 - Future Mission Control public pages
 - The launch teardown drafts (currently emoji-prefix + bold)
-- Eventually: the dashboard at `lictor-ai.com/transparency`
+- Eventually: the dashboard at `lictorai.com/transparency`
 
 Standardizing this **before** the surfaces multiply prevents the "every product page renders severity differently" disease that hits OSS projects at year 1.
 
@@ -160,7 +160,7 @@ In priority order. Each gets its own `components/<name>.md` spec when started.
 
 1. **FindingCard** — wraps a severity badge + title + body + "fix in N minutes" footer. Used in audit reports + Studio + transparency reports. Currently rendered ad-hoc in markdown headings.
 2. **CrewBadge** — attributes work to a specific agent (🎼 Conductor, 📡 Radar, 🔍 Sieve, etc.). Used in monthly transparency reports + the public agent-roster page (not built yet).
-3. **MetricTile** — stat-card variant for the upcoming `lictor-ai.com/transparency` page. Differs from `.waitlist-stat` by adding a delta-vs-last-period footer.
+3. **MetricTile** — stat-card variant for the upcoming `lictorai.com/transparency` page. Differs from `.waitlist-stat` by adding a delta-vs-last-period footer.
 4. **PromiseBlock** — already exists as `.waitlist-promise` inline; promote to global component so the Studio + dashboard + landing variants don't drift.
 
 ---

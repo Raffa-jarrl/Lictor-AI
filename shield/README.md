@@ -42,5 +42,5 @@ The store reviewer will scrutinize a security extension. Our defense:
 ## Privacy contract (publicized)
 
 - All audits run **locally** in WASM. No URL leaves your browser by default.
-- Findings are **never** shipped to any backend without an explicit "share to lictor-ai.com" click.
+- Findings are **never** shipped to any backend without an explicit "share to lictorai.com" click.
 - Source code is public. The `dist/` bundle published to the Web Store is reproducible from this repo.

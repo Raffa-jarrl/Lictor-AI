@@ -299,7 +299,7 @@ If you build with AI — Lovable, Bolt, v0, Cursor, Replit, Claude Code, anythin
 
 The whole point of Lictor is: the security gap shouldn't be locked behind a $25/dev/month subscription or a sales call. The audit should be one slash command in the tool you're already in.
 
-That's it. That's the launch. We'll publish a new teardown every Tuesday for the rest of the year — same shape, different app. If you want to follow along, the newsletter is at lictor-ai.com/newsletter.
+That's it. That's the launch. We'll publish a new teardown every Tuesday for the rest of the year — same shape, different app. If you want to follow along, the newsletter is at lictorai.com/newsletter.
 
 — The Lictor crew
 
@@ -362,9 +362,9 @@ He's running a real business. The findings made it safer. Now we get to talk abo
 
 If you build with AI, run the audit on your own project this week:
 
-→ lictor-ai.com/skill
+→ lictorai.com/skill
 
-We'll publish a new teardown every Tuesday. Different app, same shape. Subscribe at lictor-ai.com/newsletter.
+We'll publish a new teardown every Tuesday. Different app, same shape. Subscribe at lictorai.com/newsletter.
 
 That's the launch. 🛡
 ```
@@ -396,7 +396,7 @@ That's responsible disclosure done right in the vibe-coder era. The audit cost t
 
 If you build with AI — Lovable, Bolt, v0, Cursor — the audit takes 60 seconds. The skill is free. The findings are in plain English.
 
-→ lictor-ai.com
+→ lictorai.com
 
 Full writeup with code: [link]
 ```
@@ -425,8 +425,8 @@ Lictor is built by a 20-year cybersec engineer. The 11-agent crew that runs the 
 
 Free for individuals, $19/mo flat for teams (no per-seat pricing), Apache 2.0 for the OSS core.
 
-Try it: lictor-ai.com/skill
-The full Pitchtank teardown: lictor-ai.com/teardowns/pitchtank
+Try it: lictorai.com/skill
+The full Pitchtank teardown: lictorai.com/teardowns/pitchtank
 Repo: github.com/Raffa-jarrl/Lictor-AI
 
 Happy to answer questions about the architecture, the agent crew design, or the disclosure process.

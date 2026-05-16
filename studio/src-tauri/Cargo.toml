@@ -2,7 +2,7 @@
 name = "lictor-studio"
 version = "0.1.0-pre.0"
 description = "Lictor Studio — offline desktop AI security audit"
-authors = ["Lictor AI <hello@lictor-ai.com>"]
+authors = ["Lictor AI <hello@lictorai.com>"]
 license = "Apache-2.0"
 repository = "https://github.com/Raffa-jarrl/Lictor-AI"
 edition = "2021"

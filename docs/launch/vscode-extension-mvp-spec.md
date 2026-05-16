@@ -222,12 +222,12 @@ If a milestone slips: shift the *gate*, not the date. v0.1.0 ships Dec 31 even i
 **Publishing requirements:**
 - **VS Code Marketplace:** free publisher account, Microsoft Partner Center signup, Azure DevOps PAT for `vsce publish`. Publisher ID `lictor` (Raffa to claim). No code signing required.
 - **Open VSX:** free namespace at open-vsx.org, GitHub OAuth login, `ovsx create-namespace lictor` then `ovsx publish`. No signing required.
-- **Verified publisher badge:** domain verification at `lictor-ai.com` via DNS TXT record. Worth doing — visible trust signal on the listing.
+- **Verified publisher badge:** domain verification at `lictorai.com` via DNS TXT record. Worth doing — visible trust signal on the listing.
 
 **Discovery:**
 - Marketplace search: `lictor` (primary), `vibe coder security`, `ai security audit`, `lovable security`, `bolt audit` (long-tail).
 - `categories`: `Linters`, `Other`. Tags: `security`, `audit`, `ai`, `lovable`, `bolt`, `v0`, `cursor`.
-- Cross-link from `lictor-ai.com` ("Install in VS Code / Cursor →") and every Claude Code skill README.
+- Cross-link from `lictorai.com` ("Install in VS Code / Cursor →") and every Claude Code skill README.
 - Oct 6 launch teardown #1 includes "We built this — try it in your IDE" CTA.
 
 **Install:** one click → extension loads → no signup, no API key, no consent dialog, no welcome popup. Fully functional on first open. Every friction point loses 5-15% of installs; we have none.

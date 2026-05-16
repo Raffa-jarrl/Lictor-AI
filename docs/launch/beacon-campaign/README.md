@@ -45,7 +45,7 @@ Refreshes whenever Buttondown's API is queried (1x/day via a cron job — see `s
 
 ## Definition of done — Beacon is "ready for release" when
 
-- [x] Landing page deployed at `lictor-ai.com/waitlist`
+- [x] Landing page deployed at `lictorai.com/waitlist`
 - [x] All content drafts in this folder
 - [x] Buttondown form integration tested (test signup → confirmation email arrives → drip starts)
 - [x] Mission Control dashboard rendering live data

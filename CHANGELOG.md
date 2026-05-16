@@ -44,7 +44,7 @@ Both packages publishable to their registries (`pnpm publish` / `twine upload`) 
 
 ### Added
 
-- **`docs/compliance.md`** — Lictor's products mapped onto SOC 2 (CC6/7/8/9), GDPR Article 32, EU AI Act (Articles 9, 12, 14, 26, 50), NIST AI RMF, ISO/IEC 42001. The lictor-ai.com/compliance landing page is generated from this doc. Removes the #1 blocker in enterprise procurement.
+- **`docs/compliance.md`** — Lictor's products mapped onto SOC 2 (CC6/7/8/9), GDPR Article 32, EU AI Act (Articles 9, 12, 14, 26, 50), NIST AI RMF, ISO/IEC 42001. The lictorai.com/compliance landing page is generated from this doc. Removes the #1 blocker in enterprise procurement.
 - **`docs/specs/multi-tenant-plan.md`** — explicit migration recipe to flip Guardian from single-tenant to multi-tenant. Schema is already shaped for it; this doc is the runbook for when an enterprise customer triggers the flip (~Q1 2027).
 - **`NOTICE`** — Apache 2.0-required NOTICE file, with attribution for bundled third-party software.
 - **`guardian/LICENSE`** — explicit source-available terms for Guardian (read/study/contribute permitted; host-as-a-service forbidden; self-hosting agreements available on request).

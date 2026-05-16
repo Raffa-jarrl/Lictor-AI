@@ -83,7 +83,7 @@ By the time you sit down Tuesday morning, the following are READY:
 ```
 09:00  Final 30-min read-through of the teardown report
         Catch any embarrassing typo. Verify disclosure timeline.
-09:30  Publish teardown to lictor-ai.com/teardowns/YYYY-MM-DD-slug
+09:30  Publish teardown to lictorai.com/teardowns/YYYY-MM-DD-slug
         Use Magnet's landing page template; ensure SEO meta tags correct
 10:00  Post the YouTube long-form video (set as "scheduled" for 12:00 PT
         for east-coast viewing window)

@@ -4,8 +4,8 @@
 
 > **Updated:** May 15, 2026
 > **Launch date:** October 6, 2026
-> **Primary contact:** `press@lictor-ai.com` (live by September 2026; until then, `hello@lictor-ai.com`)
-> **Repo:** github.com/Raffa-jarrl/Lictor-AI · **Web:** lictor-ai.com
+> **Primary contact:** `press@lictorai.com` (live by September 2026; until then, `hello@lictorai.com`)
+> **Repo:** github.com/Raffa-jarrl/Lictor-AI · **Web:** lictorai.com
 
 ---
 
@@ -13,7 +13,7 @@
 
 Download once. Reference for any Lictor coverage — teardowns, profiles, category pieces, interviews with Raffa. Everything in this document is cleared for re-use. Quote any of the boilerplates verbatim. Adapt the bios. Lift the pull-quotes. The brand assets are in `~/Lictor/brand/` and the repo's public mirror.
 
-If anything in this kit is unclear, out of date, or you want a clarification before you publish, email `press@lictor-ai.com` — turnaround target is 48 hours for clarifications, 7+ days for sit-down interviews. We honor reasonable embargos (see Section 9).
+If anything in this kit is unclear, out of date, or you want a clarification before you publish, email `press@lictorai.com` — turnaround target is 48 hours for clarifications, 7+ days for sit-down interviews. We honor reasonable embargos (see Section 9).
 
 If you're writing a teardown of one of Lictor's audits, jump to Section 10.
 
@@ -166,7 +166,7 @@ Everything is in `~/Lictor/brand/` (mirrored in the public repo). License: sourc
 | Icons | `brand/icon-{16,32,48,128,256,512}.png` | App icons, social profile pictures |
 | Fasces secondary mark | `brand/lictor-fasces.svg` (and `.png`) | Ornament, alt favicon, separator |
 | OG / social image | `landing/og/og-image.png` (1200×630) | Social cards, header images |
-| Founder headshot | `brand/founder-headshot.jpg` | **Placeholder — professional shoot needed by July 2026.** Until then, request a current photo from `press@lictor-ai.com`. |
+| Founder headshot | `brand/founder-headshot.jpg` | **Placeholder — professional shoot needed by July 2026.** Until then, request a current photo from `press@lictorai.com`. |
 
 ### Color palette
 
@@ -208,8 +208,8 @@ Verify these for accuracy before publication. All are accurate as of May 15, 202
 - **Number of secret patterns in Sentinel:** fifteen (Anthropic, OpenAI, Stripe, GitHub, AWS, Supabase, and more).
 - **Test coverage at launch:** 220+ automated tests across the suite. `core` 39 tests, `sentinel` 159 tests, `sentinel-py` 11 tests, `guardian` 12 integration tests.
 - **Primary repo:** github.com/Raffa-jarrl/Lictor-AI (monorepo)
-- **Primary domain:** lictor-ai.com
-- **Email addresses:** `press@lictor-ai.com` (live by September 2026), `hello@lictor-ai.com`, `security@lictor-ai.com`, `compliance@lictor-ai.com`
+- **Primary domain:** lictorai.com
+- **Email addresses:** `press@lictorai.com` (live by September 2026), `hello@lictorai.com`, `security@lictorai.com`, `compliance@lictorai.com`
 - **Launch date:** Tuesday, October 6, 2026
 - **Founded:** 2026
 - **Headquarters:** Israel
@@ -220,13 +220,13 @@ Verify these for accuracy before publication. All are accurate as of May 15, 202
 
 ## 9. Contact and media-inquiry process
 
-- **Primary press contact:** `press@lictor-ai.com` (live by September 2026; until then use `hello@lictor-ai.com`)
-- **Secondary:** `hello@lictor-ai.com` (general inquiries, always live)
-- **Security disclosures:** `security@lictor-ai.com` (PGP key on lictor-ai.com)
+- **Primary press contact:** `press@lictorai.com` (live by September 2026; until then use `hello@lictorai.com`)
+- **Secondary:** `hello@lictorai.com` (general inquiries, always live)
+- **Security disclosures:** `security@lictorai.com` (PGP key on lictorai.com)
 
 ### Embargoed-content policy
 
-We honor reasonable embargos. To request one: email `press@lictor-ai.com` with your outlet, intended publication date, the angle of the story, and what specific Lictor information you'd like under embargo. We typically agree to embargos of up to 14 days. Embargo-breakers do not get embargoed access to future stories — this is non-negotiable.
+We honor reasonable embargos. To request one: email `press@lictorai.com` with your outlet, intended publication date, the angle of the story, and what specific Lictor information you'd like under embargo. We typically agree to embargos of up to 14 days. Embargo-breakers do not get embargoed access to future stories — this is non-negotiable.
 
 ### Interview request lead time
 
@@ -255,15 +255,15 @@ For journalists writing about a specific Lictor teardown.
 
 - **Every teardown writeup is freely re-publishable.** The teardown text, code snippets, finding summaries, and remediation steps are all Apache 2.0 (consistent with the rest of the repo). Quote at any length. Excerpt the full piece if your outlet's licensing allows.
 - **The founder of the audited app is owed a separate contact.** Before publishing your piece, reach out to the founder of the application Lictor audited (named in every teardown writeup) for their comment. They have already gone through Lictor's 14-day disclosure process — they are aware the public writeup exists. They deserve the chance to speak for themselves on your piece.
-- **Specific findings can be quoted freely.** Snippets of code from the original (vulnerable) application are reproduced in the teardown under fair-use review; you may re-publish them in editorial coverage. Exploit code — proof-of-concept payloads, full attack chains, working exploit scripts — is never published by Lictor. If you need exploit code for an investigative story, email `press@lictor-ai.com` with a written request describing your outlet, your editor, and the security justification. We respond within 48 hours.
-- **Best practice:** link to `lictor-ai.com/teardowns/[slug]` rather than scraping the writeup. Our pages stay updated as new information surfaces (e.g., when the audited founder responds, when the issue is patched, when the disclosure is closed). Scraped copies go stale.
+- **Specific findings can be quoted freely.** Snippets of code from the original (vulnerable) application are reproduced in the teardown under fair-use review; you may re-publish them in editorial coverage. Exploit code — proof-of-concept payloads, full attack chains, working exploit scripts — is never published by Lictor. If you need exploit code for an investigative story, email `press@lictorai.com` with a written request describing your outlet, your editor, and the security justification. We respond within 48 hours.
+- **Best practice:** link to `lictorai.com/teardowns/[slug]` rather than scraping the writeup. Our pages stay updated as new information surfaces (e.g., when the audited founder responds, when the issue is patched, when the disclosure is closed). Scraped copies go stale.
 
-If your teardown coverage will be uncomplimentary to Lictor (i.e., you've found a flaw in our methodology, a missed finding, or a false positive), we would still rather read your piece before publication than after. Email `press@lictor-ai.com`. Right-of-reply applies.
+If your teardown coverage will be uncomplimentary to Lictor (i.e., you've found a flaw in our methodology, a missed finding, or a false positive), we would still rather read your piece before publication than after. Email `press@lictorai.com`. Right-of-reply applies.
 
 ---
 
 ## End of press kit
 
-If you need anything that isn't here, email `press@lictor-ai.com`. The kit is updated quarterly; check the file date at the top.
+If you need anything that isn't here, email `press@lictorai.com`. The kit is updated quarterly; check the file date at the top.
 
 Built by Raffa and the Lictor agent crew. May 2026.

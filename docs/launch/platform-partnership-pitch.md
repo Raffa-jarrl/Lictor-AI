@@ -88,7 +88,7 @@ Lictor's audit runs automatically on every deploy from [PLATFORM]. Findings are 
 [PLATFORM] adds Lictor to your official "tools" / "integrations" / "extensions" page. A link in your docs. A mention in your onboarding. No code-level integration.
 
 - **[PLATFORM] commits:** A page listing, a docs mention, a launch-week tweet, an optional email to your active user base.
-- **Lictor commits:** Co-marketing collateral, a [PLATFORM]-branded landing page on lictor-ai.com, a dedicated "audit my [PLATFORM] app" skill variant.
+- **Lictor commits:** Co-marketing collateral, a [PLATFORM]-branded landing page on lictorai.com, a dedicated "audit my [PLATFORM] app" skill variant.
 - **Timeline:** 2 weeks. Lowest effort on both sides; good first step if you want to test the partnership signal before committing to engineering.
 - **Mutual exclusivity:** Not exclusive. A natural Phase 0 before Option A or B.
 
@@ -206,7 +206,7 @@ If you want to skip steps 1–2 and go straight to scoping — also fine. Tell u
 
 ## 10. About Lictor
 
-Lictor is the security crew for apps people build with AI. Eleven specialist AI agents audit your project, name what's wrong, and tell you exactly how to fix it — in plain English, no compliance dialect required. Free, open source under Apache 2.0, runs locally inside Claude Code. We exist because 40–62% of AI-generated code ships with security vulnerabilities, eight million people now build software with AI assistants every week, and the existing security tools weren't built for them. Built solo by a 20-year cybersecurity engineer; growing into a community-supported open-source project with a public agent crew, a weekly teardown archive, and a roadmap voted on by users. Public launch: October 6, 2026. By Q1 2027: 15k+ GitHub stars, 8k+ weekly active skill users, 12+ published teardowns. github.com/lictor-ai · lictor-ai.com.
+Lictor is the security crew for apps people build with AI. Eleven specialist AI agents audit your project, name what's wrong, and tell you exactly how to fix it — in plain English, no compliance dialect required. Free, open source under Apache 2.0, runs locally inside Claude Code. We exist because 40–62% of AI-generated code ships with security vulnerabilities, eight million people now build software with AI assistants every week, and the existing security tools weren't built for them. Built solo by a 20-year cybersecurity engineer; growing into a community-supported open-source project with a public agent crew, a weekly teardown archive, and a roadmap voted on by users. Public launch: October 6, 2026. By Q1 2027: 15k+ GitHub stars, 8k+ weekly active skill users, 12+ published teardowns. github.com/lictor-ai · lictorai.com.
 
 ---
 

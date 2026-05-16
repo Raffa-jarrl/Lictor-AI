@@ -1,6 +1,6 @@
 # Why I built Lictor
 
-**Published:** lictor-ai.com/blog/why-lictor — Tuesday Oct 6, 2026
+**Published:** lictorai.com/blog/why-lictor — Tuesday Oct 6, 2026
 **Author:** Raffa [last name], founder
 **Audience:** Engineering managers, CISOs, AI-curious developers, journalists writing about AI security
 
@@ -151,9 +151,9 @@ I'm promising:
 - `npm i @lictor/sentinel` — wrap your OpenAI client
 - `pip install lictor-sentinel` — wrap your Python client
 - Install [Shield](https://chrome.google.com/webstore/detail/lictor-shield) (Chrome Web Store) — free
-- Sign up at [app.lictor-ai.com](https://app.lictor-ai.com) — 90-day free preview
+- Sign up at [app.lictorai.com](https://app.lictorai.com) — 90-day free preview
 
 If you ship AI agents and find a category of attack we should be detecting and aren't — open an issue or DM me directly. The catalog is a living artifact.
 
 — Raffa
-[lictor-ai.com](https://lictor-ai.com) · [@lictor_ai](https://twitter.com/lictor_ai) · [github.com/lictor-ai](https://github.com/lictor-ai)
+[lictorai.com](https://lictorai.com) · [@lictor_ai](https://twitter.com/lictor_ai) · [github.com/lictor-ai](https://github.com/lictor-ai)

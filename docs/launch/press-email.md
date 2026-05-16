@@ -32,9 +32,9 @@ The category gap I'm aiming at: every AI security incumbent (Lakera, Protect AI,
 
 **HN launch:** {{hn_link}}
 **Repo:** github.com/Raffa-jarrl/Lictor-AI
-**Compliance mapping (might interest your security audience):** lictor-ai.com/compliance
+**Compliance mapping (might interest your security audience):** lictorai.com/compliance
 
-Happy to do an embargo briefing, walk through the privacy contract, or send the demo video if useful. Available all day — `raffa@lictor-ai.com` or just reply here.
+Happy to do an embargo briefing, walk through the privacy contract, or send the demo video if useful. Available all day — `raffa@lictorai.com` or just reply here.
 
 — Raffa
 
@@ -81,7 +81,7 @@ Happy to do an embargo briefing, walk through the privacy contract, or send the 
 
 - One-page PDF — the architecture diagram + the four key talking points (`docs/launch/press-onepager.pdf` — TODO to create)
 - Demo video link (90 seconds; "wrap → adversarial input → blocked + reported to Guardian")
-- Press contact: `press@lictor-ai.com`
+- Press contact: `press@lictorai.com`
 
 ## What NOT to do
 

@@ -251,9 +251,9 @@ Open your Supabase project → Authentication → Policies. Sort by "RLS enabled
 
 This is the #1 thing every Lovable founder should check this weekend.
 
-8/ Lictor's audit catches this pattern. Free, local, no signup. lictor-ai.com/skill
+8/ Lictor's audit catches this pattern. Free, local, no signup. lictorai.com/skill
 
-Full FindMeMail writeup with the actual SQL fix: lictor-ai.com/teardowns/findmemail
+Full FindMeMail writeup with the actual SQL fix: lictorai.com/teardowns/findmemail
 
 Next Tuesday: AgentSwarms (a tool that *teaches* multi-agent AI — we audited it). 🛡
 ```
@@ -303,6 +303,6 @@ The founders patched all 4 within 5 days of disclosure + offered refunds to subs
 
 The general pattern: if your Lovable app holds PII, RLS is not optional. Every table. Default-deny.
 
-Full writeup with the SQL fixes: https://lictor-ai.com/teardowns/findmemail
+Full writeup with the SQL fixes: https://lictorai.com/teardowns/findmemail
 Lictor (tool, free, Apache 2.0): https://github.com/Raffa-jarrl/Lictor-AI
 ```

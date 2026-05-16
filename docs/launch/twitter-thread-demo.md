@@ -158,7 +158,7 @@ Then in Claude Code, from any project: `/lictor-security-check`
 ## Reply hooks for the first 4 hours
 
 **Expected question:** "Did you really find this on your own production system?"
-**Answer:** Yes. The repo is private but the audit file + the fix commit are public on the lictor-ai.com/blog/dogfood page (link in bio). Specifically, mission-control is a Next.js 16 app and the proxy.ts fix is 95 lines.
+**Answer:** Yes. The repo is private but the audit file + the fix commit are public on the lictorai.com/blog/dogfood page (link in bio). Specifically, mission-control is a Next.js 16 app and the proxy.ts fix is 95 lines.
 
 **Expected question:** "What's different from Lakera/Protect AI/etc.?"
 **Answer:** They're enterprise SaaS. I built four free Claude Code skills. Same engine, three orders of magnitude lower friction. The tools are at github.com/Raffa-jarrl/Lictor-AI.

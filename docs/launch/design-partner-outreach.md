@@ -116,7 +116,7 @@ The angle that's most relevant to you: Lictor Sentinel is a `wrap()` around your
 
 In plain terms: if your CISO or your biggest customer ever asks "how do you secure AI agents," you have an answer that isn't a slide deck.
 
-It's all free. Apache 2.0 for the SDK; Guardian's hosted at app.lictor-ai.com with a 90-day free preview that's effectively permanent for testers.
+It's all free. Apache 2.0 for the SDK; Guardian's hosted at app.lictorai.com with a 90-day free preview that's effectively permanent for testers.
 
 The ask: integrate Sentinel into one of your AI endpoints for a week. Tell me what false positives we trip, what real attacks it catches, and whether the Guardian dashboard surfaces the right things. If it's net useful, you keep using it free.
 

@@ -18,9 +18,9 @@ Work top-to-bott2. Don't skip ahead. The order is the dependency chain.
 Cloudflare Registrar is the cheapest + cleanest option (at-cost pricing, free WHOIS privacy, no upsell).
 
 1. Open https://dash.cloudflare.com → **Domain Registration** → **Register Domains**
-2. Search `lictor-ai.com`. Add to cart.
+2. Search `lictorai.com`. Add to cart.
 3. Add `lictor.dev`. Add to cart.
-4. Add `getlictor.com`. Add to cart. (Insurance — `lictor-ai.com` could get sold to a competitor; this gives you a fallback name.)
+4. Add `getlictor.com`. Add to cart. (Insurance — `lictorai.com` could get sold to a competitor; this gives you a fallback name.)
 5. Choose **2-year registration** for each (current pricing: ~$60-90 total)
 6. Set DNS to Cloudflare nameservers (default, just confirm)
 7. Pay. Get the confirmation email.
@@ -28,7 +28,7 @@ Cloudflare Registrar is the cheapest + cleanest option (at-cost pricing, free WH
 **Verify:**
 
 ```bash
-dig lictor-ai.com NS +short
+dig lictorai.com NS +short
 # Should show 2 Cloudflare nameservers
 ```
 
@@ -41,7 +41,7 @@ The repo is currently at `github.com/Raffa-jarrl/lictor`. Long-term it should li
 1. Open https://github.com/account/organizations/new
 2. Plan: **Free** (we're under 5 collaborators)
 3. Name: **lictor-ai**
-4. Contact email: `hello@lictor-ai.com` (or your personal — switch later)
+4. Contact email: `hello@lictorai.com` (or your personal — switch later)
 5. This org belongs to: **My personal account**
 6. (Skip the "invite members" page; you can add later)
 
@@ -161,20 +161,20 @@ Cloudflare Pages is free, integrates with the repo + the domain in one place.
 
 After it builds (~30 seconds for static HTML):
 
-1. **Custom domains** → **Set up a custom domain** → `lictor-ai.com`
+1. **Custom domains** → **Set up a custom domain** → `lictorai.com`
 2. Cloudflare auto-configures the DNS record (since you registered the domain through Cloudflare)
 3. Wait ~30 seconds for the certificate
 
 **Verify:**
 
 ```bash
-curl -I https://lictor-ai.com
+curl -I https://lictorai.com
 # Should return 200, served by Cloudflare
-curl -I https://lictor-ai.com/compliance/
+curl -I https://lictorai.com/compliance/
 # Should also return 200
 ```
 
-Open https://lictor-ai.com in a browser and confirm:
+Open https://lictorai.com in a browser and confirm:
 - The hero renders
 - The /compliance link in the nav works
 - Sharing the URL on Slack/Twitter shows the OG image (the lockup with the gold mark)
@@ -200,8 +200,8 @@ Don't expect 5/5 response rates. Plan for 60% — if you email 5 and get 3 confi
 
 You'll be in this state:
 
-- `lictor-ai.com` resolves to the landing page (HTTPS, OG image working)
-- `lictor-ai.com/compliance` renders the full SOC2/GDPR/EU-AI-Act mapping
+- `lictorai.com` resolves to the landing page (HTTPS, OG image working)
+- `lictorai.com/compliance` renders the full SOC2/GDPR/EU-AI-Act mapping
 - `github.com/Raffa-jarrl/Lictor-AI` is a private repo with CI green on every push
 - `@lictor/sentinel@0.1.0-alpha.0` installable from npm
 - `lictor-sentinel==0.1.0a0` installable from PyPI

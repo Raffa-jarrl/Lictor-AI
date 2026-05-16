@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Poll every 5 minutes until lictor-ai.com resolves. Then beep + notify.
-# Usage: ./scripts/wait-for-dns.sh [domain]   (defaults to lictor-ai.com)
+# Poll every 5 minutes until lictorai.com resolves. Then beep + notify.
+# Usage: ./scripts/wait-for-dns.sh [domain]   (defaults to lictorai.com)
 
 set -euo pipefail
-DOMAIN="${1:-lictor-ai.com}"
+DOMAIN="${1:-lictorai.com}"
 INTERVAL=300   # 5 minutes
 
 echo "[$(date +%H:%M:%S)] Watching $DOMAIN — polling every ${INTERVAL}s..."

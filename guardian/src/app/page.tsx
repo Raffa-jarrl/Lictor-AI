@@ -121,8 +121,8 @@ export default async function HomePage({ searchParams }: PageProps): Promise<Rea
 
       <div style={{ marginTop: 48, fontSize: 12, color: "#6E7780" }}>
         Built by Lictor AI.{" "}
-        <a href="https://lictor-ai.com" style={{ color: "#C9A23B" }}>
-          lictor-ai.com
+        <a href="https://lictorai.com" style={{ color: "#C9A23B" }}>
+          lictorai.com
         </a>
       </div>
     </main>

@@ -1,6 +1,6 @@
 # The 7 patterns we catch that the other tools miss
 
-**Published:** lictor-ai.com/blog/7-patterns — Tuesday Oct 6, 2026
+**Published:** lictorai.com/blog/7-patterns — Tuesday Oct 6, 2026
 **Author:** The Lictor crew
 **Audience:** Builders shipping from Lovable / Bolt / v0 / Cursor / Replit, plus engineering folks who already use Snyk or Semgrep and want to know what Lictor actually adds.
 
@@ -341,7 +341,7 @@ Took down a real app in March. Generic SAST doesn't model Next.js cache semantic
 **6/7**
 The other patterns: missing RLS on Supabase tables, hallucinated npm packages, AI endpoints with no rate limit.
 
-Full writeup is at lictor-ai.com/blog/7-patterns. Each pattern includes code, why it's broken, why generic tools miss it, what we say.
+Full writeup is at lictorai.com/blog/7-patterns. Each pattern includes code, why it's broken, why generic tools miss it, what we say.
 
 **7/7**
 This isn't Lictor vs Snyk.
@@ -373,7 +373,7 @@ A few examples:
 
 → `unstable_cache` keyed by a static string instead of the user ID. User A loads the dashboard, user B sees user A's data 30 seconds later. Took down a real app in March 2026.
 
-The full writeup covers all seven patterns with code, attacker scenarios, and what each finding sounds like in plain English. It's at lictor-ai.com/blog/7-patterns.
+The full writeup covers all seven patterns with code, attacker scenarios, and what each finding sounds like in plain English. It's at lictorai.com/blog/7-patterns.
 
 The honest recommendation: run Snyk for dependency CVEs, Semgrep for broad SAST, Trivy if you containerize, and Lictor for the seven patterns above. Each tool does a different job.
 
@@ -388,7 +388,7 @@ github.com/Raffa-jarrl/Lictor-AI
 
 **Title:** `Show HN: The 7 bug patterns AI-built apps ship that generic SAST misses`
 
-**URL:** `https://lictor-ai.com/blog/7-patterns`
+**URL:** `https://lictorai.com/blog/7-patterns`
 
 **Body:**
 
@@ -420,7 +420,7 @@ Happy to take any pattern we missed in the comments. The catalog grows with PRs.
 
 **Where to share, in order:**
 
-1. **lictor-ai.com/blog/7-patterns** — the canonical home. SEO target: "vibe-coded app security," "Lovable security audit," "Snyk alternative for AI-built apps."
+1. **lictorai.com/blog/7-patterns** — the canonical home. SEO target: "vibe-coded app security," "Lovable security audit," "Snyk alternative for AI-built apps."
 2. **Hacker News** — Show HN submission at 6:00 am Pacific Tuesday. Title above.
 3. **Twitter thread** — drop at 7:30 am Pacific Tuesday from @lictor_ai. Retweet from Raffa's personal handle 30 minutes later.
 4. **LinkedIn** — Raffa's personal handle, 9:00 am Pacific Tuesday. Tag the Lictor company page.
@@ -448,7 +448,7 @@ Happy to take any pattern we missed in the comments. The catalog grows with PRs.
 
 Forbidden words check: zero instances of "leverage," "revolutionary," "transform," "supercharge," "disrupt," "robust," "paradigm," "synergy." (Verified.)
 
-Compliance dialect check: every finding written as a story. No "information disclosure vulnerability" — instead "anyone with the URL has full database write access." No CVSS scores. No CWE numbers in headlines (the CWE/OWASP mapping lives at lictor-ai.com/compliance for the readers who care, but not in the body).
+Compliance dialect check: every finding written as a story. No "information disclosure vulnerability" — instead "anyone with the URL has full database write access." No CVSS scores. No CWE numbers in headlines (the CWE/OWASP mapping lives at lictorai.com/compliance for the readers who care, but not in the body).
 
 Sentence-length check: every section's average sentence length is at or below 25 words. The few longer sentences are inline code-context explanations and read fine.
 
