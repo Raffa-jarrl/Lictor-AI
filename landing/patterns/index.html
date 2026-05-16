@@ -36,12 +36,12 @@
 
   <main>
     <section class="patterns-hero">
-      <span class="eyebrow">WEB · MOBILE · AI · PROTOCOL-BASED</span>
+      <span class="eyebrow">WEB · MOBILE · CLI · BROWSER EXT · MCP · DESKTOP · SERVERLESS · CI/CD · AI</span>
       <h1 class="patterns-hero__title">
         The patterns AI assistants get <em>wrong</em>.
       </h1>
       <p class="patterns-hero__sub">
-        Lictor scans for security categories — not platforms. These are the bug shapes that ship over and over again when an AI assistant writes the code. The same patterns show up whether the assistant is generating a Next.js backend, an iOS app, a Flutter screen, or a Python script. We update this page as new patterns surface; <a href="https://github.com/Raffa-jarrl/Lictor-AI/blob/main/core" class="link">every check is open-source</a> and you can verify what each one does.
+        Lictor scans for security categories — not platforms. These are the bug shapes that ship over and over again when an AI assistant writes the code, regardless of what kind of software you&rsquo;re building. A web backend, an iOS app, a Python CLI, a Chrome extension, an MCP server, a Tauri/Electron desktop app, a Cloudflare Worker, a GitHub Action — the same categories of mistake repeat. We update this page as new patterns surface; <a href="https://github.com/Raffa-jarrl/Lictor-AI/blob/main/core" class="link">every check is open-source</a> and you can verify what each one does.
       </p>
     </section>
 
@@ -205,6 +205,202 @@
           <header><span class="severity-badge severity-badge--medium">🟡 MEDIUM</span></header>
           <h3>Unbounded function-calling on tool agents</h3>
           <p>An agent has access to <code>delete_file</code>, <code>send_email</code>, <code>execute_sql</code> — any combination triggered by user prompt without confirmation. The pattern: scope the tools to the smallest set the feature needs, require human-in-the-loop for irreversible operations.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="patterns-band">
+      <h2 class="section__title">CLIs &amp; scripts</h2>
+      <p class="section__sub">Bash, Python, Node, Ruby, anything you invoke from a terminal — including the throwaway one-offs.</p>
+      <div class="pattern-grid">
+
+        <article class="pattern-card pattern-card--critical">
+          <header><span class="severity-badge severity-badge--critical">🔴 CRITICAL</span></header>
+          <h3>Command injection via user input</h3>
+          <p>The AI generates <code>subprocess.run(f"git clone {repo_url}", shell=True)</code>. User passes <code>repo_url=foo; rm -rf ~</code>. Shell evaluates it. Game over.</p>
+          <p class="pattern-card__why"><strong>Fix:</strong> <code>shell=False</code> + argv list. In bash: quote everything, validate against allow-list before any expansion.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--high">
+          <header><span class="severity-badge severity-badge--high">🟠 HIGH</span></header>
+          <h3>Secrets in argv (visible in <code>ps</code>)</h3>
+          <p>The AI says "pass the API key as <code>--token=xxx</code>." Any other process on the machine can <code>ps aux</code> and see it. Worse on shared servers, CI runners, containers with sidecars.</p>
+          <p class="pattern-card__why"><strong>Fix:</strong> accept secrets via stdin, env var, or a file path — never argv.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--high">
+          <header><span class="severity-badge severity-badge--high">🟠 HIGH</span></header>
+          <h3>Path traversal in file operations</h3>
+          <p>The script takes a filename from user input and joins it to a base path. User passes <code>../../etc/passwd</code> — Python's <code>os.path.join</code> doesn&rsquo;t resolve <code>..</code>. File gets read/written outside intended directory.</p>
+          <p class="pattern-card__why"><strong>Fix:</strong> <code>pathlib.Path.resolve()</code> then check the resolved path is under the allowed root with separator-aware <code>startswith</code>.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--medium">
+          <header><span class="severity-badge severity-badge--medium">🟡 MEDIUM</span></header>
+          <h3>Unbounded resource consumption</h3>
+          <p>The AI writes a script that downloads a file via URL with no size limit. Or parses untrusted YAML with no <code>safe_load</code>. Or unzips a "zip bomb." Memory exhausts; OS kills the box.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="patterns-band patterns-band--alt">
+      <h2 class="section__title">APIs &amp; serverless functions</h2>
+      <p class="section__sub">Cloudflare Workers, AWS Lambda, Vercel/Netlify Functions, Hono/Express endpoints, anything HTTP that&rsquo;s not part of a full app.</p>
+      <div class="pattern-grid">
+
+        <article class="pattern-card pattern-card--critical">
+          <header><span class="severity-badge severity-badge--critical">🔴 CRITICAL</span></header>
+          <h3>Function without auth, returning real data</h3>
+          <p>Same shape as the web pattern but scarier because serverless functions get discovered by URL guessing and probed continuously. <code>your-app.workers.dev/api/users</code> with no auth + 6 free runtime hours of attacker time = full data dump.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--high">
+          <header><span class="severity-badge severity-badge--high">🟠 HIGH</span></header>
+          <h3>No rate limit → infinite bill attack</h3>
+          <p>The AI exposes a Lambda that calls OpenAI. Each invocation costs the function runtime + the API call. Attacker loops it for 10 hours. Your AWS bill: $40,000 in 10 hours. Real story, multiple times this year.</p>
+          <p class="pattern-card__why"><strong>Fix:</strong> hard concurrency limit on the function + per-IP rate limit + billing alarm at every $50 / $500 / $5000 threshold.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--high">
+          <header><span class="severity-badge severity-badge--high">🟠 HIGH</span></header>
+          <h3>Excessive IAM scope on the function&rsquo;s role</h3>
+          <p>The AI generates Lambda + IAM in one go. The role gets <code>AdministratorAccess</code> "because the function is in our account anyway." Function-as-RCE then becomes account-takeover.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--medium">
+          <header><span class="severity-badge severity-badge--medium">🟡 MEDIUM</span></header>
+          <h3>Secrets in environment vars stored unencrypted</h3>
+          <p>Most platforms accept env vars in plain text. They&rsquo;re visible to anyone with deploy access, in the platform UI, and in build logs. Sensitive secrets should go through a secrets manager (Cloudflare Secrets, AWS Secrets Manager, Vercel Encrypted Env).</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="patterns-band">
+      <h2 class="section__title">Browser extensions</h2>
+      <p class="section__sub">Chrome, Firefox, Safari, Edge — extensions have the most overprivileged manifest in the ecosystem, and AI assistants make this worse.</p>
+      <div class="pattern-grid">
+
+        <article class="pattern-card pattern-card--critical">
+          <header><span class="severity-badge severity-badge--critical">🔴 CRITICAL</span></header>
+          <h3><code>host_permissions: ["&lt;all_urls&gt;"]</code></h3>
+          <p>The AI ships an extension that needs to work on three specific sites. It requests permission on all sites "to be safe." Now your extension reads every website any user ever visits. Chrome Web Store rejects this for good reason; users distrust it.</p>
+          <p class="pattern-card__why"><strong>Fix:</strong> minimal <code>host_permissions</code>, request optional permissions at runtime per-use.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--high">
+          <header><span class="severity-badge severity-badge--high">🟠 HIGH</span></header>
+          <h3>Content script bridge with no origin check</h3>
+          <p>Extension&rsquo;s content script listens for <code>window.postMessage</code> and forwards calls to the background script. The page can be ANY page. A malicious page sends crafted messages to escalate into the extension&rsquo;s privilege.</p>
+          <p class="pattern-card__why"><strong>Fix:</strong> validate <code>event.origin</code> in every message handler; only accept from known origins.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--medium">
+          <header><span class="severity-badge severity-badge--medium">🟡 MEDIUM</span></header>
+          <h3><code>web_accessible_resources</code> too broad</h3>
+          <p>Exposes extension internals to any web page that knows the URL pattern. AI defaults err toward "expose everything in case it&rsquo;s needed." Tighten to the minimum and scope by <code>matches</code>.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--medium">
+          <header><span class="severity-badge severity-badge--medium">🟡 MEDIUM</span></header>
+          <h3>Storage syncing PII to the user&rsquo;s sync account</h3>
+          <p><code>chrome.storage.sync</code> is convenient — and propagates to every device the user is signed into. If you store session tokens or PII there and the user&rsquo;s Google account is compromised, attacker has your extension&rsquo;s data.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="patterns-band patterns-band--alt">
+      <h2 class="section__title">MCP servers &amp; AI tools</h2>
+      <p class="section__sub">Brand-new surface that almost nobody is checking yet. If you wrote an MCP server, a Claude Code skill, or an AI tool with function-calling — these patterns apply.</p>
+      <div class="pattern-grid">
+
+        <article class="pattern-card pattern-card--critical">
+          <header><span class="severity-badge severity-badge--critical">🔴 CRITICAL</span></header>
+          <h3>Tool description vulnerable to prompt injection</h3>
+          <p>An MCP tool&rsquo;s description gets concatenated into the LLM&rsquo;s system prompt. If the description includes content fetched from the network (e.g., the README of a package), an attacker can poison that content with prompt-injection instructions that the LLM will execute as the user.</p>
+          <p class="pattern-card__why"><strong>Fix:</strong> tool descriptions must be static, controlled by the developer, not interpolated from external data sources.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--critical">
+          <header><span class="severity-badge severity-badge--critical">🔴 CRITICAL</span></header>
+          <h3>Exec / file-write tool with no sandbox</h3>
+          <p>An MCP tool exposes <code>run_command(cmd)</code> or <code>write_file(path, content)</code> with no allow-list. Combined with prompt injection (which is constant on MCP servers that ingest external content), this is full RCE on the user&rsquo;s machine.</p>
+          <p class="pattern-card__why"><strong>Fix:</strong> sandbox via a container, explicit allow-list of commands/paths, require user confirmation for state-changing operations.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--high">
+          <header><span class="severity-badge severity-badge--high">🟠 HIGH</span></header>
+          <h3>Tool with no rate limit on expensive operations</h3>
+          <p>An MCP tool calls a paid API per invocation. An attacker can prompt-inject the agent to invoke the tool 1,000 times. Your provider bill explodes.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--high">
+          <header><span class="severity-badge severity-badge--high">🟠 HIGH</span></header>
+          <h3>Tool returning attacker-controlled markdown to the LLM</h3>
+          <p>The tool fetches a webpage and returns its content to the LLM. The page contains <code>&lt;instruction&gt;ignore previous instructions...&lt;/instruction&gt;</code>. The LLM may treat it as instructions. Sanitize/escape any external content before returning to the model.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--medium">
+          <header><span class="severity-badge severity-badge--medium">🟡 MEDIUM</span></header>
+          <h3>Logs containing user prompts shipped to a third-party logger</h3>
+          <p>Many MCP servers log every tool call to Datadog / Sentry / etc. for debugging. The arguments often contain user PII or internal context. Make sure the logging tier and retention match your privacy posture.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="patterns-band">
+      <h2 class="section__title">Desktop apps (Tauri, Electron, native)</h2>
+      <p class="section__sub">AI assistants increasingly generate desktop apps — the security model is different from web, and the same mistakes cause much worse damage.</p>
+      <div class="pattern-grid">
+
+        <article class="pattern-card pattern-card--critical">
+          <header><span class="severity-badge severity-badge--critical">🔴 CRITICAL</span></header>
+          <h3>Electron renderer with <code>nodeIntegration: true</code></h3>
+          <p>Any XSS in the renderer becomes full RCE on the user&rsquo;s machine — the renderer can <code>require('child_process').exec(...)</code>. Set <code>nodeIntegration: false</code> + <code>contextIsolation: true</code> + use IPC for native calls.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--high">
+          <header><span class="severity-badge severity-badge--high">🟠 HIGH</span></header>
+          <h3>IPC handlers exposing arbitrary FS / exec</h3>
+          <p>Tauri/Electron apps add an <code>invoke('readFile', path)</code> handler that accepts any path. Web content (including a compromised iframe) can call it. Scope each handler tightly + validate inputs.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--medium">
+          <header><span class="severity-badge severity-badge--medium">🟡 MEDIUM</span></header>
+          <h3>Custom URL scheme triggering arbitrary commands</h3>
+          <p>App registers <code>myapp://</code> URL scheme. Handler runs whatever&rsquo;s in the URL. Any website can trigger it via <code>&lt;img src="myapp://action?cmd=destroy"&gt;</code>. Validate aggressively + require confirmation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="patterns-band patterns-band--alt">
+      <h2 class="section__title">CI/CD pipelines</h2>
+      <p class="section__sub">GitHub Actions, GitLab CI, CircleCI — AI-generated workflows have a specific class of bug that&rsquo;s caused real RCE on production projects.</p>
+      <div class="pattern-grid">
+
+        <article class="pattern-card pattern-card--critical">
+          <header><span class="severity-badge severity-badge--critical">🔴 CRITICAL</span></header>
+          <h3><code>pull_request_target</code> + checkout of PR code</h3>
+          <p>The classic. Workflow triggered by <code>pull_request_target</code> has access to secrets, AND checks out the PR&rsquo;s code, AND runs it. Any attacker can open a malicious PR that exfiltrates your <code>GITHUB_TOKEN</code> + every secret. Has caused real RCE on production GitHub Actions runners.</p>
+          <p class="pattern-card__why"><strong>Fix:</strong> use <code>pull_request</code> (runs in isolated context) OR explicitly check out the base branch, never the PR head.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--high">
+          <header><span class="severity-badge severity-badge--high">🟠 HIGH</span></header>
+          <h3>Third-party actions pinned by tag, not commit SHA</h3>
+          <p><code>uses: some-action@v1</code> — that tag is mutable. The action&rsquo;s maintainer (or a compromise of their account) can publish a malicious update under the same tag tomorrow. Your workflow runs it, with your repo&rsquo;s secrets in scope.</p>
+          <p class="pattern-card__why"><strong>Fix:</strong> pin to a SHA: <code>uses: some-action@a1b2c3d…</code>. Use Dependabot to bump SHAs intentionally.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--high">
+          <header><span class="severity-badge severity-badge--high">🟠 HIGH</span></header>
+          <h3>Secrets echoed to logs</h3>
+          <p>AI generates <code>run: echo "Deploying with key $API_KEY"</code> for debugging. GitHub masks named secrets in logs — but only if the variable name matches exactly. Computed strings, concatenations, base64 transforms all leak.</p>
+        </article>
+
+        <article class="pattern-card pattern-card--medium">
+          <header><span class="severity-badge severity-badge--medium">🟡 MEDIUM</span></header>
+          <h3><code>GITHUB_TOKEN</code> with default broad permissions</h3>
+          <p>Defaults to read/write across the repo. Scope it explicitly per workflow: <code>permissions: contents: read</code> and only escalate when a step needs more.</p>
         </article>
       </div>
     </section>
