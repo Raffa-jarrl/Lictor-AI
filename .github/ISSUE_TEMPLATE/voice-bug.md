@@ -41,6 +41,6 @@ assignees: ''
 
 You read the finding and thought "this sounds like compliance theater" or "this won't help my non-technical co-founder." That's exactly the gap Lictor was built to close. **Every voice-bug fix improves the product for every future user.**
 
-Voice-bug reports go to Quill (the writer agent) + Mirror (the reviewer agent) for the next round of voice calibration. We commit to: every voice-bug filing gets a human reply within 48 hours and either (a) a PR to fix the language or (b) an honest "we disagree because X" reply.
+Voice-bug reports go to Lyrebird (the writer agent) + Mantis (the reviewer agent) for the next round of voice calibration. We commit to: every voice-bug filing gets a human reply within 48 hours and either (a) a PR to fix the language or (b) an honest "we disagree because X" reply.
 
 Thanks for filing — voice is the product.
