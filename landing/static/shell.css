@@ -63,20 +63,48 @@ main { display: block; }
 }
 .page-hero .eyebrow { margin: 0; }
 
-/* The hero mark (logo/shield) lives inside .page-hero__mark — square box */
+/* Hero mark — square logo box, centered via auto margins. Clean & defensive. */
 .page-hero__mark {
   width: clamp(140px, 18vw, 220px);
   height: clamp(140px, 18vw, 220px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   margin: 0 auto;
+  position: relative;
+  animation: shell-mark-float 6s ease-in-out infinite;
 }
+.page-hero__mark::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  background: radial-gradient(circle, rgba(196, 136, 90, 0.18), transparent 65%);
+  filter: blur(28px);
+  z-index: -1;
+  animation: shell-mark-pulse 4s ease-in-out infinite;
+}
+.page-hero__shield,
 .page-hero__mark img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 20px 50px rgba(196, 136, 90, 0.35));
+}
+.page-hero__tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--text-muted);
+  margin: 0;
+}
+@keyframes shell-mark-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+@keyframes shell-mark-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.06); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-hero__mark, .page-hero__mark::before { animation: none; }
 }
 
 /* ----- Unified SECTION pattern ----- */

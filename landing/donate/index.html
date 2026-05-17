@@ -46,19 +46,16 @@
 
   <main>
 
-    <!-- Hero: bulletproof centering via .page-hero shell -->
+    <!-- Hero: bulletproof centering. NO fx-aura on wrapper (it forces inline-block
+         and breaks flex-column centering). Motion lives on the img itself. -->
     <section class="page-hero">
-      <div class="page-hero__mark fx-aura fx-reveal fx-parallax">
-        <img src="/static/lictor-mark.png" alt="" class="fx-parallax__layer" />
+      <div class="page-hero__mark">
+        <img src="/static/lictor-mark.png" alt="Lictor AI shield" class="page-hero__shield" />
       </div>
-      <h1 class="fx-reveal">
-        Lictor <span class="fx-gradient-text">AI</span>
-      </h1>
-      <p class="fx-reveal" style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--text-muted);">
-        Guardianship, nature, and the architecture of trust.
-      </p>
-      <span class="eyebrow fx-reveal">PUBLIC GOOD · APACHE 2.0 · NO PAYWALL EVER</span>
-      <p class="fx-reveal">
+      <h1>Lictor <span class="fx-gradient-text">AI</span></h1>
+      <p class="page-hero__tagline">Guardianship, nature, and the architecture of trust.</p>
+      <span class="eyebrow">PUBLIC GOOD · APACHE 2.0 · NO PAYWALL EVER</span>
+      <p>
         Lictor exists to protect the people who build with AI — founders, hobbyists, students, anyone shipping code they didn't fully write. The scanner is free. The CLI is free. The standard is free. None of that will ever change.
       </p>
     </section>
