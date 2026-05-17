@@ -20,17 +20,22 @@
   <meta name="twitter:image" content="https://lictorai.com/og/og-image.png" />
   <meta name="twitter:image:alt" content="Lictor AI — the security crew for apps you built with AI" />
 
-  <link rel="icon" type="image/svg+xml" href="/lictor-favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/static/fx.css" />
+  <script src="/static/fx.js" defer></script>
 </head>
 <body>
   <header class="nav">
     <a href="/" class="brand">
-      <img src="/lictor-mark.svg" alt="" width="28" height="28" />
+      <img src="/static/lictor-mark.png" alt="" width="28" height="28" />
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
@@ -47,34 +52,34 @@
   <main>
     <!-- HERO -->
     <section class="hero">
-      <h1 class="hero__title">
+      <h1 class="hero__title fx-reveal">
         Security audit for <em>anything</em> you built with AI.
       </h1>
-      <p class="hero__sub">
+      <p class="hero__sub fx-reveal">
         Web app, mobile app, CLI script, browser extension, MCP server, desktop app, serverless function,
         CI/CD pipeline, Discord bot — if an AI assistant wrote the code, Lictor finds the bugs the
         assistant didn&rsquo;t. Plain English. In under a minute. Free, open source, runs locally inside
         Claude Code or as a paste-a-URL scanner.
       </p>
       <div class="hero__cta">
-        <a href="/scan" class="btn btn--primary">Scan a URL →</a>
+        <a href="/scan" class="btn btn--primary fx-glow fx-shine fx-magnetic">Scan a URL →</a>
         <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="btn btn--ghost">Star on GitHub</a>
       </div>
-      <p class="hero__meta">
+      <p class="hero__meta fx-reveal">
         Apache 2.0 · No signup · No telemetry · Built by a 20-year cybersec engineer
       </p>
     </section>
 
     <!-- WEDGE — THE CLAUDE CODE SKILL -->
     <section id="wedge" class="suite">
-      <h2 class="section__title">One slash command. Eleven agents. Plain English.</h2>
-      <p class="section__sub">
+      <h2 class="section__title fx-reveal">One slash command. Eleven agents. Plain English.</h2>
+      <p class="section__sub fx-reveal">
         Lictor ships as a Claude Code skill suite. Install once, run from any project.
         No dashboard to learn, no jargon to translate, no &ldquo;contact sales&rdquo; banner.
       </p>
 
       <div class="cards">
-        <div class="card card--shield">
+        <div class="card card--shield fx-reveal fx-tilt">
           <div class="card__pill">Free · Claude Code skill</div>
           <h3 class="card__title">/lictor-security-check</h3>
           <p class="card__lede">
@@ -105,8 +110,8 @@
 
     <!-- SUITE -->
     <section id="suite" class="suite">
-      <h2 class="section__title">When the audit isn&rsquo;t enough</h2>
-      <p class="section__sub">
+      <h2 class="section__title fx-reveal">When the audit isn&rsquo;t enough</h2>
+      <p class="section__sub fx-reveal">
         Three more layers when your project starts handling real users — works for everything you&rsquo;d build
         with an AI assistant: web, mobile, CLIs, browser extensions, MCP servers, desktop apps, serverless
         functions, bots, CI/CD pipelines. Same Rust engine, ships everywhere at once.
@@ -114,7 +119,7 @@
 
       <div class="cards">
         <!-- SHIELD -->
-        <div class="card card--shield">
+        <div class="card card--shield fx-reveal fx-tilt">
           <div class="card__pill">Free · Chrome extension</div>
           <h3 class="card__title">Lictor <span class="card__title--accent">Shield</span></h3>
           <p class="card__lede">
@@ -132,7 +137,7 @@
         </div>
 
         <!-- SENTINEL -->
-        <div class="card card--sentinel">
+        <div class="card card--sentinel fx-reveal fx-tilt">
           <div class="card__pill">Free · npm + PyPI</div>
           <h3 class="card__title">Lictor <span class="card__title--accent">Sentinel</span></h3>
           <p class="card__lede">
@@ -160,7 +165,7 @@ const client = wrap(new OpenAI(), {
         </div>
 
         <!-- GUARDIAN -->
-        <div class="card card--guardian">
+        <div class="card card--guardian fx-reveal fx-tilt">
           <div class="card__pill">Free preview · 90 days</div>
           <h3 class="card__title">Lictor <span class="card__title--accent">Guardian</span></h3>
           <p class="card__lede">
@@ -181,8 +186,8 @@ const client = wrap(new OpenAI(), {
 
     <!-- THE CREW -->
     <section id="crew" class="why">
-      <h2 class="section__title">The crew that runs the audit</h2>
-      <p class="section__sub">
+      <h2 class="section__title fx-reveal">The crew that runs the audit</h2>
+      <p class="section__sub fx-reveal">
         Most AI security tools are a black box: input goes in, findings come out.
         Lictor&rsquo;s 11 specialist agents are named, transparent, and surface their work.
         You see which agent found what — and why.
@@ -213,7 +218,7 @@ const client = wrap(new OpenAI(), {
           <p>Weekly reviewer that grades the crew&rsquo;s own work. Catches false positives, drifting voice, missed patterns. The reason the crew gets better, not louder, over time.</p>
         </div>
       </div>
-      <p class="section__sub" style="margin-top: 2rem;">
+      <p class="section__sub fx-reveal" style="margin-top: 2rem;">
         Plus five more: 🦾 Octopus (engineering), 🧪 Mongoose (currency tester),
         📊 Bat (hook crafter), 📈 Starling (virality intel), 🎵 Cuttlefish (aesthetic curator).
         Every agent is a markdown file you can read.
@@ -223,7 +228,7 @@ const client = wrap(new OpenAI(), {
 
     <!-- WHY -->
     <section id="why" class="why">
-      <h2 class="section__title">Why now</h2>
+      <h2 class="section__title fx-reveal">Why now</h2>
       <div class="why__grid">
         <div class="why__item">
           <h3>40-62% of AI-built code ships vulnerable</h3>
@@ -261,8 +266,8 @@ const client = wrap(new OpenAI(), {
 
     <!-- SENTRY WAITLIST -->
     <section id="waitlist" class="waitlist">
-      <h2 class="section__title">Coming Q1 2027 — Lictor <span class="accent">Sentry</span></h2>
-      <p class="section__sub">
+      <h2 class="section__title fx-reveal">Coming Q1 2027 — Lictor <span class="accent">Sentry</span></h2>
+      <p class="section__sub fx-reveal">
         AI threat protection for high-value individuals. iOS VPN profile that watches outbound
         AI API calls from your phone — for executives, journalists, founders whose AI assistant
         has access to sensitive data.
@@ -278,7 +283,7 @@ const client = wrap(new OpenAI(), {
 
     <!-- FOUNDER -->
     <section class="founder">
-      <h2 class="section__title">Who&rsquo;s building this?</h2>
+      <h2 class="section__title fx-reveal">Who&rsquo;s building this?</h2>
       <p class="founder__body">
         Lictor is built by a 20-year cybersecurity engineer based in Israel.
         Twenty years of CISO advisory at Fortune 500 and security architecture for venture-backed startups.
@@ -298,7 +303,7 @@ const client = wrap(new OpenAI(), {
     <div class="footer__cols">
       <div>
         <div class="footer__brand">
-          <img src="/lictor-mark.svg" alt="" width="22" height="22" />
+          <img src="/static/lictor-mark.png" alt="" width="22" height="22" />
           Lictor <span class="footer__accent">AI</span>
         </div>
         <p class="footer__tagline">The security crew for apps you built with AI.</p>

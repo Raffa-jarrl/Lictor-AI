@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Coming soon — Lictor AI</title>
   <meta name="description" content="This page hasn't shipped yet. Here's when it does." />
-  <link rel="icon" type="image/svg+xml" href="/lictor-favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -23,11 +26,13 @@
     .footer { text-align: center; font-family: "JetBrains Mono", monospace; font-size: 0.8rem; color: var(--text-muted); padding: 2rem 1.5rem; }
     .footer a { color: var(--accent); }
   </style>
+  <link rel="stylesheet" href="/static/fx.css" />
+  <script src="/static/fx.js" defer></script>
 </head>
 <body>
   <header class="nav">
     <a href="/" class="brand">
-      <img src="/lictor-mark.svg" alt="" width="28" height="28" />
+      <img src="/static/lictor-mark.png" alt="" width="28" height="28" />
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
@@ -63,7 +68,7 @@
 
     <p>In the meantime:</p>
     <div class="cta-row">
-      <a href="/scan" class="btn btn--primary">Scan a URL →</a>
+      <a href="/scan" class="btn btn--primary fx-glow fx-shine fx-magnetic">Scan a URL →</a>
       <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="btn btn--ghost">Star on GitHub</a>
     </div>
   </main>
