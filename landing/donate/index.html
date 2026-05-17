@@ -11,7 +11,13 @@
   <meta property="og:url" content="https://lictorai.com/donate" />
   <meta property="og:image" content="https://lictorai.com/og/og-image.png" />
 
-  <link rel="icon" type="image/svg+xml" href="/lictor-favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <meta property="og:image" content="https://lictorai.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://lictorai.com/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -24,7 +30,7 @@
 <body>
   <header class="nav">
     <a href="/" class="brand">
-      <img src="/lictor-mark.svg" alt="" width="28" height="28" />
+      <img src="/static/lictor-mark.png" alt="" width="32" height="32" style="border-radius:6px" />
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
@@ -41,8 +47,8 @@
 
     <!-- Hero: mission first, logo prominent, zero begging -->
     <section class="donate-hero">
-      <div class="fx-aura fx-reveal">
-        <img src="/static/lictor-logo.png" alt="Lictor AI" class="donate-hero__logo fx-float" />
+      <div class="fx-aura fx-reveal fx-parallax fx-scan">
+        <img src="/static/lictor-logo.png" alt="Lictor AI" class="donate-hero__logo fx-float fx-parallax__layer" />
       </div>
       <span class="eyebrow fx-reveal">PUBLIC GOOD · APACHE 2.0 · NO PAYWALL EVER</span>
       <h1 class="donate-hero__title fx-reveal">
@@ -159,7 +165,7 @@
     <section class="donate-philosophy">
       <h2 class="section__title">Why we chose this model</h2>
       <div class="philosophy">
-        <p>
+        <p class="fx-dropcap">
           The security industry runs on fear-rent — selling protection at the price the market will bear when someone is panicking about a breach. We don't want to be that. Vibe-coders are exactly the audience priced out of every existing security tool, and they're the audience most likely to ship a bug that hurts real users.
         </p>
         <p>

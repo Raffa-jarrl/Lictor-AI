@@ -213,11 +213,14 @@
 .donate-hero__logo {
   display: block;
   margin: 0 auto 2rem;
-  max-width: 320px;
+  max-width: 560px;
   width: 100%;
   height: auto;
-  border-radius: 12px;
+  border-radius: 18px;
+  box-shadow: 0 30px 80px -30px rgba(196, 136, 90, 0.55),
+              0 0 0 1px rgba(196, 136, 90, 0.10);
 }
+@media (max-width: 760px) { .donate-hero__logo { max-width: 360px; } }
 
 /* --- Impact stats ------------------------------------------------------ */
 .donate-impact {
