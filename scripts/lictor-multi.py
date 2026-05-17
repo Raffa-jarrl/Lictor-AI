@@ -168,8 +168,18 @@ def file_lines(p: Path) -> list[str]:
 # ============================================================================
 
 # Tool descriptions that interpolate external/network content
-DESC_DYNAMIC_RX = re.compile(r'description\s*=\s*[fr]?["\'].*?\{[^}]+\}', re.DOTALL)
-DESC_FETCHY_RX = re.compile(r'description\s*=.*?(fetch|requests\.get|urllib|httpx)', re.DOTALL)
+# Refined 2026-05-17 after manual verification revealed false positives where
+# the OLD regex matched any file containing both "description" and "fetch"
+# anywhere — even when "description" was a static string and "fetch" was a
+# variable name elsewhere. New rule: must match within ~250 chars (typical
+# multi-line description assignment) and the description= must be followed by
+# either an f-string interpolation, await/fetch on same line, or an open paren
+# (function call) instead of a quote.
+DESC_DYNAMIC_RX = re.compile(r'description\s*=\s*[fF]["\'].*?\{[^}]+\}.*?["\']', re.DOTALL)
+DESC_FETCHY_RX = re.compile(
+    r'description\s*=\s*(?:await\s+|requests\.|httpx\.|urllib\.|fetch\s*\()',
+    re.IGNORECASE,
+)
 # Exec / file-write tools with no obvious sandboxing
 EXEC_TOOL_RX = re.compile(r'@\w*\.?tool\s*\([^)]*\)\s*(?:async\s+)?def\s+(\w*(?:run|exec|shell|cmd|spawn|eval|write_file|delete_file|rm)\w*)\s*\(', re.IGNORECASE)
 # Tools that fetch external markdown / HTML and return raw
