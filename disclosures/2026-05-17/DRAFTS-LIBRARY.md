@@ -224,3 +224,25 @@ When the cron + Aug 15 launch ramp up, this becomes the operational rhythm:
 - Aggregate counts (anonymous) go to `lictorai.com/in-the-wild` monthly
 
 That's the "shadow scans, light serves" loop you described, fully operational.
+
+
+---
+
+## Submitted — 2026-05-17 06:30 UTC
+
+| # | Repo | Channel | ID/URL | State |
+|---|---|---|---|---|
+| 1 | modelcontextprotocol/python-sdk | PVR | [GHSA-qfwj-jgjw-53gr](https://github.com/modelcontextprotocol/python-sdk/security/advisories/GHSA-qfwj-jgjw-53gr) | triage |
+| 2 | ibis-project/ibis | PVR | [GHSA-xw2q-732c-h4g2](https://github.com/ibis-project/ibis/security/advisories/GHSA-xw2q-732c-h4g2) | triage |
+| 3 | RoboSats/robosats | PVR | [GHSA-rxx8-rv5g-wpch](https://github.com/RoboSats/robosats/security/advisories/GHSA-rxx8-rv5g-wpch) | triage |
+| 4 | alejandrosanchez1/backup | Public issue (PVR off) | [#1](https://github.com/alejandrosanchez1/backup/issues/1) | open |
+| 5 | sahilaa1719-ops/medspa-opus | Public issue (PVR off) | [#1](https://github.com/sahilaa1719-ops/medspa-opus/issues/1) | open |
+| 6 | logistiga/PG1 | Public issue (PVR off) | [#1](https://github.com/logistiga/PG1/issues/1) | open |
+
+**Note on Anthropic duplicates:** GHSA-qfwj-jgjw-53gr is the canonical advisory. Two earlier drafts (GHSA-5644-9vfc-4397 + GHSA-952q-6gm3-gwwm) submitted during iterative form-prep should be closed as duplicates.
+
+**Pending (not yet submitted — PVR off, awaiting Raffa decision):**
+- reflex-app/reflex (CRITICAL pull_request_target + yarn install)
+- ansible-lockdown/RHEL7-CIS (2 affected workflows)
+
+**30-day disclosure clock starts:** 2026-05-17 06:30 UTC → 2026-06-16. After that window, the aggregate stats publish to lictorai.com/in-the-wild with anonymized counts only.
