@@ -1,0 +1,1 @@
+{"timestamp": "2026-05-17T05:31:13.506611+00:00", "scanned_n": 100, "by_severity": {"critical": 252, "high": 573, "medium": 64, "low": 0, "info": 0}, "by_surface": {"mcp": 210, "ci-cd": 602, "cli": 72, "browser-ext": 5}}
