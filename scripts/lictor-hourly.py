@@ -100,6 +100,13 @@ Lictor AI · https://lictorai.com""",
 # Rotation order — round-robins each cycle
 ROTATION = ["firebase", "db-creds", "prtarget"]
 
+# Repos where I sent a PVR (private advisory) — won't show in public-issue search
+PVR_SENT = {
+    "anthropics/anthropic-sdk-python",
+    "ibis-project/ibis",
+    "Reckless-Satoshi/robosats",
+}
+
 
 def log(msg):
     line = f"[{datetime.now().isoformat(timespec='seconds')}] {msg}"
@@ -124,14 +131,43 @@ def already_submitted_anywhere(repo, state):
 
 def fetch_my_recent_issues():
     """Pull repos I've issued at recently — so we never double-contact."""
+    # Use raw API with stored token (cron-safe)
+    token = None
+    token_file = Path.home() / ".lictor" / "gh-token"
+    if token_file.exists():
+        token = token_file.read_text().strip()
+    if not token:
+        try:
+            token = subprocess.check_output(["gh", "auth", "token"], timeout=5).decode().strip()
+        except Exception:
+            return set()
+    repos = set()
+    # First get our username
     try:
-        out = subprocess.check_output(
-            ["gh", "search", "issues", "--author", "@me", "--json", "repository", "--limit", "300"],
-            stderr=subprocess.DEVNULL, timeout=20
-        ).decode()
-        return {it["repository"]["nameWithOwner"] for it in json.loads(out)}
+        req = urllib.request.Request("https://api.github.com/user",
+            headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json",
+                     "User-Agent": "lictor-hourly/0.1"})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            username = json.loads(r.read())["login"]
     except Exception:
         return set()
+    # Then search across all pages (cap at 3 pages = 300 issues)
+    for page in range(1, 4):
+        try:
+            url = f"https://api.github.com/search/issues?q=author:{username}&per_page=100&page={page}"
+            req = urllib.request.Request(url,
+                headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json",
+                         "User-Agent": "lictor-hourly/0.1"})
+            with urllib.request.urlopen(req, timeout=15) as r:
+                data = json.loads(r.read())
+                items = data.get("items", [])
+                if not items: break
+                for it in items:
+                    url_parts = it["repository_url"].split("/")
+                    repos.add(url_parts[-2] + "/" + url_parts[-1])
+        except Exception:
+            break
+    return repos
 
 
 def candidates_for_class(vuln_class, days=365, exclude=None):
@@ -162,24 +198,35 @@ def candidates_for_class(vuln_class, days=365, exclude=None):
 
 def repo_is_alive(repo):
     """Confirm repo exists, not archived, has issues enabled."""
+    token = None
+    token_file = Path.home() / ".lictor" / "gh-token"
+    if token_file.exists():
+        token = token_file.read_text().strip()
+    if not token: return False
     try:
-        out = subprocess.check_output(
-            ["gh", "api", f"repos/{repo}", "--jq",
-             '{archived: .archived, disabled: .disabled, has_issues: .has_issues}'],
-            stderr=subprocess.DEVNULL, timeout=10
-        ).decode()
-        meta = json.loads(out)
-        return not meta.get("archived") and not meta.get("disabled") and meta.get("has_issues", True)
+        req = urllib.request.Request(
+            f"https://api.github.com/repos/{repo}",
+            headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json",
+                     "User-Agent": "lictor-hourly/0.1"})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            meta = json.loads(r.read())
+            return not meta.get("archived") and not meta.get("disabled") and meta.get("has_issues", True)
     except Exception:
         return False
 
 
 def submit_issue(repo, title, body):
     """Submit via raw GitHub API."""
-    try:
-        token = subprocess.check_output(["gh", "auth", "token"], timeout=5).decode().strip()
-    except Exception:
-        return None, "no gh token"
+    # Try persistent token file first (cron-safe), then gh CLI (keychain — only works in interactive shell)
+    token = None
+    token_file = Path.home() / ".lictor" / "gh-token"
+    if token_file.exists():
+        token = token_file.read_text().strip()
+    if not token:
+        try:
+            token = subprocess.check_output(["gh", "auth", "token"], timeout=5).decode().strip()
+        except Exception:
+            return None, "no gh token"
     url = f"https://api.github.com/repos/{repo}/issues"
     data = json.dumps({"title": title, "body": body}).encode()
     req = urllib.request.Request(url, data=data, method="POST", headers={
@@ -227,7 +274,7 @@ def main():
         return
 
     # Refresh our "do not double-contact" set
-    already = set(state.get("submitted", {}).keys()) | fetch_my_recent_issues()
+    already = set(state.get("submitted", {}).keys()) | fetch_my_recent_issues() | PVR_SENT | set(state.get("skipped", {}).keys())
     log(f"already-contacted set size: {len(already)}")
 
     sent_this_cycle = 0
@@ -247,6 +294,8 @@ def main():
             continue
 
         repo, pushed = cands[0]
+        # IMMEDIATELY mark as taken so we don't re-pick within this cycle
+        already.add(repo)
         log(f"  class {cls}: candidate {repo} (pushed {pushed})")
 
         if not repo_is_alive(repo):
