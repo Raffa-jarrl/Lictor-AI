@@ -5,7 +5,7 @@
 # channels below. We acknowledge within 48 hours and aim to ship fixes
 # within 14 days for non-critical issues, 7 days for critical.
 
-Contact: mailto:security@lictorai.com
+Contact: mailto:Raffa@Lictor-AI.com
 Expires: 2027-12-31T23:59:59.000Z
 Preferred-Languages: en, he
 Canonical: https://lictorai.com/.well-known/security.txt
