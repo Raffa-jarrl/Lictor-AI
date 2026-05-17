@@ -208,3 +208,84 @@
   border-top: 1px solid var(--border);
 }
 .waitlist-footer .link { color: var(--accent); }
+
+/* --- Logo in hero ------------------------------------------------------ */
+.donate-hero__logo {
+  display: block;
+  margin: 0 auto 2rem;
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* --- Impact stats ------------------------------------------------------ */
+.donate-impact {
+  max-width: 1000px;
+  margin: 4rem auto;
+  padding: 0 var(--space-5);
+}
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.impact-stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+}
+.impact-stat__num {
+  font-family: var(--font-display, 'Cormorant Garamond', serif);
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 0.6rem;
+}
+.impact-stat__label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* --- Supporter logos --------------------------------------------------- */
+.donate-supporters {
+  max-width: 1000px;
+  margin: 5rem auto 3rem;
+  padding: 0 var(--space-5);
+  text-align: center;
+}
+.supporter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+}
+.supporter-row:hover { opacity: 0.85; }
+.supporter-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  filter: grayscale(100%);
+  transition: filter 0.25s ease, transform 0.25s ease;
+}
+.supporter-logo:hover { filter: grayscale(0%); transform: translateY(-2px); }
+.supporter-logo img {
+  max-height: 100%;
+  max-width: 140px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+/* hide cost-list (was removed from markup; safety in case it returns elsewhere) */
+.cost-list { display: none; }
