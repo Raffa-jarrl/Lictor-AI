@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lictor AI — Security audit for anything you built with AI</title>
-  <meta name="description" content="Free open-source security audit for anything you built with AI — web, mobile, CLIs, browser extensions, MCP servers, desktop apps, serverless functions, CI/CD pipelines. Plain English. 11 AI agents, one slash command, no signup, no telemetry, Apache 2.0." />
+  <meta name="description" content="Free open-source security audit for anything you built with AI — web apps, CLIs, browser extensions, MCP servers, desktop apps, serverless functions, CI/CD pipelines. Mobile coming soon. Plain English. 11 AI agents, one slash command, no signup, no telemetry, Apache 2.0." />
 
   <meta property="og:title" content="Lictor AI — Security audit for anything you built with AI" />
-  <meta property="og:description" content="11 AI agents audit anything you built with AI — web, mobile, CLI, browser ext, MCP server, desktop, serverless — in plain English. Free, open-source, runs locally inside Claude Code. No signup, no compliance dialect, no per-seat pricing." />
+  <meta property="og:description" content="11 AI agents audit anything you built with AI — web, CLI, browser ext, MCP server, desktop, serverless — in plain English. (Mobile coming soon.) Free, open-source, runs locally inside Claude Code. No signup, no compliance dialect, no per-seat pricing." />
   <meta property="og:url" content="https://lictorai.com" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://lictorai.com/og/og-image.png" />
@@ -42,10 +42,7 @@
     <nav class="nav__links">
       <a href="/scan">Scan</a>
       <a href="/patterns">Patterns</a>
-      <a href="#suite">Suite</a>
-      <a href="#crew">The crew</a>
-      <a href="/donate">Donate</a>
-      <a href="/compliance">Compliance</a>
+      <a href="/donate">Support</a>
       <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
     </nav>
   </header>
@@ -62,7 +59,7 @@
       </h1>
       <p class="page-hero__tagline">Guardianship, nature, and the architecture of trust.</p>
       <p>
-        Web app, mobile app, CLI, browser extension, MCP server, desktop app, serverless function,
+        Web app, CLI, browser extension, MCP server, desktop app, serverless function,
         CI/CD pipeline, Discord bot — if an AI assistant wrote the code, Lictor finds the bugs the
         assistant didn&rsquo;t. Plain English. In under a minute. Free, open source.
       </p>
@@ -101,7 +98,7 @@
 #     logged-in user. Add RLS policy.
 # 🟡 MED · Stripe webhook unsigned. (5 more...)</pre>
           <ul class="card__points">
-            <li>7 checks tuned for AI-generated app patterns (web + mobile)</li>
+            <li>7 checks tuned for AI-generated app patterns (web)</li>
             <li>Plain English — no &ldquo;information disclosure vulnerability,&rdquo; just &ldquo;anyone can read your customer list&rdquo;</li>
             <li>Three sibling skills: <span class="mono">/lictor-explain</span>, <span class="mono">/lictor-fix-it</span>, <span class="mono">/lictor-rotate</span></li>
             <li>Runs 100% local. No token, no signup, no telemetry, no per-seat pricing</li>
@@ -118,7 +115,7 @@
       <h2 class="section__title fx-reveal">When the audit isn&rsquo;t enough</h2>
       <p class="section__sub fx-reveal">
         Three more layers when your project starts handling real users — works for everything you&rsquo;d build
-        with an AI assistant: web, mobile, CLIs, browser extensions, MCP servers, desktop apps, serverless
+        with an AI assistant: web, CLIs, browser extensions, MCP servers, desktop apps, serverless
         functions, bots, CI/CD pipelines. Same Rust engine, ships everywhere at once.
       </p>
 
@@ -131,7 +128,7 @@
             Audits any deployed AI-built site you visit. Catches the issues before you sign up.
           </p>
           <ul class="card__points">
-            <li>Detects modern web + mobile app fingerprints on any URL</li>
+            <li>Detects modern web app fingerprints on any URL (mobile coming soon)</li>
             <li>5 static checks: leaked secrets, exposed DB, open auth, CORS, AI-agent surface</li>
             <li>Local-only — no URL ever leaves your browser</li>
             <li>Real-time alarm when an AI agent on the page touches your cookies</li>
@@ -273,7 +270,7 @@ const client = wrap(new OpenAI(), {
     <section id="waitlist" class="waitlist">
       <h2 class="section__title fx-reveal">Coming Q1 2027 — Lictor <span class="accent">Sentry</span></h2>
       <p class="section__sub fx-reveal">
-        AI threat protection for high-value individuals. iOS VPN profile that watches outbound
+        AI threat protection for high-value individuals. iOS VPN profile (in development) that watches outbound
         AI API calls from your phone — for executives, journalists, founders whose AI assistant
         has access to sensitive data.
       </p>
@@ -297,7 +294,7 @@ const client = wrap(new OpenAI(), {
       <p class="founder__body">
         Lictor exists because the people shipping the most software right now — solo founders
         building an AI-generated SaaS on Saturday, indie hackers prototyping with an AI assistant at midnight, designers
-        deploying an AI-built mobile app before their morning coffee — don&rsquo;t have a CISO. They have themselves,
+        shipping an AI-built backend before their morning coffee — don&rsquo;t have a CISO. They have themselves,
         an AI assistant, and 48 hours to ship something. They need security tooling that speaks
         plain English and doesn&rsquo;t require a sales call.
       </p>
