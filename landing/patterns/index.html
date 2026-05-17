@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Security patterns we audit — Lictor AI</title>
-  <meta name="description" content="The categories of security bugs that ship most often in AI-generated apps. Web and mobile. Plain English. Free, open-source, Apache 2.0." />
+  <meta name="description" content="The categories of security bugs that ship most often in AI-generated apps. Plain English. Free, open-source, Apache 2.0." />
 
   <meta property="og:title" content="What Lictor checks — the patterns we audit in AI-generated apps" />
-  <meta property="og:description" content="Web + mobile + AI-feature security categories that Lictor scans for, with what each bug looks like and why it matters." />
+  <meta property="og:description" content="Web + AI-feature security categories that Lictor scans for (mobile coming soon), with what each bug looks like and why it matters." />
   <meta property="og:url" content="https://lictorai.com/patterns" />
   <meta property="og:image" content="https://lictorai.com/og/og-image.png" />
 
@@ -32,17 +32,16 @@
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
-      <a href="/">Home</a>
       <a href="/scan">Scan</a>
       <a href="/patterns" class="active">Patterns</a>
-      <a href="/donate">Donate</a>
-      <a href="https://github.com/Raffa-jarrl/Lictor-AI">GitHub →</a>
+      <a href="/donate">Support</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
     </nav>
   </header>
 
   <main>
     <section class="patterns-hero">
-      <span class="eyebrow">WEB · MOBILE · CLI · BROWSER EXT · MCP · DESKTOP · SERVERLESS · CI/CD · AI</span>
+      <span class="eyebrow">WEB · CLI · BROWSER EXT · MCP · DESKTOP · SERVERLESS · CI/CD · AI</span>
       <h1 class="patterns-hero__title">
         The patterns AI assistants get <em>wrong</em>.
       </h1>
@@ -122,59 +121,13 @@
     </section>
 
     <section class="patterns-band patterns-band--alt">
-      <h2 class="section__title fx-reveal">Mobile — what Lictor scans (iOS + Android) <span class="status-pill status-pill--live">✅ Scanned today (v0.4 scaffold)</span></h2>
-      <p class="section__sub fx-reveal">Static analysis on your <code>.ipa</code> / <code>.apk</code>, manifest, and the AI-generated source.</p>
-      <div class="pattern-grid">
-
-        <article class="pattern-card pattern-card--critical">
-          <header><span class="severity-badge severity-badge--critical">🔴 CRITICAL</span></header>
-          <h3>API keys shipped inside the app bundle</h3>
-          <p>The AI writes <code>let stripeKey = "sk_live_..."</code> directly in Swift / Kotlin. Mobile bundles are trivially extractable — anyone can pull strings from your <code>.ipa</code> in 60 seconds. Treat the bundle as public.</p>
-          <p class="pattern-card__why"><strong>The fix:</strong> route every privileged API call through your own backend with auth. Mobile clients hold only short-lived user tokens.</p>
-        </article>
-
-        <article class="pattern-card pattern-card--high">
-          <header><span class="severity-badge severity-badge--high">🟠 HIGH</span></header>
-          <h3>Insecure local storage</h3>
-          <p>Storing tokens, PII, or session data in plain UserDefaults (iOS) or SharedPreferences (Android) — readable by any other app on a jailbroken/rooted device, and surviving backups. The AI defaults to UserDefaults because the docs do; Keychain / EncryptedSharedPreferences requires more setup.</p>
-        </article>
-
-        <article class="pattern-card pattern-card--high">
-          <header><span class="severity-badge severity-badge--high">🟠 HIGH</span></header>
-          <h3>Deep-link / URL-scheme hijacking</h3>
-          <p>App registers <code>myapp://</code> handler without validating the origin of the deep link. A malicious website triggers <code>myapp://action?cmd=delete</code> via a hidden iframe. AI-generated handlers rarely validate the source.</p>
-        </article>
-
-        <article class="pattern-card pattern-card--high">
-          <header><span class="severity-badge severity-badge--high">🟠 HIGH</span></header>
-          <h3>WebView ↔ JavaScript bridge open to remote pages</h3>
-          <p>A WebView with <code>setJavaScriptEnabled(true)</code> + a JS-interface bridge that exposes native functions. If the WebView ever loads remote content (or a redirect to attacker-controlled HTML), that page can call into your native code.</p>
-        </article>
-
-        <article class="pattern-card pattern-card--medium">
-          <header><span class="severity-badge severity-badge--medium">🟡 MEDIUM</span></header>
-          <h3>Excessive permissions in manifest</h3>
-          <p>The AI requested <code>READ_CONTACTS</code> / <code>ACCESS_FINE_LOCATION</code> / <code>RECORD_AUDIO</code> "just in case." Apple and Google reject apps with unused permissions, and users distrust them. Audit + drop every permission you don't actually use.</p>
-        </article>
-
-        <article class="pattern-card pattern-card--medium">
-          <header><span class="severity-badge severity-badge--medium">🟡 MEDIUM</span></header>
-          <h3>Missing certificate pinning on sensitive endpoints</h3>
-          <p>If your app talks to your own backend for auth / payments, TLS alone is bypassable on jailbroken devices or via a malicious CA. Pinning the cert (or its public-key hash) closes the gap. Not free — adds rotation cost — but mandatory for payment / health / financial flows.</p>
-        </article>
-
-        <article class="pattern-card pattern-card--medium">
-          <header><span class="severity-badge severity-badge--medium">🟡 MEDIUM</span></header>
-          <h3>Backup files exfiltrating PII</h3>
-          <p>iCloud Backup (iOS) and Auto Backup (Android) default to backing up app data. If your app stores session tokens, OAuth refresh tokens, or PII in storage paths included in backup, it ends up in the user's cloud-backup blob — and any iCloud/Google credential theft now also leaks your app's data.</p>
-        </article>
-
-        <article class="pattern-card pattern-card--medium">
-          <header><span class="severity-badge severity-badge--medium">🟡 MEDIUM</span></header>
-          <h3>Weak / outdated cryptography</h3>
-          <p>Hardcoded IVs, MD5 / SHA-1 for password hashing, ECB-mode AES. The AI sometimes pulls these from old StackOverflow answers it learned from. Lictor flags every primitive call site and checks the algorithm.</p>
-        </article>
-      </div>
+      <h2 class="section__title fx-reveal">Mobile (iOS + Android) <span class="status-pill" style="background:rgba(196,136,90,.12);color:var(--accent);border:1px solid var(--accent-tint-strong);padding:.15rem .6rem;border-radius:999px;font-size:.7rem;letter-spacing:.05em">🚧 IN THE WILD — COMING SOON</span></h2>
+      <p class="section__sub fx-reveal">
+        Mobile scanning is deferred to a future Lictor release. The patterns are written, the scanner skeleton exists, but the .ipa / .apk static-analysis pipeline isn't shipping yet. We're focused on web + AI feature coverage first.
+      </p>
+      <p class="section__sub fx-reveal" style="margin-top:1rem">
+        <a href="/in-the-wild" class="link">See the full roadmap on /in-the-wild →</a>
+      </p>
     </section>
 
     <section class="patterns-band">
@@ -451,7 +404,8 @@
         </div>
         <div class="staying-current__card">
           <h3>📆 Monthly</h3>
-          <p>Aggregate corpus stats published at <a href="/in-the-wild" class="link">lictorai.com/in-the-wild</a> — what we're seeing across the apps we scan. The patterns rising in frequency get more weight in the engine.</p>
+          <p>Aggregate corpus stats published at
+      — what we're seeing across the apps we scan. The patterns rising in frequency get more weight in the engine.</p>
         </div>
         <div class="staying-current__card">
           <h3>🔄 Continuous</h3>

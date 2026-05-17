@@ -7,7 +7,7 @@
   <meta name="description" content="Free, open-source security scanner for anything built with AI. Paste any URL, get a letter grade and the 5 worst findings in plain English. No signup, no telemetry, Apache 2.0." />
 
   <meta property="og:title" content="Lictor Scan — paste a URL, get a security grade" />
-  <meta property="og:description" content="Free, open-source security scanner for AI-built apps (web + mobile)." />
+  <meta property="og:description" content="Free, open-source security scanner for AI-built apps." />
   <meta property="og:url" content="https://lictorai.com/scan" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://lictorai.com/og/og-image.png" />
@@ -37,12 +37,10 @@
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
-      <a href="/">Home</a>
       <a href="/scan" class="active">Scan</a>
       <a href="/patterns">Patterns</a>
-      <a href="/in-the-wild">In the wild</a>
-      <a href="/donate">Donate</a>
-      <a href="https://github.com/Raffa-jarrl/Lictor-AI">GitHub →</a>
+      <a href="/donate">Support</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
     </nav>
   </header>
 
@@ -53,7 +51,7 @@
         Paste a URL. <em>Get a security grade.</em>
       </h1>
       <p class="scan-hero__sub">
-        Free public scanner for AI-built apps (web + mobile). Built for projects deployed from any AI-generated app — web or mobile — but works on anything public. Takes about 30 seconds.
+        Free public scanner for AI-built apps. Built for projects deployed from any AI-generated app — but works on anything public. Takes about 30 seconds.
       </p>
 
       <form class="scan-form" id="scan-form" action="https://scan-api.lictorai.com/scan" method="post" autocomplete="off">
@@ -113,7 +111,8 @@
       <ul class="privacy-list">
         <li><strong class="ok">We never store your URL or scorecard publicly without your consent.</strong> Your scan is yours.</li>
         <li><strong class="ok">We store one anonymous fingerprint per scan</strong> — a hash of (check + severity + platform) with no URL, no app name, no PII. This builds the public dataset on how AI assistants get security wrong.</li>
-        <li><strong class="ok">Patrol — our continuous scanner — respects a 30-day private-disclosure window</strong> for individual founders and 90 days for companies. <a href="/in-the-wild" class="link">Methodology →</a></li>
+        <li><strong class="ok">Patrol — our continuous scanner — respects a 30-day private-disclosure window</strong> for individual founders and 90 days for companies.
+      </li>
         <li><strong class="ok">One-click opt-out</strong> at <code>lictorai.com/scan/&lt;hash&gt;/remove</code> — Meerkat processes within 24 hours.</li>
         <li><strong class="ok">Zero telemetry, ever.</strong> The CLI version is also free and runs entirely offline.</li>
       </ul>
