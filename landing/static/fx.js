@@ -8,6 +8,18 @@
    - Cleans up on prefers-reduced-motion
 ============================================================ */
 (() => {
+  // Safety net: no matter what happens with the FX layer below,
+  // every fx-reveal element WILL show within 2s. Never leave content hidden.
+  setTimeout(() => {
+    document.querySelectorAll('.fx-reveal:not(.fx-in)').forEach((el) => {
+      el.classList.add('fx-in');
+    });
+  }, 1800);
+
+  // Mark <html> ready → CSS now applies the hidden-pre-reveal state.
+  // If this script never runs, the CSS keeps everything visible.
+  document.documentElement.classList.add('fx-ready');
+
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* -------- Nav blur on scroll -------- */

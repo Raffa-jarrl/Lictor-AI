@@ -114,10 +114,15 @@ body::after {
   50%      { opacity: 1.0; transform: scale(1.08); }
 }
 
-/* ----- Scroll-reveal ----- */
-.fx-reveal {
+/* ----- Scroll-reveal -----
+   Default = VISIBLE (so a JS failure never hides content).
+   The hidden+animated state only applies once <html> has .fx-ready
+   (added by fx.js the moment it starts). Belt-and-braces. */
+html.fx-ready .fx-reveal:not(.fx-in) {
   opacity: 0;
   transform: translateY(24px);
+}
+.fx-reveal {
   transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: var(--fx-delay, 0s);
 }
