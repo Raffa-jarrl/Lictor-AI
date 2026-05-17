@@ -51,22 +51,26 @@
   </header>
 
   <main>
-    <!-- HERO -->
-    <section class="hero">
-      <h1 class="hero__title fx-reveal">
-        Security audit for <em>anything</em> you built with AI.
-      </h1>
-      <p class="hero__sub fx-reveal">
-        Web app, mobile app, CLI script, browser extension, MCP server, desktop app, serverless function,
-        CI/CD pipeline, Discord bot — if an AI assistant wrote the code, Lictor finds the bugs the
-        assistant didn&rsquo;t. Plain English. In under a minute. Free, open source, runs locally inside
-        Claude Code or as a paste-a-URL scanner.
-      </p>
-      <div class="hero__cta">
-        <a href="/scan" class="btn btn--primary fx-glow fx-shine fx-magnetic">Scan a URL →</a>
-        <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="btn btn--ghost">Star on GitHub</a>
+    <!-- HERO — unified .page-hero pattern (matches /donate, /scan, etc.) -->
+    <section class="page-hero">
+      <div class="page-hero__mark">
+        <img src="/static/lictor-mark.png" alt="Lictor AI shield" class="page-hero__shield" />
       </div>
-      <p class="hero__meta fx-reveal">
+      <h1>
+        Security audit for <em style="color:var(--accent);font-style:italic">anything</em><br/>
+        you built with <span class="fx-gradient-text">AI</span>.
+      </h1>
+      <p class="page-hero__tagline">Guardianship, nature, and the architecture of trust.</p>
+      <p>
+        Web app, mobile app, CLI, browser extension, MCP server, desktop app, serverless function,
+        CI/CD pipeline, Discord bot — if an AI assistant wrote the code, Lictor finds the bugs the
+        assistant didn&rsquo;t. Plain English. In under a minute. Free, open source.
+      </p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:0.5rem">
+        <a href="/scan" class="shell-btn shell-btn--primary">Scan a URL →</a>
+        <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="shell-btn shell-btn--ghost">Star on GitHub</a>
+      </div>
+      <p style="font-size:0.85rem;color:var(--text-muted);margin:0;">
         Apache 2.0 · No signup · No telemetry · Built by a 20-year cybersec engineer
       </p>
     </section>
