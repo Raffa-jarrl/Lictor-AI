@@ -228,3 +228,108 @@ body::after {
   body::before { filter: blur(60px); }
   body::after  { background-size: 48px 48px; }
 }
+
+/* ============================================================
+   FX v2 — premium layer
+============================================================ */
+
+/* Cursor spotlight (global, follows pointer) */
+.fx-spotlight {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    400px circle at var(--cx, 50%) var(--cy, 50%),
+    rgba(196, 136, 90, 0.10),
+    transparent 70%
+  );
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  transition: opacity 0.4s ease;
+}
+
+/* Canvas particle field */
+.fx-particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 3D parallax hero — applies to the .fx-aura wrapper */
+.fx-parallax {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+.fx-parallax .fx-parallax__layer {
+  transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+/* Scan-line sweep on load (clip-path reveal) */
+.fx-scan {
+  position: relative;
+}
+.fx-scan::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(196, 136, 90, 0.25) 49%,
+    rgba(244, 220, 196, 0.85) 50%,
+    rgba(196, 136, 90, 0.25) 51%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+  clip-path: inset(0 0 100% 0);
+  animation: fx-scan-sweep 2.2s ease-out 0.4s forwards;
+  pointer-events: none;
+}
+@keyframes fx-scan-sweep {
+  0%   { clip-path: inset(0 0 100% 0); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { clip-path: inset(100% 0 0 0); opacity: 0; }
+}
+
+/* Clip-path section reveal (richer than opacity-only) */
+.fx-clip-reveal {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1s cubic-bezier(0.7, 0, 0.3, 1);
+  transition-delay: var(--fx-delay, 0s);
+}
+.fx-clip-reveal.fx-in {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Variable-weight wordmark hover */
+.brand__name { transition: font-variation-settings 0.3s ease, letter-spacing 0.3s ease; }
+.brand:hover .brand__name { letter-spacing: 0.04em; }
+
+/* Magnetic buttons (subtle pull toward cursor) */
+.fx-magnetic { transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+/* Premium serif drop cap (for philosophy first paragraph) */
+.fx-dropcap::first-letter {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4.5rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.85;
+  margin: 0.3rem 0.6rem 0 0;
+  color: var(--copper-1);
+  background: linear-gradient(135deg, #f4dcc4, var(--copper-1));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Reduced motion kills these too */
+@media (prefers-reduced-motion: reduce) {
+  .fx-spotlight, .fx-particles, .fx-scan::after { display: none; }
+  .fx-parallax__layer { transform: none !important; }
+  .fx-clip-reveal { clip-path: none; }
+}
