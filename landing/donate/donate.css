@@ -289,3 +289,14 @@
 
 /* hide cost-list (was removed from markup; safety in case it returns elsewhere) */
 .cost-list { display: none; }
+
+/* Wordmark fallback for supporter logos (until image files arrive) */
+.supporter-wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--copper-1, #c4885a);
+  padding: 0 0.5rem;
+  white-space: nowrap;
+}

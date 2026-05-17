@@ -17,7 +17,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/components/components.css" />
+  <link rel="stylesheet" href="/static/fx.css" />
   <link rel="stylesheet" href="/donate/donate.css" />
+  <script src="/static/fx.js" defer></script>
 </head>
 <body>
   <header class="nav">
@@ -39,34 +41,39 @@
 
     <!-- Hero: mission first, logo prominent, zero begging -->
     <section class="donate-hero">
-      <img src="/static/lictor-logo.png" alt="Lictor AI" class="donate-hero__logo" />
-      <span class="eyebrow">PUBLIC GOOD · APACHE 2.0 · NO PAYWALL EVER</span>
-      <h1 class="donate-hero__title">
-        Guardianship, nature, and the <em>architecture of trust.</em>
+      <div class="fx-aura fx-reveal">
+        <img src="/static/lictor-logo.png" alt="Lictor AI" class="donate-hero__logo fx-float" />
+      </div>
+      <span class="eyebrow fx-reveal">PUBLIC GOOD · APACHE 2.0 · NO PAYWALL EVER</span>
+      <h1 class="donate-hero__title fx-reveal">
+        <span class="fx-gradient-text">Guardianship, nature,</span><br/>
+        and the <em>architecture of trust.</em>
       </h1>
-      <p class="donate-hero__sub">
+      <p class="donate-hero__sub fx-reveal">
         Lictor exists to protect the people who build with AI — founders, hobbyists, students, anyone shipping code they didn't fully write. The scanner is free. The CLI is free. The standard is free. None of that will ever change.
       </p>
     </section>
 
+    <div class="fx-divider"></div>
+
     <!-- Impact: lead with the work, not the wallet -->
     <section class="donate-impact">
-      <h2 class="section__title">What Lictor has done so far</h2>
+      <h2 class="section__title fx-reveal">What Lictor has done so far</h2>
       <div class="impact-grid">
-        <div class="impact-stat">
-          <div class="impact-stat__num">10,000+</div>
+        <div class="impact-stat fx-reveal fx-tilt">
+          <div class="impact-stat__num fx-count" data-count="10000" data-suffix="+">0</div>
           <div class="impact-stat__label">repos scanned across GitHub, Vercel, and the open web</div>
         </div>
-        <div class="impact-stat">
-          <div class="impact-stat__num">17</div>
+        <div class="impact-stat fx-reveal fx-tilt">
+          <div class="impact-stat__num fx-count" data-count="17">0</div>
           <div class="impact-stat__label">verified vulnerabilities responsibly disclosed to maintainers</div>
         </div>
-        <div class="impact-stat">
-          <div class="impact-stat__num">3</div>
+        <div class="impact-stat fx-reveal fx-tilt">
+          <div class="impact-stat__num fx-count" data-count="3">0</div>
           <div class="impact-stat__label">GitHub Security Advisories filed (Anthropic, ibis-project, RoboSats)</div>
         </div>
-        <div class="impact-stat">
-          <div class="impact-stat__num">100%</div>
+        <div class="impact-stat fx-reveal fx-tilt">
+          <div class="impact-stat__num fx-count" data-count="100" data-suffix="%">0</div>
           <div class="impact-stat__label">open source. Apache 2.0. No telemetry. No paywall.</div>
         </div>
       </div>
@@ -81,37 +88,37 @@
 
       <div class="give-grid">
 
-        <div class="give-card">
+        <div class="give-card fx-reveal fx-tilt">
           <h3>⭐ Star the repo</h3>
           <p>It's the only number that helps Lictor get discovered. Takes 4 seconds.</p>
           <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="link">github.com/Raffa-jarrl/Lictor-AI →</a>
         </div>
 
-        <div class="give-card">
+        <div class="give-card fx-reveal fx-tilt">
           <h3>🐛 File a false-negative</h3>
           <p>If Lictor missed a real bug in your code, it's the most valuable kind of issue we can get. We fix and credit.</p>
           <a href="https://github.com/Raffa-jarrl/Lictor-AI/issues/new?template=false-negative.md" class="link">Open false-negative issue →</a>
         </div>
 
-        <div class="give-card">
+        <div class="give-card fx-reveal fx-tilt">
           <h3>🗣 File a voice-bug</h3>
           <p>If a Lictor finding sounded too jargony, that's a bug. Voice is the product. We rewrite and credit.</p>
           <a href="https://github.com/Raffa-jarrl/Lictor-AI/issues/new?template=voice-bug.md" class="link">Open voice-bug issue →</a>
         </div>
 
-        <div class="give-card">
+        <div class="give-card fx-reveal fx-tilt">
           <h3>🔍 Contribute a pattern</h3>
           <p>If you know a vibe-coder security pattern we haven't tuned for yet, send it. Public repo URLs in the wild are best.</p>
           <a href="https://github.com/Raffa-jarrl/Lictor-AI/issues/new?template=pattern-request.md" class="link">Suggest a pattern →</a>
         </div>
 
-        <div class="give-card">
+        <div class="give-card fx-reveal fx-tilt">
           <h3>📣 Tell a builder</h3>
           <p>Know someone shipping an AI-generated app? Send them <a href="https://lictorai.com/scan" class="link">lictorai.com/scan</a>. Free, 30 seconds, no signup.</p>
           <a href="https://twitter.com/intent/tweet?text=Free%20security%20scanner%20for%20AI-built%20apps%20%E2%80%94%20paste%20any%20URL%2C%20get%20a%20letter%20grade%20in%2030s.%20Open%20source%2C%20Apache%202.0.%20https%3A%2F%2Flictorai.com%2Fscan" class="link">Tweet about Lictor →</a>
         </div>
 
-        <div class="give-card">
+        <div class="give-card fx-reveal fx-tilt">
           <h3>💻 Write code</h3>
           <p>Rust check authors, Tauri front-end, browser-extension hackers, technical writers — all welcome. Start with <code>good-first-issue</code>.</p>
           <a href="https://github.com/Raffa-jarrl/Lictor-AI/issues?q=is%3Aissue+is%3Aopen+label%3Agood-first-issue" class="link">Browse good-first-issues →</a>
@@ -129,7 +136,7 @@
 
       <div class="donate-grid">
 
-        <a class="donate-card donate-card--featured" href="https://github.com/sponsors/Raffa-jarrl" target="_blank" rel="noopener">
+        <a class="donate-card donate-card--featured fx-reveal fx-tilt fx-glow fx-shine" href="https://github.com/sponsors/Raffa-jarrl" target="_blank" rel="noopener">
           <div class="donate-card__pill">Monthly or one-time</div>
           <h3>GitHub Sponsors</h3>
           <p class="donate-card__amount">$5 / $15 / $50 / mo</p>
@@ -137,7 +144,7 @@
           <span class="donate-card__cta">Sponsor on GitHub →</span>
         </a>
 
-        <a class="donate-card" href="https://paypal.me/RafiJana/7" target="_blank" rel="noopener">
+        <a class="donate-card fx-reveal fx-tilt fx-glow fx-shine" href="https://paypal.me/RafiJana/7" target="_blank" rel="noopener">
           <div class="donate-card__pill">One-tap via PayPal</div>
           <h3>Coffee &amp; Soda</h3>
           <p class="donate-card__amount">$7</p>
@@ -170,22 +177,33 @@
       <p class="section__sub">
         Lictor is built with — and contributes back to — these communities.
       </p>
-      <div class="supporter-row">
-        <a href="https://owasp.org" target="_blank" rel="noopener" class="supporter-logo" title="OWASP Foundation">
-          <img src="/static/logos/owasp.svg" alt="OWASP" />
-        </a>
-        <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener" class="supporter-logo" title="Apache 2.0">
-          <img src="/static/logos/apache.svg" alt="Apache 2.0" />
-        </a>
-        <a href="https://www.cloudflare.com" target="_blank" rel="noopener" class="supporter-logo" title="Cloudflare Workers">
-          <img src="/static/logos/cloudflare.svg" alt="Cloudflare" />
-        </a>
-        <a href="https://github.com/Raffa-jarrl/Lictor-AI" target="_blank" rel="noopener" class="supporter-logo" title="GitHub">
-          <img src="/static/logos/github.svg" alt="GitHub" />
-        </a>
-        <a href="https://www.rust-lang.org" target="_blank" rel="noopener" class="supporter-logo" title="Rust">
-          <img src="/static/logos/rust.svg" alt="Rust" />
-        </a>
+      <div class="fx-marquee">
+        <div class="fx-marquee__track">
+          <a href="https://owasp.org" target="_blank" rel="noopener" class="supporter-logo" title="OWASP Foundation">
+            <span class="supporter-wordmark">OWASP</span>
+          </a>
+          <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener" class="supporter-logo" title="Apache 2.0">
+            <span class="supporter-wordmark">Apache 2.0</span>
+          </a>
+          <a href="https://www.cloudflare.com" target="_blank" rel="noopener" class="supporter-logo" title="Cloudflare Workers">
+            <span class="supporter-wordmark">Cloudflare</span>
+          </a>
+          <a href="https://github.com/Raffa-jarrl/Lictor-AI" target="_blank" rel="noopener" class="supporter-logo" title="GitHub">
+            <span class="supporter-wordmark">GitHub</span>
+          </a>
+          <a href="https://www.rust-lang.org" target="_blank" rel="noopener" class="supporter-logo" title="Rust">
+            <span class="supporter-wordmark">Rust</span>
+          </a>
+          <a href="https://nextjs.org" target="_blank" rel="noopener" class="supporter-logo" title="Next.js">
+            <span class="supporter-wordmark">Next.js</span>
+          </a>
+          <a href="https://tauri.app" target="_blank" rel="noopener" class="supporter-logo" title="Tauri">
+            <span class="supporter-wordmark">Tauri</span>
+          </a>
+          <a href="https://supabase.com" target="_blank" rel="noopener" class="supporter-logo" title="Supabase">
+            <span class="supporter-wordmark">Supabase</span>
+          </a>
+        </div>
       </div>
     </section>
 

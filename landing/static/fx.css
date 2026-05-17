@@ -1,0 +1,230 @@
+/* ============================================================
+   Lictor FX — modern motion layer
+   ============================================================
+   Drop-in upgrade. Adds:
+   - Animated copper mesh gradient background
+   - Glass nav with scroll blur
+   - Scroll-reveal (.fx-reveal)
+   - Card tilt on hover (.fx-tilt)
+   - Cursor-glow on featured items (.fx-glow)
+   - Supporter logo marquee (.fx-marquee)
+   - Gradient heading (.fx-gradient-text)
+   - Floating logo (.fx-float)
+   - Pulsing copper aura (.fx-aura)
+   Respects prefers-reduced-motion.
+============================================================ */
+
+:root {
+  --copper-1: #c4885a;
+  --copper-2: #b06b3c;
+  --copper-3: #8a4a25;
+  --ink-deep: #0d0e12;
+  --ink-soft: #15171e;
+  --ink-glass: rgba(20, 22, 28, 0.55);
+  --halo: rgba(196, 136, 90, 0.18);
+}
+
+/* ----- Animated mesh background (sits behind everything) ----- */
+body {
+  background: var(--ink-deep);
+  position: relative;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 20% 20%, var(--halo) 0%, transparent 35%),
+    radial-gradient(circle at 80% 30%, rgba(176, 107, 60, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(138, 74, 37, 0.10) 0%, transparent 45%),
+    radial-gradient(circle at 30% 70%, rgba(196, 136, 90, 0.08) 0%, transparent 50%);
+  filter: blur(40px);
+  animation: fx-mesh-drift 22s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(196, 136, 90, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 136, 90, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(circle at center, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 75%);
+  pointer-events: none;
+}
+@keyframes fx-mesh-drift {
+  0%   { transform: translate(0, 0)     rotate(0deg); }
+  50%  { transform: translate(2%, -2%)  rotate(0.5deg); }
+  100% { transform: translate(-2%, 2%)  rotate(-0.5deg); }
+}
+
+/* ----- Glass nav (blur on scroll) ----- */
+.nav, header.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  background: linear-gradient(180deg, rgba(13,14,18,0.78), rgba(13,14,18,0.45));
+  border-bottom: 1px solid rgba(196, 136, 90, 0.10);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.nav.fx-scrolled {
+  background: rgba(13,14,18,0.92);
+  border-bottom-color: rgba(196, 136, 90, 0.25);
+}
+
+/* ----- Gradient text (use on hero h1) ----- */
+.fx-gradient-text {
+  background: linear-gradient(135deg, #f4dcc4 0%, var(--copper-1) 45%, #efc59a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ----- Hero logo: float + aura ----- */
+.fx-float {
+  animation: fx-float 6s ease-in-out infinite;
+}
+@keyframes fx-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+.fx-aura {
+  position: relative;
+  display: inline-block;
+}
+.fx-aura::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(circle, var(--halo) 0%, transparent 60%);
+  filter: blur(30px);
+  z-index: -1;
+  animation: fx-pulse 4s ease-in-out infinite;
+}
+@keyframes fx-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%      { opacity: 1.0; transform: scale(1.08); }
+}
+
+/* ----- Scroll-reveal ----- */
+.fx-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--fx-delay, 0s);
+}
+.fx-reveal.fx-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----- Card tilt on hover ----- */
+.fx-tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
+  will-change: transform;
+}
+.fx-tilt:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 40px -20px rgba(196, 136, 90, 0.35),
+              0 0 0 1px rgba(196, 136, 90, 0.25);
+  border-color: rgba(196, 136, 90, 0.4) !important;
+}
+
+/* ----- Cursor-glow (featured cards) ----- */
+.fx-glow {
+  position: relative;
+  overflow: hidden;
+}
+.fx-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    600px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(196, 136, 90, 0.15),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.fx-glow:hover::before { opacity: 1; }
+
+/* ----- Marquee for supporter logos ----- */
+.fx-marquee {
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+}
+.fx-marquee__track {
+  display: flex;
+  gap: 4rem;
+  animation: fx-marquee 30s linear infinite;
+  width: max-content;
+}
+.fx-marquee:hover .fx-marquee__track { animation-play-state: paused; }
+@keyframes fx-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ----- Count-up number styling ----- */
+.fx-count {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ----- Section divider (subtle copper line) ----- */
+.fx-divider {
+  height: 1px;
+  width: 60%;
+  max-width: 320px;
+  margin: 4rem auto;
+  background: linear-gradient(90deg, transparent, var(--copper-2), transparent);
+  opacity: 0.3;
+}
+
+/* ----- Button shine sweep ----- */
+.fx-shine {
+  position: relative;
+  overflow: hidden;
+}
+.fx-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+.fx-shine:hover::after { transform: translateX(100%); }
+
+/* ----- Reduced motion: kill everything kinetic ----- */
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none; }
+  .fx-float, .fx-aura::before, .fx-marquee__track { animation: none !important; }
+  .fx-reveal { opacity: 1; transform: none; transition: none; }
+  .fx-tilt:hover { transform: none; }
+}
+
+/* ----- Mobile tightening ----- */
+@media (max-width: 760px) {
+  body::before { filter: blur(60px); }
+  body::after  { background-size: 48px 48px; }
+}
