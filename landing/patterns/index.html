@@ -11,18 +11,23 @@
   <meta property="og:url" content="https://lictorai.com/patterns" />
   <meta property="og:image" content="https://lictorai.com/og/og-image.png" />
 
-  <link rel="icon" type="image/svg+xml" href="/lictor-favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/components/components.css" />
   <link rel="stylesheet" href="/patterns/patterns.css" />
+  <link rel="stylesheet" href="/static/fx.css" />
+  <script src="/static/fx.js" defer></script>
 </head>
 <body>
   <header class="nav">
     <a href="/" class="brand">
-      <img src="/lictor-mark.svg" alt="" width="28" height="28" />
+      <img src="/static/lictor-mark.png" alt="" width="28" height="28" />
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
@@ -46,8 +51,8 @@
     </section>
 
     <section class="patterns-band">
-      <h2 class="section__title">Web — what Lictor scans <span class="status-pill status-pill--live">✅ Scanned today</span></h2>
-      <p class="section__sub">Static analysis on your codebase + URL probing on your deployed site.</p>
+      <h2 class="section__title fx-reveal">Web — what Lictor scans <span class="status-pill status-pill--live">✅ Scanned today</span></h2>
+      <p class="section__sub fx-reveal">Static analysis on your codebase + URL probing on your deployed site.</p>
       <div class="pattern-grid">
 
         <article class="pattern-card pattern-card--critical">
@@ -116,8 +121,8 @@
     </section>
 
     <section class="patterns-band patterns-band--alt">
-      <h2 class="section__title">Mobile — what Lictor scans (iOS + Android) <span class="status-pill status-pill--live">✅ Scanned today (v0.4 scaffold)</span></h2>
-      <p class="section__sub">Static analysis on your <code>.ipa</code> / <code>.apk</code>, manifest, and the AI-generated source.</p>
+      <h2 class="section__title fx-reveal">Mobile — what Lictor scans (iOS + Android) <span class="status-pill status-pill--live">✅ Scanned today (v0.4 scaffold)</span></h2>
+      <p class="section__sub fx-reveal">Static analysis on your <code>.ipa</code> / <code>.apk</code>, manifest, and the AI-generated source.</p>
       <div class="pattern-grid">
 
         <article class="pattern-card pattern-card--critical">
@@ -172,8 +177,8 @@
     </section>
 
     <section class="patterns-band">
-      <h2 class="section__title">AI features inside your app <span class="status-pill status-pill--partial">⚪ Partial — Sentinel runtime SDK</span></h2>
-      <p class="section__sub">If your app calls a model at runtime — LLM, image gen, embeddings, anything — this category applies regardless of platform.</p>
+      <h2 class="section__title fx-reveal">AI features inside your app <span class="status-pill status-pill--partial">⚪ Partial — Sentinel runtime SDK</span></h2>
+      <p class="section__sub fx-reveal">If your app calls a model at runtime — LLM, image gen, embeddings, anything — this category applies regardless of platform.</p>
       <div class="pattern-grid">
 
         <article class="pattern-card pattern-card--critical">
@@ -210,8 +215,8 @@
     </section>
 
     <section class="patterns-band">
-      <h2 class="section__title">CLIs &amp; scripts <span class="status-pill status-pill--live">✅ Scanned today</span></h2>
-      <p class="section__sub">Bash, Python, Node, Ruby, anything you invoke from a terminal — including the throwaway one-offs.</p>
+      <h2 class="section__title fx-reveal">CLIs &amp; scripts <span class="status-pill status-pill--live">✅ Scanned today</span></h2>
+      <p class="section__sub fx-reveal">Bash, Python, Node, Ruby, anything you invoke from a terminal — including the throwaway one-offs.</p>
       <div class="pattern-grid">
 
         <article class="pattern-card pattern-card--critical">
@@ -244,8 +249,8 @@
     </section>
 
     <section class="patterns-band patterns-band--alt">
-      <h2 class="section__title">APIs &amp; serverless functions <span class="status-pill status-pill--partial">⚪ Partial — web checks apply</span></h2>
-      <p class="section__sub">Cloudflare Workers, AWS Lambda, Vercel/Netlify Functions, Hono/Express endpoints, anything HTTP that&rsquo;s not part of a full app.</p>
+      <h2 class="section__title fx-reveal">APIs &amp; serverless functions <span class="status-pill status-pill--partial">⚪ Partial — web checks apply</span></h2>
+      <p class="section__sub fx-reveal">Cloudflare Workers, AWS Lambda, Vercel/Netlify Functions, Hono/Express endpoints, anything HTTP that&rsquo;s not part of a full app.</p>
       <div class="pattern-grid">
 
         <article class="pattern-card pattern-card--critical">
@@ -276,8 +281,8 @@
     </section>
 
     <section class="patterns-band">
-      <h2 class="section__title">Browser extensions <span class="status-pill status-pill--live">✅ Scanned today</span></h2>
-      <p class="section__sub">Chrome, Firefox, Safari, Edge — extensions have the most overprivileged manifest in the ecosystem, and AI assistants make this worse.</p>
+      <h2 class="section__title fx-reveal">Browser extensions <span class="status-pill status-pill--live">✅ Scanned today</span></h2>
+      <p class="section__sub fx-reveal">Chrome, Firefox, Safari, Edge — extensions have the most overprivileged manifest in the ecosystem, and AI assistants make this worse.</p>
       <div class="pattern-grid">
 
         <article class="pattern-card pattern-card--critical">
@@ -309,8 +314,8 @@
     </section>
 
     <section class="patterns-band patterns-band--alt">
-      <h2 class="section__title">MCP servers &amp; AI tools <span class="status-pill status-pill--live">✅ Scanned today — our wedge</span></h2>
-      <p class="section__sub">Brand-new surface that almost nobody is checking yet. If you wrote an MCP server, a Claude Code skill, or an AI tool with function-calling — these patterns apply.</p>
+      <h2 class="section__title fx-reveal">MCP servers &amp; AI tools <span class="status-pill status-pill--live">✅ Scanned today — our wedge</span></h2>
+      <p class="section__sub fx-reveal">Brand-new surface that almost nobody is checking yet. If you wrote an MCP server, a Claude Code skill, or an AI tool with function-calling — these patterns apply.</p>
       <div class="pattern-grid">
 
         <article class="pattern-card pattern-card--critical">
@@ -348,8 +353,8 @@
     </section>
 
     <section class="patterns-band">
-      <h2 class="section__title">Desktop apps (Tauri, Electron, native) <span class="status-pill status-pill--live">✅ Scanned today</span></h2>
-      <p class="section__sub">AI assistants increasingly generate desktop apps — the security model is different from web, and the same mistakes cause much worse damage.</p>
+      <h2 class="section__title fx-reveal">Desktop apps (Tauri, Electron, native) <span class="status-pill status-pill--live">✅ Scanned today</span></h2>
+      <p class="section__sub fx-reveal">AI assistants increasingly generate desktop apps — the security model is different from web, and the same mistakes cause much worse damage.</p>
       <div class="pattern-grid">
 
         <article class="pattern-card pattern-card--critical">
@@ -373,8 +378,8 @@
     </section>
 
     <section class="patterns-band patterns-band--alt">
-      <h2 class="section__title">CI/CD pipelines <span class="status-pill status-pill--live">✅ Scanned today</span></h2>
-      <p class="section__sub">GitHub Actions, GitLab CI, CircleCI — AI-generated workflows have a specific class of bug that&rsquo;s caused real RCE on production projects.</p>
+      <h2 class="section__title fx-reveal">CI/CD pipelines <span class="status-pill status-pill--live">✅ Scanned today</span></h2>
+      <p class="section__sub fx-reveal">GitHub Actions, GitLab CI, CircleCI — AI-generated workflows have a specific class of bug that&rsquo;s caused real RCE on production projects.</p>
       <div class="pattern-grid">
 
         <article class="pattern-card pattern-card--critical">
@@ -406,7 +411,7 @@
     </section>
 
     <section class="patterns-band patterns-band--alt">
-      <h2 class="section__title">Cross-cutting — applies to everything <span class="status-pill status-pill--partial">⚪ Partial</span></h2>
+      <h2 class="section__title fx-reveal">Cross-cutting — applies to everything <span class="status-pill status-pill--partial">⚪ Partial</span></h2>
       <div class="pattern-grid">
 
         <article class="pattern-card pattern-card--medium">
@@ -436,8 +441,8 @@
     </section>
 
     <section class="patterns-staying-current">
-      <h2 class="section__title">How we stay current</h2>
-      <p class="section__sub">Security categories evolve. So does Lictor's check engine.</p>
+      <h2 class="section__title fx-reveal">How we stay current</h2>
+      <p class="section__sub fx-reveal">Security categories evolve. So does Lictor's check engine.</p>
       <div class="staying-current__grid">
         <div class="staying-current__card">
           <h3>📅 Weekly</h3>
@@ -458,7 +463,7 @@
       <h2>Scan your project against every one of these</h2>
       <p>Lictor runs every pattern above (and more) in about 30 seconds. Free, open-source, no signup.</p>
       <div class="cta-row">
-        <a href="/scan" class="btn btn--primary">Scan your URL →</a>
+        <a href="/scan" class="btn btn--primary fx-glow fx-shine fx-magnetic">Scan your URL →</a>
         <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="btn btn--ghost">Read the source</a>
       </div>
     </section>
