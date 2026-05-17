@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>In the wild — Lictor AI roadmap & disclosure stories</title>
+  <meta name="description" content="What Lictor has found in the wild — and what's shipping next. Mobile, browser extensions, CI/CD pipelines, AI feature SDK, and more." />
+  <meta property="og:title" content="Lictor AI — In the wild" />
+  <meta property="og:description" content="Disclosure stories + what's coming next." />
+  <meta property="og:url" content="https://lictorai.com/in-the-wild" />
+  <meta property="og:image" content="https://lictorai.com/og-image.png" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/static/shell.css" />
+  <link rel="stylesheet" href="/static/fx.css" />
+  <script src="/static/fx.js" defer></script>
+</head>
+<body>
+  <header class="nav">
+    <a href="/" class="brand">
+      <img src="/static/lictor-mark.png" alt="" width="32" height="32" style="border-radius:6px" />
+      <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
+    </a>
+    <nav class="nav__links">
+      <a href="/scan">Scan</a>
+      <a href="/patterns">Patterns</a>
+      <a href="/donate">Support</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero__mark fx-parallax">
+        <img src="/static/lictor-mark.png" alt="Lictor AI shield" class="page-hero__shield fx-parallax__layer" />
+      </div>
+      <h1>In the <span class="fx-gradient-text">wild</span>.</h1>
+      <p class="page-hero__tagline">What we've found. What's shipping next.</p>
+      <p>Every disclosure Lictor has sent to a maintainer, every scanner we've built, and the honest roadmap of what's coming — including the surfaces we haven't covered yet.</p>
+    </section>
+
+    <!-- WHAT'S SHIPPED -->
+    <section class="shell-section">
+      <div class="shell-section__head">
+        <h2>What's shipped</h2>
+        <p>Live scanners running today, finding bugs in real AI-generated code.</p>
+      </div>
+      <div class="shell-grid shell-grid--3">
+        <div class="shell-card">
+          <h3>🌐 Web app scanner</h3>
+          <p>URL-based audit for any deployed site. Catches leaked secrets, exposed DBs, painted-lock admin routes, open CORS, unsigned webhooks, prompt-injection surfaces.</p>
+          <a href="/scan" class="link">Run a scan →</a>
+        </div>
+        <div class="shell-card">
+          <h3>🛠 Claude Code skill suite</h3>
+          <p>/lictor-security-check + /lictor-fix-it + /lictor-explain + /lictor-rotate. Runs locally inside any project.</p>
+          <a href="https://github.com/Raffa-jarrl/Lictor-AI/tree/main/skills" class="link">Install →</a>
+        </div>
+        <div class="shell-card">
+          <h3>🔍 Patrol auto-scanner</h3>
+          <p>Continuous discovery of vibe-coded repos with hardcoded secrets — Supabase service-role JWTs, Firebase service-account JSONs, DB creds, bot tokens, GitHub Actions RCE patterns. 17+ disclosures sent to date.</p>
+          <a href="https://github.com/Raffa-jarrl/Lictor-AI/tree/main/scripts" class="link">See scanners →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMING NEXT -->
+    <section class="shell-section" style="border-top:1px solid var(--border)">
+      <div class="shell-section__head">
+        <h2>Coming next — in development</h2>
+        <p>The honest roadmap. No "shipping Q4 2027" theatre — these are the surfaces we're actively building scanners for.</p>
+      </div>
+      <div class="shell-grid shell-grid--3">
+
+        <div class="shell-card">
+          <h3>📱 Mobile (iOS + Android) <span style="color:var(--accent);font-size:.75rem">· soon</span></h3>
+          <p>Static analysis on <code>.ipa</code> / <code>.apk</code> bundles + AI-generated Swift/Kotlin source. Catches API keys shipped in the bundle, insecure local storage, WebView ↔ JS bridge holes, missing cert pinning, excessive manifest permissions.</p>
+          <p style="color:var(--text-muted);font-size:.9rem">Pattern catalog written. Scanner skeleton drafted. Pipeline integration in progress.</p>
+        </div>
+
+        <div class="shell-card">
+          <h3>🧩 Browser-extension scanner</h3>
+          <p>Manifest v3 audit for AI-generated Chrome / Firefox extensions. Catches over-permissive host-permissions, content-script injection holes, message-passing without origin checks.</p>
+          <p style="color:var(--text-muted);font-size:.9rem">Manifest parser ready; check-rules drafted; bundling pending.</p>
+        </div>
+
+        <div class="shell-card">
+          <h3>⚙️ CI/CD pipeline audit</h3>
+          <p>GitHub Actions + GitLab CI workflow scanning. Catches the classic <code>pull_request_target</code> + checkout-PR-head RCE pattern, secrets in workflow logs, branch-protection bypass via unprotected paths.</p>
+          <p style="color:var(--text-muted);font-size:.9rem">Patrol-PRtarget scanner is live and finding live exposures; CLI version coming.</p>
+        </div>
+
+        <div class="shell-card">
+          <h3>🖥 Desktop apps (Tauri / Electron)</h3>
+          <p>For AI-built native shells. Audits IPC bridge exposure, nodeIntegration leaks, file-system access scopes, auto-updater signing.</p>
+          <p style="color:var(--text-muted);font-size:.9rem">Pattern catalog drafted; scanner not yet shipping.</p>
+        </div>
+
+        <div class="shell-card">
+          <h3>🧠 AI feature SDK (Sentinel)</h3>
+          <p>Drop-in runtime guardrails for apps that call models. Prompt-injection classifier, secret-redaction on outputs, per-user rate limits, tool-call allow-listing.</p>
+          <p style="color:var(--text-muted);font-size:.9rem">npm + pip packages in early beta.</p>
+        </div>
+
+        <div class="shell-card">
+          <h3>🛰 MCP server audit</h3>
+          <p>For the Model Context Protocol ecosystem. Catches tool-description prompt injection, unauthenticated tool exposure, schema-validation bypass.</p>
+          <p style="color:var(--text-muted);font-size:.9rem">Lictor-multi already scans local MCP code; remote-MCP audit on the way.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHAT WE'VE FOUND IN THE WILD -->
+    <section class="shell-section" style="border-top:1px solid var(--border)">
+      <div class="shell-section__head">
+        <h2>Disclosures sent (so far)</h2>
+        <p>Verified, manually triaged, and contacted via responsible disclosure. Full details kept private until the maintainer rotates or 30 days pass.</p>
+      </div>
+      <div class="shell-grid shell-grid--3">
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">17+</div>
+          <div class="shell-stat__label">verified vulnerabilities responsibly disclosed</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">3</div>
+          <div class="shell-stat__label">GitHub Security Advisories filed (Anthropic, ibis-project, RoboSats)</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">10,000+</div>
+          <div class="shell-stat__label">repos scanned across the open web</div>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:2rem;color:var(--text-muted)">
+        Aggregate reports published monthly at <a href="/transparency" class="link">/transparency</a>.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="shell-footer">
+    &copy; 2026 Lictor AI · Apache 2.0 ·
+    <a href="/scan" class="link">Scan</a> ·
+    <a href="/patterns" class="link">Patterns</a> ·
+    <a href="/donate" class="link">Support</a> ·
+    <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="link">Source</a>
+  </footer>
+</body>
+</html>
