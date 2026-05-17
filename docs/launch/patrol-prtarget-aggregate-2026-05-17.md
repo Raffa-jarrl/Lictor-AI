@@ -1,6 +1,6 @@
 # Patrol — pull_request_target attack-class scan (aggregate)
 
-**Run:** 2026-05-17 06:58 UTC
+**Run:** 2026-05-17 07:31 UTC
 **Method:** GitHub Code Search for `pull_request_target` in workflow YAML, raw-file content verification of checkout-PR-head pattern.
 
 ## Aggregate counts
