@@ -54,3 +54,6 @@ docs/launch/patrol-public-repos-private-*.md
 disclosures/queue/
 
 docs/launch/patrol-prtarget-private-*.md
+docs/launch/patrol-firebase-private*.md
+docs/launch/patrol-db-creds-private*.md
+docs/launch/patrol-supabase-5y-private*.md
