@@ -81,14 +81,25 @@ def list_spaces(limit_total=1000, sort="lastModified"):
         offset += page_size
         time.sleep(0.5)
 
+def list_space_files(space_id):
+    """Use HF tree API to list all files in the Space."""
+    url = f"https://huggingface.co/api/spaces/{space_id}/tree/main?recursive=true"
+    data = http_get_json(url)
+    if not data or not isinstance(data, list): return []
+    return [f["path"] for f in data if f.get("type") == "file"]
+
 def fetch_app_source(space_id):
-    """Try app.py first, then main.py, then run.py."""
-    for fn in ("app.py", "main.py", "run.py", "streamlit_app.py", "gradio_app.py"):
-        url = f"https://huggingface.co/spaces/{space_id}/raw/main/{fn}"
-        text = http_get_text(url)
-        if text and len(text) > 50:
-            return fn, text
-    return None, None
+    """Fetch any source-y file in the Space. Returns (filename, text) per file."""
+    paths = list_space_files(space_id)
+    scan_extensions = ('.py','.js','.ts','.jsx','.tsx','.env','.json','.yaml','.yml','.sh','.dockerfile','Dockerfile','.html','.cjs','.mjs')
+    out = []
+    for p in paths[:25]:  # cap per-Space to 25 files
+        if not (p.endswith(scan_extensions) or 'env' in p.lower() or p == 'Dockerfile'): continue
+        url = f"https://huggingface.co/spaces/{space_id}/raw/main/{urllib.parse.quote(p)}"
+        text = http_get_text(url, max_bytes=300_000)
+        if text and len(text) > 30:
+            out.append((p, text))
+    return out
 
 def scan_text(text):
     """Yield (kind, raw_match, redacted) per real-looking key."""
@@ -121,27 +132,37 @@ def main():
     print(f"[+] Got {len(spaces)} spaces. Scanning each for hardcoded keys...", flush=True)
 
     hits = []
+    seen_keys = set()  # dedup at (space, kind, redacted) granularity
     for i, s in enumerate(spaces, 1):
         sid = s.get("id") or f"{s.get('author','?')}/{s.get('cardData',{}).get('id','?')}"
         likes = s.get("likes", 0)
         lm = s.get("lastModified", "")[:10]
         print(f"  [{i}/{len(spaces)}] {sid}", end="", flush=True)
         try:
-            fn, text = fetch_app_source(sid)
-            if not text:
-                print("  ⚪ no app source")
+            files = fetch_app_source(sid)
+            if not files:
+                print("  ⚪ no source files")
                 continue
-            for kind, val, red in scan_text(text):
-                h = Hit(space_id=sid,
-                        url=f"https://huggingface.co/spaces/{sid}/blob/main/{fn}",
-                        kind=kind, redacted=red,
-                        likes=likes, last_modified=lm)
-                hits.append(h)
-                print(f"\n   🔴 {kind} {red}  ★{likes}  {h.url}", end="")
-            print()
+            local_hits = 0
+            for fn, text in files:
+                for kind, val, red in scan_text(text):
+                    key = (sid, kind, val)
+                    if key in seen_keys: continue
+                    seen_keys.add(key)
+                    h = Hit(space_id=sid,
+                            url=f"https://huggingface.co/spaces/{sid}/blob/main/{fn}",
+                            kind=kind, redacted=red,
+                            likes=likes, last_modified=lm)
+                    hits.append(h)
+                    local_hits += 1
+                    print(f"\n   🔴 {kind} {red}  ★{likes}  {fn}", end="")
+            if local_hits == 0:
+                print(f"  ⚪ scanned {len(files)} files, no keys")
+            else:
+                print()
         except Exception as e:
             print(f"  EXC {e}")
-        time.sleep(0.6)
+        time.sleep(0.4)
 
     # Reports
     md = [f"# Patrol — HuggingFace Spaces secret exposure (PRIVATE)\n",
