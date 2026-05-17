@@ -82,6 +82,9 @@ def gh_repo_meta(repo):
     except Exception:
         return {}
 
+PLACEHOLDER_EMAIL_RX = re.compile(r'(your-?app|your-?project|example|test-?project|myproject|placeholder|sample|demo|gitguardian|template|REPLACE|XXX|YOUR_)', re.IGNORECASE)
+PLACEHOLDER_PROJECT_RX = re.compile(r'(your[-_]?project|example|test[-_]?project|myproject|placeholder|sample|demo)', re.IGNORECASE)
+
 def verify(item, age_max_days):
     repo = item["repository"]["full_name"]
     path = item["path"]
@@ -101,6 +104,11 @@ def verify(item, age_max_days):
         return None
 
     email_m = CLIENT_EMAIL_RX.search(content)
+    if email_m and PLACEHOLDER_EMAIL_RX.search(email_m.group(1)):
+        return None  # placeholder example, not a real key
+    # Also skip if path is README.md or docs/* (intentional documentation)
+    if item["path"].lower().endswith("readme.md") or item["path"].lower().startswith("docs/"):
+        return None
     return Hit(
         repo=repo, path=path, url=item["html_url"],
         client_email=email_m.group(1) if email_m else "",
