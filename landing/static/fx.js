@@ -121,15 +121,19 @@
         const c = center();
         const dx = (e.clientX - c.x) / c.w;
         const dy = (e.clientY - c.y) / c.h;
-        const max = 14; // degrees
+        const max = 22; // deeper tilt
         const rx = (-dy * max).toFixed(2);
         const ry = (dx * max).toFixed(2);
-        layer.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(20px)`;
+        // Kill idle animation while user is interacting, swap for direct transform
+        layer.style.animation = 'none';
+        layer.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(40px) scale(1.04)`;
         raf = null;
       });
     });
     el.addEventListener('pointerleave', () => {
-      layer.style.transform = 'rotateX(0) rotateY(0) translateZ(0)';
+      layer.style.transform = '';
+      // Resume ambient idle tilt after a beat
+      setTimeout(() => { layer.style.animation = ''; }, 200);
     });
   });
 
