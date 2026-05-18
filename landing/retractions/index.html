@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Retractions — Lictor AI · every false positive, public</title>
+  <meta name="description" content="Every disclosure we ever got wrong. The apology we sent. The scanner fix that landed. Most security tools hide this. We don't." />
+
+  <meta property="og:title" content="Lictor AI — Retractions log" />
+  <meta property="og:description" content="Every false positive, public. Our voice promise made auditable." />
+  <meta property="og:url" content="https://lictorai.com/retractions" />
+  <meta property="og:image" content="https://lictorai.com/og-image.png" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/static/shell.css" />
+  <link rel="stylesheet" href="/static/fx.css" />
+  <script src="/static/fx.js" defer></script>
+  <link rel="canonical" href="https://lictorai.com/retractions/" />
+</head>
+<body>
+  <header class="nav">
+    <a href="/" class="brand">
+      <img src="/static/lictor-mark.png" alt="" width="32" height="32" style="border-radius:6px" />
+      <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
+    </a>
+    <nav class="nav__links">
+      <a href="/#install">Install</a>
+      <a href="/scan">Scan</a>
+      <a href="/patterns">Patterns</a>
+      <a href="/donate">Support</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="page-hero__mark fx-parallax">
+        <img src="/static/lictor-mark.png" alt="Lictor AI shield" class="page-hero__shield fx-parallax__layer" />
+      </div>
+      <h1>Re<span class="fx-gradient-text">tractions</span>.</h1>
+      <p class="page-hero__tagline">Every false positive. The apology. The fix.</p>
+      <p>Most security tools double down when they&rsquo;re wrong. We publish a receipt.</p>
+    </section>
+
+    <!-- Running tally -->
+    <section class="shell-section">
+      <div class="shell-grid shell-grid--3">
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">8</div>
+          <div class="shell-stat__label">disclosures retracted</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">184</div>
+          <div class="shell-stat__label">disclosures total — <strong>96% accuracy rate</strong></div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">&lt; 30 min</div>
+          <div class="shell-stat__label">from detection of FP to public apology + scanner fix landed</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The full retraction log — each one with maintainer, issue link, apology, root cause, fix -->
+    <section class="shell-section" style="border-top:1px solid var(--border)">
+      <div class="shell-section__head">
+        <h2>The full log</h2>
+        <p>Sorted newest-first.</p>
+      </div>
+
+      <!-- RET-001 through RET-008 — the May 17 IL /admin batch -->
+      <article style="max-width:820px;margin:0 auto 2rem;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--copper-2);border-radius:12px;padding:1.75rem 2rem;">
+        <header style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;">
+          <div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--accent);">RET-001 → RET-008</span>
+            <h3 style="margin:.3rem 0 0;font-family:'Cormorant Garamond',serif;font-size:1.4rem;">
+              The May 17 IL <code>/admin</code> batch
+            </h3>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--text-muted);text-align:right;">
+            <div>Sent: 2026-05-17 09:20–13:12 UTC</div>
+            <div>Retracted: 2026-05-17 22:35–22:45 UTC (~12h later)</div>
+            <div>Fix shipped: 2026-05-17 23:00 UTC (same hour)</div>
+          </div>
+        </header>
+
+        <h4 style="margin-top:1.5rem;font-size:1rem;">What we got wrong</h4>
+        <p style="color:var(--text-muted);">
+          We sent 8 contact-request issues to maintainers of Israeli sites (<code>.co.il</code> TLDs) flagging
+          their <code>/admin</code> page as a &ldquo;painted-lock&rdquo; exposure — page returns content before
+          redirecting to login. All 8 turned out to be false positives.
+        </p>
+
+        <h4 style="margin-top:1.5rem;font-size:1rem;">Root cause</h4>
+        <p style="color:var(--text-muted);">
+          Our pilot scanner&rsquo;s <code>/admin</code> check used <code>urllib.request</code> with default
+          follow-redirects. When a site sat behind a WAF (Radware, Cloudflare anti-bot) or was a
+          Next.js / React SPA returning the same HTML shell for any URL, the scanner saw
+          &ldquo;HTTP 200 + HTML body + no &lsquo;login&rsquo; text in first 2KB&rdquo; and flagged it.
+          The reality: those sites were behind challenge pages or returning SPA shells — not exposing admin.
+        </p>
+
+        <h4 style="margin-top:1.5rem;font-size:1rem;">The retraction (sent on all 8 issues, then each was closed)</h4>
+        <blockquote style="background:var(--ink-deep);border-left:3px solid var(--accent);padding:1rem 1.25rem;margin:.8rem 0;font-style:italic;color:var(--text-muted);line-height:1.7;border-radius:6px;">
+          On re-verification with stricter heuristics, this report appears to be a false positive from our scanner. The pattern we flagged (<code>/admin</code> returning content) was triggered by your site&rsquo;s SPA / framework returning the same HTML shell for unknown paths — not by an actual exposed admin panel.<br/><br/>
+          This is a bug in our scanner. We&rsquo;re closing this issue and fixing the detection logic so it doesn&rsquo;t happen again. No action needed on your end.<br/><br/>
+          Sorry for the noise — I appreciate you being patient with an automated outreach tool that&rsquo;s clearly still learning its job. Voice + accuracy are the product; today this report failed on accuracy.<br/><br/>
+          — Raffa<br/>
+          Lictor AI · https://lictorai.com
+        </blockquote>
+
+        <h4 style="margin-top:1.5rem;font-size:1rem;">The scanner fix (shipped same hour)</h4>
+        <p style="color:var(--text-muted);">
+          Built <a href="https://github.com/Raffa-jarrl/Lictor-AI/blob/main/scripts/verify-finding.py" class="link"><code>scripts/verify-finding.py</code></a> — a strict re-checker that:
+        </p>
+        <ul style="color:var(--text-muted);line-height:1.7;">
+          <li>Does <strong>NOT</strong> auto-follow redirects (sees the raw response)</li>
+          <li>Detects 20+ WAF / bot-challenge fingerprints (Radware <code>__uzdbm</code>, Cloudflare <code>cf-ray</code>, Akamai, Imperva, PerimeterX, DataDome, etc.)</li>
+          <li>Requires actual admin-panel markup (dashboard, manage-user, sidebar, etc.) — not just any HTML</li>
+          <li>For <code>.env</code> exposures: requires <code>Content-Type: text/plain</code> + ≥3 <code>KEY=VAL</code> lines + no <code>&lt;html</code></li>
+        </ul>
+        <p style="color:var(--text-muted);">
+          Every flag now passes through this verifier before becoming a contact-request. <a href="https://github.com/Raffa-jarrl/Lictor-AI/commits/main" class="link">See the commits →</a>
+        </p>
+
+        <h4 style="margin-top:1.5rem;font-size:1rem;">The 8 issues (closed, with retraction comment visible)</h4>
+        <ul style="color:var(--text-muted);font-family:'JetBrains Mono',monospace;font-size:.85rem;line-height:1.8;list-style:none;padding:0;">
+          <li>· <a href="https://github.com/shalev-osher/mazonhaosher.co.il/issues/3" class="link">shalev-osher/mazonhaosher.co.il #3</a></li>
+          <li>· <a href="https://github.com/osifeu-prog/SLH.co.il/issues/1" class="link">osifeu-prog/SLH.co.il #1</a></li>
+          <li>· <a href="https://github.com/guytepper/1km.co.il/issues/215" class="link">guytepper/1km.co.il #215</a></li>
+          <li>· <a href="https://github.com/yonihod/datascience.co.il/issues/1" class="link">yonihod/datascience.co.il #1</a></li>
+          <li>· <a href="https://github.com/modaco-il/modaco.co.il/issues/1" class="link">modaco-il/modaco.co.il #1</a></li>
+          <li>· <a href="https://github.com/Maxios2025/maxios.co.il/issues/1" class="link">Maxios2025/maxios.co.il #1</a></li>
+          <li>· <a href="https://github.com/dorey-cmd/altrubiz.co.il/issues/1" class="link">dorey-cmd/altrubiz.co.il #1</a></li>
+          <li>· <a href="https://github.com/link-in/mountain-view-dafna.co.il/issues/1" class="link">link-in/mountain-view-dafna.co.il #1</a></li>
+        </ul>
+
+        <h4 style="margin-top:1.5rem;font-size:1rem;">What we learned</h4>
+        <ol style="color:var(--text-muted);line-height:1.7;">
+          <li>Naive HTTP probes are dangerous. WAFs and SPA fallbacks defeat almost any URL-based heuristic. <strong>Every URL-based check now needs verifier-gating.</strong></li>
+          <li>Speed without verification is more dangerous than slow + right. Catching it ourselves before more damage spread was the only thing that protected our voice promise.</li>
+          <li>Public retraction with apology &gt; silent close. Several maintainers wrote back acknowledging the apology. None expressed anger.</li>
+        </ol>
+      </article>
+    </section>
+
+    <!-- Promise / process -->
+    <section class="shell-section" style="border-top:1px solid var(--border)">
+      <div class="shell-section__head">
+        <h2>The retraction process — for next time</h2>
+        <p>Documented in our public skill suite. Every future Lictor maintainer follows this exact sequence.</p>
+      </div>
+      <div style="max-width:820px;margin:0 auto;line-height:1.8;color:var(--text-muted);">
+        <ol>
+          <li><strong>Within 30 minutes of confirming a false positive</strong> — post the apology comment on the original issue. Use the template above (or a tone-matched variant).</li>
+          <li><strong>Close the issue as <code>not_planned</code></strong> — never silently delete or hide. The retraction itself is part of the record.</li>
+          <li><strong>Push the scanner fix the same day</strong> — code in <code>scripts/verify-finding.py</code> or the offending pilot. PR title prefixed <code>fix:</code> so it appears in the <a href="/changelog" class="link">changelog</a>.</li>
+          <li><strong>Append a new RET-NNN entry on this page</strong> within 24 hours. Newest-first. Never edit older entries except to add followup comments.</li>
+          <li><strong>If a maintainer asks for additional context</strong> — respond directly, even after closing. The relationship outlasts the issue.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Counter to industry norm -->
+    <section class="shell-section" style="border-top:1px solid var(--border)">
+      <div class="shell-section__head">
+        <h2>Why we do this publicly</h2>
+      </div>
+      <div style="max-width:680px;margin:0 auto;text-align:center;color:var(--text-muted);line-height:1.7;">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:var(--text);margin-bottom:1.5rem;">
+          &ldquo;Most security tools hide their false positives. We publish them. The cost of being wrong in public is the price of being trusted in public.&rdquo;
+        </p>
+        <p>Every commercial AppSec scanner has a false-positive rate. They usually publish the &ldquo;catch&rdquo; numbers and bury the &ldquo;miss&rdquo; numbers. Our 96% accuracy rate is real because the 4% lives on this page, with names and links, exactly where you can find it.</p>
+        <p>If we ever stop publishing retractions — even when we have one to publish — that&rsquo;s your signal that the project has lost the plot. Walk away.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="shell-footer">
+    &copy; 2026 Lictor AI · Apache 2.0 ·
+    <a href="/scan" class="link">Scan</a> ·
+    <a href="/patterns" class="link">Patterns</a> ·
+    <a href="/in-the-wild" class="link">In the wild</a> ·
+    <a href="/transparency" class="link">Transparency</a> ·
+    <a href="/changelog" class="link">Changelog</a> ·
+    <a href="/donate" class="link">Support</a> ·
+    <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="link">Source</a>
+  </footer>
+</body>
+</html>
