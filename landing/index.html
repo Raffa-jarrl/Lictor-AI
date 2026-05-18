@@ -41,6 +41,7 @@
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
+      <a href="/#install">Install</a>
       <a href="/scan">Scan</a>
       <a href="/patterns">Patterns</a>
       <a href="/donate">Support</a>
@@ -105,8 +106,51 @@
             <li>Runs 100% local. No token, no signup, no telemetry, no per-seat pricing</li>
           </ul>
           <div class="card__cta">
-            <a href="https://github.com/Raffa-jarrl/Lictor-AI/tree/main/skills" class="link">Install in 60 seconds →</a>
+            <a href="#install" class="link">Install in 60 seconds ↓</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTALL — 3 commands, plain and copy-pasteable -->
+    <section id="install" class="shell-section">
+      <div class="shell-section__head">
+        <h2>Install — 3 commands, 30 seconds</h2>
+        <p>Paste these into any terminal. After the last line, open Claude Code in any project and type <code>/lictor-security-check</code>.</p>
+      </div>
+
+      <div style="max-width:760px;margin:0 auto;background:var(--surface,#1A2028);border:1px solid var(--border,#2A323E);border-radius:14px;padding:1.75rem;position:relative;">
+        <pre style="margin:0;padding:0;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.95rem;line-height:1.7;color:var(--text);white-space:pre-wrap;overflow-x:auto;"><span style="color:var(--text-muted);"># 1. Clone the repo</span>
+git clone https://github.com/Raffa-jarrl/Lictor-AI.git ~/Code/lictor
+
+<span style="color:var(--text-muted);"># 2. Make sure Claude's skills folder exists</span>
+mkdir -p ~/.claude/skills
+
+<span style="color:var(--text-muted);"># 3. Copy the Lictor skills in</span>
+cp -r ~/Code/lictor/skills/lictor-* ~/.claude/skills/</pre>
+        <button onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText);this.textContent='✓ Copied';setTimeout(()=>this.textContent='Copy',2000)" style="position:absolute;top:1rem;right:1rem;background:var(--accent,#C9A23B);color:#0d0e12;border:none;border-radius:6px;padding:.4rem .8rem;font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;">Copy</button>
+      </div>
+
+      <div style="max-width:760px;margin:1.75rem auto 0;text-align:center;color:var(--text-muted);font-size:.95rem;line-height:1.6;">
+        <p style="margin:0 0 .5rem;"><strong style="color:var(--text);">Now open Claude Code in any project</strong> and type <code style="color:var(--accent,#C9A23B);font-family:'JetBrains Mono',monospace;">/lictor-security-check</code></p>
+        <p style="margin:0;font-size:.85rem;">You'll get a plain-English security report in 60 seconds. Three sibling skills also installed: <code>/lictor-fix-it</code> · <code>/lictor-explain</code> · <code>/lictor-rotate</code></p>
+      </div>
+
+      <div style="max-width:760px;margin:2rem auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;">
+          <div style="color:var(--accent);font-size:.7rem;letter-spacing:.1em;font-weight:600;font-family:'JetBrains Mono',monospace;">REQUIREMENT</div>
+          <div style="margin-top:.4rem;font-size:.95rem;">Claude Code installed</div>
+          <a href="https://docs.anthropic.com/claude-code" class="link" style="font-size:.85rem;">Get Claude Code →</a>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;">
+          <div style="color:var(--accent);font-size:.7rem;letter-spacing:.1em;font-weight:600;font-family:'JetBrains Mono',monospace;">PERMISSIONS</div>
+          <div style="margin-top:.4rem;font-size:.95rem;">Local-only · no network</div>
+          <div style="font-size:.85rem;color:var(--text-muted);">No token, no signup, no telemetry.</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;">
+          <div style="color:var(--accent);font-size:.7rem;letter-spacing:.1em;font-weight:600;font-family:'JetBrains Mono',monospace;">UPDATE LATER</div>
+          <div style="margin-top:.4rem;font-size:.95rem;">Re-run steps 1 + 3</div>
+          <div style="font-size:.85rem;color:var(--text-muted);">Or <code>git pull</code> in <code>~/Code/lictor</code>.</div>
         </div>
       </div>
     </section>
