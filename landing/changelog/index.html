@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Changelog — Lictor AI · every code change, live from GitHub</title>
+  <meta name="description" content="Every commit to the Lictor scanner, fetched live from GitHub. No filtering, no editorial gloss — what we shipped, when we shipped it, and what we changed." />
+
+  <meta property="og:title" content="Lictor AI — Changelog" />
+  <meta property="og:description" content="Every commit, live from GitHub. No editorial gloss." />
+  <meta property="og:url" content="https://lictorai.com/changelog" />
+  <meta property="og:image" content="https://lictorai.com/og-image.png" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/static/shell.css" />
+  <link rel="stylesheet" href="/static/fx.css" />
+  <script src="/static/fx.js" defer></script>
+  <link rel="canonical" href="https://lictorai.com/changelog/" />
+  <style>
+    .commit {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .commit__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: .5rem;
+    }
+    .commit__title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0;
+    }
+    .commit__meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .commit__body {
+      color: var(--text-muted);
+      font-size: .9rem;
+      line-height: 1.5;
+      margin: .4rem 0 0;
+      white-space: pre-wrap;
+      max-height: 8rem;
+      overflow: hidden;
+      mask-image: linear-gradient(180deg, black 70%, transparent);
+      -webkit-mask-image: linear-gradient(180deg, black 70%, transparent);
+    }
+    .commit__sha {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .changelog-list {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 var(--shell-pad-x);
+    }
+    .changelog-empty {
+      text-align: center;
+      color: var(--text-muted);
+      padding: 3rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a href="/" class="brand">
+      <img src="/static/lictor-mark.png" alt="" width="32" height="32" style="border-radius:6px" />
+      <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
+    </a>
+    <nav class="nav__links">
+      <a href="/#install">Install</a>
+      <a href="/scan">Scan</a>
+      <a href="/patterns">Patterns</a>
+      <a href="/donate">Support</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="page-hero__mark fx-parallax">
+        <img src="/static/lictor-mark.png" alt="Lictor AI shield" class="page-hero__shield fx-parallax__layer" />
+      </div>
+      <h1>Change<span class="fx-gradient-text">log</span>.</h1>
+      <p class="page-hero__tagline">Every commit. Live from GitHub. No editorial gloss.</p>
+      <p>If we shipped it, it&rsquo;s here. <span id="commits-timestamp" style="font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent);">loading…</span></p>
+    </section>
+
+    <section class="shell-section">
+      <div class="changelog-list" id="changelog-list">
+        <div class="changelog-empty">Loading commits from github.com/Raffa-jarrl/Lictor-AI…</div>
+      </div>
+
+      <p style="text-align:center;margin-top:2rem;color:var(--text-muted);font-size:.85rem;">
+        Want the full history? <a href="https://github.com/Raffa-jarrl/Lictor-AI/commits/main" class="link">github.com/Raffa-jarrl/Lictor-AI/commits/main</a> — same data, same source.
+      </p>
+    </section>
+
+    <!-- Categories of change (manual annotation, helps frame what to look for) -->
+    <section class="shell-section" style="border-top:1px solid var(--border)">
+      <div class="shell-section__head">
+        <h2>What to look for</h2>
+        <p>Skimming guide for the commit feed above.</p>
+      </div>
+      <div class="shell-grid shell-grid--3">
+        <div class="shell-card">
+          <h3>🔧 <code>fix:</code></h3>
+          <p>Bug fixes — most importantly, anything that <strong>tightens a scanner heuristic to reduce false positives</strong>. The May 17 WAF-detector commit is here.</p>
+        </div>
+        <div class="shell-card">
+          <h3>🆕 <code>scanner:</code> / <code>scanners:</code></h3>
+          <p>New detection capabilities. Each commit adds either a new vuln class (Twilio, Cloudflare, etc.) or a new corpus (HuggingFace, PyPI, GitLab).</p>
+        </div>
+        <div class="shell-card">
+          <h3>📜 <code>site:</code></h3>
+          <p>Public-facing copy + UI changes. Mostly accuracy updates (stat refreshes) and new transparency sections.</p>
+        </div>
+        <div class="shell-card">
+          <h3>🛡 <code>ops:</code> / <code>fix(cron):</code></h3>
+          <p>Autonomous-machine plumbing. Hourly cron, reply monitor, scanner-refresh schedule. Boring but load-bearing.</p>
+        </div>
+        <div class="shell-card">
+          <h3>🚨 <code>disclosures:</code></h3>
+          <p>Logged disclosure rounds. Counts, classes, who was contacted, what was retracted. These are public receipts.</p>
+        </div>
+        <div class="shell-card">
+          <h3>🎨 <code>donate:</code> / <code>logo</code></h3>
+          <p>Brand-side updates. Less load-bearing but documented for completeness.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="shell-footer">
+    &copy; 2026 Lictor AI · Apache 2.0 ·
+    <a href="/scan" class="link">Scan</a> ·
+    <a href="/patterns" class="link">Patterns</a> ·
+    <a href="/in-the-wild" class="link">In the wild</a> ·
+    <a href="/transparency" class="link">Transparency</a> ·
+    <a href="/retractions" class="link">Retractions</a> ·
+    <a href="/donate" class="link">Support</a> ·
+    <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="link">Source</a>
+  </footer>
+
+  <!-- Live commit feed — fetched from GitHub on page load -->
+  <script>
+  (async function() {
+    const list = document.getElementById('changelog-list');
+    const ts   = document.getElementById('commits-timestamp');
+
+    try {
+      const resp = await fetch('https://api.github.com/repos/Raffa-jarrl/Lictor-AI/commits?per_page=40');
+      if (!resp.ok) throw new Error('GitHub API ' + resp.status);
+      const commits = await resp.json();
+      list.innerHTML = '';
+
+      for (const c of commits) {
+        const sha = (c.sha || '').slice(0, 7);
+        const url = c.html_url;
+        const msg = c.commit.message || '';
+        const [title, ...rest] = msg.split('\n');
+        // Filter the Co-Authored-By trailer for cleaner display
+        const body = rest.join('\n').replace(/\n*Co-Authored-By:.*$/s, '').trim();
+        const author = c.commit.author?.name || 'Raffa';
+        const dateObj = new Date(c.commit.author?.date);
+        const dateStr = dateObj.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) +
+                        ' · ' + dateObj.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+
+        const div = document.createElement('div');
+        div.className = 'commit';
+        div.innerHTML = `
+          <div class="commit__head">
+            <h3 class="commit__title">${escapeHtml(title)}</h3>
+            <span class="commit__meta">${dateStr} · <a href="${url}" class="commit__sha">${sha}</a></span>
+          </div>
+          ${body ? `<p class="commit__body">${escapeHtml(body)}</p>` : ''}
+        `;
+        list.appendChild(div);
+      }
+
+      const now = new Date().toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
+      ts.textContent = `fetched ${now} · ${commits.length} commits`;
+    } catch (err) {
+      list.innerHTML = `<div class="changelog-empty">GitHub API rate-limited — try again in 60s, or <a href="https://github.com/Raffa-jarrl/Lictor-AI/commits/main" class="link">view directly on GitHub</a>.</div>`;
+      ts.textContent = 'fetch failed';
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    }
+  })();
+  </script>
+</body>
+</html>
