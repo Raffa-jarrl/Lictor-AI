@@ -68,7 +68,7 @@
         </div>
         <div class="shell-card">
           <h3>🔍 Patrol auto-scanner</h3>
-          <p>Continuous discovery of vibe-coded repos with hardcoded secrets — Supabase service-role JWTs, Firebase service-account JSONs, DB creds, bot tokens, GitHub Actions RCE patterns. 17+ disclosures sent to date.</p>
+          <p>Continuous discovery of vibe-coded repos with hardcoded secrets — Supabase service-role JWTs, Firebase service-account JSONs, DB creds, bot tokens, GitHub Actions RCE patterns. <strong>183 verified disclosures sent to date</strong> across 9 vulnerability classes.</p>
           <a href="https://github.com/Raffa-jarrl/Lictor-AI/tree/main/scripts" class="link">See scanners →</a>
         </div>
       </div>
@@ -127,23 +127,45 @@
         <h2>Disclosures sent (so far)</h2>
         <p>Verified, manually triaged, and contacted via responsible disclosure. Full details kept private until the maintainer rotates or 30 days pass.</p>
       </div>
-      <div class="shell-grid shell-grid--3">
+      <div class="shell-grid shell-grid--4">
         <div class="shell-card shell-card--stat">
-          <div class="shell-stat__num">17+</div>
+          <div class="shell-stat__num">183</div>
           <div class="shell-stat__label">verified vulnerabilities responsibly disclosed</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">9</div>
+          <div class="shell-stat__label">distinct vulnerability classes scanned (Firebase, DB-creds, PR-target RCE, 6 SaaS-key types, HF Spaces, PyPI)</div>
         </div>
         <div class="shell-card shell-card--stat">
           <div class="shell-stat__num">3</div>
           <div class="shell-stat__label">GitHub Security Advisories filed (Anthropic, ibis-project, RoboSats)</div>
         </div>
         <div class="shell-card shell-card--stat">
-          <div class="shell-stat__num">10,000+</div>
-          <div class="shell-stat__label">repos scanned across the open web</div>
+          <div class="shell-stat__num">1</div>
+          <div class="shell-stat__label">confirmed fix received from a maintainer (FredrikM97/hass-surepetcare — &ldquo;Thanks. Now it is fixed&rdquo;)</div>
         </div>
       </div>
       <p style="text-align:center;margin-top:2rem;color:var(--text-muted)">
         Aggregate reports published monthly at <a href="/transparency" class="link">/transparency</a>.
       </p>
+
+      <!-- Notable wins -->
+      <div style="max-width:760px;margin:3rem auto 0;">
+        <h3 style="font-family:'Cormorant Garamond',serif;text-align:center;margin-bottom:1.5rem;">Notable targets contacted</h3>
+        <ul style="list-style:none;padding:0;color:var(--text-muted);line-height:1.8;">
+          <li>🔹 <strong>kubevela/terraform-controller</strong> — 162★ CNCF-adjacent infra · Firebase service-account exposure</li>
+          <li>🔹 <strong>dotnet/macios</strong> — 2,861★ Microsoft .NET MAUI iOS/macOS bindings · PR-target RCE</li>
+          <li>🔹 <strong>sigma67/ytmusicapi</strong> — 2,694★ YouTube Music API client · PR-target RCE (mitigated by contributor approval)</li>
+          <li>🔹 <strong>prusa3d/Prusa-Firmware</strong> — 2,108★ 3D printer firmware · PR-target RCE</li>
+          <li>🔹 <strong>liquibase/liquibase</strong> — 5,501★ enterprise Java DB migration tool · PR-target RCE</li>
+          <li>🔹 <strong>langwatch/langwatch</strong> — 3,258★ LLM observability · PR-target RCE (acknowledged)</li>
+          <li>🔹 <strong>HaiMengg/WNC-InternetBanking-BE</strong> — internet banking backend · Firebase service-account</li>
+          <li>🔹 <strong>Invention-Minds/Hospital-Admin-Panel-Backend</strong> — healthcare admin · Firebase service-account</li>
+        </ul>
+        <p style="text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--text-muted);">
+          Full disclosure list available privately on request — we keep details out of public view until maintainers rotate.
+        </p>
+      </div>
     </section>
 
   </main>
