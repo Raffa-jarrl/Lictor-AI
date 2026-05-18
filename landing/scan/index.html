@@ -119,6 +119,26 @@
       </ul>
     </section>
 
+    <!-- Install the Claude Code skill (cross-link from /scan) -->
+    <section class="shell-section" style="border-top:1px solid var(--border);">
+      <div class="shell-section__head">
+        <h2>Or run it locally — 3 commands, 30 seconds</h2>
+        <p>Prefer to run inside your editor instead of pasting a URL? Lictor ships as a Claude Code skill. Paste 3 commands and type <code>/lictor-security-check</code> in any project.</p>
+      </div>
+      <div style="max-width:760px;margin:0 auto;background:var(--surface,#1A2028);border:1px solid var(--border,#2A323E);border-radius:14px;padding:1.75rem;position:relative;">
+        <pre style="margin:0;padding:0;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.95rem;line-height:1.7;color:var(--text);white-space:pre-wrap;overflow-x:auto;"><span style="color:var(--text-muted);"># 1. Clone the repo</span>
+git clone https://github.com/Raffa-jarrl/Lictor-AI.git ~/Code/lictor
+
+<span style="color:var(--text-muted);"># 2. Make sure Claude's skills folder exists</span>
+mkdir -p ~/.claude/skills
+
+<span style="color:var(--text-muted);"># 3. Copy the Lictor skills in</span>
+cp -r ~/Code/lictor/skills/lictor-* ~/.claude/skills/</pre>
+        <button onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText);this.textContent='✓ Copied';setTimeout(()=>this.textContent='Copy',2000)" style="position:absolute;top:1rem;right:1rem;background:var(--accent,#C9A23B);color:#0d0e12;border:none;border-radius:6px;padding:.4rem .8rem;font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;">Copy</button>
+      </div>
+      <p style="text-align:center;margin-top:1.25rem;color:var(--text-muted);font-size:.9rem;">Then open Claude Code in any project and type <code style="color:var(--accent);">/lictor-security-check</code></p>
+    </section>
+
     <section class="scan-pricing">
       <h2 class="section__title fx-reveal">It's free. Forever.</h2>
       <p class="section__sub fx-reveal">
