@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transparency — Lictor AI · live disclosure stats</title>
+  <meta name="description" content="Live disclosure stats, the operating principles we hold ourselves to, the things we deliberately don't do, and every code commit that hardens the scanner." />
+
+  <meta property="og:title" content="Lictor AI — Transparency" />
+  <meta property="og:description" content="Live disclosure stats. Honest operating principles. Public mistakes." />
+  <meta property="og:url" content="https://lictorai.com/transparency" />
+  <meta property="og:image" content="https://lictorai.com/og-image.png" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/static/shell.css" />
+  <link rel="stylesheet" href="/static/fx.css" />
+  <script src="/static/fx.js" defer></script>
+  <link rel="canonical" href="https://lictorai.com/transparency/" />
+</head>
+<body>
+  <header class="nav">
+    <a href="/" class="brand">
+      <img src="/static/lictor-mark.png" alt="" width="32" height="32" style="border-radius:6px" />
+      <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
+    </a>
+    <nav class="nav__links">
+      <a href="/#install">Install</a>
+      <a href="/scan">Scan</a>
+      <a href="/patterns">Patterns</a>
+      <a href="/donate">Support</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="page-hero__mark fx-parallax">
+        <img src="/static/lictor-mark.png" alt="Lictor AI shield" class="page-hero__shield fx-parallax__layer" />
+      </div>
+      <h1>Trans<span class="fx-gradient-text">parency</span>.</h1>
+      <p class="page-hero__tagline">Live numbers. Honest principles. Public mistakes.</p>
+      <p>If we&rsquo;re wrong about anything below, this page changes. That&rsquo;s the deal.</p>
+    </section>
+
+    <!-- LIVE STATS — fetched at page-load from GitHub API -->
+    <section class="shell-section">
+      <div class="shell-section__head">
+        <h2>Live disclosure stats</h2>
+        <p>Pulled from the GitHub API at the moment you loaded this page. <span id="stats-timestamp" style="font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent);">loading…</span></p>
+      </div>
+
+      <div class="shell-grid shell-grid--4">
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num" id="stat-total">…</div>
+          <div class="shell-stat__label">verified disclosures sent (lifetime)</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num" id="stat-open">…</div>
+          <div class="shell-stat__label">awaiting maintainer response</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num" id="stat-closed">…</div>
+          <div class="shell-stat__label">addressed by maintainers</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num" id="stat-today">…</div>
+          <div class="shell-stat__label">sent today (rolling)</div>
+        </div>
+      </div>
+
+      <p style="text-align:center;margin-top:1.5rem;color:var(--text-muted);font-size:.85rem;">
+        Verify yourself: <a href="https://github.com/search?q=author%3ARaffa-jarrl+%22Security+report%22&type=issues" class="link">github.com/search?author:Raffa-jarrl + "Security report"</a>. Same numbers, same source.
+      </p>
+    </section>
+
+    <!-- OPERATING PRINCIPLES — the rules we hold ourselves to -->
+    <section class="shell-section" style="border-top:1px solid var(--border)">
+      <div class="shell-section__head">
+        <h2>Operating principles</h2>
+        <p>The non-negotiables. If any future Lictor commit violates one of these, treat it as a bug and file an issue.</p>
+      </div>
+      <div class="shell-grid shell-grid--2">
+
+        <div class="shell-card">
+          <h3>1. Never publish exploit details publicly</h3>
+          <p>Every disclosure goes through GitHub&rsquo;s private channels first — direct issue with no specifics, or a Private Security Advisory if the repo supports it. The exact file/line/redacted key is only sent <em>privately</em> after the maintainer replies asking for details.</p>
+        </div>
+
+        <div class="shell-card">
+          <h3>2. Hard cap: 50 contacts per day</h3>
+          <p>The autonomous cron is rate-limited at the source. Even if our queue had 10,000 candidates, no more than 50 maintainers hear from us in any 24-hour window. Protects against runaway-loop failure modes <em>and</em> respects maintainer fatigue.</p>
+        </div>
+
+        <div class="shell-card">
+          <h3>3. Manual verification before submission</h3>
+          <p>Every queued candidate is re-verified before a contact-request goes out. Regex match alone is not enough — we fetch the raw file, check context for placeholders, decode JWTs to confirm role, validate against WAF/SPA-fallback false positives.</p>
+        </div>
+
+        <div class="shell-card">
+          <h3>4. Retract publicly when we&rsquo;re wrong</h3>
+          <p>If a finding turns out to be a false positive, we add an apology comment to the original issue, close it, and ship the scanner fix the same day. We did this 8 times on May 17. We&rsquo;ll do it again. <a href="/in-the-wild" class="link">See the public retraction templates →</a></p>
+        </div>
+
+        <div class="shell-card">
+          <h3>5. No telemetry, no analytics, no tracking</h3>
+          <p>The Claude Code skill is 100% local — no network calls. The URL scanner sends only the URL you paste (necessary). The site itself has zero analytics scripts. We can&rsquo;t see who uses Lictor, and we don&rsquo;t want to.</p>
+        </div>
+
+        <div class="shell-card">
+          <h3>6. Apache 2.0 forever</h3>
+          <p>The license is irrevocable. Even if Lictor gets acquired tomorrow, every commit through that moment stays free for anyone to fork. The license file is in <a href="https://github.com/Raffa-jarrl/Lictor-AI/blob/main/LICENSE" class="link">/LICENSE</a>.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHAT WE DELIBERATELY DON'T DO -->
+    <section class="shell-section" style="border-top:1px solid var(--border)">
+      <div class="shell-section__head">
+        <h2>What we deliberately don&rsquo;t do</h2>
+        <p>Just as important as what we do.</p>
+      </div>
+      <div style="max-width:760px;margin:0 auto;line-height:1.8;color:var(--text-muted);">
+        <ul style="list-style:none;padding:0;">
+          <li>❌ <strong>We don&rsquo;t scan internal/private repos</strong> — every disclosure target is from public GitHub / GitLab / PyPI / npm / HuggingFace. Your private code is invisible to us.</li>
+          <li>❌ <strong>We don&rsquo;t resell findings</strong> — no Lictor &ldquo;intelligence feed&rdquo;, no bug-bounty arbitrage, no selling lists to security vendors. Findings go to the maintainer + nobody else.</li>
+          <li>❌ <strong>We don&rsquo;t do active exploitation</strong> — never authenticate, never write data, never trigger a vulnerability beyond reading what an unauthenticated request returns.</li>
+          <li>❌ <strong>We don&rsquo;t name &amp; shame</strong> — no public blog posts of the form &ldquo;Look at this idiot startup with their leaked keys.&rdquo; The 87 Firebase exposures we found are anonymised here by category, not name (except where the maintainer publicly responded).</li>
+          <li>❌ <strong>We don&rsquo;t accept paid disclosure embargoes</strong> — companies sometimes offer to pay for an extended embargo. We don&rsquo;t engage. Standard 30-day window applies to everyone equally.</li>
+          <li>❌ <strong>We don&rsquo;t use bots to artificially boost stars / followers</strong> — every star on github.com/Raffa-jarrl/Lictor-AI is a real human. If the count ever looks suspiciously high, blame organic discovery, not us.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- WHAT WE'VE COMMITTED — the actual code -->
+    <section class="shell-section" style="border-top:1px solid var(--border)">
+      <div class="shell-section__head">
+        <h2>The scanner is open source — read it yourself</h2>
+        <p>Every line of every scanner that flags something on your repo is publicly auditable.</p>
+      </div>
+      <div class="shell-grid shell-grid--3">
+        <div class="shell-card">
+          <h3>📁 /scripts/</h3>
+          <p>All 13 patrol scanners. Each script is &lt;300 lines, self-contained, Python stdlib only.</p>
+          <a href="https://github.com/Raffa-jarrl/Lictor-AI/tree/main/scripts" class="link">Browse →</a>
+        </div>
+        <div class="shell-card">
+          <h3>🛡 /scripts/verify-finding.py</h3>
+          <p>The strict re-checker that catches WAF + SPA false positives. Built after the May 17 retraction incident.</p>
+          <a href="https://github.com/Raffa-jarrl/Lictor-AI/blob/main/scripts/verify-finding.py" class="link">Read →</a>
+        </div>
+        <div class="shell-card">
+          <h3>📜 /skills/</h3>
+          <p>The 4 Claude Code skills (lictor-security-check / fix-it / explain / rotate). Each is a markdown file you can read in 5 minutes.</p>
+          <a href="https://github.com/Raffa-jarrl/Lictor-AI/tree/main/skills" class="link">Browse →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ASKS / CONTACT -->
+    <section class="shell-section" style="border-top:1px solid var(--border)">
+      <div class="shell-section__head">
+        <h2>Spot something we&rsquo;re doing wrong?</h2>
+        <p>Open an issue, send us a DM, or just email — the door is open.</p>
+      </div>
+      <div class="shell-grid shell-grid--3">
+        <div class="shell-card">
+          <h3>🗣 Voice / accuracy bug</h3>
+          <p>If a finding sounded jargony or was a false positive: <a href="https://github.com/Raffa-jarrl/Lictor-AI/issues/new" class="link">file an issue</a>.</p>
+        </div>
+        <div class="shell-card">
+          <h3>📧 Direct</h3>
+          <p>For sensitive concerns: <a href="mailto:Raffa@Lictor-AI.com" class="link">Raffa@Lictor-AI.com</a> — read within 24h, response within 48h.</p>
+        </div>
+        <div class="shell-card">
+          <h3>🔒 Security in Lictor itself</h3>
+          <p>For vulns in Lictor&rsquo;s own code: use <a href="https://github.com/Raffa-jarrl/Lictor-AI/security/advisories/new" class="link">our PVR channel</a>. Same standard we hold others to.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="shell-footer">
+    &copy; 2026 Lictor AI · Apache 2.0 ·
+    <a href="/scan" class="link">Scan</a> ·
+    <a href="/patterns" class="link">Patterns</a> ·
+    <a href="/in-the-wild" class="link">In the wild</a> ·
+    <a href="/donate" class="link">Support</a> ·
+    <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="link">Source</a>
+  </footer>
+
+  <!-- Live-stats fetcher: pulls fresh numbers from the GitHub API on page load -->
+  <script>
+  (async function() {
+    const setVal = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = typeof val === 'number' ? val.toLocaleString() : val;
+    };
+    const todayIso = new Date().toISOString().slice(0,10);
+    try {
+      const q = (state, extra='') => `https://api.github.com/search/issues?q=author:Raffa-jarrl${extra ? '+' + encodeURIComponent(extra) : ''}+${state ? 'state:' + state : ''}&per_page=1`;
+      // 4 lightweight queries in parallel
+      const [allRes, openRes, closedRes, todayRes] = await Promise.all([
+        fetch(`https://api.github.com/search/issues?q=${encodeURIComponent('author:Raffa-jarrl')}&per_page=1`),
+        fetch(`https://api.github.com/search/issues?q=${encodeURIComponent('author:Raffa-jarrl state:open')}&per_page=1`),
+        fetch(`https://api.github.com/search/issues?q=${encodeURIComponent('author:Raffa-jarrl state:closed')}&per_page=1`),
+        fetch(`https://api.github.com/search/issues?q=${encodeURIComponent('author:Raffa-jarrl created:>=' + todayIso)}&per_page=1`),
+      ]);
+      const [all, open, closed, today] = await Promise.all([allRes.json(), openRes.json(), closedRes.json(), todayRes.json()]);
+      setVal('stat-total', all.total_count ?? 0);
+      setVal('stat-open',  open.total_count ?? 0);
+      setVal('stat-closed', closed.total_count ?? 0);
+      setVal('stat-today', today.total_count ?? 0);
+      const ts = new Date().toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit', timeZoneName:'short'});
+      const tsEl = document.getElementById('stats-timestamp');
+      if (tsEl) tsEl.textContent = `fetched ${ts}`;
+    } catch (e) {
+      ['stat-total','stat-open','stat-closed','stat-today'].forEach(id => setVal(id, '—'));
+      const tsEl = document.getElementById('stats-timestamp');
+      if (tsEl) tsEl.textContent = 'GitHub rate-limited — try again in 60s';
+    }
+  })();
+  </script>
+</body>
+</html>
