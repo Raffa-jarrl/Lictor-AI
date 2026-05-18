@@ -20,7 +20,9 @@ TIMEOUT = 20
 # Same secret patterns as our existing scanners
 PATTERNS = {
     "firebase-sa":  re.compile(r'"private_key_id"\s*:\s*"[a-f0-9]{20,}".*?"private_key"\s*:\s*"-----BEGIN PRIVATE KEY-----', re.DOTALL),
-    "openai":       re.compile(r'(sk-(?:proj-)?[A-Za-z0-9_-]{40,})'),
+    # OpenAI: real keys are high-entropy mixed case+digits. Reject if the suffix
+    # looks like dictionary words (catches `sk-revit-architecture-certified-...`).
+    "openai":       re.compile(r'(sk-(?:proj-)?(?=[A-Za-z0-9_-]*[0-9])(?=[A-Za-z0-9_-]*[A-Z])[A-Za-z0-9_-]{40,})'),
     "anthropic":    re.compile(r'(sk-ant-api03-[A-Za-z0-9_-]{90,})'),
     "google-ai":    re.compile(r'(AIza[A-Za-z0-9_-]{35})'),
     "huggingface":  re.compile(r'(hf_[A-Za-z0-9]{32,})'),
