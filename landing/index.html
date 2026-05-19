@@ -83,11 +83,11 @@
 
         <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.15em;color:var(--accent);text-transform:uppercase;margin-bottom:.75rem;">⭐ Founding supporters · join the wall</div>
 
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.6rem);margin:0 0 .5rem;line-height:1.1;color:var(--text);">
+        <h2 id="star-headline" style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.6rem);margin:0 0 .5rem;line-height:1.1;color:var(--text);">
           Be one of the first <span id="founders-target" class="fx-gradient-text">100</span> people to back Lictor.
         </h2>
-        <p style="color:var(--text-muted);font-size:1rem;line-height:1.5;max-width:560px;margin:0 auto 1.5rem;">
-          Free open-source projects live or die by their first 100 stars. Click once. Your handle goes on the wall below — permanently — as a founding supporter.
+        <p style="color:var(--text-muted);font-size:1rem;line-height:1.5;max-width:580px;margin:0 auto 1.5rem;">
+          Open-source security audits for AI-built apps. Apache 2.0. Built by a 20-year security engineer who got tired of watching Lovable/Bolt/v0 apps leak Firebase keys on day one.
         </p>
 
         <!-- Live counter -->
@@ -136,6 +136,13 @@
         document.getElementById('stars-current').textContent = stars.toLocaleString();
         document.getElementById('founders-target').textContent = target.toLocaleString();
         document.getElementById('founders-target-2').textContent = target.toLocaleString();
+        // Dynamic tier headline
+        const h = document.getElementById('star-headline');
+        if (h) {
+          if (stars >= 1000) h.innerHTML = `<span class="fx-gradient-text">${stars.toLocaleString()}</span> people back Lictor. Add your star.`;
+          else if (stars >= 250) h.innerHTML = `Almost a thousand. Push us over.`;
+          else if (stars >= 100) h.innerHTML = `Help us reach <span class="fx-gradient-text">250</span>.`;
+        }
         const pct = Math.max(1, Math.min(100, (stars / target) * 100));
         // animate the bar after a tick so the transition runs
         setTimeout(() => { document.getElementById('stars-progress').style.width = pct + '%'; }, 100);
