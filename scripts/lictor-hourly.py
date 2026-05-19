@@ -39,7 +39,7 @@ CONTACT_BODY = (LICTOR_DIR / ".disclosure-bodies").as_posix()
 CLASSES = {
     "firebase": {
         "private_md": "docs/launch/patrol-firebase-private.md",
-        "title": "Security report — possible Firebase service-account exposure (please contact privately)",
+        "title": "Security finding — possible Firebase service-account in source (details on request)",
         "body": """Hi —
 
 Automated security scan flagged what appears to be a Firebase / Google service-account JSON in your public repo. I'm not posting details here for responsible-disclosure reasons.
@@ -55,7 +55,7 @@ Lictor AI · https://lictorai.com · github.com/Raffa-jarrl/Lictor-AI""",
     },
     "db-creds": {
         "private_md": "docs/launch/patrol-db-creds-private.md",
-        "title": "Security report — possible DB connection string with credentials (please contact privately)",
+        "title": "Security finding — possible DB connection string with credentials (details on request)",
         "body": """Hi —
 
 Automated security scan flagged what appears to be a database connection string with embedded credentials committed to your public source.
@@ -75,7 +75,7 @@ Lictor AI · https://lictorai.com""",
     },
     "prtarget": {
         "private_md": "docs/launch/patrol-prtarget-private-2026-05-17.md",
-        "title": "Security report — possible pull_request_target + checkout-head RCE (please contact privately)",
+        "title": "Security finding — possible pull_request_target pattern (details on request)",
         "body": """Hi —
 
 Automated security scan flagged a `pull_request_target` workflow in your repo that checks out the PR's head SHA / ref. This is the *pattern* of the classic GitHub Actions RCE — but whether it's actually exploitable depends on your guards (label gates, approved-ci checks, head-vs-base ownership checks, etc).
