@@ -48,9 +48,7 @@ Please contact me at **Raffa@Lictor-AI.com** (or DM via GitHub) and I'll send th
 
 **Time-sensitive**: service-account keys grant full GCP/Firebase project access until manually revoked.
 
-A note: this came from an automated scan I manually verified before reaching out. If we're wrong (sample key, test fixture, already-revoked), please reply and we'll close out. No blame intended.
-
-Want this scan for your own project? Free, takes 60s, paste your URL: **https://lictorai.com/scan**
+A note: this came from an automated scan flagging a *pattern*, not a verified live exploit. If we're wrong (sample key, test fixture, already-revoked), please reply and we'll close out. No blame intended.
 
 — Raffa
 Lictor AI · https://lictorai.com · github.com/Raffa-jarrl/Lictor-AI""",
@@ -70,9 +68,7 @@ If real, the fix is two steps:
 1. Rotate the DB password (and any other credential in that file)
 2. `git filter-repo` to scrub the credential from repo history
 
-A note: this came from an automated scan I manually verified before reaching out. If we're wrong (test/sandbox DB, public-by-design, already-rotated), reply and we'll close out. No blame intended.
-
-Want this scan for your own project? Free, takes 60s: **https://lictorai.com/scan**
+A note: this came from an automated scan flagging a *pattern*, not a verified live exploit. If we're wrong (test/sandbox DB, public-by-design, already-rotated), reply and we'll close out. No blame intended.
 
 — Raffa
 Lictor AI · https://lictorai.com""",
@@ -82,15 +78,11 @@ Lictor AI · https://lictorai.com""",
         "title": "Security report — possible pull_request_target + checkout-head RCE (please contact privately)",
         "body": """Hi —
 
-Automated security scan flagged a `pull_request_target` workflow in your repo that checks out the PR's head SHA. This is the classic GitHub Actions RCE pattern: an external contributor can submit a PR that adds arbitrary code, the workflow runs that code with access to your repository secrets.
+Automated security scan flagged a `pull_request_target` workflow in your repo that checks out the PR's head SHA / ref. This is the *pattern* of the classic GitHub Actions RCE — but whether it's actually exploitable depends on your guards (label gates, approved-ci checks, head-vs-base ownership checks, etc).
 
-I'm not posting the specific file/line here for responsible-disclosure reasons.
+I'm not claiming we verified exploitability — we verified the pattern exists. Please review your workflow's guards and confirm. If they're sufficient, this is a non-issue and you can close.
 
-Please contact me at **Raffa@Lictor-AI.com** and I'll send the exact workflow file + line + a 2-line patch.
-
-A note: this came from an automated scan I manually verified before reaching out. If we're wrong, please reply and we'll close out.
-
-Want this scan for your own project? Free, takes 60s: **https://lictorai.com/scan**
+If you'd like the exact workflow file + line we flagged, reply here or email **Raffa@Lictor-AI.com**.
 
 — Raffa
 Lictor AI · https://lictorai.com""",
@@ -215,6 +207,78 @@ def repo_is_alive(repo):
         return False
 
 
+def repo_has_private_security_policy(repo):
+    """Pre-flight: if repo has SECURITY.md, security.txt, or PVR enabled, we should NOT
+    fire a public issue — use their declared private channel instead.
+
+    Added 2026-05-19 in response to rixx/pretalx feedback (issue #2459). Filing a public
+    issue when the maintainer has set up a private channel is a process failure, not a
+    judgment call. This function returns True when we should DEFER (i.e., skip the
+    candidate this cycle and log it to a manual-private-disclosure queue).
+
+    Checks:
+      1. /.well-known/security.txt at the project's homepage or pages-host
+      2. SECURITY.md in the repo (raw fetch on default branch)
+      3. /security/policy via GH API
+    """
+    token = None
+    token_file = Path.home() / ".lictor" / "gh-token"
+    if token_file.exists():
+        token = token_file.read_text().strip()
+    if not token: return False  # fail-open to avoid blocking everything on a token issue
+
+    headers = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json",
+               "User-Agent": "lictor-hourly/0.1"}
+
+    # 1. Check SECURITY.md (raw API — fast)
+    for branch in ("main", "master"):
+        try:
+            url = f"https://api.github.com/repos/{repo}/contents/SECURITY.md?ref={branch}"
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=8) as r:
+                if r.status == 200:
+                    return True  # SECURITY.md exists
+        except urllib.error.HTTPError as e:
+            if e.code != 404:
+                pass  # any non-404 is ambiguous; continue checking
+        except Exception:
+            pass
+
+    # 2. Check security advisory metadata via repo /community/profile
+    try:
+        url = f"https://api.github.com/repos/{repo}/community/profile"
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=8) as r:
+            data = json.loads(r.read())
+            files = data.get("files") or {}
+            if files.get("security") is not None:
+                return True
+    except Exception:
+        pass
+
+    # 3. Check repo's homepage for /.well-known/security.txt (if homepage set)
+    try:
+        url = f"https://api.github.com/repos/{repo}"
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=8) as r:
+            meta = json.loads(r.read())
+            homepage = meta.get("homepage") or ""
+            if homepage and homepage.startswith("http"):
+                try:
+                    base = homepage.rstrip("/").rsplit("/", 0)[0] if "://" in homepage else homepage
+                    txt_url = base.rstrip("/") + "/.well-known/security.txt"
+                    txt_req = urllib.request.Request(txt_url, headers={"User-Agent": "lictor-hourly/0.1"})
+                    with urllib.request.urlopen(txt_req, timeout=5) as tr:
+                        if tr.status == 200 and b"Contact" in tr.read(2048):
+                            return True
+                except Exception:
+                    pass
+    except Exception:
+        pass
+
+    return False
+
+
 def submit_issue(repo, title, body):
     """Submit via raw GitHub API."""
     # Try persistent token file first (cron-safe), then gh CLI (keychain — only works in interactive shell)
@@ -301,6 +365,20 @@ def main():
         if not repo_is_alive(repo):
             log(f"    skip — repo dead/archived/issues-disabled")
             state.setdefault("skipped", {})[repo] = {"reason": "dead", "ts": datetime.now().isoformat()}
+            already.add(repo)
+            continue
+
+        # PRE-FLIGHT: if the repo has a declared private channel (SECURITY.md /
+        # security.txt / PVR enabled), DEFER to the manual-private queue.
+        # Filing public issues over their declared private channel is rude.
+        # (Added 2026-05-19 after rixx/pretalx feedback — RET-009)
+        if repo_has_private_security_policy(repo):
+            log(f"    DEFER — repo has private security channel, queued for manual private disclosure")
+            state.setdefault("private_queue", {})[repo] = {
+                "class": cls, "pushed": pushed,
+                "reason": "has-private-channel",
+                "ts": datetime.now().isoformat(),
+            }
             already.add(repo)
             continue
 
