@@ -347,14 +347,20 @@ def scan(companies=None, patterns=None, max_per_company=5):
                     content = gh_raw(it["repo"], path)
                     time.sleep(0.5)
                     if not content: continue
-                    if not pdef["must_match"].search(content): continue
+                    m = pdef["must_match"].search(content)
+                    if not m: continue
+                    # Placeholder check: around the match AND at file header
+                    match_ctx = content[max(0, m.start()-150):m.end()+150]
+                    if PLACEHOLDER_RX.search(match_ctx): continue
                     if PLACEHOLDER_RX.search(content[:500]): continue
+                    # Reject all-zero / repeating-char keys (AKIA0000000000000000, etc.)
+                    matched = m.group(0)
+                    if re.search(r'(0{6,}|x{6,}|X{6,}|\.{6,}|\*{6,})', matched): continue
                     # Score it
                     verifier = VERIFIERS[pdef["exploit_check"]]
                     score, reason = verifier(content, path)
                     if score < 20: continue
                     # Snippet
-                    m = pdef["must_match"].search(content)
                     sn = content[max(0, m.start()-40):m.end()+80].replace("\n", " ")[:180]
                     f = Finding(
                         id=fid, company=company, org=org, repo=it["repo"],
