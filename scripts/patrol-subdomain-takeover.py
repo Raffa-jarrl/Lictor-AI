@@ -108,6 +108,14 @@ TAKEOVER_FINGERPRINTS = [
     {"provider": "Frontify",          "cname_rx": re.compile(r'frontify\.com',                                re.I), "body_rx": re.compile(r"page not found", re.I)},
     {"provider": "GitBook",           "cname_rx": re.compile(r'gitbook\.io|gitbook\.com',                     re.I), "body_rx": re.compile(r"If you need specifics, contact the person who shared this link", re.I)},
     {"provider": "AfterShip",         "cname_rx": re.compile(r'aftership\.com',                               re.I), "body_rx": re.compile(r"Oops.*?looks like the page is lost", re.I)},
+
+    # === Azure family (NXDOMAIN-based: CNAME resolves but target host returns NXDOMAIN/no-such-app) ===
+    {"provider": "Azure/App Service",       "cname_rx": re.compile(r'\.azurewebsites\.net',                       re.I), "body_rx": re.compile(r"Error 404 - Web app not found|<title>404 Web Site not found", re.I)},
+    {"provider": "Azure/Trafficmanager",    "cname_rx": re.compile(r'trafficmanager\.net',                        re.I), "body_rx": re.compile(r"<title>This page can.t be displayed|server has not yet been created", re.I)},
+    {"provider": "Azure/CloudApp",          "cname_rx": re.compile(r'cloudapp\.(net|azure\.com)',                 re.I), "body_rx": re.compile(r"This page can.t be displayed|404", re.I)},
+    {"provider": "Azure/Blob",              "cname_rx": re.compile(r'blob\.core\.windows\.net',                   re.I), "body_rx": re.compile(r"AuthenticationFailed|The specified blob does not exist|ResourceNotFound", re.I)},
+    {"provider": "Azure/CDN",               "cname_rx": re.compile(r'azureedge\.net',                             re.I), "body_rx": re.compile(r"ErrorCode>404</ErrorCode|InternetEndpointNotFound", re.I)},
+    {"provider": "Azure/DevOps",            "cname_rx": re.compile(r'visualstudio\.com',                          re.I), "body_rx": re.compile(r"Page not found", re.I)},
 ]
 
 # Domain seeds for bounty-program companies (apex + key subdomains)
@@ -193,6 +201,72 @@ BOUNTY_DOMAINS = [
     "umich.edu", "wisc.edu", "illinois.edu", "purdue.edu",
     "ox.ac.uk", "cam.ac.uk", "imperial.ac.uk", "ucl.ac.uk", "ed.ac.uk",
     "ethz.ch", "epfl.ch", "tum.de",
+
+    # === IMMUNEFI / Crypto / DeFi — pays $10K-$1M ===
+    "uniswap.org", "compound.finance", "aave.com", "makerdao.com", "curve.fi",
+    "yearn.fi", "synthetix.io", "balancer.fi", "sushi.com", "1inch.io",
+    "lido.fi", "rocket-pool.com", "polygon.technology", "arbitrum.io",
+    "optimism.io", "starknet.io", "zksync.io", "scroll.io",
+    "chainlink.com", "the-graph.com", "filecoin.io", "near.org",
+    "solana.com", "avalabs.org", "binance.com", "okx.com", "bybit.com",
+    "kraken.com", "gemini.com", "bitfinex.com", "huobi.com",
+    "metamask.io", "phantom.app", "rainbow.me", "argent.xyz", "ledger.com",
+    "trezor.io", "safe.global", "snapshot.org", "ens.domains",
+    "opensea.io", "blur.io", "magiceden.io", "rarible.com",
+    "messari.io", "dune.com", "etherscan.io", "blockscan.com",
+    "alchemy.com", "infura.io", "moralis.io", "quicknode.com",
+    "chainalysis.com", "trmlabs.com", "elliptic.co",
+    "circle.com", "tether.to", "makerdao.com", "ondofinance.com",
+
+    # === AI startups (newer programs, less covered) ===
+    "character.ai", "anthropic.com", "groq.com", "mistral.ai", "x.ai",
+    "wayve.ai", "cresta.com", "jasper.ai", "writer.com", "tome.app",
+    "gamma.app", "perplexity.ai", "you.com", "tabnine.com", "codeium.com",
+    "cursor.sh", "v0.dev", "bolt.new", "lovable.dev", "windsurf.com",
+    "supermaven.com", "warp.dev", "fig.io", "kite.com",
+    "midjourney.com", "stability.ai", "runwayml.com", "leonardo.ai",
+    "ideogram.ai", "krea.ai", "kling.ai", "luma-ai.com",
+    "characterai.com", "replika.com", "chai.ml", "venice.ai",
+    "huggingface.co", "wandb.ai", "modal.com", "lambda.ai",
+    "ollama.com", "lmstudio.ai", "vllm.ai", "tgi.huggingface.co",
+
+    # === Fintech (modest bounties, plenty of programs) ===
+    "wise.com", "revolut.com", "n26.com", "monzo.com", "starlingbank.com",
+    "klarna.com", "afterpay.com", "affirm.com", "sezzle.com",
+    "venmo.com", "cash.app", "zellepay.com",
+    "plaid.com", "modernmd.com", "checkr.com", "alloy.com",
+    "marqeta.com", "lithic.com", "treasuryprime.com", "unit.co",
+    "fundbox.com", "kabbage.com", "bluevine.com", "ramp.com",
+    "divvy.co", "expensify.com", "bill.com", "tipalti.com",
+    "remitly.com", "western-union.com", "moneygram.com",
+
+    # === Gaming + Esports (sometimes pay) ===
+    "riotgames.com", "ea.com", "activision.com", "blizzard.com",
+    "epicgames.com", "unrealengine.com", "unity.com", "supercell.com",
+    "rovio.com", "king.com", "zynga.com",
+    "valvesoftware.com", "steampowered.com", "steam.tv",
+    "playstation.com", "xbox.com", "nintendo.com",
+
+    # === Crypto exchanges / wallets (Immunefi territory) ===
+    "binance.com", "coinbase.com", "kraken.com", "ftx.com",
+    "bitstamp.net", "gate.io", "kucoin.com", "mexc.com",
+    "blockfi.com", "celsius.network", "nexo.com", "ledn.io",
+
+    # === Hosting / Cloud / DevTools (broad surface, often programs) ===
+    "vercel.com", "netlify.com", "render.com", "fly.io", "railway.app",
+    "vultr.com", "linode.com", "scaleway.com", "ovh.com", "hetzner.com",
+    "ovhcloud.com", "akamai.com", "fastly.com", "imperva.com", "f5.com",
+    "stripe.com", "square.com", "checkout.com", "adyen.com", "braintreepayments.com",
+
+    # === AI/ML/Data tools ===
+    "databricks.com", "snowflake.com", "fivetran.com", "airbyte.com",
+    "dbt.com", "preset.io", "looker.com", "metabase.com",
+    "n8n.io", "make.com", "zapier.com", "ifttt.com", "automate.io",
+
+    # === Open source SaaS / community projects ===
+    "appwrite.io", "pocketbase.io", "directus.io", "strapi.io",
+    "ghost.org", "discourse.org", "matrix.org",
+    "ory.sh", "auth0.com", "supabase.com", "keycloak.org",
 ]
 
 
@@ -243,6 +317,32 @@ def hackertarget_subdomains(domain: str, limit: int = 200) -> list[str]:
     return sorted(hosts)
 
 
+def wayback_subdomains(domain: str, limit: int = 200) -> list[str]:
+    """Wayback Machine CDX — historical/decayed subdomains. Highest takeover-find rate."""
+    try:
+        url = f"http://web.archive.org/cdx/search/cdx?url=*.{domain}/*&output=json&fl=original&collapse=urlkey&limit=5000"
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            data = json.loads(r.read())
+    except Exception:
+        return []
+    hosts = set()
+    for row in data[1:]:  # skip header
+        if not row: continue
+        try:
+            from urllib.parse import urlparse
+            host = urlparse(row[0]).hostname or ""
+            host = host.lower().lstrip("*.")
+            if host.endswith(f".{domain}") and "@" not in host:
+                parts = host.split(".")
+                if len(parts) <= 5:  # skip very deep
+                    hosts.add(host)
+        except Exception:
+            continue
+        if len(hosts) >= limit: break
+    return sorted(hosts)
+
+
 def certspotter_subdomains(domain: str, limit: int = 200) -> list[str]:
     """Certspotter CT log API (free, no auth needed)."""
     try:
@@ -264,11 +364,12 @@ def certspotter_subdomains(domain: str, limit: int = 200) -> list[str]:
 
 
 def get_subdomains(domain: str, limit: int = 200) -> list[str]:
-    """Try all 3 sources in parallel-ish, dedupe, return."""
+    """Try all 4 sources, dedupe, return."""
     all_hosts = set()
     for fn, label in [(crtsh_subdomains, "crt.sh"),
                        (hackertarget_subdomains, "hackertarget"),
-                       (certspotter_subdomains, "certspotter")]:
+                       (certspotter_subdomains, "certspotter"),
+                       (wayback_subdomains, "wayback")]:
         try:
             hits = fn(domain, limit)
             if hits:
