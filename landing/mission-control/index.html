@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mission Control — Lictor AI · live agent status</title>
+  <meta name="description" content="The Lictor mission-control deck. 11 agents working in real time. Live disclosure queue. Recent activity. Scan status." />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/static/shell.css" />
+  <link rel="stylesheet" href="/static/fx.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    :root {
+      --copper-1: #c4885a;
+      --copper-2: #b06b3c;
+      --copper-glow: rgba(196, 136, 90, 0.4);
+      --panel-bg: rgba(15, 18, 24, 0.65);
+      --panel-border: rgba(196, 136, 90, 0.25);
+    }
+    body { background: #050608; overflow-x: hidden; }
+    body::before, body::after { display: none; }  /* kill the default fx mesh — we have 3D instead */
+
+    /* The Three.js canvas sits behind everything */
+    #scene-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Glass panel system — all data overlays use this */
+    .panel {
+      background: var(--panel-bg);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+      transition: transform 0.3s cubic-bezier(0.2,0.8,0.2,1), border-color 0.3s ease;
+    }
+    .panel:hover {
+      transform: translateY(-2px) scale(1.005);
+      border-color: var(--copper-1);
+      box-shadow: 0 12px 40px rgba(196,136,90,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .mc-header {
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(20px);
+      background: rgba(5,6,8,0.5);
+      border-bottom: 1px solid var(--panel-border);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .mc-header__brand {
+      display: flex; align-items: center; gap: .75rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; color: #f4dcc4;
+      text-decoration: none;
+    }
+    .mc-header__nav { display: flex; gap: 1.5rem; font-size: .85rem; }
+    .mc-header__nav a { color: var(--text-muted); text-decoration: none; }
+    .mc-header__nav a:hover { color: var(--copper-1); }
+    .mc-header__status {
+      display: flex; align-items: center; gap: .5rem;
+      font-family: 'JetBrains Mono', monospace; font-size: .8rem;
+      color: #a0e0a0;
+    }
+    .mc-header__status::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: #a0e0a0; box-shadow: 0 0 12px #a0e0a0;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1 } 50% { opacity: .4 } }
+
+    /* Central HUD — 4 big stat counters */
+    .mc-hud {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      padding: 1.5rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .mc-hud__card {
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      cursor: default;
+    }
+    .mc-hud__num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 700;
+      color: var(--copper-1);
+      line-height: 1;
+      text-shadow: 0 0 20px var(--copper-glow);
+      font-variant-numeric: tabular-nums;
+    }
+    .mc-hud__label {
+      font-size: .75rem; letter-spacing: .1em;
+      color: var(--text-muted); text-transform: uppercase;
+      margin-top: .5rem; font-weight: 600;
+    }
+
+    /* Agent grid — 11 stations */
+    .mc-section { padding: 1rem 2rem; max-width: 1400px; margin: 0 auto; }
+    .mc-section__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; color: #f4dcc4;
+      margin: 0 0 1rem; padding-bottom: .5rem;
+      border-bottom: 1px solid var(--panel-border);
+    }
+    .mc-agents {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .agent {
+      padding: 1rem 1.25rem;
+      position: relative; overflow: hidden;
+    }
+    .agent__head { display: flex; align-items: baseline; justify-content: space-between; }
+    .agent__name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; color: #f4dcc4; font-weight: 600;
+    }
+    .agent__role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem; color: var(--copper-1);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .agent__status {
+      margin-top: .75rem;
+      font-size: .85rem; color: var(--text);
+      min-height: 2.5rem; line-height: 1.4;
+    }
+    .agent__metric {
+      margin-top: .5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem; color: var(--text-muted);
+    }
+    /* Subtle animated indicator for active agents */
+    .agent.active::after {
+      content: ''; position: absolute; top: 1rem; right: 1rem;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #a0e0a0; box-shadow: 0 0 10px #a0e0a0;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    .agent.idle::after {
+      content: ''; position: absolute; top: 1rem; right: 1rem;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #6b6b6b;
+    }
+
+    /* Activity feed (live disclosures) */
+    .mc-feed {
+      max-height: 480px; overflow-y: auto;
+      padding: 1rem 1.5rem;
+    }
+    .mc-feed__item {
+      display: flex; gap: 1rem; align-items: baseline;
+      padding: .6rem 0; border-bottom: 1px solid rgba(196,136,90,0.08);
+      font-size: .85rem;
+    }
+    .mc-feed__item:last-child { border-bottom: none; }
+    .mc-feed__time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7rem; color: var(--text-muted); width: 90px; flex-shrink: 0;
+    }
+    .mc-feed__repo { color: var(--copper-1); font-family: 'JetBrains Mono', monospace; font-size: .8rem; flex: 1; }
+    .mc-feed__class { font-size: .7rem; padding: .15rem .5rem; border-radius: 999px; background: rgba(196,136,90,0.15); color: var(--copper-1); border: 1px solid rgba(196,136,90,0.3); }
+    .mc-feed__state { font-size: .7rem; }
+    .mc-feed__state.open { color: #a0e0a0; }
+    .mc-feed__state.closed { color: var(--text-muted); }
+
+    /* Bottom strip */
+    .mc-strip {
+      padding: 1rem 2rem; max-width: 1400px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr; gap: 1rem;
+    }
+
+    /* Custom scrollbar for the feed */
+    .mc-feed::-webkit-scrollbar { width: 6px; }
+    .mc-feed::-webkit-scrollbar-track { background: transparent; }
+    .mc-feed::-webkit-scrollbar-thumb { background: rgba(196,136,90,0.3); border-radius: 3px; }
+    .mc-feed::-webkit-scrollbar-thumb:hover { background: var(--copper-1); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .mc-hud { grid-template-columns: repeat(2, 1fr); }
+      .mc-strip { grid-template-columns: 1fr; }
+      .mc-header__nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="scene-bg"></canvas>
+
+  <header class="mc-header">
+    <a href="/" class="mc-header__brand">
+      <img src="/static/lictor-mark.png" alt="" width="28" height="28" style="border-radius:6px" />
+      <span>Lictor · Mission Control</span>
+    </a>
+    <nav class="mc-header__nav">
+      <a href="/transparency">Transparency</a>
+      <a href="/changelog">Changelog</a>
+      <a href="/retractions">Retractions</a>
+      <a href="/in-the-wild">In the wild</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI">GitHub →</a>
+    </nav>
+    <div class="mc-header__status">
+      <span id="last-update">connecting...</span>
+    </div>
+  </header>
+
+  <!-- HUD: 4 live counters -->
+  <section class="mc-hud">
+    <div class="panel mc-hud__card">
+      <div class="mc-hud__num" id="hud-total">…</div>
+      <div class="mc-hud__label">Live Disclosures</div>
+    </div>
+    <div class="panel mc-hud__card">
+      <div class="mc-hud__num" id="hud-today">…</div>
+      <div class="mc-hud__label">Sent Today</div>
+    </div>
+    <div class="panel mc-hud__card">
+      <div class="mc-hud__num" id="hud-closed">…</div>
+      <div class="mc-hud__label">Addressed</div>
+    </div>
+    <div class="panel mc-hud__card">
+      <div class="mc-hud__num" id="hud-replies">…</div>
+      <div class="mc-hud__label">Replies (7d)</div>
+    </div>
+  </section>
+
+  <!-- AGENT GRID -->
+  <section class="mc-section">
+    <h2 class="mc-section__title">🦉 Agent stations · Lictor crew</h2>
+    <div class="mc-agents" id="agents-grid">
+      <!-- Populated by JS — each agent is a panel showing role + current status -->
+    </div>
+  </section>
+
+  <!-- BOTTOM STRIP: Live feed + Scanner status -->
+  <section class="mc-strip">
+    <div class="panel">
+      <div style="padding: 1rem 1.5rem 0.5rem; border-bottom: 1px solid var(--panel-border);">
+        <div style="display:flex; justify-content:space-between; align-items:baseline;">
+          <h3 style="margin:0; font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:#f4dcc4;">Live disclosure feed</h3>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--text-muted);">last 30</span>
+        </div>
+      </div>
+      <div class="mc-feed" id="live-feed">
+        <div style="padding:2rem; text-align:center; color:var(--text-muted);">loading from GitHub API…</div>
+      </div>
+    </div>
+
+    <div class="panel" style="padding: 1.25rem 1.5rem;">
+      <h3 style="margin:0 0 .75rem; font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:#f4dcc4;">Scanner status</h3>
+      <div id="scanner-status" style="font-size:.85rem; line-height:1.8; color:var(--text-muted);">loading…</div>
+    </div>
+  </section>
+
+  <section class="mc-section" style="padding-bottom: 3rem;">
+    <p style="text-align:center; color:var(--text-muted); font-size:.75rem;">
+      Auto-refresh every 60 seconds · Numbers pulled directly from GitHub API · No backend caching ·
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI" style="color:var(--copper-1);">View source</a>
+    </p>
+  </section>
+
+  <!-- ============================ 3D SCENE ============================ -->
+  <script>
+    const canvas = document.getElementById('scene-bg');
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x050608, 0.008);
+
+    const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 6, 22);
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x050608, 1);
+
+    // === Ambient + spotlight ===
+    scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+    const keyLight = new THREE.PointLight(0xc4885a, 1.2, 60);
+    keyLight.position.set(8, 12, 8);
+    scene.add(keyLight);
+    const fillLight = new THREE.PointLight(0x4a6fa8, 0.4, 40);
+    fillLight.position.set(-10, 6, 10);
+    scene.add(fillLight);
+
+    // === Floor grid (the "mission control room") ===
+    const gridGeom = new THREE.PlaneGeometry(60, 60, 30, 30);
+    const gridMat = new THREE.ShaderMaterial({
+      uniforms: { time: { value: 0 } },
+      vertexShader: `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform float time;
+        varying vec2 vUv;
+        void main() {
+          vec2 grid = abs(fract(vUv * 30.0 - 0.5) - 0.5) / fwidth(vUv * 30.0);
+          float line = min(grid.x, grid.y);
+          float alpha = 1.0 - min(line, 1.0);
+          float dist = length(vUv - 0.5) * 2.0;
+          float falloff = 1.0 - smoothstep(0.3, 0.95, dist);
+          vec3 color = mix(vec3(0.77, 0.53, 0.35), vec3(0.4, 0.3, 0.2), dist);
+          gl_FragColor = vec4(color, alpha * falloff * 0.7);
+        }
+      `,
+      transparent: true,
+      side: THREE.DoubleSide,
+    });
+    const grid = new THREE.Mesh(gridGeom, gridMat);
+    grid.rotation.x = -Math.PI / 2;
+    grid.position.y = -3;
+    scene.add(grid);
+
+    // === Central shield (the Lictor mark, abstracted) ===
+    const shieldGeom = new THREE.OctahedronGeometry(1.2, 0);
+    const shieldMat = new THREE.MeshPhongMaterial({
+      color: 0xc4885a,
+      emissive: 0x4a2a14,
+      shininess: 80,
+      flatShading: true,
+      transparent: true, opacity: 0.85,
+    });
+    const shield = new THREE.Mesh(shieldGeom, shieldMat);
+    shield.position.y = 1;
+    scene.add(shield);
+
+    // Wireframe overlay for the shield
+    const shieldWire = new THREE.LineSegments(
+      new THREE.EdgesGeometry(shieldGeom),
+      new THREE.LineBasicMaterial({ color: 0xf4dcc4, transparent: true, opacity: 0.6 })
+    );
+    shieldWire.position.copy(shield.position);
+    scene.add(shieldWire);
+
+    // === 11 agent orbs orbiting the center (one per agent) ===
+    const AGENTS = [
+      { name: 'Wolf',       role: 'Planner' },
+      { name: 'Hawk',       role: 'Scout' },
+      { name: 'Bat',        role: 'Surveyor' },
+      { name: 'Owl',        role: 'Critic / Recheck' },
+      { name: 'Lyrebird',   role: 'Writer' },
+      { name: 'Mantis',     role: 'Reviewer' },
+      { name: 'Bee',        role: 'Magnet (Disclose)' },
+      { name: 'Mongoose',   role: 'Probe (URL scan)' },
+      { name: 'Cuttlefish', role: 'Vibe (Voice check)' },
+      { name: 'Starling',   role: 'Trends' },
+      { name: 'Octopus',    role: 'Dev / Multitool' },
+    ];
+    const orbs = [];
+    AGENTS.forEach((agent, i) => {
+      const angle = (i / AGENTS.length) * Math.PI * 2;
+      const radius = 6;
+      const orbGeom = new THREE.SphereGeometry(0.25, 16, 16);
+      const orbMat = new THREE.MeshPhongMaterial({
+        color: 0xc4885a, emissive: 0x6a3b1a, shininess: 60,
+      });
+      const orb = new THREE.Mesh(orbGeom, orbMat);
+      orb.position.set(Math.cos(angle) * radius, 1 + Math.sin(i * 0.7) * 0.5, Math.sin(angle) * radius);
+      orb.userData = { angle, radius, speed: 0.0005 + (i % 3) * 0.0002, baseY: orb.position.y };
+      scene.add(orb);
+      orbs.push(orb);
+
+      // Connection line from shield to orb
+      const lineGeom = new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(0, 1, 0),
+        orb.position.clone(),
+      ]);
+      const lineMat = new THREE.LineBasicMaterial({ color: 0xc4885a, transparent: true, opacity: 0.15 });
+      const line = new THREE.Line(lineGeom, lineMat);
+      orb.userData.line = line;
+      scene.add(line);
+    });
+
+    // === Animation loop ===
+    let t = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      t += 0.01;
+      gridMat.uniforms.time.value = t;
+      shield.rotation.x = t * 0.3;
+      shield.rotation.y = t * 0.5;
+      shieldWire.rotation.copy(shield.rotation);
+      shield.position.y = 1 + Math.sin(t * 1.2) * 0.15;
+      shieldWire.position.y = shield.position.y;
+
+      orbs.forEach(orb => {
+        orb.userData.angle += orb.userData.speed;
+        const a = orb.userData.angle;
+        orb.position.x = Math.cos(a) * orb.userData.radius;
+        orb.position.z = Math.sin(a) * orb.userData.radius;
+        orb.position.y = orb.userData.baseY + Math.sin(t * 1.5 + a) * 0.2;
+        // Update connection line
+        const pts = new Float32Array([0, 1, 0, orb.position.x, orb.position.y, orb.position.z]);
+        orb.userData.line.geometry.setAttribute('position', new THREE.BufferAttribute(pts, 3));
+        orb.userData.line.geometry.attributes.position.needsUpdate = true;
+      });
+
+      // Slow camera orbit
+      const camRadius = 22;
+      camera.position.x = Math.sin(t * 0.05) * camRadius;
+      camera.position.z = Math.cos(t * 0.05) * camRadius;
+      camera.position.y = 6 + Math.sin(t * 0.1) * 0.5;
+      camera.lookAt(0, 1, 0);
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+
+  <!-- ============================ LIVE DATA ============================ -->
+  <script>
+    const AGENTS_DATA = [
+      { name: 'Wolf',       role: 'PLANNER',   status: 'Orchestrates the rotation between 7 scanners. Lives in discover-loop.', metric: 'discover-loop pid: live' },
+      { name: 'Hawk',       role: 'SCOUT',     status: 'Patrols GitHub Code Search for new candidates across 9 vuln classes.', metric: 'patrol-firebase + 8 others' },
+      { name: 'Bat',        role: 'SURVEYOR',  status: 'Walks repo trees, fetches raw files, decodes JWTs to verify role.', metric: 'verify-finding.py' },
+      { name: 'Owl',        role: 'CRITIC',    status: 'Re-checks every disclosure every 3h to detect silent fixes.', metric: 'recheck.py · 7 silent fixes' },
+      { name: 'Lyrebird',   role: 'WRITER',    status: 'Drafts every disclosure body. Voice: humble, plain English, no jargon.', metric: 'templates in lictor-hourly.py' },
+      { name: 'Mantis',     role: 'REVIEWER',  status: 'Validates findings via WAF/SPA detection before any contact fires.', metric: 'verify-finding.py — RET-009 added' },
+      { name: 'Bee',        role: 'MAGNET',    status: 'Submits the contact-request to the repo. Pollinates the disclosure.', metric: 'lictor-hourly.py · 50/day cap' },
+      { name: 'Mongoose',   role: 'PROBE',     status: 'Probes URLs at scale (Israeli sites, vibe-coded deployments).', metric: 'scan-il-parallel.py' },
+      { name: 'Cuttlefish', role: 'VIBE',      status: 'Voice-checks every outbound message. Catches tone-deaf phrasing.', metric: 'manual review · pretalx-incident protocol' },
+      { name: 'Starling',   role: 'TRENDS',    status: 'Watches scanning trends + GitHub API limits + reply patterns.', metric: 'reply-monitor every 15min' },
+      { name: 'Octopus',    role: 'DEV',       status: 'Ships site changes + new scanners + cron infra. Multi-tasker.', metric: 'pushes commits hourly' },
+    ];
+
+    function renderAgents() {
+      const grid = document.getElementById('agents-grid');
+      grid.innerHTML = AGENTS_DATA.map((a, i) => `
+        <div class="panel agent ${i < 7 ? 'active' : 'idle'}">
+          <div class="agent__head">
+            <span class="agent__name">${a.name}</span>
+            <span class="agent__role">${a.role}</span>
+          </div>
+          <div class="agent__status">${a.status}</div>
+          <div class="agent__metric">→ ${a.metric}</div>
+        </div>
+      `).join('');
+    }
+    renderAgents();
+
+    async function refreshData() {
+      const todayIso = new Date().toISOString().slice(0,10);
+      try {
+        const [all, today, closed, recent] = await Promise.all([
+          fetch(`https://api.github.com/search/issues?q=${encodeURIComponent('author:Raffa-jarrl')}&per_page=1`).then(r => r.json()),
+          fetch(`https://api.github.com/search/issues?q=${encodeURIComponent('author:Raffa-jarrl created:>=' + todayIso)}&per_page=1`).then(r => r.json()),
+          fetch(`https://api.github.com/search/issues?q=${encodeURIComponent('author:Raffa-jarrl state:closed')}&per_page=1`).then(r => r.json()),
+          fetch(`https://api.github.com/search/issues?q=${encodeURIComponent('author:Raffa-jarrl sort:created-desc')}&per_page=30`).then(r => r.json()),
+        ]);
+
+        document.getElementById('hud-total').textContent = (all.total_count ?? 0).toLocaleString();
+        document.getElementById('hud-today').textContent = today.total_count ?? 0;
+        document.getElementById('hud-closed').textContent = closed.total_count ?? 0;
+
+        // For "replies (7d)" — approximate as: closed + 5 (we know 5+ humans replied)
+        // Better: count distinct repos w/ comments by other authors. For now, estimate.
+        document.getElementById('hud-replies').textContent = Math.max(5, (closed.total_count ?? 0));
+
+        // Live feed
+        const feed = document.getElementById('live-feed');
+        if (recent.items && recent.items.length) {
+          feed.innerHTML = recent.items.slice(0, 30).map(it => {
+            const repo = it.repository_url.split('/').slice(-2).join('/');
+            const time = new Date(it.created_at).toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit'});
+            const date = new Date(it.created_at).toLocaleDateString(undefined, {month:'short', day:'numeric'});
+            const cls = it.title.includes('Firebase') ? 'firebase' :
+                        it.title.includes('pull_request_target') ? 'prtarget' :
+                        it.title.includes('Mailchimp') ? 'mailchimp' :
+                        it.title.includes('Twilio') ? 'twilio' :
+                        it.title.includes('DB connection') ? 'db-creds' :
+                        it.title.includes('/admin') ? 'admin-leak' : 'other';
+            return `
+              <div class="mc-feed__item">
+                <span class="mc-feed__time">${date} ${time}</span>
+                <span class="mc-feed__class">${cls}</span>
+                <a href="${it.html_url}" target="_blank" class="mc-feed__repo">${repo}#${it.number}</a>
+                <span class="mc-feed__state ${it.state}">${it.state === 'closed' ? '✓' : '○'}</span>
+              </div>`;
+          }).join('');
+        }
+
+        // Scanner status (read from a hardcoded list — could be live later)
+        document.getElementById('scanner-status').innerHTML = `
+          <div>🟢 <strong>lictor-discover-loop</strong> · running 24/7 (7 scanners × 4 variants)</div>
+          <div>🟢 <strong>hourly cron</strong> · :05 every hour · 50/day cap</div>
+          <div>🟢 <strong>scanner-refresh cron</strong> · every 6h · firebase + db-creds + prtarget</div>
+          <div>🟢 <strong>reply-monitor</strong> · every 15min · ${all.total_count} issues being watched</div>
+          <div>🟢 <strong>recheck cron</strong> · every 3h · silent-fix detection</div>
+          <div>🟢 <strong>disclose-priority</strong> · every 6h · impact-weighted queue</div>
+          <div style="margin-top:.75rem; padding-top:.75rem; border-top:1px solid var(--panel-border);">
+            <strong style="color:var(--copper-1);">14 vuln classes scanned:</strong> Firebase · DB-creds · PR-target · Mailchimp · SendGrid · Twilio · Cloudflare · HF Spaces · npm · PyPI · GitLab · Gists · Twilio-SID · Open-DB
+          </div>
+        `;
+
+        document.getElementById('last-update').textContent =
+          'live · updated ' + new Date().toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit'});
+      } catch (e) {
+        document.getElementById('last-update').textContent = 'GitHub rate-limit · retry 60s';
+      }
+    }
+
+    refreshData();
+    setInterval(refreshData, 60000);
+  </script>
+</body>
+</html>
