@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-05-19T10:15:00+00:00",
+  "fetched_at": "2026-05-19T12:15:00+00:00",
   "_status": "not-configured",
   "_help": "drop a token in ~/.lictor/cf-config.json and re-run scripts/cf-stats-fetch.py"
 }
