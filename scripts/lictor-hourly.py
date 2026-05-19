@@ -288,6 +288,37 @@ def repo_has_private_security_policy(repo):
     except Exception:
         pass
 
+    # 4. RET-009 v2 (2026-05-19): added in response to lachieh/tambo feedback.
+    #    Check if the repo has Private Vulnerability Reporting enabled — that's
+    #    a documented "report here, not on the public issue tracker" signal.
+    try:
+        url = f"https://api.github.com/repos/{repo}"
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=8) as r:
+            meta = json.loads(r.read())
+            sa = meta.get("security_and_analysis") or {}
+            pvr = sa.get("private_vulnerability_reporting") or {}
+            if pvr.get("status") == "enabled":
+                return True
+    except Exception:
+        pass
+
+    # 5. RET-009 v2: check README for "security" disclosure section mention
+    for branch in ("main", "master"):
+        try:
+            url = f"https://api.github.com/repos/{repo}/contents/README.md?ref={branch}"
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=6) as r:
+                import base64 as _b64
+                data = json.loads(r.read())
+                content = _b64.b64decode(data.get("content","").replace("\n","")).decode("utf-8","replace")
+                # Look for a "security" section with a contact email/link
+                if re.search(r'#+\s*Security\b', content, re.MULTILINE) and \
+                   re.search(r'(security@|/security|hackerone|bugcrowd|disclos)', content, re.IGNORECASE):
+                    return True
+        except Exception:
+            pass
+
     return False
 
 
