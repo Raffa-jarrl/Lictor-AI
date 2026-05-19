@@ -129,6 +129,13 @@ def main():
         '"private_key" "BEGIN PRIVATE KEY" extension:json',
         '"client_email" "private_key" extension:ts',
         '"client_email" "private_key" extension:py',
+        # New query angles — different parts of GH index
+        '"firebase-adminsdk" "private_key" extension:json',
+        '"iam.gserviceaccount.com" "BEGIN PRIVATE KEY"',
+        'filename:serviceAccountKey.json "private_key"',
+        'filename:service-account.json "private_key"',
+        '"GOOGLE_APPLICATION_CREDENTIALS" "BEGIN PRIVATE KEY"',
+        '"firebase" "BEGIN PRIVATE KEY" extension:env',
     ]
     seen, raw = set(), []
     print(f"[+] Searching GitHub Code Search for Firebase service-account fingerprints...")
