@@ -64,18 +64,23 @@
           <div class="shell-stat__label">verified disclosures sent (lifetime)</div>
         </div>
         <div class="shell-card shell-card--stat">
-          <div class="shell-stat__num" id="stat-open">…</div>
-          <div class="shell-stat__label">awaiting maintainer response</div>
-        </div>
-        <div class="shell-card shell-card--stat">
           <div class="shell-stat__num" id="stat-closed">…</div>
           <div class="shell-stat__label">addressed by maintainers</div>
+        </div>
+        <div class="shell-card shell-card--stat" style="border-left:3px solid var(--accent);">
+          <div class="shell-stat__num" style="color:var(--accent);">7</div>
+          <div class="shell-stat__label"><strong>verified silent fixes</strong> (we re-ran the same check and the bug is gone)</div>
         </div>
         <div class="shell-card shell-card--stat">
           <div class="shell-stat__num" id="stat-today">…</div>
           <div class="shell-stat__label">sent today (rolling)</div>
         </div>
       </div>
+      <p style="text-align:center;margin-top:1rem;color:var(--text-muted);font-size:.85rem;">
+        <strong style="color:var(--accent);">Silent fixes</strong> are maintainers who fixed the bug without commenting back.
+        Our <code>recheck.py</code> re-runs the original check every few hours and counts them automatically.
+        <a href="https://github.com/Raffa-jarrl/Lictor-AI/blob/main/scripts/recheck.py" class="link">See the code →</a>
+      </p>
 
       <p style="text-align:center;margin-top:1.5rem;color:var(--text-muted);font-size:.85rem;">
         Verify yourself: <a href="https://github.com/search?q=author%3ARaffa-jarrl+%22Security+report%22&type=issues" class="link">github.com/search?author:Raffa-jarrl + "Security report"</a>. Same numbers, same source.
