@@ -58,3 +58,4 @@ docs/launch/patrol-firebase-private*.md
 docs/launch/patrol-db-creds-private*.md
 docs/launch/patrol-supabase-5y-private*.md
 docs/launch/patrol-bot-tokens-private*.md
+docs/launch/patrol-stripe-*-private.md

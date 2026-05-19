@@ -1,6 +1,6 @@
 # Patrol — PyPI package secret exposure (PRIVATE)
 
-**Scanned at:** 2026-05-19 09:42 UTC
+**Scanned at:** 2026-05-19 11:41 UTC
 **Packages inspected:** 168
 **Confirmed exposures:** 5
 

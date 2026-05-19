@@ -67,6 +67,23 @@ Either way — thank you for the work you do on this repo. 🙏
 
 — Raffa · Lictor (open-source, Apache 2.0)""",
     },
+    "stripe": {
+        "private_md": f"docs/launch/patrol-stripe-{datetime.now().strftime('%Y-%m-%d')}-private.md",
+        "title": "Security finding — possible Stripe LIVE secret key in source (details on request)",
+        "body": """Hi 👋
+
+Automated scan from [Lictor](https://lictor-ai.com) flagged a pattern that **looks like** a Stripe LIVE secret key (`sk_live_…`) in your public repo. I verified the pattern matches; I did **not** verify the key is currently active against Stripe's API.
+
+- **What I saw:** an `sk_live_` token in an `.env`-style file, surrounded by what looks like real configuration (not placeholders).
+- **Why it might matter:** if the key is live, anyone reading the repo can issue refunds, view customer data, create payouts. GitHub partner-scanning auto-revokes some leaked Stripe keys but coverage isn't 100%.
+- **What to check:** the file the scan flagged. Reply here (or email **Raffa@Lictor-AI.com**) and I'll send path + line privately. If it's already rotated / test data / sample, just say so and I'll close out.
+
+**Fastest fix if real:** Dashboard → Developers → API keys → roll the live secret key (immediate revocation), then `git filter-repo` to scrub history.
+
+Either way — thank you for the work you do on this repo. 🙏
+
+— Raffa · Lictor (open-source, Apache 2.0)""",
+    },
     "prtarget": {
         "private_md": "docs/launch/patrol-prtarget-private-2026-05-17.md",
         "title": "Security finding — possible pull_request_target pattern (details on request)",
@@ -85,7 +102,7 @@ Either way — thank you for the work you do on this repo. 🙏
 }
 
 # Rotation order — round-robins each cycle
-ROTATION = ["firebase", "db-creds", "prtarget"]
+ROTATION = ["stripe", "firebase", "db-creds", "prtarget"]
 
 # Repos where I sent a PVR (private advisory) — won't show in public-issue search
 PVR_SENT = {
