@@ -1,3 +1,4 @@
 {"timestamp": "2026-05-17T05:31:13.506611+00:00", "scanned_n": 100, "by_severity": {"critical": 252, "high": 573, "medium": 64, "low": 0, "info": 0}, "by_surface": {"mcp": 210, "ci-cd": 602, "cli": 72, "browser-ext": 5}}
 {"timestamp": "2026-05-17T06:45:21.549432+00:00", "scanned_n": 109, "by_severity": {"critical": 19, "high": 32, "medium": 35, "low": 0, "info": 0}, "by_surface": {"ci-cd": 32, "browser-ext": 54}}
 {"timestamp": "2026-05-17T06:52:21.917060+00:00", "scanned_n": 60, "by_severity": {"critical": 17, "high": 115, "medium": 24, "low": 0, "info": 0}, "by_surface": {"ci-cd": 21, "mcp": 10, "cli": 99, "browser-ext": 26}}
+{"timestamp": "2026-05-17T07:24:29.576804+00:00", "scanned_n": 47, "by_severity": {"critical": 7, "high": 28, "medium": 24, "low": 0, "info": 0}, "by_surface": {"ci-cd": 28, "browser-ext": 31}}

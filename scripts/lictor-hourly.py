@@ -40,52 +40,47 @@ CLASSES = {
     "firebase": {
         "private_md": "docs/launch/patrol-firebase-private.md",
         "title": "Security finding — possible Firebase service-account in source (details on request)",
-        "body": """Hi —
+        "body": """Hi 👋
 
-Automated security scan flagged what appears to be a Firebase / Google service-account JSON in your public repo. I'm not posting details here for responsible-disclosure reasons.
+Automated scan from [Lictor](https://lictor-ai.com) flagged a pattern that **looks like** a Firebase / Google service-account JSON in your public repo. I verified the pattern matches; I did **not** verify exploitability against your live project.
 
-Please contact me at **Raffa@Lictor-AI.com** (or DM via GitHub) and I'll send the exact file path + line, plus the JWT payload decode confirming what the key grants access to.
+- **What I saw:** a JSON block with `"type":"service_account"` + `private_key_id` shape.
+- **Why it might matter:** if real, this key grants full GCP/Firebase project access until manually revoked.
+- **What to check:** the file the scan flagged — reply here (or email **Raffa@Lictor-AI.com**) and I'll send the exact path + line privately. If it's a sample/test/already-revoked, just say so and I'll close out.
 
-**Time-sensitive**: service-account keys grant full GCP/Firebase project access until manually revoked.
+Either way — thank you for the work you do on this repo. 🙏
 
-A note: this came from an automated scan flagging a *pattern*, not a verified live exploit. If we're wrong (sample key, test fixture, already-revoked), please reply and we'll close out. No blame intended.
-
-— Raffa
-Lictor AI · https://lictorai.com · github.com/Raffa-jarrl/Lictor-AI""",
+— Raffa · Lictor (open-source, Apache 2.0)""",
     },
     "db-creds": {
         "private_md": "docs/launch/patrol-db-creds-private.md",
         "title": "Security finding — possible DB connection string with credentials (details on request)",
-        "body": """Hi —
+        "body": """Hi 👋
 
-Automated security scan flagged what appears to be a database connection string with embedded credentials committed to your public source.
+Automated scan from [Lictor](https://lictor-ai.com) flagged a pattern that **looks like** a database connection string with embedded credentials in your public source. I verified the pattern matches; I did **not** verify it's a live production DB.
 
-I'm not posting details here for responsible-disclosure reasons.
+- **What I saw:** a `postgres://`/`mysql://`/`mongodb://`-style URI with non-placeholder credentials.
+- **Why it might matter:** if the DB is reachable from the internet and the password is real, anyone reading the repo has read/write access.
+- **What to check:** the file the scan flagged. Reply here (or email **Raffa@Lictor-AI.com**) and I'll send path + line + redacted excerpt. If it's a test/sandbox/already-rotated, just say so and I'll close out.
 
-Please contact me at **Raffa@Lictor-AI.com** (or DM via GitHub) and I'll send the exact file path + line + redacted excerpt so you can verify and rotate.
+Either way — thank you for the work you do on this repo. 🙏
 
-If real, the fix is two steps:
-1. Rotate the DB password (and any other credential in that file)
-2. `git filter-repo` to scrub the credential from repo history
-
-A note: this came from an automated scan flagging a *pattern*, not a verified live exploit. If we're wrong (test/sandbox DB, public-by-design, already-rotated), reply and we'll close out. No blame intended.
-
-— Raffa
-Lictor AI · https://lictorai.com""",
+— Raffa · Lictor (open-source, Apache 2.0)""",
     },
     "prtarget": {
         "private_md": "docs/launch/patrol-prtarget-private-2026-05-17.md",
         "title": "Security finding — possible pull_request_target pattern (details on request)",
-        "body": """Hi —
+        "body": """Hi 👋
 
-Automated security scan flagged a `pull_request_target` workflow in your repo that checks out the PR's head SHA / ref. This is the *pattern* of the classic GitHub Actions RCE — but whether it's actually exploitable depends on your guards (label gates, approved-ci checks, head-vs-base ownership checks, etc).
+Automated scan from [Lictor](https://lictor-ai.com) flagged a `pull_request_target` workflow that checks out the PR head SHA/ref. That's the *pattern* of the classic GitHub Actions RCE — but exploitability depends on your guards. I verified the pattern, **not** exploitability.
 
-I'm not claiming we verified exploitability — we verified the pattern exists. Please review your workflow's guards and confirm. If they're sufficient, this is a non-issue and you can close.
+- **What I saw:** `pull_request_target` + a checkout step referencing the head ref.
+- **Why it might matter:** without label gates / approved-ci / fork-PR filters, fork PRs can run with write-scoped tokens.
+- **What to check:** the workflow file the scan flagged. If your guards are sufficient (label requirement, dependabot-only, head.repo.full_name check, etc.), this is a non-issue — close out and a quick note helps me tune the scanner. For the exact file/line, reply here or email **Raffa@Lictor-AI.com**.
 
-If you'd like the exact workflow file + line we flagged, reply here or email **Raffa@Lictor-AI.com**.
+Either way — thank you for the work you do on this repo. 🙏
 
-— Raffa
-Lictor AI · https://lictorai.com""",
+— Raffa · Lictor (open-source, Apache 2.0)""",
     },
 }
 
