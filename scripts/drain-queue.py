@@ -26,34 +26,34 @@ PVR_SENT = {
 CLASSES = {
     "firebase": {
         "md_glob": "docs/launch/patrol-firebase-private.md",
-        "title": "Security report — possible Firebase service-account exposure (please contact privately)",
+        "title": "Security finding — possible Firebase service-account in source (details on request)",
         "body_path": "/tmp/contact-body.md",
     },
     "db-creds": {
         "md_glob": "docs/launch/patrol-db-creds-private.md",
-        "title": "Security report — possible DB connection string with credentials (please contact privately)",
+        "title": "Security finding — possible DB connection string with credentials (details on request)",
         "body_path": "/tmp/db-body.md",
     },
     "prtarget": {
         "md_glob": "docs/launch/patrol-prtarget-private-*.md",
-        "title": "Security report — possible pull_request_target + checkout-head RCE (please contact privately)",
+        "title": "Security finding — possible pull_request_target pattern (details on request)",
         "body_path": "/tmp/prtarget-body.md",
     },
     "saas-mailchimp": {
         "md_glob": "docs/launch/patrol-saas-*-private.md",
-        "title": "Security report — possible Mailchimp API key in committed source (please contact privately)",
+        "title": "Security finding — possible Mailchimp API key in source (details on request)",
         "body_path": "/tmp/saas-mc-body.md",
         "vendor_filter": "mailchimp",
     },
     "saas-sendgrid": {
         "md_glob": "docs/launch/patrol-saas-*-private.md",
-        "title": "Security report — possible SendGrid API key in committed source (please contact privately)",
+        "title": "Security finding — possible SendGrid API key in source (details on request)",
         "body_path": "/tmp/saas-sg-body.md",
         "vendor_filter": "sendgrid",
     },
     "saas-twilio": {
         "md_glob": "docs/launch/patrol-saas-*-private.md",
-        "title": "Security report — possible Twilio credentials in committed source (please contact privately)",
+        "title": "Security finding — possible Twilio credentials in source (details on request)",
         "body_path": "/tmp/saas-tw-body.md",
         "vendor_filter": "twilio-token",
     },
