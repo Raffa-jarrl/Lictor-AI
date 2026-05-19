@@ -68,12 +68,102 @@
       </p>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:0.5rem">
         <a href="/scan" class="shell-btn shell-btn--primary">Scan a URL →</a>
-        <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="shell-btn shell-btn--ghost">Star on GitHub</a>
+        <a href="#install" class="shell-btn shell-btn--ghost">Install →</a>
       </div>
       <p style="font-size:0.85rem;color:var(--text-muted);margin:0;">
         Apache 2.0 · No signup · No telemetry · Built by a 20-year cybersec engineer
       </p>
     </section>
+
+    <!-- STAR MAGNET — first 100 supporters wall + live count + one-click star -->
+    <section id="founders" class="shell-section" style="text-align:center;">
+      <div style="max-width:780px;margin:0 auto;background:linear-gradient(180deg, rgba(196,136,90,0.08), rgba(196,136,90,0.02));border:1px solid rgba(196,136,90,0.25);border-radius:18px;padding:2.5rem 2rem;position:relative;overflow:hidden;">
+        <!-- copper glow accent -->
+        <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:200px;height:80px;background:radial-gradient(ellipse,rgba(196,136,90,0.4),transparent 70%);filter:blur(20px);pointer-events:none;"></div>
+
+        <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.15em;color:var(--accent);text-transform:uppercase;margin-bottom:.75rem;">⭐ Founding supporters · join the wall</div>
+
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.6rem);margin:0 0 .5rem;line-height:1.1;color:var(--text);">
+          Be one of the first <span id="founders-target" class="fx-gradient-text">100</span> people to back Lictor.
+        </h2>
+        <p style="color:var(--text-muted);font-size:1rem;line-height:1.5;max-width:560px;margin:0 auto 1.5rem;">
+          Free open-source projects live or die by their first 100 stars. Click once. Your handle goes on the wall below — permanently — as a founding supporter.
+        </p>
+
+        <!-- Live counter -->
+        <div style="display:flex;justify-content:center;align-items:baseline;gap:.6rem;margin:1.25rem 0 1.75rem;">
+          <span id="stars-current" style="font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:700;color:var(--accent);line-height:1;text-shadow:0 0 30px rgba(196,136,90,0.4);font-variant-numeric:tabular-nums;">…</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--text-muted);">/ <span id="founders-target-2">100</span></span>
+        </div>
+
+        <!-- Progress bar -->
+        <div style="max-width:400px;margin:0 auto 1.5rem;background:rgba(196,136,90,0.1);border-radius:999px;height:8px;overflow:hidden;border:1px solid rgba(196,136,90,0.2);">
+          <div id="stars-progress" style="background:linear-gradient(90deg,var(--accent),#f4dcc4);height:100%;width:1%;border-radius:999px;transition:width 1s cubic-bezier(0.16,1,0.3,1);box-shadow:0 0 12px var(--accent);"></div>
+        </div>
+
+        <!-- The big star button -->
+        <a href="https://github.com/Raffa-jarrl/Lictor-AI" target="_blank" rel="noopener" id="star-cta"
+           style="display:inline-flex;align-items:center;gap:.6rem;background:var(--accent);color:#0d0e12;padding:.95rem 2rem;border-radius:999px;text-decoration:none;font-weight:700;font-size:1rem;box-shadow:0 8px 24px rgba(196,136,90,0.4);transition:transform .2s ease, box-shadow .2s ease;">
+          <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" style="display:inline-block;"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg>
+          <span id="star-cta-text">Star on GitHub — 4 seconds</span>
+        </a>
+
+        <p style="font-size:.8rem;color:var(--text-muted);margin:1rem 0 0;">
+          Takes 4 seconds. Costs nothing. <strong style="color:var(--text);">It's the difference between "interesting project" and "trusted by thousands."</strong>
+        </p>
+      </div>
+
+      <!-- Wall of founding supporters -->
+      <div style="max-width:1000px;margin:2.5rem auto 0;">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin:0 0 1rem;color:var(--text-muted);">Founding supporters · the wall</h3>
+        <div id="supporters-wall" style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;min-height:60px;">
+          <span style="font-size:.85rem;color:var(--text-muted);">loading from GitHub…</span>
+        </div>
+        <p style="font-size:.75rem;color:var(--text-muted);margin-top:1rem;">
+          Live from GitHub stargazers API · no auth needed · <a href="https://github.com/Raffa-jarrl/Lictor-AI/stargazers" class="link">full list →</a>
+        </p>
+      </div>
+    </section>
+
+    <script>
+    // Star magnet — fetch live count + supporters wall
+    (async function() {
+      try {
+        const repo = await fetch('https://api.github.com/repos/Raffa-jarrl/Lictor-AI').then(r => r.json());
+        const stars = repo.stargazers_count || 0;
+        // Dynamic target: 100 → 250 → 1000 once we hit each milestone
+        const target = stars >= 1000 ? 10000 : stars >= 250 ? 1000 : stars >= 100 ? 250 : 100;
+        document.getElementById('stars-current').textContent = stars.toLocaleString();
+        document.getElementById('founders-target').textContent = target.toLocaleString();
+        document.getElementById('founders-target-2').textContent = target.toLocaleString();
+        const pct = Math.max(1, Math.min(100, (stars / target) * 100));
+        // animate the bar after a tick so the transition runs
+        setTimeout(() => { document.getElementById('stars-progress').style.width = pct + '%'; }, 100);
+        // Update button text to feel personal
+        const btn = document.getElementById('star-cta-text');
+        if (stars > 0) {
+          btn.textContent = `Star — be #${stars + 1}`;
+        }
+      } catch(e) {
+        document.getElementById('stars-current').textContent = '—';
+      }
+
+      // Wall of stargazers
+      try {
+        const gazers = await fetch('https://api.github.com/repos/Raffa-jarrl/Lictor-AI/stargazers?per_page=100').then(r => r.json());
+        const wall = document.getElementById('supporters-wall');
+        if (gazers.length === 0) {
+          wall.innerHTML = '<span style="font-size:.85rem;color:var(--text-muted);font-style:italic;">No supporters yet — be the first ⭐</span>';
+        } else {
+          wall.innerHTML = gazers.map(u => `
+            <a href="${u.html_url}" target="_blank" rel="noopener" title="@${u.login}" style="text-decoration:none;">
+              <img src="${u.avatar_url}&s=48" width="36" height="36" style="border-radius:50%;border:1px solid rgba(196,136,90,0.3);transition:transform .2s, border-color .2s;" onmouseover="this.style.transform='scale(1.12)';this.style.borderColor='var(--accent)';" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(196,136,90,0.3)';" />
+            </a>
+          `).join('');
+        }
+      } catch(e) {}
+    })();
+    </script>
 
     <!-- WEDGE — THE CLAUDE CODE SKILL -->
     <section id="wedge" class="suite">
