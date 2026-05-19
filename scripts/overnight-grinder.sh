@@ -12,10 +12,18 @@ echo "" >> $LOG
 echo "================================================================" >> $LOG
 echo "[$(ts)] Overnight grinder tick" >> $LOG
 
-# 1. Subdomain takeover scan (the highest-EV one)
-echo "[$(ts)] Starting subdomain-takeover scan..." >> $LOG
+# 0. Refresh bounty corpus from arkadiyt/bounty-targets-data (daily)
+hour=$(date +%H)
+if [ "$hour" = "06" ] || [ ! -f ~/.lictor/bounty-corpus-paid.txt ]; then
+  echo "[$(ts)] Refreshing bounty corpus..." >> $LOG
+  python3 /Users/raffa/Lictor/scripts/build-bounty-corpus.py >> ~/.lictor/corpus-build.log 2>&1
+fi
+
+# 1. Subdomain takeover scan against the 2,143 paid-program corpus
+echo "[$(ts)] Starting subdomain-takeover scan (PAID corpus)..." >> $LOG
 python3 -u /Users/raffa/Lictor/scripts/patrol-subdomain-takeover.py \
-  --max-domains 250 --max-subs-per-domain 200 \
+  --corpus ~/.lictor/bounty-corpus-paid.txt \
+  --max-domains 2200 --max-subs-per-domain 200 \
   >> ~/.lictor/takeover.log 2>&1
 echo "[$(ts)] Takeover scan done" >> $LOG
 

@@ -456,7 +456,18 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--max-domains", type=int, default=10, help="how many bounty domains to scan this run")
     ap.add_argument("--max-subs-per-domain", type=int, default=100)
+    ap.add_argument("--corpus", default=None,
+                    help="Path to a newline-separated apex-domain corpus file. "
+                         "If given, overrides BOUNTY_DOMAINS. Use ~/.lictor/bounty-corpus-paid.txt "
+                         "for the 2,143 paid-program corpus extracted from H1+BC+Intigriti+YWH.")
     args = ap.parse_args()
+    # Override target list if a corpus file is given
+    if args.corpus:
+        corpus_path = Path(args.corpus).expanduser()
+        if corpus_path.exists():
+            global BOUNTY_DOMAINS
+            BOUNTY_DOMAINS = [l.strip() for l in corpus_path.read_text().splitlines() if l.strip()]
+            print(f"[+] Loaded {len(BOUNTY_DOMAINS)} domains from {corpus_path}", flush=True)
 
     seen = load_ledger()
     print(f"[+] ledger: {len(seen)} prior subdomains scanned")
