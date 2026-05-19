@@ -482,21 +482,24 @@ def main():
         print(f"  {len(subs)} total, {len(new_subs)} new (after ledger dedup)")
         if not new_subs: continue
 
-        for si, sub in enumerate(new_subs[:args.max_subs_per_domain], 1):
-            try:
-                t = check_one(sub, company)
+        # Parallelize per-subdomain checks (5-10x speedup)
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+        batch = new_subs[:args.max_subs_per_domain]
+        with ThreadPoolExecutor(max_workers=30) as pool:
+            futures = {pool.submit(check_one, sub, company): sub for sub in batch}
+            for fut in as_completed(futures):
+                sub = futures[fut]
                 seen.add(sub)
+                try:
+                    t = fut.result(timeout=15)
+                except Exception:
+                    t = None
                 if t:
-                    print(f"  🔴🔴 TAKEOVER  {sub}  →  {t.cname}  ({t.provider})")
+                    print(f"  🔴🔴 TAKEOVER  {sub}  →  {t.cname}  ({t.provider})", flush=True)
                     append_ledger(t)
                     confirmed.append(t)
-                else:
-                    pass  # too noisy to print each
-            except Exception as e:
-                pass
-            time.sleep(0.15)  # be polite to DNS
-
-        time.sleep(1.5)
+        # short pause between domains (less needed now since we're throttled by enum APIs)
+        time.sleep(0.5)
 
     # Summary
     print(f"\n[+] scan complete: {len(confirmed)} NEW takeovers confirmed")
