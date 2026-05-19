@@ -106,6 +106,35 @@ def extract_candidates(md_path, vendor_filter=None):
             yield repo, pushed, int(stars)
 
 
+def has_private_security_channel(repo):
+    """RET-009 pre-flight: skip repos with declared private security channel
+    (SECURITY.md / security.txt / /community/profile)."""
+    headers = {"Authorization": f"Bearer {TOKEN}", "Accept": "application/vnd.github+json",
+               "User-Agent": "lictor-drain/0.1"}
+    # 1. SECURITY.md on default branch
+    for branch in ("main", "master"):
+        try:
+            req = urllib.request.Request(
+                f"https://api.github.com/repos/{repo}/contents/SECURITY.md?ref={branch}",
+                headers=headers)
+            with urllib.request.urlopen(req, timeout=8) as r:
+                if r.status == 200: return True
+        except urllib.error.HTTPError as e:
+            if e.code != 404: pass
+        except Exception:
+            pass
+    # 2. /community/profile says a security file exists
+    try:
+        req = urllib.request.Request(
+            f"https://api.github.com/repos/{repo}/community/profile", headers=headers)
+        with urllib.request.urlopen(req, timeout=8) as r:
+            files = json.loads(r.read()).get("files") or {}
+            if files.get("security") is not None: return True
+    except Exception:
+        pass
+    return False
+
+
 def submit(repo, title, body):
     url = f"https://api.github.com/repos/{repo}/issues"
     data = json.dumps({"title": title, "body": body}).encode()
@@ -170,9 +199,15 @@ def main():
             print(f"  DRY  [{cls_name:18s}] {pushed} ★{stars:4d} {repo}", flush=True)
         return
 
-    ok = fail = 0
+    ok = fail = deferred = 0
     by_class = {}
     for i, (repo, title, body, cls_name, pushed, stars) in enumerate(todo, 1):
+        # RET-009 pre-flight: skip repos with private security channel
+        if has_private_security_channel(repo):
+            deferred += 1
+            print(f"  [{i:2d}/{len(todo)}] 🔒 [{cls_name:18s}] {repo} → DEFER (has private channel)", flush=True)
+            time.sleep(0.5)
+            continue
         url, err = submit(repo, title, body)
         if url:
             ok += 1
@@ -184,7 +219,7 @@ def main():
         time.sleep(1.5)
 
     print(f"\n=== drain DONE ===")
-    print(f"ok: {ok}  fail: {fail}")
+    print(f"ok: {ok}  fail: {fail}  deferred (private channel): {deferred}")
     for cls, n in sorted(by_class.items(), key=lambda x: -x[1]):
         print(f"  {cls:20s} {n}")
 
