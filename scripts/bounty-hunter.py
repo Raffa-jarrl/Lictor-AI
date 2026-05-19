@@ -76,6 +76,31 @@ CORPUS = {
     "yandex":     {"orgs": ["yandex"],                                                      "channel": "hackerone", "url": "https://hackerone.com/yandex",       "min": 100,   "max": 5000},
     "ibm":        {"orgs": ["IBM"],                                                         "channel": "hackerone", "url": "https://hackerone.com/ibm",          "min": 100,   "max": 5000},
     "salesforce": {"orgs": ["salesforce", "forcedotcom"],                                  "channel": "hackerone", "url": "https://hackerone.com/salesforce",   "min": 100,   "max": 10000},
+    # Tier 4 — mid-tier, less-scanned competitive landscape (where the real opportunity is)
+    "sentry":      {"orgs": ["getsentry"],                                                  "channel": "hackerone", "url": "https://hackerone.com/sentry",       "min": 100,   "max": 5000},
+    "posthog":     {"orgs": ["PostHog"],                                                    "channel": "direct",    "url": "https://posthog.com/security",       "min": 100,   "max": 5000},
+    "plaid":       {"orgs": ["plaid"],                                                      "channel": "bugcrowd",  "url": "https://bugcrowd.com/plaid",         "min": 250,   "max": 10000},
+    "algolia":     {"orgs": ["algolia"],                                                    "channel": "direct",    "url": "https://www.algolia.com/policies/security/", "min": 100, "max": 5000},
+    "calcom":      {"orgs": ["calcom"],                                                     "channel": "direct",    "url": "https://cal.com/security",           "min": 100,   "max": 2500},
+    "documenso":   {"orgs": ["documenso"],                                                  "channel": "direct",    "url": "https://documenso.com/security",     "min": 100,   "max": 2500},
+    "trigger":     {"orgs": ["triggerdotdev"],                                              "channel": "direct",    "url": "https://trigger.dev/security",       "min": 100,   "max": 2500},
+    "inngest":     {"orgs": ["inngest"],                                                    "channel": "direct",    "url": "https://www.inngest.com/security",   "min": 100,   "max": 2500},
+    "linear":      {"orgs": ["linear"],                                                     "channel": "direct",    "url": "https://linear.app/security",        "min": 100,   "max": 5000},
+    "figma":       {"orgs": ["figma"],                                                      "channel": "hackerone", "url": "https://hackerone.com/figma",        "min": 250,   "max": 10000},
+    "notion":      {"orgs": ["makenotion"],                                                 "channel": "direct",    "url": "https://www.notion.so/security",     "min": 100,   "max": 5000},
+    "brex":        {"orgs": ["brexhq"],                                                     "channel": "direct",    "url": "https://www.brex.com/security",      "min": 100,   "max": 5000},
+    "mercury":     {"orgs": ["mercury-fi"],                                                 "channel": "direct",    "url": "https://mercury.com/security",       "min": 100,   "max": 5000},
+    "ramp":        {"orgs": ["ramp"],                                                       "channel": "direct",    "url": "https://www.ramp.com/security",      "min": 100,   "max": 5000},
+    "buildkite":   {"orgs": ["buildkite"],                                                  "channel": "direct",    "url": "https://buildkite.com/security",     "min": 100,   "max": 5000},
+    "circleci":    {"orgs": ["circleci"],                                                   "channel": "hackerone", "url": "https://hackerone.com/circleci",     "min": 100,   "max": 5000},
+    "jfrog":       {"orgs": ["jfrog"],                                                      "channel": "direct",    "url": "https://jfrog.com/security",         "min": 100,   "max": 5000},
+    "sonatype":    {"orgs": ["sonatype"],                                                   "channel": "direct",    "url": "https://www.sonatype.com/security",  "min": 100,   "max": 5000},
+    "anthropic":   {"orgs": ["anthropics", "anthropic"],                                    "channel": "direct",    "url": "https://www.anthropic.com/responsible-disclosure-policy", "min": 100, "max": 25000},
+    "openai":      {"orgs": ["openai"],                                                     "channel": "bugcrowd",  "url": "https://bugcrowd.com/openai",        "min": 200,   "max": 20000},
+    "langchain":   {"orgs": ["langchain-ai", "langchain"],                                 "channel": "direct",    "url": "https://www.langchain.com/security", "min": 100,   "max": 2500},
+    "pinecone":    {"orgs": ["pinecone-io"],                                                "channel": "direct",    "url": "https://www.pinecone.io/security",   "min": 100,   "max": 2500},
+    "weaviate":    {"orgs": ["weaviate"],                                                   "channel": "direct",    "url": "https://weaviate.io/security",       "min": 100,   "max": 2500},
+    "qdrant":      {"orgs": ["qdrant"],                                                     "channel": "direct",    "url": "https://qdrant.tech/security",       "min": 100,   "max": 2500},
 }
 
 # =================================================================
@@ -130,6 +155,28 @@ PATTERN_DEFS = {
         "must_match":    re.compile(r'JWT_SECRET\s*=\s*["\']?([A-Za-z0-9_!@#$%^&*+/=-]{20,200})'),
         "exploit_check": "jwt_strength",
         "payout":        (100, 1000),
+    },
+    # NEW: GitHub Actions expression injection (CWE-94, real-world payouts on H1)
+    # github.event.* values flow into `run:` blocks unescaped — attacker controls fork PR title/body → RCE
+    "gha_expr_injection": {
+        "search_query":  '"github.event.pull_request.title" OR "github.event.issue.title" OR "github.event.comment.body" extension:yml',
+        "must_match":    re.compile(r'run:\s*[|>].*?\$\{\{\s*github\.event\.(pull_request\.(title|body|head\.ref)|issue\.title|issue\.body|comment\.body|discussion\.body)', re.DOTALL),
+        "exploit_check": "gha_expr_injection",
+        "payout":        (500, 10000),
+    },
+    # NEW: actions/github-script with untrusted input — script: blocks that interpolate user-controlled github.event
+    "gha_script_injection": {
+        "search_query":  '"actions/github-script" "github.event.pull_request" extension:yml',
+        "must_match":    re.compile(r'uses:\s*actions/github-script.*?script:\s*[|>].*?\$\{\{\s*github\.event\.(pull_request|issue|comment)', re.DOTALL),
+        "exploit_check": "gha_expr_injection",
+        "payout":        (500, 10000),
+    },
+    # NEW: GITHUB_TOKEN exfiltration via curl/wget to attacker-controlled URL
+    "token_exfil": {
+        "search_query":  '"GITHUB_TOKEN" "curl" extension:yml',
+        "must_match":    re.compile(r'(curl|wget).*\$\{\{\s*secrets\.(GITHUB_TOKEN|GH_TOKEN)\s*\}\}.*\$\{\{\s*github\.event\.', re.DOTALL),
+        "exploit_check": "token_exfil",
+        "payout":        (500, 5000),
     },
 }
 
@@ -256,10 +303,39 @@ def check_jwt_strength(content: str, path: str) -> tuple[int, str]:
     return max(0, min(100, score)), "; ".join(reasons)
 
 
+def check_gha_expr_injection(content: str, path: str) -> tuple[int, str]:
+    """GHA expression injection: github.event.* values in run:/script: blocks."""
+    score = 60  # baseline — this pattern is genuinely dangerous
+    reasons = ["github.event.* in run:/script: block"]
+    # MORE DANGEROUS: pull_request_target / issue_comment triggers (write perms on fork PRs)
+    if re.search(r'on:.*?(pull_request_target|issue_comment|discussion)', content, re.DOTALL):
+        score += 25; reasons.append("PRT/comment trigger (write-scope on fork)")
+    # LESS DANGEROUS: pull_request only (read-only on fork)
+    if re.search(r'^\s*on:\s*\[?\s*pull_request\s*\]?\s*$', content, re.MULTILINE):
+        score -= 30; reasons.append("pull_request only (read-only)")
+    # POSITIVE: shows direct injection into shell
+    if re.search(r'run:\s*[|>].*?\$\{\{\s*github\.event\.', content, re.DOTALL):
+        score += 10; reasons.append("direct shell injection")
+    # NEGATIVE: uses env var passthrough (safe pattern)
+    if re.search(r'env:\s*\n\s*\w+:\s*\$\{\{\s*github\.event\.', content):
+        score -= 35; reasons.append("uses env-var passthrough (safe)")
+    return max(0, min(100, score)), "; ".join(reasons)
+
+
+def check_token_exfil(content: str, path: str) -> tuple[int, str]:
+    score = 70
+    reasons = ["curl+GITHUB_TOKEN+event interpolation"]
+    if re.search(r'github\.event\.(pull_request|issue|comment).*head|head\.ref|body|title', content, re.DOTALL):
+        score += 20; reasons.append("event field controls URL")
+    return max(0, min(100, score)), "; ".join(reasons)
+
+
 VERIFIERS = {
-    "prtarget":         check_prtarget,
-    "secret_in_source": check_secret_in_source,
-    "jwt_strength":     check_jwt_strength,
+    "prtarget":           check_prtarget,
+    "secret_in_source":   check_secret_in_source,
+    "jwt_strength":       check_jwt_strength,
+    "gha_expr_injection": check_gha_expr_injection,
+    "token_exfil":        check_token_exfil,
 }
 
 
