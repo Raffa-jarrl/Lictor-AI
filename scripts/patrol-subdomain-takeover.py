@@ -29,8 +29,9 @@ from dataclasses import dataclass, asdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-UA = "Lictor-SubdomainPatrol/0.1 (+https://lictor-ai.com)"
+UA = "Lictor-SubdomainPatrol/0.2 (+https://lictor-ai.com)"
 LEDGER = Path.home() / ".lictor" / "subdomain-takeover-ledger.jsonl"
+FP_LEDGER = Path.home() / ".lictor" / "subdomain-takeover-fp-ledger.jsonl"  # 0.2: log filtered FPs separately
 OUT_DIR = Path.home() / "Lictor" / "docs" / "launch"
 
 # Fingerprints from can-i-take-over-xyz + manual additions.
@@ -38,16 +39,19 @@ OUT_DIR = Path.home() / "Lictor" / "docs" / "launch"
 TAKEOVER_FINGERPRINTS = [
     # === Hosting & CDN ===
     {"provider": "AWS/S3",            "cname_rx": re.compile(r's3[.-].*?\.amazonaws\.com|\.s3-website',     re.I), "body_rx": re.compile(r'(NoSuchBucket|The specified bucket does not exist)', re.I)},
-    # CloudFront: only flag genuine "distribution doesn't exist" (Bad request, with no x-amz-cf-id header would be better but we use body only here). The "request could not be satisfied" plus "via: CloudFront" headers means distribution EXISTS — not a takeover. Skip those by requiring the rarer "Bad request" exact wording.
-    {"provider": "AWS/CloudFront",    "cname_rx": re.compile(r'cloudfront\.net',                              re.I), "body_rx": re.compile(r"Bad request\.\s*We can't connect to the server for this app", re.I)},
-    {"provider": "GitHub Pages",      "cname_rx": re.compile(r'github\.io|githubpages',                      re.I), "body_rx": re.compile(r"There isn't a GitHub Pages site here|For root URLs|Site not Found", re.I)},
+    # CloudFront (v0.2 FP-fix): require "Bad Request" phrasing AND header_fp_blocklist to skip live distros that respond with "The request could not be satisfied" but DO have an x-amz-cf-id header (= distribution exists, FP).
+    {"provider": "AWS/CloudFront",    "cname_rx": re.compile(r'cloudfront\.net',                              re.I), "body_rx": re.compile(r"Bad request\.\s*We can't connect to the server for this app", re.I), "header_fp_blocklist": ["x-amz-cf-id"]},
+    # GitHub Pages (v0.2 FP-fix): require canonical-error phrases AND verifier that the org actually exists on GitHub. If api.github.com/users/{org} returns 200, the org exists — likely a legit 404 not a takeover.
+    {"provider": "GitHub Pages",      "cname_rx": re.compile(r'github\.io|githubpages',                      re.I), "body_rx": re.compile(r"There isn't a GitHub Pages site here|For root URLs", re.I), "verifier": "github_org_not_exists"},
     {"provider": "GitLab Pages",      "cname_rx": re.compile(r'gitlab\.io',                                   re.I), "body_rx": re.compile(r"The page you're looking for could not be found", re.I)},
-    {"provider": "Heroku",            "cname_rx": re.compile(r'herokuapp\.com|herokudns|herokussl',          re.I), "body_rx": re.compile(r"No such app|There's nothing here|herokucdn", re.I)},
+    # Heroku (v0.2 FP-fix): require canonical "No such app" phrase + HTTP 404 status. Generic "There's nothing here" alone matched too many other-platform 404 pages.
+    {"provider": "Heroku",            "cname_rx": re.compile(r'herokuapp\.com|herokudns|herokussl',          re.I), "body_rx": re.compile(r"No such app", re.I), "status_required": [404]},
     {"provider": "Fastly",            "cname_rx": re.compile(r'fastly\.net',                                  re.I), "body_rx": re.compile(r"Fastly error: unknown domain", re.I)},
     {"provider": "Bitbucket",         "cname_rx": re.compile(r'bitbucket\.io',                                re.I), "body_rx": re.compile(r"Repository not found", re.I)},
     {"provider": "Surge.sh",          "cname_rx": re.compile(r'surge\.sh',                                    re.I), "body_rx": re.compile(r"project not found", re.I)},
     {"provider": "Vercel",            "cname_rx": re.compile(r'vercel-dns\.com|cname\.vercel-dns|vercel\.app',re.I), "body_rx": re.compile(r"The deployment could not be found|404: NOT_FOUND.*?DEPLOYMENT_NOT_FOUND|This deployment doesn't exist", re.I)},
-    {"provider": "Netlify",           "cname_rx": re.compile(r'netlify\.app|netlify\.com',                    re.I), "body_rx": re.compile(r"Not Found - Request ID:", re.I)},
+    # Netlify (v0.2 FP-fix): add the second canonical takeover marker "There is nothing here yet" (drop-domain UI), keep the "Not Found - Request ID:" marker (404 page).
+    {"provider": "Netlify",           "cname_rx": re.compile(r'netlify\.app|netlify\.com',                    re.I), "body_rx": re.compile(r"Not Found - Request ID:|There is nothing here yet", re.I)},
     {"provider": "Cloudflare Pages",  "cname_rx": re.compile(r'pages\.dev',                                   re.I), "body_rx": re.compile(r"The page you are looking for is temporarily unavailable", re.I)},
     {"provider": "Render",            "cname_rx": re.compile(r'onrender\.com|render\.com',                    re.I), "body_rx": re.compile(r"Not Found", re.I)},
     {"provider": "Fly.io",            "cname_rx": re.compile(r'fly\.dev|fly\.io',                             re.I), "body_rx": re.compile(r"app not found|404 Not Found", re.I)},
@@ -112,7 +116,8 @@ TAKEOVER_FINGERPRINTS = [
     # === Azure family (NXDOMAIN-based: CNAME resolves but target host returns NXDOMAIN/no-such-app) ===
     {"provider": "Azure/App Service",       "cname_rx": re.compile(r'\.azurewebsites\.net',                       re.I), "body_rx": re.compile(r"Error 404 - Web app not found|<title>404 Web Site not found", re.I)},
     {"provider": "Azure/Trafficmanager",    "cname_rx": re.compile(r'trafficmanager\.net',                        re.I), "body_rx": re.compile(r"<title>This page can.t be displayed|server has not yet been created", re.I)},
-    {"provider": "Azure/CloudApp",          "cname_rx": re.compile(r'cloudapp\.(net|azure\.com)',                 re.I), "body_rx": re.compile(r"This page can.t be displayed|404", re.I)},
+    # Azure/CloudApp (v0.2 FP-fix): dropped "|404" — it matched ANY page with substring "404" anywhere (incl. live signin pages with "404" in JS error-handlers, e.g. Citrix Secure Sign In). Require canonical Azure error phrase only, AND HTTP 4xx status.
+    {"provider": "Azure/CloudApp",          "cname_rx": re.compile(r'cloudapp\.(net|azure\.com)',                 re.I), "body_rx": re.compile(r"This page can.t be displayed|server has not yet been created", re.I), "status_required": [400, 401, 403, 404]},
     {"provider": "Azure/Blob",              "cname_rx": re.compile(r'blob\.core\.windows\.net',                   re.I), "body_rx": re.compile(r"AuthenticationFailed|The specified blob does not exist|ResourceNotFound", re.I)},
     {"provider": "Azure/CDN",               "cname_rx": re.compile(r'azureedge\.net',                             re.I), "body_rx": re.compile(r"ErrorCode>404</ErrorCode|InternetEndpointNotFound", re.I)},
     {"provider": "Azure/DevOps",            "cname_rx": re.compile(r'visualstudio\.com',                          re.I), "body_rx": re.compile(r"Page not found", re.I)},
@@ -402,20 +407,106 @@ def resolve_cname(host: str) -> str:
             return ""
 
 
-def fetch_body(host: str) -> str:
-    """Fetch http(s)://host and return body snippet (1 request)."""
+def fetch_response(host: str) -> tuple[str, dict, int]:
+    """v0.2: Fetch http(s)://host and return (body, headers_dict_lowercased, status).
+
+    Returns ("", {}, 0) on total failure. status is the HTTP status code; for
+    HTTPError responses we capture the error body + headers + code so FP filters
+    can discriminate (e.g. real CloudFront takeover responds 403 without
+    `x-amz-cf-id`, while a live distro responds 403 WITH `x-amz-cf-id`).
+    """
     for scheme in ("https", "http"):
         try:
             req = urllib.request.Request(f"{scheme}://{host}/", headers={"User-Agent": UA})
-            ctx = ssl.create_default_context(); ctx.check_hostname=False; ctx.verify_mode=ssl.CERT_NONE
+            ctx = ssl.create_default_context(); ctx.check_hostname = False; ctx.verify_mode = ssl.CERT_NONE
             with urllib.request.urlopen(req, timeout=8, context=ctx) as r:
-                return r.read(20000).decode("utf-8", "replace")
+                body = r.read(20000).decode("utf-8", "replace")
+                headers = {k.lower(): v for k, v in r.headers.items()}
+                return body, headers, r.status
         except urllib.error.HTTPError as e:
-            try: return e.read(20000).decode("utf-8", "replace")
-            except: pass
+            try:
+                body = e.read(20000).decode("utf-8", "replace")
+                headers = {k.lower(): v for k, v in e.headers.items()} if e.headers else {}
+                return body, headers, e.code
+            except Exception:
+                pass
         except Exception:
             continue
-    return ""
+    return "", {}, 0
+
+
+def fetch_body(host: str) -> str:
+    """v0.1 compatibility shim — returns body only. Use fetch_response() for FP filters."""
+    body, _, _ = fetch_response(host)
+    return body
+
+
+# v0.2: per-provider FP verifiers. Each takes (body, headers, status, host) and
+# returns True if the candidate looks REAL, False if it's a FP. Keyed by the
+# string name set in the fingerprint's "verifier" field.
+_GITHUB_ORG_CACHE: dict[str, bool] = {}
+
+def _github_org_not_exists(body: str, headers: dict, status: int, host: str) -> bool:
+    """Real GitHub Pages takeover requires the org/user to NOT exist on GitHub.
+    If api.github.com/users/{org} returns 200, the org exists — likely a legit
+    404 on a real Pages site, not a takeover. We extract the org from either
+    the host (foo.github.io → foo) OR the CNAME (resolved by caller via host)."""
+    # Extract org from host: e.g., "foo.github.io" → "foo", or "docs.foo.com" CNAME → bar.github.io → bar
+    parts = host.split(".")
+    org = parts[0] if parts else host
+    # If host doesn't end in github.io, try to use the CNAME chain (caller doesn't pass CNAME
+    # so we conservatively assume the org is the leftmost label).
+    if org in _GITHUB_ORG_CACHE:
+        return not _GITHUB_ORG_CACHE[org]  # function returns "not exists"
+    try:
+        req = urllib.request.Request(f"https://api.github.com/users/{org}", headers={"User-Agent": UA, "Accept": "application/vnd.github+json"})
+        with urllib.request.urlopen(req, timeout=5) as r:
+            _GITHUB_ORG_CACHE[org] = (r.status == 200)
+    except urllib.error.HTTPError as e:
+        _GITHUB_ORG_CACHE[org] = (e.code != 404)  # 404 = org doesn't exist
+    except Exception:
+        _GITHUB_ORG_CACHE[org] = True  # Conservative: assume exists if we can't verify
+    return not _GITHUB_ORG_CACHE[org]
+
+
+FP_VERIFIERS = {
+    "github_org_not_exists": _github_org_not_exists,
+}
+
+
+def _passes_fp_filters(fp: dict, body: str, headers: dict, status: int, host: str) -> tuple[bool, str]:
+    """v0.2: apply header_fp_blocklist + status_required + verifier checks.
+
+    Returns (is_real_takeover, reason_if_fp). reason_if_fp is "" when passing."""
+    # 1. header_fp_blocklist: presence of any listed header indicates a live service (FP)
+    for h in fp.get("header_fp_blocklist", []):
+        if h.lower() in headers:
+            return False, f"header `{h}` present (live service)"
+    # 2. status_required: response status must be in this list (else FP)
+    sr = fp.get("status_required")
+    if sr and status not in sr:
+        return False, f"status {status} not in required {sr}"
+    # 3. verifier: callable that returns True if real takeover
+    v = fp.get("verifier")
+    if v:
+        verifier_fn = FP_VERIFIERS.get(v)
+        if verifier_fn and not verifier_fn(body, headers, status, host):
+            return False, f"verifier `{v}` rejected"
+    return True, ""
+
+
+def append_fp_ledger(host: str, cname: str, provider: str, reason: str) -> None:
+    """v0.2: log filtered FPs separately for later analysis / corpus building."""
+    FP_LEDGER.parent.mkdir(parents=True, exist_ok=True)
+    rec = {
+        "subdomain": host,
+        "cname": cname,
+        "provider": provider,
+        "fp_reason": reason,
+        "filtered_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+    }
+    with FP_LEDGER.open("a") as f:
+        f.write(json.dumps(rec) + "\n")
 
 
 def load_ledger() -> set:
@@ -439,9 +530,15 @@ def check_one(host: str, company: str) -> Takeover | None:
     if not cname: return None
     for fp in TAKEOVER_FINGERPRINTS:
         if fp["cname_rx"].search(cname):
-            # Found vulnerable-provider CNAME — fetch body to confirm
-            body = fetch_body(host)
+            # Found vulnerable-provider CNAME — fetch body + headers + status to confirm
+            body, headers, status = fetch_response(host)
             if fp["body_rx"].search(body):
+                # v0.2: apply per-provider FP filters (header_fp_blocklist, status_required, verifier)
+                is_real, fp_reason = _passes_fp_filters(fp, body, headers, status, host)
+                if not is_real:
+                    print(f"  ⚠️  FP-skip  {host}  ({fp['provider']}) — {fp_reason}", flush=True)
+                    append_fp_ledger(host, cname, fp["provider"], fp_reason)
+                    return None
                 return Takeover(
                     domain=host.split(".", 1)[1] if "." in host else host,
                     subdomain=host, cname=cname, provider=fp["provider"],
@@ -474,32 +571,42 @@ def main():
 
     targets = BOUNTY_DOMAINS[:args.max_domains]
     confirmed = []
-    for ci, domain in enumerate(targets, 1):
-        company = domain.replace(".com", "").replace(".io", "").replace(".so", "").replace(".app", "").replace(".dev", "").replace(".co", "")
-        print(f"\n[{ci}/{len(targets)}] {domain} — pulling subdomains (3 sources)...", flush=True)
-        subs = get_subdomains(domain, args.max_subs_per_domain)
-        new_subs = [s for s in subs if s not in seen]
-        print(f"  {len(subs)} total, {len(new_subs)} new (after ledger dedup)")
-        if not new_subs: continue
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    _seen_lock = __import__("threading").Lock()
 
-        # Parallelize per-subdomain checks (5-10x speedup)
-        from concurrent.futures import ThreadPoolExecutor, as_completed
-        batch = new_subs[:args.max_subs_per_domain]
-        with ThreadPoolExecutor(max_workers=30) as pool:
-            futures = {pool.submit(check_one, sub, company): sub for sub in batch}
+    def process_one_apex(idx_domain):
+        ci, domain = idx_domain
+        company = domain.replace(".com", "").replace(".io", "").replace(".so", "").replace(".app", "").replace(".dev", "").replace(".co", "")
+        print(f"[{ci}/{len(targets)}] {domain} — enumerating...", flush=True)
+        subs = get_subdomains(domain, args.max_subs_per_domain)
+        with _seen_lock:
+            new_subs = [s for s in subs if s not in seen]
+        if not new_subs: return []
+        # Cap per domain
+        new_subs = new_subs[:args.max_subs_per_domain]
+        local_hits = []
+        with ThreadPoolExecutor(max_workers=30) as sub_pool:
+            futures = {sub_pool.submit(check_one, sub, company): sub for sub in new_subs}
             for fut in as_completed(futures):
                 sub = futures[fut]
-                seen.add(sub)
-                try:
-                    t = fut.result(timeout=15)
-                except Exception:
-                    t = None
+                with _seen_lock: seen.add(sub)
+                try: t = fut.result(timeout=15)
+                except Exception: t = None
                 if t:
                     print(f"  🔴🔴 TAKEOVER  {sub}  →  {t.cname}  ({t.provider})", flush=True)
                     append_ledger(t)
-                    confirmed.append(t)
-        # short pause between domains (less needed now since we're throttled by enum APIs)
-        time.sleep(0.5)
+                    local_hits.append(t)
+        return local_hits
+
+    # OUTER parallelism: 10 apex domains processed concurrently
+    OUTER_WORKERS = 10
+    with ThreadPoolExecutor(max_workers=OUTER_WORKERS) as apex_pool:
+        futures = {apex_pool.submit(process_one_apex, (i, d)): d for i, d in enumerate(targets, 1)}
+        for fut in as_completed(futures):
+            try:
+                confirmed.extend(fut.result(timeout=300))
+            except Exception:
+                pass
 
     # Summary
     print(f"\n[+] scan complete: {len(confirmed)} NEW takeovers confirmed")
