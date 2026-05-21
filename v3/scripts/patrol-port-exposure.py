@@ -37,12 +37,33 @@ Usage:
 Output: ~/Lictor/v3/ledgers/port-exposure-candidates.jsonl
 """
 from __future__ import annotations
-import argparse, json, socket, ssl, sys, urllib.request, urllib.error
+import argparse, ipaddress, json, socket, ssl, sys, urllib.request, urllib.error
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
-UA = "Lictor-v3-PortExposure/0.2 (+https://lictor-ai.com)"
+UA = "Lictor-v3-PortExposure/0.3 (+https://lictor-ai.com)"
+
+
+def _resolves_to_private(host: str) -> bool:
+    """Resolve host. If it points at loopback/private/link-local/etc,
+    skip — otherwise our TCP connects hit our own machine, not the
+    target. This was a real FP class: baoliyun.com resolves to
+    127.0.0.1 and the scan reported MY LOCAL VNC + PostgreSQL as 'open'
+    on baoliyun.com."""
+    try:
+        ips = socket.getaddrinfo(host, None, socket.AF_INET)
+    except Exception:
+        return True  # can't resolve — skip
+    for family, _, _, _, sockaddr in ips:
+        ip_str = sockaddr[0]
+        try:
+            ip = ipaddress.ip_address(ip_str)
+        except Exception:
+            continue
+        if ip.is_loopback or ip.is_private or ip.is_link_local or ip.is_multicast or ip.is_reserved or ip.is_unspecified:
+            return True
+    return False
 LEDGER = Path.home() / "Lictor" / "v3" / "ledgers" / "port-exposure-candidates.jsonl"
 
 CDN_SERVER_BLOCKLIST = {
@@ -133,7 +154,12 @@ def _tcp_connect_and_banner(host: str, port: int, timeout: int = 4) -> dict | No
 
 
 def probe_one_host(host: str) -> list[dict]:
-    """Probe all PORTS_TO_PROBE on a single host (after CDN pre-filter)."""
+    """Probe all PORTS_TO_PROBE on a single host (after pre-filters)."""
+    # CRITICAL: filter hosts that resolve to private/loopback IPs.
+    # Without this, baoliyun.com (which resolves to 127.0.0.1) makes us
+    # scan our own machine and report localhost VNC/Postgres as a "find".
+    if _resolves_to_private(host):
+        return []
     # CDN pre-filter — skip cloudflare/fastly/etc that reject everything but 443
     if _is_cdn_apex(host):
         return []
