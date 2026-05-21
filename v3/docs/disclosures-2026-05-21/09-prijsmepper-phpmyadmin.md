@@ -6,6 +6,7 @@
 - `https://prijsmepper.nl/phpmyadmin/`
 - `https://prijsmepper.nl/pma/`
 **Risk:** **HIGH** — direct MySQL login interface on the internet, brute-force surface + classic default-credential history
+**Companion exposure:** Same host (`prijsmepper.nl:21`) also has a plaintext FTP server reachable from the public internet — confirmed by Lictor v4 port-exposure scan (separate ledger entry). The remediation playbook should close port 21 in the same maintenance window.
 **Action:** Email Prijsmepper directly; CC info@ if no specific security contact
 
 ---
