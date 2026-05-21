@@ -1,22 +1,27 @@
 #!/usr/bin/env python3
 """
-Lictor v3 — device fingerprinting scanner v2 (HTTP-only, NEVER auth)
+Lictor v3 — device fingerprinting scanner v3 (HTTP-only, NEVER auth)
 
-REBUILT 2026-05-21 after v1 produced 100% false positives (96 findings,
-0 real devices) by naively substring-matching vendor names in HTML
-body. Marketing pages mentioning a vendor name (e.g. a fintech blog
-post saying "we audited our Ubiquiti gear") were flagged as devices.
+REBUILT TWICE 2026-05-21:
+  v1: substring-matched vendor names in HTML body → 96/96 FPs
+  v2: path probes + CDN pre-filter (Server header) → still flagged
+      ad.nl & album.link because Akamai/Fastly strip Server header on
+      success and serve SPA-wildcards (every path returns HTTP 200)
+  v3: ANTI-SPA + EXTRA CDN signals + nonsense-path canary
 
-v2 design — strict multi-signal verification:
-  1. SKIP any host fronted by a major CDN (cloudflare / amazons3 /
-     cloudfront / fastly / akamai / vercel / netlify) — those are
-     marketing pages, NOT embedded devices
-  2. PROBE device-specific paths (e.g. /doc/page/login.asp for
-     Hikvision) rather than the root page
-  3. REQUIRE >=2 of: device-specific Server header, WWW-Authenticate
-     realm match, device-specific HTML title, device-specific path
-     returns 200 with expected body marker
-  4. NEVER attempt credentials
+v3 design — strict multi-signal verification + anti-SPA:
+  1. PROBE a random nonsense path FIRST as a canary
+     - If nonsense returns 200 → host is SPA-wildcard, skip everything
+     - If nonsense body is similar to root body → SPA-wildcard, skip
+  2. SKIP CDN-fronted hosts via MULTIPLE signals:
+     - CF-RAY (cloudflare), X-Akamai-*, X-Served-By/X-Cache (Fastly)
+     - Via header containing varnish/akamai/cloudfront/fastly
+     - Server header substring match (cloudflare/akamaighost/etc)
+     - X-Amz-* / x-amzn-* (AWS), x-vercel-* (Vercel)
+  3. PROBE device-specific paths
+  4. REQUIRE >=2 confirming signals AND probe body must DIFFER from
+     root body (to defeat SPA wildcards that survive other filters)
+  5. NEVER attempt credentials
 
 A real Hikvision device emits Server: "App-webs/" or "Webs" + a
 device-specific HTML title + serves /doc/page/login.asp with a
@@ -41,12 +46,12 @@ Usage:
 Output: ~/Lictor/v3/ledgers/device-fingerprint-candidates.jsonl
 """
 from __future__ import annotations
-import argparse, json, re, ssl, sys, urllib.request, urllib.error
+import argparse, hashlib, json, re, secrets, ssl, sys, urllib.request, urllib.error
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
-UA = "Lictor-v3-DeviceFingerprint/0.2 (+https://lictor-ai.com)"
+UA = "Lictor-v3-DeviceFingerprint/0.3 (+https://lictor-ai.com)"
 LEDGER = Path.home() / "Lictor" / "v3" / "ledgers" / "device-fingerprint-candidates.jsonl"
 
 # CDN/cloud fingerprints — if we see these in the Server header on the
@@ -242,20 +247,69 @@ def _fetch(url: str, timeout: int = 6, allow_404: bool = False) -> dict | None:
 
 
 def _is_cdn_host(headers: dict) -> bool:
-    """Filter: if root page is served by a CDN, it's NOT an embedded device."""
-    server = (headers.get("Server", "") or "").lower().strip()
-    via    = (headers.get("Via", "") or "").lower()
-    powered = (headers.get("X-Powered-By", "") or "").lower()
-    cf_ray = headers.get("CF-RAY") or headers.get("Cf-Ray")  # cloudflare always emits CF-RAY
-    if cf_ray:
+    """Filter: if root page is served by a CDN, it's NOT an embedded device.
+    Uses MANY signals because CDNs sometimes strip Server header."""
+    # Normalize header keys to lowercase for reliable lookup
+    lh = {k.lower(): v for k, v in headers.items()}
+    server = (lh.get("server", "") or "").lower().strip()
+    via    = (lh.get("via", "") or "").lower()
+    powered = (lh.get("x-powered-by", "") or "").lower()
+
+    # Cloudflare always emits CF-RAY (and cf-cache-status, cf-ray)
+    if lh.get("cf-ray") or lh.get("cf-cache-status") or lh.get("cf-mitigated"):
         return True
-    if any(cdn in server for cdn in CDN_SERVER_BLOCKLIST):
+    # Akamai signals
+    if any(k.startswith("x-akamai") or k.startswith("akamai-") for k in lh):
         return True
-    if any(cdn in via for cdn in CDN_SERVER_BLOCKLIST):
+    if lh.get("x-ak-reference-id") or lh.get("x-ak-client-ip"):
+        return True
+    # Fastly signals
+    if lh.get("x-served-by") and ("cache-" in lh["x-served-by"].lower()):
+        return True
+    if lh.get("fastly-debug-digest") or lh.get("x-fastly-request-id"):
+        return True
+    # AWS CloudFront signals
+    if lh.get("x-amz-cf-id") or lh.get("x-amz-cf-pop"):
+        return True
+    # Vercel / Netlify signals
+    if any(k.startswith("x-vercel-") for k in lh):
+        return True
+    if lh.get("x-nf-request-id"):
+        return True
+    # Server header substring match (catches AkamaiGHost, cloudflare, etc)
+    if server and any(cdn in server for cdn in CDN_SERVER_BLOCKLIST):
+        return True
+    # Via header
+    if via and any(cdn in via for cdn in {"varnish", "cloudfront", "akamai", "fastly"}):
         return True
     if "vercel" in powered or "next.js" in powered:
         return True
     return False
+
+
+def _is_spa_wildcard(base: str, root_body: str, fetch_fn) -> bool:
+    """Detect single-page apps that return HTTP 200 for every path.
+    Probe a random nonsense path: if it returns 200 with similar body
+    to the root page, this host is a SPA wildcard and we can't trust
+    any path-based device probe."""
+    nonce = secrets.token_hex(8)
+    probe = fetch_fn(f"{base}/__lictor_canary_{nonce}", timeout=4)
+    if probe is None:
+        return False  # probe failed → not necessarily SPA
+    if probe["status"] != 200:
+        return False  # 404/403/etc — proper routing
+    # If nonsense returned 200, very suspicious. Compare body.
+    nonsense_body = probe.get("body", "") or ""
+    if not nonsense_body:
+        return False
+    # Compare hashes — if identical, definitely SPA wildcard
+    if hashlib.md5(nonsense_body.encode("utf-8", "replace")).hexdigest() == hashlib.md5(root_body.encode("utf-8", "replace")).hexdigest():
+        return True
+    # Compare lengths — if within 5%, probably same SPA HTML with minor variation
+    if root_body and abs(len(nonsense_body) - len(root_body)) / max(len(root_body), 1) < 0.05:
+        return True
+    # 200 on a nonsense URL is itself suspicious — be conservative
+    return True
 
 
 def fingerprint_one_host(host: str) -> list[dict]:
@@ -282,6 +336,11 @@ def fingerprint_one_host(host: str) -> list[dict]:
     root_body = root.get("body", "") or ""
     root_server = (root["headers"].get("Server", "") or "").strip()
     root_auth = (root["headers"].get("WWW-Authenticate", "") or "").strip()
+    root_body_hash = hashlib.md5(root_body.encode("utf-8", "replace")).hexdigest()
+
+    # Filter 2: SPA-wildcard canary
+    if _is_spa_wildcard(base, root_body, _fetch):
+        return findings  # every path returns 200 with same content — useless to probe
 
     # Phase 2: for each device candidate, look for >=2 confirming signals
     for d in DEVICE_PROBES:
@@ -309,11 +368,15 @@ def fingerprint_one_host(host: str) -> list[dict]:
             # We want a device-specific response: 200 or 401 (auth-required)
             if probe["status"] not in (200, 401):
                 continue
-            # Skip if the probe returned a generic 200 with a CDN-pattern body
-            if "<html" in probe.get("body", "").lower() and len(probe.get("body", "")) > 5000 and "cloudflare" in probe.get("body", "").lower():
+            probe_body = probe.get("body", "") or ""
+            probe_body_hash = hashlib.md5(probe_body.encode("utf-8", "replace")).hexdigest()
+            # CRITICAL anti-SPA check — probe body MUST differ from root.
+            # If they're identical, the host serves the same SPA HTML on
+            # every path and is not a device.
+            if probe_body_hash == root_body_hash:
                 continue
-            # Body match
-            if body_rx and body_rx.search(probe.get("body", "")):
+            # Body match (only credit if probe body is meaningfully different)
+            if body_rx and body_rx.search(probe_body):
                 signals.append(("path_body", f"{path}: matched"))
             # Header match
             if header_rx:
@@ -321,11 +384,11 @@ def fingerprint_one_host(host: str) -> list[dict]:
                     if header_rx.search(f"{hk}: {hv}"):
                         signals.append(("path_header", f"{path}: {hk}: {hv[:80]}"))
                         break
-            # If body_rx and header_rx are both None but status is 200, the
-            # PATH ITSELF is device-specific (e.g. /current_config/Account1
-            # exists only on Dahua) — credit one signal
+            # If body_rx and header_rx are both None but status is 200 AND
+            # the body differs from root, the PATH ITSELF is device-specific
+            # (e.g. /current_config/Account1 exists only on Dahua).
             if body_rx is None and header_rx is None and probe["status"] == 200:
-                signals.append(("path_exists", f"{path}: HTTP 200"))
+                signals.append(("path_exists", f"{path}: HTTP 200 (differs from root)"))
 
         # STRICT GATE: require >=2 independent signals
         if len(signals) >= 2:
@@ -364,8 +427,8 @@ def main():
         ap.print_help()
         sys.exit(1)
 
-    print(f"[+] device-fingerprint v2 — {len(hosts)} hosts × {len(DEVICE_PROBES)} device classes", flush=True)
-    print(f"[+] STRICT MODE: skip CDN-fronted hosts, require ≥2 confirming signals", flush=True)
+    print(f"[+] device-fingerprint v3 — {len(hosts)} hosts × {len(DEVICE_PROBES)} device classes", flush=True)
+    print(f"[+] STRICT MODE: CDN pre-filter + SPA-canary + ≥2 confirming signals + probe-body≠root-body", flush=True)
     print(f"[+] HTTP banner-grab only — NEVER attempts default creds", flush=True)
 
     all_findings = []
