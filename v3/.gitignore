@@ -1,0 +1,35 @@
+# Ledgers contain findings + outcomes — keep local, NOT in git (privacy + signal damage if leaked)
+ledgers/*.jsonl
+
+# Output directory — daily working artifacts, not source of truth
+output/
+
+# Per-agent memory — local context, not source of truth
+agents/*/memory/
+
+# State file — tracks which findings have been messaged to Telegram
+ledgers/submitter-state.json
+ledgers/telegram-offset.txt
+
+# Logs from launchd daemon
+*.log
+
+# Secrets — these should be in ~/.lictor/secrets/ NOT in the repo
+# This is defensive in case someone accidentally creates a secrets file in v3/
+secrets/
+*.token
+*.bot-token
+*.chat-id
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# Test outputs
+test-output/
+scratch/
