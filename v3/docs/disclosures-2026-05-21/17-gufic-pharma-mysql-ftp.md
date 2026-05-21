@@ -12,6 +12,29 @@
 
 ---
 
+## ⚠️ Subdomain amplification — full cPanel ecosystem exposed
+
+A follow-up subdomain scan (2026-05-22) found **EVERY cPanel-default subdomain** on the same WebhostBox shared host exposes FTP+MySQL:
+
+| Subdomain | Port 21 (FTP) | Port 3306 (MySQL) |
+|---|---|---|
+| `gufic.com` | ✅ exposed | ✅ exposed (real MySQL handshake) |
+| `ftp.gufic.com` | ✅ exposed | ✅ exposed |
+| `webmail.gufic.com` | ✅ exposed | ✅ exposed |
+| `webdisk.gufic.com` | ✅ exposed | ✅ exposed |
+| `cpanel.gufic.com` | ✅ exposed | ✅ exposed |
+| `whm.gufic.com` | ✅ exposed | ✅ exposed |
+| `cpcalendars.gufic.com` | ✅ exposed | ✅ exposed |
+| `cpcontacts.gufic.com` | ✅ exposed | ✅ exposed |
+
+That's **8 hostnames × 2 services = 16 individual exposure points** on the same WebhostBox host (`5.100.152.180`).
+
+The `cpcalendars.*` / `cpcontacts.*` subdomains are cPanel's CalDAV/CardDAV mount points — if any employee uses webmail.gufic.com to read mail, their calendar/contact data flows over the same exposed plaintext-capable channel.
+
+Recommendation update: **migrate gufic.com off WebhostBox shared hosting** or have the provider explicitly disable the cPanel default-subdomain forwarders (cpanel.* / whm.* / webmail.* / webdisk.* / cpcalendars.* / cpcontacts.* / autodiscover.*) for this account.
+
+---
+
 ## What Lictor observed (banner-grab only, NO login)
 
 ### Port 21 — Pure-FTPd active

@@ -11,6 +11,37 @@
 
 ---
 
+## ⚠️ Subdomain amplification — ENTIRE cPanel ecosystem exposed
+
+A follow-up subdomain scan (2026-05-22) confirmed the misconfig is NOT limited to the apex. **EVERY brand-related subdomain on the same Hostmonster shared host exposes both FTP and MySQL**:
+
+| Subdomain | Port 21 (FTP) | Port 3306 (MySQL) |
+|---|---|---|
+| `banbajio.com` | ✅ exposed | ✅ exposed (real handshake, MySQL 5.7.44-48) |
+| `www.banbajio.com` | ✅ exposed | ✅ exposed |
+| `ftp.banbajio.com` | ✅ exposed | ✅ exposed |
+| `mail.banbajio.com` | ✅ exposed | ✅ exposed |
+| `webmail.banbajio.com` | ✅ exposed | ✅ exposed |
+| `webdisk.banbajio.com` | ✅ exposed | ✅ exposed |
+| `cpanel.banbajio.com` | ✅ exposed | ✅ exposed |
+| `whm.banbajio.com` | ✅ exposed | ✅ exposed |
+| `help.banbajio.com` | ✅ exposed | ✅ exposed |
+| `autodiscover.banbajio.com` | ✅ exposed | ✅ exposed |
+
+That's **10 hostnames × 2 services = 20 individual exposure points** — all on the same Hostmonster cPanel shared host (`67.20.76.178`).
+
+The `cpanel.*` / `whm.*` / `webdisk.*` / `webmail.*` subdomains are the **classic cPanel administrative endpoints** — exposing them means:
+- An attacker can probe cPanel's `:2083` admin login (separate port)
+- WHM's `:2087` reseller-admin (if exposed)
+- The shared-hosting account's MySQL credentials reused across all these mounts
+- WebDAV via `webdisk.*` (often plaintext credentials)
+
+The brand-trust risk is now **substantially higher** — instead of a single exposed brand-parking domain, the entire DNS namespace of `banbajio.com` is on cPanel shared hosting.
+
+Recommendation update: **migrate ALL of banbajio.com's DNS off Hostmonster shared hosting**. A 13-line redirect page (the actual content on banbajio.com) does not justify keeping a full cPanel deployment with 10 subdomain mounts.
+
+---
+
 ## What Lictor observed (banner-grab only, NEVER login)
 
 ### Port 21 — Pure-FTPd
