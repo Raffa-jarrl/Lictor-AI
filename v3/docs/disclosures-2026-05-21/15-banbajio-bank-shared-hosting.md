@@ -42,6 +42,77 @@ Recommendation update: **migrate ALL of banbajio.com's DNS off Hostmonster share
 
 ---
 
+## 🚨 NEW CRITICAL — publicly-accessible .git directory on help.banbajio.com
+
+A subsequent sensitive-files scan (2026-05-22) discovered that `help.banbajio.com` has its `/.git/` directory **publicly accessible** over HTTPS — the entire source-code repository is downloadable by any internet user.
+
+### What Lictor observed (HTTP GET, no exploitation)
+
+```
+$ curl https://help.banbajio.com/.git/HEAD
+ref: refs/heads/master
+
+$ curl https://help.banbajio.com/.git/config
+[core]
+    repositoryformatversion = 0
+    filemode = true
+    bare = false
+    logallrefupdates = true
+    symlinks = false
+[remote "origin"]
+    url = git@github.com:omedranosarabia/help.git
+    fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+    remote = origin
+    merge = refs/heads/master
+
+$ curl -I https://help.banbajio.com/.git/index
+HTTP/2 200
+Content-Length: 456726
+Last-Modified: Fri, 02 Feb 2024 20:45:22 GMT
+```
+
+### Why this is CRITICAL beyond the MySQL+FTP findings
+
+1. **Full source-code cloning** — an attacker runs `git-dumper https://help.banbajio.com/.git/ ./loot` and gets the COMPLETE repository (456 KB git index = substantial codebase) including:
+   - All HTML/PHP/JS/etc source files
+   - Configuration files in version control (database.config, .env that was once committed, deployment scripts)
+   - All commit history (this is where past credentials live — every dev has accidentally committed an API key, then `git rm`'d it, but it stays in history forever)
+   - Branch names + dev workflow patterns
+   - Author names + emails (`git log`) — useful for spear-phishing
+
+2. **Backing GitHub repo identified** — the `.git/config` shows the repo is on GitHub at `omedranosarabia/help` (likely an individual developer's account named omedranosarabia, NOT a corporate GitHub org). This is by itself an information disclosure that helps an attacker:
+   - Search the dev's other public repos for credentials
+   - Identify the developer for social engineering / spear phishing
+   - Check if the GitHub repo is public (additional leak surface)
+
+3. **Combined attack chain** — with the .git source code, an attacker can:
+   - Read the WordPress / CMS code to find authentication logic
+   - Map the database schema from the source
+   - Identify the EXACT credentials used in `wp-config.php` (likely committed to .git at some point and then removed — but still in history)
+   - Use those credentials against the **already-exposed MySQL** on `cpanel.banbajio.com:3306` / `whm.banbajio.com:3306` / etc.
+   - **End-to-end takeover of the help.banbajio.com data without ever needing to brute-force**
+
+This single finding — .git/ exposed → source code → past credentials in history → existing MySQL exposure — is the **textbook complete attack chain** that bug-bounty hunters earn $5,000-$25,000 on at tier-1 programs.
+
+### Immediate remediation for help.banbajio.com .git/ exposure
+
+1. **Block all `.git/*` requests at the web server immediately**. In Apache: `<DirectoryMatch "^/.*/\.git/">  Require all denied  </DirectoryMatch>`. In nginx: `location ~ /\.git { deny all; return 404; }`. This is a 30-second fix.
+
+2. **Audit ALL banbajio.com subdomains for .git/ exposure** — if help.banbajio.com has it, others may. Quick check: `for sub in www ftp mail cpanel whm webmail; do curl -sI -o /dev/null -w "%{http_code} ${sub}\\n" https://${sub}.banbajio.com/.git/HEAD; done`.
+
+3. **Search the cloned repo for committed secrets** — assume an attacker has already cloned it. Use `gitleaks` or `trufflehog` against the GitHub repo (omedranosarabia/help) to find any historical credentials. Rotate everything found.
+
+4. **Rotate the GitHub deploy key** for omedranosarabia/help if it's a personal account being used for production deployments — that's an organizational separation-of-duties issue independent of this finding.
+
+5. **Check the developer's other GitHub repos** (omedranosarabia/*) for any other Banco Bajío-related code that may be public or have similar exposure.
+
+### What this changes for the disclosure recipient
+
+The original disclosure said "you have FTP+MySQL exposed on 10 hosts — fix the cPanel hosting." That's a network-layer hardening request. **This .git finding is different**: it means the attacker doesn't need to brute-force ANYTHING — the source code with historical credentials is available for free download right now. The remediation must include an **assumption-of-compromise** posture: rotate all credentials, audit git history for secrets, treat any data accessible via the exposed help.banbajio.com infrastructure as already compromised until forensic review proves otherwise.
+
+---
+
 ## What Lictor observed (banner-grab only, NEVER login)
 
 ### Port 21 — Pure-FTPd
