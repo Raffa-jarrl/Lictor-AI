@@ -42,7 +42,15 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
-UA = "Lictor-v3-PortExposure/0.3 (+https://lictor-ai.com)"
+UA = "Lictor-v3-PortExposure/0.4 (+https://lictor-ai.com)"
+
+# WAF/edge-network signature: many WAFs (Cloudflare's Spectrum, Imperva,
+# CDN Spectrum-like edges) listen on EVERY TCP port and return HTTP/400
+# for non-HTTP traffic. This makes every port look "open." Real RDP/VNC/
+# Telnet/FTP servers send protocol-specific banners (e.g. RFB 003.008,
+# 220 ProFTPD, 0x03 0x00 TPKT for RDP), NOT HTTP responses.
+WAF_BANNER_PREFIXES = (b"HTTP/1.", b"HTTP/2", b"<html", b"<!DOCTYPE", b"<HTML")
+WAF_BANNER_MARKERS = (b"Bad Request", b"cloudflare", b"Server: cloudflare", b"<title>", b"text/html")
 
 
 def _resolves_to_private(host: str) -> bool:
@@ -127,7 +135,14 @@ def _is_cdn_apex(host: str) -> bool:
 
 
 def _tcp_connect_and_banner(host: str, port: int, timeout: int = 4) -> dict | None:
-    """Single TCP connect + banner grab. NEVER auths."""
+    """Single TCP connect + banner grab. NEVER auths.
+
+    Returns None if:
+      - TCP connect fails
+      - Banner is empty (can't tell if it's the named service)
+      - Banner is an HTTP response (WAF/CDN edge listening on all ports
+        and returning HTTP/400 — NOT the named service)
+    """
     try:
         with socket.create_connection((host, port), timeout=timeout) as s:
             s.settimeout(timeout)
@@ -141,11 +156,22 @@ def _tcp_connect_and_banner(host: str, port: int, timeout: int = 4) -> dict | No
                     banner = s.recv(256)
                 except Exception:
                     pass
+            if not banner:
+                return None  # No banner; can't classify; conservative skip
+            # WAF filter: HTTP-prefix or HTML markers mean this port is being
+            # answered by a WAF/CDN edge, not the named service. Cloudflare
+            # Spectrum-style edges and Imperva return HTTP/400 on every TCP
+            # port for non-HTTP traffic — every port looks "open" but none
+            # are the actual service.
+            if any(banner.startswith(prefix) for prefix in WAF_BANNER_PREFIXES):
+                return None
+            if any(marker in banner[:256] for marker in WAF_BANNER_MARKERS):
+                return None
             return {
                 "host": host,
                 "port": port,
                 "open": True,
-                "banner_first_256": banner.decode("utf-8", "replace")[:256] if banner else "",
+                "banner_first_256": banner.decode("utf-8", "replace")[:256],
                 "banner_len": len(banner),
                 "probed_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             }
