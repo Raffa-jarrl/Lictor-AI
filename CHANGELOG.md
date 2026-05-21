@@ -6,6 +6,12 @@ All notable changes to Lictor are recorded here. Format follows [Keep a Changelo
 
 ### Added
 
+- **`patrol-subdomain-takeover` v0.2 — false-positive elimination.** Five fingerprints retightened after a week of production noise (CloudFront/Azure-CloudApp/GitHub-Pages/Netlify/Heroku). New mechanism: fingerprints can declare `header_fp_blocklist`, `status_required`, or named `verifier` callables that run AFTER the body regex matches. Three real production FPs that v0.1 flagged (`cdn.test.komoju.com`, `console-eastus-release-b.citrixworkspacesapi.net`, Capital One COAF subdomains) are now correctly filtered. Filtered FPs are logged to `~/.lictor/subdomain-takeover-fp-ledger.jsonl` for ongoing pattern study. Regression suite: 16 tests in `scripts/test_patrol_subdomain_takeover.py` covering 4 FP patterns + 4 real-takeover positives (all passing). Specific fixes:
+  - **AWS/CloudFront** — added `header_fp_blocklist: ["x-amz-cf-id"]`. Live distros always echo the request ID header; real takeovers never do.
+  - **Azure/CloudApp** — removed `|404` from body regex (matched any page with the substring "404" in JS error handlers, e.g. Citrix Secure Sign In). Added `status_required: [400, 401, 403, 404]`.
+  - **GitHub Pages** — added `verifier: "github_org_not_exists"` that probes `api.github.com/users/{org}`. If the org exists (200), the canonical "There isn't a GitHub Pages site here" body is treated as a legit 404 on a real Pages site, not a takeover.
+  - **Netlify** — added the second canonical takeover marker `"There is nothing here yet"` (drop-domain UI), kept `"Not Found - Request ID:"` for 404 pages.
+  - **Heroku** — tightened to require the canonical `"No such app"` phrase + HTTP 404 status. Dropped the broad `"There's nothing here"` and `"herokucdn"` patterns that matched other-platform 404 pages.
 - **`pii-leak` check** (postflight). 11 patterns × 7 categories with Luhn-validated credit cards. Catches emails, phones (US + international), SSNs (rejects invalid prefixes), IBANs, IPv4/IPv6, formatted US addresses.
 - **`secrets-in-input` check** (preflight). 15 patterns ported from `lictor-core` SECRET_PATTERNS. Catches Google/Anthropic/OpenAI/Stripe/GitHub/Slack/AWS keys, private key blocks, JWTs, MongoDB/Postgres/Redis connection strings.
 - **Sentinel telemetry sender hardened**. 5xx + network errors retry up to 3 times with exponential backoff (200/400/800ms ± 20% jitter); 4xx are permanent; queue capped at 100 in-flight. Pluggable fetch for testability.
