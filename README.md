@@ -6,6 +6,11 @@
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](./LICENSE)
 [![npm version](https://img.shields.io/npm/v/@lictor/sentinel.svg)](https://www.npmjs.com/package/@lictor/sentinel)
 [![PyPI version](https://img.shields.io/pypi/v/lictor-sentinel.svg)](https://pypi.org/project/lictor-sentinel/)
+[![Latest scanner release](https://img.shields.io/github/v/release/Raffa-jarrl/Lictor-AI?label=patrol-scanner&color=brightgreen)](https://github.com/Raffa-jarrl/Lictor-AI/releases/latest)
+
+> 🆕 **patrol-scanner v0.2 just shipped** — false-positive elimination across 5 providers (CloudFront, Azure CloudApp, GitHub Pages, Netlify, Heroku) with new `header_fp_blocklist` / `status_required` / `verifier` mechanism. 16 regression tests, 3 production FPs live-verified as filtered. [Release notes →](https://github.com/Raffa-jarrl/Lictor-AI/releases/tag/patrol-scanner-v0.2)
+
+[![Watch the Lictor demo (3 min)](https://img.youtube.com/vi/RelXN5g1sac/maxresdefault.jpg)](https://youtu.be/RelXN5g1sac)
 
 Lictor is an open-source AI security suite. Four free things, all under one brand, designed for vibe-coders who don't have a CISO and don't want to talk to one:
 
@@ -29,6 +34,25 @@ All four share **[Lictor Core](./core)** — a Rust crate that compiles to nativ
 | [`landing/`](./landing/) | Marketing site (lictorai.com) | ✅ Single-page hero + `/compliance` subpage |
 
 **Public launch target:** Tuesday October 6, 2026.
+
+## Real-world impact
+
+Lictor's scanners are designed to find real security issues in real codebases. Open-source maintainers across these projects have received Lictor-filed reports — many have closed them with fixes or explicit acknowledgements:
+
+> **"thanks for flagging the trigger pattern. The above workflow was obsolete and due to be removed, and done by PR #126"**
+> — [aws-neuron/aws-neuron-samples](https://github.com/aws-neuron/aws-neuron-samples) (Amazon AWS Neuron team)
+
+Other projects that have actioned reports from Lictor's automated patrols:
+
+- [lestrrat-go/jwx](https://github.com/lestrrat-go/jwx) — JOSE/JWT library (Go)
+- [dbt-labs](https://github.com/dbt-labs) — analytics engineering platform
+- [CrowdStrike](https://github.com/CrowdStrike) — security telemetry SDKs
+- [ansible-lockdown/RHEL8-STIG](https://github.com/ansible-lockdown/RHEL8-STIG) — DISA STIG hardening (RHEL 8)
+- [ansible-lockdown/RHEL9-CIS](https://github.com/ansible-lockdown/RHEL9-CIS) — CIS benchmark hardening (RHEL 9)
+- [ansible-lockdown/Windows-2019-STIG](https://github.com/ansible-lockdown/Windows-2019-STIG) — DISA STIG hardening (Windows Server)
+- [textfuel/lazyjira](https://github.com/textfuel/lazyjira) — terminal Jira client
+
+All reports filed via Lictor's open-source scanners (`scripts/patrol-*.py`, Apache 2.0). The same patterns are running against your code if you `/lictor-security-check` your project today.
 
 ## Try the Claude Code plugins (60 seconds)
 
