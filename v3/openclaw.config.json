@@ -1,0 +1,146 @@
+{
+  "$schema": "https://openclaw.dev/schemas/project-config.v1.json",
+  "project": {
+    "id": "lictor-v3",
+    "name": "Lictor v3 — Security AI for AI-first companies",
+    "description": "Multi-agent security scanner: scout → prober → critic → writer → reviewer → meta-verifier → Telegram → user-tap → platform API",
+    "version": "3.0.0-alpha.0",
+    "root": "~/Lictor/v3",
+    "license": "Apache-2.0"
+  },
+  "agents": [
+    {
+      "id": "lictor-v3-planner",
+      "name": "Orca",
+      "emoji": "🐳",
+      "role": "planner",
+      "model": "ollama/qwen2.5:14b",
+      "workspace": "~/Lictor/v3/agents/planner",
+      "schedule": {
+        "cron": "0 6 * * *",
+        "timezone": "Asia/Jerusalem",
+        "description": "Daily 06:00 IST campaign orchestration"
+      },
+      "skills_dir": "~/Lictor/v3/agents/planner/skills",
+      "memory_dir": "~/Lictor/v3/agents/planner/memory"
+    },
+    {
+      "id": "lictor-v3-scout",
+      "name": "Hawk",
+      "emoji": "🦅",
+      "role": "scout",
+      "model": "ollama/mistral:7b",
+      "workspace": "~/Lictor/v3/agents/scout",
+      "triggered_by": "file:~/Lictor/v3/output/orca-*.md",
+      "skills_dir": "~/Lictor/v3/agents/scout/skills",
+      "memory_dir": "~/Lictor/v3/agents/scout/memory"
+    },
+    {
+      "id": "lictor-v3-prober",
+      "name": "Otter",
+      "emoji": "🦦",
+      "role": "prober",
+      "model": "ollama/mistral:7b",
+      "workspace": "~/Lictor/v3/agents/prober",
+      "triggered_by": "file:~/Lictor/v3/output/scout-*.jsonl",
+      "skills_dir": "~/Lictor/v3/agents/prober/skills",
+      "memory_dir": "~/Lictor/v3/agents/prober/memory",
+      "concurrency": 30
+    },
+    {
+      "id": "lictor-v3-critic",
+      "name": "Owl",
+      "emoji": "🦉",
+      "role": "critic",
+      "model": "ollama/deepseek-r1:14b",
+      "workspace": "~/Lictor/v3/agents/critic",
+      "triggered_by": "file:~/Lictor/v3/output/prober-*.jsonl",
+      "skills_dir": "~/Lictor/v3/agents/critic/skills",
+      "memory_dir": "~/Lictor/v3/agents/critic/memory"
+    },
+    {
+      "id": "lictor-v3-writer",
+      "name": "Raven",
+      "emoji": "🐦‍⬛",
+      "role": "writer",
+      "model": "ollama/qwen2.5:14b",
+      "workspace": "~/Lictor/v3/agents/writer",
+      "triggered_by": "file:~/Lictor/v3/output/critic-*.jsonl",
+      "skills_dir": "~/Lictor/v3/agents/writer/skills",
+      "memory_dir": "~/Lictor/v3/agents/writer/memory"
+    },
+    {
+      "id": "lictor-v3-reviewer",
+      "name": "Lion",
+      "emoji": "🦁",
+      "role": "reviewer",
+      "model": "anthropic/claude-sonnet-4-5",
+      "workspace": "~/Lictor/v3/agents/reviewer",
+      "schedule": {
+        "cron": "0 17 * * *",
+        "timezone": "Asia/Jerusalem",
+        "description": "Daily 17:00 IST final QA pass on Raven's drafts"
+      },
+      "weekly_schedule": {
+        "cron": "0 18 * * 5",
+        "timezone": "Asia/Jerusalem",
+        "description": "Friday 18:00 IST weekly meta-review"
+      },
+      "skills_dir": "~/Lictor/v3/agents/reviewer/skills",
+      "memory_dir": "~/Lictor/v3/agents/reviewer/memory",
+      "notes": "Paid premium because the cost of a bad approval is signal damage that takes weeks to recover"
+    },
+    {
+      "id": "lictor-v3-oracle",
+      "name": "Oracle",
+      "emoji": "🧙",
+      "role": "meta-verifier",
+      "model": "anthropic/claude-opus-4-1",
+      "workspace": "~/Lictor/v3/agents/oracle",
+      "triggered_by": "file:~/Lictor/v3/output/reviewer-*/<*>.md WHERE verdict=APPROVE",
+      "skills_dir": "~/Lictor/v3/agents/oracle/skills",
+      "memory_dir": "~/Lictor/v3/agents/oracle/memory",
+      "notes": "Per-finding (not per-day). Opus because last-line-of-defense before Telegram fires to Raffa."
+    }
+  ],
+  "tools": [
+    {
+      "id": "lictor-v3-submitter",
+      "type": "background-daemon",
+      "script": "~/Lictor/v3/scripts/submitter.py",
+      "triggered_by": "file:~/Lictor/v3/output/oracle-*/<*>.md WHERE verdict=GO",
+      "secrets_dir": "~/.lictor/secrets",
+      "description": "Sends Telegram message with inline buttons. On callback, calls platform API."
+    },
+    {
+      "id": "lictor-v3-triage-poller",
+      "type": "cron",
+      "script": "~/Lictor/v3/scripts/triage-poller.py",
+      "schedule": {
+        "cron": "17 * * * *",
+        "timezone": "UTC"
+      },
+      "description": "Hourly poll of platform APIs for status updates on submitted reports"
+    }
+  ],
+  "shared": {
+    "user_context": "~/Lictor/v3/USER.md",
+    "team_description": "~/Lictor/v3/AGENTS.md",
+    "voice_guide": "~/Lictor/v3/shared/voice-guide.md",
+    "fp_patterns": "~/Lictor/v3/shared/fp-patterns/",
+    "fingerprints": "~/Lictor/v3/shared/fingerprints/",
+    "templates": "~/Lictor/v3/shared/templates/",
+    "targets": "~/Lictor/v3/shared/targets/"
+  },
+  "ledgers": {
+    "confirmed": "~/Lictor/v3/ledgers/confirmed.jsonl",
+    "disclosure_cases": "~/Lictor/v3/ledgers/disclosure-cases.jsonl",
+    "needs_verification": "~/Lictor/v3/ledgers/needs-verification.jsonl",
+    "filtered_fps": "~/Lictor/v3/ledgers/filtered-fps.jsonl",
+    "shipped": "~/Lictor/v3/ledgers/shipped.jsonl",
+    "deferred": "~/Lictor/v3/ledgers/deferred.jsonl"
+  },
+  "session_log": "~/Lictor/v3/docs/SESSION-2026-05-21.md",
+  "submit_flow_spec": "~/Lictor/v3/docs/SUBMIT-FLOW.md",
+  "telegram_setup": "~/Lictor/v3/docs/TELEGRAM-SETUP.md"
+}

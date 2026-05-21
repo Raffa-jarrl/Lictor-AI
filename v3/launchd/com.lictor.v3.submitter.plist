@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Lictor v3 Submitter — launchd daemon manifest.
+
+  Install with:
+    cp ~/Lictor/v3/launchd/com.lictor.v3.submitter.plist ~/Library/LaunchAgents/
+    launchctl load -w ~/Library/LaunchAgents/com.lictor.v3.submitter.plist
+
+  Uninstall:
+    launchctl unload ~/Library/LaunchAgents/com.lictor.v3.submitter.plist
+    rm ~/Library/LaunchAgents/com.lictor.v3.submitter.plist
+
+  Check status:
+    launchctl list | grep lictor
+
+  Logs (auto-rotated by launchd):
+    tail -f ~/Lictor/v3/output/submitter.log
+    tail -f ~/Lictor/v3/output/submitter.err.log
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.lictor.v3.submitter</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/raffa/Lictor/v3/scripts/submitter.py</string>
+        <string>--poll-interval</string>
+        <string>30</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/raffa/Lictor/v3</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>HOME</key>
+        <string>/Users/raffa</string>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin</string>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <dict>
+        <key>SuccessfulExit</key>
+        <false/>
+        <key>NetworkState</key>
+        <true/>
+    </dict>
+
+    <key>ThrottleInterval</key>
+    <integer>30</integer>
+
+    <key>StandardOutPath</key>
+    <string>/Users/raffa/Lictor/v3/output/submitter.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/raffa/Lictor/v3/output/submitter.err.log</string>
+</dict>
+</plist>
