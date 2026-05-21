@@ -29,7 +29,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
-ROOT = Path.home() / "Lictor-AI" / "v3"
+ROOT = Path.home() / "Lictor" / "v3"
 SECRETS_DIR = Path.home() / ".lictor" / "secrets"
 LEDGER_SHIPPED = ROOT / "ledgers" / "shipped.jsonl"
 LEDGER_DEFERRED = ROOT / "ledgers" / "deferred.jsonl"
@@ -358,6 +358,250 @@ _Tap one of the buttons below._"""
 
 
 # =============================================================================
+# Bidirectional Telegram — handle slash commands from the authorized chat
+# =============================================================================
+
+import subprocess
+
+
+def _is_authorized(chat_id: str | int, telegram: Telegram) -> bool:
+    """Only respond to messages from the configured chat. NEVER respond to strangers."""
+    return str(chat_id) == str(telegram.chat_id)
+
+
+def _cmd_help(args: str, telegram: Telegram) -> None:
+    telegram.send_text("""*Lictor v3 commands*
+
+`/status` — pipeline health snapshot
+`/list` — findings awaiting your approval
+`/findings` — recent findings from ledgers (real + FPs)
+`/scan TARGET` — probe a target now (e.g. `/scan auth.mongodb.com`)
+`/skip FINDING_ID` — defer a finding (won't auto-message again)
+`/explain FINDING_ID` — show finding details + draft preview
+`/recent` — last 5 ledger events
+`/help` — this message
+
+_All actions are logged to ledgers/. No state-changing platform calls without Lion + Oracle review + your tap._""")
+
+
+def _cmd_start(args: str, telegram: Telegram) -> None:
+    telegram.send_text("👋 *Lictor v3 alive.*\n\nType `/help` to see what I can do.")
+
+
+def _cmd_status(args: str, telegram: Telegram) -> None:
+    confirmed = _count_jsonl(ROOT / "ledgers" / "confirmed.jsonl")
+    fps = _count_jsonl(ROOT / "ledgers" / "filtered-fps.jsonl")
+    disclosures = _count_jsonl(ROOT / "ledgers" / "disclosure-cases.jsonl")
+    shipped = _count_jsonl(LEDGER_SHIPPED)
+    deferred = _count_jsonl(LEDGER_DEFERRED)
+    go_pending = len(_find_oracle_go_files())
+    telegram.send_text(f"""*Lictor v3 status*
+
+*Ledgers:*
+  Confirmed real findings: {confirmed}
+  Filtered FPs: {fps}
+  Disclosure cases: {disclosures}
+  Shipped (submitted): {shipped}
+  Deferred: {deferred}
+
+*Pipeline:*
+  Oracle-GO files pending your tap: {go_pending}
+  Submitter: running (you're talking to it 🙂)
+  Dry-run mode: {'ON ⚠️' if DRY_RUN else 'OFF (real submissions enabled)'}
+""")
+
+
+def _cmd_list(args: str, telegram: Telegram) -> None:
+    go_files = _find_oracle_go_files()
+    if not go_files:
+        telegram.send_text("✅ No findings awaiting your approval right now. The funnel is empty (or processing).")
+        return
+    lines = [f"*{len(go_files)} findings awaiting your tap:*\n"]
+    for go in go_files[:10]:
+        finding_id = go.stem
+        f = _find_finding_in_ledgers(finding_id)
+        if f:
+            lines.append(f"• `{finding_id}` ({f.get('class', '?')}, {f.get('program', {}).get('platform', '?')})")
+        else:
+            lines.append(f"• `{finding_id}` (no ledger entry)")
+    if len(go_files) > 10:
+        lines.append(f"...and {len(go_files) - 10} more")
+    telegram.send_text("\n".join(lines))
+
+
+def _cmd_findings(args: str, telegram: Telegram) -> None:
+    confirmed = _read_jsonl_tail(ROOT / "ledgers" / "confirmed.jsonl", 5)
+    if not confirmed:
+        telegram.send_text("No confirmed findings yet.")
+        return
+    lines = ["*Recent confirmed findings:*\n"]
+    for f in confirmed:
+        lines.append(f"• `{f.get('finding_id', '?')}` — {f.get('class', '?')} — {f.get('estimated_payout', '?')}")
+    telegram.send_text("\n".join(lines))
+
+
+def _cmd_recent(args: str, telegram: Telegram) -> None:
+    events = []
+    for ledger_name, label in [("confirmed.jsonl", "confirmed"), ("filtered-fps.jsonl", "FP-filter"),
+                                ("shipped.jsonl", "shipped"), ("deferred.jsonl", "deferred")]:
+        p = ROOT / "ledgers" / ledger_name
+        for rec in _read_jsonl_tail(p, 5):
+            events.append((label, rec))
+    if not events:
+        telegram.send_text("No recent ledger activity.")
+        return
+    lines = ["*Recent ledger events:*\n"]
+    for label, rec in events[-10:]:
+        fid = rec.get("finding_id", "?")
+        ts = rec.get("verified_at") or rec.get("rejected_at") or rec.get("submitted_at") or rec.get("deferred_at") or rec.get("discovered_at", "?")
+        lines.append(f"• [{label}] `{fid}` at `{ts}`")
+    telegram.send_text("\n".join(lines))
+
+
+def _cmd_scan(args: str, telegram: Telegram) -> None:
+    target = args.strip()
+    if not target or " " in target or "/" in target:
+        telegram.send_text("Usage: `/scan TARGET`\nExample: `/scan auth.mongodb.com`\nTarget must be a single hostname.")
+        return
+    telegram.send_text(f"🔍 Probing `{target}` — wait 10-30 seconds...")
+    try:
+        result = subprocess.run(
+            ["python3", str(ROOT / "scripts" / "probe-http.py"), target],
+            capture_output=True, text=True, timeout=60,
+        )
+        if result.returncode != 0:
+            telegram.send_text(f"❌ Probe failed:\n```\n{result.stderr[:500]}\n```")
+            return
+        try:
+            data = json.loads(result.stdout)
+        except Exception:
+            telegram.send_text(f"⚠️ Probe ran but output wasn't JSON:\n```\n{result.stdout[:500]}\n```")
+            return
+        p = data.get("primary", {})
+        h = p.get("headers", {})
+        acao = h.get("access-control-allow-origin", "(none)")
+        acac = h.get("access-control-allow-credentials", "(none)")
+        cname = data.get("cname", "(none)")
+        summary = f"""🦦 *Probe result: `{target}`*
+
+CNAME: `{cname}`
+Status: {p.get('status', '?')}
+acao: `{acao}`
+acac: `{acac}`
+
+{'⚠️ Secondary 200 probe ran (4xx + reflect+creds detected)' if 'secondary_200_probe' in data else 'No secondary probe needed'}
+
+_Raw JSON saved to /tmp/lictor-scan-{target.replace('.', '_')}.json on Mac_"""
+        telegram.send_text(summary)
+        # Save raw for later inspection
+        (Path("/tmp") / f"lictor-scan-{target.replace('.', '_')}.json").write_text(result.stdout)
+    except subprocess.TimeoutExpired:
+        telegram.send_text(f"⏱  Probe timed out after 60s for `{target}`")
+    except Exception as e:
+        telegram.send_text(f"❌ Probe error: {str(e)[:200]}")
+
+
+def _cmd_skip(args: str, telegram: Telegram) -> None:
+    finding_id = args.strip()
+    if not finding_id:
+        telegram.send_text("Usage: `/skip FINDING_ID`")
+        return
+    _append_ledger(LEDGER_DEFERRED, {
+        "finding_id": finding_id,
+        "deferred_at": datetime.now(timezone.utc).isoformat(),
+        "reason": "user-cmd-skip",
+    })
+    # Also mark as already_messaged so it doesn't get re-Telegrammed
+    state = _state_load()
+    state["already_messaged"][finding_id] = {"telegram_message_id": 0, "sent_at": datetime.now(timezone.utc).isoformat(), "skipped_via_cmd": True}
+    _state_save(state)
+    telegram.send_text(f"⏸  Skipped `{finding_id}`. Won't auto-message again until you `/resume` it.")
+
+
+def _cmd_explain(args: str, telegram: Telegram) -> None:
+    finding_id = args.strip()
+    if not finding_id:
+        telegram.send_text("Usage: `/explain FINDING_ID`")
+        return
+    f = _find_finding_in_ledgers(finding_id)
+    if not f:
+        telegram.send_text(f"❌ No finding with id `{finding_id}` in ledgers.")
+        return
+    program = f.get("program", {})
+    severity = f.get("severity", {})
+    pieces = [
+        f"*Finding:* `{finding_id}`",
+        f"*Class:* {f.get('class', '?')}",
+        f"*Subdomain:* `{f.get('subdomain', '?')}`",
+        f"*Program:* {program.get('name', '?')} ({program.get('platform', '?')})",
+        f"*Scope:* `{program.get('scope_match', '?')}`",
+        f"*Severity:* {severity.get('band', '?')} (CVSS {severity.get('score', '?')})",
+        f"*Est payout:* {f.get('estimated_payout', '?')}",
+        f"*Owl reasoning:* _{f.get('owl_reasoning', '(none)')[:300]}_",
+        f"*Shippable now:* {f.get('shippable_now', '?')}",
+    ]
+    if f.get("shippable_blocker"):
+        pieces.append(f"*Blocker:* {f['shippable_blocker']}")
+    telegram.send_text("\n".join(pieces))
+
+
+COMMANDS = {
+    "/start": _cmd_start,
+    "/help": _cmd_help,
+    "/status": _cmd_status,
+    "/list": _cmd_list,
+    "/findings": _cmd_findings,
+    "/recent": _cmd_recent,
+    "/scan": _cmd_scan,
+    "/skip": _cmd_skip,
+    "/explain": _cmd_explain,
+}
+
+
+def process_message(update: dict, telegram: Telegram) -> None:
+    """Handle a free-form message (commands starting with /). Ignore non-commands."""
+    msg = update.get("message")
+    if not msg:
+        return
+    chat = msg.get("chat", {})
+    if not _is_authorized(chat.get("id"), telegram):
+        return  # never respond to strangers
+    text = (msg.get("text") or "").strip()
+    if not text.startswith("/"):
+        return  # only handle slash commands
+    parts = text.split(maxsplit=1)
+    cmd = parts[0].lower().split("@")[0]  # strip /cmd@botname suffix
+    args = parts[1] if len(parts) > 1 else ""
+    handler = COMMANDS.get(cmd)
+    if not handler:
+        telegram.send_text(f"Unknown command: `{cmd}`. Type /help to see what I can do.")
+        return
+    try:
+        handler(args, telegram)
+    except Exception as e:
+        telegram.send_text(f"❌ Command `{cmd}` failed: `{str(e)[:200]}`")
+
+
+def _count_jsonl(path: Path) -> int:
+    if not path.exists():
+        return 0
+    return sum(1 for line in path.read_text().splitlines() if line.strip())
+
+
+def _read_jsonl_tail(path: Path, n: int) -> list[dict]:
+    if not path.exists():
+        return []
+    lines = [l for l in path.read_text().splitlines() if l.strip()]
+    out = []
+    for line in lines[-n:]:
+        try:
+            out.append(json.loads(line))
+        except Exception:
+            continue
+    return out
+
+
+# =============================================================================
 # Main processing loop
 # =============================================================================
 
@@ -508,6 +752,8 @@ def main():
                 _telegram_offset_save(offset)
                 if "callback_query" in upd:
                     process_callback(upd, telegram)
+                elif "message" in upd:
+                    process_message(upd, telegram)
         except Exception as e:
             print(f"  ⚠️  Poll error: {e} — sleeping {args.poll_interval}s and retrying", flush=True)
         # Also check for new GO files
