@@ -175,15 +175,16 @@ def probe_one_host(host: str) -> list[dict]:
     if base is None:
         return findings
 
-    # ANTI-CATCHALL CANARY — probe 2 nonsense paths and capture their
-    # content-length + body hash. If subsequent probes match the canary
-    # signature, the host is a wildcard/catch-all and the "finding" is
-    # spurious (host returns same response for every URL).
+    # ANTI-CATCHALL CANARY — probe 5 diverse-shaped nonsense paths
+    # (some WAFs only catch-all-200 specific URL shapes like .php / .sql)
     canary_paths = [
         f"/__lictor_canary_{secrets.token_hex(8)}",
         f"/__lictor_canary_{secrets.token_hex(8)}.bak",
+        f"/__lictor_canary_{secrets.token_hex(8)}.php.swp",
+        f"/__lictor_canary_{secrets.token_hex(8)}.sql",
+        f"/__lictor_canary_{secrets.token_hex(8)}/.git/HEAD",
     ]
-    canary_cls = set()
+    canary_cls = []  # list (not set) — keep all to detect cluster
     canary_hashes = set()
     canary_200_count = 0
     for cp in canary_paths:
@@ -197,12 +198,19 @@ def probe_one_host(host: str) -> list[dict]:
             except Exception:
                 cl = 0
             if cl > 0:
-                canary_cls.add(cl)
+                canary_cls.append(cl)
             body = cr.get("body", "") or ""
             if body:
                 canary_hashes.add(hashlib.md5(body.encode("utf-8", "replace")).hexdigest())
 
     is_catchall = canary_200_count >= 1  # any 200 on nonsense = catch-all behavior
+    canary_cl_min = min(canary_cls) if canary_cls else 0
+    canary_cl_max = max(canary_cls) if canary_cls else 0
+    # Expand the canary CL window slightly to catch per-request variations
+    canary_window = (
+        int(canary_cl_min * (1 - CATCHALL_TOLERANCE * 4)),  # 20% below
+        int(canary_cl_max * (1 + CATCHALL_TOLERANCE * 4)),  # 20% above
+    ) if canary_cls else (0, 0)
 
     def looks_like_canary(probe_cl: str, probe_body: str = "") -> bool:
         """Returns True if probe response matches catch-all signature."""
@@ -212,12 +220,9 @@ def probe_one_host(host: str) -> list[dict]:
             cl = int(probe_cl or 0)
         except Exception:
             cl = 0
-        # Match by exact CL or within tolerance of any canary CL
-        for ccl in canary_cls:
-            if cl == ccl:
-                return True
-            if ccl > 0 and abs(cl - ccl) / max(ccl, 1) < CATCHALL_TOLERANCE:
-                return True
+        # Match if CL falls within expanded canary window
+        if canary_window[0] <= cl <= canary_window[1]:
+            return True
         # Match by body hash (limited-GET path)
         if probe_body:
             ph = hashlib.md5(probe_body.encode("utf-8", "replace")).hexdigest()
@@ -274,7 +279,24 @@ def probe_one_host(host: str) -> list[dict]:
             excerpt = re.sub(r"(password|secret|key|token)\s*[=:]\s*['\"]?[^\s'\"]*", r"\1=[REDACTED]", excerpt, flags=re.I)
             finding["body_excerpt"] = excerpt
         findings.append(finding)
-        print(f"  🔴 SENSITIVE  {host}{path}  [{category}/{severity}] CL={r['content_length'] or '?'}", flush=True)
+
+    # POST-HOC DEDUP — if a host has 4+ findings whose CL all fall within
+    # 5% of each other, it's almost certainly a catch-all that slipped past
+    # the canary check (different WAF responses for nonsense vs. file-like
+    # paths). Drop ALL findings from that host.
+    if len(findings) >= 4:
+        cls = [int(f.get("content_length") or 0) for f in findings]
+        cls = [c for c in cls if c > 0]
+        if cls:
+            mean = sum(cls) / len(cls)
+            within = sum(1 for c in cls if abs(c - mean) / max(mean, 1) < 0.05)
+            if within >= 4:
+                print(f"  ⚠️  POST-HOC FP DROP  {host}: {len(findings)} findings all within 5% CL of mean ({int(mean)}) — catch-all detected", flush=True)
+                findings = []
+
+    # Print remaining (real) findings
+    for f in findings:
+        print(f"  🔴 SENSITIVE  {f['host']}{f['path']}  [{f['category']}/{f['severity']}] CL={f.get('content_length') or '?'}", flush=True)
     return findings
 
 
