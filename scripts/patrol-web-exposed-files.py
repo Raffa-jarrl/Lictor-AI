@@ -118,7 +118,16 @@ def append_ledger(record):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--max-targets", type=int, default=40)
+    ap.add_argument("--corpus", default=None,
+                    help="Path to newline-separated apex-domain file. Overrides TARGETS.")
     args = ap.parse_args()
+    if args.corpus:
+        from pathlib import Path as _P
+        p = _P(args.corpus).expanduser()
+        if p.exists():
+            global TARGETS
+            TARGETS = [l.strip() for l in p.read_text().splitlines() if l.strip()]
+            print(f"[+] Loaded {len(TARGETS)} targets from {p}", flush=True)
 
     seen = load_ledger()
     print(f"[+] web-exposed-files patrol — {len(seen)} prior hits in ledger", flush=True)

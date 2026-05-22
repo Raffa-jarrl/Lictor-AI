@@ -54,6 +54,10 @@ def extract_domain(asset_str):
     # Validate: must contain a dot and TLD-ish chars
     if "." not in a: return None
     if not re.match(r'^[a-z0-9.-]+\.[a-z]{2,}$', a): return None
+    # Reject TLD-only / "com.X" garbage (these come from miss-extracted wildcards like *.x.com.co)
+    GARBAGE_PREFIXES = {"com", "net", "org", "co", "io", "ac", "gov"}
+    if a.split(".")[0] in GARBAGE_PREFIXES and len(a.split(".")) == 2:
+        return None  # e.g., "com.co", "com.cy" — not real domains
     # Reduce to apex (or keep one level if it's a country code like co.il, co.uk)
     parts = a.split(".")
     SECOND_LEVEL = {"co", "ac", "gov", "or", "ne", "edu"}

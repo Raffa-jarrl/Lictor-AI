@@ -59,3 +59,14 @@ docs/launch/patrol-db-creds-private*.md
 docs/launch/patrol-supabase-5y-private*.md
 docs/launch/patrol-bot-tokens-private*.md
 docs/launch/patrol-stripe-*-private.md
+
+# Lictor scan data — private artifacts (raw scan output may contain target details)
+docs/launch/*-private.md
+docs/launch/patrol-*-private.md
+v3/ledgers/*.jsonl
+v3/templates/nuclei/
+v3/templates/cisa-kev/known_exploited.json
+
+# Local scanner outputs
+/tmp/lictor-*.log
+/tmp/scan-wallet-files.py
