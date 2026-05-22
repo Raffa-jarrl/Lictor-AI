@@ -102,6 +102,49 @@ SERVICES = [
         "probe": b"GET /api/server/version HTTP/1.0\r\nHost: any\r\n\r\n",
         "success_rx": b'sonar',
     },
+    # === Additional high-value services ===
+    {
+        "name": "Cassandra", "port": 9042, "payout": 2500,
+        # CQL native protocol OPTIONS query
+        "probe": b"\x04\x00\x00\x00\x05\x00\x00\x00\x00",
+        "success_rx": b"\x04\x00\x00\x00\x06",  # SUPPORTED response
+    },
+    {
+        "name": "RabbitMQ Mgmt", "port": 15672, "payout": 1500,
+        "probe": b"GET /api/overview HTTP/1.0\r\nHost: any\r\n\r\n",
+        "success_rx": b'rabbitmq_version',
+    },
+    {
+        "name": "ZooKeeper", "port": 2181, "payout": 2000,
+        "probe": b"ruok",
+        "success_rx": b"imok",
+    },
+    {
+        "name": "Memcached", "port": 11211, "payout": 800,
+        "probe": b"version\r\n",
+        "success_rx": b"VERSION ",
+    },
+    {
+        "name": "ClickHouse", "port": 8123, "payout": 2500,
+        "probe": b"GET /?query=SHOW%20TABLES HTTP/1.0\r\nHost: any\r\n\r\n",
+        "success_rx": b'HTTP/1.0 200',
+    },
+    {
+        "name": "Splunk", "port": 8089, "payout": 2500,
+        "probe": b"GET /services/server/info HTTP/1.0\r\nHost: any\r\n\r\n",
+        "success_rx": b'splunkd',
+    },
+    {
+        "name": "NoSQL CouchDB", "port": 5984, "payout": 2000,
+        "probe": b"GET / HTTP/1.0\r\nHost: any\r\n\r\n",
+        "success_rx": b'"couchdb":"Welcome"',
+    },
+    {
+        "name": "MQTT broker", "port": 1883, "payout": 1500,
+        # MQTT CONNECT packet (anonymous)
+        "probe": b"\x10\x10\x00\x04MQTT\x04\x02\x00\x3c\x00\x04test",
+        "success_rx": b"\x20\x02\x00",  # CONNACK
+    },
 ]
 
 # Subdomain prefixes likely to host internal services
@@ -177,6 +220,9 @@ def main():
                     help="Path to apex-domain corpus file.")
     ap.add_argument("--max-domains", type=int, default=500)
     ap.add_argument("--workers", type=int, default=50)
+    ap.add_argument("--deep", action="store_true",
+                    help="DEEP mode: enumerate REAL subdomains via crt.sh+wayback+hackertarget, "
+                         "then probe each. Much more thorough than prefix-only scanning.")
     args = ap.parse_args()
 
     seen = load_ledger()
@@ -188,12 +234,51 @@ def main():
 
     # Build all (host, service) tuples to probe
     tasks = []
-    for apex in domains:
-        for prefix in PREFIXES:
-            host = f"{prefix}{apex}"
-            for svc in SERVICES:
-                if f"{host}|{svc['port']}" in seen: continue
-                tasks.append((host, svc))
+    if args.deep:
+        # DEEP: pull real subdomains via hackertarget (most reliable) + wayback
+        for ai, apex in enumerate(domains, 1):
+            subs = set()
+            # hackertarget
+            try:
+                req = urllib.request.Request(
+                    f"https://api.hackertarget.com/hostsearch/?q={apex}",
+                    headers={"User-Agent": UA})
+                with urllib.request.urlopen(req, timeout=15) as r:
+                    for line in r.read().decode("utf-8", "replace").splitlines():
+                        if "," in line:
+                            h = line.split(",")[0].strip().lower()
+                            if h.endswith(f".{apex}") or h == apex:
+                                subs.add(h)
+            except Exception: pass
+            # wayback (slow but deep)
+            try:
+                req = urllib.request.Request(
+                    f"http://web.archive.org/cdx/search/cdx?url=*.{apex}/*&output=json&fl=original&collapse=urlkey&limit=2000",
+                    headers={"User-Agent": UA})
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    from urllib.parse import urlparse as _up
+                    for row in json.loads(r.read())[1:]:
+                        if not row: continue
+                        try:
+                            h = (_up(row[0]).hostname or "").lower().lstrip("*.")
+                            if h.endswith(f".{apex}") and "@" not in h and len(h.split(".")) <= 5:
+                                subs.add(h)
+                        except Exception: pass
+            except Exception: pass
+            print(f"  [deep enum {ai}/{len(domains)}] {apex} → {len(subs)} subs", flush=True)
+            for host in list(subs)[:500]:  # cap per apex
+                for svc in SERVICES:
+                    if f"{host}|{svc['port']}" in seen: continue
+                    tasks.append((host, svc))
+            time.sleep(0.3)
+    else:
+        # PREFIX mode: just apex + 21 hardcoded prefixes
+        for apex in domains:
+            for prefix in PREFIXES:
+                host = f"{prefix}{apex}"
+                for svc in SERVICES:
+                    if f"{host}|{svc['port']}" in seen: continue
+                    tasks.append((host, svc))
     print(f"[+] total probes: {len(tasks)} (after ledger dedup)", flush=True)
 
     hits = []
