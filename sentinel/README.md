@@ -1,11 +1,15 @@
 # @lictor/sentinel
 
+> 🤖 **Part of the [Lictor AI security suite](../README.md)** — Lictor for AI. Sentinel guards the **prompt** boundary (TypeScript SDK).
+
 > The security crew for apps you built with AI — runtime defense for your OpenAI / Anthropic calls.
 > One-line `wrap()` blocks prompt injection, secret exfiltration, and PII leaks before they hit production.
 
 [![CI](https://github.com/Raffa-jarrl/Lictor-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/Raffa-jarrl/Lictor-AI/actions)
 [![npm](https://img.shields.io/npm/v/@lictor/sentinel.svg)](https://www.npmjs.com/package/@lictor/sentinel)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+
+> **Status: pre-release.** `@lictor/sentinel` is not on the public npm registry yet — the npm badge above goes live at GA (Oct 6, 2026). Until then, [install from source](#install-from-source-available-today) (works today).
 
 ## Why Sentinel
 
@@ -49,12 +53,41 @@ Sentinel intercepts every call:
 
 ## Install
 
+### Coming at launch (Oct 6, 2026)
+
+At GA, Sentinel will be on the public npm registry and these will Just Work:
+
 ```bash
 pnpm add @lictor/sentinel
 # or
 npm i @lictor/sentinel
 # or
 yarn add @lictor/sentinel
+```
+
+> Not published yet — running these today returns a 404. Use the from-source path below in the meantime.
+
+### Install from source (available today)
+
+Build the package locally and install the resulting tarball into your project:
+
+```bash
+# 1. Clone and build (the repo uses pnpm; npm works too — the build is just `tsc`)
+git clone https://github.com/Raffa-jarrl/Lictor-AI
+cd Lictor-AI/sentinel
+pnpm install   # or: npm install
+pnpm build     # or: npm run build  → compiles to dist/
+npm pack       # → produces lictor-sentinel-0.1.0-alpha.0.tgz in this folder
+
+# 2. Install that tarball into YOUR project (use the absolute path it printed)
+cd /path/to/your-project
+npm i /path/to/Lictor-AI/sentinel/lictor-sentinel-0.1.0-alpha.0.tgz
+```
+
+Then import exactly as documented below — the package name is `@lictor/sentinel`:
+
+```ts
+import { wrap } from "@lictor/sentinel";
 ```
 
 ## Quick start

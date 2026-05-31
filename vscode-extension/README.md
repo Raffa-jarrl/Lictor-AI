@@ -1,5 +1,7 @@
 # Lictor — AI Security Audit for VS Code
 
+> 🤖 **Part of the [Lictor AI security suite](../README.md)** — Lictor for AI. Lictor inside VS Code / Cursor.
+
 > Free open-source security audit for apps built with AI. Catches the patterns Snyk and Semgrep miss in Lovable / Bolt / v0 / Cursor / Replit projects.
 > One command. Plain English. No signup, no telemetry, no per-seat pricing.
 
@@ -15,6 +17,23 @@ Findings render:
 Plus:
 - **Import AUDIT.json** — paste in Snyk / Semgrep / Trivy / GitHub Security output and read it through Lictor's plain-English voice
 - **Export findings** — save the current audit as AUDIT.json for CI artifacts or PR comments
+
+## Install from VSIX
+
+Until the Marketplace / Open VSX listings go live, install the prebuilt `.vsix` directly:
+
+1. Download `lictor-0.1.0-pre.0.vsix` from the [GitHub Release](https://github.com/Raffa-jarrl/Lictor-AI/releases) — or build it locally with `pnpm package` (see [Development](#development)).
+2. Install it:
+
+   ```bash
+   code --install-extension lictor-0.1.0-pre.0.vsix
+   ```
+
+   Or from the VS Code UI: **Extensions** view → **⋯** (top-right) → **Install from VSIX…** → pick the file.
+
+3. Reload VS Code if prompted. Then run **Lictor: Audit this workspace** from the Command Palette.
+
+> Cursor / Windsurf / Codium use the same command: `code --install-extension lictor-0.1.0-pre.0.vsix` (or `cursor --install-extension …`).
 
 ## Prerequisites
 

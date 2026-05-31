@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lictor for Business — Continuous external security scanning</title>
+  <meta name="description" content="Lictor for Business: continuous external attack-surface scanning for medium-business CISOs. SOC 2 / ISO 27001 / PCI-DSS aligned. Contact for pricing.">
+  <link rel="canonical" href="https://lictor-ai.com/business">
+  <style>
+    :root {
+      --bg: #0a0e1a;
+      --bg-card: #131826;
+      --fg: #e8edf5;
+      --fg-muted: #8a93a8;
+      --accent: #00d4ff;
+      --accent-hover: #00b8de;
+      --border: #1f2738;
+      --success: #20d180;
+      --warn: #ffb84d;
+      --critical: #ff5252;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    nav { padding: 24px 0; border-bottom: 1px solid var(--border); }
+    nav .container { display: flex; justify-content: space-between; align-items: center; }
+    nav a { color: var(--fg); text-decoration: none; font-weight: 600; }
+    nav .nav-links a { color: var(--fg-muted); margin-left: 24px; font-weight: 500; }
+    nav .nav-links a:hover { color: var(--fg); }
+    .hero { padding: 96px 0 64px; }
+    .hero h1 { font-size: 56px; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; }
+    .hero h1 .accent { color: var(--accent); }
+    .hero .subtitle { font-size: 20px; color: var(--fg-muted); max-width: 720px; margin-bottom: 32px; }
+    .cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #000; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: background .15s; }
+    .cta:hover { background: var(--accent-hover); }
+    .cta.secondary { background: transparent; color: var(--fg); border: 1px solid var(--border); margin-left: 12px; }
+    section { padding: 64px 0; border-top: 1px solid var(--border); }
+    section h2 { font-size: 36px; margin-bottom: 24px; letter-spacing: -0.01em; }
+    section .lede { color: var(--fg-muted); max-width: 720px; margin-bottom: 48px; }
+    .grid { display: grid; gap: 24px; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 768px) { .grid-3, .grid-2 { grid-template-columns: 1fr; } .hero h1 { font-size: 36px; } }
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+    .card h3 { font-size: 20px; margin-bottom: 12px; }
+    .card p { color: var(--fg-muted); font-size: 15px; }
+    .card .icon { font-size: 24px; margin-bottom: 12px; }
+    table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+    th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { color: var(--fg-muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+    .badge.critical { background: rgba(255, 82, 82, 0.15); color: var(--critical); }
+    .badge.high { background: rgba(255, 184, 77, 0.15); color: var(--warn); }
+    .badge.good { background: rgba(32, 209, 128, 0.15); color: var(--success); }
+    .contact-form { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 32px; max-width: 640px; margin: 0 auto; }
+    .field { margin-bottom: 16px; }
+    .field label { display: block; margin-bottom: 6px; font-weight: 500; font-size: 14px; }
+    .field input, .field select, .field textarea { width: 100%; background: var(--bg); color: var(--fg); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; font-family: inherit; font-size: 15px; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
+    .field textarea { min-height: 100px; resize: vertical; }
+    button.cta { border: none; cursor: pointer; font-family: inherit; font-size: 15px; }
+    footer { padding: 48px 0; color: var(--fg-muted); font-size: 14px; text-align: center; border-top: 1px solid var(--border); }
+    footer a { color: var(--fg-muted); }
+    .stats { display: flex; gap: 48px; margin: 32px 0; flex-wrap: wrap; }
+    .stat .num { font-size: 36px; font-weight: 700; color: var(--accent); display: block; }
+    .stat .label { color: var(--fg-muted); font-size: 14px; }
+  </style>
+  <link rel="stylesheet" href="/static/a11y.css" />
+  <script src="/static/a11y.js" defer></script>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/">Lictor</a>
+    <div class="nav-links">
+      <a href="/">Open source</a>
+      <a href="/business" style="color: var(--accent);">For business</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <h1>Lictor for Business —<br><span class="accent">secure the whole company.</span></h1>
+    <p class="subtitle">The second pillar of the Lictor suite: <strong>Domain Guard</strong> (identity / Active Directory posture), <strong>Isolation</strong> (a red/black sandbox for untrusted AI agents), and <strong>Audit &amp; Rotate</strong> (find leaked keys, rotate them, prove it). Built on the same Core engine and continuous external scanner battery we used to disclose 276 findings across DeFi, healthcare, fintech, government, and Fortune 500 enterprises in May — now pointed at your perimeter, on a schedule, in plain English.</p>
+    <a href="#contact" class="cta">Talk to us about scope →</a>
+    <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="cta secondary">Try the open-source scanner</a>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <h2>What we scan</h2>
+    <p class="lede">38 scanner modules across 8 attack-surface categories. Same engine that's already producing disclosures to major banks, DeFi protocols, and Fortune 500 companies — now monitoring your perimeter on your schedule.</p>
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="icon">📁</div>
+        <h3>Web file exposure</h3>
+        <p>.git directories, .env files, wallet/keystore files, source maps, hardhat artifacts, Solana keypairs, Google service-accounts. HEAD-only probes, never downloads content.</p>
+      </div>
+      <div class="card">
+        <div class="icon">☁️</div>
+        <h3>Cloud misconfiguration</h3>
+        <p>S3, GCS, Azure Blob, DigitalOcean Spaces, Wasabi, Backblaze. Listable buckets, public ACLs, dangling DNS to expired cloud apps (subdomain takeover).</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔐</div>
+        <h3>TLS / SSL posture</h3>
+        <p>Weak ciphers, expired certs, missing HSTS / CSP / X-Frame-Options, weak RSA &lt; 2048, SHA-1 signatures. PCI-DSS Req 4.1 aligned.</p>
+      </div>
+      <div class="card">
+        <div class="icon">✉️</div>
+        <h3>Email-auth posture</h3>
+        <p>SPF / DKIM / DMARC checks per apex domain. Detect spoofable mail (anti-phishing), missing DKIM, weak DMARC (p=none). Tells you if your email can be impersonated.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🦠</div>
+        <h3>Anti-ransomware exposure</h3>
+        <p>Protocol-handshake confirmed: exposed RDP, SMB, WinRM, FTP, RPC. Plus VPN/RAT fingerprints (Fortinet, Citrix, Pulse, MOVEit, GoAnywhere) cross-referenced with CISA KEV.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🛰</div>
+        <h3>GraphQL + API exposure</h3>
+        <p>GraphQL introspection enabled in production. REST OpenAPI documentation exposure. Detection only — never enumerates data records.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📜</div>
+        <h3>Known CVEs</h3>
+        <p>~13,000 Nuclei detection patterns + 1,600 CISA Known Exploited Vulnerabilities. Auto-mapped to your version banners + product fingerprints.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🤝</div>
+        <h3>Vendor disclosure coordination</h3>
+        <p>When we find an exposure on a vendor of yours (your payment processor, your CDN, your podcast platform), we handle the upstream disclosure — INCD, Immunefi, HackerOne, vendor abuse@.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Why Lictor instead of Tenable / Rapid7?</h2>
+    <p class="lede">Enterprise scanners are priced for enterprises. Most medium businesses are either overpaying for 5% of the feature set or running zero external monitoring. Lictor for Business fills the missing middle.</p>
+    <table>
+      <thead>
+        <tr><th></th><th>Tenable / Rapid7 / Qualys</th><th>Lictor for Business</th><th>DIY (Nuclei + cron)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>External attack-surface scanning</td>
+          <td><span class="badge good">Yes</span></td>
+          <td><span class="badge good">Yes</span></td>
+          <td><span class="badge good">Yes</span></td>
+        </tr>
+        <tr>
+          <td>Anti-FP rigor (vendor-pattern detection, WAF-anti-recon protection)</td>
+          <td><span class="badge high">Mixed</span></td>
+          <td><span class="badge good">Built-in</span></td>
+          <td><span class="badge critical">DIY</span></td>
+        </tr>
+        <tr>
+          <td>Vendor disclosure coordination on your behalf</td>
+          <td><span class="badge critical">No</span></td>
+          <td><span class="badge good">Yes</span></td>
+          <td><span class="badge critical">No</span></td>
+        </tr>
+        <tr>
+          <td>Per-finding compliance mapping (SOC 2 / ISO / PCI / HIPAA)</td>
+          <td><span class="badge good">Yes</span></td>
+          <td><span class="badge good">Yes</span></td>
+          <td><span class="badge critical">DIY</span></td>
+        </tr>
+        <tr>
+          <td>SMB-friendly pricing</td>
+          <td><span class="badge critical">$30K-$100K+/yr</span></td>
+          <td><span class="badge good">Talk to us</span></td>
+          <td><span class="badge good">Time cost</span></td>
+        </tr>
+        <tr>
+          <td>Open-source core (you can self-host)</td>
+          <td><span class="badge critical">No</span></td>
+          <td><span class="badge good">Apache 2.0</span></td>
+          <td><span class="badge good">Yes</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>What the scanner battery surfaced — May 2026</h2>
+    <p class="lede">Aggregate results from a 5-day external attack-surface scan across 7,736 hosts in finance, healthcare, government, crypto, and AI infrastructure. Every finding category below was disclosed privately to the affected organizations. <strong>Zero victim names published — only finding categories and counts.</strong></p>
+    <div class="stats">
+      <div class="stat"><span class="num">7,736</span><span class="label">Hosts scanned · 12 countries · 5 industries</span></div>
+      <div class="stat"><span class="num">92</span><span class="label">Disclosures sent under 60-day CVD window</span></div>
+      <div class="stat"><span class="num">44</span><span class="label">Frontend source code leaks with revealed customer code (after content-quality validation — 248 initial "exposures" reclassified as framework boilerplate or stubs)</span></div>
+      <div class="stat"><span class="num">33</span><span class="label">Spoofable enterprise email domains (SPF/DMARC/DKIM gaps)</span></div>
+      <div class="stat"><span class="num">11</span><span class="label">Publicly listable cloud buckets containing regulated data</span></div>
+      <div class="stat"><span class="num">14</span><span class="label">End-of-life software stacks (permanent HIGH-severity exposure)</span></div>
+      <div class="stat"><span class="num">4</span><span class="label">RDP / FTP / SMB services exposed direct-to-internet</span></div>
+      <div class="stat"><span class="num">38</span><span class="label">Scanner modules in the battery</span></div>
+    </div>
+    <p style="color: var(--fg-muted); font-size: 14px; margin-top: 24px;">All identifiers and specific URLs withheld pending vendor remediation per 60-day Coordinated Vulnerability Disclosure norms. We do not name, shame, or sell findings — disclosures go to the affected organization and nobody else.</p>
+    <p style="color: var(--fg-muted); font-size: 13px; margin-top: 12px; font-style: italic;">Note on the sourcemap number: our initial scan flagged 292 hosts serving <code>.js.map</code> files. Anti-FP content-quality validation downgraded 248 of those to "framework boilerplate" or "stub" tiers — they technically exist but reveal nothing exploitable. We publish the validated number (44), not the raw scan count, because honest calibration is the product.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h2 style="text-align: center;">Talk to us about scope</h2>
+    <p class="lede" style="margin: 0 auto 32px; text-align: center;">Pricing depends on your domain count, scan frequency, and whether you want disclosure-coordination services. We don't publish public pricing — every customer gets a quote based on actual scope. First 10-15 design partners get Year 1 free in exchange for a feedback call.</p>
+
+    <form class="contact-form" action="https://formsubmit.co/raffajarrl@gmail.com" method="POST" id="lictor-business-contact">
+      <!-- formsubmit.co — free, no-signup form-to-email. First submission triggers confirmation email to raffajarrl@gmail.com. -->
+      <input type="hidden" name="_subject" value="Lictor for Business — contact form">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="true">
+      <div class="field">
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="field">
+        <label for="email">Work email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="field">
+        <label for="company">Company</label>
+        <input type="text" id="company" name="company" required>
+      </div>
+      <div class="field">
+        <label for="role">Your role</label>
+        <select id="role" name="role" required>
+          <option value="">Select…</option>
+          <option value="CISO / Head of Security">CISO / Head of Security</option>
+          <option value="IT Director / Director of IT">IT Director / Director of IT</option>
+          <option value="Engineering Manager">Engineering Manager</option>
+          <option value="DevSecOps / Security Engineer">DevSecOps / Security Engineer</option>
+          <option value="Founder / CTO">Founder / CTO</option>
+          <option value="Compliance / Audit">Compliance / Audit</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="company_size">Company size</label>
+        <select id="company_size" name="company_size" required>
+          <option value="">Select…</option>
+          <option value="1-50">1–50 employees</option>
+          <option value="50-250">50–250</option>
+          <option value="250-1000">250–1,000</option>
+          <option value="1000-5000">1,000–5,000</option>
+          <option value="5000+">5,000+</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="domains">Approximate # of domains to scan</label>
+        <input type="text" id="domains" name="domains" placeholder="e.g. 5 apex domains + ~50 subdomains" required>
+      </div>
+      <div class="field">
+        <label for="current_tooling">What are you currently using (if anything)?</label>
+        <input type="text" id="current_tooling" name="current_tooling" placeholder="Tenable, Rapid7, Qualys, in-house, nothing yet…">
+      </div>
+      <div class="field">
+        <label for="message">What's your situation?</label>
+        <textarea id="message" name="message" placeholder="Briefly: what's driving you to look at this now? (e.g. upcoming SOC 2 audit, recent vendor breach, replacing Tenable, etc.)"></textarea>
+      </div>
+      <div class="field" style="display: flex; align-items: center; gap: 8px;">
+        <input type="checkbox" id="design_partner" name="design_partner" style="width: auto;">
+        <label for="design_partner" style="margin: 0;">I'm interested in the Design Partner program (Year 1 free, quarterly feedback calls)</label>
+      </div>
+      <button type="submit" class="cta" style="width: 100%; margin-top: 8px;">Send →</button>
+      <p style="color: var(--fg-muted); font-size: 13px; margin-top: 16px; text-align: center;">We'll respond within 24 hours during EU/IL business hours. No automated follow-up sequences.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Lictor — Apache 2.0 open-source security scanner. <a href="https://github.com/Raffa-jarrl/Lictor-AI">github.com/Raffa-jarrl/Lictor-AI</a></p>
+    <p style="margin-top: 8px;">Questions: <a href="mailto:raffajarrl@gmail.com">raffajarrl@gmail.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

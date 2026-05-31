@@ -1,0 +1,5 @@
+# Build output (also covered by root .gitignore)
+dist/
+
+# Packaged release artifact produced by `npm run package`
+lictor-shield-*.zip

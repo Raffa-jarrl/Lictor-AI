@@ -54,6 +54,41 @@ jobs:
       - name: Build native CLI example
         run: cargo build --release --example audit -p lictor-core
 
+  # ─── lictor-cli (Rust terminal binary) ─────────────────────────────────────
+  cli:
+    name: lictor-cli
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: core
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Tests
+        run: cargo test -p lictor-cli
+
+      - name: Build release binary
+        run: cargo build --release -p lictor-cli
+
+      - name: Smoke test the binary
+        run: |
+          ./target/release/lictor --version
+          ./target/release/lictor --help
+          echo "✓ lictor CLI runs"
+
   # ─── lictor-shield (Chrome extension build) ────────────────────────────────
   shield:
     name: lictor-shield
@@ -166,6 +201,44 @@ jobs:
           ls -lh /tmp/lictor-sentinel-*.tgz
           tar -tzf /tmp/lictor-sentinel-*.tgz | grep -E 'dist/checks/(prompt-injection|pii-leak|secrets-in-input)\.js' || (echo "missing check modules in tarball"; exit 1)
           echo "✓ all check modules in the publishable tarball"
+
+  # ─── @lictor/airlock (AI action broker) ────────────────────────────────────
+  airlock:
+    name: '@lictor/airlock'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+        with:
+          version: 9
+
+      - name: Install
+        working-directory: airlock
+        run: pnpm install --frozen-lockfile=false
+
+      - name: Build
+        working-directory: airlock
+        run: pnpm run build
+
+      - name: Tests
+        working-directory: airlock
+        run: pnpm test
+
+      - name: Verify CLI + pack
+        working-directory: airlock
+        run: |
+          node dist/cli.js version
+          pnpm pack --pack-destination /tmp
+          ls -lh /tmp/lictor-airlock-*.tgz
+          echo "✓ airlock builds, tests, and packs"
 
   # ─── lictor-sentinel (Python SDK) ──────────────────────────────────────────
   sentinel-py:

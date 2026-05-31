@@ -30,8 +30,32 @@
   <link rel="stylesheet" href="/static/fx.css" />
   <script src="/static/fx.js" defer></script>
   <link rel="canonical" href="https://lictorai.com/scan/" />
+
+  <!-- Structured data — SoftwareApplication for the public scanner -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Lictor Scan",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "url": "https://lictorai.com/scan",
+    "description": "Free, open-source security scanner for anything built with AI. Paste a URL, get a letter grade and the worst findings in plain English.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Lictor AI",
+      "url": "https://lictorai.com"
+    }
+  }
+  </script>
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to main content</a>
   <header class="nav">
     <a href="/" class="brand">
       <img src="/static/lictor-mark.png" alt="" width="28" height="28" />
@@ -45,7 +69,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main">
     <section class="scan-hero">
       <span class="eyebrow">FREE · NO SIGNUP · APACHE 2.0 · YOUR URL NEVER LEAVES OUR WORKER</span>
       <h1 class="scan-hero__title">

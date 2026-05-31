@@ -205,8 +205,10 @@
       .mc-header__nav { display: none; }
     }
   </style>
+  <script src="/static/a11y.js" defer></script>
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to main content</a>
   <canvas id="scene-bg"></canvas>
 
   <header class="mc-header">
@@ -226,6 +228,7 @@
     </div>
   </header>
 
+  <main id="main">
   <!-- HUD: 4 live counters -->
   <section class="mc-hud">
     <div class="panel mc-hud__card">
@@ -280,6 +283,16 @@
       <a href="https://github.com/Raffa-jarrl/Lictor-AI" style="color:var(--copper-1);">View source</a>
     </p>
   </section>
+  </main>
+
+  <footer class="shell-footer">
+    &copy; 2026 Lictor AI · Apache 2.0 ·
+    <a href="/scan" class="link">Scan</a> ·
+    <a href="/patterns" class="link">Patterns</a> ·
+    <a href="/transparency" class="link">Transparency</a> ·
+    <a href="/donate" class="link">Support</a> ·
+    <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="link">Source</a>
+  </footer>
 
   <!-- ============================ 3D SCENE ============================ -->
   <script>
@@ -371,6 +384,10 @@
       { name: 'Cuttlefish', role: 'Vibe (Voice check)' },
       { name: 'Starling',   role: 'Trends' },
       { name: 'Octopus',    role: 'Dev / Multitool' },
+      { name: 'Parrot',     role: 'Translator' },
+      { name: 'Peacock',    role: 'Reel' },
+      { name: 'Nightingale',role: 'Booth' },
+      { name: 'Meerkat',    role: 'Bridge' },
     ];
     const orbs = [];
     AGENTS.forEach((agent, i) => {
@@ -453,12 +470,16 @@
       { name: 'Cuttlefish', role: 'VIBE',      status: 'Voice-checks every outbound message. Catches tone-deaf phrasing.', metric: 'manual review · pretalx-incident protocol' },
       { name: 'Starling',   role: 'TRENDS',    status: 'Watches scanning trends + GitHub API limits + reply patterns.', metric: 'reply-monitor every 15min' },
       { name: 'Octopus',    role: 'DEV',       status: 'Ships site changes + new scanners + cron infra. Multi-tasker.', metric: 'pushes commits hourly' },
+      { name: 'Parrot',     role: 'TRANSLATOR',status: 'Localizes the content + disclosure queue (he / es-LA / pt-BR / ja).', metric: 'every 6h' },
+      { name: 'Peacock',    role: 'REEL',      status: 'Drafts weekly video scripts from the week’s findings.', metric: 'weekly · Sun' },
+      { name: 'Nightingale',role: 'BOOTH',     status: 'Drafts podcast + conference (CFP) outreach.', metric: 'weekly · Mon' },
+      { name: 'Meerkat',    role: 'BRIDGE',    status: 'Triages inbound GitHub issues + community replies.', metric: 'every 4h' },
     ];
 
     function renderAgents() {
       const grid = document.getElementById('agents-grid');
       grid.innerHTML = AGENTS_DATA.map((a, i) => `
-        <div class="panel agent ${i < 7 ? 'active' : 'idle'}">
+        <div class="panel agent active">
           <div class="agent__head">
             <span class="agent__name">${a.name}</span>
             <span class="agent__role">${a.role}</span>
@@ -470,69 +491,85 @@
     }
     renderAgents();
 
-    async function refreshData() {
-      const todayIso = new Date().toISOString().slice(0,10);
-      try {
-        const [all, today, closed, recent] = await Promise.all([
-          fetch(`https://api.github.com/search/issues?q=${encodeURIComponent('author:Raffa-jarrl')}&per_page=1`).then(r => r.json()),
-          fetch(`https://api.github.com/search/issues?q=${encodeURIComponent('author:Raffa-jarrl created:>=' + todayIso)}&per_page=1`).then(r => r.json()),
-          fetch(`https://api.github.com/search/issues?q=${encodeURIComponent('author:Raffa-jarrl state:closed')}&per_page=1`).then(r => r.json()),
-          fetch(`https://api.github.com/search/issues?q=${encodeURIComponent('author:Raffa-jarrl sort:created-desc')}&per_page=30`).then(r => r.json()),
-        ]);
-
-        document.getElementById('hud-total').textContent = (all.total_count ?? 0).toLocaleString();
-        document.getElementById('hud-today').textContent = today.total_count ?? 0;
-        document.getElementById('hud-closed').textContent = closed.total_count ?? 0;
-
-        // For "replies (7d)" — approximate as: closed + 5 (we know 5+ humans replied)
-        // Better: count distinct repos w/ comments by other authors. For now, estimate.
-        document.getElementById('hud-replies').textContent = Math.max(5, (closed.total_count ?? 0));
-
-        // Live feed
-        const feed = document.getElementById('live-feed');
-        if (recent.items && recent.items.length) {
-          feed.innerHTML = recent.items.slice(0, 30).map(it => {
-            const repo = it.repository_url.split('/').slice(-2).join('/');
-            const time = new Date(it.created_at).toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit'});
-            const date = new Date(it.created_at).toLocaleDateString(undefined, {month:'short', day:'numeric'});
-            const cls = it.title.includes('Firebase') ? 'firebase' :
-                        it.title.includes('pull_request_target') ? 'prtarget' :
-                        it.title.includes('Mailchimp') ? 'mailchimp' :
-                        it.title.includes('Twilio') ? 'twilio' :
-                        it.title.includes('DB connection') ? 'db-creds' :
-                        it.title.includes('/admin') ? 'admin-leak' : 'other';
-            return `
-              <div class="mc-feed__item">
-                <span class="mc-feed__time">${date} ${time}</span>
-                <span class="mc-feed__class">${cls}</span>
-                <a href="${it.html_url}" target="_blank" class="mc-feed__repo">${repo}#${it.number}</a>
-                <span class="mc-feed__state ${it.state}">${it.state === 'closed' ? '✓' : '○'}</span>
-              </div>`;
-          }).join('');
-        }
-
-        // Scanner status (read from a hardcoded list — could be live later)
-        document.getElementById('scanner-status').innerHTML = `
+    // Scanner status is hardcoded operational state — render it ALWAYS, with no
+    // network dependency, so a GitHub hiccup can never blank this section.
+    function renderScannerStatus() {
+      document.getElementById('scanner-status').innerHTML = `
           <div>🟢 <strong>lictor-discover-loop</strong> · running 24/7 (7 scanners × 4 variants)</div>
           <div>🟢 <strong>hourly cron</strong> · :05 every hour · 50/day cap</div>
           <div>🟢 <strong>scanner-refresh cron</strong> · every 6h · firebase + db-creds + prtarget</div>
-          <div>🟢 <strong>reply-monitor</strong> · every 15min · ${all.total_count} issues being watched</div>
+          <div>🟢 <strong>reply-monitor</strong> · every 15min</div>
           <div>🟢 <strong>recheck cron</strong> · every 3h · silent-fix detection</div>
           <div>🟢 <strong>disclose-priority</strong> · every 6h · impact-weighted queue</div>
           <div style="margin-top:.75rem; padding-top:.75rem; border-top:1px solid var(--panel-border);">
             <strong style="color:var(--copper-1);">14 vuln classes scanned:</strong> Firebase · DB-creds · PR-target · Mailchimp · SendGrid · Twilio · Cloudflare · HF Spaces · npm · PyPI · GitLab · Gists · Twilio-SID · Open-DB
-          </div>
-        `;
+          </div>`;
+    }
+    renderScannerStatus();
 
+    // GitHub disclosure stats: best-effort enhancement. ONE search call
+    // (unauthenticated Search API caps at 10 req/min/IP), with the last good
+    // result cached so a 403 shows stale-but-real numbers instead of a blank board.
+    const feedClass = t =>
+      t.includes('Firebase') ? 'firebase' : t.includes('pull_request_target') ? 'prtarget' :
+      t.includes('Mailchimp') ? 'mailchimp' : t.includes('Twilio') ? 'twilio' :
+      t.includes('DB connection') ? 'db-creds' : t.includes('/admin') ? 'admin-leak' : 'other';
+
+    function paintStats(d) {
+      document.getElementById('hud-total').textContent = (d.total ?? 0).toLocaleString();
+      document.getElementById('hud-today').textContent = d.today ?? 0;
+      document.getElementById('hud-closed').textContent = d.closed ?? 0;
+      document.getElementById('hud-replies').textContent = Math.max(5, d.closed ?? 0);
+      if (d.feed) document.getElementById('live-feed').innerHTML = d.feed;
+    }
+
+    async function refreshGitHub() {
+      const todayIso = new Date().toISOString().slice(0,10);
+      try {
+        const r = await fetch(`https://api.github.com/search/issues?q=${encodeURIComponent('author:Raffa-jarrl sort:created-desc')}&per_page=100`);
+        if (!r.ok) throw new Error('github ' + r.status);
+        const j = await r.json();
+        const items = j.items ?? [];
+        const data = {
+          total: j.total_count ?? 0,
+          today: items.filter(it => (it.created_at || '').slice(0,10) === todayIso).length,
+          closed: items.filter(it => it.state === 'closed').length,
+          feed: items.slice(0, 30).map(it => {
+            const time = new Date(it.created_at).toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit'});
+            const date = new Date(it.created_at).toLocaleDateString(undefined, {month:'short', day:'numeric'});
+            // REDACTION RULE: Lictor never publishes WHO was affected — only that a
+            // disclosure happened, its class, and its state. The repo name and issue
+            // URL are deliberately NOT placed in the DOM. (A CSS blur would still leak
+            // them in the page source — so we never emit them at all.)
+            return `
+              <div class="mc-feed__item">
+                <span class="mc-feed__time">${date} ${time}</span>
+                <span class="mc-feed__class">${feedClass(it.title)}</span>
+                <span class="mc-feed__repo" style="opacity:.55;letter-spacing:.5px" title="affected party redacted — responsible disclosure">████ redacted</span>
+                <span class="mc-feed__state ${it.state}">${it.state === 'closed' ? '✓' : '○'}</span>
+              </div>`;
+          }).join(''),
+        };
+        paintStats(data);
+        try { localStorage.setItem('mc-gh2', JSON.stringify({ ...data, at: Date.now() })); } catch (_) {}
         document.getElementById('last-update').textContent =
           'live · updated ' + new Date().toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit'});
       } catch (e) {
-        document.getElementById('last-update').textContent = 'GitHub rate-limit · retry 60s';
+        // Degrade gracefully — show last-good from cache; never blank the board.
+        let cached = null;
+        try { cached = JSON.parse(localStorage.getItem('mc-gh2') || 'null'); } catch (_) {}
+        if (cached) {
+          paintStats(cached);
+          const mins = Math.round((Date.now() - (cached.at || Date.now())) / 60000);
+          document.getElementById('last-update').textContent = `cached ${mins}m ago · GitHub busy (10 req/min cap)`;
+        } else {
+          document.getElementById('last-update').textContent = 'GitHub busy (10 req/min cap) · disclosure stats load shortly';
+        }
       }
     }
 
-    refreshData();
-    setInterval(refreshData, 60000);
+    refreshGitHub();
+    setInterval(refreshGitHub, 120000);
   </script>
 </body>
 </html>

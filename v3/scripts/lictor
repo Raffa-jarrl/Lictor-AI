@@ -1,0 +1,171 @@
+#!/usr/bin/env python3
+"""Lictor CLI orchestrator — one command to scan a target end-to-end.
+
+Usage:
+    lictor scan <domain>         Run full battery + generate report
+    lictor scan <domain> --quick  Only run fast scanners (~2 min)
+    lictor report <domain>        Re-generate report from existing ledgers
+    lictor version
+
+Examples:
+    lictor scan example.com
+    lictor scan example.com --quick
+    lictor report example.com
+
+Output:
+    reports/<domain>-<date>.md   (markdown report)
+    reports/<domain>-<date>.json (machine-readable JSON)
+    reports/<domain>-<date>.pdf  (if pandoc + xelatex available)
+"""
+import sys, os, subprocess, json, tempfile
+from pathlib import Path
+from datetime import datetime, timezone
+
+VERSION = "0.1.0-day2"
+SCANNERS_DIR = Path(__file__).resolve().parent / "scanners"
+REPORT_SCRIPT = Path(__file__).resolve().parent / "lictor-report.py"
+REPORTS_DIR = Path.home() / "Lictor" / "v3" / "reports"
+
+# Scanner battery — name → (script, ethical-default-mode)
+# QUICK = fast scanners only (~2 min for one host)
+# FULL  = everything (~10-15 min for one host)
+SCANNERS_QUICK = [
+    ("git",          "scan-git.py"),
+    ("sourcemap",    "scan-sourcemaps.py"),
+    ("graphql",      "scan-graphql-introspection.py"),
+    ("subdomain-takeover", "scan-subdomain-takeover.py"),
+    ("tls",          "scan-tls-audit.py"),
+    ("email-auth",   "scan-email-auth.py"),
+]
+SCANNERS_FULL = SCANNERS_QUICK + [
+    ("wallet-files",     "scan-wallet-files-v2.py"),
+    ("google-sa",        "scan-google-sa-files.py"),
+    ("hardhat",          "scan-hardhat-artifacts.py"),
+    ("mobile-backups",   "scan-mobile-backups.py"),
+    ("solana-keypairs",  "scan-solana-keypairs.py"),
+    ("ransomware-v2",    "scan-ransomware-exposure-v2.py"),
+    ("crm-paths",        "scan-il-crm-paths.py"),  # generic admin/data-export probe
+]
+
+
+def run_scanner(name, script_name, target_file):
+    script = SCANNERS_DIR / script_name
+    if not script.exists():
+        print(f"  [SKIP] {name} (script missing: {script})")
+        return False
+    print(f"  [RUN ] {name}  → {script_name}")
+    try:
+        # Each scanner takes a corpus file + optional limit, writes to its own ledger
+        result = subprocess.run(
+            ["python3", str(script), str(target_file), "10"],
+            capture_output=True, text=True, timeout=600,
+        )
+        if result.returncode == 0:
+            # Count findings in stdout
+            hits = sum(1 for line in result.stdout.split("\n") if "🔴" in line)
+            print(f"  [DONE] {name}  → {hits} finding(s)")
+            return True
+        else:
+            print(f"  [FAIL] {name}  → exit {result.returncode}")
+            if result.stderr:
+                print(f"        stderr: {result.stderr[:200]}")
+            return False
+    except subprocess.TimeoutExpired:
+        print(f"  [TIME] {name}  → 600s timeout (partial results in ledger)")
+        return True
+    except Exception as e:
+        print(f"  [FAIL] {name}  → {e}")
+        return False
+
+
+def cmd_scan(args):
+    if not args:
+        print("Usage: lictor scan <domain> [--quick]")
+        sys.exit(1)
+    target = args[0].strip().lower()
+    quick = "--quick" in args
+    scanners = SCANNERS_QUICK if quick else SCANNERS_FULL
+
+    print(f"╔════════════════════════════════════════════════════════════════════╗")
+    print(f"║  LICTOR SCAN  v{VERSION}")
+    print(f"║  Target:  {target}")
+    print(f"║  Mode:    {'QUICK (~2 min)' if quick else 'FULL (~10-15 min)'}")
+    print(f"║  Scanners: {len(scanners)}")
+    print(f"║  Date:    {datetime.now(timezone.utc).isoformat(timespec='seconds')}")
+    print(f"╚════════════════════════════════════════════════════════════════════╝")
+    print()
+
+    # Write target to a temp file (most scanners expect a corpus file)
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".txt", delete=False) as tf:
+        tf.write(target + "\n")
+        # Add common subdomains for the scan
+        for sub in ("www", "api", "app", "admin", "secure", "portal", "members", "auth"):
+            tf.write(f"{sub}.{target}\n")
+        target_file = tf.name
+
+    print(f"[+] Scanner battery on {target} + 8 common subdomains")
+    print(f"[+] (target list: {target_file})")
+    print()
+    print("RUNNING SCANNERS:")
+    for name, script in scanners:
+        run_scanner(name, script, target_file)
+    print()
+
+    # Generate report
+    print(f"[+] Generating customer-deliverable report...")
+    if REPORT_SCRIPT.exists():
+        subprocess.run(["python3", str(REPORT_SCRIPT), target])
+    else:
+        print(f"  [FAIL] report generator missing: {REPORT_SCRIPT}")
+
+    # Cleanup temp file
+    try: os.unlink(target_file)
+    except: pass
+
+    print()
+    print(f"╔════════════════════════════════════════════════════════════════════╗")
+    print(f"║  DONE                                                                ║")
+    print(f"║  Reports in: {str(REPORTS_DIR):54}║")
+    print(f"╚════════════════════════════════════════════════════════════════════╝")
+
+
+def cmd_report(args):
+    if not args:
+        print("Usage: lictor report <domain>")
+        sys.exit(1)
+    target = args[0].strip().lower()
+    if REPORT_SCRIPT.exists():
+        subprocess.run(["python3", str(REPORT_SCRIPT), target])
+    else:
+        print(f"FAIL: report generator missing at {REPORT_SCRIPT}")
+        sys.exit(1)
+
+
+def cmd_version():
+    print(f"Lictor v{VERSION}")
+    print(f"Scanner battery: {len(SCANNERS_FULL)} modules")
+    print(f"Reports → {REPORTS_DIR}")
+
+
+def main():
+    if len(sys.argv) < 2:
+        print(__doc__)
+        sys.exit(1)
+    cmd = sys.argv[1]
+    args = sys.argv[2:]
+    if cmd == "scan":
+        cmd_scan(args)
+    elif cmd == "report":
+        cmd_report(args)
+    elif cmd in ("version", "-v", "--version"):
+        cmd_version()
+    elif cmd in ("help", "-h", "--help"):
+        print(__doc__)
+    else:
+        print(f"Unknown command: {cmd}")
+        print(__doc__)
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

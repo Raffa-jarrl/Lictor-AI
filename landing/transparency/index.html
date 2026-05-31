@@ -26,6 +26,7 @@
   <link rel="canonical" href="https://lictorai.com/transparency/" />
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to main content</a>
   <header class="nav">
     <a href="/" class="brand">
       <img src="/static/lictor-mark.png" alt="" width="32" height="32" style="border-radius:6px" />
@@ -41,7 +42,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main">
 
     <section class="page-hero">
       <div class="page-hero__mark fx-parallax">
@@ -68,8 +69,8 @@
           <div class="shell-stat__num" id="stat-closed">…</div>
           <div class="shell-stat__label">addressed · maintainer replied or closed</div>
         </div>
-        <div class="shell-card shell-card--stat" style="border-left:3px solid var(--accent);">
-          <div class="shell-stat__num" style="color:var(--accent);">7</div>
+        <div class="shell-card shell-card--stat divider-left-accent">
+          <div class="shell-stat__num text-accent">7</div>
           <div class="shell-stat__label"><strong>silent fixes confirmed</strong> · maintainers who patched without replying — proof the scan helped</div>
         </div>
         <div class="shell-card shell-card--stat">
@@ -78,7 +79,7 @@
         </div>
       </div>
       <p style="text-align:center;margin-top:1rem;color:var(--text-muted);font-size:.85rem;">
-        <strong style="color:var(--accent);">Silent fixes</strong> are maintainers who fixed the bug without commenting back.
+        <strong class="text-accent">Silent fixes</strong> are maintainers who fixed the bug without commenting back.
         Our <code>recheck.py</code> re-runs the original check every few hours and counts them automatically.
         <a href="https://github.com/Raffa-jarrl/Lictor-AI/blob/main/scripts/recheck.py" class="link">See the code →</a>
       </p>
@@ -88,15 +89,140 @@
       </p>
     </section>
 
+    <!-- EXTERNAL ATTACK-SURFACE SCAN STATS — direct email disclosures (not GitHub) -->
+    <section class="shell-section divider-top">
+      <div class="shell-section__head">
+        <h2>External attack-surface scanning &mdash; May 2026</h2>
+        <p>The numbers above are GitHub-public disclosures. The blocks below are separate: direct-email disclosures from our external attack-surface scans, sent straight to the affected organisation's security contact or the cloud provider's abuse desk &mdash; never to a GitHub issue, never to a public post. No victim names appear anywhere on this site.</p>
+      </div>
+
+      <!-- HEADLINE STATS (updated 2026-05-24) -->
+      <div class="shell-grid shell-grid--4">
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">36M+</div>
+          <div class="shell-stat__label">subdomains enumerated across bounty-program corpus (chaos.projectdiscovery.io) + 7,736 hosts deep-scanned</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">300+</div>
+          <div class="shell-stat__label">disclosure threads sent under 60-day CVD window &middot; 11 cloud / SaaS / AI provider security teams</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">45</div>
+          <div class="shell-stat__label">scanner modules in the battery</div>
+        </div>
+        <div class="shell-card shell-card--stat divider-left-accent">
+          <div class="shell-stat__num text-accent">0</div>
+          <div class="shell-stat__label"><strong>victim names published anywhere on this site</strong></div>
+        </div>
+      </div>
+
+      <!-- WEEK 1: External attack-surface scan (May 19-22) -->
+      <h3 style="margin-top:2.5rem;color:var(--accent);">Week 1 (May 19&ndash;22): External attack-surface scan</h3>
+      <p class="text-meta-md">Direct-email disclosures from a 5-day scan against 7,736 hosts across DeFi protocols, Fortune 500, healthcare, fintech, government, and major SaaS platforms. Routed via Immunefi, HackerOne, CERT-IL, CERT-MX, JPCERT, BSI, and direct <code>security@</code> contacts.</p>
+
+      <div class="shell-grid shell-grid--3 mt-4">
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">44</div>
+          <div class="shell-stat__label">frontend source-code leaks (<code>.js.map</code>) &mdash; HIGH tier after content-quality validation (<strong>initial scan flagged 292; 248 reclassified as framework boilerplate or stubs after anti-FP analysis</strong>)</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">33</div>
+          <div class="shell-stat__label">spoofable enterprise email domains</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">11</div>
+          <div class="shell-stat__label">publicly listable cloud buckets (regulated data inside)</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">14</div>
+          <div class="shell-stat__label">end-of-life software stacks (HIGH severity)</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">4</div>
+          <div class="shell-stat__label">RDP / FTP / SMB exposed to internet</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">26</div>
+          <div class="shell-stat__label">new subdomain exposures (forgotten staging / unmonitored apps)</div>
+        </div>
+      </div>
+
+      <!-- WEEK 2: Credential leak hunting (May 23-24) -->
+      <h3 style="margin-top:2.5rem;color:var(--accent);">Week 2 (May 23&ndash;24): AI provider + cloud credential leak hunting</h3>
+      <p class="text-meta-md">Six new high-fidelity scanner modules went live (<code>patrol-aws-keys</code>, <code>patrol-ai-saas-keys</code>, <code>patrol-firebase</code>, <code>patrol-bot-tokens</code>, <code>patrol-gitlab</code>, <code>scan-buckets-massive</code>). Each verified credential is fetched and regex-confirmed before disclosure. Reported in bulk to provider security teams that have the customer mapping we don't &mdash; they auto-revoke and notify affected accounts.</p>
+
+      <div class="shell-grid shell-grid--3 mt-4">
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">47</div>
+          <div class="shell-stat__label">leaked AWS access keys (<strong>39 with paired secret</strong> = full-account-takeover material) &rarr; AWS Security</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">31</div>
+          <div class="shell-stat__label">leaked OpenAI project-scoped API keys (<code>sk-proj-*</code>) &rarr; OpenAI Security (triage assigned to engineer within hours)</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">21</div>
+          <div class="shell-stat__label">leaked HuggingFace user tokens (<code>hf_*</code>) &rarr; HuggingFace Security</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">6</div>
+          <div class="shell-stat__label">leaked Anthropic API keys (<code>sk-ant-api03-*</code>) &rarr; Anthropic Security</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">105</div>
+          <div class="shell-stat__label">Google Cloud / Firebase credentials (81 admin-SDK JSONs on GitHub + 24 configs on GitLab) &rarr; Google Security</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">15</div>
+          <div class="shell-stat__label">Discord + Slack webhook URLs &rarr; Discord T&amp;S + Slack Security</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">46</div>
+          <div class="shell-stat__label">anonymous-listable cloud buckets across GCS (26), DigitalOcean Spaces (13), Wasabi (7) &mdash; names suggest financial, healthcare, KYC, credentials content &rarr; cloud provider abuse desks (we never list bucket contents)</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">19</div>
+          <div class="shell-stat__label">verified subdomain takeover candidates (dangling DNS to unclaimed Vercel / Fastly / Heroku / Unbounce / CloudFront resources) &rarr; bounty-program security teams</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">2</div>
+          <div class="shell-stat__label">publicly exposed <code>phpinfo.php</code> pages leaking PHP config (both running EOL PHP) &rarr; site owners directly</div>
+        </div>
+      </div>
+
+      <!-- ANTI-FP differentiator -->
+      <h3 style="margin-top:2.5rem;color:var(--accent);">The anti-FP rigor that's actually the product</h3>
+      <p class="text-meta-md">Scanners are easy to write. Scanners that don't burn researcher credibility on false positives are hard. We document every false-positive class we encounter as a permanent filter rule &mdash; this catalogue is the most valuable artifact in the codebase.</p>
+
+      <div class="shell-grid shell-grid--3 mt-4">
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">16</div>
+          <div class="shell-stat__label">documented FP classes with permanent filter rules (3 new this week: HEAD Content-Type trust, intentional public infrastructure endpoints, WAF block-pages that return HTTP 200)</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">818 &rarr; 0</div>
+          <div class="shell-stat__label">admin-panels scanner: pre-fix raw findings vs. post-FP-fix output on the same 6-host test corpus &mdash; <strong>caught 100% of false positives</strong> (the 6 hosts genuinely had no exposed admin panels)</div>
+        </div>
+        <div class="shell-card shell-card--stat">
+          <div class="shell-stat__num">62%</div>
+          <div class="shell-stat__label">of generated courtesy-disclosure drafts caught by FP filters <em>before</em> being sent (vendor-attribution + self-hosted-library checks). Without this, ~50 misattributed disclosures would have shipped.</div>
+        </div>
+      </div>
+
+      <p style="text-align:center;margin-top:2rem;color:var(--text-muted);font-size:.85rem;max-width:820px;margin-left:auto;margin-right:auto;">
+        Why these aren't in the GitHub stats: external attack-surface + credential-leak findings go to the organisation's <code>security@</code>, the cloud provider's abuse desk, or via vendor disclosure programmes (Immunefi, HackerOne, CERT, INCD, BSI, AWS / OpenAI / Google / Anthropic / HuggingFace / Replicate / DigitalOcean / Wasabi security teams) &mdash; never published on GitHub. The CVD clock starts the day we send. Full breakdown by category at <a href="/in-the-wild" class="link">/in-the-wild</a>.
+      </p>
+    </section>
+
     <!-- LIVE SITE TRAFFIC — fetched from /static/cf-stats.json -->
-    <section class="shell-section" style="border-top:1px solid var(--border)">
+    <section class="shell-section divider-top">
       <div class="shell-section__head">
         <h2>Live site traffic (last 7 days)</h2>
         <p>Pulled from Cloudflare Analytics every hour. No Google Analytics. No third-party trackers. The same numbers we see in our dashboard.</p>
       </div>
 
       <div id="cf-stats-container" style="max-width:1000px;margin:0 auto;">
-        <p style="text-align:center;color:var(--text-muted);font-style:italic;">loading site traffic…</p>
+        <p class="text-caption">loading site traffic…</p>
       </div>
     </section>
 
@@ -106,7 +232,7 @@
       try {
         const data = await fetch('/static/cf-stats.json?cache=' + Date.now()).then(r => r.json());
         if (data._status === 'not-configured') {
-          container.innerHTML = `<p style="text-align:center;color:var(--text-muted);font-style:italic;">
+          container.innerHTML = `<p class="text-caption">
             Site-traffic integration is configured but Cloudflare API token isn't installed yet.
             Once it lands, this panel shows live request counts + top referrers + top pages —
             same data as our internal dashboard.
@@ -117,13 +243,13 @@
         const html = [];
         for (const [name, z] of Object.entries(zones)) {
           if (z._error) {
-            html.push(`<div class="shell-card"><h3>${name}</h3><p style="color:var(--text-muted);">${z._error}</p></div>`);
+            html.push(`<div class="shell-card"><h3>${name}</h3><p class="text-muted">${z._error}</p></div>`);
             continue;
           }
           html.push(`
             <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:1.5rem;">
               <h3 style="margin:0 0 1rem;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--text);">
-                <span style="color:var(--accent);">${name}</span>
+                <span class="text-accent">${name}</span>
               </h3>
               <div class="shell-grid shell-grid--3" style="margin-bottom:1.5rem;">
                 <div class="shell-card shell-card--stat"><div class="shell-stat__num">${(z.requests || 0).toLocaleString()}</div><div class="shell-stat__label">total requests</div></div>
@@ -139,7 +265,7 @@
                       <span style="color:var(--text);">${r.referer || '(direct)'}</span>
                       <span style="font-family:'JetBrains Mono',monospace;color:var(--text-muted);">${r.count.toLocaleString()}</span>
                     </div>
-                  `).join('') || '<p style="color:var(--text-muted);font-size:.85rem;">no data yet</p>'}
+                  `).join('') || '<p class="text-meta">no data yet</p>'}
                 </div>
                 <div>
                   <h4 style="font-family:'JetBrains Mono',monospace;font-size:.8rem;letter-spacing:.1em;color:var(--accent);text-transform:uppercase;margin:0 0 .75rem;">Top pages</h4>
@@ -148,7 +274,7 @@
                       <span style="color:var(--text);font-family:'JetBrains Mono',monospace;">${p.path}</span>
                       <span style="font-family:'JetBrains Mono',monospace;color:var(--text-muted);">${p.count.toLocaleString()}</span>
                     </div>
-                  `).join('') || '<p style="color:var(--text-muted);font-size:.85rem;">no data yet</p>'}
+                  `).join('') || '<p class="text-meta">no data yet</p>'}
                 </div>
               </div>
             </div>
@@ -156,13 +282,13 @@
         }
         container.innerHTML = html.join('') + `<p style="text-align:center;color:var(--text-muted);font-size:.75rem;margin-top:1rem;">fetched ${new Date(data.fetched_at).toLocaleString()}</p>`;
       } catch (e) {
-        container.innerHTML = `<p style="text-align:center;color:var(--text-muted);font-style:italic;">Cloudflare stats not available yet. <a href="https://github.com/Raffa-jarrl/Lictor-AI/blob/main/scripts/cf-stats-fetch.py" class="link">setup instructions</a></p>`;
+        container.innerHTML = `<p class="text-caption">Cloudflare stats not available yet. <a href="https://github.com/Raffa-jarrl/Lictor-AI/blob/main/scripts/cf-stats-fetch.py" class="link">setup instructions</a></p>`;
       }
     })();
     </script>
 
     <!-- OPERATING PRINCIPLES — the rules we hold ourselves to -->
-    <section class="shell-section" style="border-top:1px solid var(--border)">
+    <section class="shell-section divider-top">
       <div class="shell-section__head">
         <h2>Operating principles</h2>
         <p>The non-negotiables. If any future Lictor commit violates one of these, treat it as a bug and file an issue.</p>
@@ -204,7 +330,7 @@
 
     
     <!-- DEEPER TRANSPARENCY: changelog + retractions -->
-    <section class="shell-section" style="border-top:1px solid var(--border)">
+    <section class="shell-section divider-top">
       <div class="shell-section__head">
         <h2>Two pages that hold us accountable</h2>
         <p>Live receipts you can audit any time.</p>
@@ -224,7 +350,7 @@
     </section>
 
     <!-- WHAT WE DELIBERATELY DON'T DO -->
-    <section class="shell-section" style="border-top:1px solid var(--border)">
+    <section class="shell-section divider-top">
       <div class="shell-section__head">
         <h2>What we deliberately don&rsquo;t do</h2>
         <p>Just as important as what we do.</p>
@@ -242,7 +368,7 @@
     </section>
 
     <!-- WHAT WE'VE COMMITTED — the actual code -->
-    <section class="shell-section" style="border-top:1px solid var(--border)">
+    <section class="shell-section divider-top">
       <div class="shell-section__head">
         <h2>The scanner is open source — read it yourself</h2>
         <p>Every line of every scanner that flags something on your repo is publicly auditable.</p>
@@ -267,7 +393,7 @@
     </section>
 
     <!-- ASKS / CONTACT -->
-    <section class="shell-section" style="border-top:1px solid var(--border)">
+    <section class="shell-section divider-top">
       <div class="shell-section__head">
         <h2>Spot something we&rsquo;re doing wrong?</h2>
         <p>Open an issue, send us a DM, or just email — the door is open.</p>

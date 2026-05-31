@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lictor — Scanning Policy & Abuse Contact</title>
+<meta name="description" content="Why you may have seen a connection from Lictor security research, what we do and don't do, and how to opt out instantly." />
+<style>
+  :root{--bg:#070809;--panel:#11141a;--copper:#c4885a;--cream:#f4dcc4;--muted:#9a9387;--ink:#ece3d6;--line:rgba(196,136,90,.18)}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.6}
+  .wrap{max-width:760px;margin:0 auto;padding:3rem 1.4rem 5rem}
+  h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.2rem;color:var(--cream);margin:0 0 .3rem}
+  h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.35rem;color:var(--copper);margin:2.2rem 0 .5rem}
+  .sub{color:var(--muted);font-family:ui-monospace,monospace;font-size:.85rem;margin-bottom:2rem}
+  a{color:var(--copper)}
+  code{font-family:ui-monospace,monospace;background:rgba(196,136,90,.1);padding:.1rem .35rem;border-radius:5px;font-size:.88em}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.3rem;margin:1rem 0}
+  .ok{color:#86c48a}.no{color:#d98a7a}
+  ul{padding-left:1.2rem}li{margin:.3rem 0}
+  .optout{background:rgba(196,136,90,.08);border:1px solid var(--copper);border-radius:12px;padding:1.2rem 1.4rem;margin:1.6rem 0}
+  .foot{margin-top:3rem;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);padding-top:1rem}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+  <h1>Lictor Scanning Policy</h1>
+  <div class="sub">If you reached this page from a <code>Lictor-Patrol</code> User-Agent in your logs, this explains who we are and how to opt out instantly.</div>
+
+  <div class="card">
+    <strong>Lictor is an independent security-research project.</strong> We look for <em>publicly exposed</em> security problems — leaked credentials, exposed config files, and subdomain takeovers — and we privately notify the owners so they can fix them before criminals find them. We are not attacking you; we are trying to help you, for free.
+  </div>
+
+  <h2>What we do</h2>
+  <ul>
+    <li><span class="ok">✓</span> Send a small number of lightweight, identifiable requests to observe whether an exposure is <em>present</em>.</li>
+    <li><span class="ok">✓</span> Prefer <code>HEAD</code> requests on anything sensitive — we detect, we do not download your data.</li>
+    <li><span class="ok">✓</span> Rate-limit ourselves and spread DNS across public resolvers — gentle on your infrastructure.</li>
+    <li><span class="ok">✓</span> Disclose privately and responsibly, and report only aggregate statistics in public — never your name.</li>
+  </ul>
+
+  <h2>What we never do</h2>
+  <ul>
+    <li><span class="no">✗</span> Exploit a vulnerability, read credential contents, or exfiltrate data.</li>
+    <li><span class="no">✗</span> Brute-force logins, fuzz, or run denial-of-service / disruptive tests.</li>
+    <li><span class="no">✗</span> Publish, sell, or share what we find with anyone but you.</li>
+  </ul>
+
+  <h2>How to identify us</h2>
+  <ul>
+    <li>User-Agent: <code>Lictor-Patrol/1.0 (+https://lictorai.com/scan-policy; abuse@lictorai.com)</code></li>
+    <li>All requests are read-only and rate-limited.</li>
+  </ul>
+
+  <div class="optout">
+    <h2 style="margin-top:0">Opt out — instantly, no questions asked</h2>
+    Email <a href="mailto:abuse@lictorai.com">abuse@lictorai.com</a> with the domain(s) you want excluded. We add you to our permanent exclusion list and you will not be contacted or scanned again. If you are an ISP or hosting provider acting on behalf of customers, send the range or domain list and we will honor it the same way.
+  </div>
+
+  <h2>Abuse & contact</h2>
+  <p>Security or abuse questions: <a href="mailto:abuse@lictorai.com">abuse@lictorai.com</a>. We respond to every message from a real person within one business day.</p>
+
+  <div class="foot">
+    Lictor · independent security research · responsible disclosure only · <a href="/.well-known/security.txt">security.txt</a>
+  </div>
+</div>
+</body>
+</html>

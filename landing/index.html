@@ -32,27 +32,122 @@
   <link rel="stylesheet" href="/static/shell.css" />
   <link rel="stylesheet" href="/static/fx.css" />
   <script src="/static/fx.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    /* ── Apple-grade 3D hero ───────────────────────────────────────── */
+    html { scroll-behavior: smooth; }
+    /* On the homepage the live 3D scene IS the backdrop — retire the fx mesh. */
+    body::before, body::after { display: none !important; }
+    .page-hero {
+      position: relative; min-height: 94vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 1.15rem;
+    }
+    /* Full-viewport, edge-to-edge, behind all content. max-width:none defeats the
+       global `canvas{max-width:100%}` reset that was clamping it. */
+    #hero-canvas {
+      position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -1;
+      display: block; max-width: none; max-height: none; opacity: 1;
+    }
+    /* readability scrim over the 3D, behind the text */
+    .page-hero::after {
+      content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      /* Clear in the centre (so the 3D shield shows), darker at top/bottom/edges
+         for nav + headline legibility. Text also carries its own glow/shadow. */
+      background: linear-gradient(180deg, rgba(7,8,9,0.5) 0%, rgba(7,8,9,0) 15%, rgba(7,8,9,0) 80%, rgba(7,8,9,0.4) 100%);
+    }
+    .page-hero h1, .page-hero__tagline, .page-hero p { text-shadow: 0 2px 24px rgba(0,0,0,0.7); }
+    .page-hero > *:not(#hero-canvas) { position: relative; z-index: 1; }
+    .page-hero__mark { display: none; }   /* the live 3D shield replaces the flat PNG */
+    .page-hero h1 {
+      font-size: clamp(2.8rem, 6.6vw, 5.2rem); letter-spacing: -0.02em; line-height: 1.04; margin-bottom: .3rem;
+    }
+    .page-hero__tagline { font-size: clamp(1.05rem, 1.9vw, 1.4rem); opacity: .94; }
+    .page-hero p { max-width: 640px; }
+    .page-hero .shell-btn { padding: .9rem 1.6rem; font-size: 1rem; }
+    @media (max-width: 640px) { .page-hero { min-height: 88vh; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    /* ── Install cards: keep each code block inside its own window ──
+       The `.install-card__code` class was never defined, so long paths
+       overflowed and overlapped adjacent columns. Wrap + let cards shrink. */
+    #install pre, .install-card__code, .card__code {
+      white-space: pre-wrap; overflow-wrap: anywhere; overflow-x: auto; max-width: 100%; box-sizing: border-box;
+    }
+    .install-card__code {
+      margin: 0; font-family: 'JetBrains Mono', monospace; font-size: .8rem; line-height: 1.6;
+      color: var(--text); background: var(--ink-deep, #0d0e12); padding: .75rem; border-radius: 6px;
+    }
+    /* Let grid cards shrink to their track instead of being forced wide by <pre>. */
+    #install [style*="grid"] > div { min-width: 0; }
+  </style>
   <link rel="canonical" href="https://lictorai.com/" />
+
+  <!-- Structured data — Organization (establishes brand entity for Google search) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Lictor AI",
+    "url": "https://lictorai.com",
+    "logo": "https://lictorai.com/static/lictor-mark.png",
+    "description": "Free open-source security audit suite for anything built with AI — web apps, CLIs, browser extensions, MCP servers, desktop apps, serverless functions, CI/CD pipelines.",
+    "sameAs": [
+      "https://github.com/Raffa-jarrl/Lictor-AI"
+    ],
+    "founder": {
+      "@type": "Person",
+      "name": "Raffa Jarrl"
+    }
+  }
+  </script>
+
+  <!-- Structured data — SoftwareApplication (Google may show price + category in snippet) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Lictor",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "macOS, Linux, Windows",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "softwareVersion": "0.2",
+    "url": "https://lictorai.com",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Lictor AI"
+    }
+  }
+  </script>
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to main content</a>
   <header class="nav">
     <a href="/" class="brand">
       <img src="/static/lictor-mark.png" alt="" width="28" height="28" />
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
+      <a href="/#pillars">Pillars</a>
       <a href="/#install">Install</a>
       <a href="/mission-control">🛰 Mission Control</a>
       <a href="/scan">Scan</a>
       <a href="/patterns">Patterns</a>
+      <a href="/business">For Business</a>
       <a href="/donate">Support</a>
       <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
     </nav>
   </header>
 
-  <main>
+  <main id="main">
     <!-- HERO — unified .page-hero pattern (matches /donate, /scan, etc.) -->
     <section class="page-hero">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
       <div class="page-hero__mark fx-parallax">
         <img src="/static/lictor-mark.png" alt="Lictor AI shield" class="page-hero__shield fx-parallax__layer" />
       </div>
@@ -60,11 +155,11 @@
         Security audit for <em style="color:var(--accent);font-style:italic">anything</em><br/>
         you built with <span class="fx-gradient-text">AI</span>.
       </h1>
-      <p class="page-hero__tagline">Guardianship, nature, and the architecture of trust.</p>
+      <p class="page-hero__tagline">One suite, three pillars — the bodyguard your AI didn&rsquo;t ship with.</p>
       <p>
-        Web app, CLI, browser extension, MCP server, desktop app, serverless function,
-        CI/CD pipeline, Discord bot — if an AI assistant wrote the code, Lictor finds the bugs the
-        assistant didn&rsquo;t. Plain English. In under a minute. Free, open source.
+        Safety infrastructure for the AI agent era: secure the <strong>AI you use</strong>,
+        secure your <strong>company</strong>, and scan the <strong>world</strong> for the bugs
+        AI assistants leave behind. Plain English. In under a minute. Free, open source.
       </p>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:0.5rem">
         <a href="/scan" class="shell-btn shell-btn--primary">Scan a URL →</a>
@@ -172,6 +267,80 @@
     })();
     </script>
 
+    <!-- THREE PILLARS — the high-level map -->
+    <section id="pillars" class="suite">
+      <h2 class="section__title fx-reveal">One suite. Three pillars.</h2>
+      <p class="section__sub fx-reveal">
+        Lictor is one engine (<span class="accent">Core</span>) and one dashboard
+        (<span class="accent">Guardian</span>) pointed at three jobs: the AI you use,
+        the company you run, and the world you ship into.
+      </p>
+
+      <div class="cards">
+        <!-- PILLAR 1 — Lictor for AI -->
+        <div class="card card--shield fx-reveal fx-tilt">
+          <div class="card__pill">Shipped</div>
+          <h3 class="card__title">🤖 Lictor for <span class="card__title--accent">AI</span></h3>
+          <p class="card__lede">
+            Secure the AI you use. Drops into Claude Code, Cursor, Codex, Antigravity
+            and the top-10 AI clients — the bodyguard your assistant didn&rsquo;t ship with.
+          </p>
+          <ul class="card__points">
+            <li>Shield — audits any deployed AI-built site you visit</li>
+            <li>Sentinel — blocks prompt injection + secret leaks at runtime</li>
+            <li>Airlock — isolates what your agent can touch</li>
+            <li>Skills + VS Code — the 60-second audit, everywhere you build</li>
+          </ul>
+          <div class="card__cta">
+            <a href="#install" class="link">Install ↓</a>
+          </div>
+        </div>
+
+        <!-- PILLAR 2 — Lictor for Business -->
+        <div class="card card--sentinel fx-reveal fx-tilt">
+          <div class="card__pill">2026–27 roadmap</div>
+          <h3 class="card__title">🏢 Lictor for <span class="card__title--accent">Business</span></h3>
+          <p class="card__lede">
+            Secure the company. Identity, sandboxing, and the boring-but-critical
+            hygiene that keeps a small team out of the breach headlines.
+          </p>
+          <ul class="card__points">
+            <li>Domain Guard — identity / Active Directory posture</li>
+            <li>Isolation — red/black AI sandbox for untrusted agents</li>
+            <li>Audit &amp; Rotate — find leaked keys, rotate them, prove it</li>
+            <li>Same Core engine, same plain-English findings</li>
+          </ul>
+          <div class="card__cta">
+            <a href="/business" class="link">For Business →</a>
+          </div>
+        </div>
+
+        <!-- PILLAR 3 — Lictor Patrol -->
+        <div class="card card--guardian fx-reveal fx-tilt">
+          <div class="card__pill">Scanning now</div>
+          <h3 class="card__title">🛰️ Lictor <span class="card__title--accent">Patrol</span></h3>
+          <p class="card__lede">
+            Scan the world. External attack-surface recon that finds the bugs
+            AI assistants leave behind — at internet scale.
+          </p>
+          <ul class="card__points">
+            <li>We scanned 30,000 vibe-coded apps</li>
+            <li>Leaked secrets, exposed DBs, open auth, takeover-able subdomains</li>
+            <li>Ethical disclosure — categories and counts, never victim names</li>
+            <li>Powers the findings behind every Lictor pattern</li>
+          </ul>
+          <div class="card__cta">
+            <a href="/scan" class="link">Scan a URL →</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="section__sub fx-reveal" style="margin-top:2.5rem;margin-bottom:0;">
+        Under all three: one engine (<span class="accent">Core</span>) and one
+        dashboard (<span class="accent">Guardian</span>).
+      </p>
+    </section>
+
     <!-- WEDGE — THE CLAUDE CODE SKILL -->
     <section id="wedge" class="suite">
       <h2 class="section__title fx-reveal">One slash command. Eleven agents. Plain English.</h2>
@@ -231,27 +400,27 @@
 
         <!-- Claude Code -->
         <div style="background:var(--surface);border:1px solid var(--accent-tint-strong);border-left:3px solid var(--accent);border-radius:12px;padding:1.5rem;">
-          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;">
-            <span style="font-size:1.4rem;">🦉</span>
-            <h3 style="margin:0;font-size:1.05rem;">Claude Code</h3>
+          <div class="install-card__row">
+            <span class="install-card__icon">🦉</span>
+            <h3 class="install-card__title">Claude Code</h3>
             <span style="margin-left:auto;font-size:.7rem;color:var(--accent);background:var(--accent-tint);padding:.15rem .5rem;border-radius:999px;">PRIMARY</span>
           </div>
-          <p style="color:var(--text-muted);font-size:.9rem;margin:0 0 1rem;">4 slash commands inside any project.</p>
+          <p class="install-card__desc">4 slash commands inside any project.</p>
           <pre style="margin:0;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text);background:var(--ink-deep);padding:.75rem;border-radius:6px;white-space:pre-wrap;overflow-x:auto;">mkdir -p ~/.claude/skills
 cp -r ~/Code/lictor/skills/lictor-* \
   ~/.claude/skills/</pre>
-          <p style="margin:.75rem 0 0;font-size:.85rem;color:var(--text-muted);">Then in any project: <code style="color:var(--accent);">/lictor-security-check</code></p>
+          <p class="install-card__hint">Then in any project: <code class="text-accent">/lictor-security-check</code></p>
         </div>
 
         <!-- Cursor -->
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;">
-          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;">
-            <span style="font-size:1.4rem;">⌘</span>
-            <h3 style="margin:0;font-size:1.05rem;">Cursor</h3>
-            <span style="margin-left:auto;font-size:.7rem;color:var(--text-muted);">via MCP</span>
+        <div class="install-card">
+          <div class="install-card__row">
+            <span class="install-card__icon">⌘</span>
+            <h3 class="install-card__title">Cursor</h3>
+            <span class="install-card__meta">via MCP</span>
           </div>
-          <p style="color:var(--text-muted);font-size:.9rem;margin:0 0 1rem;">Add to <code>~/.cursor/mcp.json</code>:</p>
-          <pre style="margin:0;font-family:'JetBrains Mono',monospace;font-size:.78rem;line-height:1.5;color:var(--text);background:var(--ink-deep);padding:.75rem;border-radius:6px;white-space:pre-wrap;overflow-x:auto;">{
+          <p class="install-card__desc">Add to <code>~/.cursor/mcp.json</code>:</p>
+          <pre class="install-card__code">{
   "mcpServers": {
     "lictor": {
       "command": "/usr/bin/python3",
@@ -259,70 +428,70 @@ cp -r ~/Code/lictor/skills/lictor-* \
     }
   }
 }</pre>
-          <p style="margin:.75rem 0 0;font-size:.85rem;color:var(--text-muted);">Then in Cursor chat: <code style="color:var(--accent);">@lictor scan</code></p>
+          <p class="install-card__hint">Then in Cursor chat: <code class="text-accent">@lictor scan</code></p>
         </div>
 
         <!-- Windsurf -->
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;">
-          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;">
-            <span style="font-size:1.4rem;">🌊</span>
-            <h3 style="margin:0;font-size:1.05rem;">Windsurf</h3>
-            <span style="margin-left:auto;font-size:.7rem;color:var(--text-muted);">via MCP</span>
+        <div class="install-card">
+          <div class="install-card__row">
+            <span class="install-card__icon">🌊</span>
+            <h3 class="install-card__title">Windsurf</h3>
+            <span class="install-card__meta">via MCP</span>
           </div>
-          <p style="color:var(--text-muted);font-size:.9rem;margin:0 0 1rem;">Settings → Cascade → MCP Servers → Add:</p>
-          <pre style="margin:0;font-family:'JetBrains Mono',monospace;font-size:.78rem;line-height:1.5;color:var(--text);background:var(--ink-deep);padding:.75rem;border-radius:6px;white-space:pre-wrap;overflow-x:auto;">{
+          <p class="install-card__desc">Settings → Cascade → MCP Servers → Add:</p>
+          <pre class="install-card__code">{
   "lictor": {
     "command": "python3",
     "args": ["~/Code/lictor/scripts/lictor-mcp.py"]
   }
 }</pre>
-          <p style="margin:.75rem 0 0;font-size:.85rem;color:var(--text-muted);">Then Cascade can call <code style="color:var(--accent);">lictor_scan</code></p>
+          <p class="install-card__hint">Then Cascade can call <code class="text-accent">lictor_scan</code></p>
         </div>
 
         <!-- Continue.dev -->
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;">
-          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;">
-            <span style="font-size:1.4rem;">▶️</span>
-            <h3 style="margin:0;font-size:1.05rem;">Continue.dev</h3>
-            <span style="margin-left:auto;font-size:.7rem;color:var(--text-muted);">via MCP</span>
+        <div class="install-card">
+          <div class="install-card__row">
+            <span class="install-card__icon">▶️</span>
+            <h3 class="install-card__title">Continue.dev</h3>
+            <span class="install-card__meta">via MCP</span>
           </div>
-          <p style="color:var(--text-muted);font-size:.9rem;margin:0 0 1rem;">Add to <code>~/.continue/config.yaml</code>:</p>
-          <pre style="margin:0;font-family:'JetBrains Mono',monospace;font-size:.78rem;line-height:1.5;color:var(--text);background:var(--ink-deep);padding:.75rem;border-radius:6px;white-space:pre-wrap;overflow-x:auto;">mcpServers:
+          <p class="install-card__desc">Add to <code>~/.continue/config.yaml</code>:</p>
+          <pre class="install-card__code">mcpServers:
   - name: lictor
     command: python3
     args:
       - ~/Code/lictor/scripts/lictor-mcp.py</pre>
-          <p style="margin:.75rem 0 0;font-size:.85rem;color:var(--text-muted);">Available as <code style="color:var(--accent);">@lictor</code> in chat</p>
+          <p class="install-card__hint">Available as <code class="text-accent">@lictor</code> in chat</p>
         </div>
 
         <!-- Cline / VSCode -->
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;">
-          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;">
-            <span style="font-size:1.4rem;">🤖</span>
-            <h3 style="margin:0;font-size:1.05rem;">Cline (VSCode)</h3>
-            <span style="margin-left:auto;font-size:.7rem;color:var(--text-muted);">via MCP</span>
+        <div class="install-card">
+          <div class="install-card__row">
+            <span class="install-card__icon">🤖</span>
+            <h3 class="install-card__title">Cline (VSCode)</h3>
+            <span class="install-card__meta">via MCP</span>
           </div>
-          <p style="color:var(--text-muted);font-size:.9rem;margin:0 0 1rem;">Cline → Settings → MCP Servers → Edit JSON:</p>
-          <pre style="margin:0;font-family:'JetBrains Mono',monospace;font-size:.78rem;line-height:1.5;color:var(--text);background:var(--ink-deep);padding:.75rem;border-radius:6px;white-space:pre-wrap;overflow-x:auto;">{
+          <p class="install-card__desc">Cline → Settings → MCP Servers → Edit JSON:</p>
+          <pre class="install-card__code">{
   "lictor": {
     "command": "python3",
     "args": ["~/Code/lictor/scripts/lictor-mcp.py"]
   }
 }</pre>
-          <p style="margin:.75rem 0 0;font-size:.85rem;color:var(--text-muted);">Restart Cline and ask: <em>"scan this project with lictor"</em></p>
+          <p class="install-card__hint">Restart Cline and ask: <em>"scan this project with lictor"</em></p>
         </div>
 
         <!-- Standalone CLI -->
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;">
-          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;">
-            <span style="font-size:1.4rem;">⌨️</span>
-            <h3 style="margin:0;font-size:1.05rem;">Standalone CLI</h3>
-            <span style="margin-left:auto;font-size:.7rem;color:var(--text-muted);">no IDE needed</span>
+        <div class="install-card">
+          <div class="install-card__row">
+            <span class="install-card__icon">⌨️</span>
+            <h3 class="install-card__title">Standalone CLI</h3>
+            <span class="install-card__meta">no IDE needed</span>
           </div>
-          <p style="color:var(--text-muted);font-size:.9rem;margin:0 0 1rem;">Plain terminal, any project:</p>
+          <p class="install-card__desc">Plain terminal, any project:</p>
           <pre style="margin:0;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text);background:var(--ink-deep);padding:.75rem;border-radius:6px;white-space:pre-wrap;overflow-x:auto;">cd ~/your-project
 python3 ~/Code/lictor/scripts/lictor-local.py</pre>
-          <p style="margin:.75rem 0 0;font-size:.85rem;color:var(--text-muted);">Plain-English output to stderr · JSON: add <code>--json</code></p>
+          <p class="install-card__hint">Plain-English output to stderr · JSON: add <code>--json</code></p>
         </div>
 
       </div>
@@ -559,5 +728,110 @@ const client = wrap(new OpenAI(), {
       <span class="mono">v0.1.0-alpha · Pre-launch</span>
     </div>
   </footer>
+
+  <!-- ════════ Hero 3D — live shield + orbiting suite nodes ════════ -->
+  <script>
+  (function () {
+    var canvas = document.getElementById('hero-canvas');
+    if (!canvas || !window.THREE) return;
+    var hero = canvas.closest('.page-hero');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var W = function () { return window.innerWidth; };
+    var H = function () { return window.innerHeight; };
+
+    var scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x070809, 0.006);
+
+    var camera = new THREE.PerspectiveCamera(52, W() / H(), 0.1, 1000);
+    camera.position.set(0, 3.2, 10);
+
+    var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    function resize() { renderer.setSize(W(), H()); camera.aspect = W() / H(); camera.updateProjectionMatrix(); }
+    resize();
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.22));
+    var key = new THREE.PointLight(0xc4885a, 2.6, 140); key.position.set(8, 12, 8); scene.add(key);
+    var rim = new THREE.PointLight(0xf4dcc4, 1.1, 60); rim.position.set(0, 2, 6); scene.add(rim);
+    var fill = new THREE.PointLight(0x4a6fa8, 0.40, 60); fill.position.set(-10, 6, 12); scene.add(fill);
+
+    // Floor grid — radial copper falloff
+    var gridMat = new THREE.ShaderMaterial({
+      uniforms: { time: { value: 0 } },
+      extensions: { derivatives: true },
+      transparent: true, side: THREE.DoubleSide,
+      vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+      fragmentShader: 'uniform float time; varying vec2 vUv; void main(){ vec2 g = abs(fract(vUv*30.0-0.5)-0.5)/fwidth(vUv*30.0); float line = min(g.x,g.y); float a = 1.0-min(line,1.0); float d = length(vUv-0.5)*2.0; float f = 1.0-smoothstep(0.3,0.95,d); vec3 c = mix(vec3(0.77,0.53,0.35), vec3(0.4,0.3,0.2), d); gl_FragColor = vec4(c, a*f*0.6); }'
+    });
+    var grid = new THREE.Mesh(new THREE.PlaneGeometry(60, 60, 30, 30), gridMat);
+    grid.rotation.x = -Math.PI / 2; grid.position.y = -3; scene.add(grid);
+
+    // Central shield (abstract octahedron) + wireframe
+    var sGeom = new THREE.OctahedronGeometry(3.0, 0);
+    var shield = new THREE.Mesh(sGeom, new THREE.MeshPhongMaterial({ color: 0xc4885a, emissive: 0x3a2010, shininess: 90, flatShading: true }));
+    shield.position.y = 1; scene.add(shield);
+    var wire = new THREE.LineSegments(new THREE.EdgesGeometry(sGeom), new THREE.LineBasicMaterial({ color: 0xf4dcc4, transparent: true, opacity: 0.65 }));
+    wire.position.copy(shield.position); scene.add(wire);
+
+    // Orbiting suite nodes
+    var orbs = [], N = 12;
+    for (var i = 0; i < N; i++) {
+      var ang = (i / N) * Math.PI * 2, r = 6;
+      var o = new THREE.Mesh(new THREE.SphereGeometry(0.16, 16, 16), new THREE.MeshPhongMaterial({ color: 0xc4885a, emissive: 0x6a3b1a, shininess: 60 }));
+      o.position.set(Math.cos(ang) * r, 1 + Math.sin(i * 0.7) * 0.5, Math.sin(ang) * r);
+      o.userData = { a: ang, r: r, sp: 0.0004 + (i % 3) * 0.0002, by: o.position.y };
+      scene.add(o); orbs.push(o);
+      var ln = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 1, 0), o.position.clone()]),
+        new THREE.LineBasicMaterial({ color: 0xc4885a, transparent: true, opacity: 0.12 }));
+      o.userData.line = ln; scene.add(ln);
+    }
+
+    var t = 0, mx = 0, my = 0, tx = 0, ty = 0, visible = true;
+    window.addEventListener('mousemove', function (e) { tx = e.clientX / window.innerWidth - 0.5; ty = e.clientY / window.innerHeight - 0.5; }, { passive: true });
+    window.addEventListener('resize', resize);
+    function fade() {
+      var rect = hero.getBoundingClientRect();
+      var p = Math.min(1, Math.max(0, -rect.top / (rect.height || 1)));
+      canvas.style.opacity = String(Math.max(0, 1 - p * 1.15));
+      visible = rect.bottom > 0;
+    }
+    window.addEventListener('scroll', fade, { passive: true });
+    fade();   // set correct initial opacity (full at top), never start invisible
+
+    function frame() {
+      t += 0.01; gridMat.uniforms.time.value = t;
+      shield.rotation.x = t * 0.25; shield.rotation.y = t * 0.4;
+      shield.position.y = 1 + Math.sin(t * 1.1) * 0.12;
+      wire.rotation.copy(shield.rotation); wire.position.copy(shield.position);
+      for (var i = 0; i < orbs.length; i++) {
+        var o = orbs[i]; o.userData.a += o.userData.sp; var a = o.userData.a;
+        o.position.x = Math.cos(a) * o.userData.r; o.position.z = Math.sin(a) * o.userData.r;
+        o.position.y = o.userData.by + Math.sin(t * 1.4 + a) * 0.18;
+        var p = new Float32Array([0, 1, 0, o.position.x, o.position.y, o.position.z]);
+        o.userData.line.geometry.setAttribute('position', new THREE.BufferAttribute(p, 3));
+        o.userData.line.geometry.attributes.position.needsUpdate = true;
+      }
+      mx += (tx - mx) * 0.05; my += (ty - my) * 0.05;
+      camera.position.x = mx * 5; camera.position.y = 3.2 - my * 2.2;
+      camera.lookAt(0, 1, 0);
+      renderer.render(scene, camera);
+    }
+
+    // Motion is allowed unless the user turned it off in the a11y panel, or the OS
+    // requests reduced motion and the user hasn't explicitly opted in.
+    function motionAllowed() {
+      var h = document.documentElement;
+      if (h.classList.contains('a11y-nomotion')) return false;
+      if (h.classList.contains('a11y-motion')) return true;
+      return !reduce;
+    }
+    camera.lookAt(0, 1, 0); renderer.render(scene, camera);   // one static frame so the shield shows even when paused
+    (function loop() {
+      requestAnimationFrame(loop);
+      if (!motionAllowed()) return;
+      if (visible) frame();
+    })();
+  })();
+  </script>
 </body>
 </html>

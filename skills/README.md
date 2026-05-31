@@ -1,5 +1,7 @@
 # Lictor Security Suite — Claude Code plugins
 
+> 🤖 **Part of the [Lictor AI security suite](../README.md)** — Lictor for AI. Security skills inside your AI coding client (Claude Code, Cursor, …).
+
 > Four free plugins that keep your AI-built app from doing something stupid in public.
 
 If you built your app with Lovable, Bolt, v0, Cursor, or by prompting Claude/ChatGPT — the AI didn't tell you about the bugs that get founders publicly embarrassed. This suite catches them before you ship.
@@ -87,8 +89,24 @@ In plain language:
 
 ## Install
 
+Clone the repo, then run the installer:
+
 ```bash
 git clone https://github.com/Raffa-jarrl/Lictor-AI.git ~/Code/lictor
+bash ~/Code/lictor/skills/install.sh
+```
+
+The installer copies the four `lictor-*` skills into `~/.claude/skills/`
+(create-if-missing, idempotent — re-running just refreshes them). Install
+somewhere else with `--dest`:
+
+```bash
+bash ~/Code/lictor/skills/install.sh --dest /path/to/skills
+```
+
+Prefer doing it by hand? The installer is just this:
+
+```bash
 mkdir -p ~/.claude/skills
 cp -r ~/Code/lictor/skills/lictor-* ~/.claude/skills/
 ```
@@ -98,6 +116,58 @@ Then in any Claude Code session, from your project directory:
 ```
 /lictor-security-check
 ```
+
+## Other AI clients
+
+These skills are just **Markdown + YAML front-matter** (the
+`lictor-security-check` skill also ships a `checks/` and `reports/`
+folder). Nothing is hardcoded to Claude — no `allowed-tools`, no API
+calls — so they port to any assistant that reads instruction files.
+There are no automated adapters; below is the manual mapping.
+
+- **Cursor** — Cursor reads project rules from `.cursor/rules/*.mdc`.
+  An `.mdc` file is the same idea as a `SKILL.md`: a front-matter header
+  (`description`, `globs`, `alwaysApply`) followed by the instruction
+  body. Copy each skill's body into `.cursor/rules/lictor-<name>.mdc`
+  and translate the front-matter (`name`/`description` → mdc header).
+  For `lictor-security-check`, also copy its `checks/` and `reports/`
+  files into `.cursor/rules/` so its relative links still resolve.
+  The optional `install-cursor.sh` does exactly this for one project —
+  see below.
+
+- **Codex CLI / Antigravity / other `AGENTS.md` agents** — agents that
+  read an `AGENTS.md` (or `.agent/` instructions) don't have a slash-command
+  registry. Reference the skill content from your `AGENTS.md`: either paste
+  the relevant `SKILL.md` body under a heading (e.g. *"Security review
+  procedure"*) or add a line like *"When asked to do a security check,
+  follow `skills/lictor-security-check/SKILL.md`."* The model follows the
+  Markdown the same way Claude does.
+
+- **Continue** — Continue supports custom commands/prompts in
+  `~/.continue/config.json` (or `config.yaml`). Add a custom command
+  whose prompt is the body of the skill you want (e.g. a
+  `lictor-security-check` command that pastes that `SKILL.md`). Continue
+  then exposes it as a slash command in its sidebar.
+
+- **Anything else** — if the assistant can be handed a system prompt or
+  a project instruction file, paste the `SKILL.md` body in. The content
+  is plain English procedure; it does not depend on any Claude-specific
+  feature.
+
+### Optional: one-shot Cursor install
+
+If you work in Cursor, `install-cursor.sh` copies the skill bodies into
+a project's `.cursor/rules/` as `.mdc` files (with a generated mdc
+front-matter), and brings along the `checks/`/`reports/` files that
+`lictor-security-check` links to:
+
+```bash
+bash ~/Code/lictor/skills/install-cursor.sh /path/to/your/project
+# defaults to the current directory if no path is given
+```
+
+This is a convenience copier, not an official Cursor integration — the
+result is the same files you'd create by hand from the mapping above.
 
 ## Who built this
 
