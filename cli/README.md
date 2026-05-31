@@ -1,5 +1,7 @@
 # lictor (CLI)
 
+> ⚙️ **Part of the [Lictor AI security suite](../README.md)** — Platform. The `lictor` terminal binary.
+
 > Terminal audit for AI-built apps. CLI sibling of [Lictor Studio](../studio/).
 > Same engine. Different surface. For CI integration, scripts, headless servers, and developers who prefer a command over a GUI.
 

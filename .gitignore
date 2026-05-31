@@ -87,4 +87,7 @@ docs/launch/patrol-db-creds*.md
 docs/launch/*-aggregate.md
 v3/corpus/
 v3/reports/
-~/.lictor/
+# Daily ops briefings / plans — may reference specific targets. Keep local.
+MORNING-BRIEFING-*.md
+TOMORROW-*.md
+/logs/

@@ -63,6 +63,24 @@ studio-build: ## Build Studio release .dmg (macOS)
 studio-typecheck: ## TS typecheck only
 	cd studio && pnpm typecheck
 
+# ── Packaging + install ─────────────────────────────────────────────────
+
+.PHONY: package
+package: ## Build ALL components into downloadable artifacts (dist/release/)
+	bash scripts/package-all.sh
+
+.PHONY: install
+install: install-cli install-skills ## Install the CLI + Claude Code skills locally
+	@echo "✓ lictor CLI + skills installed"
+
+.PHONY: install-cli
+install-cli: ## Install the `lictor` CLI (release binary, or build from source)
+	bash scripts/install.sh
+
+.PHONY: install-skills
+install-skills: ## Install the Claude Code skill suite into ~/.claude/skills
+	bash skills/install.sh
+
 # ── Brand + landing ─────────────────────────────────────────────────────
 
 .PHONY: brand
