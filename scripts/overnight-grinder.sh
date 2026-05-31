@@ -19,13 +19,16 @@ if [ "$hour" = "06" ] || [ ! -f ~/.lictor/bounty-corpus-paid.txt ]; then
   python3 /Users/raffa/Lictor/scripts/build-bounty-corpus.py >> ~/.lictor/corpus-build.log 2>&1
 fi
 
-# 1. Subdomain takeover scan against the 2,143 paid-program corpus
-echo "[$(ts)] Starting subdomain-takeover scan (PAID corpus)..." >> $LOG
-python3 -u /Users/raffa/Lictor/scripts/patrol-subdomain-takeover.py \
-  --corpus ~/.lictor/bounty-corpus-paid.txt \
-  --max-domains 2200 --max-subs-per-domain 200 \
-  >> ~/.lictor/takeover.log 2>&1
-echo "[$(ts)] Takeover scan done" >> $LOG
+# 1. Subdomain takeover scan — DISABLED 2026-05-31.
+#    Reason: ~440k DNS lookups/cycle (2200 domains x 200 subs) is our loudest
+#    scanner and the prime ISP "DNS noise" trigger, while takeover findings are
+#    low-priority for our disclosure op. Do NOT re-enable from a home line; if
+#    ever needed, run it once from a cloud VPS, never on a cron loop.
+# python3 -u /Users/raffa/Lictor/scripts/patrol-subdomain-takeover.py \
+#   --corpus ~/.lictor/bounty-corpus-paid.txt \
+#   --max-domains 2200 --max-subs-per-domain 200 \
+#   >> ~/.lictor/takeover.log 2>&1
+echo "[$(ts)] Takeover scan SKIPPED (disabled — DNS-noisy, low value)" >> $LOG
 
 # 2. Web-exposed-files scan
 echo "[$(ts)] Starting web-exposed-files scan..." >> $LOG
