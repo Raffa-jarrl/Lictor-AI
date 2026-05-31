@@ -35,6 +35,16 @@ read -r -d '' LOW_EXTRA <<EOF || true
 # ===== end Lictor LOW =====
 EOF
 
+read -r -d '' NIGHT_EXTRA <<EOF || true
+# ===== Lictor NIGHTLY (off-hours host probe — 01:00/03:00/05:00 local, single-lane, gentle) =====
+# Concentrated in the deep-night window: targets + NOCs asleep = fewest abuse reports.
+# Each pass is idempotent (ledger-gated) so it advances to new hosts. ~1200 hosts/night.
+0 1 * * * cd $LIC && /bin/bash scripts/gentle-patrol.sh /Users/raffa/.lictor/bounty-corpus.txt 400 >> /Users/raffa/.lictor/gentle.log 2>&1
+0 3 * * * cd $LIC && /bin/bash scripts/gentle-patrol.sh /Users/raffa/.lictor/bounty-corpus.txt 400 >> /Users/raffa/.lictor/gentle.log 2>&1
+0 5 * * * cd $LIC && /bin/bash scripts/gentle-patrol.sh /Users/raffa/.lictor/bounty-corpus.txt 400 >> /Users/raffa/.lictor/gentle.log 2>&1
+# ===== end Lictor NIGHTLY =====
+EOF
+
 strip_lictor() { crontab -l 2>/dev/null | grep -vE "Lictor|\.lictor|Lictor SAFE|Lictor LOW"; }
 
 kill_scanners() {
@@ -58,6 +68,10 @@ case "${1:-status}" in
   low)
     ( strip_lictor; echo "$SAFE_BLOCK"; echo "$LOW_EXTRA" ) | crontab -
     echo "[scan-toggle] LOW — safe jobs + single-lane host probe (300 hosts/day). No takeover, no swarm."
+    ;;
+  nightly|offhours)
+    ( strip_lictor; echo "$SAFE_BLOCK"; echo "$NIGHT_EXTRA" ) | crontab -
+    echo "[scan-toggle] NIGHTLY — GitHub engine 24/7 + off-hours host probe (01/03/05h local, ~1200 hosts/night). No takeover, no swarm."
     ;;
   status)
     ;;
