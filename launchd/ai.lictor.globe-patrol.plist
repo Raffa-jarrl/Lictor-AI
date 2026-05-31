@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>ai.lictor.globe-patrol</string>
+
+  <!-- Lictor Globe: rolling, HEAD-only geo-risk recon. Each run takes the next
+       slice of the master corpus (state-tracked → covers everything over time,
+       then wraps to catch NEW risk). Draft-only; refreshes the world heatmap. -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>/Users/raffa/Lictor/scripts/globe-patrol.py</string>
+    <string>--corpus</string>
+    <string>/Users/raffa/.lictor/bounty-corpus.txt</string>
+    <string>--slice</string>
+    <string>200</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/raffa/Lictor</string>
+
+  <!-- 3× daily: 02:00, 10:00, 18:00 local. ~600 hosts/day → covers the 11.7k
+       master in ~20 days, then re-scans for new exposure. Slowly, surely. -->
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict><key>Hour</key><integer>2</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>10</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>0</integer></dict>
+  </array>
+
+  <key>StandardOutPath</key>
+  <string>/tmp/lictor-globe.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/lictor-globe.log</string>
+
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>

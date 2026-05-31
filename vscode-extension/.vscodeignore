@@ -7,6 +7,8 @@ tsconfig.json
 **/*.map
 node_modules/**
 .gitignore
+pnpm-lock.yaml
+*.vsix
 **/tsconfig.json
 **/.eslintrc.json
 .github/**

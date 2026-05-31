@@ -1,5 +1,7 @@
 # Lictor Studio — desktop audit app
 
+> 🤖 **Part of the [Lictor AI security suite](../README.md)** — Lictor for AI. Desktop audit app (Tauri).
+
 > **Status:** v0.1.0-pre.0 — skeleton scaffold, builds but only stubs the audit
 > **Ship target:** v0.1.0 — Dec 31, 2026 (macOS)
 > **Spec:** `~/Lictor/docs/launch/lictor-studio-mvp-spec.md`

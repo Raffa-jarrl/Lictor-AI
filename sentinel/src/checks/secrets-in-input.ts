@@ -25,6 +25,7 @@
 import type { Phase, Severity } from "../types.js";
 import type { Check, CheckResult } from "../check-runner.js";
 import { PASS } from "../check-runner.js";
+import { isFalsePositiveSecret } from "../fp-filters.js";
 
 export interface SecretPattern {
   re: RegExp;
@@ -86,6 +87,13 @@ function runSecretsInInput(text: string, _phase: Phase): CheckResult {
       const value = m[0];
       if (seen.has(value)) continue;
       seen.add(value);
+      // FP gate: suppress public-by-design matches (Sentry DSN, pk_live_,
+      // VITE_/NEXT_PUBLIC_ values, Firebase web apiKey). A security tool that
+      // flags intended-public values as leaks gets uninstalled.
+      const ctxStart = m.index > 40 ? m.index - 40 : 0;
+      const context = text.slice(ctxStart, m.index + value.length);
+      const fp = isFalsePositiveSecret(value, context);
+      if (fp.fp) continue;
       matches.push({ label: pat.label, severity: pat.severity });
       topSeverity = maxSeverity(topSeverity, pat.severity);
       if (matches.length >= 10) break;

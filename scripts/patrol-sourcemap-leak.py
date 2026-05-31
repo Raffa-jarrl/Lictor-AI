@@ -98,7 +98,12 @@ def main():
     ap.add_argument("--corpus", default=str(Path.home() / ".lictor" / "bounty-corpus-priority.txt"))
     ap.add_argument("--max-domains", type=int, default=300)
     ap.add_argument("--workers", type=int, default=50)
+    ap.add_argument("--ledger", default=None,
+                    help="Override default ledger path (~/.lictor/sourcemap-ledger.jsonl)")
     args = ap.parse_args()
+    if args.ledger:
+        global LEDGER
+        LEDGER = Path(args.ledger).expanduser()
 
     apexes = [l.strip() for l in Path(args.corpus).expanduser().read_text().splitlines() if l.strip()][:args.max_domains]
     PREFIXES = ["", "app.", "dashboard."]

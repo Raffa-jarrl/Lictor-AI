@@ -1,5 +1,7 @@
 # Lictor v3 — Security AI for AI-first companies
 
+> 🛰️ **Part of the [Lictor AI security suite](../README.md)** — Lictor Patrol. External attack-surface scanner battery.
+
 > Multi-agent security scanner. AI infrastructure deserves AI-grade security tooling.
 
 Lictor v3 is a **complete rewrite** of the Lictor scanner suite as a multi-agent system on [OpenClaw](https://github.com/openclaw/openclaw). Each agent has a specialized role; the agents hand off via files in this workspace.

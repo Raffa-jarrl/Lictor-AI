@@ -1,11 +1,15 @@
 # lictor-sentinel (Python)
 
+> 🤖 **Part of the [Lictor AI security suite](../README.md)** — Lictor for AI. Sentinel guards the **prompt** boundary (Python SDK).
+
 > The security crew for apps you built with AI — runtime defense for your OpenAI / Anthropic calls.
 > Sister package to [`@lictor/sentinel`](https://www.npmjs.com/package/@lictor/sentinel) (TypeScript). Same API contract, Pythonic ergonomics.
 
 [![PyPI](https://img.shields.io/pypi/v/lictor-sentinel.svg)](https://pypi.org/project/lictor-sentinel/)
 [![Python](https://img.shields.io/pypi/pyversions/lictor-sentinel.svg)](https://pypi.org/project/lictor-sentinel/)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+
+> **Status: pre-release.** `lictor-sentinel` is not on PyPI yet — the PyPI badges above go live at GA (Oct 6, 2026). Until then, [install from source](#install-from-source-available-today) (works today).
 
 ## Why Sentinel
 
@@ -53,6 +57,12 @@ completion = client.chat.completions.create(
 
 ## Install
 
+Requires Python 3.10+.
+
+### Coming at launch (Oct 6, 2026)
+
+At GA, Sentinel will be on PyPI and these will Just Work:
+
 ```bash
 pip install lictor-sentinel
 # or with uv:
@@ -61,7 +71,31 @@ uv add lictor-sentinel
 poetry add lictor-sentinel
 ```
 
-Requires Python 3.10+.
+> Not published yet — running these today returns a 404. Use the from-source path below in the meantime.
+
+### Install from source (available today)
+
+Install straight from the cloned repo (PEP 517 source install):
+
+```bash
+git clone https://github.com/Raffa-jarrl/Lictor-AI
+cd Lictor-AI/sentinel-py
+python3 -m pip install .
+```
+
+Prefer to build a wheel first (e.g. to vendor it or install into another env)? Use `build`:
+
+```bash
+python3 -m pip install build
+python3 -m build              # → dist/lictor_sentinel-0.1.0a0-py3-none-any.whl (+ .tar.gz sdist)
+python3 -m pip install dist/lictor_sentinel-0.1.0a0-py3-none-any.whl
+```
+
+Either way, import exactly as documented below — the import name is `lictor_sentinel`:
+
+```python
+from lictor_sentinel import wrap
+```
 
 ## Quick start
 
