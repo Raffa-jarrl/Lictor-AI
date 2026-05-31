@@ -12,28 +12,93 @@
 
 [![Watch the Lictor demo (3 min)](https://img.youtube.com/vi/RelXN5g1sac/maxresdefault.jpg)](https://youtu.be/RelXN5g1sac)
 
-Lictor is an open-source AI security suite. Four free things, all under one brand, designed for vibe-coders who don't have a CISO and don't want to talk to one:
+Lictor is an open-source AI security suite, organized as **three pillars on one shared engine** — easy to hold in your head:
 
-- **[Lictor Shield](./shield)** — free Chrome extension. Watches AI-built sites you visit and warns you about leaked keys, open databases, and unguarded chat interfaces.
-- **[Lictor Sentinel](./sentinel)** — free SDK (`npm install @lictor/sentinel` / `pip install lictor-sentinel`). Wraps your OpenAI/Anthropic SDK to block prompt injection and PII leaks in your live app.
-- **[Lictor Guardian](./guardian)** — free hosted dashboard. Aggregates incidents across your apps. Audit log export for the day an enterprise customer asks "how do you secure AI?"
-- **[Lictor Security Suite for Claude Code](./skills)** — four free Claude plugins. Type `/lictor-security-check` in any project to scan it for bugs before you ship. Plus `/lictor-explain` (translates jargon), `/lictor-fix-it` (applies fixes with your permission), `/lictor-rotate` (walks you through rotating a leaked key).
+### 🤖 Lictor for AI — *secure the AI you use*
+Drops into every AI client you already use — **Claude Code, Cursor, Codex, Antigravity, Windsurf**, and the rest of the top-10 — and guards each boundary an AI agent can cross:
+- **[Shield](./shield)** — Chrome extension: guards the AI-built **app** in your browser
+- **[Sentinel](./sentinel)** — SDK (npm/pip): guards the **prompt** (injection + PII)
+- **[Airlock](./airlock)** — action broker: guards the **action** (MCP tool-calls + shell; observe → enforce)
+- **[Skills](./skills)** · **[VS Code / Cursor ext](./vscode-extension)** · **[Studio](./studio)** — guard your **dev loop** (`/lictor-security-check` and friends, in every client)
 
-All four share **[Lictor Core](./core)** — a Rust crate that compiles to native and WASM, so the same checks run in your browser, your Node service, our cloud, and Claude Code.
+### 🏢 Lictor for Business — *secure the company* · *2026–27 roadmap*
+The security an SMB needs but can't staff a team for:
+- **[Domain Guard](./domain-guard)** — identities & Active Directory: stale passwords, over-privileged accounts, open shares
+- **[Isolation](./isolation)** — the **red/black sandbox**: a pre-isolated machine to run & test AI agents *off* your real network, no env-build required
+- **Audit & Rotate** — compliance evidence + guided key rotation (built on Guardian + the `lictor-rotate` skill)
+
+### 🛰️ Lictor Patrol — *scan the world*
+- **[v3 scanner](./v3)** + **Patrol** — 38-module external attack-surface recon; the engine behind *"we scanned 30,000 vibe-coded apps."* Apache 2.0, runs locally.
+
+**Under all three sits the platform:** **[Lictor Core](./core)** (a Rust crate compiling to native + WASM, plus the AUDIT.json output standard), the **[`lictor` CLI](./cli)**, and **[Lictor Guardian](./guardian)** (the dashboard every product reports into — one audit trail, one place to prove you're secure). One engine, so every new check ships everywhere at once.
+
+## May 2026 update — 276 disclosures sent, 13 false-positive classes catalogued
+
+In the four weeks before public launch, Lictor's scanners produced:
+
+- **276 verified disclosures** to affected organisations (184 via GitHub public process + 92 via direct-email CVD)
+- **7,736 hosts scanned** across 12 countries / 5 industries (finance, healthcare, government, crypto, AI infrastructure)
+- **38 scanner modules** with anti-FP rigor (HEAD-only canaries, vendor-fingerprint detection, content-quality validation, baseline-compare classifiers)
+- **13 false-positive classes** discovered and filtered (see [`v3/docs/fp-catalog.md`](./v3/docs/fp-catalog.md))
+- **0 victim names published** publicly — all disclosures routed privately under 60-day Coordinated Vulnerability Disclosure norms
+
+The validated finding count after anti-FP filtering: 44 customer-app sourcemap exposures with revealed source code (down from 292 raw initial hits), 33 spoofable enterprise email domains, 11 publicly-listable cloud buckets, 14 EOL software stacks, 4 RDP/FTP/SMB services exposed direct-to-internet.
+
+Full transparency at [lictorai.com/transparency](https://lictorai.com/transparency).
 
 ## Status
 
+**🤖 Pillar 1 — Lictor for AI** *(shipped; the Oct 6 launch)*
 | Component | What it is | Status |
 |---|---|---|
-| [`core/`](./core/) | Rust check engine, native + WASM | ✅ 39 tests, working CLI example, Apache 2.0 |
 | [`shield/`](./shield/) | Chrome MV3 extension | ✅ WASM-backed audits, real popup verdict, loads unpacked |
 | [`sentinel/`](./sentinel/) | TypeScript SDK (npm: `@lictor/sentinel`) | ✅ 159 tests, real `wrap()`, 3 checks (prompt-injection / pii-leak / secrets-in-input) |
 | [`sentinel-py/`](./sentinel-py/) | Python SDK (PyPI: `lictor-sentinel`) | ✅ 11 tests, Python parity, zero runtime deps |
-| [`guardian/`](./guardian/) | Hosted dashboard (Next.js + Postgres) | ✅ 12 integration tests, magic-link auth, incident timeline, audit log export, Slack webhook |
-| [`skills/`](./skills/) | Claude Code plugin suite | ✅ 4 plugins (`/lictor-security-check`, `/lictor-explain`, `/lictor-fix-it`, `/lictor-rotate`) |
-| [`landing/`](./landing/) | Marketing site (lictorai.com) | ✅ Single-page hero + `/compliance` subpage |
+| [`airlock/`](./airlock/) | AI action broker (npm: `@lictor/airlock`) | ✅ 23 tests, observe→enforce, MCP + shell, 5 policy rule families, Guardian telemetry |
+| [`skills/`](./skills/) | Claude Code plugin suite | ✅ 4 plugins, one-line `install.sh`, portable to Cursor/Codex |
+| [`vscode-extension/`](./vscode-extension/) | VS Code / Cursor extension | ✅ Packages to `.vsix`; Marketplace + Open VSX at launch |
+| [`studio/`](./studio/) | Tauri desktop app | 🚧 Builds local `.dmg`/`.app`; signed release Q1 2027 |
+
+**🏢 Pillar 2 — Lictor for Business** *(2026–27 roadmap)*
+| Component | What it is | Status |
+|---|---|---|
+| [`domain-guard/`](./domain-guard/) | Identity & Active Directory posture | 🗺️ Spec'd — stale passwords, over-privileged accounts, open shares |
+| [`isolation/`](./isolation/) | Red/black AI sandbox machine | 🗺️ Spec'd — run/test AI agents off the real network |
+| Audit & Rotate | Compliance evidence + key rotation | ✅ Foundations exist (Guardian audit export + `lictor-rotate` skill); productizing |
+
+**🛰️ Pillar 3 — Lictor Patrol** *(scanner shipped; autonomous Patrol building Q3)*
+| Component | What it is | Status |
+|---|---|---|
+| [`v3/`](./v3/) | External attack-surface scanner battery | ✅ 38 scanner modules, anti-FP rigor (13 FP classes catalogued), 276 disclosures sent |
+| [`disclosures/`](./disclosures/) | Coordinated Vulnerability Disclosure pipeline | ✅ Organised by tier (queue / courtesy-sourcemaps / bounty-eligible / verified-fp) |
+
+**⚙️ The platform** *(shared by all three)*
+| Component | What it is | Status |
+|---|---|---|
+| [`core/`](./core/) | Rust check engine, native + WASM + AUDIT.json standard | ✅ 45 tests, native + WASM builds, Apache 2.0 |
+| [`cli/`](./cli/) | `lictor` terminal binary | ✅ `lictor audit . --format human/json/markdown` + `--fail-on` for CI |
+| [`guardian/`](./guardian/) | Hosted dashboard — the one audit trail every product reports into | ✅ 12 integration tests, magic-link auth, audit-log export, Slack webhook, `docker compose up` |
+| [`landing/`](./landing/) | Marketing site (lictorai.com) | ✅ Multi-page: hero, /business, /in-the-wild, /transparency, /scan, /patterns, /compliance |
 
 **Public launch target:** Tuesday October 6, 2026.
+
+## Download & install
+
+Every component installs today. SDKs/extensions publish to their public registries at the **Oct 6, 2026** launch — until then, install from source or from the artifacts below. Build **all** downloadable artifacts at once with `make package` (→ `dist/release/`).
+
+| Component | Install today | At launch (registry) |
+|---|---|---|
+| **CLI** (`lictor`) | `curl -fsSL https://raw.githubusercontent.com/Raffa-jarrl/Lictor-AI/main/scripts/install.sh \| bash` — grabs the release binary, or builds from source | `cargo install lictor-cli` / `brew install lictor` |
+| **Skills** (Claude Code) | `git clone https://github.com/Raffa-jarrl/Lictor-AI && bash Lictor-AI/skills/install.sh` | — (always source) |
+| **Sentinel** (npm) | `cd sentinel && pnpm install && pnpm build && npm pack` → `npm i ./lictor-sentinel-*.tgz` | `npm install @lictor/sentinel` |
+| **Sentinel** (PyPI) | `pip install ./sentinel-py` (PEP 517 source install) | `pip install lictor-sentinel` |
+| **Airlock** (npm) | `cd airlock && npm install && npm run build` → `node dist/cli.js --help` | `npm i -g @lictor/airlock` / `npx @lictor/airlock` |
+| **Shield** (Chrome) | Download `lictor-shield-*.zip` from [Releases](https://github.com/Raffa-jarrl/Lictor-AI/releases) → unzip → `chrome://extensions` → Load unpacked | Chrome Web Store |
+| **VS Code / Cursor** | Download `lictor-*.vsix` from [Releases](https://github.com/Raffa-jarrl/Lictor-AI/releases) → `code --install-extension lictor-*.vsix` | Marketplace + Open VSX |
+| **Guardian** (self-host eval) | `cd guardian && docker compose up` → http://localhost:3100 | hosted at lictorai.com |
+| **Studio** (desktop) | `make studio-build` → `.dmg`/`.app` (unsigned; right-click→Open) | signed `.dmg` Q1 2027 |
+
+> **`make install`** installs the CLI + Claude Code skills locally in one step. **`make package`** builds every artifact above into `dist/release/`. Guardian's source is [source-available](./guardian/LICENSE) (run-it-yourself for dev/eval; not for hosting-as-a-service).
 
 ## Real-world impact
 
@@ -112,7 +177,7 @@ In a sentence: **safety infrastructure for the AI agent era.**
 
 ## License
 
-Apache 2.0 for `core/`, `shield/`, `sentinel/`, `sentinel-py/`, and `skills/`. Guardian's hosted service code is published for transparency but licensed for hosted use through lictorai.com only (see [`guardian/LICENSE`](./guardian/LICENSE)).
+Apache 2.0 for the whole suite — `core/`, `cli/`, `shield/`, `sentinel/`, `sentinel-py/`, `airlock/`, `skills/`, `vscode-extension/`, `studio/`, `v3/`, and the Business-pillar `domain-guard/` + `isolation/`. The one exception: **Guardian** — its hosted service code is published for transparency but licensed for hosted use through lictorai.com only (see [`guardian/LICENSE`](./guardian/LICENSE)).
 
 See [`LICENSE`](./LICENSE) + [`NOTICE`](./NOTICE).
 
@@ -130,16 +195,27 @@ Not yet broadly open. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for what we DO 
 
 ```
 .
-├── core/             — Rust crate, the shared engine
-├── shield/           — Chrome extension
-├── sentinel/         — TypeScript SDK
+│  ── 🤖 Pillar 1: Lictor for AI ──
+├── shield/           — Chrome extension (guards the app)
+├── sentinel/         — TypeScript SDK (guards the prompt)
 ├── sentinel-py/      — Python SDK
-├── guardian/         — Next.js + Postgres dashboard
-├── skills/           — Claude Code plugin suite (4 skills)
+├── airlock/          — AI action broker (guards the action: MCP + shell)
+├── skills/           — Claude Code plugin suite (4 skills) + Cursor adapter
+├── vscode-extension/ — VS Code / Cursor extension
+├── studio/           — Tauri desktop app
+│  ── 🏢 Pillar 2: Lictor for Business (roadmap) ──
+├── domain-guard/     — identity & Active Directory posture
+├── isolation/        — red/black AI sandbox machine
+│  ── 🛰️ Pillar 3: Lictor Patrol ──
+├── v3/               — external attack-surface scanner battery
+├── disclosures/      — coordinated vulnerability disclosure pipeline
+│  ── ⚙️ Shared platform ──
+├── core/             — Rust crate, the shared engine + AUDIT.json
+├── cli/              — `lictor` terminal binary
+├── guardian/         — Next.js + Postgres dashboard (the one audit trail)
 ├── landing/          — Marketing site (HTML, deploys to lictorai.com)
 ├── brand/            — Logo SVG + rendered PNG icon variants
-├── docs/             — Specs (sentinel-api, guardian-schema, wire-format)
-│                        + compliance.md + BUG_BASH.md + launch/
+├── docs/             — Specs (sentinel-api, guardian-schema, wire-format) + launch/
 └── examples/         — Vulnerable-by-design fixtures
 ```
 

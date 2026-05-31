@@ -144,21 +144,28 @@ for (let i = 0; i < 60; i++) {
 }
 
 // Bulk insert.
+// NOTE: 13 columns per row — `sentinel_version` is NOT NULL in the schema, so
+// it must be in both the column list and the flattened params. Omitting it
+// crashes the whole seed with PG error 23502 (not-null violation).
+const COLS = 13;
 const valuesClauses = incidents
   .map(
     (_, i) =>
-      `($${i * 12 + 1}, $${i * 12 + 2}, $${i * 12 + 3}, $${i * 12 + 4}, $${i * 12 + 5}, $${i * 12 + 6}, $${i * 12 + 7}, $${i * 12 + 8}, $${i * 12 + 9}, $${i * 12 + 10}, $${i * 12 + 11}, $${i * 12 + 12})`,
+      "(" +
+      Array.from({ length: COLS }, (_, j) => `$${i * COLS + j + 1}`).join(", ") +
+      ")",
   )
   .join(", ");
 const flat = incidents.flatMap((i) => [
   i.account_id, i.agent_id, i.ts, i.phase, i.check_id, i.severity,
   i.title, i.detail, i.model_provider, i.model_name, i.fingerprint, i.action,
+  i.sentinel_version,
 ]);
 
 await client.query(
   `INSERT INTO incidents
    (account_id, agent_id, ts, phase, check_id, severity, title, detail,
-    model_provider, model_name, fingerprint, action)
+    model_provider, model_name, fingerprint, action, sentinel_version)
    VALUES ${valuesClauses}`,
   flat,
 );

@@ -1,0 +1,60 @@
+{
+  "name": "@lictor/airlock",
+  "version": "0.1.0-alpha.0",
+  "description": "Lictor Airlock — a local broker that watches and contains what AI agents DO. Observe every tool call and shell command in plain English, then enforce policy to stop destructive, exfiltrating, or LAN-touching actions before they run.",
+  "license": "Apache-2.0",
+  "homepage": "https://lictorai.com/airlock",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Raffa-jarrl/Lictor-AI.git",
+    "directory": "airlock"
+  },
+  "keywords": [
+    "ai-security",
+    "ai-safety",
+    "mcp",
+    "agent-security",
+    "sandbox",
+    "guardrails",
+    "shell-guard",
+    "llm-security",
+    "containment"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "airlock": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./mcp": {
+      "types": "./dist/mcp/index.d.ts",
+      "import": "./dist/mcp/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "node --import tsx --test 'tests/**/*.test.ts'",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
