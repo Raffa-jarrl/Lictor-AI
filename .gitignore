@@ -82,6 +82,7 @@ v3/templates/cisa-kev/known_exploited.json
 # (binding rule: aggregate-only in public, never name a victim)
 disclosures/
 output/globe-heatmap.json
+output/*.jsonl
 docs/launch/morning-report-*.md
 docs/launch/patrol-db-creds*.md
 docs/launch/*-aggregate.md
