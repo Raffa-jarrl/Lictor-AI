@@ -49,6 +49,13 @@ shield/dist/
 shield/build/
 shield/web-ext-artifacts/
 core/wasm-pkg/
+
+# Packaged release artifacts (produced by scripts/package-all.sh)
+dist/release/
+*.vsix
+*.tgz
+*.whl
+shield/lictor-shield-*.zip
 docs/launch/patrol-outreach-private-*.md
 docs/launch/patrol-public-repos-private-*.md
 disclosures/queue/
@@ -70,3 +77,14 @@ v3/templates/cisa-kev/known_exploited.json
 # Local scanner outputs
 /tmp/lictor-*.log
 /tmp/scan-wallet-files.py
+
+# ── Raw scan findings — affected-party names / live third-party creds. NEVER publish. ──
+# (binding rule: aggregate-only in public, never name a victim)
+disclosures/
+output/globe-heatmap.json
+docs/launch/morning-report-*.md
+docs/launch/patrol-db-creds*.md
+docs/launch/*-aggregate.md
+v3/corpus/
+v3/reports/
+~/.lictor/

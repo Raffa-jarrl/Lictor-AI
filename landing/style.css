@@ -4,24 +4,31 @@
  */
 
 :root {
-  --bg:           #0F1419;
-  --surface:      #1A2028;
-  --surface-2:   #232B36;
-  --text:         #E8E2D5;
-  --text-muted:   #6E7780;
-  --accent:       #C9A23B;
-  --primary:      #3D2C5E;
-  --primary-2:    #5A4280;
+  --bg:           #070809;   /* near-black — matches mission-control */
+  --surface:      #11141A;
+  --surface-2:    #181D26;
+  --text:         #ECE3D6;
+  --text-muted:   #8E887B;
+  --accent:       #C4885A;   /* copper — the Lictor mark */
+  --primary:      #7A4E2E;   /* deep bronze (was imperial purple) */
+  --primary-2:    #9A6A40;
   --critical:     #C0392B;
   --warning:      #D68910;
   --success:      #3D7C5E;
-  --border:       #2A323E;
-  --border-light: #3A4250;
+  --border:       #251E17;
+  --border-light: #3C2F22;
 
-  /* Accent derivatives — keep in lockstep with --accent (#C9A23B). */
-  --accent-tint:        rgba(201, 162, 59, 0.10); /* faint backgrounds */
-  --accent-tint-strong: rgba(201, 162, 59, 0.30); /* borders on tinted */
-  --accent-hover:       #D8B04A;                  /* +6% lightness */
+  /* Accent derivatives — keep in lockstep with --accent (#C4885A copper). */
+  --accent-tint:        rgba(196, 136, 90, 0.10); /* faint backgrounds */
+  --accent-tint-strong: rgba(196, 136, 90, 0.32); /* borders on tinted */
+  --accent-hover:       #D89B6C;                  /* +8% lightness */
+
+  /* Glass + glow — premium layer ported from mission-control. */
+  --panel-bg:     rgba(17, 20, 26, 0.62);
+  --panel-border: rgba(196, 136, 90, 0.22);
+  --copper-glow:  rgba(196, 136, 90, 0.40);
+  --glow-soft:    rgba(196, 136, 90, 0.14);
+  --cream:        #F4DCC4;
 
   /* Severity surface tints — for SeverityBadge + Finding cards (use as bg
      under --critical / --warning / --accent / --success / --text-muted text). */
@@ -50,6 +57,21 @@
   --motion-fast:   0.05s ease;
   --motion-base:   0.15s ease;
   --motion-slow:   0.30s ease;
+
+  /* Type scale tokens.
+     Added 2026-05-27 per design-system rule "introduce when ≥2 components disagree."
+     Trigger: 7+ inline font-size overrides on the homepage h1/h2/h3.
+     Use these via var(--font-size-*) — never inline. */
+  --font-size-display:   clamp(2.4rem, 6vw, 3.8rem);  /* hero h1, oversized */
+  --font-size-h1:        clamp(2rem, 5vw, 3.2rem);
+  --font-size-h2:        clamp(1.6rem, 3.5vw, 2.4rem);
+  --font-size-h3:        1.25rem;
+  --font-size-h3-small:  1.05rem;                       /* compact h3 in install/feature grids */
+  --font-size-body:      1rem;
+  --font-size-body-sm:   0.9rem;
+  --font-size-meta:      0.85rem;
+  --font-size-caption:   0.75rem;
+  --font-size-eyebrow:   0.7rem;
 
   --max-width: 1100px;
 }

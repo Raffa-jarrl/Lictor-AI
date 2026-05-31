@@ -110,3 +110,131 @@
   margin-bottom: var(--space-2);
 }
 .metric-tile__label { font-size: 0.9rem; color: var(--text-muted); line-height: 1.3; }
+
+
+/* ============================================================
+   Utility component classes
+   Added 2026-05-27 per WEBSITE-AUDIT.md to eliminate inline-style
+   drift across in-the-wild, transparency, retractions, and others.
+   Use these in markup. Never use inline style= for these patterns.
+   ============================================================ */
+
+/* Eyebrows — small mono uppercase tags above section titles */
+.eyebrow {
+  color: var(--accent);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  text-transform: uppercase;
+}
+.eyebrow--muted { color: var(--text-muted); }
+.eyebrow--lg    { font-size: 0.8rem; margin: 0 0 var(--space-3); }
+
+/* Body meta / muted captions — used for sub-titles, footnotes, dates */
+.text-meta    { color: var(--text-muted); font-size: 0.85rem; }
+.text-meta-md { color: var(--text-muted); font-size: 0.9rem; }
+.text-muted   { color: var(--text-muted); }
+.text-accent  { color: var(--accent); }
+.text-caption {
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Dividers — replace inline border styles */
+.divider-top         { border-top: 1px solid var(--border); }
+.divider-left-accent { border-left: 3px solid var(--accent); padding-left: var(--space-4); }
+
+/* Stat row — flex-between with bottom border (used in transparency / mc) */
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+/* Skip-to-main link — a11y standard, hidden until keyboard-focused */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--accent);
+  color: var(--bg);
+  padding: var(--space-3) var(--space-4);
+  z-index: 9999;
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus { top: 0; }
+
+/* Margin-top utilities — mirror --space-* scale */
+.mt-4 { margin-top: var(--space-4); }   /* 1rem */
+.mt-5 { margin-top: var(--space-5); }   /* 1.5rem */
+.mt-6 { margin-top: var(--space-6); }   /* 2rem */
+.mt-7 { margin-top: 2.5rem; }            /* between 6 and 8 — used for section gaps */
+.mt-8 { margin-top: var(--space-8); }   /* 3rem */
+
+/* Text helpers */
+.text-center    { text-align: center; }
+.no-underline   { text-decoration: none; }
+.line-relaxed   { line-height: 1.7; }
+.text-body-md   { font-size: 1rem; }
+
+/* Asset rounding (for inline <img> + thumbnails) */
+.r-sm { border-radius: 6px; }
+
+
+/* ============================================================
+   Install card component
+   Repeated 6 times on homepage (Claude Code / Cursor / Windsurf /
+   Continue.dev / Cline / Standalone CLI). Each instance had 5+
+   inline styles. Now declared once here.
+   ============================================================ */
+.install-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.install-card__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+.install-card__icon { font-size: 1.4rem; }
+.install-card__title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+.install-card__meta {
+  margin-left: auto;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+.install-card__desc {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0 0 var(--space-4);
+}
+.install-card__hint {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+/* Code block inside an install card (Bash snippet / install command) */
+.install-card__code {
+  margin: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--ink-deep);
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  white-space: pre-wrap;
+  overflow-x: auto;
+}

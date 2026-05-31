@@ -1,5 +1,7 @@
 # Lictor Shield
 
+> 🤖 **Part of the [Lictor AI security suite](../README.md)** — Lictor for AI. Shield guards the AI-built **app** in your browser.
+
 > Chrome extension. Audits AI-built sites before you sign up. Alarms when AI accesses your data.
 
 ## What it does (target behaviour)
@@ -11,24 +13,49 @@
 
 ## Status
 
-Pre-alpha. Manifest scaffolded; content script + WASM bridge in progress (Phase 1).
+**Phase 1 — done.** The extension builds, loads, and runs the full WASM-backed
+audit end to end. MV3, minimum permissions, real PNG icons.
 
 | Piece | Status |
 |---|---|
-| `manifest.json` | scaffolded, MV3, minimum permissions |
-| `src/background.ts` | service worker stub |
-| `src/content.ts` | content script stub — detection logic |
-| `src/popup/` | toolbar UI stub |
-| WASM bridge to `lictor-core` | TODO |
-| Chrome Web Store submission | TODO (after Phase 1 complete) |
+| `manifest.json` | MV3, minimum permissions |
+| `src/background.ts` | service worker — runs the WASM audit |
+| `src/content.ts` | content script — detects AI-built sites |
+| `src/popup/` | toolbar UI — live findings + severity badges |
+| WASM bridge to `lictor-core` | wired (bundled in `dist/wasm/`) |
+| Chrome Web Store listing | coming at launch (not live yet) |
 
-## Build (once dependencies are wired)
+## Install
+
+### A. Download the zip (no toolchain needed)
+
+1. Download `lictor-shield-<version>.zip` from the latest [GitHub Release](https://github.com/lictorai/lictor/releases).
+2. Unzip it — you'll get a folder with `manifest.json` at its root.
+3. Open `chrome://extensions`.
+4. Toggle **Developer mode** (top-right) on.
+5. Click **Load unpacked** and select the unzipped folder.
+
+The Chrome Web Store listing is coming at launch; until then this is the install path.
+
+### B. Build from source
+
+Requires [Rust](https://rustup.rs/) + [`wasm-pack`](https://rustwasm.github.io/wasm-pack/) (for the WASM step) and Node.
 
 ```bash
-pnpm install            # installs typescript, @types/chrome, vite
-pnpm build              # produces dist/ ready to load unpacked in Chrome
-pnpm dev                # watch mode
+pnpm wasm                        # build lictor-core → shield/wasm/  (needs Rust + wasm-pack)
+pnpm --filter @lictor/shield build   # produces shield/dist/
 ```
+
+Then load `shield/dist/` via `chrome://extensions` → Developer mode → Load unpacked.
+
+To produce the distributable zip yourself:
+
+```bash
+pnpm --filter @lictor/shield package  # builds dist/ then writes lictor-shield-<version>.zip
+```
+
+> Note: a fresh clone has no `shield/wasm/` (the `*.wasm` blob is gitignored), so
+> run `pnpm wasm` once before the first build. `pnpm dev` runs an esbuild watch.
 
 ## Permissions philosophy
 

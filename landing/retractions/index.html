@@ -26,6 +26,7 @@
   <link rel="canonical" href="https://lictorai.com/retractions/" />
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to main content</a>
   <header class="nav">
     <a href="/" class="brand">
       <img src="/static/lictor-mark.png" alt="" width="32" height="32" style="border-radius:6px" />
@@ -41,7 +42,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main">
 
     <section class="page-hero">
       <div class="page-hero__mark fx-parallax">
@@ -57,11 +58,11 @@
       <div class="shell-grid shell-grid--3">
         <div class="shell-card shell-card--stat">
           <div class="shell-stat__num">8</div>
-          <div class="shell-stat__label">disclosures retracted</div>
+          <div class="shell-stat__label">disclosures retracted (all from GitHub Patrol cohort; <strong>0 retractions</strong> from the 92 external-scan disclosures to date)</div>
         </div>
         <div class="shell-card shell-card--stat">
-          <div class="shell-stat__num">184</div>
-          <div class="shell-stat__label">disclosures total — <strong>96% accuracy rate</strong></div>
+          <div class="shell-stat__num">276</div>
+          <div class="shell-stat__label">disclosures total &mdash; <strong>97.1% accuracy rate</strong> (184 GitHub-public + 92 direct-email CVD)</div>
         </div>
         <div class="shell-card shell-card--stat">
           <div class="shell-stat__num">&lt; 30 min</div>
@@ -71,7 +72,7 @@
     </section>
 
     <!-- The full retraction log — each one with maintainer, issue link, apology, root cause, fix -->
-    <section class="shell-section" style="border-top:1px solid var(--border)">
+    <section class="shell-section divider-top">
       <div class="shell-section__head">
         <h2>The full log</h2>
         <p>Sorted newest-first.</p>
@@ -93,15 +94,15 @@
           </div>
         </header>
 
-        <h4 style="margin-top:1.5rem;font-size:1rem;">What we got wrong</h4>
-        <p style="color:var(--text-muted);">
+        <h4 class="mt-5 text-body-md">What we got wrong</h4>
+        <p class="text-muted">
           We sent 8 contact-request issues to maintainers of Israeli sites (<code>.co.il</code> TLDs) flagging
           their <code>/admin</code> page as a &ldquo;painted-lock&rdquo; exposure — page returns content before
           redirecting to login. All 8 turned out to be false positives.
         </p>
 
-        <h4 style="margin-top:1.5rem;font-size:1rem;">Root cause</h4>
-        <p style="color:var(--text-muted);">
+        <h4 class="mt-5 text-body-md">Root cause</h4>
+        <p class="text-muted">
           Our pilot scanner&rsquo;s <code>/admin</code> check used <code>urllib.request</code> with default
           follow-redirects. When a site sat behind a WAF (Radware, Cloudflare anti-bot) or was a
           Next.js / React SPA returning the same HTML shell for any URL, the scanner saw
@@ -109,7 +110,7 @@
           The reality: those sites were behind challenge pages or returning SPA shells — not exposing admin.
         </p>
 
-        <h4 style="margin-top:1.5rem;font-size:1rem;">The retraction (sent on all 8 issues, then each was closed)</h4>
+        <h4 class="mt-5 text-body-md">The retraction (sent on all 8 issues, then each was closed)</h4>
         <blockquote style="background:var(--ink-deep);border-left:3px solid var(--accent);padding:1rem 1.25rem;margin:.8rem 0;font-style:italic;color:var(--text-muted);line-height:1.7;border-radius:6px;">
           On re-verification with stricter heuristics, this report appears to be a false positive from our scanner. The pattern we flagged (<code>/admin</code> returning content) was triggered by your site&rsquo;s SPA / framework returning the same HTML shell for unknown paths — not by an actual exposed admin panel.<br/><br/>
           This is a bug in our scanner. We&rsquo;re closing this issue and fixing the detection logic so it doesn&rsquo;t happen again. No action needed on your end.<br/><br/>
@@ -118,34 +119,29 @@
           Lictor AI · https://lictorai.com
         </blockquote>
 
-        <h4 style="margin-top:1.5rem;font-size:1rem;">The scanner fix (shipped same hour)</h4>
-        <p style="color:var(--text-muted);">
+        <h4 class="mt-5 text-body-md">The scanner fix (shipped same hour)</h4>
+        <p class="text-muted">
           Built <a href="https://github.com/Raffa-jarrl/Lictor-AI/blob/main/scripts/verify-finding.py" class="link"><code>scripts/verify-finding.py</code></a> — a strict re-checker that:
         </p>
-        <ul style="color:var(--text-muted);line-height:1.7;">
+        <ul class="text-muted line-relaxed">
           <li>Does <strong>NOT</strong> auto-follow redirects (sees the raw response)</li>
           <li>Detects 20+ WAF / bot-challenge fingerprints (Radware <code>__uzdbm</code>, Cloudflare <code>cf-ray</code>, Akamai, Imperva, PerimeterX, DataDome, etc.)</li>
           <li>Requires actual admin-panel markup (dashboard, manage-user, sidebar, etc.) — not just any HTML</li>
           <li>For <code>.env</code> exposures: requires <code>Content-Type: text/plain</code> + ≥3 <code>KEY=VAL</code> lines + no <code>&lt;html</code></li>
         </ul>
-        <p style="color:var(--text-muted);">
+        <p class="text-muted">
           Every flag now passes through this verifier before becoming a contact-request. <a href="https://github.com/Raffa-jarrl/Lictor-AI/commits/main" class="link">See the commits →</a>
         </p>
 
-        <h4 style="margin-top:1.5rem;font-size:1rem;">The 8 issues (closed, with retraction comment visible)</h4>
-        <ul style="color:var(--text-muted);font-family:'JetBrains Mono',monospace;font-size:.85rem;line-height:1.8;list-style:none;padding:0;">
-          <li>· <a href="https://github.com/shalev-osher/mazonhaosher.co.il/issues/3" class="link">shalev-osher/mazonhaosher.co.il #3</a></li>
-          <li>· <a href="https://github.com/osifeu-prog/SLH.co.il/issues/1" class="link">osifeu-prog/SLH.co.il #1</a></li>
-          <li>· <a href="https://github.com/guytepper/1km.co.il/issues/215" class="link">guytepper/1km.co.il #215</a></li>
-          <li>· <a href="https://github.com/yonihod/datascience.co.il/issues/1" class="link">yonihod/datascience.co.il #1</a></li>
-          <li>· <a href="https://github.com/modaco-il/modaco.co.il/issues/1" class="link">modaco-il/modaco.co.il #1</a></li>
-          <li>· <a href="https://github.com/Maxios2025/maxios.co.il/issues/1" class="link">Maxios2025/maxios.co.il #1</a></li>
-          <li>· <a href="https://github.com/dorey-cmd/altrubiz.co.il/issues/1" class="link">dorey-cmd/altrubiz.co.il #1</a></li>
-          <li>· <a href="https://github.com/link-in/mountain-view-dafna.co.il/issues/1" class="link">link-in/mountain-view-dafna.co.il #1</a></li>
-        </ul>
+        <h4 class="mt-5 text-body-md">The 8 issues (all closed, retraction comments filed)</h4>
+        <p style="color:var(--text-muted);font-family:'JetBrains Mono',monospace;font-size:.85rem;line-height:1.8;">
+          All 8 were closed with a public retraction comment within hours. We don&rsquo;t name the
+          affected sites here &mdash; publicly listing someone we <em>wrongly</em> flagged would
+          compound the original mistake. Aggregate only, always.
+        </p>
 
-        <h4 style="margin-top:1.5rem;font-size:1rem;">What we learned</h4>
-        <ol style="color:var(--text-muted);line-height:1.7;">
+        <h4 class="mt-5 text-body-md">What we learned</h4>
+        <ol class="text-muted line-relaxed">
           <li>Naive HTTP probes are dangerous. WAFs and SPA fallbacks defeat almost any URL-based heuristic. <strong>Every URL-based check now needs verifier-gating.</strong></li>
           <li>Speed without verification is more dangerous than slow + right. Catching it ourselves before more damage spread was the only thing that protected our voice promise.</li>
           <li>Public retraction with apology &gt; silent close. Several maintainers wrote back acknowledging the apology. None expressed anger.</li>
@@ -154,7 +150,7 @@
     </section>
 
     <!-- Promise / process -->
-    <section class="shell-section" style="border-top:1px solid var(--border)">
+    <section class="shell-section divider-top">
       <div class="shell-section__head">
         <h2>The retraction process — for next time</h2>
         <p>Documented in our public skill suite. Every future Lictor maintainer follows this exact sequence.</p>
@@ -171,7 +167,7 @@
     </section>
 
     <!-- Counter to industry norm -->
-    <section class="shell-section" style="border-top:1px solid var(--border)">
+    <section class="shell-section divider-top">
       <div class="shell-section__head">
         <h2>Why we do this publicly</h2>
       </div>

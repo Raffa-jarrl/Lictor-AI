@@ -1,0 +1,46 @@
+/* Lictor — standalone accessibility layer.
+   For pages that don't load fx.css (which already bundles this). Same panel,
+   modes, and focus rules. Safe to load alongside fx.css (no duplicate FAB). */
+
+.a11y-fab {
+  position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 10000;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--copper-1, var(--accent, #c4885a)); color: #1a1206;
+  border: 2px solid rgba(255,255,255,0.22); cursor: pointer;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.5); font-size: 1.45rem;
+  display: grid; place-items: center; line-height: 1;
+}
+.a11y-fab:hover { box-shadow: 0 8px 30px rgba(196,136,90,0.55); }
+.a11y-panel {
+  position: fixed; bottom: 5.5rem; right: 1.25rem; z-index: 10000; width: 274px;
+  background: #0f1218; border: 1px solid var(--copper-1, var(--accent, #c4885a)); border-radius: 14px;
+  padding: 1rem 1.15rem; box-shadow: 0 16px 48px rgba(0,0,0,0.6); color: #ECE3D6;
+}
+.a11y-panel[aria-hidden="true"] { display: none; }
+.a11y-title { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; margin: 0 0 .35rem; color: var(--cream, #f4dcc4); }
+.a11y-row { display: flex; align-items: center; justify-content: space-between; padding: .6rem 0; border-top: 1px solid rgba(196,136,90,0.16); }
+.a11y-row:first-of-type { border-top: none; }
+.a11y-row label { font-size: .95rem; cursor: pointer; }
+.a11y-switch { width: 44px; height: 25px; -webkit-appearance: none; appearance: none; background: #3a3a3a; border-radius: 999px; position: relative; cursor: pointer; transition: background .2s ease; flex: none; }
+.a11y-switch:checked { background: var(--copper-1, var(--accent, #c4885a)); }
+.a11y-switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 21px; height: 21px; border-radius: 50%; background: #fff; transition: transform .2s ease; }
+.a11y-switch:checked::after { transform: translateX(19px); }
+.a11y-note { font-size: .72rem; color: #8E887B; margin: .65rem 0 0; line-height: 1.45; }
+
+html.a11y-contrast { --text:#fff; --text-muted:#eaeaea; --accent:#ffb066; --accent-hover:#ffc488; --border:#fff; --border-light:#fff; --bg:#000; --surface:#000; --panel-bg:#000; --panel-border:#fff; }
+html.a11y-contrast body { background: #000 !important; }
+html.a11y-contrast .card, html.a11y-contrast .shell-card, html.a11y-contrast .install-card, html.a11y-contrast .panel, html.a11y-contrast .mc-hud__card { background: #000 !important; border-color: #fff !important; }
+html.a11y-contrast a { text-decoration: underline; }
+html.a11y-contrast #hero-canvas, html.a11y-contrast #scene-bg { opacity: .2 !important; }
+
+html.a11y-large { font-size: 118%; }
+
+html.a11y-nomotion *, html.a11y-nomotion *::before, html.a11y-nomotion *::after {
+  animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+  transition-duration: .001ms !important; scroll-behavior: auto !important;
+}
+html.a11y-nomotion #hero-canvas, html.a11y-nomotion #scene-bg { display: none !important; }
+
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--copper-1, var(--accent, #c4885a)); outline-offset: 2px; border-radius: 4px;
+}
