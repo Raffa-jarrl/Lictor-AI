@@ -66,5 +66,5 @@ Phase 1 is **done**. The core engine + Shield extension are wired end-to-end:
 |---|---|
 | `sentinel/` | One README. Code lands in Phase 2. |
 | `guardian/` | One README. Code lands in Phase 3. |
-| `shield/dist/assets/icon-*.png` | 1×1 transparent placeholders. Need designer pass on the Praetorian helmet mark before Web Store submission. |
+| `shield/dist/assets/icon-*.png` | Real PNGs at 16/32/48/128 (rendered from `brand/`). Optional designer pass on the Praetorian helmet mark before Web Store submission. |
 | `wasm-opt` size pass | Disabled in Cargo.toml (bundled wasm-opt is older than rustc's bulk-memory output). 960 KB → ~280 KB once we wire a newer wasm-opt. |

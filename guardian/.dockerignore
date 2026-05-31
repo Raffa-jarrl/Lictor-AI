@@ -1,0 +1,20 @@
+# Keep the build context small + never leak local secrets into the image.
+node_modules
+.next
+out
+dist
+build
+*.log
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+.DS_Store
+.cache
+.turbo
+next-env.d.ts
+tsconfig.tsbuildinfo
+Dockerfile
+.dockerignore
+README.md

@@ -1,5 +1,7 @@
 # lictor-core
 
+> ⚙️ **Part of the [Lictor AI security suite](../README.md)** — Platform. The shared Rust check engine (native + WASM) + AUDIT.json standard.
+
 The shared security check engine. Compiles to native (used by Sentinel + Guardian) and WASM (used by Shield).
 
 ## Status

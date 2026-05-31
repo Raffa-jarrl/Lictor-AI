@@ -13,6 +13,18 @@
 
 If those are true, the rest is detail. Everything below is a step toward one of those five.
 
+## 🧱 The suite — three pillars on one engine
+
+Everything Lictor ships fits one of three pillars, on a shared Core engine + Guardian dashboard. Easy to remember, easy to sell:
+
+| Pillar | Promise | Products | State |
+|---|---|---|---|
+| 🤖 **Lictor for AI** | secure the AI you use — inside Claude Code, Cursor, Codex, Antigravity & the top-10 clients | Shield · Sentinel · Airlock · Skills · VS Code · Studio | **shipped** — the Oct 6 launch |
+| 🏢 **Lictor for Business** | secure the company an SMB can't staff a team for | Domain Guard · Isolation (red/black AI sandbox) · Audit & Rotate | **2026–27 roadmap** (mostly net-new) |
+| 🛰️ **Lictor Patrol** | scan the world — find the bugs in every vibe-coded app | v3 scanner · Patrol engine · disclosure pipeline | scanner **shipped**; autonomous Patrol building Q3 |
+
+Shared platform under all three: **Core** (Rust→WASM engine + AUDIT.json standard) · **CLI** · **Guardian** (one audit trail). One engine, so every new check ships everywhere at once.
+
 ## 🚀 The headline — Lictor Patrol
 
 **[Full spec →](docs/launch/lictor-scan-and-patrol-v0.1.md)** · **[Soft-launch draft →](docs/launch/lictor-patrol-announcement.md)**
@@ -41,6 +53,7 @@ Pre-Year-1 work shipped before public launch:
 - [x] `lictor-cli` terminal binary — `lictor audit . --format human/json/markdown` + `--fail-on critical` for CI
 - [x] `lictor-studio` Tauri skeleton — Rust compiles + TS typechecks + icons rendered (ships Dec 31)
 - [x] Shield Chrome extension — WASM + 5 URL-based checks
+- [x] **Lictor Airlock** — AI action broker (`@lictor/airlock`): observe→enforce over MCP tool-calls + shell, plain-English audit trail, 5 policy rule families (destructive / exfiltration / lateral-movement / secrets / supply-chain), 17 tests. The runtime *action*-boundary sibling to Sentinel's *prompt*-boundary.
 - [x] Sentinel npm + PyPI alpha — runtime defense, READMEs launch-ready, LICENSE files in place
 - [x] Guardian dashboard — Next.js + Postgres, integration tests in CI
 - [x] AUDIT.json v0.1 spec + JSON Schema (CC0 community standard)
@@ -76,7 +89,7 @@ Pre-Year-1 work shipped before public launch:
 | **Aug 15 (W34)** | **🚨 SOFT LAUNCH** — publish the 30-day finding report (HN + Twitter + press + blog) | HN front page top 5 by noon; 5,000+ scans in week 1; 1,500+ stars added | Off HN front page by noon; <500 scans | Raffa on the bullhorn; Meerkat handles inbound; full crew on call |
 | **Aug 16 - Oct 5** | Compound on the soft-launch attention | Weekly Patrol report becomes the content engine. Nightingale pivots to Lovable / Bolt / v0 platform-integration outreach | <2x weekly scan growth | Lyrebird + Peacock weekly content; Nightingale on integrations |
 | **Sep 28-30** | First quarterly retrospective (calendar-blocked) | Honest review of soft-launch numbers + Patrol corpus state | — | Raffa + Mantis |
-| **Oct 6 (W41)** | **🎯 HARD LAUNCH** — full suite (Studio, CLI, SDK, Guardian, Shield, skill suite, VS Code) | "The next chapter" — not a debut. Patrol already established the brand. | Soft launch failed (then we delay hard launch) | Whole crew |
+| **Oct 6 (W41)** | **🎯 HARD LAUNCH** — full suite (Studio, CLI, SDK, Guardian, Shield, Airlock, skill suite, VS Code) | "The next chapter" — not a debut. Patrol already established the brand. | Soft launch failed (then we delay hard launch) | Whole crew |
 
 **Other Q3 items running in parallel:**
 
@@ -112,6 +125,7 @@ Q4 is about turning Patrol's August-soft-launched credibility into installs, pai
 
 Subject to Q4 learnings.
 
+- [ ] **🏢 Lictor for Business — pillar kickoff: Domain Guard v0.1** — identity & Active Directory posture (stale passwords, privileged-account inventory, over-privileged service accounts, open shares, MFA gaps), each finding mapped to a SOC2/ISO/HIPAA control, reporting into Guardian. Spec in [`domain-guard/`](domain-guard/). **Gated:** do not start until the AI pillar has paying Teams customers.
 - [ ] **First Lovable / Bolt / v0 native integration** — `lictorai.com/scan` linked in their publish flow. The AUDIT.json adoption play, fully landed.
 - [ ] **Lictor Studio v0.1** — macOS .dmg, signed + notarized (deferred from Q4)
 - [ ] **Audit-as-a-Service productized** — first 5 VC firms enrolled, AaaS MRR-eq ≥$15k
@@ -124,11 +138,12 @@ Subject to Q4 learnings.
 
 ## 🌅 Eventually — Q2 2027 (Apr–Jun)
 
-Three bets, not seven items. Each defines what Lictor is in Year 2 if it happens.
+Four bets, not seven items. Each defines what Lictor is in Year 2 if it happens.
 
 - [ ] **Lictor Foundation incorporated** — governance for the OSS core, making the Apache-2.0-forever commitment legally binding. The thing that makes Lictor un-acquirable by Snyk for the wrong reasons.
 - [ ] **AUDIT.json v1.0 — adopted by ≥3 of {Snyk, Semgrep, Aikido, VibeEval, Veracode}** — the standard wins, Lictor wins by being the standard's home.
 - [ ] **First Enterprise pilot** — on-prem deploy with custom agents, $25-75k/year. The point isn't the revenue; it's the proof that Lictor scales up, not just down.
+- [ ] **🏢 Lictor Isolation — the red/black AI sandbox (flagship)** — a pre-isolated machine to run & test AI agents off the real network, with Airlock-enforce baked in + synthetic data + a Guardian audit report. The boldest, heaviest build in the suite (it's an appliance/VM, not a package) and the productized answer to *"I won't let AI near prod."* Spec in [`isolation/`](isolation/). Sequence after Airlock v2 enforce is battle-tested.
 
 ---
 

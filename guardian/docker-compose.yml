@@ -1,0 +1,51 @@
+# Lictor Guardian — local development / evaluation stack.
+#
+# Brings up Postgres 16 + the Guardian app with one command:
+#
+#     docker compose up
+#
+# Then open http://localhost:3100. No email provider needed — the magic-link
+# prints to the app container's logs (this terminal).
+#
+# Source-available (see ./LICENSE): for local eval/dev only, not for hosting
+# Guardian for third parties.
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: lictor_guardian
+      POSTGRES_USER: lictor_guardian
+      POSTGRES_PASSWORD: dev
+    volumes:
+      - guardian_pgdata:/var/lib/postgresql/data
+    # Not published to the host by default — the app talks to it over the
+    # compose network. Uncomment to connect with a local psql client.
+    # ports:
+    #   - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lictor_guardian -d lictor_guardian"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # Point at the `db` service over the compose network.
+      DATABASE_URL: postgres://lictor_guardian:dev@db:5432/lictor_guardian
+      # Dev default — override with `SESSION_SECRET=... docker compose up` or a
+      # .env file. Generate a real one with `openssl rand -hex 32`.
+      SESSION_SECRET: ${SESSION_SECRET:-0000000000000000000000000000000000000000000000000000000000000000}
+      NEXT_PUBLIC_GUARDIAN_URL: http://localhost:3100
+      # POSTMARK_API_TOKEN left unset on purpose: magic links print to logs.
+    ports:
+      - "3100:3100"
+
+volumes:
+  guardian_pgdata:

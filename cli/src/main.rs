@@ -173,7 +173,7 @@ fn run_audit(path: &Path, format: &OutputFormat, fail_on: &FailOn, offline: bool
 // ── File-walker (same logic as Studio's collect_source_files) ─────────────
 
 const SCAN_EXTENSIONS: &[&str] = &[
-    "js", "jsx", "ts", "tsx", "mjs", "cjs", "py", "rs", "go", "rb", "php",
+    "js", "jsx", "ts", "tsx", "mjs", "cjs", "py", "rs", "go", "rb", "php", "html", "htm",
 ];
 
 const SKIP_DIRS: &[&str] = &[
@@ -268,6 +268,7 @@ fn source_label_for(file_path: &str) -> &'static str {
         Some("js" | "jsx" | "ts" | "tsx" | "mjs" | "cjs") => "JS bundle",
         Some("py") => ".py file",
         Some("env") => ".env file",
+        Some("html" | "htm") => "page HTML",
         _ => "source file",
     }
 }
