@@ -8,6 +8,8 @@
 #   scan-toggle.sh safe    ISP-SAFE only: GitHub-secret engine (GitHub API, not host scanning)
 #                          + reply-monitor + morning-report. No host probing, no DNS floods.
 #   scan-toggle.sh low     safe + LOW-VOLUME host probing (single-lane gentle-patrol, once daily)
+#   scan-toggle.sh nightly safe + off-hours host probing (01/03/05h, ~1200 hosts/night)
+#   scan-toggle.sh israel  safe + DNS-SAFE .il focus: passive crt.sh discovery + off-hours IL probe
 #   scan-toggle.sh status  show what's enabled + what's running now
 #
 # PERMANENTLY EXCLUDED (the loud ones that drew the ISP):
@@ -45,6 +47,17 @@ read -r -d '' NIGHT_EXTRA <<EOF || true
 # ===== end Lictor NIGHTLY =====
 EOF
 
+read -r -d '' ISRAEL_EXTRA <<EOF || true
+# ===== Lictor ISRAEL (DNS-SAFE, .il-focused: passive crt.sh discovery + off-hours gentle probe) =====
+# 00:30 — passive subdomain discovery for IL via crt.sh CT logs. ZERO DNS queries to targets,
+#          NO brute-force, so it CANNOT trigger the ISP's DNS/NXDOMAIN alarm. Refreshes the surface.
+30 0 * * * cd $LIC && /usr/bin/python3 scripts/passive-recon.py --apex /Users/raffa/.lictor/il-recon/il-apex.txt --out /Users/raffa/.lictor/il-recon/il-passive-subs.txt --sleep 5 >> /Users/raffa/.lictor/passive-il.log 2>&1
+# 01:30 / 03:30 — gentle HEAD-first probe of the discovered IL surface (real hosts only, single-lane)
+30 1 * * * cd $LIC && /bin/bash scripts/gentle-patrol.sh /Users/raffa/.lictor/il-recon/il-passive-subs.txt 500 >> /Users/raffa/.lictor/gentle-il.log 2>&1
+30 3 * * * cd $LIC && /bin/bash scripts/gentle-patrol.sh /Users/raffa/.lictor/il-recon/il-passive-subs.txt 500 >> /Users/raffa/.lictor/gentle-il.log 2>&1
+# ===== end Lictor ISRAEL =====
+EOF
+
 strip_lictor() { crontab -l 2>/dev/null | grep -vE "Lictor|\.lictor|Lictor SAFE|Lictor LOW"; }
 
 kill_scanners() {
@@ -72,6 +85,10 @@ case "${1:-status}" in
   nightly|offhours)
     ( strip_lictor; echo "$SAFE_BLOCK"; echo "$NIGHT_EXTRA" ) | crontab -
     echo "[scan-toggle] NIGHTLY — GitHub engine 24/7 + off-hours host probe (01/03/05h local, ~1200 hosts/night). No takeover, no swarm."
+    ;;
+  israel|il)
+    ( strip_lictor; echo "$SAFE_BLOCK"; echo "$ISRAEL_EXTRA" ) | crontab -
+    echo "[scan-toggle] ISRAEL — GitHub engine 24/7 + DNS-SAFE .il focus: passive crt.sh discovery (00:30) + off-hours gentle probe of the IL surface (01:30/03:30). No DNS brute-force, no takeover."
     ;;
   status)
     ;;
