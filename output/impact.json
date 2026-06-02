@@ -1,30 +1,30 @@
 {
   "headline": {
-    "sites_examined": 21542,
-    "verified_exposures": 19347,
-    "sites_with_exposure": 3447,
-    "false_positives_filtered": 24565,
-    "countries_covered": 23,
+    "sites_examined": 22772,
+    "verified_exposures": 19326,
+    "sites_with_exposure": 3483,
+    "false_positives_filtered": 24716,
+    "countries_covered": 31,
     "risk_categories": 6
   },
   "by_category": {
-    "sensitive-files": 14375,
-    "web3-frontend-secrets": 4466,
+    "sensitive-files": 14453,
+    "web3-frontend-secrets": 4370,
     "takeover-claim": 273,
-    "cache-deception": 175,
-    "open-admin-ports": 54,
+    "cache-deception": 173,
+    "open-admin-ports": 53,
     "api-quirks": 4
   },
   "validation": {
-    "raw_flags_checked": 43912,
-    "verified_real": 19347,
-    "false_positives_filtered": 24565,
-    "fp_rate_pct": 55.9,
+    "raw_flags_checked": 44042,
+    "verified_real": 19326,
+    "false_positives_filtered": 24716,
+    "fp_rate_pct": 56.1,
     "note": "Every raw flag is re-checked; only multi-signal-confirmed findings are counted."
   },
   "methodology": {
-    "ledgers_processed": 146,
-    "records_processed": 155222,
+    "ledgers_processed": 147,
+    "records_processed": 156983,
     "note": "Aggregate counts only. No host, URL, or party name is ever stored or published."
   }
 }
