@@ -23,7 +23,7 @@ Drops into every AI client you already use — **Claude Code, Cursor, Codex, Ant
 
 ### 🏢 Lictor for Business — *secure the company* · *2026–27 roadmap*
 The security an SMB needs but can't staff a team for:
-- **[Domain Guard](./domain-guard)** — identities & Active Directory: stale passwords, over-privileged accounts, open shares
+- **Internal Check** ([`scripts/lan-pentest.py`](./scripts/lan-pentest.py)) — automated internal-network pentest for SMBs: exposed databases, default creds, open SMB shares — the $20k engagement at SMB price
 - **[Isolation](./isolation)** — the **red/black sandbox**: a pre-isolated machine to run & test AI agents *off* your real network, no env-build required
 - **Audit & Rotate** — compliance evidence + guided key rotation (built on Guardian + the `lictor-rotate` skill)
 
@@ -62,7 +62,7 @@ Full transparency at [lictorai.com/transparency](https://lictorai.com/transparen
 **🏢 Pillar 2 — Lictor for Business** *(2026–27 roadmap)*
 | Component | What it is | Status |
 |---|---|---|
-| [`domain-guard/`](./domain-guard/) | Identity & Active Directory posture | 🗺️ Spec'd — stale passwords, over-privileged accounts, open shares |
+| [`scripts/lan-pentest.py`](./scripts/lan-pentest.py) | Internal Check — automated internal pentest | ✅ v0.1 — host discovery, exposed services, SMB-friendly report |
 | [`isolation/`](./isolation/) | Red/black AI sandbox machine | 🗺️ Spec'd — run/test AI agents off the real network |
 | Audit & Rotate | Compliance evidence + key rotation | ✅ Foundations exist (Guardian audit export + `lictor-rotate` skill); productizing |
 
@@ -177,7 +177,7 @@ In a sentence: **safety infrastructure for the AI agent era.**
 
 ## License
 
-Apache 2.0 for the whole suite — `core/`, `cli/`, `shield/`, `sentinel/`, `sentinel-py/`, `airlock/`, `skills/`, `vscode-extension/`, `studio/`, `v3/`, and the Business-pillar `domain-guard/` + `isolation/`. The one exception: **Guardian** — its hosted service code is published for transparency but licensed for hosted use through lictorai.com only (see [`guardian/LICENSE`](./guardian/LICENSE)).
+Apache 2.0 for the whole suite — `core/`, `cli/`, `shield/`, `sentinel/`, `sentinel-py/`, `airlock/`, `skills/`, `vscode-extension/`, `studio/`, `v3/`, and the Business-pillar `isolation/`. The one exception: **Guardian** — its hosted service code is published for transparency but licensed for hosted use through lictorai.com only (see [`guardian/LICENSE`](./guardian/LICENSE)).
 
 See [`LICENSE`](./LICENSE) + [`NOTICE`](./NOTICE).
 
@@ -203,9 +203,9 @@ Not yet broadly open. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for what we DO 
 ├── skills/           — Claude Code plugin suite (4 skills) + Cursor adapter
 ├── vscode-extension/ — VS Code / Cursor extension
 ├── studio/           — Tauri desktop app
-│  ── 🏢 Pillar 2: Lictor for Business (roadmap) ──
-├── domain-guard/     — identity & Active Directory posture
-├── isolation/        — red/black AI sandbox machine
+│  ── 🏢 Pillar 2: Lictor for Business ──
+├── isolation/        — red/black AI sandbox · red-zone live, USB OS early access
+├── scripts/lan-pentest.py — Internal Check (automated internal pentest, v0.1)
 │  ── 🛰️ Pillar 3: Lictor Patrol ──
 ├── v3/               — external attack-surface scanner battery
 ├── disclosures/      — coordinated vulnerability disclosure pipeline

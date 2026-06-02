@@ -20,7 +20,7 @@ Everything Lictor ships fits one of three pillars, on a shared Core engine + Gua
 | Pillar | Promise | Products | State |
 |---|---|---|---|
 | 🤖 **Lictor for AI** | secure the AI you use — inside Claude Code, Cursor, Codex, Antigravity & the top-10 clients | Shield · Sentinel · Airlock · Skills · VS Code · Studio | **shipped** — the Oct 6 launch |
-| 🏢 **Lictor for Business** | secure the company an SMB can't staff a team for | Domain Guard · Isolation (red/black AI sandbox) · Audit & Rotate | **2026–27 roadmap** (mostly net-new) |
+| 🏢 **Lictor for Business** | secure the company an SMB can't staff a team for | Isolation OS (USB-bootable AI sandbox) · Internal Check (automated pentest) | **early access** |
 | 🛰️ **Lictor Patrol** | scan the world — find the bugs in every vibe-coded app | v3 scanner · Patrol engine · disclosure pipeline | scanner **shipped**; autonomous Patrol building Q3 |
 
 Shared platform under all three: **Core** (Rust→WASM engine + AUDIT.json standard) · **CLI** · **Guardian** (one audit trail). One engine, so every new check ships everywhere at once.
@@ -125,7 +125,7 @@ Q4 is about turning Patrol's August-soft-launched credibility into installs, pai
 
 Subject to Q4 learnings.
 
-- [ ] **🏢 Lictor for Business — pillar kickoff: Domain Guard v0.1** — identity & Active Directory posture (stale passwords, privileged-account inventory, over-privileged service accounts, open shares, MFA gaps), each finding mapped to a SOC2/ISO/HIPAA control, reporting into Guardian. Spec in [`domain-guard/`](domain-guard/). **Gated:** do not start until the AI pillar has paying Teams customers.
+- [ ] **🏢 Lictor for Business — Isolation OS + Internal Check** — the USB-bootable air-gapped AI workspace (container red-zone live in [`isolation/`](isolation/); bootable OS in early access) and the automated internal pentest for SMBs ([`scripts/lan-pentest.py`](scripts/lan-pentest.py)), reporting into Guardian. _Domain Guard was dropped to keep focus on these two._
 - [ ] **First Lovable / Bolt / v0 native integration** — `lictorai.com/scan` linked in their publish flow. The AUDIT.json adoption play, fully landed.
 - [ ] **Lictor Studio v0.1** — macOS .dmg, signed + notarized (deferred from Q4)
 - [ ] **Audit-as-a-Service productized** — first 5 VC firms enrolled, AaaS MRR-eq ≥$15k
