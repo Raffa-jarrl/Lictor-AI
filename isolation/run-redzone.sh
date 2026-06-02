@@ -23,6 +23,7 @@ docker build -q -t lictor-redzone "$HERE" >/dev/null
 echo "[run-redzone] launching — project=$PROJECT_ABS"
 exec docker run --rm -it \
   --cap-add=NET_ADMIN \
+  --dns 1.1.1.1 --dns 8.8.8.8 \
   --hostname lictor-redzone \
   -v "$PROJECT_ABS":/work \
   -w /work \
