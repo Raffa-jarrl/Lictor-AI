@@ -7,33 +7,36 @@
   :root{--bg:#070809;--copper:#c4885a;--cream:#f4dcc4;--muted:#9a9387}
   *{box-sizing:border-box;font-family:system-ui,-apple-system,sans-serif}
   body{margin:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-       background:radial-gradient(ellipse at top,#11141a,var(--bg));color:#ece3d6}
-  h1{font-size:1.4rem;color:var(--cream);font-weight:600;margin:.2rem}
-  .tag{color:var(--muted);font-size:.85rem;margin-bottom:2.2rem;font-family:ui-monospace,monospace}
-  .grid{display:flex;gap:1.1rem;flex-wrap:wrap;justify-content:center;max-width:680px}
-  a.vendor{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;
-     width:150px;height:130px;border:1px solid rgba(196,136,90,.25);border-radius:16px;text-decoration:none;
+       background:radial-gradient(ellipse at top,#11141a,var(--bg));color:#ece3d6;text-align:center}
+  h1{font-size:1.5rem;color:var(--cream);font-weight:600;margin:.2rem}
+  .tag{color:var(--muted);font-size:.9rem;margin-bottom:.4rem}
+  .vps{color:var(--copper);font-size:.95rem;font-weight:600;margin-bottom:2.2rem;font-family:ui-monospace,monospace}
+  .grid{display:flex;gap:1.4rem;flex-wrap:wrap;justify-content:center;max-width:620px}
+  a.vendor{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;
+     width:170px;height:150px;border:1px solid rgba(196,136,90,.25);border-radius:18px;text-decoration:none;
      color:#ece3d6;background:rgba(196,136,90,.05);transition:transform .15s,border-color .15s,background .15s}
-  a.vendor:hover{transform:translateY(-4px);border-color:var(--copper);background:rgba(196,136,90,.12)}
-  .ico{font-size:2rem}
-  .name{font-weight:600}
-  .lock{margin-top:2.4rem;color:var(--muted);font-size:.78rem;font-family:ui-monospace,monospace;text-align:center;line-height:1.6}
+  a.vendor:hover{transform:translateY(-5px);border-color:var(--copper);background:rgba(196,136,90,.13)}
+  .ico{font-size:2.4rem}
+  .name{font-weight:600;font-size:1.05rem}
+  .sub{font-size:.72rem;color:var(--muted)}
+  .lock{margin-top:2.6rem;color:var(--muted);font-size:.8rem;font-family:ui-monospace,monospace;line-height:1.7}
   .lock b{color:var(--copper)}
+  .more{margin-top:1rem;font-size:.72rem;color:var(--muted)}
 </style>
 </head>
 <body>
   <h1>🔒 Lictor Isolation OS</h1>
-  <div class="tag">your AI, your accounts — zero access to your network</div>
+  <div class="tag">a VPS running AI — but local. sign in with your own account.</div>
+  <div class="vps">nothing here can reach, change, or delete your business.</div>
   <div class="grid">
-    <a class="vendor" href="https://claude.ai"><span class="ico">🟠</span><span class="name">Claude</span></a>
-    <a class="vendor" href="https://chatgpt.com"><span class="ico">🟢</span><span class="name">ChatGPT</span></a>
-    <a class="vendor" href="https://gemini.google.com"><span class="ico">🔵</span><span class="name">Gemini</span></a>
-    <a class="vendor" href="https://aistudio.google.com"><span class="ico">✨</span><span class="name">AI Studio</span></a>
-    <a class="vendor" href="https://github.com/copilot"><span class="ico">🐙</span><span class="name">Copilot</span></a>
+    <a class="vendor" href="https://claude.ai"><span class="ico">🟠</span><span class="name">Claude</span><span class="sub">claude.ai</span></a>
+    <a class="vendor" href="https://chatgpt.com"><span class="ico">🟢</span><span class="name">ChatGPT</span><span class="sub">chatgpt.com</span></a>
+    <a class="vendor" href="https://gemini.google.com"><span class="ico">🔵</span><span class="name">Gemini</span><span class="sub">gemini.google.com</span></a>
   </div>
   <div class="lock">
     <b>🔴 red zone</b> — this workspace · <b>⚫ black zone</b> — your real network, unreachable<br/>
     Files live only in <b>~/projects</b>. Pull the stick out and there's no trace.
   </div>
+  <div class="more">more vendors coming · the top 3 ship first</div>
 </body>
 </html>
