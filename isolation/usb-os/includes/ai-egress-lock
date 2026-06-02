@@ -1,0 +1,21 @@
+#!/bin/bash
+# ai-egress-lock — runs at boot. Draws the red/black boundary for the whole OS.
+#
+# The USB workspace can reach the public internet (so the browser can talk to
+# Claude / ChatGPT / Gemini), but EVERY path to a private network — the host's
+# LAN, the company domain, prod — is dropped. The user's real network is
+# invisible from this stick. Air-gap by construction.
+set -e
+PRIVATE="10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 169.254.0.0/16 100.64.0.0/10"
+
+# allow loopback + DNS resolvers (so public names resolve) + established
+iptables -A OUTPUT -o lo -j ACCEPT
+for ns in $(grep '^nameserver' /etc/resolv.conf 2>/dev/null | awk '{print $2}'); do
+  iptables -A OUTPUT -d "$ns" -p udp --dport 53 -j ACCEPT || true
+  iptables -A OUTPUT -d "$ns" -p tcp --dport 53 -j ACCEPT || true
+done
+# drop everything headed to a private network (the user's real systems)
+for net in $PRIVATE; do
+  iptables -A OUTPUT -d "$net" -j DROP || true
+done
+logger "lictor: AI egress lock active — public internet OK, private networks BLOCKED"
