@@ -298,16 +298,16 @@
 
         <!-- PILLAR 2 — Lictor for Business -->
         <div class="card card--sentinel fx-reveal fx-tilt">
-          <div class="card__pill">2026–27 roadmap</div>
+          <div class="card__pill">Early access</div>
           <h3 class="card__title">🏢 Lictor for <span class="card__title--accent">Business</span></h3>
           <p class="card__lede">
-            Secure the company. Identity, sandboxing, and the boring-but-critical
-            hygiene that keeps a small team out of the breach headlines.
+            Secure the company. Isolated AI workspaces, internal pentests, and the
+            boring-but-critical hygiene that keeps a small team out of the breach headlines.
           </p>
           <ul class="card__points">
+            <li>Isolation OS — red/black AI sandbox · <strong>container live, USB OS in early access</strong></li>
+            <li>Internal Check — automated internal-network pentest for SMBs</li>
             <li>Domain Guard — identity / Active Directory posture</li>
-            <li>Isolation — red/black AI sandbox for untrusted agents</li>
-            <li>Audit &amp; Rotate — find leaked keys, rotate them, prove it</li>
             <li>Same Core engine, same plain-English findings</li>
           </ul>
           <div class="card__cta">
@@ -339,6 +339,48 @@
         Under all three: one engine (<span class="accent">Core</span>) and one
         dashboard (<span class="accent">Guardian</span>).
       </p>
+    </section>
+
+    <!-- FLAGSHIP — Lictor Isolation OS (USB-bootable AI workspace) -->
+    <section id="isolation-os" class="suite" style="position:relative;overflow:hidden;border-top:1px solid rgba(196,136,90,.18);">
+      <div style="position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:480px;height:200px;background:radial-gradient(ellipse,rgba(196,136,90,.20),transparent 70%);filter:blur(40px);pointer-events:none;"></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.15em;color:var(--accent);text-transform:uppercase;text-align:center;margin-bottom:.6rem;">🔥 Flagship · early access</div>
+      <h2 class="section__title fx-reveal">Boot AI. Touch nothing.</h2>
+      <p class="section__sub fx-reveal">
+        <strong>Lictor Isolation OS</strong> — a USB stick you boot into a clean, isolated workspace.
+        Gemini, ChatGPT and Claude with <strong>your own accounts</strong>, full power — and
+        <strong>zero access to your company network</strong>. Pull it out, and there&rsquo;s no trace.
+      </p>
+
+      <div class="cards" style="margin-top:2rem;">
+        <div class="card fx-reveal fx-tilt">
+          <div class="card__pill">1 · Boot</div>
+          <h3 class="card__title">Plug in. Power on.</h3>
+          <p class="card__lede">Boot the stick into a hardened, ephemeral OS — separate from the machine&rsquo;s disk, the domain, and the company LAN.</p>
+        </div>
+        <div class="card fx-reveal fx-tilt">
+          <div class="card__pill">2 · Log in</div>
+          <h3 class="card__title">Your AI, your accounts.</h3>
+          <p class="card__lede">The top AI clients come pre-installed. Sign in with your own Gemini / ChatGPT / Claude — nothing to configure, no new subscriptions.</p>
+        </div>
+        <div class="card fx-reveal fx-tilt">
+          <div class="card__pill">3 · Isolated</div>
+          <h3 class="card__title">Reaches the model. Not you.</h3>
+          <p class="card__lede">The workspace can talk to the AI providers and nothing else. Your domain, prod, and files stay invisible — air-gap by construction.</p>
+        </div>
+      </div>
+
+      <p class="section__sub fx-reveal" style="margin-top:2rem;">
+        The boundary is <em>physical</em>, not a policy you hope holds. We proved it in the red-zone build:
+        the AI reaches <code>api.anthropic.com</code>, but every path to a private network &mdash;
+        <code>10.x</code>, <code>192.168.x</code>, your gateway &mdash; is blocked.<br/>
+        <span style="color:var(--text-muted);font-size:.9rem;">Available today as a container red-zone (Docker, open source). The bootable USB OS is in early access.</span>
+      </p>
+
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:1.5rem;">
+        <a href="mailto:Raffa@Lictor-AI.com?subject=Lictor%20Isolation%20OS%20%E2%80%94%20early%20access" class="shell-btn shell-btn--primary">Get early access &rarr;</a>
+        <a href="/business" class="shell-btn shell-btn--ghost">For Business &rarr;</a>
+      </div>
     </section>
 
     <!-- WEDGE — THE CLAUDE CODE SKILL -->
