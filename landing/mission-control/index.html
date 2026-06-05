@@ -21,11 +21,11 @@
 
   <style>
     :root {
-      --copper-1: #c4885a;
+      --copper-1: #E8A33D;
       --copper-2: #b06b3c;
-      --copper-glow: rgba(196, 136, 90, 0.4);
+      --copper-glow: rgba(232, 163, 61, 0.4);
       --panel-bg: rgba(15, 18, 24, 0.65);
-      --panel-border: rgba(196, 136, 90, 0.25);
+      --panel-border: rgba(232, 163, 61, 0.25);
     }
     body { background: #050608; overflow-x: hidden; }
     body::before, body::after { display: none; }  /* kill the default fx mesh — we have 3D instead */
@@ -52,7 +52,7 @@
     .panel:hover {
       transform: translateY(-2px) scale(1.005);
       border-color: var(--copper-1);
-      box-shadow: 0 12px 40px rgba(196,136,90,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
+      box-shadow: 0 12px 40px rgba(232, 163, 61,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
     }
 
     .mc-header {
@@ -172,7 +172,7 @@
     }
     .mc-feed__item {
       display: flex; gap: 1rem; align-items: baseline;
-      padding: .6rem 0; border-bottom: 1px solid rgba(196,136,90,0.08);
+      padding: .6rem 0; border-bottom: 1px solid rgba(232, 163, 61,0.08);
       font-size: .85rem;
     }
     .mc-feed__item:last-child { border-bottom: none; }
@@ -181,7 +181,7 @@
       font-size: .7rem; color: var(--text-muted); width: 90px; flex-shrink: 0;
     }
     .mc-feed__repo { color: var(--copper-1); font-family: 'JetBrains Mono', monospace; font-size: .8rem; flex: 1; }
-    .mc-feed__class { font-size: .7rem; padding: .15rem .5rem; border-radius: 999px; background: rgba(196,136,90,0.15); color: var(--copper-1); border: 1px solid rgba(196,136,90,0.3); }
+    .mc-feed__class { font-size: .7rem; padding: .15rem .5rem; border-radius: 999px; background: rgba(232, 163, 61,0.15); color: var(--copper-1); border: 1px solid rgba(232, 163, 61,0.3); }
     .mc-feed__state { font-size: .7rem; }
     .mc-feed__state.open { color: #a0e0a0; }
     .mc-feed__state.closed { color: var(--text-muted); }
@@ -195,7 +195,7 @@
     /* Custom scrollbar for the feed */
     .mc-feed::-webkit-scrollbar { width: 6px; }
     .mc-feed::-webkit-scrollbar-track { background: transparent; }
-    .mc-feed::-webkit-scrollbar-thumb { background: rgba(196,136,90,0.3); border-radius: 3px; }
+    .mc-feed::-webkit-scrollbar-thumb { background: rgba(232, 163, 61,0.3); border-radius: 3px; }
     .mc-feed::-webkit-scrollbar-thumb:hover { background: var(--copper-1); }
 
     /* Responsive */

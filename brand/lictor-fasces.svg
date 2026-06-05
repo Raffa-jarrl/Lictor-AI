@@ -19,7 +19,7 @@
     Q 116 76 96 88
     L 64 80
     Z"
-    fill="#C9A23B" />
+    fill="#E8A33D" />
 
   <!-- Axe blade highlight (a sliver of bone for definition) -->
   <path d="
@@ -30,10 +30,10 @@
     Q 96 76 96 56
     Q 96 36 92 24
     Z"
-    fill="#F5F1E8" />
+    fill="#F4DCC4" />
 
   <!-- Rod bundle: 5 vertical rods bound by 3 horizontal cords -->
-  <g fill="#3D2C5E">
+  <g fill="#3A332A">
     <rect x="40" y="32" width="8" height="200" rx="3" />
     <rect x="52" y="32" width="8" height="200" rx="3" />
     <rect x="64" y="32" width="8" height="200" rx="3" />
@@ -42,7 +42,7 @@
   </g>
 
   <!-- Cords binding the bundle -->
-  <g fill="#C9A23B">
+  <g fill="#E8A33D">
     <rect x="36" y="80" width="64" height="8" rx="3" />
     <rect x="36" y="140" width="64" height="8" rx="3" />
     <rect x="36" y="200" width="64" height="8" rx="3" />

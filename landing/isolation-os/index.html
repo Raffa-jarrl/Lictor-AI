@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lictor Isolation OS — boot AI, touch nothing</title>
+  <meta name="description" content="A USB stick you boot into a clean, isolated workspace: Claude, ChatGPT and Gemini with your own accounts, full power — and zero access to your company network. Free during beta." />
+
+  <meta property="og:title" content="Lictor Isolation OS — boot AI, touch nothing" />
+  <meta property="og:description" content="Boot a USB into an air-gapped AI workspace. Your own AI accounts, zero access to your network. Free beta — join the list." />
+  <meta property="og:url" content="https://lictorai.com/isolation-os/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://lictorai.com/og/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/static/shell.css" />
+  <link rel="stylesheet" href="/static/fx.css" />
+  <link rel="stylesheet" href="/waitlist/waitlist.css" />
+  <script src="/static/fx.js" defer></script>
+  <script src="/static/waitlist.js" defer></script>
+  <link rel="canonical" href="https://lictorai.com/isolation-os/" />
+
+  <style>
+    .iso-hero { max-width: 820px; margin: 0 auto; padding: 4.5rem 1.5rem 1rem; text-align: center; position: relative; overflow: hidden; }
+    .iso-hero__glow { position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 520px; height: 220px; background: radial-gradient(ellipse, rgba(232, 163, 61,.22), transparent 70%); filter: blur(46px); pointer-events: none; }
+    .iso-eyebrow { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); background: rgba(232, 163, 61,.1); padding: .35rem .8rem; border-radius: 999px; border: 1px solid rgba(232, 163, 61,.3); margin-bottom: 1.4rem; }
+    .iso-hero h1 { font-family: "Cormorant Garamond", serif; font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 700; line-height: 1.1; color: var(--text); margin: 0 0 1rem; }
+    .iso-hero h1 em { font-style: italic; color: var(--accent); }
+    .iso-hero__sub { font-size: 1.15rem; line-height: 1.6; color: var(--text-muted); max-width: 660px; margin: 0 auto 2.2rem; }
+    .iso-hero__sub strong { color: var(--text); }
+
+    /* red / black zone diagram */
+    .zones { max-width: 760px; margin: 2.5rem auto; padding: 0 1.5rem; display: grid; grid-template-columns: 1fr auto 1fr; align-items: stretch; gap: 0; }
+    @media (max-width: 640px) { .zones { grid-template-columns: 1fr; } .zones__gap { display: none; } }
+    .zone { border-radius: 14px; padding: 1.4rem 1.25rem; text-align: left; }
+    .zone--red { background: rgba(232, 163, 61,.07); border: 1px solid rgba(232, 163, 61,.35); }
+    .zone--black { background: rgba(120,120,130,.06); border: 1px dashed rgba(150,150,160,.35); }
+    .zone__tag { font-family: "JetBrains Mono", monospace; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .5rem; }
+    .zone--red .zone__tag { color: var(--accent); }
+    .zone--black .zone__tag { color: var(--text-muted); }
+    .zone h3 { font-size: 1rem; color: var(--text); margin: 0 0 .5rem; }
+    .zone p { font-size: .9rem; color: var(--text-muted); line-height: 1.5; margin: 0; }
+    .zones__gap { display: flex; align-items: center; justify-content: center; padding: 0 1rem; font-family: "JetBrains Mono", monospace; color: var(--accent); font-size: .8rem; }
+    .zones__gap span { writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: .1em; opacity: .8; }
+
+    .iso-faq { max-width: 760px; margin: 3.5rem auto; padding: 0 1.5rem; }
+    .iso-faq h2 { font-family: "Cormorant Garamond", serif; font-size: 1.9rem; color: var(--text); text-align: center; margin-bottom: 1.5rem; }
+    .iso-faq details { border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: .75rem; background: var(--surface); }
+    .iso-faq summary { font-weight: 600; color: var(--text); cursor: pointer; font-size: 1rem; }
+    .iso-faq summary::-webkit-details-marker { color: var(--accent); }
+    .iso-faq details p { color: var(--text-muted); font-size: .94rem; line-height: 1.6; margin: .75rem 0 0; }
+    .iso-faq details p code { font-family: "JetBrains Mono", monospace; font-size: .85em; color: var(--accent); }
+
+    .iso-free { max-width: 620px; margin: 2rem auto 0; font-family: "JetBrains Mono", monospace; font-size: .82rem; color: var(--text-muted); }
+    .iso-free b { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header class="nav">
+    <a href="/" class="brand">
+      <img src="/static/lictor-mark.png" alt="" width="28" height="28" />
+      <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
+    </a>
+    <nav class="nav__links">
+      <a href="/#isolation-os">Isolation OS</a>
+      <a href="/business">For Business</a>
+      <a href="/#install">Install</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO + CAPTURE -->
+    <section class="iso-hero">
+      <div class="iso-hero__glow"></div>
+      <span class="iso-eyebrow">🔥 Flagship · Free beta · USB-bootable</span>
+      <h1>Boot AI. <em>Touch nothing.</em></h1>
+      <p class="iso-hero__sub">
+        <strong>Lictor Isolation OS</strong> is a USB stick you boot into a clean, isolated workspace —
+        Claude, ChatGPT and Gemini with <strong>your own accounts</strong>, full power, and
+        <strong>zero access to your company network</strong>. A VPS running AI, but local.
+        Pull the stick out and there&rsquo;s no trace.
+      </p>
+
+      <form class="waitlist-form" action="/api/waitlist" method="post">
+        <div class="waitlist-form__row">
+          <input type="email" name="email" placeholder="you@company.com" required autocomplete="email" aria-label="Email address" />
+          <button type="submit">Get beta access →</button>
+        </div>
+        <select name="metadata__use_case" aria-label="How would you use Isolation OS?">
+          <option value="">How would you use it? (optional)</option>
+          <option value="regulated">Regulated business (clinic / law / fintech)</option>
+          <option value="team">Dev or security team</option>
+          <option value="founder">Solo founder / small studio</option>
+          <option value="personal">Personal — keep AI off my real machine</option>
+          <option value="exploring">Just exploring</option>
+        </select>
+        <input type="hidden" name="metadata__product" value="isolation-os" />
+        <input type="hidden" name="redirect" value="/isolation-os/" />
+      </form>
+
+      <p class="iso-free">
+        <b>Free during beta.</b> The image is in final boot-testing — invites roll out as it stabilises, newest hardware first. No card, no spam: we email you when your build is ready.
+      </p>
+    </section>
+
+    <!-- RED / BLACK ZONES -->
+    <section class="suite" style="border-top:1px solid rgba(232, 163, 61,.18);padding-top:2.5rem;">
+      <h2 class="section__title fx-reveal">The boundary is <em>physical</em>, not a policy you hope holds.</h2>
+      <p class="section__sub fx-reveal">
+        Two zones, one stick. The AI lives in the red zone and can reach the public model APIs.
+        Your real network lives in the black zone and is simply unreachable — dropped at the kernel, by construction.
+      </p>
+      <div class="zones fx-reveal">
+        <div class="zone zone--red">
+          <div class="zone__tag">🔴 red zone — the workspace</div>
+          <h3>Reaches the model</h3>
+          <p>The browser talks to <code>api.anthropic.com</code>, ChatGPT and Gemini. Files live only in <code>~/projects</code>, one folder per project. Ephemeral — wiped each boot.</p>
+        </div>
+        <div class="zones__gap"><span>air-gap</span></div>
+        <div class="zone zone--black">
+          <div class="zone__tag">⚫ black zone — your real network</div>
+          <h3>Unreachable</h3>
+          <p>Your LAN, domain, prod, and the host machine&rsquo;s own disk — <code>10.x</code>, <code>192.168.x</code>, your gateway — every path is blocked. Nothing here can reach, change, or delete your business.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="suite">
+      <h2 class="section__title fx-reveal">Plug in. Power on. Done.</h2>
+      <div class="cards" style="margin-top:1.5rem;">
+        <div class="card fx-reveal fx-tilt">
+          <div class="card__pill">1 · Boot</div>
+          <h3 class="card__title">Plug in. Power on.</h3>
+          <p class="card__lede">Boot the stick into a hardened, ephemeral OS — separate from the machine&rsquo;s disk, the domain, and the company LAN. No install on the host.</p>
+        </div>
+        <div class="card fx-reveal fx-tilt">
+          <div class="card__pill">2 · Log in</div>
+          <h3 class="card__title">Your AI, your accounts.</h3>
+          <p class="card__lede">The top-3 clients open in a locked browser — <strong>Claude, ChatGPT, Gemini</strong>. Sign in with your own accounts; no new subscriptions, nothing to configure.</p>
+        </div>
+        <div class="card fx-reveal fx-tilt">
+          <div class="card__pill">3 · Isolated</div>
+          <h3 class="card__title">Reaches the model. Not you.</h3>
+          <p class="card__lede">The workspace talks to the AI providers and nothing else. Your network stays invisible — air-gap by construction, not a setting you can forget.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:2rem;">
+        <a href="#main" class="shell-btn shell-btn--primary">Join the free beta &uarr;</a>
+        <a href="/business" class="shell-btn shell-btn--ghost">For Business &rarr;</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="iso-faq">
+      <h2>Questions</h2>
+      <details>
+        <summary>Is it really isolated, or just &ldquo;configured&rdquo; to be?</summary>
+        <p>Really isolated. At boot the OS drops every route to a private network (<code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>, link-local and CGNAT) at the firewall, while allowing the public model APIs. We proved the exact same red/black boundary in our open-source container red-zone first — the AI reached <code>api.anthropic.com</code> and every internal address was blocked.</p>
+      </details>
+      <details>
+        <summary>Which AI clients are included?</summary>
+        <p>The top three at launch — <strong>Claude, ChatGPT and Gemini</strong> — opened in a locked, full-screen browser. You sign in with your own accounts; Isolation OS never sees your credentials or sells you a subscription. More vendors follow.</p>
+      </details>
+      <details>
+        <summary>Where do my files go?</summary>
+        <p>Only into <code>~/projects</code>, one folder per project, inside the red zone. The host machine&rsquo;s disk is untouched. The profile is ephemeral by default — boot fresh every time — with an optional encrypted data partition on the roadmap.</p>
+      </details>
+      <details>
+        <summary>What does it cost?</summary>
+        <p><strong>Free during the beta.</strong> When it reaches v1 there&rsquo;ll be a paid, signed download — but beta members keep early access and get the friendliest pricing. No card to join the list.</p>
+      </details>
+      <details>
+        <summary>Who is this for?</summary>
+        <p>Anyone who wants to use powerful AI without giving it a path to their real systems: regulated businesses (clinics, law firms, fintech) that legally can&rsquo;t let data wander, dev and security teams piloting AI safely, and founders who simply don&rsquo;t want an agent one prompt away from prod.</p>
+      </details>
+    </section>
+
+    <!-- COMMITMENT -->
+    <section class="suite" style="border-top:1px solid var(--border);">
+      <p class="section__sub fx-reveal" style="text-align:center;">
+        Built by Raffa, a 20-year cybersecurity engineer. Isolation OS is the second pillar of the
+        Lictor suite — same Core engine behind our security tooling and external scanner, now pointed at
+        the one risk no one else covers: <em>your own AI, reaching your own network.</em>
+      </p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:1rem;">
+        <a href="#main" class="shell-btn shell-btn--primary">Get beta access &uarr;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="waitlist-footer" style="max-width:720px;margin:0 auto;padding:2rem 1.5rem;text-align:center;font-size:.8rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace;">
+    &copy; 2026 Lictor AI · Isolation OS — free beta · Apache 2.0 core · <a href="/" style="color:var(--accent);text-decoration:none;">lictorai.com</a>
+  </footer>
+</body>
+</html>

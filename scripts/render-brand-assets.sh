@@ -1,191 +1,118 @@
 #!/bin/bash
 # Lictor brand-asset render pipeline.
 #
-# Generates every PNG / ICNS / ICO that ships with the product from the
-# canonical SVG sources in `brand/`. Re-run any time the SVGs change.
+# Canonical source of the mark is the amber Spartan-helmet badge:
+#   brand/lictor-badge-master.png        (high-res, transparent)
+# Text lockups are rendered separately (real Cormorant via Playwright) and live
+# pre-rendered in brand/; this script consumes them:
+#   brand/lictor-wordmark-horizontal.png   brand/lictor-og-card.png
+#   brand/linkedin-banner.png              brand/lictor-wordmark-stacked.png
+#   (regenerate those with scripts/render-lockups.py if the wordmark changes)
 #
-# Outputs:
-#   brand/icon-{16,32,48,128,256,512,1024}.png         — square mark, transparent
-#   brand/profile-400.png                                — Twitter / LinkedIn avatar
-#   brand/linkedin-banner.png                            — 1192×220 LinkedIn cover
-#   landing/og/og-image.png                              — 1200×630 social card
-#   landing/lictor-mark.svg, lictor-favicon.svg          — copied to web roots
-#   studio/src-tauri/icons/*.png, *.icns, *.ico          — Tauri app icons
-#   shield/icons/icon-{16,32,48,128}.png                 — Chrome extension icons
-#
-# Requirements: rsvg-convert (Homebrew: `brew install librsvg`),
-#               iconutil (built-in on macOS), sips (built-in on macOS).
+# Generates every PNG / ICO / ICNS / mark-SVG that ships across the suite —
+# brand icons, social avatar, Studio (Tauri) icons, Shield (Chrome) icons,
+# VS Code icon, and all landing favicons/marks — from that one badge.
 #
 # Usage:
-#   bash scripts/render-brand-assets.sh                  # render everything
-#   bash scripts/render-brand-assets.sh --check          # verify all outputs exist
-#   bash scripts/render-brand-assets.sh --clean          # remove generated files
-
+#   bash scripts/render-brand-assets.sh            # render everything
+#   bash scripts/render-brand-assets.sh --check    # verify all outputs exist
 set -euo pipefail
-
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BRAND="$REPO/brand"
-MARK="$BRAND/lictor-mark.svg"
-LOCKUP="$BRAND/lictor-lockup.svg"
+MASTER="$BRAND/lictor-badge-master.png"
 
-# Sanity check — required tools
-for tool in rsvg-convert iconutil sips; do
-  if ! command -v "$tool" >/dev/null 2>&1; then
-    echo "✗ Missing required tool: $tool"
-    echo "  Install: brew install librsvg (rsvg-convert); iconutil + sips are built-in"
-    exit 1
-  fi
+for tool in python3 iconutil; do
+  command -v "$tool" >/dev/null 2>&1 || { echo "✗ Missing required tool: $tool"; exit 1; }
 done
-
-# Sanity check — source SVGs exist
-for svg in "$MARK" "$LOCKUP"; do
-  if [ ! -f "$svg" ]; then
-    echo "✗ Missing source SVG: $svg"
-    exit 1
-  fi
-done
-
-ACTION="${1:-render}"
-
-# ─── Helpers ──────────────────────────────────────────────────────────────
-
-render_square() {
-  local size="$1" out="$2"
-  rsvg-convert -w "$size" -h "$size" "$MARK" -o "$out"
-  printf "  %-50s %4sx%-4s\n" "${out#$REPO/}" "$size" "$size"
-}
-
-render_at() {
-  local w="$1" h="$2" out="$3" src="${4:-$LOCKUP}"
-  rsvg-convert -w "$w" -h "$h" "$src" -o "$out"
-  printf "  %-50s %4sx%-4s\n" "${out#$REPO/}" "$w" "$h"
-}
+[ -f "$MASTER" ] || { echo "✗ Missing canonical badge: $MASTER"; exit 1; }
 
 list_outputs() {
-  echo "brand/icon-16.png"
-  echo "brand/icon-32.png"
-  echo "brand/icon-48.png"
-  echo "brand/icon-128.png"
-  echo "brand/icon-256.png"
-  echo "brand/icon-512.png"
-  echo "brand/icon-1024.png"
-  echo "brand/profile-400.png"
-  echo "brand/linkedin-banner.png"
-  echo "landing/og/og-image.png"
-  echo "landing/lictor-mark.svg"
-  echo "landing/lictor-favicon.svg"
-  echo "studio/src-tauri/icons/32x32.png"
-  echo "studio/src-tauri/icons/128x128.png"
-  echo "studio/src-tauri/icons/128x128@2x.png"
-  echo "studio/src-tauri/icons/icon.icns"
-  echo "studio/src-tauri/icons/icon.ico"
+  for s in 16 32 48 128 256 512 1024; do echo "brand/icon-${s}.png"; done
+  echo brand/profile-400.png; echo brand/lictor-mark-mono.png; echo brand/lictor-mark-mono.svg
+  echo brand/lictor-mark.svg; echo brand/lictor-favicon.svg; echo brand/lictor-lockup.svg
+  echo studio/src-tauri/icons/32x32.png; echo studio/src-tauri/icons/128x128.png
+  echo studio/src-tauri/icons/128x128@2x.png; echo studio/src-tauri/icons/icon.ico
+  echo studio/src-tauri/icons/icon.icns
+  for s in 16 32 48 128; do echo "shield/icons/icon-${s}.png"; echo "shield/dist/assets/icon-${s}.png"; done
+  echo shield/dist/popup/mark.svg; echo vscode-extension/icon.png
+  echo landing/static/lictor-mark.png; echo landing/lictor-mark-512.png
+  echo landing/apple-touch-icon.png; echo landing/favicon-16.png; echo landing/favicon-32.png
+  echo landing/favicon.ico; echo landing/lictor-mark.svg; echo landing/lictor-favicon.svg
+  echo landing/static/lictor-logo.png; echo landing/og-image.png; echo landing/og/og-image.png
 }
 
-# ─── --check ──────────────────────────────────────────────────────────────
-
-if [ "$ACTION" = "--check" ]; then
-  MISSING=()
-  while IFS= read -r f; do
-    if [ ! -f "$REPO/$f" ]; then MISSING+=("$f"); fi
-  done < <(list_outputs)
-  if [ ${#MISSING[@]} -eq 0 ]; then
-    echo "✓ All brand assets present ($(list_outputs | wc -l | tr -d ' ') files)"
-    exit 0
-  else
-    echo "✗ Missing ${#MISSING[@]} files:"
-    for f in "${MISSING[@]}"; do echo "    $f"; done
-    exit 1
-  fi
+if [ "${1:-render}" = "--check" ]; then
+  miss=0; while IFS= read -r f; do [ -f "$REPO/$f" ] || { echo "  ✗ $f"; miss=$((miss+1)); }; done < <(list_outputs)
+  [ "$miss" -eq 0 ] && echo "✓ All brand assets present ($(list_outputs | wc -l | tr -d ' ') files)" || echo "✗ $miss missing"
+  exit $([ "$miss" -eq 0 ] && echo 0 || echo 1)
 fi
 
-# ─── --clean ──────────────────────────────────────────────────────────────
-
-if [ "$ACTION" = "--clean" ]; then
-  echo "Removing generated brand assets…"
-  while IFS= read -r f; do
-    if [ -f "$REPO/$f" ]; then rm "$REPO/$f"; echo "  removed $f"; fi
-  done < <(list_outputs)
-  exit 0
-fi
-
-# ─── render ───────────────────────────────────────────────────────────────
-
-echo "Rendering brand assets from $MARK + $LOCKUP"
-echo
-
-# Mark — square icons (transparent background)
-echo "Square mark icons:"
-for size in 16 32 48 128 256 512 1024; do
-  render_square "$size" "$BRAND/icon-${size}.png"
-done
-
-# Avatar — square 400×400 for Twitter / LinkedIn / GitHub profile
-echo
-echo "Profile avatars:"
-render_square 400 "$BRAND/profile-400.png"
-
-# LinkedIn cover banner — 1192×220
-echo
-echo "LinkedIn banner:"
-render_at 1192 220 "$BRAND/linkedin-banner.png" "$LOCKUP"
-
-# Social OG card — 1200×630
-mkdir -p "$REPO/landing/og"
-echo
-echo "Social OG card:"
-render_at 1200 630 "$REPO/landing/og/og-image.png" "$LOCKUP"
-
-# Web-root copies (favicon + mark)
-echo
-echo "Web-root SVG copies:"
-cp "$MARK" "$REPO/landing/lictor-mark.svg"
-echo "  landing/lictor-mark.svg"
-cp "$BRAND/lictor-favicon.svg" "$REPO/landing/lictor-favicon.svg"
-echo "  landing/lictor-favicon.svg"
-
-# Studio Tauri icons
-mkdir -p "$REPO/studio/src-tauri/icons"
-echo
-echo "Studio (Tauri) icons:"
-cp "$BRAND/icon-32.png" "$REPO/studio/src-tauri/icons/32x32.png"
-echo "  studio/src-tauri/icons/32x32.png  (copied from icon-32.png)"
-cp "$BRAND/icon-128.png" "$REPO/studio/src-tauri/icons/128x128.png"
-echo "  studio/src-tauri/icons/128x128.png  (copied from icon-128.png)"
-cp "$BRAND/icon-256.png" "$REPO/studio/src-tauri/icons/128x128@2x.png"
-echo "  studio/src-tauri/icons/128x128@2x.png  (copied from icon-256.png)"
-
-# macOS .icns — build an iconset then convert
-ICONSET="$(mktemp -d)/lictor.iconset"
-mkdir -p "$ICONSET"
-for sz in 16 32 64 128 256 512 1024; do
-  if [ -f "$BRAND/icon-${sz}.png" ]; then
-    cp "$BRAND/icon-${sz}.png" "$ICONSET/icon_${sz}x${sz}.png"
-  else
-    rsvg-convert -w "$sz" -h "$sz" "$MARK" -o "$ICONSET/icon_${sz}x${sz}.png"
-  fi
-done
+ICONSET="$(mktemp -d)/lictor.iconset"; mkdir -p "$ICONSET"
+echo "Rendering brand assets from $MASTER …"
+REPO="$REPO" MASTER="$MASTER" ICONSET="$ICONSET" python3 - <<'PY'
+import os, base64, shutil
+from PIL import Image, ImageChops
+REPO=os.environ["REPO"]; BRAND=f"{REPO}/brand"; ICONSET=os.environ["ICONSET"]
+badge=Image.open(os.environ["MASTER"]).convert("RGBA")
+def P(*p): return os.path.join(REPO,*p)
+def trans(size,pad=0.04):
+    inner=int(size*(1-2*pad)); c=Image.new("RGBA",(size,size),(0,0,0,0))
+    c.alpha_composite(badge.resize((inner,inner),Image.LANCZOS),((size-inner)//2,)*2); return c
+def tile(size,pad=0.10):
+    inner=int(size*(1-2*pad)); c=Image.new("RGBA",(size,size),(7,8,9,255))
+    c.alpha_composite(badge.resize((inner,inner),Image.LANCZOS),((size-inner)//2,)*2); return c
+def svg(path,png,vb):
+    b=base64.b64encode(open(png,"rb").read()).decode()
+    open(path,"w").write('<?xml version="1.0" encoding="UTF-8"?>\n'
+      '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" '
+      f'viewBox="0 0 {vb} {vb if vb!=1800 else 540}" width="{vb}" height="{vb if vb!=1800 else 540}" '
+      f'role="img" aria-label="Lictor"><image href="data:image/png;base64,{b}" '
+      f'xlink:href="data:image/png;base64,{b}" x="0" y="0" width="{vb}" height="{vb if vb!=1800 else 540}"/></svg>\n')
+# brand square icons (charcoal) + avatar
+for s in [16,32,48,128,256,512,1024]:
+    img=tile(s, 0.08 if s>=128 else 0.04); (img.convert("RGB") if s>=512 else img).save(P("brand",f"icon-{s}.png"))
+tile(400,0.12).convert("RGB").save(P("brand","profile-400.png"))
+# studio Tauri
+os.makedirs(P("studio","src-tauri","icons"),exist_ok=True)
+tile(32).convert("RGB").save(P("studio","src-tauri","icons","32x32.png"))
+tile(128).convert("RGB").save(P("studio","src-tauri","icons","128x128.png"))
+tile(256).convert("RGB").save(P("studio","src-tauri","icons","128x128@2x.png"))
+tile(256).save(P("studio","src-tauri","icons","icon.ico"),sizes=[(16,16),(32,32),(48,48),(64,64),(128,128),(256,256)])
+for nm,sz in [("16x16",16),("16x16@2x",32),("32x32",32),("32x32@2x",64),("128x128",128),
+              ("128x128@2x",256),("256x256",256),("256x256@2x",512),("512x512",512),("512x512@2x",1024)]:
+    tile(sz).convert("RGB").save(f"{ICONSET}/icon_{nm}.png")
+# shield (transparent), source + dist
+os.makedirs(P("shield","dist","assets"),exist_ok=True)
+for s in [16,32,48,128]:
+    img=trans(s,0.06 if s>=48 else 0.02); img.save(P("shield","icons",f"icon-{s}.png")); img.save(P("shield","dist","assets",f"icon-{s}.png"))
+# vscode
+tile(256).convert("RGB").save(P("vscode-extension","icon.png"))
+# landing rasters
+trans(512).save(P("landing","static","lictor-mark.png")); trans(512).save(P("landing","lictor-mark-512.png"))
+ats=Image.new("RGBA",(180,180),(7,8,9,255)); ats.alpha_composite(trans(176,0.0),(2,2)); ats.convert("RGB").save(P("landing","apple-touch-icon.png"))
+trans(32).save(P("landing","favicon-32.png")); trans(16).save(P("landing","favicon-16.png"))
+trans(64).save(P("landing","favicon.ico"),sizes=[(16,16),(32,32),(48,48)])
+# mark SVGs (256 embed) + slim favicon svg (96) + lockup svg (horizontal) + mono
+trans(256).save("/tmp/_b256.png"); trans(96).save("/tmp/_b96.png")
+for p in ["landing/lictor-mark.svg","brand/lictor-mark.svg","shield/dist/popup/mark.svg"]: svg(P(p),"/tmp/_b256.png",256)
+for p in ["landing/lictor-favicon.svg","brand/lictor-favicon.svg"]: svg(P(p),"/tmp/_b96.png",96)
+# mono: single-color amber engraving (alpha = luminance, gated to badge)
+g=badge.convert("L"); a=badge.getchannel("A").point(lambda v:255 if v>8 else 0)
+mono=Image.new("RGBA",badge.size,(232,163,61,0)); mono.putalpha(ImageChops.multiply(g,a)); mono.save(P("brand","lictor-mark-mono.png"))
+mono.resize((256,256),Image.LANCZOS).save("/tmp/_mono256.png"); svg(P("brand","lictor-mark-mono.svg"),"/tmp/_mono256.png",256)
+# lockups (pre-rendered by Playwright) — copy into web roots
+shutil.copy(P("brand","lictor-wordmark-horizontal.png"),P("landing","static","lictor-logo.png"))
+shutil.copy(P("brand","lictor-wordmark-horizontal.png"),P("brand","lictor-lockup.png"))
+lk=base64.b64encode(open(P("brand","lictor-wordmark-horizontal.png"),"rb").read()).decode()
+open(P("brand","lictor-lockup.svg"),"w").write('<?xml version="1.0" encoding="UTF-8"?>\n'
+ '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1800 540" '
+ f'width="1800" height="540" role="img" aria-label="Lictor AI"><image href="data:image/png;base64,{lk}" '
+ f'xlink:href="data:image/png;base64,{lk}" x="0" y="0" width="1800" height="540"/></svg>\n')
+os.makedirs(P("landing","og"),exist_ok=True)
+shutil.copy(P("brand","lictor-og-card.png"),P("landing","og-image.png"))
+shutil.copy(P("brand","lictor-og-card.png"),P("landing","og","og-image.png"))
+print("  rasters + SVGs + lockups written")
+PY
 iconutil -c icns "$ICONSET" -o "$REPO/studio/src-tauri/icons/icon.icns"
-echo "  studio/src-tauri/icons/icon.icns  (built from iconset)"
-
-# Windows .ico (macOS doesn't natively build proper multi-res .ico — placeholder
-# uses the 256 PNG renamed. Replace with a real .ico (e.g. via ImageMagick
-# `convert` or an online tool) before shipping Windows builds in v0.2.)
-cp "$BRAND/icon-256.png" "$REPO/studio/src-tauri/icons/icon.ico"
-echo "  studio/src-tauri/icons/icon.ico   (placeholder — replace before Windows ship)"
-
-# Shield Chrome extension icons (Manifest V3 expects 16, 32, 48, 128)
-if [ -d "$REPO/shield" ]; then
-  mkdir -p "$REPO/shield/icons"
-  echo
-  echo "Shield (Chrome extension) icons:"
-  for sz in 16 32 48 128; do
-    cp "$BRAND/icon-${sz}.png" "$REPO/shield/icons/icon-${sz}.png"
-    echo "  shield/icons/icon-${sz}.png"
-  done
-else
-  echo
-  echo "  (skipping shield/icons — shield/ directory not present)"
-fi
-
-echo
-echo "✓ Done. Run 'bash scripts/render-brand-assets.sh --check' to verify."
+echo "  studio/src-tauri/icons/icon.icns"
+echo "✓ Done. Verify: bash scripts/render-brand-assets.sh --check"

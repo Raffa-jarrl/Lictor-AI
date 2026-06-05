@@ -6,10 +6,10 @@
   --surface: #1A2028;
   --text: #E8E2D5;
   --text-muted: #6E7780;
-  --accent: #C9A23B;
+  --accent: #E8A33D;
   --primary: #3D2C5E;
   --critical: #C0392B;
-  --warning: #D68910;
+  --warning: #B8860B;
   --success: #3D7C5E;
   --border: #2A323E;
 }
@@ -118,4 +118,4 @@ main { padding: 14px; max-height: 540px; overflow-y: auto; }
   position: sticky; bottom: 0;
   background: var(--bg);
 }
-.cta:hover { background: rgba(201, 162, 59, 0.08); }
+.cta:hover { background: rgba(232, 163, 61, 0.08); }
