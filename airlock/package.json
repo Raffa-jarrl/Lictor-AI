@@ -3,7 +3,7 @@
   "version": "0.1.0-alpha.0",
   "description": "Lictor Airlock — a local broker that watches and contains what AI agents DO. Observe every tool call and shell command in plain English, then enforce policy to stop destructive, exfiltrating, or LAN-touching actions before they run.",
   "license": "Apache-2.0",
-  "homepage": "https://lictorai.com/airlock",
+  "homepage": "https://lictor-ai.com/airlock",
   "repository": {
     "type": "git",
     "url": "https://github.com/Raffa-jarrl/Lictor-AI.git",

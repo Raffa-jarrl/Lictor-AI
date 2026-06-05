@@ -182,9 +182,9 @@ Most security software is built for people who already speak the language. SOC 2
 Lictor is built for you.
 
 The same engine in this skill suite also powers:
-- **[Lictor Shield](https://lictorai.com)** — a free Chrome extension that warns you when an AI-built site you're about to sign up for has these bugs
-- **[Lictor Sentinel](https://lictorai.com)** — a free SDK (`npm install @lictor/sentinel`) that wraps your AI calls and blocks attacks in production
-- **[Lictor Guardian](https://lictorai.com)** — a free hosted dashboard if your team wants to track AI safety incidents across multiple apps
+- **[Lictor Shield](https://lictor-ai.com)** — a free Chrome extension that warns you when an AI-built site you're about to sign up for has these bugs
+- **[Lictor Sentinel](https://lictor-ai.com)** — a free SDK (`npm install @lictor/sentinel`) that wraps your AI calls and blocks attacks in production
+- **[Lictor Guardian](https://lictor-ai.com)** — a free hosted dashboard if your team wants to track AI safety incidents across multiple apps
 
 All four are open source. All four are free to use. There is no paid trap.
 

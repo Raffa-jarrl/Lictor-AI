@@ -48,7 +48,7 @@ In the four weeks before public launch, Lictor's scanners produced:
 
 The validated finding count after anti-FP filtering: 44 customer-app sourcemap exposures with revealed source code (down from 292 raw initial hits), 33 spoofable enterprise email domains, 11 publicly-listable cloud buckets, 14 EOL software stacks, 4 RDP/FTP/SMB services exposed direct-to-internet.
 
-Full transparency at [lictorai.com/transparency](https://lictorai.com/transparency).
+Full transparency at [lictor-ai.com/transparency](https://lictor-ai.com/transparency).
 
 ## Status
 
@@ -82,7 +82,7 @@ Full transparency at [lictorai.com/transparency](https://lictorai.com/transparen
 | [`core/`](./core/) | Rust check engine, native + WASM + AUDIT.json standard | ✅ 45 tests, native + WASM builds, Apache 2.0 |
 | [`cli/`](./cli/) | `lictor` terminal binary | ✅ `lictor audit . --format human/json/markdown` + `--fail-on` for CI |
 | [`guardian/`](./guardian/) | Hosted dashboard — the one audit trail every product reports into | ✅ 12 integration tests, magic-link auth, audit-log export, Slack webhook, `docker compose up` |
-| [`landing/`](./landing/) | Marketing site (lictorai.com) | ✅ Multi-page: hero, /business, /in-the-wild, /transparency, /scan, /patterns, /compliance |
+| [`landing/`](./landing/) | Marketing site (lictor-ai.com) | ✅ Multi-page: hero, /business, /in-the-wild, /transparency, /scan, /patterns, /compliance |
 
 **Public launch target:** Tuesday October 6, 2026.
 
@@ -99,7 +99,7 @@ Every component installs today. SDKs/extensions publish to their public registri
 | **Airlock** (npm) | `cd airlock && npm install && npm run build` → `node dist/cli.js --help` | `npm i -g @lictor/airlock` / `npx @lictor/airlock` |
 | **Shield** (Chrome) | Download `lictor-shield-*.zip` from [Releases](https://github.com/Raffa-jarrl/Lictor-AI/releases) → unzip → `chrome://extensions` → Load unpacked | Chrome Web Store |
 | **VS Code / Cursor** | Download `lictor-*.vsix` from [Releases](https://github.com/Raffa-jarrl/Lictor-AI/releases) → `code --install-extension lictor-*.vsix` | Marketplace + Open VSX |
-| **Guardian** (self-host eval) | `cd guardian && docker compose up` → http://localhost:3100 | hosted at lictorai.com |
+| **Guardian** (self-host eval) | `cd guardian && docker compose up` → http://localhost:3100 | hosted at lictor-ai.com |
 | **Studio** (desktop) | `make studio-build` → `.dmg`/`.app` (unsigned; right-click→Open) | signed `.dmg` Q1 2027 |
 
 > **`make install`** installs the CLI + Claude Code skills locally in one step. **`make package`** builds every artifact above into `dist/release/`. Guardian's source is [source-available](./guardian/LICENSE) (run-it-yourself for dev/eval; not for hosting-as-a-service).
@@ -181,7 +181,7 @@ In a sentence: **safety infrastructure for the AI agent era.**
 
 ## License
 
-Apache 2.0 for the whole suite — `core/`, `cli/`, `shield/`, `sentinel/`, `sentinel-py/`, `airlock/`, `skills/`, `vscode-extension/`, `studio/`, `v3/`, and the Business-pillar `isolation/`. The one exception: **Guardian** — its hosted service code is published for transparency but licensed for hosted use through lictorai.com only (see [`guardian/LICENSE`](./guardian/LICENSE)).
+Apache 2.0 for the whole suite — `core/`, `cli/`, `shield/`, `sentinel/`, `sentinel-py/`, `airlock/`, `skills/`, `vscode-extension/`, `studio/`, `v3/`, and the Business-pillar `isolation/`. The one exception: **Guardian** — its hosted service code is published for transparency but licensed for hosted use through lictor-ai.com only (see [`guardian/LICENSE`](./guardian/LICENSE)).
 
 See [`LICENSE`](./LICENSE) + [`NOTICE`](./NOTICE).
 
@@ -217,7 +217,7 @@ Not yet broadly open. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for what we DO 
 ├── core/             — Rust crate, the shared engine + AUDIT.json
 ├── cli/              — `lictor` terminal binary
 ├── guardian/         — Next.js + Postgres dashboard (the one audit trail)
-├── landing/          — Marketing site (HTML, deploys to lictorai.com)
+├── landing/          — Marketing site (HTML, deploys to lictor-ai.com)
 ├── brand/            — Logo SVG + rendered PNG icon variants
 ├── docs/             — Specs (sentinel-api, guardian-schema, wire-format) + launch/
 └── examples/         — Vulnerable-by-design fixtures

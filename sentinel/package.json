@@ -3,7 +3,7 @@
   "version": "0.1.0-alpha.0",
   "description": "Lictor Sentinel — wraps OpenAI / Anthropic SDKs to block prompt injection, data exfiltration, and unsafe AI behaviour.",
   "license": "Apache-2.0",
-  "homepage": "https://lictorai.com",
+  "homepage": "https://lictor-ai.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/Raffa-jarrl/Lictor-AI.git",

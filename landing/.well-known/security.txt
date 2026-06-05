@@ -6,18 +6,18 @@
 # within 14 days for non-critical issues, 7 days for critical.
 
 Contact: mailto:Raffa@Lictor-AI.com
-Contact: mailto:abuse@lictorai.com
+Contact: mailto:abuse@lictor-ai.com
 Expires: 2027-12-31T23:59:59.000Z
 Preferred-Languages: en, he
-Canonical: https://lictorai.com/.well-known/security.txt
-Policy: https://lictorai.com/security
-Policy: https://lictorai.com/scan-policy
-Acknowledgments: https://lictorai.com/security#hall-of-fame
+Canonical: https://lictor-ai.com/.well-known/security.txt
+Policy: https://lictor-ai.com/security
+Policy: https://lictor-ai.com/scan-policy
+Acknowledgments: https://lictor-ai.com/security#hall-of-fame
 
 # SCANNING: If you saw a "Lictor-Patrol" request in your logs, that is our
 # read-only, rate-limited security research. What we do / don't do, and an
-# instant opt-out, are at https://lictorai.com/scan-policy — or just email
-# abuse@lictorai.com with your domain and we exclude you immediately.
+# instant opt-out, are at https://lictor-ai.com/scan-policy — or just email
+# abuse@lictor-ai.com with your domain and we exclude you immediately.
 
 # We participate in responsible disclosure. Public disclosure with
 # coordinated timeline preferred over silent fix. We credit reporters

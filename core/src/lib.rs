@@ -39,7 +39,7 @@ pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 pub const USER_AGENT: &str = concat!(
     "Lictor-Core/",
     env!("CARGO_PKG_VERSION"),
-    " (+https://lictorai.com)"
+    " (+https://lictor-ai.com)"
 );
 
 /// Run all five URL-based static checks against `base_url`, using the

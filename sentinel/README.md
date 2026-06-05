@@ -142,13 +142,13 @@ const client = wrap(new OpenAI(), {
   preflight:  ["prompt-injection", "secrets-in-input"],
   postflight: ["pii-leak"],
   guardian: {
-    endpoint: "https://app.lictorai.com/api/ingest",
+    endpoint: "https://app.lictor-ai.com/api/ingest",
     token: process.env.LICTOR_GUARDIAN_TOKEN!,
   },
 });
 ```
 
-Guardian gives you: per-incident timeline with severity / check / phase filters, audit-log export for SOC 2 / GDPR Article 32 / EU AI Act Article 12 evidence, Slack webhook for critical incidents. Free preview at app.lictorai.com.
+Guardian gives you: per-incident timeline with severity / check / phase filters, audit-log export for SOC 2 / GDPR Article 32 / EU AI Act Article 12 evidence, Slack webhook for critical incidents. Free preview at app.lictor-ai.com.
 
 ## Privacy contract
 
@@ -176,13 +176,13 @@ Telemetry is opt-in: if `guardian` config is absent, no network calls are made. 
 ## Troubleshooting
 
 **"Sentinel is blocking legitimate inputs."**
-Switch to `mode: "log"` first. Sentinel will report incidents but not block. Review the captured incidents at app.lictorai.com/incidents (if Guardian is wired) or in the `onIncident` callback. Tune `preflight` to drop checks that are over-eager for your use case.
+Switch to `mode: "log"` first. Sentinel will report incidents but not block. Review the captured incidents at app.lictor-ai.com/incidents (if Guardian is wired) or in the `onIncident` callback. Tune `preflight` to drop checks that are over-eager for your use case.
 
 **"My streaming responses aren't intercepted."**
 Post-flight checks on streaming responses ship in v0.2. For v0.1, post-flight only runs on the final completion message. Pre-flight is unaffected (input is always non-streaming).
 
 **"Guardian telemetry isn't appearing in the dashboard."**
-Confirm the token in `guardian.token` matches the project token in your Guardian project settings. Check `console.log` for `[lictor] outbound telemetry error` — common causes: firewall blocking outbound to `app.lictorai.com`, or token revocation.
+Confirm the token in `guardian.token` matches the project token in your Guardian project settings. Check `console.log` for `[lictor] outbound telemetry error` — common causes: firewall blocking outbound to `app.lictor-ai.com`, or token revocation.
 
 **"I want to add a custom check."**
 v0.1 ships with built-in checks only. Custom-check authoring ships in v0.2 (Q1 2027) as part of the Studio Pro tier. Until then, use `onIncident` to layer your own logic on top of the built-ins.
@@ -212,9 +212,9 @@ pnpm test
 ## Links
 
 - **Main repo**: [github.com/Raffa-jarrl/Lictor-AI](https://github.com/Raffa-jarrl/Lictor-AI)
-- **Documentation**: [lictorai.com/sentinel](https://lictorai.com/sentinel)
+- **Documentation**: [lictor-ai.com/sentinel](https://lictor-ai.com/sentinel)
 - **Python sibling**: [`lictor-sentinel` on PyPI](https://pypi.org/project/lictor-sentinel/)
 - **Issues + feature requests**: [github.com/Raffa-jarrl/Lictor-AI/issues](https://github.com/Raffa-jarrl/Lictor-AI/issues)
-- **Security disclosure**: security@lictorai.com
+- **Security disclosure**: security@lictor-ai.com
 
-Built by a 20-year cybersecurity engineer. Tested across [12+ public teardowns](https://lictorai.com/teardowns) of real vibe-coded apps.
+Built by a 20-year cybersecurity engineer. Tested across [12+ public teardowns](https://lictor-ai.com/teardowns) of real vibe-coded apps.
