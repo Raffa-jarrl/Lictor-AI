@@ -4,7 +4,7 @@
 // form falls back to "save your URL, we'll email you the scorecard the day
 // the engine goes live" — a Buttondown-backed list distinct from Beacon.
 //
-// After Jul 6: the form POSTs to https://scan-api.lictorai.com/scan and polls
+// After Jul 6: the form POSTs to https://scan-api.lictor-ai.com/scan and polls
 // /scan/<id> for completion, then redirects to /scan/<id> for the scorecard.
 
 (() => {
@@ -43,7 +43,7 @@
     // Post-launch flow.
     showMessage('Scanning… this takes about 30 seconds.');
     try {
-      const res = await fetch('https://scan-api.lictorai.com/scan', {
+      const res = await fetch('https://scan-api.lictor-ai.com/scan', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url }),
@@ -61,7 +61,7 @@
       tries++;
       if (tries > 30) { clearInterval(interval); showMessage('Scan took too long; we\'ll email you when it\'s done.'); return; }
       try {
-        const r = await fetch(`https://scan-api.lictorai.com/scan/${scanId}`);
+        const r = await fetch(`https://scan-api.lictor-ai.com/scan/${scanId}`);
         if (r.status === 200) {
           clearInterval(interval);
           window.location.href = `/scan/${scanId}`;

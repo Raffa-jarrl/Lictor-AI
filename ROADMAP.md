@@ -7,7 +7,7 @@
 
 1. Every Lovable / Bolt / v0 / Cursor founder knows their **Lictor score** before they ship
 2. **AUDIT.json** is the universal output format across Semgrep, Aikido, Snyk, and us
-3. `lictorai.com/scan/<url>` is the answer to "is my AI-built app safe?" the way SSL Labs is the answer to "is my cert configured right?"
+3. `lictor-ai.com/scan/<url>` is the answer to "is my AI-built app safe?" the way SSL Labs is the answer to "is my cert configured right?"
 4. The **Lictor Patrol** dataset is the largest public corpus of AI-app security postures, cited in every "state of AI security" report from 2027 on
 5. The **11-agent crew** is the reference architecture for OSS security projects
 
@@ -81,9 +81,9 @@ Pre-Year-1 work shipped before public launch:
 | **Jun 1 (W22)** | Patrol architecture live — source enumerators (6/10), cron, dedup, queue, Scan engine deployed as Cloudflare Worker | First 100 URLs scanned end-to-end | Engine fails on >30% of URLs | dev (Octopus) + Wolf |
 | **Jun 8 (W23)** | **PILOT SCAN — last 7 days cohort** | 500-1,000 apps scanned, 50+ private outreaches sent | <100 apps scanned | Meerkat drafts; Raffa reviews; Mantis watches voice |
 | **Jun 15 (W24)** | Disclosure state machine + opt-out flow + scorecard page + OG-image renderer | 30-day timer running on every D/F finding | Any private finding leaks before window | dev + Lyrebird |
-| **Jun 22 (W25)** | Audit corpus (KV append-only) + `lictorai.com/in-the-wild` internal-only aggregate dashboard | First aggregate stats published internally | Corpus stores any URL or PII | dev + Wolf |
+| **Jun 22 (W25)** | Audit corpus (KV append-only) + `lictor-ai.com/in-the-wild` internal-only aggregate dashboard | First aggregate stats published internally | Corpus stores any URL or PII | dev + Wolf |
 | **Jun 29 (W26)** | Patrol expands to last-30-days cohort + 4 remaining sources (YC, Cursor, npm, Twitter/X) | 4,000-6,000 apps scanned cumulative | <1,500 | Mongoose (extends from competitive-watch) |
-| **Jul 6 (W27)** | **`lictorai.com/scan/<url>` PUBLIC** — paste-a-URL form + embeddable badge | 100 user-initiated scans in week 1 | <10 | dev + Lyrebird (launch copy) |
+| **Jul 6 (W27)** | **`lictor-ai.com/scan/<url>` PUBLIC** — paste-a-URL form + embeddable badge | 100 user-initiated scans in week 1 | <10 | dev + Lyrebird (launch copy) |
 | **Jul 13 (W28)** | Meerkat auto-sends low-risk outreach (B/C); Raffa still reviews D/F | First weekly leaderboard published (Lovable only) | Voice issues caught in Mantis review | Meerkat + Mantis |
 | **Jul 20 - Aug 14** | **SILENT RUN — 30 days, collecting data** | ~30,000 apps scanned cumulative; voice + outreach refined | <10,000 scanned by Aug 14 | All agents in production mode |
 | **Aug 15 (W34)** | **🚨 SOFT LAUNCH** — publish the 30-day finding report (HN + Twitter + press + blog) | HN front page top 5 by noon; 5,000+ scans in week 1; 1,500+ stars added | Off HN front page by noon; <500 scans | Raffa on the bullhorn; Meerkat handles inbound; full crew on call |
@@ -94,7 +94,7 @@ Pre-Year-1 work shipped before public launch:
 **Other Q3 items running in parallel:**
 
 - [ ] **Beacon waitlist** — Target 1,000 signups by Oct 5, kill <250 by Jul 31 ([spec](docs/launch/beacon-campaign/README.md))
-- [ ] **Landing site live at `lictorai.com`** via Cloudflare Pages (May 22)
+- [ ] **Landing site live at `lictor-ai.com`** via Cloudflare Pages (May 22)
 - [ ] **Buttondown waitlist live** + 5-email drip sequence (May 25)
 - [ ] **Sentinel 0.1.0 GA** on npm + PyPI — alpha → GA (Jul 1)
 - [ ] **First 5 design partners signed** — Beacon-sourced + direct outreach (by Sep 1)
@@ -110,8 +110,8 @@ Q4 is about turning Patrol's August-soft-launched credibility into installs, pai
 
 - [ ] **Lictor for Teams paid tier** — $19/mo flat, unlimited seats. Outcome target: 100 paid teams by Dec 31, kill <20 by Nov 30
 - [ ] **VS Code extension v0.1.0** — Marketplace + Open VSX, by W+12 (~Dec 22). Outcome: 500 installs by Jan 31, kill <50
-- [ ] **CLI telemetry endpoint** (`metrics.lictorai.com/ping`, Cloudflare Worker, opt-in) — prerequisite for Tier-1 WAI metric. **Ship in W+2 (~Oct 20).**
-- [ ] **First monthly transparency report** at `lictorai.com/transparency` — Nov 1 publish (backfilled to May 2026 so the public archive starts before Patrol)
+- [ ] **CLI telemetry endpoint** (`metrics.lictor-ai.com/ping`, Cloudflare Worker, opt-in) — prerequisite for Tier-1 WAI metric. **Ship in W+2 (~Oct 20).**
+- [ ] **First monthly transparency report** at `lictor-ai.com/transparency` — Nov 1 publish (backfilled to May 2026 so the public archive starts before Patrol)
 - [ ] **Browser-extension scoring on every tab** — extend Shield with the Lictor Score badge. By W+8 (~Dec 1).
 - [ ] **Lovable / Bolt / v0 integration outreach** (the AUDIT.json adoption play, now compelling because we have Patrol's receipts). Goal: 1 of 3 integrated by Q1 2027.
 - [ ] **Meerkat agent online Oct 13** for community triage (Patrol intake hits Meerkat first)
@@ -126,7 +126,7 @@ Q4 is about turning Patrol's August-soft-launched credibility into installs, pai
 Subject to Q4 learnings.
 
 - [ ] **🏢 Lictor for Business — Isolation OS + Internal Check** — the USB-bootable air-gapped AI workspace (container red-zone live in [`isolation/`](isolation/); bootable OS in early access) and the automated internal pentest for SMBs ([`scripts/lan-pentest.py`](scripts/lan-pentest.py)), reporting into Guardian. _Domain Guard was dropped to keep focus on these two._
-- [ ] **First Lovable / Bolt / v0 native integration** — `lictorai.com/scan` linked in their publish flow. The AUDIT.json adoption play, fully landed.
+- [ ] **First Lovable / Bolt / v0 native integration** — `lictor-ai.com/scan` linked in their publish flow. The AUDIT.json adoption play, fully landed.
 - [ ] **Lictor Studio v0.1** — macOS .dmg, signed + notarized (deferred from Q4)
 - [ ] **Audit-as-a-Service productized** — first 5 VC firms enrolled, AaaS MRR-eq ≥$15k
 - [ ] **Lictor Skill Marketplace** — community-authored agents

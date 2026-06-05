@@ -8,7 +8,7 @@ edition = "2021"
 authors = ["Lictor AI"]
 license = "Apache-2.0"
 repository = "https://github.com/Raffa-jarrl/Lictor-AI"
-homepage = "https://lictorai.com"
+homepage = "https://lictor-ai.com"
 
 [workspace.dependencies]
 # HTTP

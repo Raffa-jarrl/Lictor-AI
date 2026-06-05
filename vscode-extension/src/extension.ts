@@ -160,7 +160,7 @@ async function checkLictorCli() {
       .then((choice) => {
         if (choice === "Install instructions") {
           vscode.env.openExternal(
-            vscode.Uri.parse("https://lictorai.com/cli"),
+            vscode.Uri.parse("https://lictor-ai.com/cli"),
           );
         }
       });

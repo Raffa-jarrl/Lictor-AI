@@ -93,7 +93,7 @@ pub fn render_markdown(target: &str, findings: &[Finding], now_iso: &str) -> Str
     out.push_str("4. **CORS posture** — credential-bearing endpoints with permissive Access-Control headers.\n");
     out.push_str("5. **AI-agent surface** — detected chat / agent widgets that warrant prompt-injection review.\n\n");
     out.push_str("**This is a first-pass audit, not a full pentest.** Want a hands-on audit ");
-    out.push_str("from a 20-year cybersec engineer? [lictorai.com](https://lictorai.com)\n");
+    out.push_str("from a 20-year cybersec engineer? [lictor-ai.com](https://lictor-ai.com)\n");
 
     out
 }

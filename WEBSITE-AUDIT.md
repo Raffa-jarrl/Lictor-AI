@@ -107,8 +107,8 @@ For Lictor specifically, two schemas would matter:
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Lictor AI",
-  "url": "https://lictorai.com",
-  "logo": "https://lictorai.com/logo.png",
+  "url": "https://lictor-ai.com",
+  "logo": "https://lictor-ai.com/logo.png",
   "sameAs": [
     "https://github.com/Raffa-jarrl/Lictor-AI",
     "https://twitter.com/...",

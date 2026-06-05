@@ -2,10 +2,10 @@
 name = "lictor-cli"
 version = "0.1.0-pre.0"
 description = "Lictor — terminal audit for AI-built apps. CLI sibling of Lictor Studio."
-authors = ["Lictor AI <hello@lictorai.com>"]
+authors = ["Lictor AI <hello@lictor-ai.com>"]
 license = "Apache-2.0"
 repository = "https://github.com/Raffa-jarrl/Lictor-AI"
-homepage = "https://lictorai.com/cli"
+homepage = "https://lictor-ai.com/cli"
 edition = "2021"
 rust-version = "1.79"
 readme = "README.md"
