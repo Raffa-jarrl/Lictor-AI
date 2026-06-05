@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://lictor-ai.com"><img src="https://raw.githubusercontent.com/Raffa-jarrl/Lictor-AI/main/brand/lictor-badge-256.png" alt="Lictor AI" width="120"></a>
+</p>
+
 # Lictor Shield
 
 > 🤖 **Part of the [Lictor AI security suite](../README.md)** — Lictor for AI. Shield guards the AI-built **app** in your browser.
