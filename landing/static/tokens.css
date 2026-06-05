@@ -1,0 +1,88 @@
+/* ============================================================================
+ * Lictor AI — CANONICAL DESIGN TOKENS  (single source of truth)
+ * ----------------------------------------------------------------------------
+ * Accent: AMBER #E8A33D on Charcoal #070809.  Cormorant Garamond / Inter /
+ * JetBrains Mono.  Every CSS-linked page inherits these via style.css's
+ * @import. Self-contained <style> pages (business.html, isolation-os,
+ * launcher.html, internal-check report) MUST mirror these exact values.
+ *
+ * Accent decision 2026-06-05: unified the brand on amber #E8A33D (was a
+ * 4-way split of copper/cyan/orange/amber). --warning was cooled to gold
+ * #B8860B so the "warning/medium" severity color never collides with the
+ * amber brand accent — critical for a security product's severity badges.
+ *
+ * NOTE (rename-debt): the glow var is still named --copper-glow for backward
+ * compat with existing consumers; its VALUE is amber. Rename in a later sweep.
+ * ========================================================================== */
+:root {
+  /* Surfaces */
+  --bg:           #070809;   /* near-black charcoal — app background */
+  --surface:      #11141A;
+  --surface-2:    #181D26;
+
+  /* Text */
+  --text:         #ECE3D6;
+  --text-muted:   #8E887B;
+  --cream:        #F4DCC4;
+
+  /* Brand accent — AMBER. The Lictor mark. */
+  --accent:       #E8A33D;
+  --accent-hover: #F2B85C;                       /* +lightness for CTA hover */
+  --accent-tint:        rgba(232, 163, 61, 0.10); /* faint tinted backgrounds */
+  --accent-tint-strong: rgba(232, 163, 61, 0.32); /* borders on tinted */
+
+  /* Primary (deep amber/bronze — buttons-on-light, gradients) */
+  --primary:      #B97A28;
+  --primary-2:    #C98A38;
+
+  /* Semantic — kept clearly distinct from the amber accent. */
+  --critical:     #C0392B;
+  --warning:      #B8860B;   /* gold — cooled away from amber #E8A33D */
+  --success:      #3D7C5E;
+
+  /* Borders */
+  --border:       #251E17;
+  --border-light: #3C2F22;
+
+  /* Glass + glow (premium layer). */
+  --panel-bg:     rgba(17, 20, 26, 0.62);
+  --panel-border: rgba(232, 163, 61, 0.22);
+  --copper-glow:  rgba(232, 163, 61, 0.40);  /* legacy name, amber value */
+  --glow-soft:    rgba(232, 163, 61, 0.14);
+
+  /* Severity surface tints — bg under --critical/--warning/--accent/--success text. */
+  --critical-tint:      rgba(192, 57, 43, 0.12);
+  --warning-tint:       rgba(184, 134, 11, 0.14);
+  --success-tint:       rgba(61, 124, 94, 0.14);
+  --info-tint:          rgba(110, 119, 128, 0.14);
+
+  /* Border-radius scale. */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:  12px;
+  --radius-pill: 999px;
+
+  /* Spacing scale — 4px base. Use these instead of arbitrary px values. */
+  --space-1:  0.25rem;  --space-2:  0.5rem;  --space-3:  0.75rem;
+  --space-4:  1rem;     --space-5:  1.5rem;  --space-6:  2rem;
+  --space-8:  3rem;     --space-10: 4rem;
+
+  /* Motion tokens. */
+  --motion-fast:   0.05s ease;
+  --motion-base:   0.15s ease;
+  --motion-slow:   0.30s ease;
+
+  /* Type scale tokens — use via var(--font-size-*), never inline. */
+  --font-size-display:   clamp(2.4rem, 6vw, 3.8rem);
+  --font-size-h1:        clamp(2rem, 5vw, 3.2rem);
+  --font-size-h2:        clamp(1.6rem, 3.5vw, 2.4rem);
+  --font-size-h3:        1.25rem;
+  --font-size-h3-small:  1.05rem;
+  --font-size-body:      1rem;
+  --font-size-body-sm:   0.9rem;
+  --font-size-meta:      0.85rem;
+  --font-size-caption:   0.75rem;
+  --font-size-eyebrow:   0.7rem;
+
+  --max-width: 1100px;
+}

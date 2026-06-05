@@ -188,7 +188,7 @@
       if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(196, 136, 90, ${p.a})`;
+      ctx.fillStyle = `rgba(232, 163, 61, ${p.a})`;
       ctx.fill();
     }
     // connect nearby
@@ -202,7 +202,7 @@
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = `rgba(196, 136, 90, ${alpha})`;
+          ctx.strokeStyle = `rgba(232, 163, 61, ${alpha})`;
           ctx.lineWidth = 0.5;
           ctx.stroke();
         }

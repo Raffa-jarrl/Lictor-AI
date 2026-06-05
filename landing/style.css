@@ -1,80 +1,12 @@
 /* Lictor AI — landing page styles.
- * Brand palette per docs/projects/lictor/BRAND.md.
- * Imperial Purple (#3D2C5E) + Gold Leaf (#C9A23B) on Charcoal (#0F1419).
+ * Brand: AMBER #E8A33D on Charcoal #070809 (Cormorant / Inter / JetBrains Mono).
+ * Canonical design tokens live in static/tokens.css — imported below.
+ * Edit tokens THERE, not here, so every surface stays in sync.
  */
+@import "static/tokens.css";
 
-:root {
-  --bg:           #070809;   /* near-black — matches mission-control */
-  --surface:      #11141A;
-  --surface-2:    #181D26;
-  --text:         #ECE3D6;
-  --text-muted:   #8E887B;
-  --accent:       #C4885A;   /* copper — the Lictor mark */
-  --primary:      #7A4E2E;   /* deep bronze (was imperial purple) */
-  --primary-2:    #9A6A40;
-  --critical:     #C0392B;
-  --warning:      #D68910;
-  --success:      #3D7C5E;
-  --border:       #251E17;
-  --border-light: #3C2F22;
-
-  /* Accent derivatives — keep in lockstep with --accent (#C4885A copper). */
-  --accent-tint:        rgba(196, 136, 90, 0.10); /* faint backgrounds */
-  --accent-tint-strong: rgba(196, 136, 90, 0.32); /* borders on tinted */
-  --accent-hover:       #D89B6C;                  /* +8% lightness */
-
-  /* Glass + glow — premium layer ported from mission-control. */
-  --panel-bg:     rgba(17, 20, 26, 0.62);
-  --panel-border: rgba(196, 136, 90, 0.22);
-  --copper-glow:  rgba(196, 136, 90, 0.40);
-  --glow-soft:    rgba(196, 136, 90, 0.14);
-  --cream:        #F4DCC4;
-
-  /* Severity surface tints — for SeverityBadge + Finding cards (use as bg
-     under --critical / --warning / --accent / --success / --text-muted text). */
-  --critical-tint:      rgba(192, 57, 43, 0.12);
-  --warning-tint:       rgba(214, 137, 16, 0.12);
-  --success-tint:       rgba(61, 124, 94, 0.14);
-  --info-tint:          rgba(110, 119, 128, 0.14);
-
-  /* Border-radius scale (used across cards, buttons, inputs, pills). */
-  --radius-sm:   4px;
-  --radius-md:   8px;
-  --radius-lg:  12px;
-  --radius-pill: 999px;
-
-  /* Spacing scale — 4px base. Use these instead of arbitrary px values. */
-  --space-1:  0.25rem;  /*  4px */
-  --space-2:  0.5rem;   /*  8px */
-  --space-3:  0.75rem;  /* 12px */
-  --space-4:  1rem;     /* 16px */
-  --space-5:  1.5rem;   /* 24px */
-  --space-6:  2rem;     /* 32px */
-  --space-8:  3rem;     /* 48px */
-  --space-10: 4rem;     /* 64px */
-
-  /* Motion tokens. */
-  --motion-fast:   0.05s ease;
-  --motion-base:   0.15s ease;
-  --motion-slow:   0.30s ease;
-
-  /* Type scale tokens.
-     Added 2026-05-27 per design-system rule "introduce when ≥2 components disagree."
-     Trigger: 7+ inline font-size overrides on the homepage h1/h2/h3.
-     Use these via var(--font-size-*) — never inline. */
-  --font-size-display:   clamp(2.4rem, 6vw, 3.8rem);  /* hero h1, oversized */
-  --font-size-h1:        clamp(2rem, 5vw, 3.2rem);
-  --font-size-h2:        clamp(1.6rem, 3.5vw, 2.4rem);
-  --font-size-h3:        1.25rem;
-  --font-size-h3-small:  1.05rem;                       /* compact h3 in install/feature grids */
-  --font-size-body:      1rem;
-  --font-size-body-sm:   0.9rem;
-  --font-size-meta:      0.85rem;
-  --font-size-caption:   0.75rem;
-  --font-size-eyebrow:   0.7rem;
-
-  --max-width: 1100px;
-}
+/* Design tokens (colors, type scale, spacing, radius, motion) are defined in
+   static/tokens.css, imported at the top of this file. Do not redefine them here. */
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -197,7 +129,7 @@ a:hover { text-decoration: underline; }
   background: var(--accent);
   color: var(--bg);
 }
-.btn--primary:hover { background: #b88f2e; text-decoration: none; }
+.btn--primary:hover { background: var(--accent-hover); text-decoration: none; }
 .btn--ghost {
   background: transparent;
   color: var(--text);
@@ -254,7 +186,7 @@ a:hover { text-decoration: underline; }
   display: inline-block;
   width: fit-content;
   padding: 4px 10px;
-  background: rgba(201, 162, 59, 0.1);
+  background: var(--accent-tint);
   border: 1px solid var(--accent);
   border-radius: 3px;
   color: var(--accent);
@@ -391,7 +323,7 @@ a:hover { text-decoration: underline; }
   font-size: 14px;
   cursor: pointer;
 }
-.waitlist__form button:hover { background: #b88f2e; }
+.waitlist__form button:hover { background: var(--accent-hover); }
 
 .waitlist__small {
   color: var(--text-muted);

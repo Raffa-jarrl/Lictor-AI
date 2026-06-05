@@ -224,7 +224,7 @@
   object-fit: contain;
   border-radius: 24px;
   background: transparent;
-  filter: drop-shadow(0 20px 50px rgba(196, 136, 90, 0.35));
+  filter: drop-shadow(0 20px 50px rgba(232, 163, 61, 0.35));
 }
 @media (max-width: 760px) { .donate-hero__mark { width: 160px; height: 160px; } }
 
@@ -324,7 +324,7 @@
   font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: var(--copper-1, #c4885a);
+  color: var(--copper-1, #E8A33D);
   padding: 0 0.5rem;
   white-space: nowrap;
 }

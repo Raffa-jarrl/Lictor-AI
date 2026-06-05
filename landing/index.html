@@ -172,9 +172,9 @@
 
     <!-- STAR MAGNET — first 100 supporters wall + live count + one-click star -->
     <section id="founders" class="shell-section" style="text-align:center;">
-      <div style="max-width:780px;margin:0 auto;background:linear-gradient(180deg, rgba(196,136,90,0.08), rgba(196,136,90,0.02));border:1px solid rgba(196,136,90,0.25);border-radius:18px;padding:2.5rem 2rem;position:relative;overflow:hidden;">
+      <div style="max-width:780px;margin:0 auto;background:linear-gradient(180deg, rgba(232, 163, 61,0.08), rgba(232, 163, 61,0.02));border:1px solid rgba(232, 163, 61,0.25);border-radius:18px;padding:2.5rem 2rem;position:relative;overflow:hidden;">
         <!-- copper glow accent -->
-        <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:200px;height:80px;background:radial-gradient(ellipse,rgba(196,136,90,0.4),transparent 70%);filter:blur(20px);pointer-events:none;"></div>
+        <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:200px;height:80px;background:radial-gradient(ellipse,rgba(232, 163, 61,0.4),transparent 70%);filter:blur(20px);pointer-events:none;"></div>
 
         <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.15em;color:var(--accent);text-transform:uppercase;margin-bottom:.75rem;">⭐ Founding supporters · join the wall</div>
 
@@ -187,18 +187,18 @@
 
         <!-- Live counter -->
         <div style="display:flex;justify-content:center;align-items:baseline;gap:.6rem;margin:1.25rem 0 1.75rem;">
-          <span id="stars-current" style="font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:700;color:var(--accent);line-height:1;text-shadow:0 0 30px rgba(196,136,90,0.4);font-variant-numeric:tabular-nums;">…</span>
+          <span id="stars-current" style="font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:700;color:var(--accent);line-height:1;text-shadow:0 0 30px rgba(232, 163, 61,0.4);font-variant-numeric:tabular-nums;">…</span>
           <span style="font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--text-muted);">/ <span id="founders-target-2">100</span></span>
         </div>
 
         <!-- Progress bar -->
-        <div style="max-width:400px;margin:0 auto 1.5rem;background:rgba(196,136,90,0.1);border-radius:999px;height:8px;overflow:hidden;border:1px solid rgba(196,136,90,0.2);">
+        <div style="max-width:400px;margin:0 auto 1.5rem;background:rgba(232, 163, 61,0.1);border-radius:999px;height:8px;overflow:hidden;border:1px solid rgba(232, 163, 61,0.2);">
           <div id="stars-progress" style="background:linear-gradient(90deg,var(--accent),#f4dcc4);height:100%;width:1%;border-radius:999px;transition:width 1s cubic-bezier(0.16,1,0.3,1);box-shadow:0 0 12px var(--accent);"></div>
         </div>
 
         <!-- The big star button -->
         <a href="https://github.com/Raffa-jarrl/Lictor-AI" target="_blank" rel="noopener" id="star-cta"
-           style="display:inline-flex;align-items:center;gap:.6rem;background:var(--accent);color:#0d0e12;padding:.95rem 2rem;border-radius:999px;text-decoration:none;font-weight:700;font-size:1rem;box-shadow:0 8px 24px rgba(196,136,90,0.4);transition:transform .2s ease, box-shadow .2s ease;">
+           style="display:inline-flex;align-items:center;gap:.6rem;background:var(--accent);color:#0d0e12;padding:.95rem 2rem;border-radius:999px;text-decoration:none;font-weight:700;font-size:1rem;box-shadow:0 8px 24px rgba(232, 163, 61,0.4);transition:transform .2s ease, box-shadow .2s ease;">
           <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" style="display:inline-block;"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg>
           <span id="star-cta-text">Star on GitHub — 4 seconds</span>
         </a>
@@ -259,7 +259,7 @@
         } else {
           wall.innerHTML = gazers.map(u => `
             <a href="${u.html_url}" target="_blank" rel="noopener" title="@${u.login}" style="text-decoration:none;">
-              <img src="${u.avatar_url}&s=48" width="36" height="36" style="border-radius:50%;border:1px solid rgba(196,136,90,0.3);transition:transform .2s, border-color .2s;" onmouseover="this.style.transform='scale(1.12)';this.style.borderColor='var(--accent)';" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(196,136,90,0.3)';" />
+              <img src="${u.avatar_url}&s=48" width="36" height="36" style="border-radius:50%;border:1px solid rgba(232, 163, 61,0.3);transition:transform .2s, border-color .2s;" onmouseover="this.style.transform='scale(1.12)';this.style.borderColor='var(--accent)';" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(232, 163, 61,0.3)';" />
             </a>
           `).join('');
         }
@@ -342,8 +342,8 @@
     </section>
 
     <!-- FLAGSHIP — Lictor Isolation OS (USB-bootable AI workspace) -->
-    <section id="isolation-os" class="suite" style="position:relative;overflow:hidden;border-top:1px solid rgba(196,136,90,.18);">
-      <div style="position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:480px;height:200px;background:radial-gradient(ellipse,rgba(196,136,90,.20),transparent 70%);filter:blur(40px);pointer-events:none;"></div>
+    <section id="isolation-os" class="suite" style="position:relative;overflow:hidden;border-top:1px solid rgba(232, 163, 61,.18);">
+      <div style="position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:480px;height:200px;background:radial-gradient(ellipse,rgba(232, 163, 61,.20),transparent 70%);filter:blur(40px);pointer-events:none;"></div>
       <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.15em;color:var(--accent);text-transform:uppercase;text-align:center;margin-bottom:.6rem;">🔥 Flagship · early access</div>
       <h2 class="section__title fx-reveal">Boot AI. Touch nothing.</h2>
       <p class="section__sub fx-reveal">
@@ -378,7 +378,7 @@
       </p>
 
       <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:1.5rem;">
-        <a href="mailto:Raffa@Lictor-AI.com?subject=Lictor%20Isolation%20OS%20%E2%80%94%20early%20access" class="shell-btn shell-btn--primary">Get early access &rarr;</a>
+        <a href="/isolation-os" class="shell-btn shell-btn--primary">Join the free beta &rarr;</a>
         <a href="/business" class="shell-btn shell-btn--ghost">For Business &rarr;</a>
       </div>
     </section>
@@ -433,7 +433,7 @@
         <p style="text-align:center;color:var(--text-muted);font-size:.95rem;margin-bottom:.75rem;">First, one-time setup (any tool):</p>
         <div style="background:var(--surface,#1A2028);border:1px solid var(--border,#2A323E);border-radius:14px;padding:1.25rem 1.75rem;position:relative;">
           <pre style="margin:0;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.95rem;line-height:1.7;color:var(--text);white-space:pre-wrap;overflow-x:auto;">git clone https://github.com/Raffa-jarrl/Lictor-AI.git ~/Code/lictor</pre>
-          <button onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText);this.textContent='✓ Copied';setTimeout(()=>this.textContent='Copy',2000)" style="position:absolute;top:.85rem;right:1rem;background:var(--accent,#C9A23B);color:#0d0e12;border:none;border-radius:6px;padding:.3rem .7rem;font-size:.75rem;font-weight:600;cursor:pointer;font-family:inherit;">Copy</button>
+          <button onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText);this.textContent='✓ Copied';setTimeout(()=>this.textContent='Copy',2000)" style="position:absolute;top:.85rem;right:1rem;background:var(--accent,#E8A33D);color:#0d0e12;border:none;border-radius:6px;padding:.3rem .7rem;font-size:.75rem;font-weight:600;cursor:pointer;font-family:inherit;">Copy</button>
         </div>
       </div>
 
@@ -707,9 +707,11 @@ const client = wrap(new OpenAI(), {
         AI API calls from your phone — for executives, journalists, founders whose AI assistant
         has access to sensitive data.
       </p>
-      <form class="waitlist__form" action="https://formspree.io/f/REPLACE_ME" method="POST">
-        <input type="email" name="email" required placeholder="you@example.com" />
+      <form class="waitlist__form" action="/api/waitlist" method="post">
+        <input type="email" name="email" required placeholder="you@example.com" aria-label="Email address" />
         <button type="submit">Join the waitlist</button>
+        <input type="hidden" name="metadata__product" value="sentry" />
+        <input type="hidden" name="redirect" value="/" />
       </form>
       <p class="waitlist__small">
         We&rsquo;ll only email you when Sentry is ready to install. No newsletter.
@@ -770,6 +772,8 @@ const client = wrap(new OpenAI(), {
       <span class="mono">v0.1.0-alpha · Pre-launch</span>
     </div>
   </footer>
+
+  <script src="/static/waitlist.js" defer></script>
 
   <!-- ════════ Hero 3D — live shield + orbiting suite nodes ════════ -->
   <script>

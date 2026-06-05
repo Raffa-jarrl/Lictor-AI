@@ -20,10 +20,10 @@
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   color: var(--accent);
-  background: var(--accent-tint);          /* was rgba(201,162,59,0.1) */
+  background: var(--accent-tint);          /* was rgba(232, 163, 61,0.1) */
   padding: 0.35rem 0.75rem;
   border-radius: var(--radius-pill);
-  border: 1px solid var(--accent-tint-strong); /* was rgba(201,162,59,0.3) */
+  border: 1px solid var(--accent-tint-strong); /* was rgba(232, 163, 61,0.3) */
   margin-bottom: 1.5rem;
 }
 

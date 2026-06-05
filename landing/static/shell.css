@@ -76,7 +76,7 @@ main { display: block; }
   content: "";
   position: absolute;
   inset: -25%;
-  background: radial-gradient(circle, rgba(196, 136, 90, 0.18), transparent 65%);
+  background: radial-gradient(circle, rgba(232, 163, 61, 0.18), transparent 65%);
   filter: blur(28px);
   z-index: -1;
   animation: shell-mark-pulse 4s ease-in-out infinite;
@@ -87,7 +87,7 @@ main { display: block; }
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 20px 50px rgba(196, 136, 90, 0.35));
+  filter: drop-shadow(0 20px 50px rgba(232, 163, 61, 0.35));
 }
 .page-hero__tagline {
   font-family: 'Cormorant Garamond', serif;
@@ -154,7 +154,7 @@ main { display: block; }
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 .shell-card:hover {
-  border-color: var(--accent, #C9A23B);
+  border-color: var(--accent, #E8A33D);
   transform: translateY(-2px);
 }
 
@@ -164,7 +164,7 @@ main { display: block; }
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2.2rem, 4vw, 2.8rem);
   font-weight: 700;
-  color: var(--accent, #C9A23B);
+  color: var(--accent, #E8A33D);
   line-height: 1;
 }
 .shell-stat__label {
@@ -188,9 +188,9 @@ main { display: block; }
   transition: transform 0.2s, background 0.2s, border-color 0.2s;
 }
 .shell-btn--primary {
-  background: var(--accent, #C9A23B);
+  background: var(--accent, #E8A33D);
   color: #0d0e12;
-  border-color: var(--accent, #C9A23B);
+  border-color: var(--accent, #E8A33D);
 }
 .shell-btn--primary:hover { transform: translateY(-1px); background: var(--accent-hover, #D8B04A); }
 .shell-btn--ghost {
@@ -198,7 +198,7 @@ main { display: block; }
   color: var(--text);
   border-color: var(--border-light, #3A4250);
 }
-.shell-btn--ghost:hover { border-color: var(--accent, #C9A23B); color: var(--accent); }
+.shell-btn--ghost:hover { border-color: var(--accent, #E8A33D); color: var(--accent); }
 
 /* ----- Footer baseline ----- */
 .shell-footer {
