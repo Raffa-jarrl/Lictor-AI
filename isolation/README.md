@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://lictor-ai.com"><img src="https://raw.githubusercontent.com/Raffa-jarrl/Lictor-AI/main/brand/lictor-badge-256.png" alt="Lictor AI" width="120"></a>
+</p>
+
 # Lictor Isolation — the red/black AI sandbox
 
 > **Part of [Lictor for Business](../README.md#-lictor-for-business--secure-the-company--202627-roadmap).** A pre-isolated machine to run and test AI agents *off* your real network — no environment-building required.
