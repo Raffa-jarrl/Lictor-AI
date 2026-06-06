@@ -88,9 +88,9 @@ for s in [16,32,48,128,256,512,1024]:
 tile(400,0.12).convert("RGB").save(P("brand","profile-400.png"))
 # studio Tauri
 os.makedirs(P("studio","src-tauri","icons"),exist_ok=True)
-tile(32).convert("RGB").save(P("studio","src-tauri","icons","32x32.png"))
-tile(128).convert("RGB").save(P("studio","src-tauri","icons","128x128.png"))
-tile(256).convert("RGB").save(P("studio","src-tauri","icons","128x128@2x.png"))
+tile(32).save(P("studio","src-tauri","icons","32x32.png"))            # keep RGBA — Tauri generate_context!() rejects RGB
+tile(128).save(P("studio","src-tauri","icons","128x128.png"))
+tile(256).save(P("studio","src-tauri","icons","128x128@2x.png"))
 tile(256).save(P("studio","src-tauri","icons","icon.ico"),sizes=[(16,16),(32,32),(48,48),(64,64),(128,128),(256,256)])
 for nm,sz in [("16x16",16),("16x16@2x",32),("32x32",32),("32x32@2x",64),("128x128",128),
               ("128x128@2x",256),("256x256",256),("256x256@2x",512),("512x512",512),("512x512@2x",1024)]:
