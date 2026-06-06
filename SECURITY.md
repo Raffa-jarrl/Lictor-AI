@@ -1,5 +1,29 @@
 # Security policy
 
+## How we disclose issues we find in *your* code
+
+Lictor is a security scanner. When our research surfaces a **potential** issue in
+someone else's project, **we disclose it privately — never as a public GitHub
+issue.** A public "security finding" issue points every onlooker at a possible
+weakness before the maintainer has had a chance to fix it. That is the opposite of
+helping. Our outbound-disclosure rules:
+
+- **Private first.** We contact the maintainer through a private channel (their
+  `SECURITY.md` contact or a GitHub *private security advisory*) — never a public
+  issue, PR, or comment.
+- **Detection-only, non-exploitative.** Lictor confirms a *signature*, not a
+  payload. We do not read your data, dump your database, or exploit the finding.
+  Every disclosure states explicitly what we did **not** do.
+- **No naming-and-shaming.** We never publish the name of an affected project
+  next to an unfixed finding. Aggregate, anonymized statistics only.
+- **You set the clock.** Coordinated disclosure on the maintainer's timeline.
+
+> **Correction (June 2026):** earlier in development we opened a small number of
+> *public* "Security finding" issues on third-party repositories. That was a
+> mistake — it is exactly the practice this section now forbids. Those issues have
+> been closed, no Lictor tooling opens public issues, and our thanks go to the
+> maintainers who flagged it.
+
 ## Reporting a vulnerability
 
 If you've found a security issue **in Lictor itself** (not in a site that Lictor scans), please report it privately.
