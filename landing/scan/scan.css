@@ -190,3 +190,24 @@
   border-top: 1px solid var(--border);
 }
 .waitlist-footer .link { color: var(--accent); }
+
+/* ── Inline scorecard (rendered by scan.js from /api/scan) ───────────────── */
+.status-live { color: #6fcaa0; font-weight: 600; }
+#scan-result { max-width: 680px; margin: 1.5rem auto 0; }
+.scan-card { background: var(--surface, #11141A); border: 1px solid var(--border, #251E17); border-radius: 12px; padding: 1.4rem 1.5rem; text-align: left; }
+.scan-card--busy { display: flex; align-items: center; gap: 14px; color: var(--text-muted, #8E887B); }
+.scan-card--err { border-color: #C0392B; }
+.scan-spin { width: 22px; height: 22px; border: 3px solid rgba(232,163,61,.25); border-top-color: #E8A33D; border-radius: 50%; animation: scanspin .8s linear infinite; flex: none; }
+@keyframes scanspin { to { transform: rotate(360deg); } }
+.scan-card__head { display: flex; align-items: center; gap: 18px; border-bottom: 1px solid var(--border, #251E17); padding-bottom: 1rem; margin-bottom: 1rem; }
+.scan-grade { font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: 3.4rem; line-height: 1; width: 74px; height: 74px; display: flex; align-items: center; justify-content: center; border: 3px solid; border-radius: 14px; flex: none; }
+.scan-card__host { font-family: "JetBrains Mono", monospace; font-size: 1.05rem; color: var(--text, #ECE3D6); word-break: break-all; }
+.scan-card__score { color: var(--text-muted, #8E887B); font-size: .9rem; margin-top: 4px; }
+.scan-findings { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .85rem; }
+.scan-finding { display: flex; gap: 12px; align-items: flex-start; }
+.scan-badge { flex: none; font-family: "JetBrains Mono", monospace; font-size: .66rem; font-weight: 600; letter-spacing: .06em; padding: 4px 8px; border-radius: 999px; border: 1px solid; margin-top: 2px; }
+.scan-finding__t { font-weight: 600; color: var(--text, #ECE3D6); font-size: .95rem; }
+.scan-finding__d { color: var(--text-muted, #8E887B); font-size: .86rem; margin-top: 2px; line-height: 1.5; }
+.scan-finding__f { color: #E8A33D; font-size: .82rem; margin-top: 4px; }
+.scan-card__note { color: var(--text-muted, #8E887B); font-size: .8rem; margin-top: 1.1rem; border-top: 1px solid var(--border, #251E17); padding-top: .9rem; line-height: 1.6; }
+.scan-card__note code { font-family: "JetBrains Mono", monospace; color: #E8A33D; font-size: .8rem; background: rgba(232,163,61,.08); padding: 1px 5px; border-radius: 4px; }
