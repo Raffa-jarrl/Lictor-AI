@@ -75,6 +75,7 @@ def tile(size,pad=0.10):
     inner=int(size*(1-2*pad)); c=Image.new("RGBA",(size,size),(7,8,9,255))
     c.alpha_composite(badge.resize((inner,inner),Image.LANCZOS),((size-inner)//2,)*2); return c
 def svg(path,png,vb):
+    os.makedirs(os.path.dirname(path), exist_ok=True)  # dist/ dirs may not exist on a fresh checkout
     b=base64.b64encode(open(png,"rb").read()).decode()
     open(path,"w").write('<?xml version="1.0" encoding="UTF-8"?>\n'
       '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" '
