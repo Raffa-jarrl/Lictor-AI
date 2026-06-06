@@ -47,6 +47,19 @@ if [ "${1:-render}" = "--check" ]; then
   exit $([ "$miss" -eq 0 ] && echo 0 || echo 1)
 fi
 
+# Raster regeneration needs Pillow. If it's missing (e.g. a CI runner that only has
+# rsvg/sips), the brand assets are already committed and correct — try to install
+# Pillow, and if that isn't possible, skip regeneration rather than fail the build.
+if ! python3 -c "import PIL" >/dev/null 2>&1; then
+  python3 -m pip install --quiet Pillow >/dev/null 2>&1 \
+    || python3 -m pip install --quiet --user Pillow >/dev/null 2>&1 \
+    || python3 -m pip install --quiet --break-system-packages Pillow >/dev/null 2>&1 || true
+fi
+if ! python3 -c "import PIL" >/dev/null 2>&1; then
+  echo "  Pillow unavailable — using the committed brand assets (skipping regeneration)."
+  exit 0
+fi
+
 ICONSET="$(mktemp -d)/lictor.iconset"; mkdir -p "$ICONSET"
 echo "Rendering brand assets from $MASTER …"
 REPO="$REPO" MASTER="$MASTER" ICONSET="$ICONSET" python3 - <<'PY'
