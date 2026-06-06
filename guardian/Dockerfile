@@ -16,7 +16,9 @@ RUN corepack enable
 
 # Install against the committed lockfile for reproducible builds.
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+# pnpm 11 blocks dependency build scripts (esbuild/sharp) by default; allow them
+# non-interactively for a reproducible image build.
+RUN pnpm install --frozen-lockfile --config.dangerouslyAllowAllBuilds=true
 
 # ─── Stage 2: build ─────────────────────────────────────────────────────────
 FROM node:22-bookworm-slim AS build
