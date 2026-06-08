@@ -189,6 +189,21 @@ export async function runScan(input, env, ip) {
   };
 }
 
+// ── consented telemetry (anonymous, aggregate-only) ──────────────────────────
+// Privacy contract: this record carries ONLY the finding TYPES + severities and
+// the grade. It NEVER includes the URL, host, IP, response bodies, or any value
+// read from the scanned site. Written only when the user explicitly opts in
+// (see /api/scan onRequestPost).
+export function buildTelemetry(result) {
+  return {
+    v: 1,
+    grade: result.grade,
+    score: result.score,
+    findings: (result.findings || []).filter((x) => x.severity !== "pass").map((x) => ({ t: x.id, s: x.severity })),
+    at: result.scannedAt,
+  };
+}
+
 // ── helpers ──────────────────────────────────────────────────────────────────
 function f(id, severity, title, detail, fix) { return { id, severity, title, detail, fix }; }
 function info(id, title, detail, fix) { return { id, severity: "info", title, detail, fix }; }
