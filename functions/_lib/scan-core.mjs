@@ -25,12 +25,30 @@ const PRIVATE_V4 = [
   /^100\.(6[4-9]|[7-9]\d|1[01]\d|12[0-7])\./, // CGNAT 100.64/10
 ];
 function isProbablyPrivateHost(host) {
-  const h = host.toLowerCase();
+  let h = host.toLowerCase().replace(/\.$/, "");                 // strip trailing dot (localhost.)
+  if (h.startsWith("[") && h.endsWith("]")) h = h.slice(1, -1);  // unwrap IPv6 brackets — the old fc/fd test never matched
   if (h === "localhost" || h.endsWith(".local") || h.endsWith(".internal") || h.endsWith(".lan")) return true;
-  if (h === "::1" || h === "[::1]" || h.startsWith("fc") || h.startsWith("fd")) return true; // ipv6 loopback/ULA
-  if (h === "0.0.0.0" || h === "169.254.169.254") return true; // metadata
-  if (/^\d{1,3}(\.\d{1,3}){3}$/.test(h) && PRIVATE_V4.some((re) => re.test(h))) return true;
-  if (!h.includes(".")) return true; // bare hostname, no public TLD
+  if (!h.includes(":") && !h.includes(".")) return true;        // bare hostname / decimal-int IP, no public TLD
+  // IPv6 — loopback, unspecified, ULA (fc00::/7), link-local (fe80::/10), IPv4-mapped
+  if (h.includes(":")) {
+    if (h === "::1" || h === "::") return true;
+    if (/^0*:(0*:)*0*1$/.test(h)) return true;                  // expanded ::1
+    if (/^f[cd]/.test(h)) return true;                          // ULA
+    if (/^fe[89ab]/.test(h)) return true;                       // link-local
+    if (h.includes("::ffff:")) {                                // IPv4-mapped (dotted OR hex hextets) — classic SSRF bypass
+      const t = h.split("::ffff:")[1] || "";
+      let v4 = /^\d{1,3}(\.\d{1,3}){3}$/.test(t) ? t : null;
+      const hx = t.match(/^([0-9a-f]{1,4}):([0-9a-f]{1,4})$/);  // URL parser normalizes a.b.c.d → hex hextets
+      if (!v4 && hx) { const a = parseInt(hx[1], 16), b = parseInt(hx[2], 16); v4 = `${(a >> 8) & 255}.${a & 255}.${(b >> 8) & 255}.${b & 255}`; }
+      if (!v4) return true;                                     // unparseable mapped form — fail safe
+      if (v4 === "0.0.0.0" || v4 === "169.254.169.254" || PRIVATE_V4.some((re) => re.test(v4))) return true;
+    }
+    return false;
+  }
+  if (/^\d{1,3}(\.\d{1,3}){3}$/.test(h)) {                       // IPv4 literal
+    if (h === "0.0.0.0" || h === "169.254.169.254") return true;
+    if (PRIVATE_V4.some((re) => re.test(h))) return true;
+  }
   return false;
 }
 
