@@ -20,12 +20,14 @@
     e.preventDefault();
     const url = (input?.value || "").trim();
     if (!url) return;
+    // opt-in, anonymous research telemetry (default off; never sends your URL)
+    const consent = !!document.getElementById("scan-consent")?.checked;
     render(`<div class="scan-card scan-card--busy"><div class="scan-spin"></div><p>Scanning <strong>${esc(url)}</strong>… passive surface check, ~10&nbsp;seconds.</p></div>`);
     try {
       const res = await fetch("/api/scan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url }),
+        body: JSON.stringify({ url, consent }),
       });
       const data = await res.json();
       if (!res.ok) { renderError(data.error || "Scan failed.", url); return; }
