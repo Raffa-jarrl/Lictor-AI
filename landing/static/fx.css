@@ -371,16 +371,17 @@ html.fx-ready .fx-reveal:not(.fx-in) {
 
 /* Copper primary buttons with glow; refined glass ghost */
 .btn--primary, .shell-btn--primary {
-  background: linear-gradient(180deg, #d99c6d, var(--copper-1)) !important;
+  background: linear-gradient(180deg, var(--accent-hover, #F2B85C), var(--accent, #E8A33D)) !important;
   color: #1c1206 !important;
   font-weight: 700;
-  border: 1px solid rgba(255,255,255,0.14) !important;
-  box-shadow: 0 6px 20px rgba(232, 163, 61,0.30);
-  transition: transform .2s ease, box-shadow .2s ease;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  box-shadow: 0 8px 24px -4px rgba(232, 163, 61, 0.45), inset 0 1px 0 rgba(255,255,255,0.25);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
 }
 .btn--primary:hover, .shell-btn--primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 30px rgba(232, 163, 61,0.48);
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 14px 36px -6px rgba(232, 163, 61, 0.6), inset 0 1px 0 rgba(255,255,255,0.3);
 }
 .btn--ghost, .shell-btn--ghost {
   border: 1px solid rgba(232, 163, 61,0.30) !important;
