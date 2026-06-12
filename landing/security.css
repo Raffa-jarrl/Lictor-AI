@@ -833,3 +833,25 @@ details[open].mk-report__row > .mk-report__sum .mk-report__chev{transform:rotate
   .js .trustbar.in span:nth-child(3) .ic{ transition-delay:.65s; }
   .js .trustbar.in span:nth-child(4) .ic{ transition-delay:.85s; }
 }
+
+
+/* ---- 28. PRIDE BAR — top-of-site announcement, a place of honour ------
+   Static, dignified. Full-bleed progress-Pride rule along the bottom edge
+   echoes the site's hairline motif. Sits above the sticky nav and scrolls
+   away on its own. Ties Pride to the brand truth: security IS safety-for-all. */
+.pridebar{ background:var(--bg-raised); border-bottom:1px solid var(--line); position:relative; }
+.pridebar::after{ content:""; position:absolute; left:0; right:0; bottom:-1px; height:2px;
+  background:linear-gradient(90deg,
+    #E40303 0 14%, #FF8C00 14% 28%, #FFED00 28% 43%, #008026 43% 57%,
+    #004DFF 57% 71%, #750787 71% 85%, #613915 85% 90%, #000 90% 93%,
+    #5BCEFA 93% 96%, #F5A9B8 96% 99%, #FFFFFF 99% 100%); }
+.pridebar__in{ max-width:var(--max); margin-inline:auto; padding:.6rem var(--margin);
+  display:flex; align-items:center; justify-content:center; gap:.7rem;
+  text-align:center; font-size:.84rem; line-height:1.45; color:var(--body); }
+.pridebar__in b{ color:var(--cream); font-weight:600; }
+.pridebar__flag{ width:26px; height:17px; border-radius:3px; flex:none;
+  border:1px solid rgba(236,227,214,.18); }
+@media (max-width:560px){
+  .pridebar__in{ font-size:.74rem; gap:.5rem; padding:.5rem 1rem; }
+  .pridebar__flag{ width:22px; height:14px; }
+}
