@@ -16,7 +16,7 @@ html, body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -82,39 +82,7 @@ a:hover { text-decoration: underline; }
   color: var(--accent) !important;
 }
 
-/* ─── Hero ──────────────────────────────────────────────────────────────── */
-.hero {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 100px 32px 80px;
-  text-align: center;
-}
-
-.hero__title {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(40px, 6vw, 64px);
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 24px;
-  letter-spacing: -0.01em;
-}
-
-.hero__sub {
-  font-size: 18px;
-  color: var(--text);
-  max-width: 720px;
-  margin: 0 auto 32px;
-  line-height: 1.7;
-}
-
-.hero__cta {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-
+/* ─── Buttons (the .hero* rules were dead — homepage uses .page-hero) ───── */
 .btn {
   padding: 12px 24px;
   border-radius: 4px;
@@ -137,70 +105,80 @@ a:hover { text-decoration: underline; }
 }
 .btn--ghost:hover { border-color: var(--accent); text-decoration: none; }
 
-.hero__meta {
-  color: var(--text-muted);
-  font-size: 13px;
-  margin-top: 8px;
-}
-
 /* ─── Sections ──────────────────────────────────────────────────────────── */
 .section__title {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 36px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 12px;
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  text-align: left;
+  margin: 0 0 0.75rem;
 }
+.section__title em { font-style: italic; color: var(--accent); }
 .section__sub {
-  text-align: center;
+  text-align: left;
   color: var(--text-muted);
-  max-width: 640px;
-  margin: 0 auto 48px;
-  font-size: 16px;
+  max-width: 56ch;
+  margin: 1rem 0 var(--bay-half, 3.5rem);
+  font-size: 1.0625rem;
+  line-height: 1.6;
 }
 
 /* ─── Suite cards ───────────────────────────────────────────────────────── */
 .suite {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 80px 32px;
-  border-top: 1px solid var(--border);
+  padding: var(--bay, 7rem) var(--page-pad-x, 2rem);
+  border-top: var(--rule, 1px solid #20242C);
 }
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gutter, 1.5rem);
 }
+/* a lone card (the wedge skill feature) spans the row at a readable width */
+.cards > .card:only-child { grid-column: 1 / -1; max-width: 760px; }
 
 .card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 28px;
+  position: relative;
+  background: var(--card-grad, linear-gradient(180deg, #12151B 0%, #0D1015 100%));
+  border: var(--rule, 1px solid #20242C);
+  border-radius: var(--radius-md, 8px);
+  padding: 1.85rem;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow-page, 0 18px 40px -28px rgba(0, 0, 0, 0.82)), var(--bevel, inset 0 1px 0 rgba(236, 227, 214, 0.04));
 }
+.card:hover {
+  border-color: rgba(232, 163, 61, 0.28);
+}
+.card--shield { border-left: 2px solid var(--accent); }
 
 .card__pill {
   display: inline-block;
   width: fit-content;
   padding: 4px 10px;
-  background: var(--accent-tint);
-  border: 1px solid var(--accent);
-  border-radius: 3px;
+  background: transparent;
+  border: var(--rule-amber, 1px solid rgba(232, 163, 61, 0.28));
+  border-radius: var(--radius-sm, 4px);
   color: var(--accent);
-  font-size: 11px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.66rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 600;
+  letter-spacing: 0.16em;
+  font-weight: 500;
   margin-bottom: 16px;
 }
 
 .card__title {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 28px;
+  font-size: 1.85rem;
   font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   margin-bottom: 8px;
 }
 .card__title--accent { color: var(--accent); }
@@ -240,11 +218,11 @@ a:hover { text-decoration: underline; }
 }
 .card__points li:last-child { border-bottom: none; }
 .card__points li::before {
-  content: "›";
+  content: "–";
   position: absolute;
   left: 6px;
-  color: var(--accent);
-  font-weight: 700;
+  color: var(--text-muted);
+  font-weight: 400;
 }
 
 .card__cta {
@@ -254,42 +232,43 @@ a:hover { text-decoration: underline; }
   padding-top: 16px;
 }
 
-.card--guardian .card__pill { background: rgba(61, 124, 94, 0.15); border-color: var(--success); color: var(--success); }
+.card--guardian .card__pill { border-color: rgba(61, 124, 94, 0.45); color: var(--success); }
 
 /* ─── Why ───────────────────────────────────────────────────────────────── */
 .why {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 80px 32px;
-  border-top: 1px solid var(--border);
+  padding: var(--bay, 7rem) var(--page-pad-x, 2rem);
+  border-top: var(--rule, 1px solid #20242C);
 }
 
 .why__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gutter, 2rem) calc(var(--gutter, 2rem) * 1.5);
 }
 
 .why__item h3 {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 600;
   line-height: 1.3;
   margin-bottom: 12px;
-  color: var(--accent);
+  color: var(--text);
 }
 .why__item p {
-  color: var(--text);
+  color: var(--body, #C9C0B2);
   font-size: 15px;
   line-height: 1.7;
 }
+@media (max-width: 700px) { .why__grid { grid-template-columns: 1fr; } }
 
 /* ─── Waitlist ──────────────────────────────────────────────────────────── */
 .waitlist {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 80px 32px;
-  border-top: 1px solid var(--border);
+  padding: var(--bay, 7rem) var(--page-pad-x, 2rem);
+  border-top: var(--rule, 1px solid #20242C);
   text-align: center;
 }
 
@@ -330,17 +309,20 @@ a:hover { text-decoration: underline; }
   font-size: 12px;
 }
 
-/* ─── Founder ───────────────────────────────────────────────────────────── */
+/* ─── Founder — feature-article column with the amber spine ─────────────── */
 .founder {
-  max-width: 720px;
+  max-width: 72ch;
   margin: 0 auto;
-  padding: 80px 32px;
-  border-top: 1px solid var(--border);
+  padding: var(--bay, 7rem) var(--page-pad-x, 2rem);
+  border-top: var(--rule, 1px solid #20242C);
+  border-left: 2px solid var(--accent);
 }
 .founder__body {
-  font-size: 16px;
-  line-height: 1.8;
-  margin-bottom: 16px;
+  font-size: 1.15rem;
+  line-height: 1.85;
+  color: var(--body, #C9C0B2);
+  margin-bottom: 1.1rem;
+  max-width: var(--measure, 62ch);
 }
 
 /* ─── Footer ────────────────────────────────────────────────────────────── */
@@ -375,10 +357,11 @@ a:hover { text-decoration: underline; }
 }
 
 .footer h4 {
-  font-size: 12px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
+  letter-spacing: 0.18em;
+  color: var(--accent);
   margin-bottom: 12px;
 }
 .footer a {
@@ -402,15 +385,15 @@ a:hover { text-decoration: underline; }
 }
 
 /* ─── Mobile ────────────────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .cards { grid-template-columns: 1fr; }
+}
 @media (max-width: 700px) {
   .nav { padding: 16px 20px; }
   .nav__links { gap: 16px; font-size: 13px; }
   .nav__links a:not(.nav__github) { display: none; }
-  .hero { padding: 60px 20px 40px; }
-  .hero__title { font-size: 36px; }
-  .hero__sub { font-size: 16px; }
-  .suite, .why, .waitlist, .founder { padding: 60px 20px; }
-  .section__title { font-size: 28px; }
+  .suite, .why, .waitlist, .founder { padding: var(--bay-half, 3.5rem) 20px; }
+  .section__title { font-size: clamp(1.75rem, 7vw, 2.2rem); }
   .waitlist__form { flex-direction: column; }
   .footer__cols { grid-template-columns: 1fr; gap: 24px; }
   .footer__bottom { flex-direction: column; gap: 8px; }
