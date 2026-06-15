@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mission Control — Lictor AI · live agent status</title>
+  <title>Mission Control · Lictor AI live agent status</title>
   <meta name="description" content="The Lictor mission-control deck. 11 agents working in real time. Live disclosure queue. Recent activity. Scan status." />
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -28,7 +28,7 @@
       --panel-border: rgba(232, 163, 61, 0.25);
     }
     body { background: #050608; overflow-x: hidden; }
-    body::before, body::after { display: none; }  /* kill the default fx mesh — we have 3D instead */
+    body::before, body::after { display: none; }  /* kill the default fx mesh; we have 3D instead */
 
     /* The Three.js canvas sits behind everything */
     #scene-bg {
@@ -39,7 +39,7 @@
       height: 100vh;
     }
 
-    /* Glass panel system — all data overlays use this */
+    /* Glass panel system. All data overlays use this */
     .panel {
       background: var(--panel-bg);
       backdrop-filter: blur(20px) saturate(160%);
@@ -86,7 +86,7 @@
     }
     @keyframes pulse { 0%, 100% { opacity: 1 } 50% { opacity: .4 } }
 
-    /* Central HUD — 4 big stat counters */
+    /* Central HUD with 4 big stat counters */
     .mc-hud {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -114,7 +114,7 @@
       margin-top: .5rem; font-weight: 600;
     }
 
-    /* Agent grid — 11 stations */
+    /* Agent grid with 11 stations */
     .mc-section { padding: 1rem 2rem; max-width: 1400px; margin: 0 auto; }
     .mc-section__title {
       font-family: 'Cormorant Garamond', serif;
@@ -259,7 +259,7 @@
   <section class="mc-section" data-reveal>
     <h2 class="mc-section__title">🦉 Agent stations · Lictor crew</h2>
     <div class="mc-agents" id="agents-grid">
-      <!-- Populated by JS — each agent is a panel showing role + current status -->
+      <!-- Populated by JS. Each agent is a panel showing role + current status -->
     </div>
   </section>
 

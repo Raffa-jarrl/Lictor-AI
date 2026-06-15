@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lictor Scan — scorecard for lictor-ai.com</title>
-  <meta name="description" content="Public security scorecard for lictor-ai.com — the maintainer's own scan. We model the behavior we expect from everyone else." />
-  <meta property="og:title" content="Lictor Scan: A — lictor-ai.com" />
+  <title>Lictor Scan: scorecard for lictor-ai.com</title>
+  <meta name="description" content="Public security scorecard for lictor-ai.com, the maintainer's own scan. We model the behavior we expect from everyone else." />
+  <meta property="og:title" content="Lictor Scan: A for lictor-ai.com" />
   <meta property="og:description" content="We scan ourselves first, publicly." />
   <meta property="og:image" content="https://lictor-ai.com/og/og-image.png" />
 
@@ -62,7 +62,7 @@
 
     <section class="scorecard__summary" data-reveal>
       <p class="lede">
-        <strong>Clean.</strong> Zero critical or high-severity findings. Two medium-severity opportunities to harden further — both expected on a static site without an app surface. The scorecard below is permanent (open the menu to share or re-run).
+        <strong>Clean.</strong> Zero critical or high-severity findings. Two medium-severity opportunities to harden further, both expected on a static site without an app surface. The scorecard below is permanent (open the menu to share or re-run).
       </p>
       <div class="scorecard__counts">
         <div class="metric-tile"><span class="metric-tile__value">0</span><span class="metric-tile__label">Critical findings</span></div>
@@ -100,7 +100,7 @@
           <span class="finding-card__path">all routes</span>
         </header>
         <div class="finding-card__body">
-          <p>The site doesn't restrict access to high-risk browser features (camera, microphone, geolocation, payment). Same shape as the CSP finding — defense in depth against a future page that doesn't yet exist.</p>
+          <p>The site doesn't restrict access to high-risk browser features (camera, microphone, geolocation, payment). Same shape as the CSP finding. Defense in depth against a future page that doesn't yet exist.</p>
         </div>
         <div class="finding-card__fix">
           <div class="finding-card__fix-label">How to fix (3 min)</div>
@@ -117,8 +117,8 @@
           <span class="finding-card__path">all routes</span>
         </header>
         <div class="finding-card__body">
-          <p>The site loads Cormorant Garamond, Inter, and JetBrains Mono from Google Fonts. This is a third-party request from every page load — a privacy and performance tradeoff, not a security finding. Self-hosting the fonts would eliminate the request entirely.</p>
-          <p>Not flagging this as a problem — just letting you know it's there. The current loadout includes the <code>preconnect</code> hint, which is the right move if Google Fonts is staying.</p>
+          <p>The site loads Cormorant Garamond, Inter, and JetBrains Mono from Google Fonts. This is a third-party request on every page load (a privacy and performance tradeoff, not a security finding). Self-hosting the fonts would eliminate the request entirely.</p>
+          <p>Not flagging this as a problem, just letting you know it's there. The current loadout includes the <code>preconnect</code> hint, which is the right move if Google Fonts is staying.</p>
         </div>
       </article>
     </section>

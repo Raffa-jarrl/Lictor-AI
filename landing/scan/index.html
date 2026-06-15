@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lictor Scan — paste a URL, get a security grade for any AI-built app</title>
+  <title>Lictor Scan: paste a URL, get a security grade for any AI-built app</title>
   <meta name="description" content="Free, open-source security scanner for anything built with AI. Paste any URL, get a letter grade and the 5 worst findings in plain English. No signup, no telemetry, Apache 2.0." />
 
-  <meta property="og:title" content="Lictor Scan — paste a URL, get a security grade" />
+  <meta property="og:title" content="Lictor Scan: paste a URL, get a security grade" />
   <meta property="og:description" content="Free, open-source security scanner for AI-built apps." />
   <meta property="og:url" content="https://lictor-ai.com/scan" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://lictor-ai.com/og/og-image.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Lictor Scan — paste a URL, get a security grade" />
+  <meta name="twitter:title" content="Lictor Scan: paste a URL, get a security grade" />
   <meta name="twitter:image" content="https://lictor-ai.com/og/og-image.png" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -31,7 +31,7 @@
   <script src="/static/fx.js" defer></script>
   <link rel="canonical" href="https://lictor-ai.com/scan/" />
 
-  <!-- Structured data — SoftwareApplication for the public scanner -->
+  <!-- Structured data: SoftwareApplication for the public scanner -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -84,7 +84,7 @@
         Paste a URL. <em>Get a security grade.</em>
       </h1>
       <p class="scan-hero__sub">
-        Free public scanner for AI-built apps. Built for projects deployed from any AI-generated app — but works on anything public. Takes about 30 seconds.
+        Free public scanner for AI-built apps. Built for projects deployed from any AI-generated app, but it works on anything public. Takes about 30 seconds.
       </p>
 
       <form class="scan-form" id="scan-form" action="/api/scan" method="post" autocomplete="off">
@@ -101,12 +101,12 @@
         <button type="submit">Scan →</button>
         <label for="scan-consent" style="display:flex;gap:.5rem;align-items:flex-start;margin-top:.75rem;font-size:.8rem;color:#8E887B;line-height:1.45;cursor:pointer;">
           <input type="checkbox" id="scan-consent" name="consent" style="margin-top:.2rem;flex:none;accent-color:#E8A33D;" />
-          <span>Help Lictor's open security research — share <strong>anonymous</strong> results. We never store your URL or anything from your site, only which <em>types</em> of issues were found.</span>
+          <span>Help Lictor's open security research. Share <strong>anonymous</strong> results. We never store your URL or anything from your site, only which <em>types</em> of issues were found.</span>
         </label>
       </form>
 
       <p class="scan-meta">
-        Free, passive surface check — HTTPS, security headers, exposed files — graded in plain English.
+        Free, passive surface check of HTTPS, security headers, and exposed files, graded in plain English.
         No signup, no telemetry. Want a deep audit of your code? Run the open-source CLI.
       </p>
     </section>
@@ -146,10 +146,10 @@
       <h2 class="section__title fx-reveal">What we do with your scan.</h2>
       <ul class="privacy-list">
         <li><strong class="ok">We never store your URL or scorecard publicly without your consent.</strong> Your scan is yours.</li>
-        <li><strong class="ok">We store one anonymous fingerprint per scan</strong> — a hash of (check + severity + platform) with no URL, no app name, no PII. This builds the public dataset on how AI assistants get security wrong.</li>
-        <li><strong class="ok">Patrol — our continuous scanner — respects a 30-day private-disclosure window</strong> for individual founders and 90 days for companies.
+        <li><strong class="ok">We store one anonymous fingerprint per scan</strong>, a hash of (check + severity + platform) with no URL, no app name, no PII. This builds the public dataset on how AI assistants get security wrong.</li>
+        <li><strong class="ok">Patrol (our continuous scanner) respects a 30-day private-disclosure window</strong> for individual founders and 90 days for companies.
       </li>
-        <li><strong class="ok">One-click opt-out</strong> at <code>lictor-ai.com/scan/&lt;hash&gt;/remove</code> — Meerkat processes within 24 hours.</li>
+        <li><strong class="ok">One-click opt-out</strong> at <code>lictor-ai.com/scan/&lt;hash&gt;/remove</code>. Meerkat processes it within 24 hours.</li>
         <li><strong class="ok">Zero telemetry, ever.</strong> The CLI version is also free and runs entirely offline.</li>
       </ul>
     </section>
@@ -157,7 +157,7 @@
     <!-- Install the Claude Code skill (cross-link from /scan) -->
     <section class="shell-section" data-reveal style="border-top:1px solid var(--border);">
       <div class="shell-section__head">
-        <h2>Or run it locally — 3 commands, 30 seconds</h2>
+        <h2>Or run it locally. 3 commands, 30 seconds</h2>
         <p>Prefer to run inside your editor instead of pasting a URL? Lictor ships as a Claude Code skill. Paste 3 commands and type <code>/lictor-security-check</code> in any project.</p>
       </div>
       <div class="codex-glass" style="max-width:760px;margin:0 auto;background:var(--surface,#1A2028);border:1px solid var(--border,#2A323E);border-radius:14px;padding:1.75rem;position:relative;">
@@ -177,7 +177,7 @@ cp -r ~/Code/lictor/skills/lictor-* ~/.claude/skills/</pre>
     <section class="scan-pricing" data-reveal>
       <h2 class="section__title fx-reveal">It's free. Forever.</h2>
       <p class="section__sub fx-reveal">
-        Lictor's core is open source under Apache 2.0. The scanner runs on Cloudflare Workers ($30/month at our projected volumes) and a domain (one-time). The audit corpus, the public scorecards, the leaderboard — all free.
+        Lictor's core is open source under Apache 2.0. The scanner runs on Cloudflare Workers ($30/month at our projected volumes) and a domain (one-time). The audit corpus, the public scorecards, and the leaderboard are all free.
       </p>
       <p class="section__sub fx-reveal">
         If Lictor helps you ship a safer app, the world treats back the same:

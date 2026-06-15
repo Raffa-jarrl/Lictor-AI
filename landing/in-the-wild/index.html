@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>In the wild — Lictor AI roadmap & disclosure stories</title>
-  <meta name="description" content="What Lictor has found in the wild — and what's shipping next. Mobile, browser extensions, CI/CD pipelines, AI feature SDK, and more." />
-  <meta property="og:title" content="Lictor AI — In the wild" />
+  <title>In the wild: Lictor AI roadmap & disclosure stories</title>
+  <meta name="description" content="What Lictor has found in the wild, and what's shipping next. Mobile, browser extensions, CI/CD pipelines, AI feature SDK, and more." />
+  <meta property="og:title" content="Lictor AI in the wild" />
   <meta property="og:description" content="Disclosure stories + what's coming next." />
   <meta property="og:url" content="https://lictor-ai.com/in-the-wild" />
   <meta property="og:image" content="https://lictor-ai.com/og-image.png" />
@@ -53,7 +53,7 @@
       </div>
       <h1>In the <span class="fx-gradient-text">wild</span>.</h1>
       <p class="page-hero__tagline">What we've found. What's shipping next.</p>
-      <p>Every disclosure Lictor has sent to a maintainer, every scanner we've built, and the honest roadmap of what's coming — including the surfaces we haven't covered yet.</p>
+      <p>Every disclosure Lictor has sent to a maintainer, every scanner we've built, and the honest roadmap of what's coming, including the surfaces we haven't covered yet.</p>
     </section>
 
     <!-- WHAT'S SHIPPED -->
@@ -75,7 +75,7 @@
         </div>
         <div class="shell-card codex-glass codex-lift">
           <h3>🔍 Patrol auto-scanner</h3>
-          <p>Continuous discovery of vibe-coded repos with hardcoded secrets — Supabase service-role JWTs, Firebase service-account JSONs, DB creds, bot tokens, GitHub Actions RCE patterns. <strong>184 verified disclosures sent to date</strong> across 9 vulnerability classes — 15 already addressed by maintainers, 1 confirmed fix in 24 hours.</p>
+          <p>Continuous discovery of vibe-coded repos with hardcoded secrets: Supabase service-role JWTs, Firebase service-account JSONs, DB creds, bot tokens, GitHub Actions RCE patterns. <strong>184 verified disclosures sent to date</strong> across 9 vulnerability classes. 15 are already addressed by maintainers, with 1 confirmed fix in 24 hours.</p>
           <a href="https://github.com/Raffa-jarrl/Lictor-AI/tree/main/scripts" class="link">See scanners →</a>
         </div>
       </div>
@@ -84,8 +84,8 @@
     <!-- COMING NEXT -->
     <section class="shell-section divider-top" data-reveal>
       <div class="shell-section__head">
-        <h2>Coming next — in development</h2>
-        <p>The honest roadmap. No "shipping Q4 2027" theatre — these are the surfaces we're actively building scanners for.</p>
+        <h2>Coming next, in development</h2>
+        <p>The honest roadmap. No "shipping Q4 2027" theatre. These are the surfaces we're actively building scanners for.</p>
       </div>
       <div class="shell-grid shell-grid--3">
 
@@ -128,7 +128,7 @@
       </div>
     </section>
 
-    <!-- REAL FINDINGS — examples by category -->
+    <!-- REAL FINDINGS: examples by category -->
     <section class="shell-section divider-top" data-reveal>
       <div class="shell-section__head">
         <h2>What we&rsquo;re actually finding</h2>
@@ -153,19 +153,19 @@
         <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">🟠 8 FOUND</div>
           <h3>DB connection strings with passwords</h3>
-          <p>Live <code>postgres://user:password@host/db</code> or <code>mongodb+srv://...</code> connection strings in <code>.env.production</code> files committed to public source. Filtered out localhost / private IPs / placeholder passwords — only real-host real-credential cases get contacted.</p>
+          <p>Live <code>postgres://user:password@host/db</code> or <code>mongodb+srv://...</code> connection strings in <code>.env.production</code> files committed to public source. Filtered out localhost / private IPs / placeholder passwords. Only real-host real-credential cases get contacted.</p>
         </div>
 
         <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">🟡 4 FOUND</div>
           <h3>SaaS API keys (Mailchimp · Twilio · etc)</h3>
-          <p>Hardcoded Mailchimp keys (list-takeover risk), Twilio Account SID + Auth Token pairs (SMS spend takeover — bots scrape GitHub for exactly this combo). One Twilio finding in an active multi-user whiteboard app.</p>
+          <p>Hardcoded Mailchimp keys (list-takeover risk), Twilio Account SID + Auth Token pairs (SMS spend takeover, since bots scrape GitHub for exactly this combo). One Twilio finding in an active multi-user whiteboard app.</p>
         </div>
 
         <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">🟡 5 FOUND</div>
           <h3>LLM keys in HuggingFace Spaces</h3>
-          <p>Hardcoded Google Gemini / Groq API keys in the public <code>app.py</code> of HF Spaces — including an active immigration-assistance chatbot. HF Spaces are public source by design; anyone with the URL can read the key out.</p>
+          <p>Hardcoded Google Gemini / Groq API keys in the public <code>app.py</code> of HF Spaces, including an active immigration-assistance chatbot. HF Spaces are public source by design; anyone with the URL can read the key out.</p>
         </div>
 
         <div class="shell-card codex-glass codex-lift">
@@ -177,11 +177,11 @@
       </div>
     </section>
 
-    <!-- EXTERNAL ATTACK-SURFACE SCAN — MAY 2026 -->
+    <!-- EXTERNAL ATTACK-SURFACE SCAN: MAY 2026 -->
     <section class="shell-section divider-top" data-reveal>
       <div class="shell-section__head">
-        <h2>External attack-surface scanning &mdash; May 2026</h2>
-        <p>Two waves of scanning across 36 million subdomains (chaos bug-bounty corpus) + 7,736 deep-scanned hosts. Every finding was disclosed privately by email to the affected organisation or cloud provider under the 60-day Coordinated Vulnerability Disclosure norm. <strong>Zero victim names published &mdash; only finding categories and counts.</strong></p>
+        <h2>External attack-surface scanning, May 2026</h2>
+        <p>Two waves of scanning across 36 million subdomains (chaos bug-bounty corpus) + 7,736 deep-scanned hosts. Every finding was disclosed privately by email to the affected organisation or cloud provider under the 60-day Coordinated Vulnerability Disclosure norm. <strong>Zero victim names published. Only finding categories and counts.</strong></p>
       </div>
 
       <!-- Aggregate stats (updated 2026-05-24) -->
@@ -204,10 +204,10 @@
         </div>
       </div>
 
-      <h3 style="margin-top:2.5rem;color:var(--accent);">Week 1 (May 19&ndash;22): Attack-surface scanner battery</h3>
+      <h3 style="margin-top:2.5rem;color:var(--accent);">Week 1 (May 19-22): Attack-surface scanner battery</h3>
       <p class="text-meta-md">5-day scan against 7,736 hosts across DeFi, Fortune 500, healthcare, fintech, government, and major SaaS platforms. Routed via Immunefi, HackerOne, CERT-IL, CERT-MX, JPCERT, BSI, and direct <code>security@</code> contacts.</p>
 
-      <!-- Category breakdown — finding TYPE only, never targets -->
+      <!-- Category breakdown: finding TYPE only, never targets -->
       <div class="shell-grid shell-grid--3 mt-4">
 
         <div class="shell-card codex-glass codex-lift">
@@ -215,10 +215,10 @@
           <h3>Frontend source code leaks</h3>
           <p>Initial scan surfaced 292 hosts serving <code>.js.map</code> sourcemap files. After content-quality validation (does the bundle actually reveal customer code, or is it just vendor library boilerplate?), the honest breakdown:</p>
           <ul style="color:var(--text-muted);font-size:.85rem;margin:.5rem 0 .5rem 1rem;line-height:1.7;">
-            <li><strong>44 HIGH</strong> &mdash; significant custom code + internal API endpoints revealed</li>
-            <li><strong>81 MEDIUM</strong> &mdash; custom code revealed but no clear endpoints</li>
-            <li><strong>116 LOW</strong> &mdash; mostly Stencil / React / framework boilerplate (no real impact)</li>
-            <li><strong>45 EMPTY</strong> &mdash; stub files or framework-only content &mdash; reclassified as non-findings</li>
+            <li><strong>44 HIGH</strong>: significant custom code + internal API endpoints revealed</li>
+            <li><strong>81 MEDIUM</strong>: custom code revealed but no clear endpoints</li>
+            <li><strong>116 LOW</strong>: mostly Stencil / React / framework boilerplate (no real impact)</li>
+            <li><strong>45 EMPTY</strong>: stub files or framework-only content, reclassified as non-findings</li>
           </ul>
           <p class="text-meta">Industries observed in HIGH tier: DeFi protocols, cross-chain bridges, sportsbook, major Fortune 500 enterprises.</p>
         </div>
@@ -226,7 +226,7 @@
         <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128992; 33 FOUND</div>
           <h3>Spoofable enterprise email domains</h3>
-          <p>Missing or weak SPF, DMARC, or DKIM at Fortune 500 enterprises &mdash; meaning attackers can send mail that appears to come from these domains. The lowest-effort phishing-enablement vector in the report.</p>
+          <p>Missing or weak SPF, DMARC, or DKIM at Fortune 500 enterprises, meaning attackers can send mail that appears to come from these domains. The lowest-effort phishing-enablement vector in the report.</p>
           <p class="text-meta">Includes banks, retail brands, news media, and a major airline.</p>
         </div>
 
@@ -240,7 +240,7 @@
         <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128992; 14 FOUND</div>
           <h3>End-of-life software stacks (HIGH)</h3>
-          <p>Production-facing services running components that no longer receive security patches from upstream &mdash; permanent HIGH-severity exposure until upgraded. Includes Apache 2.2.x, PHP 5.x, OpenSSL 1.0.x, and several end-of-life CMS versions.</p>
+          <p>Production-facing services running components that no longer receive security patches from upstream. That's permanent HIGH-severity exposure until upgraded. Includes Apache 2.2.x, PHP 5.x, OpenSSL 1.0.x, and several end-of-life CMS versions.</p>
         </div>
 
         <div class="shell-card codex-glass codex-lift">
@@ -253,7 +253,7 @@
         <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128993; 26 FOUND</div>
           <h3>New subdomain exposures</h3>
-          <p>Subdomain enumeration surfaced web assets the org didn't realise it was hosting &mdash; deprecated apps, forgotten staging environments, unmonitored marketing landing pages. Each one is a potential attacker entry point that nobody is patching.</p>
+          <p>Subdomain enumeration surfaced web assets the org didn't realise it was hosting: deprecated apps, forgotten staging environments, unmonitored marketing landing pages. Each one is a potential attacker entry point that nobody is patching.</p>
         </div>
 
       </div>
@@ -263,28 +263,28 @@
       </p>
 
       <!-- WEEK 2: AI provider + cloud credential leak hunting (May 23-24) -->
-      <h3 style="margin-top:3rem;color:var(--accent);">Week 2 (May 23&ndash;24): AI provider + cloud credential leak hunting</h3>
-      <p class="text-meta-md">Six new high-fidelity scanner modules went live: <code>patrol-aws-keys</code>, <code>patrol-ai-saas-keys</code> (32 vendor patterns), <code>patrol-firebase</code>, <code>patrol-bot-tokens</code>, <code>patrol-gitlab</code>, <code>scan-buckets-massive</code>. Each verified credential is fetched and regex-confirmed in the original source file before disclosure. All routed in bulk to provider security teams that have the customer mapping we don't &mdash; they auto-revoke and notify affected accounts.</p>
+      <h3 style="margin-top:3rem;color:var(--accent);">Week 2 (May 23-24): AI provider + cloud credential leak hunting</h3>
+      <p class="text-meta-md">Six new high-fidelity scanner modules went live: <code>patrol-aws-keys</code>, <code>patrol-ai-saas-keys</code> (32 vendor patterns), <code>patrol-firebase</code>, <code>patrol-bot-tokens</code>, <code>patrol-gitlab</code>, <code>scan-buckets-massive</code>. Each verified credential is fetched and regex-confirmed in the original source file before disclosure. All routed in bulk to provider security teams that have the customer mapping we don't. They auto-revoke and notify affected accounts.</p>
 
       <div class="shell-grid shell-grid--3 mt-4">
 
         <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128308; 47 LEAKED &middot; 39 WITH PAIRED SECRET</div>
           <h3>AWS access keys in public source</h3>
-          <p>Live AWS access key IDs (<code>AKIA*</code>) discovered in committed code on GitHub. 39 of 47 had a matching <code>AKIASecretAccessKey</code> in the same file &mdash; full-account-takeover material. Disclosed in one batch to AWS Security for auto-revoke.</p>
+          <p>Live AWS access key IDs (<code>AKIA*</code>) discovered in committed code on GitHub. 39 of 47 had a matching <code>AKIASecretAccessKey</code> in the same file, which is full-account-takeover material. Disclosed in one batch to AWS Security for auto-revoke.</p>
           <p class="text-meta">Predominantly found in <code>.tf</code> terraform files, <code>.travis.yml</code>, <code>.env</code> files committed by students and bootcamp learners.</p>
         </div>
 
         <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128308; 31 LEAKED</div>
           <h3>OpenAI API keys</h3>
-          <p>Live <code>sk-proj-*</code> project-scoped API keys committed to public repos &mdash; mostly in Python/Node tutorial code (RAG examples, ChatGPT wrappers, study projects). Batch-disclosed to OpenAI Security. Within hours, the report was assigned to a named OpenAI engineer for triage.</p>
+          <p>Live <code>sk-proj-*</code> project-scoped API keys committed to public repos, mostly in Python/Node tutorial code (RAG examples, ChatGPT wrappers, study projects). Batch-disclosed to OpenAI Security. Within hours, the report was assigned to a named OpenAI engineer for triage.</p>
         </div>
 
         <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128308; 21 LEAKED</div>
           <h3>HuggingFace tokens</h3>
-          <p>Live <code>hf_*</code> user-access tokens in public repos. Often co-located with other credentials (AWS, OpenAI) in the same <code>.env</code> file &mdash; suggests the same user/team has multiple credentials at risk. Batch-disclosed to HuggingFace Security.</p>
+          <p>Live <code>hf_*</code> user-access tokens in public repos. Often co-located with other credentials (AWS, OpenAI) in the same <code>.env</code> file, which suggests the same user/team has multiple credentials at risk. Batch-disclosed to HuggingFace Security.</p>
         </div>
 
         <div class="shell-card codex-glass codex-lift">
@@ -296,7 +296,7 @@
         <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128308; 105 LEAKED</div>
           <h3>Google Cloud / Firebase credentials</h3>
-          <p>81 Firebase admin-SDK JSON files (full RSA <code>private_key</code> + <code>client_email</code>) on GitHub + 24 Google AI / Firebase configs on GitLab. Combined batch to Google Security &mdash; auto-acknowledged via their security-noreply system.</p>
+          <p>81 Firebase admin-SDK JSON files (full RSA <code>private_key</code> + <code>client_email</code>) on GitHub + 24 Google AI / Firebase configs on GitLab. Combined batch to Google Security, auto-acknowledged via their security-noreply system.</p>
           <p class="text-meta">Predominantly student / bootcamp / hobbyist repos. Several repeat-offender accounts identified for coordinated rotation.</p>
         </div>
 
@@ -315,14 +315,14 @@
             <li><strong>13 DigitalOcean Spaces</strong> &rarr; DigitalOcean abuse (auto-acked)</li>
             <li><strong>7 Wasabi</strong> &rarr; Wasabi security</li>
           </ul>
-          <p class="text-meta"><strong>Bucket contents were never listed</strong> &mdash; we only verified the listing permission exists. Providers identify the owner from internal records.</p>
+          <p class="text-meta"><strong>Bucket contents were never listed.</strong> We only verified the listing permission exists. Providers identify the owner from internal records.</p>
         </div>
 
         <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128308; 19 VERIFIED TAKEOVERS</div>
           <h3>Subdomain takeover candidates</h3>
           <p>Subdomains of bug-bounty-eligible programs with dangling DNS records pointing to unclaimed Vercel / Fastly / Heroku / Unbounce / CloudFront resources. Anyone could register the dangling resource and serve attacker content at a high-trust subdomain.</p>
-          <p class="text-meta">Disclosed individually to each affected program's security team (10+ Fortune 500 / unicorn / major-SaaS bug-bounty programs across crypto, fintech, retail, payments, AI-tooling, hosting, and travel). One human-engineer reply received within hours; multiple auto-acks from established programs. <strong>We never registered any dangling resource &mdash; fingerprint match only, per industry standard (subjack / can-i-take-over-xyz / nuclei takeover templates).</strong></p>
+          <p class="text-meta">Disclosed individually to each affected program's security team (10+ Fortune 500 / unicorn / major-SaaS bug-bounty programs across crypto, fintech, retail, payments, AI-tooling, hosting, and travel). One human-engineer reply received within hours; multiple auto-acks from established programs. <strong>We never registered any dangling resource. Fingerprint match only, per industry standard (subjack / can-i-take-over-xyz / nuclei takeover templates).</strong></p>
         </div>
 
         <div class="shell-card codex-glass codex-lift">
@@ -335,13 +335,13 @@
 
       <!-- ANTI-FP DIFFERENTIATOR -->
       <h3 style="margin-top:3rem;color:var(--accent);">The anti-FP rigor that's actually the product</h3>
-      <p class="text-meta-md">Scanners are easy to write. Scanners that don't burn researcher credibility on false positives are hard. Every false-positive class we encounter becomes a permanent filter rule in the codebase &mdash; the catalogue grew from 13 to 16 classes this week.</p>
+      <p class="text-meta-md">Scanners are easy to write. Scanners that don't burn researcher credibility on false positives are hard. Every false-positive class we encounter becomes a permanent filter rule in the codebase. The catalogue grew from 13 to 16 classes this week.</p>
 
       <div class="shell-grid shell-grid--3 mt-4">
         <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">FP CLASS #14</div>
           <h3>HEAD response Content-Type trust bypass</h3>
-          <p>Some servers (Cloudflare, SPA shells) return CT=<code>text/plain</code> on HEAD but <code>text/html</code> body on GET. Filters gated on HEAD's CT never engaged &mdash; phantom "exposed debug endpoint" findings shipped. Fix: always fetch the body, never trust HEAD's CT.</p>
+          <p>Some servers (Cloudflare, SPA shells) return CT=<code>text/plain</code> on HEAD but <code>text/html</code> body on GET. Filters gated on HEAD's CT never engaged, so phantom "exposed debug endpoint" findings shipped. Fix: always fetch the body, never trust HEAD's CT.</p>
         </div>
 
         <div class="shell-card codex-glass codex-lift">
@@ -358,7 +358,7 @@
       </div>
 
       <p style="text-align:center;margin-top:2rem;color:var(--text-muted);font-size:.85rem;max-width:780px;margin-left:auto;margin-right:auto;">
-        Real example of the impact: the admin-panels scanner pre-fix returned <strong>818 findings</strong> on a 507-host corpus &mdash; near 100% false positives from SPA fallbacks, catchall APIs, and WAF blocks. Post-fix, the same FP-fixed scanner returns <strong>0 findings</strong> on the same 6-host test corpus &mdash; correct, since none of those hosts genuinely had exposed admin panels. The work that didn't go into a disclosure email is the most valuable work we did this week.
+        Real example of the impact: the admin-panels scanner pre-fix returned <strong>818 findings</strong> on a 507-host corpus, near 100% false positives from SPA fallbacks, catchall APIs, and WAF blocks. Post-fix, the same FP-fixed scanner returns <strong>0 findings</strong> on the same 6-host test corpus, which is correct, since none of those hosts genuinely had exposed admin panels. The work that didn't go into a disclosure email is the most valuable work we did this week.
       </p>
     </section>
 
@@ -375,10 +375,10 @@
           &ldquo;Thanks. Now it is fixed.&rdquo;
         </p>
         <p style="color:var(--text-muted);font-size:.9rem;margin:0;">
-          — the maintainer of a disclosed open-source project
+          the maintainer of a disclosed open-source project
         </p>
         <p style="margin-top:1.5rem;color:var(--text-muted);font-size:.9rem;line-height:1.6;">
-          Our scanner flagged a <code>pull_request_target</code> workflow that checked out the PR&rsquo;s head SHA — the classic GitHub Actions RCE pattern. We sent a private contact-request with no public details. The maintainer replied 22 hours later with the fix already merged. Zero back-and-forth. This is exactly the loop Lictor was built for.
+          Our scanner flagged a <code>pull_request_target</code> workflow that checked out the PR&rsquo;s head SHA, the classic GitHub Actions RCE pattern. We sent a private contact-request with no public details. The maintainer replied 22 hours later with the fix already merged. Zero back-and-forth. This is exactly the loop Lictor was built for.
         </p>
       </div>
     </section>
@@ -391,10 +391,10 @@
       </div>
       <div style="max-width:760px;margin:0 auto;color:var(--text-muted);line-height:1.7;">
         <p>On May 17, our scanner flagged 8 Israeli sites as having a <strong>painted-lock <code>/admin</code> page</strong> (page returns content before redirecting to login). We sent contact-requests to all 8.</p>
-        <p>Then we ran a stricter verifier. <strong>All 8 were false positives.</strong> The sites were behind WAFs (Radware, Cloudflare) or were Next.js SPAs returning the same HTML shell for any path — both look like "admin loads without login" to a naive scanner.</p>
-        <p>We <strong>retracted all 8 issues publicly</strong> within 30 minutes — apology comment + closed as &ldquo;not planned&rdquo; — and shipped a verifier upgrade (WAF detection + content-type check + non-redirect-follow) the same hour. The full retraction template:</p>
+        <p>Then we ran a stricter verifier. <strong>All 8 were false positives.</strong> The sites were behind WAFs (Radware, Cloudflare) or were Next.js SPAs returning the same HTML shell for any path. Both look like "admin loads without login" to a naive scanner.</p>
+        <p>We <strong>retracted all 8 issues publicly</strong> within 30 minutes (apology comment plus closed as &ldquo;not planned&rdquo;) and shipped a verifier upgrade (WAF detection + content-type check + non-redirect-follow) the same hour. The full retraction template:</p>
         <blockquote style="border-left:3px solid var(--copper-2);padding:0 1.25rem;margin:1rem 0;color:var(--text-muted);font-style:italic;">
-          &ldquo;On re-verification with stricter heuristics, this report appears to be a false positive from our scanner&hellip; This is a bug in our scanner. We&rsquo;re closing this issue and fixing the detection logic so it doesn&rsquo;t happen again. Sorry for the noise — I appreciate you being patient with an automated outreach tool that&rsquo;s clearly still learning its job. Voice + accuracy are the product; today this report failed on accuracy.&rdquo;
+          &ldquo;On re-verification with stricter heuristics, this report appears to be a false positive from our scanner&hellip; This is a bug in our scanner. We&rsquo;re closing this issue and fixing the detection logic so it doesn&rsquo;t happen again. Sorry for the noise. I appreciate you being patient with an automated outreach tool that&rsquo;s clearly still learning its job. Voice + accuracy are the product; today this report failed on accuracy.&rdquo;
         </blockquote>
         <p style="margin-top:1.5rem;font-size:.9rem;">
           Net result: 8 maintainers spent &lt;5 minutes each, none were embarrassed, our voice promise held. We&rsquo;d rather eat the apology than ship the lie. <a href="https://github.com/Raffa-jarrl/Lictor-AI/commit/main" class="link">The verifier fix is in the open-source code.</a>
@@ -434,17 +434,17 @@
       <div style="max-width:760px;margin:3rem auto 0;">
         <h3 style="font-family:'Cormorant Garamond',serif;text-align:center;margin-bottom:1.5rem;">Notable targets contacted</h3>
         <ul style="list-style:none;padding:0;color:var(--text-muted);line-height:1.8;">
-          <li>🔹 <strong>kubevela/terraform-controller</strong> — 162★ CNCF-adjacent infra · Firebase service-account exposure</li>
-          <li>🔹 <strong>dotnet/macios</strong> — 2,861★ Microsoft .NET MAUI iOS/macOS bindings · PR-target RCE</li>
-          <li>🔹 <strong>sigma67/ytmusicapi</strong> — 2,694★ YouTube Music API client · PR-target RCE (mitigated by contributor approval)</li>
-          <li>🔹 <strong>prusa3d/Prusa-Firmware</strong> — 2,108★ 3D printer firmware · PR-target RCE</li>
-          <li>🔹 <strong>liquibase/liquibase</strong> — 5,501★ enterprise Java DB migration tool · PR-target RCE</li>
-          <li>🔹 <strong>langwatch/langwatch</strong> — 3,258★ LLM observability · PR-target RCE (acknowledged)</li>
-          <li>🔹 <strong>HaiMengg/WNC-InternetBanking-BE</strong> — internet banking backend · Firebase service-account</li>
-          <li>🔹 <strong>Invention-Minds/Hospital-Admin-Panel-Backend</strong> — healthcare admin · Firebase service-account</li>
+          <li>🔹 <strong>kubevela/terraform-controller</strong>: 162★ CNCF-adjacent infra · Firebase service-account exposure</li>
+          <li>🔹 <strong>dotnet/macios</strong>: 2,861★ Microsoft .NET MAUI iOS/macOS bindings · PR-target RCE</li>
+          <li>🔹 <strong>sigma67/ytmusicapi</strong>: 2,694★ YouTube Music API client · PR-target RCE (mitigated by contributor approval)</li>
+          <li>🔹 <strong>prusa3d/Prusa-Firmware</strong>: 2,108★ 3D printer firmware · PR-target RCE</li>
+          <li>🔹 <strong>liquibase/liquibase</strong>: 5,501★ enterprise Java DB migration tool · PR-target RCE</li>
+          <li>🔹 <strong>langwatch/langwatch</strong>: 3,258★ LLM observability · PR-target RCE (acknowledged)</li>
+          <li>🔹 <strong>HaiMengg/WNC-InternetBanking-BE</strong>: internet banking backend · Firebase service-account</li>
+          <li>🔹 <strong>Invention-Minds/Hospital-Admin-Panel-Backend</strong>: healthcare admin · Firebase service-account</li>
         </ul>
         <p style="text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--text-muted);">
-          Full disclosure list available privately on request — we keep details out of public view until maintainers rotate.
+          Full disclosure list available privately on request. We keep details out of public view until maintainers rotate.
         </p>
       </div>
     </section>
