@@ -206,7 +206,12 @@ body::before{ content:""; position:fixed; inset:0; z-index:-1; pointer-events:no
 @media(max-width:860px){ .eyebrow-num{ position:static; display:block; margin-bottom:.8rem; } }
 
 /* ---- 7. HERO + TRUST BAR ---------------------------------------------- */
-.hero{ padding-block:clamp(5rem,12vh,9rem) clamp(4.5rem,9vh,7rem); border-top:none; }
+.hero{ padding-block:clamp(5rem,12vh,9rem) clamp(4.5rem,9vh,7rem); border-top:none; position:relative; }
+/* soft amber aurora — adds depth behind the headline (static, motion-safe) */
+.hero::before{ content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(58% 52% at 20% 28%, rgba(232,163,61,.15), transparent 68%),
+    radial-gradient(42% 46% at 88% 74%, rgba(232,163,61,.07), transparent 70%); }
 .hero__grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:var(--s7u);
   align-items:center; }
 .hero__grid>*{ min-width:0; }
@@ -214,7 +219,9 @@ body::before{ content:""; position:fixed; inset:0; z-index:-1; pointer-events:no
 .hero h1{ font-family:var(--sans); font-weight:700; color:var(--cream);
   font-size:clamp(2.8rem,6.4vw,4.5rem); line-height:1.02; letter-spacing:-.03em;
   margin:0 0 var(--s4u); }
-.hero h1 em{ color:var(--amber); }
+.hero h1 em{ color:var(--amber);
+  background:linear-gradient(120deg,#F2B85C,#E8A33D 55%,#F2B85C);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
 .hero__tag{ font-family:var(--sans); font-weight:500; font-size:clamp(1.15rem,1.8vw,1.4rem);
   color:var(--muted-br); line-height:1.4; margin-bottom:var(--s4u); max-width:42ch;
   letter-spacing:-.01em; }
@@ -842,9 +849,8 @@ details[open].mk-report__row > .mk-report__sum .mk-report__chev{transform:rotate
 .pridebar{ background:var(--bg-raised); border-bottom:1px solid var(--line); position:relative; }
 .pridebar::after{ content:""; position:absolute; left:0; right:0; bottom:-1px; height:2px;
   background:linear-gradient(90deg,
-    #E40303 0 14%, #FF8C00 14% 28%, #FFED00 28% 43%, #008026 43% 57%,
-    #004DFF 57% 71%, #750787 71% 85%, #613915 85% 90%, #000 90% 93%,
-    #5BCEFA 93% 96%, #F5A9B8 96% 99%, #FFFFFF 99% 100%); }
+    #E40303 0 16.67%, #FF8C00 16.67% 33.33%, #FFED00 33.33% 50%,
+    #008026 50% 66.67%, #004DFF 66.67% 83.33%, #750787 83.33% 100%); }
 .pridebar__in{ max-width:var(--max); margin-inline:auto; padding:.6rem var(--margin);
   display:flex; align-items:center; justify-content:center; gap:.7rem;
   text-align:center; font-size:.84rem; line-height:1.45; color:var(--body); }

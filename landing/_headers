@@ -7,13 +7,21 @@
 
 /*
   # Defense-in-depth even though we have no user-generated content yet.
-  # script-src 'self' = no inline JS, no remote JS (scan.js is served from /scan/).
-  # style-src adds Google Fonts; img-src adds 'data:' so SVG <img> tags work.
-  # TODO(pre-Aug-15-launch): remove 'unsafe-inline' from script-src — currently
-  # required for the waitlist onsubmit attribute and the coming-soon.html
-  # query-param renderer. Refactor those to external JS + addEventListener,
-  # then drop 'unsafe-inline'.
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://scan-api.lictor-ai.com https://buttondown.com; form-action 'self' https://buttondown.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+  # script-src 'self' = no inline JS. All page scripts are now external files
+  # served from this origin (/static/*.js, /scan/scan.js, etc.); the former
+  # inline onsubmit/onclick handlers and inline <script> blocks were refactored
+  # to addEventListener in those files, so 'unsafe-inline' is GONE.
+  # The single allowed remote script origin is cdnjs (Three.js for the
+  # /mission-control background scene). style-src keeps 'unsafe-inline' because
+  # we still ship per-element style="" attributes + a few <style> blocks; that
+  # is a separate, lower-risk hardening item (no script execution).
+  # NOTE: the live GitHub star/commit widgets fetch api.github.com and load
+  # avatars from avatars.githubusercontent.com. Those calls are intentionally
+  # NOT in connect-src/img-src yet, so they fail closed (the widgets degrade
+  # gracefully to a dash / "view on GitHub" link). To light them up, add
+  # `https://api.github.com` to connect-src and `https://avatars.githubusercontent.com`
+  # to img-src.
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://scan-api.lictor-ai.com https://buttondown.com; form-action 'self' https://buttondown.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff

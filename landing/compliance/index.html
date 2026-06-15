@@ -31,6 +31,8 @@
   <link rel="stylesheet" href="/static/fx.css" />
   <script src="/static/fx.js" defer></script>
   <link rel="canonical" href="https://lictor-ai.com/compliance/" />
+  <link rel="stylesheet" href="/static/codex.css?v=1" />
+  <script src="/static/codex.js" defer></script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -40,9 +42,12 @@
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
+      <a href="/#pillars">Pillars</a>
       <a href="/#install">Install</a>
+      <a href="/mission-control">Mission Control</a>
       <a href="/scan">Scan</a>
       <a href="/patterns">Patterns</a>
+      <a href="/business">For Business</a>
       <a href="/donate">Support</a>
       <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
     </nav>
@@ -50,7 +55,8 @@
 
   <main id="main" class="doc">
     <!-- HERO -->
-    <header class="doc__hero">
+    <header class="doc__hero" style="position:relative;">
+      <svg class="codex-geo" viewBox="0 0 320 320" aria-hidden="true"><circle class="ink" cx="160" cy="160" r="150"/><circle class="ink" cx="160" cy="160" r="92"/><path class="ink" d="M10 160h300M160 10v300"/></svg>
       <p class="doc__crumb">› Compliance reference</p>
       <h1 class="doc__title">Compliance &amp; Regulatory Posture</h1>
       <p class="doc__sub">
@@ -90,7 +96,7 @@
 
       <!-- BODY -->
       <article class="prose">
-        <section id="what-this-is">
+        <section id="what-this-is" data-reveal>
           <h2>What this document is — and isn&rsquo;t</h2>
           <div class="callout callout--green">
             <p><strong>Is:</strong> a reference for how Lictor&rsquo;s products map onto the controls and articles enterprise customers need to satisfy. Authored by a cybersecurity engineer with 20 years of audit and advisory experience.</p>
@@ -104,7 +110,7 @@
         <hr />
 
         <!-- SOC 2 -->
-        <section id="soc2">
+        <section id="soc2" data-reveal>
           <h2>SOC 2 Trust Services Criteria</h2>
           <p>Lictor&rsquo;s products contribute evidence to the following <a href="https://www.aicpa.org/" rel="noopener">SOC 2 TSC</a> Common Criteria categories. The mapping below is what to put in your control matrix.</p>
 
@@ -145,7 +151,7 @@
         <hr />
 
         <!-- GDPR -->
-        <section id="gdpr">
+        <section id="gdpr" data-reveal>
           <h2>GDPR — Article 32 (Security of processing)</h2>
           <p>Article 32 requires data controllers and processors to implement <em>&ldquo;appropriate technical and organisational measures to ensure a level of security appropriate to the risk.&rdquo;</em> Lictor&rsquo;s products map onto specific Article 32(1) measures:</p>
 
@@ -183,7 +189,7 @@
         <hr />
 
         <!-- EU AI ACT -->
-        <section id="eu-ai-act">
+        <section id="eu-ai-act" data-reveal>
           <h2>EU AI Act — relevant articles</h2>
           <p>The <a href="https://artificialintelligenceact.eu/" rel="noopener">EU AI Act</a> is in phased enforcement through 2026–2027. Lictor&rsquo;s products are most relevant to providers and deployers of <em>high-risk</em> AI systems (Annex III categories) and to <em>general-purpose AI</em> providers.</p>
 
@@ -212,7 +218,7 @@
         <hr />
 
         <!-- NIST -->
-        <section id="nist">
+        <section id="nist" data-reveal>
           <h2>NIST AI RMF — alignment</h2>
           <p>The <a href="https://www.nist.gov/itl/ai-risk-management-framework" rel="noopener">NIST AI Risk Management Framework</a> maps cleanly onto Lictor&rsquo;s product surfaces:</p>
           <div class="table-wrap">
@@ -231,7 +237,7 @@
         <hr />
 
         <!-- ISO 42001 -->
-        <section id="iso-42001">
+        <section id="iso-42001" data-reveal>
           <h2>ISO/IEC 42001 (AI Management Systems)</h2>
           <p>ISO/IEC 42001 (published 2023) is the first AI-specific management-system standard. Lictor contributes evidence to the following clauses:</p>
           <ul>
@@ -246,7 +252,7 @@
         <hr />
 
         <!-- WE DO -->
-        <section id="we-do">
+        <section id="we-do" data-reveal>
           <h2>What Lictor itself does for compliance</h2>
           <p>We&rsquo;re a security company. Walking the talk:</p>
           <ul class="bullets">
@@ -262,7 +268,7 @@
         <hr />
 
         <!-- TRUST CENTER -->
-        <section id="trust-center">
+        <section id="trust-center" data-reveal>
           <h2>Trust Center (planned, Q1 2027)</h2>
           <p>Once Guardian has paying customers, the public Trust Center at <code>lictor-ai.com/trust</code> will publish:</p>
           <ul>
@@ -278,20 +284,20 @@
         <hr />
 
         <!-- CONTACT -->
-        <section id="contact">
+        <section id="contact" data-reveal>
           <h2>Questions / contact</h2>
           <div class="contact-grid">
-            <a href="mailto:Raffa@Lictor-AI.com" class="contact-card">
+            <a href="mailto:Raffa@Lictor-AI.com" class="contact-card codex-lift">
               <div class="contact-card__label">Vendor risk reviews</div>
               <div class="contact-card__email">Raffa@Lictor-AI.com</div>
               <div class="contact-card__note">Channel opens at launch.</div>
             </a>
-            <a href="mailto:Raffa@Lictor-AI.com" class="contact-card">
+            <a href="mailto:Raffa@Lictor-AI.com" class="contact-card codex-lift">
               <div class="contact-card__label">Security disclosures</div>
               <div class="contact-card__email">Raffa@Lictor-AI.com</div>
               <div class="contact-card__note">Coordinated disclosure per <code>SECURITY.md</code>.</div>
             </a>
-            <a href="mailto:Raffa@Lictor-AI.com" class="contact-card">
+            <a href="mailto:Raffa@Lictor-AI.com" class="contact-card codex-lift">
               <div class="contact-card__label">Self-hosting (regulated industries)</div>
               <div class="contact-card__email">Raffa@Lictor-AI.com</div>
               <div class="contact-card__note">Sovereign cloud, air-gapped, FedRAMP discussions welcome.</div>
@@ -300,7 +306,7 @@
         </section>
 
         <!-- Procurement CTA box -->
-        <aside class="rfp-box">
+        <aside class="rfp-box codex-glass codex-lift" data-reveal>
           <h3>Need this in a procurement-ready PDF?</h3>
           <p>Email <a href="mailto:Raffa@Lictor-AI.com">Raffa@Lictor-AI.com</a> with your security questionnaire (CAIQ, SIG, custom) and we&rsquo;ll return the same content mapped onto your control framework within 5 business days. Free for the first 100 enterprise requests.</p>
         </aside>

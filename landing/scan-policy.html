@@ -22,44 +22,59 @@
   .foot{margin-top:3rem;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);padding-top:1rem}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/codex.css?v=1" />
+<script src="/static/codex.js" defer></script>
 </head>
 <body>
+<header class="nav"><div class="nav__in">
+  <a href="/" class="brand"><img src="/static/lictor-mark.png" alt="" width="26" height="26" /><span>Lictor <span class="brand__name--accent">AI</span></span></a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="/#pillars">Pillars</a>
+    <a href="/#install">Install</a>
+    <a href="/mission-control">🛰 Mission Control</a>
+    <a href="/scan">Scan</a>
+    <a href="/patterns">Patterns</a>
+    <a href="/business">For Business</a>
+    <a href="/donate">Support</a>
+    <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
+  </nav>
+</div></header>
 <div class="wrap">
   <h1>Lictor Scanning Policy</h1>
   <div class="sub">If you reached this page from a <code>Lictor-Patrol</code> User-Agent in your logs, this explains who we are and how to opt out instantly.</div>
 
-  <div class="card">
+  <div class="card codex-glass" data-reveal>
     <strong>Lictor is an independent security-research project.</strong> We look for <em>publicly exposed</em> security problems — leaked credentials, exposed config files, and subdomain takeovers — and we privately notify the owners so they can fix them before criminals find them. We are not attacking you; we are trying to help you, for free.
   </div>
 
-  <h2>What we do</h2>
-  <ul>
+  <h2 data-reveal>What we do</h2>
+  <ul data-reveal>
     <li><span class="ok">✓</span> Send a small number of lightweight, identifiable requests to observe whether an exposure is <em>present</em>.</li>
     <li><span class="ok">✓</span> Prefer <code>HEAD</code> requests on anything sensitive — we detect, we do not download your data.</li>
     <li><span class="ok">✓</span> Rate-limit ourselves and spread DNS across public resolvers — gentle on your infrastructure.</li>
     <li><span class="ok">✓</span> Disclose privately and responsibly, and report only aggregate statistics in public — never your name.</li>
   </ul>
 
-  <h2>What we never do</h2>
-  <ul>
+  <h2 data-reveal>What we never do</h2>
+  <ul data-reveal>
     <li><span class="no">✗</span> Exploit a vulnerability, read credential contents, or exfiltrate data.</li>
     <li><span class="no">✗</span> Brute-force logins, fuzz, or run denial-of-service / disruptive tests.</li>
     <li><span class="no">✗</span> Publish, sell, or share what we find with anyone but you.</li>
   </ul>
 
-  <h2>How to identify us</h2>
-  <ul>
+  <h2 data-reveal>How to identify us</h2>
+  <ul data-reveal>
     <li>User-Agent: <code>Lictor-Patrol/1.0 (+https://lictor-ai.com/scan-policy; abuse@lictor-ai.com)</code></li>
     <li>All requests are read-only and rate-limited.</li>
   </ul>
 
-  <div class="optout">
+  <div class="optout codex-glass" data-reveal>
     <h2 style="margin-top:0">Opt out — instantly, no questions asked</h2>
     Email <a href="mailto:abuse@lictor-ai.com">abuse@lictor-ai.com</a> with the domain(s) you want excluded. We add you to our permanent exclusion list and you will not be contacted or scanned again. If you are an ISP or hosting provider acting on behalf of customers, send the range or domain list and we will honor it the same way.
   </div>
 
-  <h2>Abuse & contact</h2>
-  <p>Security or abuse questions: <a href="mailto:abuse@lictor-ai.com">abuse@lictor-ai.com</a>. We respond to every message from a real person within one business day.</p>
+  <h2 data-reveal>Abuse & contact</h2>
+  <p data-reveal>Security or abuse questions: <a href="mailto:abuse@lictor-ai.com">abuse@lictor-ai.com</a>. We respond to every message from a real person within one business day.</p>
 
   <div class="foot">
     Lictor · independent security research · responsible disclosure only · <a href="/.well-known/security.txt">security.txt</a>

@@ -1,0 +1,592 @@
+/* ============================================================================
+   CODEX LICTOR — codex.css  ·  standalone homepage stylesheet
+   Leonardo's engineering folio applied to the Lictor AI security suite.
+   Loads ALONE — no fx.css / shell.css / style.css / fx.js. Zero motion.
+   φ-derived geometry. Amber ink on charcoal vellum. Museum restraint.
+
+   Fonts (loaded in <head>):
+     Cormorant Garamond  500 / 600 / 700  + italic 600   (the codex hand)
+     Inter               400 / 500 / 600 / 700           (readable body only)
+     JetBrains Mono      400 / 500                        (the measurement instrument)
+
+   STRUCTURE
+     1  reset + motion-kill
+     2  tokens (φ scale, inks, surfaces, hairlines, legacy aliases)
+     3  base type + helpers
+     4  nav
+     5  folio section shell + chapter header + dividers + marginalia
+     6  hero (frontispiece)
+     7  buttons + links
+     8  plate / exhibit frame + sacred terminal
+     9  pillars machine (SVG + instrument legend)
+    10  install catalogue
+    11  bands (isolation flagship, sentry pre-announce)
+    12  deep-dive plates (suite)
+    13  crew roster
+    14  why-now
+    15  star / founders appeal
+    16  faq
+    17  founder bio (drop-cap)
+    18  waitlist CTA
+    19  colophon footer
+    20  print niceties
+    21  responsive  (1024 / 860 / 640 / 420)
+============================================================================ */
+
+/* ---- 1. RESET + MOTION-KILL -------------------------------------------- */
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; scroll-behavior:auto; }
+body{ min-height:100%; text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  font-synthesis:none; overflow-x:hidden; }
+img,svg{ display:block; max-width:100%; }
+button,input{ font:inherit; color:inherit; }
+button{ background:none; border:none; cursor:pointer; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; }
+:where(h1,h2,h3,h4){ font-weight:inherit; }
+/* Hard kill of any inherited motion — only instant colour/border feedback survives */
+*,*::before,*::after{
+  animation:none !important;
+  transition:color .12s ease, border-color .12s ease,
+             background-color .12s ease, outline-color .12s ease !important;
+}
+@media (prefers-reduced-motion:reduce){ *,*::before,*::after{ transition:none !important; } }
+
+/* ---- 2. TOKENS -------------------------------------------------------- */
+:root{
+  /* inks */
+  --bg:#070809;            /* near-black charcoal — the vellum-dark page */
+  --cream:#ECE3D6;         /* headings, display — the bright rag */
+  --body:#C9C0B2;          /* running text */
+  --muted:#8E887B;         /* annotations, marginalia, mono labels */
+  --muted-br:#A89F90;      /* ledes — one notch up for italic readability */
+  --amber:#E8A33D;         /* THE ink. Accent only. */
+  --amber-hi:#F2B85C;      /* hover/active lift of amber (colour only) */
+  --ink:#0d0e12;           /* text on amber fills */
+
+  /* surfaces — cool charcoals, never warm (warmth is reserved for amber) */
+  --s1:#0B0D11;            /* raised panels, plate ground, table ground */
+  --s2:#0E1117;            /* terminal body / inset code ground */
+  --s3:#12151B;            /* hover ground on rows, nav scrim */
+  --term-bar:#15171d;      /* terminal title bar (sacred) */
+  --amber-tint:rgba(232,163,61,.05);
+
+  /* hairlines — three ink dilutions + construction stroke */
+  --rule-faint:rgba(236,227,214,.07);
+  --rule:rgba(236,227,214,.11);
+  --rule-amber:rgba(232,163,61,.30);
+  --hair-amber-f:rgba(232,163,61,.14);
+
+  /* severity (terminal + finding marks only) */
+  --sev-crit:#FF6B60; --sev-high:#FFBD2E; --sev-med:#E8A33D; --sev-ok:#3DDC84;
+
+  /* LEGACY ALIASES — the verbatim terminal spans and JS-injected markup
+     reference these var names from the old stylesheets. Defined here so
+     codex.css is fully standalone and the reused markup renders correctly. */
+  --text:#C9C0B2; --text-muted:#8E887B; --accent:#E8A33D; --success:#3DDC84; --max-width:1180px;
+
+  /* φ spacing scale — each step ×1.618 from a 1rem optical base */
+  --s-0:.382rem;  --s-1:.618rem;  --s-2:1rem;     --s-3:1.618rem;
+  --s-4:2.618rem; --s-5:4.236rem; --s-6:6.854rem;
+  --pad-y:clamp(var(--s-5),11vh,var(--s-6));
+
+  /* frame */
+  --max:1180px;
+  --margin:clamp(1.5rem,5.6vw,5rem);     /* the wide parchment margin */
+  --rail:clamp(48px,7vw,92px);           /* folio-numeral rail ≈ 0.618in */
+  --measure:64ch;                        /* body prose line length */
+  --measure-narrow:38rem;                /* golden single-column measure */
+
+  /* faces */
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --radius:6px; --radius-sm:3px;
+}
+
+/* ---- 3. BASE TYPE + HELPERS ------------------------------------------- */
+body{ background:var(--bg); color:var(--body); font-family:var(--sans);
+  font-size:1rem; line-height:1.62; letter-spacing:.005em;
+  font-variant-numeric:tabular-nums; }
+::selection{ background:rgba(232,163,61,.22); color:var(--cream); }
+strong{ font-weight:600; color:var(--cream); }
+em{ font-style:italic; }
+code{ font-family:var(--mono); font-size:.86em; color:var(--amber); }
+/* inline gloss inside body prose — a quattrocento serif accent */
+p em, li em{ font-family:var(--serif); font-style:italic; font-weight:600;
+  color:var(--amber); font-size:1.06em; }
+p code, li code{ background:var(--amber-tint); padding:.04em .34em; border-radius:3px; }
+
+/* JS-injected milestone spans + any legacy gradient-text -> solid amber italic */
+.fx-gradient-text{ color:var(--amber); font-style:italic; }
+
+.frame{ max-width:var(--max); margin-inline:auto; padding-inline:var(--margin); }
+.measure{ max-width:var(--measure); }
+.prose{ font-size:1rem; line-height:1.62; color:var(--body); max-width:var(--measure); }
+.prose + .prose{ margin-top:var(--s-2); }
+.mono{ font-family:var(--mono); }
+.center{ text-align:center; }
+
+.skip-link{ position:absolute; left:-999px; top:0; background:var(--amber);
+  color:var(--ink); padding:.6rem 1rem; z-index:100; font-family:var(--mono);
+  font-size:.75rem; letter-spacing:.06em; }
+.skip-link:focus{ left:.5rem; top:.5rem; }
+
+/* kicker / eyebrow */
+.kicker{ font-family:var(--mono); font-weight:500; font-size:.7rem;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--amber);
+  display:block; }
+
+/* plate / fig caption */
+.plate-cap{ font-family:var(--mono); font-weight:500; font-size:.66rem;
+  letter-spacing:.28em; text-transform:uppercase; color:rgba(232,163,61,.85);
+  display:flex; align-items:center; gap:.6rem; }
+.plate-cap::before{ content:""; width:18px; height:1px; background:var(--rule-amber); flex:none; }
+.plate-cap b{ color:var(--amber); font-weight:500; }
+
+/* ---- 4. NAV ----------------------------------------------------------- */
+.nav{ position:sticky; top:0; z-index:50;
+  background:rgba(7,8,9,.80); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule); }
+.nav__in{ max-width:var(--max); margin-inline:auto;
+  padding:.85rem var(--margin); display:flex; align-items:center; gap:var(--s-3); }
+.brand{ display:flex; align-items:center; gap:.55rem; font-family:var(--serif);
+  font-size:1.32rem; font-weight:600; color:var(--cream); letter-spacing:-.01em; }
+.brand img{ width:26px; height:26px; }
+.brand__name--accent{ color:var(--amber); font-weight:600; font-style:italic; }
+.nav__links{ margin-left:auto; display:flex; align-items:center;
+  gap:1.3rem; flex-wrap:wrap; }
+.nav__links a{ font-family:var(--sans); font-weight:500; font-size:.82rem;
+  color:var(--muted); letter-spacing:.01em; }
+.nav__links a:hover{ color:var(--cream); }
+.nav__github{ font-family:var(--mono)!important; font-size:.74rem!important;
+  color:var(--amber)!important; border:1px solid var(--rule-amber);
+  padding:.4rem .7rem; border-radius:var(--radius-sm); }
+.nav__github:hover{ border-color:var(--amber); color:var(--amber-hi)!important; }
+@media(max-width:860px){ .nav__links a:not(.nav__github){ display:none; } }
+
+/* ---- 5. FOLIO SECTION SHELL + HEADER ---------------------------------- */
+.folio{ position:relative; padding-block:var(--pad-y); }
+.folio__in{ max-width:var(--max); margin-inline:auto; padding-inline:var(--margin);
+  position:relative; }
+.folio + .folio{ border-top:1px solid var(--rule-faint); }
+
+/* tick-rule divider — a ruler's edge with graduations at the φ thirds */
+.folio--ruled{ border-top:1px solid var(--rule); }
+.folio--ruled .folio__in::before{ content:""; position:absolute; top:calc(-1 * var(--pad-y) + 0px);
+  left:var(--margin); right:var(--margin); height:6px; pointer-events:none;
+  background:
+    linear-gradient(var(--hair-amber-f),var(--hair-amber-f)) 38.2% 0/1px 6px no-repeat,
+    linear-gradient(var(--hair-amber-f),var(--hair-amber-f)) 61.8% 0/1px 6px no-repeat; }
+
+/* folio numeral hung in the margin (recto right / verso left via modifier) */
+.folio__num{ position:absolute; top:0; right:0; font-family:var(--mono);
+  font-size:.6875rem; letter-spacing:.16em; color:var(--muted);
+  text-transform:uppercase; }
+.folio__num b{ color:var(--amber); font-weight:500; }
+.folio--verso .folio__num{ right:auto; left:0; }
+
+/* CHAPTER HEAD — ONE column edge: the heading body sits on the page column;
+   the folio label hangs OUTSIDE it in the left margin (true marginalia). */
+.fhead{ display:block; position:relative; margin-bottom:var(--s-4); }
+.fhead__rail{ font-family:var(--mono); font-weight:500; font-size:.72rem;
+  letter-spacing:.34em; color:var(--amber); text-transform:uppercase;
+  position:absolute; top:.7rem; right:100%; margin-right:var(--s-3);
+  white-space:nowrap; text-align:right; }
+.fhead__rail::after{ content:""; display:block; width:22px; height:1px;
+  background:var(--rule-amber); margin-top:.5rem; margin-left:auto; }
+@media(max-width:1439px){ .fhead__rail{ display:none; } }
+.fhead__body{ min-width:0; }
+.fhead__incipit{ font-family:var(--mono); font-size:.7rem; letter-spacing:.2em;
+  color:var(--muted); display:block; margin-bottom:.4rem; text-transform:uppercase; }
+.fhead__incipit b{ color:var(--amber); font-weight:500; }
+.fhead h2{ font-family:var(--serif); font-weight:600; color:var(--cream);
+  font-size:clamp(2rem,4.2vw,3.4rem); line-height:1.04; letter-spacing:-.018em;
+  max-width:22ch; }
+.fhead h2 em{ font-style:italic; color:var(--amber); }
+.fhead__lede{ font-family:var(--serif); font-style:italic; font-weight:600;
+  color:var(--muted-br); font-size:clamp(1.25rem,2.1vw,1.65rem);
+  line-height:1.34; margin-top:var(--s-2); max-width:52ch; }
+
+/* marginalia — a scholar's note floated in the wide outer margin */
+.marginal{ font-family:var(--mono); font-size:.68rem; letter-spacing:.04em;
+  color:var(--muted); line-height:1.5; }
+.marginal em{ font-family:var(--serif); font-style:italic; color:var(--amber); font-size:1.05em; }
+.marginal--abs{ position:absolute; right:0; top:var(--s-4);
+  max-width:13ch; text-align:right; opacity:.75; }
+@media(max-width:1280px){ .marginal--abs{ display:none; } }
+
+/* ---- 6. HERO (FRONTISPIECE — FOLIO 0, no rail numeral) ---------------- */
+.hero{ position:relative; padding-block:clamp(var(--s-5),12vh,11rem) var(--s-6); }
+.hero__grid{ display:grid; grid-template-columns:1.618fr 1fr;
+  gap:var(--s-4); align-items:center; }
+.hero__grid>*{ position:relative; z-index:1; min-width:0; }
+.hero__copy .kicker{ margin-bottom:var(--s-3); }
+.hero h1{ font-family:var(--serif); font-weight:600; color:var(--cream);
+  font-size:clamp(3.4rem,8vw,6.6rem); line-height:.96; letter-spacing:-.022em;
+  margin:.2rem 0 var(--s-3); }
+.hero h1 em{ font-style:italic; color:var(--amber); }
+.hero__tag{ font-family:var(--serif); font-style:italic; font-weight:600;
+  font-size:clamp(1.3rem,2vw,1.7rem); color:var(--muted-br);
+  margin-bottom:var(--s-3); max-width:46ch; }
+.hero__copy p.prose{ margin-bottom:var(--s-3); }
+.hero__meta{ font-family:var(--mono); font-size:.72rem; letter-spacing:.04em;
+  color:var(--muted); margin-top:var(--s-3); }
+/* faint amber φ-thirds construction substrate behind the hero, masked top/bottom */
+.hero::before{ content:""; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    linear-gradient(90deg,transparent 38.1%,var(--hair-amber-f) 38.1%,
+      var(--hair-amber-f) calc(38.1% + 1px),transparent calc(38.1% + 1px)),
+    linear-gradient(90deg,transparent 61.7%,var(--hair-amber-f) 61.7%,
+      var(--hair-amber-f) calc(61.7% + 1px),transparent calc(61.7% + 1px));
+  opacity:.5;
+  -webkit-mask:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent);
+  mask:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent); }
+
+/* ---- 7. BUTTONS + LINKS ----------------------------------------------- */
+.btn{ display:inline-flex; align-items:center; gap:.5rem; font-family:var(--mono);
+  font-size:.82rem; letter-spacing:.02em; padding:.85rem 1.5rem;
+  border-radius:var(--radius-sm); border:1px solid var(--rule-amber); color:var(--cream); }
+.btn--primary{ background:var(--amber); color:var(--ink); border-color:var(--amber); font-weight:500; }
+.btn--primary:hover{ background:var(--amber-hi); border-color:var(--amber-hi); }
+.btn--ghost{ color:var(--amber); }
+.btn--ghost:hover{ border-color:var(--amber); color:var(--amber-hi); }
+.btn-row{ display:flex; gap:var(--s-2); flex-wrap:wrap; margin-top:var(--s-3); }
+.btn-row--center{ justify-content:center; }
+.link{ color:var(--amber); font-family:var(--mono); font-size:.74rem;
+  letter-spacing:.02em; border-bottom:1px solid transparent; padding-bottom:1px; }
+.link:hover{ border-color:var(--amber); color:var(--amber-hi); }
+
+/* ---- 8. PLATE / EXHIBIT FRAME + SACRED TERMINAL ----------------------- */
+/* a non-enclosing plate: ruled on top + left only, open right (never a card) */
+.plate{ position:relative; border-top:1px solid var(--rule);
+  border-left:1px solid var(--rule); padding:var(--s-3) 0 0 var(--s-3); }
+.plate__cap{ margin-bottom:var(--s-2); }
+.plate__caption{ font-family:var(--serif); font-style:italic; font-size:.95rem;
+  color:var(--muted); margin-top:var(--s-2); }
+.plate__caption b{ font-style:normal; font-family:var(--mono); font-size:.72rem;
+  color:var(--amber); letter-spacing:.04em; }
+
+/* the sacred macOS scan terminal — markup reused verbatim from the old page,
+   so these selectors must stay byte-compatible (.term/.term__bar/.term__dot/
+   .term__title/.term__body). Inline span colours resolve via the legacy aliases. */
+.term{ border:1px solid var(--rule-amber); border-radius:8px; overflow:hidden;
+  background:var(--s2); box-shadow:0 18px 50px -24px rgba(0,0,0,.85); text-align:left; }
+.term__bar{ display:flex; align-items:center; gap:.45rem; padding:.55rem .85rem;
+  background:var(--term-bar); border-bottom:1px solid var(--rule); }
+.term__dot{ width:11px; height:11px; border-radius:50%; }
+.term__dot--r{ background:#ff5f56; } .term__dot--y{ background:#ffbd2e; } .term__dot--g{ background:#27c93f; }
+.term__title{ margin-left:.5rem; font-family:var(--mono); font-size:.72rem; color:var(--muted); }
+.term__body{ margin:0; padding:1.05rem 1.15rem; font-family:var(--mono);
+  font-size:.8rem; line-height:1.7; color:var(--body); white-space:pre-wrap;
+  overflow-x:auto; tab-size:2; }
+/* class-based severity (in case markup is migrated; inline styles still win where present) */
+.term__body .c-crit{ color:var(--sev-crit); font-weight:600; }
+.term__body .c-high{ color:var(--sev-high); font-weight:600; }
+.term__body .c-med{ color:var(--sev-med); font-weight:600; }
+.term__body .c-ok{ color:var(--sev-ok); }
+.term__body .c-cmd{ color:var(--amber); font-weight:600; }
+.term__body .c-cream{ color:var(--cream); }
+.term__body .c-dim{ color:var(--muted); }
+.hero-term{ max-width:660px; width:100%; }
+
+/* ---- 9. PILLARS MACHINE (SVG centrepiece + instrument legend) --------- */
+.machine{ display:grid; justify-items:center; margin-block:var(--s-4); }
+.machine svg{ width:min(640px,86vw); height:auto; }
+.machine__caption{ font-family:var(--serif); font-style:italic; font-size:.95rem;
+  color:var(--muted); margin-top:var(--s-2); text-align:center; }
+.machine__caption b{ font-style:normal; font-family:var(--mono); color:var(--amber);
+  font-size:.72rem; letter-spacing:.04em; }
+
+.instruments{ display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+  border-top:1px solid var(--rule); margin-top:var(--s-4); }
+.inst{ padding:var(--s-3); border-left:1px solid var(--rule-faint); position:relative; }
+.inst:first-child{ border-left:none; }
+.inst--principal{ border-left:1px solid var(--rule-amber); }
+.inst__key{ font-family:var(--mono); font-size:.72rem; letter-spacing:.18em;
+  color:var(--amber); display:flex; align-items:center; gap:.5rem; margin-bottom:.6rem; }
+.inst__key::after{ content:""; flex:1; height:1px; background:var(--rule-faint); }
+.inst__tag{ font-family:var(--mono); font-size:.62rem; letter-spacing:.16em;
+  color:var(--muted); text-transform:uppercase; }
+.inst h3{ font-family:var(--serif); font-weight:600; font-size:1.5rem;
+  color:var(--cream); margin:.2rem 0 .5rem; }
+.inst h3 em{ color:var(--amber); font-style:italic; }
+.inst p{ font-size:.92rem; line-height:1.55; color:var(--body); margin-bottom:.8rem; }
+.inst ul li{ font-size:.84rem; line-height:1.5; color:var(--muted-br);
+  padding-left:1rem; position:relative; margin-bottom:.35rem; }
+.inst ul li::before{ content:"—"; position:absolute; left:0; color:var(--amber); opacity:.6; }
+.inst ul li strong{ color:var(--body); }
+.machine-foot{ text-align:center; margin-top:var(--s-3); }
+
+/* ---- 10. INSTALL CATALOGUE (ruled equipment inventory) ---------------- */
+.setup{ border:1px solid var(--rule); border-radius:var(--radius);
+  background:var(--s1); padding:var(--s-3); position:relative;
+  max-width:760px; margin-inline:0; }
+.setup .kicker{ margin-bottom:.6rem; }
+.slot{ position:relative; display:flex; align-items:flex-start; gap:.6rem;
+  background:var(--s2); border:1px solid var(--rule-faint); border-radius:4px; }
+.slot pre{ margin:0; padding:.6rem 4.4rem .6rem .8rem; font-family:var(--mono);
+  font-size:.78rem; line-height:1.55; color:var(--body); white-space:pre-wrap;
+  overflow-wrap:anywhere; overflow-x:auto; flex:1; min-width:0; }
+.copy{ position:absolute; top:.5rem; right:.5rem; font-family:var(--mono);
+  font-size:.66rem; letter-spacing:.08em; color:var(--amber);
+  background:transparent; border:1px solid var(--rule-amber);
+  border-radius:var(--radius-sm); padding:.3rem .55rem; white-space:nowrap; }
+.copy:hover{ border-color:var(--amber); color:var(--amber-hi); }
+
+.catalogue{ margin-top:var(--s-4); border-top:1px solid var(--rule); }
+.row{ display:grid;
+  grid-template-columns:2.2rem minmax(8rem,1fr) 1.9fr auto;
+  gap:var(--s-3); align-items:start; padding:var(--s-3);
+  border-bottom:1px solid var(--rule-faint); position:relative; }
+.row:hover{ background:var(--s3); }
+.row::before{ content:""; position:absolute; left:0; top:0; bottom:0; width:2px;
+  background:transparent; }
+.row:hover::before{ background:var(--rule-amber); }
+.row--primary{ border-bottom:1px solid var(--rule); }
+.row--primary::before{ background:var(--amber); }
+.row__idx{ font-family:var(--mono); font-size:.8rem; color:var(--muted); padding-top:.2rem; }
+.row__name{ display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
+.row__name h3{ font-family:var(--serif); font-weight:600; font-size:1.32rem; color:var(--cream); }
+.row__icon{ font-size:1.05rem; filter:saturate(.85); }
+.row__pri{ font-family:var(--mono); font-size:.6rem; letter-spacing:.16em;
+  color:var(--amber); border:1px solid var(--rule-amber);
+  padding:.1rem .4rem; border-radius:2px; text-transform:uppercase; }
+.row__use{ font-size:.86rem; color:var(--body); line-height:1.5; }
+.row__use code{ color:var(--amber); }
+.row__measure{ position:relative; min-width:0; }
+.row__measure .slot pre{ padding:.5rem 4.2rem .5rem .7rem; font-size:.74rem; }
+.row__measure .copy{ top:.4rem; }
+.catalogue__foot{ font-family:var(--mono); font-size:.72rem; color:var(--muted);
+  text-align:center; margin-top:var(--s-3); letter-spacing:.03em; }
+
+/* ---- 11. BANDS (isolation flagship + sentry pre-announce) ------------- */
+.iso{ text-align:center; position:relative; }
+.iso .kicker{ margin-bottom:var(--s-3); }
+.iso h2{ font-family:var(--serif); font-weight:600; color:var(--cream);
+  font-size:clamp(2.4rem,5vw,4rem); line-height:1.02; letter-spacing:-.02em;
+  margin-bottom:var(--s-3); }
+.iso h2 em{ font-style:italic; color:var(--amber); }
+.iso__lede{ font-family:var(--serif); font-style:italic; font-weight:600;
+  font-size:clamp(1.2rem,2vw,1.5rem); color:var(--muted-br);
+  line-height:1.4; max-width:60ch; margin:0 auto var(--s-4); }
+.iso__lede em{ color:var(--amber); }
+.steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+  border-top:1px solid var(--rule); text-align:left; margin-bottom:var(--s-4); }
+.step{ padding:var(--s-3); border-left:1px solid var(--rule-faint); }
+.step:first-child{ border-left:none; }
+.step__num{ font-family:var(--mono); font-size:.66rem; letter-spacing:.2em;
+  color:var(--amber); text-transform:uppercase; display:block; margin-bottom:.5rem; }
+.step h3{ font-family:var(--serif); font-weight:600; font-size:1.3rem;
+  color:var(--cream); margin-bottom:.4rem; }
+.step p{ font-size:.9rem; line-height:1.55; color:var(--body); }
+.step p strong{ color:var(--cream); }
+.iso__proof{ max-width:62ch; margin:0 auto var(--s-2); text-align:center; }
+.iso__proof em{ font-style:italic; color:var(--amber); font-weight:600;
+  font-family:var(--serif); font-size:1.06em; }
+.iso__proof code{ color:var(--amber); }
+.iso__note{ font-family:var(--mono); font-size:.72rem; color:var(--muted);
+  max-width:60ch; margin:0 auto var(--s-3); line-height:1.5; }
+
+/* sentry pre-announce — a quiet single-line interlude */
+.preannounce{ text-align:center; font-family:var(--serif); font-style:italic;
+  font-weight:600; font-size:clamp(1.3rem,2.4vw,1.8rem); color:var(--muted-br);
+  max-width:56ch; margin-inline:auto; line-height:1.4; }
+.preannounce em{ color:var(--amber); }
+.preannounce .when{ font-family:var(--mono); font-style:normal; font-weight:500;
+  font-size:.7rem; letter-spacing:.2em; color:var(--amber); text-transform:uppercase;
+  display:block; margin-bottom:var(--s-2); }
+
+/* ---- 12. DEEP-DIVE PLATES (suite — Shield / Sentinel / Guardian) ------ */
+.plates{ display:grid; grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
+  gap:0; border-top:1px solid var(--rule); margin-top:var(--s-4); }
+.dplate{ padding:var(--s-3); border-left:1px solid var(--rule-faint);
+  position:relative; display:flex; flex-direction:column; }
+.dplate:first-child{ border-left:none; }
+.dplate__num{ font-family:var(--mono); font-size:.66rem; letter-spacing:.2em;
+  color:var(--amber); margin-bottom:.6rem; display:block; text-transform:uppercase; }
+.dplate h3{ font-family:var(--serif); font-weight:600; font-size:1.45rem;
+  color:var(--cream); margin-bottom:.5rem; }
+.dplate h3 em{ color:var(--amber); font-style:italic; }
+.dplate p{ font-size:.9rem; line-height:1.55; color:var(--body); margin-bottom:.7rem; }
+.dplate ul{ margin-bottom:.7rem; }
+.dplate ul li{ font-size:.82rem; color:var(--muted-br); padding-left:1rem;
+  position:relative; margin-bottom:.3rem; line-height:1.5; }
+.dplate ul li::before{ content:"·"; position:absolute; left:.25rem; color:var(--amber); }
+.dplate__code{ font-family:var(--mono); font-size:.72rem; line-height:1.6;
+  color:var(--body); background:var(--s2); border:1px solid var(--rule-faint);
+  padding:.7rem; border-radius:4px; white-space:pre-wrap; overflow-x:auto; margin:.2rem 0 .7rem; }
+.dplate__cta{ margin-top:auto; display:flex; gap:var(--s-3); flex-wrap:wrap; }
+
+/* ---- 13. CREW ROSTER (labelled specimen matrix) ---------------------- */
+.crew{ display:grid; grid-template-columns:repeat(auto-fit,minmax(17rem,1fr)); gap:0;
+  border-top:1px solid var(--rule); border-left:1px solid var(--rule-faint);
+  margin-top:var(--s-4); }
+.crew__item{ padding:var(--s-3); border-right:1px solid var(--rule-faint);
+  border-bottom:1px solid var(--rule-faint); }
+.crew__item h3{ font-family:var(--serif); font-weight:600; font-size:1.18rem;
+  color:var(--cream); margin-bottom:.35rem; }
+.crew__item h3 .role{ font-family:var(--mono); font-size:.6rem; letter-spacing:.14em;
+  color:var(--amber); text-transform:uppercase; margin-left:.4rem; }
+.crew__item p{ font-size:.84rem; line-height:1.5; color:var(--body); }
+.crew__more{ margin-top:var(--s-3); }
+
+/* ---- 14. WHY-NOW (2×2 ruled inventory) ------------------------------- */
+.why{ display:grid; grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
+  gap:0; border-top:1px solid var(--rule); margin-top:var(--s-4); }
+.why__item{ padding:var(--s-3); border-left:1px solid var(--rule-faint);
+  border-bottom:1px solid var(--rule-faint); }
+.why__item h3{ font-family:var(--serif); font-weight:600; font-size:1.45rem;
+  line-height:1.15; color:var(--cream); margin-bottom:.6rem; }
+.why__item h3 em{ font-style:italic; color:var(--amber); }
+.why__item p{ font-size:.95rem; line-height:1.58; color:var(--body); max-width:52ch; }
+
+/* ---- 15. STAR / FOUNDERS APPEAL (below pillars — ask after value) ----- */
+.founders{ display:grid; grid-template-columns:1.618fr 1fr;
+  gap:var(--s-4); align-items:start; }
+.founders>*{ min-width:0; }
+.star-block{ border-left:2px solid var(--amber); padding-left:var(--s-3); }
+.star-block .kicker{ margin-bottom:.6rem; }
+.star-block h2{ font-family:var(--serif); font-weight:600; color:var(--cream);
+  font-size:clamp(1.8rem,3.6vw,2.8rem); line-height:1.06; margin:.4rem 0 var(--s-2); }
+.star-block h2 em, .star-block h2 .fx-gradient-text{ color:var(--amber); font-style:italic; }
+.star-block .prose{ margin-bottom:var(--s-2); }
+.star-count{ display:flex; align-items:baseline; gap:.5rem; margin:var(--s-3) 0 var(--s-2); }
+.star-count b{ font-family:var(--serif); font-weight:700; font-size:3.6rem;
+  color:var(--amber); line-height:1; }
+.star-count span{ font-family:var(--mono); font-size:.8rem; color:var(--muted); }
+.star-bar{ height:2px; background:var(--rule); max-width:340px; margin-bottom:var(--s-3); }
+.star-bar>i{ display:block; height:2px; background:var(--amber); width:1%; }
+.star-cta{ display:inline-flex; align-items:center; gap:.6rem; background:var(--amber);
+  color:var(--ink); padding:.85rem 1.6rem; border-radius:999px; font-family:var(--mono);
+  font-weight:500; font-size:.85rem; border:1px solid var(--amber); }
+.star-cta:hover{ background:var(--amber-hi); border-color:var(--amber-hi); }
+.star-cta svg{ width:18px; height:18px; fill:currentColor; }
+.star-note{ font-family:var(--mono); font-size:.7rem; color:var(--muted);
+  margin-top:var(--s-2); line-height:1.5; }
+.star-note strong{ color:var(--cream); }
+.wall-block h3{ font-family:var(--serif); font-weight:600; font-size:1.18rem;
+  color:var(--cream); margin-bottom:.6rem; }
+.wall{ display:flex; flex-wrap:wrap; gap:.5rem; align-content:flex-start; min-height:48px; }
+.wall img{ width:36px; height:36px; border-radius:50%; border:1px solid var(--rule-amber); }
+.wall a:hover img{ border-color:var(--amber); }
+.wall__cap{ font-family:var(--mono); font-size:.68rem; color:var(--muted);
+  width:100%; margin-top:.6rem; letter-spacing:.04em; }
+.wall__cap a{ color:var(--amber); }
+.wall__cap a:hover{ color:var(--amber-hi); }
+
+/* ---- 16. FAQ (hairline ledger, native details) ----------------------- */
+.faq{ max-width:780px; margin-inline:0; border-top:1px solid var(--rule); }
+.faq details{ border-bottom:1px solid var(--rule-faint); }
+.faq summary{ cursor:pointer; list-style:none; display:flex;
+  justify-content:space-between; align-items:center; gap:1rem; padding:1.1rem 0;
+  font-family:var(--sans); font-weight:600; font-size:1.02rem; color:var(--cream); }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary::after{ content:"+"; font-family:var(--mono); color:var(--amber);
+  font-size:1.3rem; font-weight:400; line-height:1; flex:none; }
+.faq details[open] summary::after{ content:"\2212"; }
+.faq summary:hover{ color:var(--amber); }
+.faq__q-idx{ font-family:var(--mono); font-size:.7rem; color:var(--muted);
+  margin-right:.7rem; letter-spacing:.1em; }
+.faq__a{ padding:0 0 1.15rem; color:var(--body); line-height:1.62; max-width:64ch; }
+.faq__a code{ color:var(--amber); }
+
+/* ---- 17. FOUNDER BIO (golden measure, drop-cap) ---------------------- */
+.founder{ max-width:var(--measure-narrow); margin-inline:0; }
+.founder__quote{ font-family:var(--serif); font-style:italic; font-weight:600;
+  font-size:clamp(1.4rem,2.4vw,1.9rem); line-height:1.3; color:var(--muted-br);
+  border-left:2px solid var(--rule-amber); padding-left:var(--s-3); margin-bottom:var(--s-3); }
+.founder__body{ margin-bottom:var(--s-2); }
+.founder__body--lead::first-letter{ font-family:var(--serif); font-style:italic;
+  font-weight:700; font-size:3.1em; line-height:.82; float:left; color:var(--amber);
+  padding:.06em .14em 0 0; }
+.founder__sig{ font-family:var(--mono); font-size:.72rem; letter-spacing:.06em;
+  color:var(--muted); margin-top:var(--s-3); }
+
+/* ---- 18. WAITLIST CTA ------------------------------------------------- */
+.cta{ max-width:var(--measure-narrow); margin-inline:auto; text-align:center; }
+.cta .when{ font-family:var(--mono); font-weight:500; font-size:.7rem;
+  letter-spacing:.2em; color:var(--amber); text-transform:uppercase;
+  display:block; margin-bottom:var(--s-2); }
+.cta h2{ font-family:var(--serif); font-weight:600; font-size:clamp(2rem,4vw,3.2rem);
+  color:var(--cream); line-height:1.04; margin-bottom:var(--s-2); }
+.cta h2 em{ font-style:italic; color:var(--amber); }
+.wl-form{ display:flex; gap:.5rem; flex-wrap:wrap; justify-content:center; margin-top:var(--s-3); }
+.wl-form input[type=email]{ flex:1; min-width:220px; background:var(--s1);
+  border:1px solid var(--rule); border-radius:4px; padding:.8rem 1rem;
+  font-family:var(--mono); font-size:.85rem; color:var(--cream); }
+.wl-form input[type=email]::placeholder{ color:var(--muted); }
+.wl-form input[type=email]:focus-visible{ border-color:var(--amber); outline:none; }
+.wl-form button{ background:var(--amber); color:var(--ink); border:1px solid var(--amber);
+  border-radius:4px; padding:.8rem 1.4rem; font-family:var(--mono); font-size:.82rem;
+  font-weight:500; cursor:pointer; }
+.wl-form button:hover{ background:var(--amber-hi); }
+.wl-small{ font-family:var(--mono); font-size:.7rem; color:var(--muted); margin-top:var(--s-2); }
+.waitlist-thanks{ font-family:var(--serif); font-style:italic; font-size:1.2rem;
+  color:var(--amber); margin-top:var(--s-3); }
+
+/* ---- 19. COLOPHON FOOTER --------------------------------------------- */
+.footer{ border-top:1px solid var(--rule); padding-block:var(--s-5) var(--s-4);
+  margin-top:var(--s-6); }
+.footer__in{ max-width:var(--max); margin-inline:auto; padding-inline:var(--margin); }
+.colophon-line{ font-family:var(--serif); font-style:italic; font-size:1.1rem;
+  color:var(--muted); text-align:center; max-width:42rem; margin:0 auto var(--s-4); }
+.colophon-line b{ font-style:normal; color:var(--amber); }
+.footer__cols{ display:grid; grid-template-columns:1.4fr repeat(3,1fr); gap:var(--s-4); }
+.footer__brand{ display:flex; align-items:center; gap:.5rem; font-family:var(--serif);
+  font-size:1.2rem; font-weight:600; color:var(--cream); }
+.footer__brand img{ width:22px; height:22px; }
+.footer__brand b{ color:var(--amber); font-style:italic; font-weight:600; }
+.footer__tag{ font-family:var(--serif); font-style:italic; color:var(--muted);
+  font-size:1.05rem; margin-top:.5rem; }
+.footer h4{ font-family:var(--mono); font-size:.68rem; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--amber); margin-bottom:.8rem; }
+.footer a{ display:block; font-size:.85rem; color:var(--muted); margin-bottom:.4rem; }
+.footer a:hover{ color:var(--cream); }
+.footer__bottom{ display:flex; justify-content:space-between; gap:1rem;
+  margin-top:var(--s-4); padding-top:var(--s-3); border-top:1px solid var(--rule-faint);
+  font-family:var(--mono); font-size:.7rem; color:var(--muted); flex-wrap:wrap; }
+
+/* ---- A11Y: focus-visible everywhere -------------------------------- */
+:focus:not(:focus-visible){ outline:none; }
+:focus-visible{ outline:2px solid var(--amber); outline-offset:2px; border-radius:2px; }
+
+/* ---- 20. PRINT NICETIES ---------------------------------------------- */
+@media print{
+  .nav,.hero::before,.star-cta,.wl-form{ display:none !important; }
+  body{ background:#fff; color:#000; }
+  .term{ box-shadow:none; }
+  .folio{ break-inside:avoid; padding-block:1.5rem; }
+}
+
+/* ---- 21. RESPONSIVE --------------------------------------------------- */
+@media(max-width:1024px){
+  .hero__grid,.founders{ grid-template-columns:1fr; gap:var(--s-4); }
+  .hero::before{ display:none; }
+  .why{ grid-template-columns:1fr 1fr; }
+}
+@media(max-width:860px){
+  .instruments,.steps{ grid-template-columns:1fr; }
+  .inst{ border-left:none; border-top:1px solid var(--rule-faint); }
+  .inst:first-child{ border-top:none; }
+  .inst--principal{ border-left:none; border-top:1px solid var(--rule-amber); }
+  .step{ border-left:none; border-top:1px solid var(--rule-faint); }
+  .step:first-child{ border-top:none; }
+  .hero-term{ margin-top:var(--s-3); }
+}
+@media(max-width:640px){
+  .folio__num{ position:static; display:block; margin-bottom:.5rem; }
+  .folio--ruled .folio__in::before{ display:none; }
+  .row{ grid-template-columns:2rem 1fr; gap:.6rem 1rem; }
+  .row__use,.row__measure{ grid-column:1/-1; }
+  .why,.plates,.crew{ grid-template-columns:1fr; }
+  .term__body,.hero-term .term__body{ font-size:.7rem; }
+  .footer__cols{ grid-template-columns:1fr 1fr; }
+  .footer__bottom{ flex-direction:column; gap:.4rem; }
+}
+@media(max-width:420px){
+  :root{ --margin:1.25rem; }
+  .hero h1{ font-size:clamp(2.6rem,12vw,3.4rem); }
+  .star-count b{ font-size:2.8rem; }
+}

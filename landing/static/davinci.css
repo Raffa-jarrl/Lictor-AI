@@ -1,0 +1,28 @@
+/* davinci.css — "Lictor Codex": faux-3D depth (mouse-tilt + layered parallax) over a
+   da-Vinci golden-ratio construction drawing. Additive over premium.css/security.css.
+   The flat layout is the accessible fallback — all 3D/motion is gated to
+   prefers-reduced-motion:no-preference, and the tilt is desktop-pointer-only. */
+
+/* ---- da-Vinci codex ink (gold) — also shown under reduced motion (static) ---- */
+.hero__geo .spiral{ fill:none; stroke:rgba(232,163,61,.55); stroke-width:1.4; vector-effect:non-scaling-stroke; }
+.hero__geo .codex-label{ fill:rgba(232,163,61,.6); font-family:'Cormorant Garamond',serif; font-style:italic; font-size:30px; letter-spacing:.02em; }
+.hero__geo .codex-note{ fill:rgba(232,163,61,.42); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.10em; }
+
+@media (prefers-reduced-motion: no-preference){
+  /* ── 3D stage: the hero becomes a plane that tilts toward the cursor ── */
+  .hero{ perspective:1200px; perspective-origin:50% 42%; }
+  .hero__grid{ transform-style:preserve-3d;
+    transform:rotateX(var(--ty,0deg)) rotateY(var(--tx,0deg));
+    transition:transform .35s cubic-bezier(.2,.8,.2,1); will-change:transform; }
+  /* layered depth — the headline copy floats forward of the page */
+  .hero__copy{ transform:translateZ(46px); }
+
+  /* the codex drawing breathes in 3D (KEEPS its translateY(-50%) centering) */
+  .hero__geo{ animation:codexBreathe 22s ease-in-out infinite alternate; }
+  @keyframes codexBreathe{
+    0%{   transform:translateY(-50%) translateZ(-90px) rotateY(-7deg) rotateZ(-.6deg); }
+    100%{ transform:translateY(-50%) translateZ(-90px) rotateY(7deg)  rotateZ(.6deg); }
+  }
+  /* self-draw the golden spiral, after the compass work finishes */
+  .js .hero__geo .spiral{ stroke-dasharray:1; animation:geoDraw 3.6s cubic-bezier(.45,0,.2,1) 1.4s both; }
+}

@@ -22,6 +22,8 @@
   <link rel="alternate" hreflang="es" href="https://lictor-ai.com/es/waitlist" />
   <link rel="alternate" hreflang="pt-BR" href="https://lictor-ai.com/pt-BR/waitlist" />
   <link rel="canonical" href="https://lictor-ai.com/translations/pt-BR/waitlist.html" />
+  <link rel="stylesheet" href="/static/codex.css?v=1" />
+  <script src="/static/codex.js" defer></script>
 </head>
 <body>
   <header class="nav">
@@ -30,14 +32,20 @@
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
-      <a href="/">Início</a>
-      <a href="/compliance">Compliance</a>
+      <a href="/#pillars">Pilares</a>
+      <a href="/#install">Instalar</a>
+      <a href="/mission-control">Mission Control</a>
+      <a href="/scan">Escanear</a>
+      <a href="/patterns">Padrões</a>
+      <a href="/business">Para empresas</a>
+      <a href="/donate">Suporte</a>
       <a href="https://github.com/Raffa-jarrl/Lictor-AI">GitHub →</a>
     </nav>
   </header>
 
   <main>
-    <section class="waitlist-hero">
+    <section class="waitlist-hero" style="position:relative;">
+      <svg class="codex-geo" viewBox="0 0 320 320" aria-hidden="true"><circle class="ink" cx="160" cy="160" r="150"/><circle class="ink" cx="160" cy="160" r="92"/><path class="ink" d="M10 160h300M160 10v300"/></svg>
       <span class="waitlist-hero__eyebrow">LANÇA EM 6 DE OUTUBRO DE 2026 · APACHE 2.0 · GRÁTIS PRA SEMPRE</span>
 
       <h1 class="waitlist-hero__title">
@@ -55,7 +63,6 @@
         action="https://buttondown.com/api/emails/embed-subscribe/lictor-ai"
         method="post"
         target="popupwindow"
-        onsubmit="window.open('https://buttondown.com/lictor-ai', 'popupwindow')"
       >
         <div class="waitlist-form__row">
           <input
@@ -66,7 +73,7 @@
             autocomplete="email"
             aria-label="E-mail"
           />
-          <button type="submit">Entrar na lista →</button>
+          <button type="submit" class="codex-lift">Entrar na lista →</button>
         </div>
 
         <select name="metadata__platform" aria-label="Em qual plataforma você desenvolve?">
@@ -88,22 +95,22 @@
       </p>
     </section>
 
-    <section class="waitlist-stats">
-      <div class="waitlist-stat">
+    <section class="waitlist-stats" data-reveal>
+      <div class="waitlist-stat codex-glass">
         <span class="waitlist-stat__value">40–62%</span>
         <span class="waitlist-stat__label">do código gerado por IA vai pra produção com vulnerabilidades</span>
       </div>
-      <div class="waitlist-stat">
+      <div class="waitlist-stat codex-glass">
         <span class="waitlist-stat__value">18.000</span>
         <span class="waitlist-stat__label">usuários expostos em um único incidente recente em apps vibe-coded</span>
       </div>
-      <div class="waitlist-stat">
+      <div class="waitlist-stat codex-glass">
         <span class="waitlist-stat__value">R$ 0</span>
         <span class="waitlist-stat__label">o que custa usar o Lictor — pra sempre, no núcleo OSS</span>
       </div>
     </section>
 
-    <section class="waitlist-what">
+    <section class="waitlist-what codex-glass" data-reveal>
       <h2>O que o Lictor pega</h2>
       <ul class="waitlist-checks">
         <li>Chave service-role do Supabase exposta no seu bundle JS</li>
@@ -117,7 +124,7 @@
       </ul>
     </section>
 
-    <section class="waitlist-promise">
+    <section class="waitlist-promise codex-glass" data-reveal>
       <p>
         <strong style="color: var(--text);">O compromisso do Lictor.</strong>
         O núcleo OSS continua grátis pra sempre. Licença Apache 2.0, governado pela
@@ -127,7 +134,7 @@
       </p>
     </section>
 
-    <section class="waitlist-founder">
+    <section class="waitlist-founder codex-glass" data-reveal>
       <h3>Quem tá construindo isso?</h3>
       <p>
         O Lictor é construído pelo Raffa, engenheiro de cibersegurança com 20 anos de experiência, baseado em Israel.
@@ -148,5 +155,6 @@
   <footer class="waitlist-footer">
     &copy; 2026 Lictor AI · v0.1.0 lança em 6 de outubro de 2026 · Apache 2.0
   </footer>
+  <script src="/static/buttondown.js" defer></script>
 </body>
 </html>
