@@ -42,6 +42,9 @@
     "license": "https://www.apache.org/licenses/LICENSE-2.0"
   }
   </script>
+
+  <link rel="stylesheet" href="/static/codex.css?v=1" />
+  <script src="/static/codex.js" defer></script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -51,17 +54,20 @@
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
+      <a href="/#pillars">Pillars</a>
       <a href="/#install">Install</a>
       <a href="/mission-control">🛰 Mission Control</a>
       <a href="/scan">Scan</a>
       <a href="/patterns">Patterns</a>
+      <a href="/business">For Business</a>
       <a href="/donate">Support</a>
       <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
     </nav>
   </header>
 
   <main id="main">
-    <section class="shell-section" style="text-align:center;max-width:820px;margin:0 auto;">
+    <section class="shell-section" style="text-align:center;max-width:820px;margin:0 auto;position:relative;">
+      <svg class="codex-geo" viewBox="0 0 320 320" aria-hidden="true"><circle class="ink" cx="160" cy="160" r="150"/><circle class="ink" cx="160" cy="160" r="92"/><path class="ink" d="M10 160h300M160 10v300"/></svg>
       <p class="eyebrow">Quality &middot; the part nobody markets</p>
       <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.2rem);line-height:1.1;margin:0 0 1rem;">
         The findings we <span class="fx-gradient-text">don't</span> report.
@@ -80,37 +86,37 @@
     </section>
 
     <!-- 1. HTTP response classes -->
-    <section class="shell-section divider-top">
+    <section class="shell-section divider-top" data-reveal>
       <p class="eyebrow">Category 1 &middot; HTTP response</p>
       <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .5rem;">A "200 OK" means nothing on its own</h2>
       <p class="text-meta-md">The single biggest source of scanner noise. Every one of these returns HTTP 200 to a sensitive-file probe &mdash; and every one is a false positive.</p>
       <div class="pattern-grid" style="margin-top:1.5rem;">
-        <article class="pattern-card">
+        <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>Catch-all hosts</h3>
           <p>Two random paths return identical 200 bodies &rarr; the server answers everything. We canary every host before trusting a hit.</p>
         </article>
-        <article class="pattern-card">
+        <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>SPA fallback</h3>
           <p>Single-page apps serve <span class="mono">index.html</span> for <em>every</em> route, including <span class="mono">/.env</span>. The 200 is the router, not the file.</p>
         </article>
-        <article class="pattern-card">
+        <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>JSON error envelopes</h3>
           <p>A <span class="mono">/credentials.json</span> returning <span class="mono">{"success":"false"}</span> is an API error, not exposed creds. <span class="text-meta">(learned: koubei.com)</span></p>
         </article>
-        <article class="pattern-card">
+        <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>Soft 404 / WAF challenge</h3>
           <p>HTML 404s served with 200, and Cloudflare "Just a moment" interstitials &mdash; both look like content, neither is.</p>
         </article>
-        <article class="pattern-card">
+        <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>Tiny JSON stub</h3>
           <p>A 14-byte <span class="mono">credentials.json</span> is an error blob like <span class="mono">{"error":true}</span>, not a real credential file.</p>
         </article>
-        <article class="pattern-card">
+        <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>Config served as HTML</h3>
           <p><span class="mono">.env</span> / <span class="mono">.git/config</span> with a <span class="mono">text/html</span> content-type is a routed SPA page, not the raw file.</p>
@@ -119,26 +125,26 @@
     </section>
 
     <!-- 2. Secret-class -->
-    <section class="shell-section divider-top">
+    <section class="shell-section divider-top" data-reveal>
       <p class="eyebrow">Category 2 &middot; "secrets" that are public by design</p>
       <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .5rem;">Not every key is a leak</h2>
       <div class="pattern-grid" style="margin-top:1.5rem;">
-        <article class="pattern-card">
+        <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>Sentry DSN</h3>
           <p>The Sentry browser SDK <em>requires</em> the DSN in client JS. It's public by design. <span class="text-meta">(learned: a triager close)</span></p>
         </article>
-        <article class="pattern-card">
+        <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>VITE_ / NEXT_PUBLIC_ vars</h3>
           <p>Build tools inline these into the bundle on purpose. A <span class="mono">VITE_</span>-prefixed value is public by framework design.</p>
         </article>
-        <article class="pattern-card">
+        <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>Firebase web apiKey</h3>
           <p>The <span class="mono">apiKey</span> in a <span class="mono">firebaseConfig</span> is not a secret &mdash; Firebase's own docs say so. Filtered when seen in config context.</p>
         </article>
-        <article class="pattern-card">
+        <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>Vendor SDK bundles</h3>
           <p>Key-shaped strings inside <span class="mono">sentry-cdn</span>, GA, Stripe.js and other third-party bundles aren't the app's secrets.</p>
@@ -147,31 +153,31 @@
     </section>
 
     <!-- 3. Takeover + 4. DB/infra + 5. contracts -->
-    <section class="shell-section divider-top">
+    <section class="shell-section divider-top" data-reveal>
       <p class="eyebrow">Categories 3&ndash;5 &middot; takeover, database, infra, contracts</p>
       <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .5rem;">"Reachable" is not "exploitable"</h2>
       <div class="pattern-grid" style="margin-top:1.5rem;">
-        <article class="pattern-card">
+        <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>Customer-resource infra</h3>
           <p>A finding on <span class="mono">*.digitaloceanspaces.com</span> / <span class="mono">*.herokuapp.com</span> belongs to the customer, not the provider &mdash; out of scope. <span class="text-meta">(learned: a DigitalOcean triager)</span></p>
         </article>
-        <article class="pattern-card">
+        <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>Account-gated takeovers</h3>
           <p>A dangling CNAME to Fastly/Magento Cloud isn't claimable without an account &mdash; theoretical, not exploitable. Only self-signup vendors stay HIGH.</p>
         </article>
-        <article class="pattern-card">
+        <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>MySQL with a host ACL</h3>
           <p>Port 3306 open but the server replies "Host X not allowed to connect" = reachable, not exposed. We only flag a real protocol handshake.</p>
         </article>
-        <article class="pattern-card">
+        <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>cPanel / WHM standard ports</h3>
           <p>WHM on :2087 is standard shared-hosting config. Every cPanel customer has it. Not a finding.</p>
         </article>
-        <article class="pattern-card">
+        <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>Slither weak-PRNG on modexp</h3>
           <p>MakerDAO-style <span class="mono">_rpow</span> / <span class="mono">_rmul</span> use <span class="mono">n % 2</span> for bit-checking, not random numbers. A perennial Slither false positive.</p>
@@ -179,7 +185,7 @@
       </div>
     </section>
 
-    <section class="shell-section divider-top" style="text-align:center;max-width:720px;margin:0 auto;">
+    <section class="shell-section divider-top" data-reveal style="text-align:center;max-width:720px;margin:0 auto;">
       <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .75rem;">Why this matters to you</h2>
       <p class="text-meta-md line-relaxed">
         Every class above is a finding a naive scanner would put in your inbox &mdash;
@@ -187,8 +193,8 @@
         flag something, it's worth your attention. That's the whole product.
       </p>
       <div style="margin-top:1.5rem;">
-        <a href="/scan" class="shell-btn shell-btn--primary">Scan your app &rarr;</a>
-        <a href="/#install" class="shell-btn shell-btn--ghost">Install the CLI &rarr;</a>
+        <a href="/scan" class="shell-btn shell-btn--primary codex-lift">Scan your app &rarr;</a>
+        <a href="/#install" class="shell-btn shell-btn--ghost codex-lift">Install the CLI &rarr;</a>
       </div>
     </section>
   </main>

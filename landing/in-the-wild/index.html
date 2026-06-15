@@ -23,6 +23,8 @@
   <link rel="stylesheet" href="/static/fx.css" />
   <script src="/static/fx.js" defer></script>
   <link rel="canonical" href="https://lictor-ai.com/in-the-wild/" />
+  <link rel="stylesheet" href="/static/codex.css?v=1" />
+  <script src="/static/codex.js" defer></script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -32,17 +34,20 @@
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
+      <a href="/#pillars">Pillars</a>
       <a href="/#install">Install</a>
       <a href="/mission-control">🛰 Mission Control</a>
       <a href="/scan">Scan</a>
       <a href="/patterns">Patterns</a>
+      <a href="/business">For Business</a>
       <a href="/donate">Support</a>
       <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
     </nav>
   </header>
 
   <main id="main">
-    <section class="page-hero">
+    <section class="page-hero" style="position:relative">
+      <svg class="codex-geo" viewBox="0 0 320 320" aria-hidden="true"><circle class="ink" cx="160" cy="160" r="150"/><circle class="ink" cx="160" cy="160" r="92"/><path class="ink" d="M10 160h300M160 10v300"/></svg>
       <div class="page-hero__mark fx-parallax">
         <img src="/static/lictor-mark.png" alt="Lictor AI shield" class="page-hero__shield fx-parallax__layer" />
       </div>
@@ -52,23 +57,23 @@
     </section>
 
     <!-- WHAT'S SHIPPED -->
-    <section class="shell-section">
+    <section class="shell-section" data-reveal>
       <div class="shell-section__head">
         <h2>What's shipped</h2>
         <p>Live scanners running today, finding bugs in real AI-generated code.</p>
       </div>
       <div class="shell-grid shell-grid--3">
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <h3>🌐 Web app scanner</h3>
           <p>URL-based audit for any deployed site. Catches leaked secrets, exposed DBs, painted-lock admin routes, open CORS, unsigned webhooks, prompt-injection surfaces.</p>
           <a href="/scan" class="link">Run a scan →</a>
         </div>
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <h3>🛠 Claude Code skill suite</h3>
           <p>/lictor-security-check + /lictor-fix-it + /lictor-explain + /lictor-rotate. Runs locally inside any project.</p>
           <a href="https://github.com/Raffa-jarrl/Lictor-AI/tree/main/skills" class="link">Install →</a>
         </div>
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <h3>🔍 Patrol auto-scanner</h3>
           <p>Continuous discovery of vibe-coded repos with hardcoded secrets — Supabase service-role JWTs, Firebase service-account JSONs, DB creds, bot tokens, GitHub Actions RCE patterns. <strong>184 verified disclosures sent to date</strong> across 9 vulnerability classes — 15 already addressed by maintainers, 1 confirmed fix in 24 hours.</p>
           <a href="https://github.com/Raffa-jarrl/Lictor-AI/tree/main/scripts" class="link">See scanners →</a>
@@ -77,44 +82,44 @@
     </section>
 
     <!-- COMING NEXT -->
-    <section class="shell-section divider-top">
+    <section class="shell-section divider-top" data-reveal>
       <div class="shell-section__head">
         <h2>Coming next — in development</h2>
         <p>The honest roadmap. No "shipping Q4 2027" theatre — these are the surfaces we're actively building scanners for.</p>
       </div>
       <div class="shell-grid shell-grid--3">
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <h3>📱 Mobile (iOS + Android) <span style="color:var(--accent);font-size:.75rem">· soon</span></h3>
           <p>Static analysis on <code>.ipa</code> / <code>.apk</code> bundles + AI-generated Swift/Kotlin source. Catches API keys shipped in the bundle, insecure local storage, WebView ↔ JS bridge holes, missing cert pinning, excessive manifest permissions.</p>
           <p class="text-meta-md">Pattern catalog written. Scanner skeleton drafted. Pipeline integration in progress.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <h3>🧩 Browser-extension scanner</h3>
           <p>Manifest v3 audit for AI-generated Chrome / Firefox extensions. Catches over-permissive host-permissions, content-script injection holes, message-passing without origin checks.</p>
           <p class="text-meta-md">Manifest parser ready; check-rules drafted; bundling pending.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <h3>⚙️ CI/CD pipeline audit</h3>
           <p>GitHub Actions + GitLab CI workflow scanning. Catches the classic <code>pull_request_target</code> + checkout-PR-head RCE pattern, secrets in workflow logs, branch-protection bypass via unprotected paths.</p>
           <p class="text-meta-md">Patrol-PRtarget scanner is live and finding live exposures; CLI version coming.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <h3>🖥 Desktop apps (Tauri / Electron)</h3>
           <p>For AI-built native shells. Audits IPC bridge exposure, nodeIntegration leaks, file-system access scopes, auto-updater signing.</p>
           <p class="text-meta-md">Pattern catalog drafted; scanner not yet shipping.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <h3>🧠 AI feature SDK (Sentinel)</h3>
           <p>Drop-in runtime guardrails for apps that call models. Prompt-injection classifier, secret-redaction on outputs, per-user rate limits, tool-call allow-listing.</p>
           <p class="text-meta-md">npm + pip packages in early beta.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <h3>🛰 MCP server audit</h3>
           <p>For the Model Context Protocol ecosystem. Catches tool-description prompt injection, unauthenticated tool exposure, schema-validation bypass.</p>
           <p class="text-meta-md">Lictor-multi already scans local MCP code; remote-MCP audit on the way.</p>
@@ -124,46 +129,46 @@
     </section>
 
     <!-- REAL FINDINGS — examples by category -->
-    <section class="shell-section divider-top">
+    <section class="shell-section divider-top" data-reveal>
       <div class="shell-section__head">
         <h2>What we&rsquo;re actually finding</h2>
         <p>Real examples from the 184 disclosures, anonymised where the maintainer hasn&rsquo;t publicly responded. The patterns repeat across every vibe-coding tool.</p>
       </div>
       <div class="shell-grid shell-grid--3">
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">🔴 87 FOUND</div>
           <h3>Firebase service-account JSONs</h3>
           <p>The single most common vibe-coded mistake. The full <code>private_key</code> + <code>private_key_id</code> for a real Google Cloud service account, committed to a public repo. Grants full project access until manually rotated.</p>
           <p class="text-meta">Real targets contacted: a hospital admin panel · an internet banking backend · an eldercare assistant app · 84 more.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">🟠 14 FOUND</div>
           <h3>GitHub Actions <code>pull_request_target</code> RCE</h3>
           <p>Workflow checks out the PR's <em>head</em> SHA (attacker-controlled code) with access to repo secrets. Classic supply-chain attack vector. Found in <strong>Microsoft .NET MAUI bindings (2.8k★)</strong>, <strong>prusa3d/Prusa-Firmware (2.1k★)</strong>, <strong>liquibase (5.5k★)</strong>, <strong>langwatch (3.3k★)</strong>, and 10 more.</p>
           <p class="text-meta">Two maintainers already responded acknowledging the mitigation. One opened Private Vulnerability Reporting for future reports.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">🟠 8 FOUND</div>
           <h3>DB connection strings with passwords</h3>
           <p>Live <code>postgres://user:password@host/db</code> or <code>mongodb+srv://...</code> connection strings in <code>.env.production</code> files committed to public source. Filtered out localhost / private IPs / placeholder passwords — only real-host real-credential cases get contacted.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">🟡 4 FOUND</div>
           <h3>SaaS API keys (Mailchimp · Twilio · etc)</h3>
           <p>Hardcoded Mailchimp keys (list-takeover risk), Twilio Account SID + Auth Token pairs (SMS spend takeover — bots scrape GitHub for exactly this combo). One Twilio finding in an active multi-user whiteboard app.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">🟡 5 FOUND</div>
           <h3>LLM keys in HuggingFace Spaces</h3>
           <p>Hardcoded Google Gemini / Groq API keys in the public <code>app.py</code> of HF Spaces — including an active immigration-assistance chatbot. HF Spaces are public source by design; anyone with the URL can read the key out.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">🟡 5 FOUND</div>
           <h3>API keys in published PyPI packages</h3>
           <p>One Python AI-wrapper package (<code>zohencel-ai</code>) ships with <strong>two hardcoded Groq keys</strong> across multiple files. <code>pip install</code> the package and the keys are right there. Bots scrape PyPI tarballs for exactly this.</p>
@@ -173,7 +178,7 @@
     </section>
 
     <!-- EXTERNAL ATTACK-SURFACE SCAN — MAY 2026 -->
-    <section class="shell-section divider-top">
+    <section class="shell-section divider-top" data-reveal>
       <div class="shell-section__head">
         <h2>External attack-surface scanning &mdash; May 2026</h2>
         <p>Two waves of scanning across 36 million subdomains (chaos bug-bounty corpus) + 7,736 deep-scanned hosts. Every finding was disclosed privately by email to the affected organisation or cloud provider under the 60-day Coordinated Vulnerability Disclosure norm. <strong>Zero victim names published &mdash; only finding categories and counts.</strong></p>
@@ -181,19 +186,19 @@
 
       <!-- Aggregate stats (updated 2026-05-24) -->
       <div class="shell-grid shell-grid--4">
-        <div class="shell-card shell-card--stat">
+        <div class="shell-card shell-card--stat codex-glass">
           <div class="shell-stat__num">36M+</div>
           <div class="shell-stat__label">subdomains enumerated &middot; 7,736 deep-scanned &middot; 12+ countries &middot; 5+ industries</div>
         </div>
-        <div class="shell-card shell-card--stat">
+        <div class="shell-card shell-card--stat codex-glass">
           <div class="shell-stat__num">300+</div>
           <div class="shell-stat__label">disclosure threads sent under 60-day CVD window &middot; 11 provider security teams</div>
         </div>
-        <div class="shell-card shell-card--stat">
+        <div class="shell-card shell-card--stat codex-glass">
           <div class="shell-stat__num">45</div>
           <div class="shell-stat__label">scanner modules in the battery</div>
         </div>
-        <div class="shell-card shell-card--stat divider-left-accent">
+        <div class="shell-card shell-card--stat divider-left-accent codex-glass">
           <div class="shell-stat__num text-accent">0</div>
           <div class="shell-stat__label"><strong>victim names published anywhere on this site</strong></div>
         </div>
@@ -205,7 +210,7 @@
       <!-- Category breakdown — finding TYPE only, never targets -->
       <div class="shell-grid shell-grid--3 mt-4">
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128308; 44 HIGH &middot; 81 MEDIUM &middot; 116 LOW</div>
           <h3>Frontend source code leaks</h3>
           <p>Initial scan surfaced 292 hosts serving <code>.js.map</code> sourcemap files. After content-quality validation (does the bundle actually reveal customer code, or is it just vendor library boilerplate?), the honest breakdown:</p>
@@ -218,34 +223,34 @@
           <p class="text-meta">Industries observed in HIGH tier: DeFi protocols, cross-chain bridges, sportsbook, major Fortune 500 enterprises.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128992; 33 FOUND</div>
           <h3>Spoofable enterprise email domains</h3>
           <p>Missing or weak SPF, DMARC, or DKIM at Fortune 500 enterprises &mdash; meaning attackers can send mail that appears to come from these domains. The lowest-effort phishing-enablement vector in the report.</p>
           <p class="text-meta">Includes banks, retail brands, news media, and a major airline.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128308; 11 FOUND</div>
           <h3>Publicly listable cloud buckets</h3>
           <p>S3 / GCS / DigitalOcean Spaces / Wasabi buckets returning a full directory listing without authentication. Contents observed (counted only, never downloaded): regulated health records, financial records, government records, and one 280MB SQL database dump.</p>
           <p class="text-meta">All disclosures routed to bucket owner + cloud-provider abuse@ desk where applicable.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128992; 14 FOUND</div>
           <h3>End-of-life software stacks (HIGH)</h3>
           <p>Production-facing services running components that no longer receive security patches from upstream &mdash; permanent HIGH-severity exposure until upgraded. Includes Apache 2.2.x, PHP 5.x, OpenSSL 1.0.x, and several end-of-life CMS versions.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128308; 4 FOUND</div>
           <h3>RDP / FTP / SMB exposed to internet</h3>
           <p>Protocol-handshake confirmed (not just port-open, to defeat WAF anti-recon false positives): four hosts with remote-desktop, file-transfer, or SMB services reachable directly from the public internet. Pre-ransomware indicators.</p>
           <p class="text-meta">Includes one municipal government FTP server and one corporate-network golf-course system.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128993; 26 FOUND</div>
           <h3>New subdomain exposures</h3>
           <p>Subdomain enumeration surfaced web assets the org didn't realise it was hosting &mdash; deprecated apps, forgotten staging environments, unmonitored marketing landing pages. Each one is a potential attacker entry point that nobody is patching.</p>
@@ -263,45 +268,45 @@
 
       <div class="shell-grid shell-grid--3 mt-4">
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128308; 47 LEAKED &middot; 39 WITH PAIRED SECRET</div>
           <h3>AWS access keys in public source</h3>
           <p>Live AWS access key IDs (<code>AKIA*</code>) discovered in committed code on GitHub. 39 of 47 had a matching <code>AKIASecretAccessKey</code> in the same file &mdash; full-account-takeover material. Disclosed in one batch to AWS Security for auto-revoke.</p>
           <p class="text-meta">Predominantly found in <code>.tf</code> terraform files, <code>.travis.yml</code>, <code>.env</code> files committed by students and bootcamp learners.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128308; 31 LEAKED</div>
           <h3>OpenAI API keys</h3>
           <p>Live <code>sk-proj-*</code> project-scoped API keys committed to public repos &mdash; mostly in Python/Node tutorial code (RAG examples, ChatGPT wrappers, study projects). Batch-disclosed to OpenAI Security. Within hours, the report was assigned to a named OpenAI engineer for triage.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128308; 21 LEAKED</div>
           <h3>HuggingFace tokens</h3>
           <p>Live <code>hf_*</code> user-access tokens in public repos. Often co-located with other credentials (AWS, OpenAI) in the same <code>.env</code> file &mdash; suggests the same user/team has multiple credentials at risk. Batch-disclosed to HuggingFace Security.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128308; 6 LEAKED</div>
           <h3>Anthropic API keys</h3>
           <p>Live <code>sk-ant-api03-*</code> keys committed to public repos. Disclosed to Anthropic Security (acknowledged within seconds via auto-reply, pointing to HackerOne for any platform vulns).</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128308; 105 LEAKED</div>
           <h3>Google Cloud / Firebase credentials</h3>
           <p>81 Firebase admin-SDK JSON files (full RSA <code>private_key</code> + <code>client_email</code>) on GitHub + 24 Google AI / Firebase configs on GitLab. Combined batch to Google Security &mdash; auto-acknowledged via their security-noreply system.</p>
           <p class="text-meta">Predominantly student / bootcamp / hobbyist repos. Several repeat-offender accounts identified for coordinated rotation.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128993; 15 LEAKED (12 Discord + 3 Slack)</div>
           <h3>Discord + Slack webhook URLs</h3>
           <p>Live webhooks for posting arbitrary messages to chat channels without authentication. Disclosed to Discord T&amp;S and Slack Security for owner notification + abuse-detection feedback.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128308; 46 LISTABLE BUCKETS</div>
           <h3>Anonymous-listable cloud storage</h3>
           <p>Buckets responding to anonymous <code>GET /</code> with a full <code>&lt;ListBucketResult&gt;</code>. Bucket names alone strongly suggest sensitive content: KYC documents, mortgages, prescriptions, loan portfolios, vault staging, WhatsApp backups, credentials-production.</p>
@@ -313,14 +318,14 @@
           <p class="text-meta"><strong>Bucket contents were never listed</strong> &mdash; we only verified the listing permission exists. Providers identify the owner from internal records.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128308; 19 VERIFIED TAKEOVERS</div>
           <h3>Subdomain takeover candidates</h3>
           <p>Subdomains of bug-bounty-eligible programs with dangling DNS records pointing to unclaimed Vercel / Fastly / Heroku / Unbounce / CloudFront resources. Anyone could register the dangling resource and serve attacker content at a high-trust subdomain.</p>
           <p class="text-meta">Disclosed individually to each affected program's security team (10+ Fortune 500 / unicorn / major-SaaS bug-bounty programs across crypto, fintech, retail, payments, AI-tooling, hosting, and travel). One human-engineer reply received within hours; multiple auto-acks from established programs. <strong>We never registered any dangling resource &mdash; fingerprint match only, per industry standard (subjack / can-i-take-over-xyz / nuclei takeover templates).</strong></p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">&#128992; 2 EXPOSED</div>
           <h3>phpinfo.php exposures</h3>
           <p>Public <code>phpinfo.php</code> pages on production sites leaking full PHP server configuration, file paths, loaded modules, and environment variables. Both running end-of-life PHP versions (7.3.x and 7.4.x). Disclosed to site owners directly.</p>
@@ -333,19 +338,19 @@
       <p class="text-meta-md">Scanners are easy to write. Scanners that don't burn researcher credibility on false positives are hard. Every false-positive class we encounter becomes a permanent filter rule in the codebase &mdash; the catalogue grew from 13 to 16 classes this week.</p>
 
       <div class="shell-grid shell-grid--3 mt-4">
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">FP CLASS #14</div>
           <h3>HEAD response Content-Type trust bypass</h3>
           <p>Some servers (Cloudflare, SPA shells) return CT=<code>text/plain</code> on HEAD but <code>text/html</code> body on GET. Filters gated on HEAD's CT never engaged &mdash; phantom "exposed debug endpoint" findings shipped. Fix: always fetch the body, never trust HEAD's CT.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">FP CLASS #15</div>
           <h3>Intentional public infrastructure endpoints</h3>
           <p>Endpoints like <code>/health</code>, <code>/api/health</code>, <code>/ready</code>, <code>/ping</code> are public by design (Spring Actuator, k8s probes, ALB checks). Scanner now allow-lists these instead of flagging them. The <em>deeper</em> endpoints like <code>/actuator/env</code> still get caught.</p>
         </div>
 
-        <div class="shell-card">
+        <div class="shell-card codex-glass codex-lift">
           <div class="eyebrow">FP CLASS #16</div>
           <h3>WAF block-pages that return HTTP 200</h3>
           <p>F5 BIG-IP / Imperva / Cloudflare / Akamai sometimes return 200 with a "Request Rejected" body instead of 403. Scanner saw the 200 and flagged "admin panel exposed." Fix: regex on known WAF block-page signatures, classify as WAF-BLOCKED-FP.</p>
@@ -358,7 +363,7 @@
     </section>
 
     <!-- THE FIX-CONFIRMED WIN -->
-    <section class="shell-section divider-top">
+    <section class="shell-section divider-top" data-reveal>
       <div class="shell-section__head">
         <h2>The first confirmed fix</h2>
       </div>
@@ -379,7 +384,7 @@
     </section>
 
     <!-- THE FALSE-POSITIVE INCIDENT (transparency) -->
-    <section class="shell-section divider-top">
+    <section class="shell-section divider-top" data-reveal>
       <div class="shell-section__head">
         <h2>When we were wrong</h2>
         <p>Because being honest about our mistakes is the only way to keep the trust we built.</p>
@@ -398,25 +403,25 @@
     </section>
 
     <!-- WHAT WE'VE FOUND IN THE WILD -->
-    <section class="shell-section divider-top">
+    <section class="shell-section divider-top" data-reveal>
       <div class="shell-section__head">
         <h2>Disclosures sent (so far)</h2>
         <p>Verified, manually triaged, and contacted via responsible disclosure. Full details kept private until the maintainer rotates or 30 days pass.</p>
       </div>
       <div class="shell-grid shell-grid--4">
-        <div class="shell-card shell-card--stat">
+        <div class="shell-card shell-card--stat codex-glass">
           <div class="shell-stat__num">184</div>
           <div class="shell-stat__label">verified vulnerabilities responsibly disclosed</div>
         </div>
-        <div class="shell-card shell-card--stat">
+        <div class="shell-card shell-card--stat codex-glass">
           <div class="shell-stat__num">9</div>
           <div class="shell-stat__label">distinct vulnerability classes scanned (Firebase, DB-creds, PR-target RCE, 6 SaaS-key types, HF Spaces, PyPI)</div>
         </div>
-        <div class="shell-card shell-card--stat">
+        <div class="shell-card shell-card--stat codex-glass">
           <div class="shell-stat__num">3</div>
           <div class="shell-stat__label">GitHub Security Advisories filed</div>
         </div>
-        <div class="shell-card shell-card--stat">
+        <div class="shell-card shell-card--stat codex-glass">
           <div class="shell-stat__num">1</div>
           <div class="shell-stat__label">confirmed fix received from a maintainer (&ldquo;Thanks. Now it is fixed&rdquo;)</div>
         </div>

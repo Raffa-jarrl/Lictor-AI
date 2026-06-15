@@ -53,6 +53,9 @@
     }
   }
   </script>
+
+  <link rel="stylesheet" href="/static/codex.css?v=1" />
+  <script src="/static/codex.js" defer></script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -62,15 +65,20 @@
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
+      <a href="/#pillars">Pillars</a>
+      <a href="/#install">Install</a>
+      <a href="/mission-control">Mission Control</a>
       <a href="/scan" class="active">Scan</a>
       <a href="/patterns">Patterns</a>
+      <a href="/business">For Business</a>
       <a href="/donate">Support</a>
       <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
     </nav>
   </header>
 
   <main id="main">
-    <section class="scan-hero">
+    <section class="scan-hero" style="position:relative;">
+      <svg class="codex-geo" viewBox="0 0 320 320" aria-hidden="true"><circle class="ink" cx="160" cy="160" r="150"/><circle class="ink" cx="160" cy="160" r="92"/><path class="ink" d="M10 160h300M160 10v300"/></svg>
       <span class="eyebrow">FREE · NO SIGNUP · APACHE 2.0 · YOUR URL NEVER LEAVES OUR WORKER</span>
       <h1 class="scan-hero__title">
         Paste a URL. <em>Get a security grade.</em>
@@ -103,7 +111,7 @@
       </p>
     </section>
 
-    <section class="scan-example">
+    <section class="scan-example" data-reveal>
       <h2 class="section__title fx-reveal">Here's what a scorecard looks like.</h2>
       <p class="section__sub fx-reveal">
         Below is the live scan of <code>lictor-ai.com</code> itself. We scan ourselves first, publicly. Our findings are public. That's the contract.
@@ -113,20 +121,20 @@
       </p>
     </section>
 
-    <section class="scan-how">
+    <section class="scan-how" data-reveal>
       <h2 class="section__title fx-reveal">How it works.</h2>
       <div class="how-grid">
-        <div class="how-step">
+        <div class="how-step codex-glass codex-lift" data-reveal>
           <span class="how-step__num">1</span>
           <h3>You paste a URL.</h3>
           <p>Any public web app. No login, no GitHub install, no signup.</p>
         </div>
-        <div class="how-step">
+        <div class="how-step codex-glass codex-lift" data-reveal>
           <span class="how-step__num">2</span>
           <h3>A Cloudflare Worker scans it.</h3>
           <p>Our 7-check Rust engine, compiled to WebAssembly, runs against your URL in about 30 seconds. The same engine that runs in <code>/lictor-security-check</code> and the Shield browser extension.</p>
         </div>
-        <div class="how-step">
+        <div class="how-step codex-glass codex-lift" data-reveal>
           <span class="how-step__num">3</span>
           <h3>You get a letter grade.</h3>
           <p>A through F. Plus the 5 worst findings in plain English, with a 5-minute fix for each. Shareable. Re-runnable as you fix.</p>
@@ -134,7 +142,7 @@
       </div>
     </section>
 
-    <section class="scan-privacy">
+    <section class="scan-privacy" data-reveal>
       <h2 class="section__title fx-reveal">What we do with your scan.</h2>
       <ul class="privacy-list">
         <li><strong class="ok">We never store your URL or scorecard publicly without your consent.</strong> Your scan is yours.</li>
@@ -147,12 +155,12 @@
     </section>
 
     <!-- Install the Claude Code skill (cross-link from /scan) -->
-    <section class="shell-section" style="border-top:1px solid var(--border);">
+    <section class="shell-section" data-reveal style="border-top:1px solid var(--border);">
       <div class="shell-section__head">
         <h2>Or run it locally — 3 commands, 30 seconds</h2>
         <p>Prefer to run inside your editor instead of pasting a URL? Lictor ships as a Claude Code skill. Paste 3 commands and type <code>/lictor-security-check</code> in any project.</p>
       </div>
-      <div style="max-width:760px;margin:0 auto;background:var(--surface,#1A2028);border:1px solid var(--border,#2A323E);border-radius:14px;padding:1.75rem;position:relative;">
+      <div class="codex-glass" style="max-width:760px;margin:0 auto;background:var(--surface,#1A2028);border:1px solid var(--border,#2A323E);border-radius:14px;padding:1.75rem;position:relative;">
         <pre style="margin:0;padding:0;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.95rem;line-height:1.7;color:var(--text);white-space:pre-wrap;overflow-x:auto;"><span style="color:var(--text-muted);"># 1. Clone the repo</span>
 git clone https://github.com/Raffa-jarrl/Lictor-AI.git ~/Code/lictor
 
@@ -161,12 +169,12 @@ mkdir -p ~/.claude/skills
 
 <span style="color:var(--text-muted);"># 3. Copy the Lictor skills in</span>
 cp -r ~/Code/lictor/skills/lictor-* ~/.claude/skills/</pre>
-        <button onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText);this.textContent='✓ Copied';setTimeout(()=>this.textContent='Copy',2000)" style="position:absolute;top:1rem;right:1rem;background:var(--accent,#E8A33D);color:#0d0e12;border:none;border-radius:6px;padding:.4rem .8rem;font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;">Copy</button>
+        <button class="js-copy codex-lift" data-done="✓ Copied" style="position:absolute;top:1rem;right:1rem;background:var(--accent,#E8A33D);color:#0d0e12;border:none;border-radius:6px;padding:.4rem .8rem;font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;">Copy</button>
       </div>
       <p style="text-align:center;margin-top:1.25rem;color:var(--text-muted);font-size:.9rem;">Then open Claude Code in any project and type <code style="color:var(--accent);">/lictor-security-check</code></p>
     </section>
 
-    <section class="scan-pricing">
+    <section class="scan-pricing" data-reveal>
       <h2 class="section__title fx-reveal">It's free. Forever.</h2>
       <p class="section__sub fx-reveal">
         Lictor's core is open source under Apache 2.0. The scanner runs on Cloudflare Workers ($30/month at our projected volumes) and a domain (one-time). The audit corpus, the public scorecards, the leaderboard — all free.
@@ -175,8 +183,8 @@ cp -r ~/Code/lictor/skills/lictor-* ~/.claude/skills/</pre>
         If Lictor helps you ship a safer app, the world treats back the same:
       </p>
       <div class="cta-row">
-        <a href="/donate" class="btn btn--primary fx-glow fx-shine fx-magnetic">Donate →</a>
-        <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="btn btn--ghost">Star the repo</a>
+        <a href="/donate" class="btn btn--primary fx-glow fx-shine fx-magnetic codex-lift">Donate →</a>
+        <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="btn btn--ghost codex-lift">Star the repo</a>
       </div>
       <p class="scan-pricing__note">
         For commercial use with continuous monitoring + Slack alerts + audit log export, <strong>Lictor for Teams</strong> is $19/month flat, unlimited seats. No per-seat pricing, ever. (<a href="/" class="link">Learn more on the home page</a>.)
@@ -189,5 +197,6 @@ cp -r ~/Code/lictor/skills/lictor-* ~/.claude/skills/</pre>
   </footer>
 
   <script src="/scan/scan.js" defer></script>
+  <script src="/static/copy.js" defer></script>
 </body>
 </html>

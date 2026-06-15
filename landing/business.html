@@ -77,6 +77,8 @@
   </style>
   <link rel="stylesheet" href="/static/a11y.css" />
   <script src="/static/a11y.js" defer></script>
+  <link rel="stylesheet" href="/static/codex.css?v=1" />
+  <script src="/static/codex.js" defer></script>
 </head>
 <body>
 
@@ -84,63 +86,69 @@
   <div class="container">
     <a href="/">Lictor</a>
     <div class="nav-links">
-      <a href="/">Open source</a>
-      <a href="/business" style="color: var(--accent);">For business</a>
-      <a href="https://github.com/Raffa-jarrl/Lictor-AI">GitHub</a>
+      <a href="/#pillars">Pillars</a>
+      <a href="/#install">Install</a>
+      <a href="/mission-control">Mission Control</a>
+      <a href="/scan">Scan</a>
+      <a href="/patterns">Patterns</a>
+      <a href="/business" style="color: var(--accent);">For Business</a>
+      <a href="/donate">Support</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI">GitHub →</a>
     </div>
   </div>
 </nav>
 
-<header class="hero">
+<header class="hero" style="position:relative;">
+  <svg class="codex-geo" viewBox="0 0 320 320" aria-hidden="true" style="right:-40px; top:-30px; width:360px; height:360px;"><circle class="ink" cx="160" cy="160" r="150"/><circle class="ink" cx="160" cy="160" r="92"/><path class="ink" d="M10 160h300M160 10v300"/></svg>
   <div class="container">
     <h1>Lictor for Business —<br><span class="accent">secure the whole company.</span></h1>
     <p class="subtitle">The second pillar of the Lictor suite, focused on two products: <strong>Isolation OS</strong> (boot a USB into an air-gapped AI workspace — your own AI accounts, zero access to your network) and <strong>Internal Check</strong> (an automated internal pentest: the $20k engagement at SMB price). Built on the same Core engine and continuous external scanner battery behind our disclosures across DeFi, healthcare, fintech, government, and Fortune 500 enterprises — now pointed at your perimeter, in plain English.</p>
-    <a href="#contact" class="cta">Talk to us about scope →</a>
-    <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="cta secondary">Try the open-source scanner</a>
+    <a href="#contact" class="cta codex-lift">Talk to us about scope →</a>
+    <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="cta secondary codex-lift">Try the open-source scanner</a>
   </div>
 </header>
 
-<section>
+<section data-reveal>
   <div class="container">
     <h2>What we scan</h2>
     <p class="lede">38 scanner modules across 8 attack-surface categories. Same engine that's already producing disclosures to major banks, DeFi protocols, and Fortune 500 companies — now monitoring your perimeter on your schedule.</p>
     <div class="grid grid-3">
-      <div class="card">
+      <div class="card codex-glass codex-lift">
         <div class="icon">📁</div>
         <h3>Web file exposure</h3>
         <p>.git directories, .env files, wallet/keystore files, source maps, hardhat artifacts, Solana keypairs, Google service-accounts. HEAD-only probes, never downloads content.</p>
       </div>
-      <div class="card">
+      <div class="card codex-glass codex-lift">
         <div class="icon">☁️</div>
         <h3>Cloud misconfiguration</h3>
         <p>S3, GCS, Azure Blob, DigitalOcean Spaces, Wasabi, Backblaze. Listable buckets, public ACLs, dangling DNS to expired cloud apps (subdomain takeover).</p>
       </div>
-      <div class="card">
+      <div class="card codex-glass codex-lift">
         <div class="icon">🔐</div>
         <h3>TLS / SSL posture</h3>
         <p>Weak ciphers, expired certs, missing HSTS / CSP / X-Frame-Options, weak RSA &lt; 2048, SHA-1 signatures. PCI-DSS Req 4.1 aligned.</p>
       </div>
-      <div class="card">
+      <div class="card codex-glass codex-lift">
         <div class="icon">✉️</div>
         <h3>Email-auth posture</h3>
         <p>SPF / DKIM / DMARC checks per apex domain. Detect spoofable mail (anti-phishing), missing DKIM, weak DMARC (p=none). Tells you if your email can be impersonated.</p>
       </div>
-      <div class="card">
+      <div class="card codex-glass codex-lift">
         <div class="icon">🦠</div>
         <h3>Anti-ransomware exposure</h3>
         <p>Protocol-handshake confirmed: exposed RDP, SMB, WinRM, FTP, RPC. Plus VPN/RAT fingerprints (Fortinet, Citrix, Pulse, MOVEit, GoAnywhere) cross-referenced with CISA KEV.</p>
       </div>
-      <div class="card">
+      <div class="card codex-glass codex-lift">
         <div class="icon">🛰</div>
         <h3>GraphQL + API exposure</h3>
         <p>GraphQL introspection enabled in production. REST OpenAPI documentation exposure. Detection only — never enumerates data records.</p>
       </div>
-      <div class="card">
+      <div class="card codex-glass codex-lift">
         <div class="icon">📜</div>
         <h3>Known CVEs</h3>
         <p>~13,000 Nuclei detection patterns + 1,600 CISA Known Exploited Vulnerabilities. Auto-mapped to your version banners + product fingerprints.</p>
       </div>
-      <div class="card">
+      <div class="card codex-glass codex-lift">
         <div class="icon">🤝</div>
         <h3>Vendor disclosure coordination</h3>
         <p>When we find an exposure on a vendor of yours (your payment processor, your CDN, your podcast platform), we handle the upstream disclosure — INCD, Immunefi, HackerOne, vendor abuse@.</p>
@@ -149,7 +157,7 @@
   </div>
 </section>
 
-<section>
+<section data-reveal>
   <div class="container">
     <h2>Why Lictor instead of Tenable / Rapid7?</h2>
     <p class="lede">Enterprise scanners are priced for enterprises. Most medium businesses are either overpaying for 5% of the feature set or running zero external monitoring. Lictor for Business fills the missing middle.</p>
@@ -199,7 +207,7 @@
   </div>
 </section>
 
-<section>
+<section data-reveal>
   <div class="container">
     <h2>What the scanner battery surfaced — May 2026</h2>
     <p class="lede">Aggregate results from a 5-day external attack-surface scan across 7,736 hosts in finance, healthcare, government, crypto, and AI infrastructure. Every finding category below was disclosed privately to the affected organizations. <strong>Zero victim names published — only finding categories and counts.</strong></p>
@@ -218,12 +226,12 @@
   </div>
 </section>
 
-<section id="contact">
+<section id="contact" data-reveal>
   <div class="container">
     <h2 style="text-align: center;">Talk to us about scope</h2>
     <p class="lede" style="margin: 0 auto 32px; text-align: center;">Pricing depends on your domain count, scan frequency, and whether you want disclosure-coordination services. We don't publish public pricing — every customer gets a quote based on actual scope. First 10-15 design partners get Year 1 free in exchange for a feedback call.</p>
 
-    <form class="contact-form" action="https://formsubmit.co/raffajarrl@gmail.com" method="POST" id="lictor-business-contact">
+    <form class="contact-form codex-glass" action="https://formsubmit.co/raffajarrl@gmail.com" method="POST" id="lictor-business-contact">
       <!-- formsubmit.co — free, no-signup form-to-email. First submission triggers confirmation email to raffajarrl@gmail.com. -->
       <input type="hidden" name="_subject" value="Lictor for Business — contact form">
       <input type="hidden" name="_template" value="table">
@@ -280,7 +288,7 @@
         <input type="checkbox" id="design_partner" name="design_partner" style="width: auto;">
         <label for="design_partner" style="margin: 0;">I'm interested in the Design Partner program (Year 1 free, quarterly feedback calls)</label>
       </div>
-      <button type="submit" class="cta" style="width: 100%; margin-top: 8px;">Send →</button>
+      <button type="submit" class="cta codex-lift" style="width: 100%; margin-top: 8px;">Send →</button>
       <p style="color: var(--fg-muted); font-size: 13px; margin-top: 16px; text-align: center;">We'll respond within 24 hours during EU/IL business hours. No automated follow-up sequences.</p>
     </form>
   </div>

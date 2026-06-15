@@ -64,6 +64,8 @@
     .iso-free { max-width: 620px; margin: 2rem auto 0; font-family: "JetBrains Mono", monospace; font-size: .82rem; color: var(--text-muted); }
     .iso-free b { color: var(--accent); }
   </style>
+  <link rel="stylesheet" href="/static/codex.css?v=1" />
+  <script src="/static/codex.js" defer></script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -73,9 +75,13 @@
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
-      <a href="/#isolation-os">Isolation OS</a>
-      <a href="/business">For Business</a>
+      <a href="/#pillars">Pillars</a>
       <a href="/#install">Install</a>
+      <a href="/mission-control">🛰 Mission Control</a>
+      <a href="/scan">Scan</a>
+      <a href="/patterns">Patterns</a>
+      <a href="/business">For Business</a>
+      <a href="/donate">Support</a>
       <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
     </nav>
   </header>
@@ -84,6 +90,7 @@
     <!-- HERO + CAPTURE -->
     <section class="iso-hero">
       <div class="iso-hero__glow"></div>
+      <svg class="codex-geo" viewBox="0 0 320 320" aria-hidden="true" style="top:-40px;left:50%;transform:translateX(-50%);width:420px;height:420px;"><circle class="ink" cx="160" cy="160" r="150"/><circle class="ink" cx="160" cy="160" r="92"/><path class="ink" d="M10 160h300M160 10v300"/></svg>
       <span class="iso-eyebrow">🔥 Flagship · Free beta · USB-bootable</span>
       <h1>Boot AI. <em>Touch nothing.</em></h1>
       <p class="iso-hero__sub">
@@ -93,7 +100,7 @@
         Pull the stick out and there&rsquo;s no trace.
       </p>
 
-      <form class="waitlist-form" action="/api/waitlist" method="post">
+      <form class="waitlist-form" action="/api/waitlist" method="post" data-reveal>
         <div class="waitlist-form__row">
           <input type="email" name="email" placeholder="you@company.com" required autocomplete="email" aria-label="Email address" />
           <button type="submit">Get beta access →</button>
@@ -116,20 +123,20 @@
     </section>
 
     <!-- RED / BLACK ZONES -->
-    <section class="suite" style="border-top:1px solid rgba(232, 163, 61,.18);padding-top:2.5rem;">
+    <section class="suite" data-reveal style="border-top:1px solid rgba(232, 163, 61,.18);padding-top:2.5rem;">
       <h2 class="section__title fx-reveal">The boundary is <em>physical</em>, not a policy you hope holds.</h2>
       <p class="section__sub fx-reveal">
         Two zones, one stick. The AI lives in the red zone and can reach the public model APIs.
         Your real network lives in the black zone and is simply unreachable — dropped at the kernel, by construction.
       </p>
       <div class="zones fx-reveal">
-        <div class="zone zone--red">
+        <div class="zone zone--red codex-glass codex-lift">
           <div class="zone__tag">🔴 red zone — the workspace</div>
           <h3>Reaches the model</h3>
           <p>The browser talks to <code>api.anthropic.com</code>, ChatGPT and Gemini. Files live only in <code>~/projects</code>, one folder per project. Ephemeral — wiped each boot.</p>
         </div>
         <div class="zones__gap"><span>air-gap</span></div>
-        <div class="zone zone--black">
+        <div class="zone zone--black codex-glass codex-lift">
           <div class="zone__tag">⚫ black zone — your real network</div>
           <h3>Unreachable</h3>
           <p>Your LAN, domain, prod, and the host machine&rsquo;s own disk — <code>10.x</code>, <code>192.168.x</code>, your gateway — every path is blocked. Nothing here can reach, change, or delete your business.</p>
@@ -138,65 +145,65 @@
     </section>
 
     <!-- HOW IT WORKS -->
-    <section class="suite">
+    <section class="suite" data-reveal>
       <h2 class="section__title fx-reveal">Plug in. Power on. Done.</h2>
       <div class="cards" style="margin-top:1.5rem;">
-        <div class="card fx-reveal fx-tilt">
+        <div class="card fx-reveal fx-tilt codex-glass codex-lift">
           <div class="card__pill">1 · Boot</div>
           <h3 class="card__title">Plug in. Power on.</h3>
           <p class="card__lede">Boot the stick into a hardened, ephemeral OS — separate from the machine&rsquo;s disk, the domain, and the company LAN. No install on the host.</p>
         </div>
-        <div class="card fx-reveal fx-tilt">
+        <div class="card fx-reveal fx-tilt codex-glass codex-lift">
           <div class="card__pill">2 · Log in</div>
           <h3 class="card__title">Your AI, your accounts.</h3>
           <p class="card__lede">The top-3 clients open in a locked browser — <strong>Claude, ChatGPT, Gemini</strong>. Sign in with your own accounts; no new subscriptions, nothing to configure.</p>
         </div>
-        <div class="card fx-reveal fx-tilt">
+        <div class="card fx-reveal fx-tilt codex-glass codex-lift">
           <div class="card__pill">3 · Isolated</div>
           <h3 class="card__title">Reaches the model. Not you.</h3>
           <p class="card__lede">The workspace talks to the AI providers and nothing else. Your network stays invisible — air-gap by construction, not a setting you can forget.</p>
         </div>
       </div>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:2rem;">
-        <a href="#main" class="shell-btn shell-btn--primary">Join the free beta &uarr;</a>
-        <a href="/business" class="shell-btn shell-btn--ghost">For Business &rarr;</a>
+        <a href="#main" class="shell-btn shell-btn--primary codex-lift">Join the free beta &uarr;</a>
+        <a href="/business" class="shell-btn shell-btn--ghost codex-lift">For Business &rarr;</a>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="iso-faq">
+    <section class="iso-faq" data-reveal>
       <h2>Questions</h2>
-      <details>
+      <details class="codex-glass">
         <summary>Is it really isolated, or just &ldquo;configured&rdquo; to be?</summary>
         <p>Really isolated. At boot the OS drops every route to a private network (<code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>, link-local and CGNAT) at the firewall, while allowing the public model APIs. We proved the exact same red/black boundary in our open-source container red-zone first — the AI reached <code>api.anthropic.com</code> and every internal address was blocked.</p>
       </details>
-      <details>
+      <details class="codex-glass">
         <summary>Which AI clients are included?</summary>
         <p>The top three at launch — <strong>Claude, ChatGPT and Gemini</strong> — opened in a locked, full-screen browser. You sign in with your own accounts; Isolation OS never sees your credentials or sells you a subscription. More vendors follow.</p>
       </details>
-      <details>
+      <details class="codex-glass">
         <summary>Where do my files go?</summary>
         <p>Only into <code>~/projects</code>, one folder per project, inside the red zone. The host machine&rsquo;s disk is untouched. The profile is ephemeral by default — boot fresh every time — with an optional encrypted data partition on the roadmap.</p>
       </details>
-      <details>
+      <details class="codex-glass">
         <summary>What does it cost?</summary>
         <p><strong>Free during the beta.</strong> When it reaches v1 there&rsquo;ll be a paid, signed download — but beta members keep early access and get the friendliest pricing. No card to join the list.</p>
       </details>
-      <details>
+      <details class="codex-glass">
         <summary>Who is this for?</summary>
         <p>Anyone who wants to use powerful AI without giving it a path to their real systems: regulated businesses (clinics, law firms, fintech) that legally can&rsquo;t let data wander, dev and security teams piloting AI safely, and founders who simply don&rsquo;t want an agent one prompt away from prod.</p>
       </details>
     </section>
 
     <!-- COMMITMENT -->
-    <section class="suite" style="border-top:1px solid var(--border);">
+    <section class="suite" data-reveal style="border-top:1px solid var(--border);">
       <p class="section__sub fx-reveal" style="text-align:center;">
         Built by Raffa, a 20-year cybersecurity engineer. Isolation OS is the second pillar of the
         Lictor suite — same Core engine behind our security tooling and external scanner, now pointed at
         the one risk no one else covers: <em>your own AI, reaching your own network.</em>
       </p>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:1rem;">
-        <a href="#main" class="shell-btn shell-btn--primary">Get beta access &uarr;</a>
+        <a href="#main" class="shell-btn shell-btn--primary codex-lift">Get beta access &uarr;</a>
       </div>
     </section>
   </main>

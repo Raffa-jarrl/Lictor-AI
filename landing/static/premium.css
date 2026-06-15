@@ -1,0 +1,76 @@
+/* premium.css — high-end MOTION layer over security.css: glassmorphism, an animated
+   aurora + orbiting spotlight, shimmer headline, cinematic reveals, parallax, and
+   refined micro-interactions. On-brand (charcoal + amber #E8A33D). ALL motion is
+   gated to prefers-reduced-motion:no-preference; glass is static (accessible). */
+
+/* ---- 1. Glass surfaces (static) ------------------------------------------ */
+.term,.trustbar,.cta{
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.018));
+  backdrop-filter:blur(14px) saturate(1.15); -webkit-backdrop-filter:blur(14px) saturate(1.15);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 1px 0 rgba(255,255,255,.06) inset, 0 24px 60px -30px rgba(0,0,0,.75);
+}
+.term{ border-radius:14px; overflow:hidden; position:relative; }
+.hero-term::after{ content:""; position:absolute; left:0; right:0; top:0; height:1px; z-index:3;
+  background:linear-gradient(90deg, transparent, rgba(232,163,61,.6), transparent); }
+
+/* aurora base — sized big so it can drift */
+.hero::before{ background-size:170% 170%; background-position:20% 28%, 88% 74%; }
+
+/* ---- 2. MOTION ----------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference){
+
+  /* 2a. animated aurora drift + breathe (transform stays free for parallax below) */
+  .hero::before{ animation:auroraDrift 16s ease-in-out infinite alternate; }
+  @keyframes auroraDrift{
+    0%{   background-position:18% 26%, 86% 72%; opacity:.85; }
+    50%{  background-position:30% 34%, 78% 64%; opacity:1;   }
+    100%{ background-position:14% 22%, 92% 80%; opacity:.8;  }
+  }
+
+  /* 2b. a large amber spotlight that slowly orbits behind the hero — the obvious motion */
+  .hero{ overflow:hidden; }
+  .hero::after{ content:""; position:absolute; z-index:0; pointer-events:none;
+    width:46vw; height:46vw; left:6%; top:6%; border-radius:50%;
+    background:radial-gradient(circle, rgba(232,163,61,.18), transparent 62%);
+    filter:blur(20px); animation:spotlightOrbit 22s linear infinite; }
+  @keyframes spotlightOrbit{
+    0%{   transform:translate3d(0,0,0) scale(1);     }
+    25%{  transform:translate3d(34vw,6vh,0) scale(1.12); }
+    50%{  transform:translate3d(40vw,24vh,0) scale(.95); }
+    75%{  transform:translate3d(6vw,18vh,0) scale(1.1);  }
+    100%{ transform:translate3d(0,0,0) scale(1);     }
+  }
+
+  /* 2c. flowing gradient on the accent word */
+  .hero h1 em{ background-size:240% 100%; animation:emShimmer 6s ease-in-out infinite; }
+  @keyframes emShimmer{ 0%,100%{ background-position:0% 50%; } 50%{ background-position:100% 50%; } }
+
+  /* 2d. cinematic reveals — bigger travel + blur-clear + child stagger (overrides the 14px default) */
+  .js .reveal{ opacity:0; transform:translateY(44px) scale(.985); filter:blur(6px);
+    transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1), filter .7s ease; }
+  .js .reveal.in{ opacity:1; transform:none; filter:none; }
+  .js .reveal.in > *{ animation:riseIn .7s cubic-bezier(.16,1,.3,1) both; }
+  .js .reveal.in > *:nth-child(2){ animation-delay:.08s; }
+  .js .reveal.in > *:nth-child(3){ animation-delay:.16s; }
+  .js .reveal.in > *:nth-child(4){ animation-delay:.24s; }
+  .js .reveal.in > *:nth-child(5){ animation-delay:.32s; }
+  @keyframes riseIn{ from{ opacity:0; transform:translateY(20px); } to{ opacity:1; transform:none; } }
+
+  /* 2e. micro-interactions — springier lifts + glow */
+  .btn{ transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease, border-color .25s ease, background .25s ease; }
+  .btn--primary:hover{ transform:translateY(-3px) scale(1.02); box-shadow:0 18px 40px -12px rgba(232,163,61,.7); }
+  .btn--ghost:hover{ transform:translateY(-3px); border-color:rgba(232,163,61,.6); box-shadow:0 0 0 1px rgba(232,163,61,.3), 0 14px 30px -16px rgba(0,0,0,.7); }
+  .term{ transition:transform .45s cubic-bezier(.16,1,.3,1), border-color .45s ease, box-shadow .45s ease; }
+  .term:hover{ transform:translateY(-5px); border-color:rgba(232,163,61,.34);
+    box-shadow:0 1px 0 rgba(255,255,255,.08) inset, 0 44px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(232,163,61,.16); }
+
+  /* 2f. glass sheen sweep across the terminal on hover */
+  .term::before{ content:""; position:absolute; inset:0; pointer-events:none; z-index:2;
+    background:linear-gradient(115deg, transparent 34%, rgba(255,255,255,.12) 50%, transparent 66%);
+    background-size:240% 100%; background-position:160% 0; transition:background-position 1s ease; }
+  .term:hover::before{ background-position:-60% 0; }
+
+  /* 2g. scroll parallax on the aurora (premium.js sets --par = clamped scrollY) */
+  .hero::before{ transform:translate3d(0, calc(var(--par,0px) * .30), 0); }
+}

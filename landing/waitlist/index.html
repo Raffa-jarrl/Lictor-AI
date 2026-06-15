@@ -292,7 +292,10 @@
   <link rel="stylesheet" href="/static/shell.css" />
   <link rel="stylesheet" href="/static/fx.css" />
   <script src="/static/fx.js" defer></script>
+  <script src="/static/buttondown.js" defer></script>
   <link rel="canonical" href="https://lictor-ai.com/waitlist/" />
+  <link rel="stylesheet" href="/static/codex.css?v=1" />
+  <script src="/static/codex.js" defer></script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -302,9 +305,12 @@
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
+      <a href="/#pillars">Pillars</a>
       <a href="/#install">Install</a>
+      <a href="/mission-control">Mission Control</a>
       <a href="/scan">Scan</a>
       <a href="/patterns">Patterns</a>
+      <a href="/business">For Business</a>
       <a href="/donate">Support</a>
       <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
     </nav>
@@ -312,7 +318,8 @@
 
   <main id="main">
     <!-- HERO -->
-    <section class="waitlist-hero">
+    <section class="waitlist-hero" style="position:relative;">
+      <svg class="codex-geo" viewBox="0 0 320 320" aria-hidden="true"><circle class="ink" cx="160" cy="160" r="150"/><circle class="ink" cx="160" cy="160" r="92"/><path class="ink" d="M10 160h300M160 10v300"/></svg>
       <span class="waitlist-hero__eyebrow">SHIPS OCTOBER 6, 2026 · APACHE 2.0 · FREE FOREVER</span>
 
       <h1 class="waitlist-hero__title">
@@ -343,7 +350,6 @@
         action="https://buttondown.com/api/emails/embed-subscribe/lictor-ai"
         method="post"
         target="popupwindow"
-        onsubmit="window.open('https://buttondown.com/lictor-ai', 'popupwindow')"
       >
         <div class="waitlist-form__row">
           <input
@@ -354,7 +360,7 @@
             autocomplete="email"
             aria-label="Email address"
           />
-          <button type="submit">Get on the list →</button>
+          <button type="submit" class="codex-lift">Get on the list →</button>
         </div>
 
         <select name="metadata__platform" aria-label="What platform do you build on?">
@@ -377,38 +383,38 @@
     </section>
 
     <!-- STATS / SOCIAL PROOF -->
-    <section class="waitlist-stats">
-      <div class="waitlist-stat">
+    <section class="waitlist-stats" data-reveal>
+      <div class="waitlist-stat codex-glass codex-lift">
         <span class="waitlist-stat__value">40–62%</span>
         <span class="waitlist-stat__label">of AI-generated code ships with security vulnerabilities</span>
       </div>
-      <div class="waitlist-stat">
+      <div class="waitlist-stat codex-glass codex-lift">
         <span class="waitlist-stat__value">18,000</span>
         <span class="waitlist-stat__label">vibe-coded app users exposed in a single recent incident</span>
       </div>
-      <div class="waitlist-stat">
+      <div class="waitlist-stat codex-glass codex-lift">
         <span class="waitlist-stat__value">$0</span>
         <span class="waitlist-stat__label">what Lictor costs to use — forever, on the OSS core</span>
       </div>
     </section>
 
     <!-- WHAT IT CHECKS -->
-    <section class="waitlist-what">
+    <section class="waitlist-what" data-reveal>
       <h2>What Lictor catches</h2>
       <ul class="waitlist-checks">
-        <li>Supabase service-role key in your JS bundle</li>
-        <li>Missing Row-Level Security on your tables</li>
-        <li>Hallucinated npm packages (typical AI mistake)</li>
-        <li>Frontend-only auth checks ("admin gate" that isn't)</li>
-        <li>Unsigned Stripe / GitHub / Shopify webhooks</li>
-        <li>Cross-tenant data leakage via Next.js cache</li>
-        <li>AI endpoints with no rate limiting</li>
-        <li>Plain-English findings — no SOC 2 jargon, ever</li>
+        <li class="codex-glass codex-lift">Supabase service-role key in your JS bundle</li>
+        <li class="codex-glass codex-lift">Missing Row-Level Security on your tables</li>
+        <li class="codex-glass codex-lift">Hallucinated npm packages (typical AI mistake)</li>
+        <li class="codex-glass codex-lift">Frontend-only auth checks ("admin gate" that isn't)</li>
+        <li class="codex-glass codex-lift">Unsigned Stripe / GitHub / Shopify webhooks</li>
+        <li class="codex-glass codex-lift">Cross-tenant data leakage via Next.js cache</li>
+        <li class="codex-glass codex-lift">AI endpoints with no rate limiting</li>
+        <li class="codex-glass codex-lift">Plain-English findings — no SOC 2 jargon, ever</li>
       </ul>
     </section>
 
     <!-- THE PROMISE -->
-    <section class="waitlist-promise">
+    <section class="waitlist-promise" data-reveal>
       <p>
         <strong style="color: var(--text);">The Lictor commitment.</strong>
         The OSS core stays free forever. Apache 2.0 license, governed by the
@@ -419,7 +425,7 @@
     </section>
 
     <!-- FOUNDER -->
-    <section class="waitlist-founder">
+    <section class="waitlist-founder" data-reveal>
       <h3>Who's building this?</h3>
       <p>
         Lictor is built by Raffa, a 20-year cybersecurity engineer based in Israel.

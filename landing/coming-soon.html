@@ -30,6 +30,8 @@
   <link rel="stylesheet" href="/static/fx.css" />
   <script src="/static/fx.js" defer></script>
   <link rel="canonical" href="https://lictor-ai.com/coming-soon.html" />
+  <link rel="stylesheet" href="/static/codex.css?v=1" />
+  <script src="/static/codex.js" defer></script>
 </head>
 <body>
   <header class="nav">
@@ -38,9 +40,12 @@
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
+      <a href="/#pillars">Pillars</a>
       <a href="/#install">Install</a>
+      <a href="/mission-control">Mission Control</a>
       <a href="/scan">Scan</a>
       <a href="/patterns">Patterns</a>
+      <a href="/business">For Business</a>
       <a href="/donate">Support</a>
       <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
     </nav>
@@ -49,29 +54,29 @@
   <main class="soon">
     <span class="soon__eyebrow">NOT SHIPPED YET</span>
     <h1>This page is <em>coming.</em></h1>
-    <p>The corner of <code>lictor-ai.com</code> you just clicked isn't live yet. Here's when it will be:</p>
+    <p data-reveal>The corner of <code>lictor-ai.com</code> you just clicked isn't live yet. Here's when it will be:</p>
 
-    <div class="soon__when" id="when-in-the-wild" hidden>
+    <div class="soon__when codex-glass" id="when-in-the-wild" data-reveal hidden>
       <h3>In the wild — Jul 1, 2026</h3>
       <p>Public dashboard for what Patrol is finding across the vibe-coder ecosystem. Aggregate counts, weekly leaderboards, and the monthly "what 30,000 apps taught us" report.</p>
     </div>
-    <div class="soon__when" id="when-transparency" hidden>
+    <div class="soon__when codex-glass" id="when-transparency" data-reveal hidden>
       <h3>Transparency — Nov 1, 2026</h3>
       <p>Monthly numbers: revenue, cost, scans, fixes shipped, founders contacted, GitHub Sponsors balance, donations received, where every dollar went. Published on the 1st of each month, no exceptions.</p>
     </div>
-    <div class="soon__when" id="when-crew" hidden>
+    <div class="soon__when codex-glass" id="when-crew" data-reveal hidden>
       <h3>The crew — Oct 13, 2026</h3>
       <p>Public profiles for the 14 agents that build Lictor with Raffa. Each one's memory log, current backlog, escalation history. We're going to show our work.</p>
     </div>
-    <div class="soon__when" id="when-default" hidden>
+    <div class="soon__when codex-glass" id="when-default" data-reveal hidden>
       <h3>Launching alongside the rest — Oct 6, 2026</h3>
       <p>This corner is part of the full launch. If you want a heads-up: there's a waitlist on the home page.</p>
     </div>
 
-    <p>In the meantime:</p>
-    <div class="cta-row">
-      <a href="/scan" class="btn btn--primary fx-glow fx-shine fx-magnetic">Scan a URL →</a>
-      <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="btn btn--ghost">Star on GitHub</a>
+    <p data-reveal>In the meantime:</p>
+    <div class="cta-row" data-reveal>
+      <a href="/scan" class="btn btn--primary fx-glow fx-shine fx-magnetic codex-lift">Scan a URL →</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="btn btn--ghost codex-lift">Star on GitHub</a>
     </div>
   </main>
 
@@ -79,15 +84,6 @@
     &copy; 2026 Lictor AI · Apache 2.0 · Built by Raffa and an agent crew · <a href="/donate">Donate</a>
   </footer>
 
-  <script>
-    // Show the matching "when" block based on the ?from= param.
-    (() => {
-      const from = new URLSearchParams(location.search).get('from');
-      const valid = ['in-the-wild', 'transparency', 'crew'];
-      const id = valid.includes(from) ? `when-${from}` : 'when-default';
-      const el = document.getElementById(id);
-      if (el) el.hidden = false;
-    })();
-  </script>
+  <script src="/static/coming-soon.js" defer></script>
 </body>
 </html>

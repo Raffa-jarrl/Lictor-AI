@@ -25,6 +25,8 @@
   <link rel="stylesheet" href="/static/fx.css" />
   <script src="/static/fx.js" defer></script>
   <link rel="canonical" href="https://lictor-ai.com/patterns/" />
+  <link rel="stylesheet" href="/static/codex.css?v=1" />
+  <script src="/static/codex.js" defer></script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -34,17 +36,20 @@
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
+      <a href="/#pillars">Pillars</a>
       <a href="/#install">Install</a>
       <a href="/mission-control">🛰 Mission Control</a>
       <a href="/scan">Scan</a>
       <a href="/patterns" class="active">Patterns</a>
+      <a href="/business">For Business</a>
       <a href="/donate">Support</a>
       <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
     </nav>
   </header>
 
   <main id="main">
-    <section class="patterns-hero">
+    <section class="patterns-hero" style="position:relative">
+      <svg class="codex-geo" viewBox="0 0 320 320" aria-hidden="true"><circle class="ink" cx="160" cy="160" r="150"/><circle class="ink" cx="160" cy="160" r="92"/><path class="ink" d="M10 160h300M160 10v300"/></svg>
       <span class="eyebrow">WEB · CLI · BROWSER EXT · MCP · DESKTOP · SERVERLESS · CI/CD · AI</span>
       <h1 class="patterns-hero__title">
         The patterns AI assistants get <em>wrong</em>.
@@ -54,7 +59,7 @@
       </p>
     </section>
 
-    <section class="patterns-band">
+    <section class="patterns-band" data-reveal>
       <h2 class="section__title fx-reveal">Web — what Lictor scans <span class="status-pill status-pill--live">✅ Scanned today</span></h2>
       <p class="section__sub fx-reveal">Static analysis on your codebase + URL probing on your deployed site.</p>
       <div class="pattern-grid">
@@ -124,7 +129,7 @@
       </div>
     </section>
 
-    <section class="patterns-band patterns-band--alt">
+    <section class="patterns-band patterns-band--alt" data-reveal>
       <h2 class="section__title fx-reveal">Mobile (iOS + Android) <span class="status-pill" style="background:rgba(232, 163, 61,.12);color:var(--accent);border:1px solid var(--accent-tint-strong);padding:.15rem .6rem;border-radius:999px;font-size:.7rem;letter-spacing:.05em">🚧 IN THE WILD — COMING SOON</span></h2>
       <p class="section__sub fx-reveal">
         Mobile scanning is deferred to a future Lictor release. The patterns are written, the scanner skeleton exists, but the .ipa / .apk static-analysis pipeline isn't shipping yet. We're focused on web + AI feature coverage first.
@@ -134,7 +139,7 @@
       </p>
     </section>
 
-    <section class="patterns-band">
+    <section class="patterns-band" data-reveal>
       <h2 class="section__title fx-reveal">AI features inside your app <span class="status-pill status-pill--partial">⚪ Partial — Sentinel runtime SDK</span></h2>
       <p class="section__sub fx-reveal">If your app calls a model at runtime — LLM, image gen, embeddings, anything — this category applies regardless of platform.</p>
       <div class="pattern-grid">
@@ -172,7 +177,7 @@
       </div>
     </section>
 
-    <section class="patterns-band">
+    <section class="patterns-band" data-reveal>
       <h2 class="section__title fx-reveal">CLIs &amp; scripts <span class="status-pill status-pill--live">✅ Scanned today</span></h2>
       <p class="section__sub fx-reveal">Bash, Python, Node, Ruby, anything you invoke from a terminal — including the throwaway one-offs.</p>
       <div class="pattern-grid">
@@ -206,7 +211,7 @@
       </div>
     </section>
 
-    <section class="patterns-band patterns-band--alt">
+    <section class="patterns-band patterns-band--alt" data-reveal>
       <h2 class="section__title fx-reveal">APIs &amp; serverless functions <span class="status-pill status-pill--partial">⚪ Partial — web checks apply</span></h2>
       <p class="section__sub fx-reveal">Cloudflare Workers, AWS Lambda, Vercel/Netlify Functions, Hono/Express endpoints, anything HTTP that&rsquo;s not part of a full app.</p>
       <div class="pattern-grid">
@@ -238,7 +243,7 @@
       </div>
     </section>
 
-    <section class="patterns-band">
+    <section class="patterns-band" data-reveal>
       <h2 class="section__title fx-reveal">Browser extensions <span class="status-pill status-pill--live">✅ Scanned today</span></h2>
       <p class="section__sub fx-reveal">Chrome, Firefox, Safari, Edge — extensions have the most overprivileged manifest in the ecosystem, and AI assistants make this worse.</p>
       <div class="pattern-grid">
@@ -271,7 +276,7 @@
       </div>
     </section>
 
-    <section class="patterns-band patterns-band--alt">
+    <section class="patterns-band patterns-band--alt" data-reveal>
       <h2 class="section__title fx-reveal">MCP servers &amp; AI tools <span class="status-pill status-pill--live">✅ Scanned today — our wedge</span></h2>
       <p class="section__sub fx-reveal">Brand-new surface that almost nobody is checking yet. If you wrote an MCP server, a Claude Code skill, or an AI tool with function-calling — these patterns apply.</p>
       <div class="pattern-grid">
@@ -310,7 +315,7 @@
       </div>
     </section>
 
-    <section class="patterns-band">
+    <section class="patterns-band" data-reveal>
       <h2 class="section__title fx-reveal">Desktop apps (Tauri, Electron, native) <span class="status-pill status-pill--live">✅ Scanned today</span></h2>
       <p class="section__sub fx-reveal">AI assistants increasingly generate desktop apps — the security model is different from web, and the same mistakes cause much worse damage.</p>
       <div class="pattern-grid">
@@ -335,7 +340,7 @@
       </div>
     </section>
 
-    <section class="patterns-band patterns-band--alt">
+    <section class="patterns-band patterns-band--alt" data-reveal>
       <h2 class="section__title fx-reveal">CI/CD pipelines <span class="status-pill status-pill--live">✅ Scanned today</span></h2>
       <p class="section__sub fx-reveal">GitHub Actions, GitLab CI, CircleCI — AI-generated workflows have a specific class of bug that&rsquo;s caused real RCE on production projects.</p>
       <div class="pattern-grid">
@@ -368,7 +373,7 @@
       </div>
     </section>
 
-    <section class="patterns-band patterns-band--alt">
+    <section class="patterns-band patterns-band--alt" data-reveal>
       <h2 class="section__title fx-reveal">Cross-cutting — applies to everything <span class="status-pill status-pill--partial">⚪ Partial</span></h2>
       <div class="pattern-grid">
 
@@ -398,32 +403,32 @@
       </div>
     </section>
 
-    <section class="patterns-staying-current">
+    <section class="patterns-staying-current" data-reveal>
       <h2 class="section__title fx-reveal">How we stay current</h2>
       <p class="section__sub fx-reveal">Security categories evolve. So does Lictor's check engine.</p>
       <div class="staying-current__grid">
-        <div class="staying-current__card">
+        <div class="staying-current__card codex-glass codex-lift">
           <h3>📅 Weekly</h3>
           <p>The Mongoose agent tracks new CVEs, breach disclosures, and security-research blog posts. New patterns added to the check engine the same week they're observed.</p>
         </div>
-        <div class="staying-current__card">
+        <div class="staying-current__card codex-glass codex-lift">
           <h3>📆 Monthly</h3>
           <p>Aggregate corpus stats published at
       — what we're seeing across the apps we scan. The patterns rising in frequency get more weight in the engine.</p>
         </div>
-        <div class="staying-current__card">
+        <div class="staying-current__card codex-glass codex-lift">
           <h3>🔄 Continuous</h3>
           <p>Every false-negative reported by a community member becomes a regression test. <a href="https://github.com/Raffa-jarrl/Lictor-AI/issues/new?template=false-negative.md" class="link">File one →</a> If we missed a real bug in your code, that's the highest-value contribution we accept.</p>
         </div>
       </div>
     </section>
 
-    <section class="patterns-cta">
+    <section class="patterns-cta" data-reveal>
       <h2>Scan your project against every one of these</h2>
       <p>Lictor runs every pattern above (and more) in about 30 seconds. Free, open-source, no signup.</p>
       <div class="cta-row">
-        <a href="/scan" class="btn btn--primary fx-glow fx-shine fx-magnetic">Scan your URL →</a>
-        <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="btn btn--ghost">Read the source</a>
+        <a href="/scan" class="btn btn--primary fx-glow fx-shine fx-magnetic codex-lift">Scan your URL →</a>
+        <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="btn btn--ghost codex-lift">Read the source</a>
       </div>
     </section>
   </main>

@@ -206,6 +206,9 @@
     }
   </style>
   <script src="/static/a11y.js" defer></script>
+
+  <link rel="stylesheet" href="/static/codex.css?v=1" />
+  <script src="/static/codex.js" defer></script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -217,10 +220,13 @@
       <span>Lictor · Mission Control</span>
     </a>
     <nav class="mc-header__nav">
-      <a href="/transparency">Transparency</a>
-      <a href="/changelog">Changelog</a>
-      <a href="/retractions">Retractions</a>
-      <a href="/in-the-wild">In the wild</a>
+      <a href="/#pillars">Pillars</a>
+      <a href="/#install">Install</a>
+      <a href="/mission-control">🛰 Mission Control</a>
+      <a href="/scan">Scan</a>
+      <a href="/patterns">Patterns</a>
+      <a href="/business">For Business</a>
+      <a href="/donate">Support</a>
       <a href="https://github.com/Raffa-jarrl/Lictor-AI">GitHub →</a>
     </nav>
     <div class="mc-header__status">
@@ -230,27 +236,27 @@
 
   <main id="main">
   <!-- HUD: 4 live counters -->
-  <section class="mc-hud">
-    <div class="panel mc-hud__card">
+  <section class="mc-hud" data-reveal>
+    <div class="panel mc-hud__card codex-lift">
       <div class="mc-hud__num" id="hud-total">…</div>
       <div class="mc-hud__label">Live disclosures · lifetime</div>
     </div>
-    <div class="panel mc-hud__card">
+    <div class="panel mc-hud__card codex-lift">
       <div class="mc-hud__num" id="hud-today">…</div>
       <div class="mc-hud__label">Sent today · 24h</div>
     </div>
-    <div class="panel mc-hud__card">
+    <div class="panel mc-hud__card codex-lift">
       <div class="mc-hud__num" id="hud-closed">…</div>
       <div class="mc-hud__label">Addressed · maintainer engaged</div>
     </div>
-    <div class="panel mc-hud__card">
+    <div class="panel mc-hud__card codex-lift">
       <div class="mc-hud__num" id="hud-replies">…</div>
       <div class="mc-hud__label">Replies · 7d</div>
     </div>
   </section>
 
   <!-- AGENT GRID -->
-  <section class="mc-section">
+  <section class="mc-section" data-reveal>
     <h2 class="mc-section__title">🦉 Agent stations · Lictor crew</h2>
     <div class="mc-agents" id="agents-grid">
       <!-- Populated by JS — each agent is a panel showing role + current status -->
@@ -258,8 +264,8 @@
   </section>
 
   <!-- BOTTOM STRIP: Live feed + Scanner status -->
-  <section class="mc-strip">
-    <div class="panel">
+  <section class="mc-strip" data-reveal>
+    <div class="panel codex-lift">
       <div style="padding: 1rem 1.5rem 0.5rem; border-bottom: 1px solid var(--panel-border);">
         <div style="display:flex; justify-content:space-between; align-items:baseline;">
           <h3 style="margin:0; font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:#f4dcc4;">Live disclosure feed</h3>
@@ -271,13 +277,13 @@
       </div>
     </div>
 
-    <div class="panel" style="padding: 1.25rem 1.5rem;">
+    <div class="panel codex-lift" style="padding: 1.25rem 1.5rem;">
       <h3 style="margin:0 0 .75rem; font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:#f4dcc4;">Scanner status</h3>
       <div id="scanner-status" style="font-size:.85rem; line-height:1.8; color:var(--text-muted);">loading…</div>
     </div>
   </section>
 
-  <section class="mc-section" style="padding-bottom: 3rem;">
+  <section class="mc-section" style="padding-bottom: 3rem;" data-reveal>
     <p style="text-align:center; color:var(--text-muted); font-size:.75rem;">
       Auto-refresh every 60 seconds · Numbers pulled directly from GitHub API · No backend caching ·
       <a href="https://github.com/Raffa-jarrl/Lictor-AI" style="color:var(--copper-1);">View source</a>
@@ -295,281 +301,9 @@
   </footer>
 
   <!-- ============================ 3D SCENE ============================ -->
-  <script>
-    const canvas = document.getElementById('scene-bg');
-    const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x050608, 0.008);
-
-    const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 6, 22);
-    camera.lookAt(0, 0, 0);
-
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(0x050608, 1);
-
-    // === Ambient + spotlight ===
-    scene.add(new THREE.AmbientLight(0xffffff, 0.25));
-    const keyLight = new THREE.PointLight(0xc4885a, 1.2, 60);
-    keyLight.position.set(8, 12, 8);
-    scene.add(keyLight);
-    const fillLight = new THREE.PointLight(0x4a6fa8, 0.4, 40);
-    fillLight.position.set(-10, 6, 10);
-    scene.add(fillLight);
-
-    // === Floor grid (the "mission control room") ===
-    const gridGeom = new THREE.PlaneGeometry(60, 60, 30, 30);
-    const gridMat = new THREE.ShaderMaterial({
-      uniforms: { time: { value: 0 } },
-      vertexShader: `
-        varying vec2 vUv;
-        void main() {
-          vUv = uv;
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }
-      `,
-      fragmentShader: `
-        uniform float time;
-        varying vec2 vUv;
-        void main() {
-          vec2 grid = abs(fract(vUv * 30.0 - 0.5) - 0.5) / fwidth(vUv * 30.0);
-          float line = min(grid.x, grid.y);
-          float alpha = 1.0 - min(line, 1.0);
-          float dist = length(vUv - 0.5) * 2.0;
-          float falloff = 1.0 - smoothstep(0.3, 0.95, dist);
-          vec3 color = mix(vec3(0.77, 0.53, 0.35), vec3(0.4, 0.3, 0.2), dist);
-          gl_FragColor = vec4(color, alpha * falloff * 0.7);
-        }
-      `,
-      transparent: true,
-      side: THREE.DoubleSide,
-    });
-    const grid = new THREE.Mesh(gridGeom, gridMat);
-    grid.rotation.x = -Math.PI / 2;
-    grid.position.y = -3;
-    scene.add(grid);
-
-    // === Central shield (the Lictor mark, abstracted) ===
-    const shieldGeom = new THREE.OctahedronGeometry(1.2, 0);
-    const shieldMat = new THREE.MeshPhongMaterial({
-      color: 0xc4885a,
-      emissive: 0x4a2a14,
-      shininess: 80,
-      flatShading: true,
-      transparent: true, opacity: 0.85,
-    });
-    const shield = new THREE.Mesh(shieldGeom, shieldMat);
-    shield.position.y = 1;
-    scene.add(shield);
-
-    // Wireframe overlay for the shield
-    const shieldWire = new THREE.LineSegments(
-      new THREE.EdgesGeometry(shieldGeom),
-      new THREE.LineBasicMaterial({ color: 0xf4dcc4, transparent: true, opacity: 0.6 })
-    );
-    shieldWire.position.copy(shield.position);
-    scene.add(shieldWire);
-
-    // === 11 agent orbs orbiting the center (one per agent) ===
-    const AGENTS = [
-      { name: 'Wolf',       role: 'Planner' },
-      { name: 'Hawk',       role: 'Scout' },
-      { name: 'Bat',        role: 'Surveyor' },
-      { name: 'Owl',        role: 'Critic / Recheck' },
-      { name: 'Lyrebird',   role: 'Writer' },
-      { name: 'Mantis',     role: 'Reviewer' },
-      { name: 'Bee',        role: 'Magnet (Disclose)' },
-      { name: 'Mongoose',   role: 'Probe (URL scan)' },
-      { name: 'Cuttlefish', role: 'Vibe (Voice check)' },
-      { name: 'Starling',   role: 'Trends' },
-      { name: 'Octopus',    role: 'Dev / Multitool' },
-      { name: 'Parrot',     role: 'Translator' },
-      { name: 'Peacock',    role: 'Reel' },
-      { name: 'Nightingale',role: 'Booth' },
-      { name: 'Meerkat',    role: 'Bridge' },
-    ];
-    const orbs = [];
-    AGENTS.forEach((agent, i) => {
-      const angle = (i / AGENTS.length) * Math.PI * 2;
-      const radius = 6;
-      const orbGeom = new THREE.SphereGeometry(0.25, 16, 16);
-      const orbMat = new THREE.MeshPhongMaterial({
-        color: 0xc4885a, emissive: 0x6a3b1a, shininess: 60,
-      });
-      const orb = new THREE.Mesh(orbGeom, orbMat);
-      orb.position.set(Math.cos(angle) * radius, 1 + Math.sin(i * 0.7) * 0.5, Math.sin(angle) * radius);
-      orb.userData = { angle, radius, speed: 0.0005 + (i % 3) * 0.0002, baseY: orb.position.y };
-      scene.add(orb);
-      orbs.push(orb);
-
-      // Connection line from shield to orb
-      const lineGeom = new THREE.BufferGeometry().setFromPoints([
-        new THREE.Vector3(0, 1, 0),
-        orb.position.clone(),
-      ]);
-      const lineMat = new THREE.LineBasicMaterial({ color: 0xc4885a, transparent: true, opacity: 0.15 });
-      const line = new THREE.Line(lineGeom, lineMat);
-      orb.userData.line = line;
-      scene.add(line);
-    });
-
-    // === Animation loop ===
-    let t = 0;
-    function animate() {
-      requestAnimationFrame(animate);
-      t += 0.01;
-      gridMat.uniforms.time.value = t;
-      shield.rotation.x = t * 0.3;
-      shield.rotation.y = t * 0.5;
-      shieldWire.rotation.copy(shield.rotation);
-      shield.position.y = 1 + Math.sin(t * 1.2) * 0.15;
-      shieldWire.position.y = shield.position.y;
-
-      orbs.forEach(orb => {
-        orb.userData.angle += orb.userData.speed;
-        const a = orb.userData.angle;
-        orb.position.x = Math.cos(a) * orb.userData.radius;
-        orb.position.z = Math.sin(a) * orb.userData.radius;
-        orb.position.y = orb.userData.baseY + Math.sin(t * 1.5 + a) * 0.2;
-        // Update connection line
-        const pts = new Float32Array([0, 1, 0, orb.position.x, orb.position.y, orb.position.z]);
-        orb.userData.line.geometry.setAttribute('position', new THREE.BufferAttribute(pts, 3));
-        orb.userData.line.geometry.attributes.position.needsUpdate = true;
-      });
-
-      // Slow camera orbit
-      const camRadius = 22;
-      camera.position.x = Math.sin(t * 0.05) * camRadius;
-      camera.position.z = Math.cos(t * 0.05) * camRadius;
-      camera.position.y = 6 + Math.sin(t * 0.1) * 0.5;
-      camera.lookAt(0, 1, 0);
-
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-  </script>
+  <script src="/static/mc-scene.js" defer></script>
 
   <!-- ============================ LIVE DATA ============================ -->
-  <script>
-    const AGENTS_DATA = [
-      { name: 'Wolf',       role: 'PLANNER',   status: 'Orchestrates the rotation between 7 scanners. Lives in discover-loop.', metric: 'discover-loop pid: live' },
-      { name: 'Hawk',       role: 'SCOUT',     status: 'Patrols GitHub Code Search for new candidates across 9 vuln classes.', metric: 'patrol-firebase + 8 others' },
-      { name: 'Bat',        role: 'SURVEYOR',  status: 'Walks repo trees, fetches raw files, decodes JWTs to verify role.', metric: 'verify-finding.py' },
-      { name: 'Owl',        role: 'CRITIC',    status: 'Re-checks every disclosure every 3h to detect silent fixes.', metric: 'recheck.py · 7 silent fixes' },
-      { name: 'Lyrebird',   role: 'WRITER',    status: 'Drafts every disclosure body. Voice: humble, plain English, no jargon.', metric: 'templates in lictor-hourly.py' },
-      { name: 'Mantis',     role: 'REVIEWER',  status: 'Validates findings via WAF/SPA detection before any contact fires.', metric: 'verify-finding.py — RET-009 added' },
-      { name: 'Bee',        role: 'MAGNET',    status: 'Submits the contact-request to the repo. Pollinates the disclosure.', metric: 'lictor-hourly.py · 50/day cap' },
-      { name: 'Mongoose',   role: 'PROBE',     status: 'Probes URLs at scale (Israeli sites, vibe-coded deployments).', metric: 'scan-il-parallel.py' },
-      { name: 'Cuttlefish', role: 'VIBE',      status: 'Voice-checks every outbound message. Catches tone-deaf phrasing.', metric: 'manual review · pretalx-incident protocol' },
-      { name: 'Starling',   role: 'TRENDS',    status: 'Watches scanning trends + GitHub API limits + reply patterns.', metric: 'reply-monitor every 15min' },
-      { name: 'Octopus',    role: 'DEV',       status: 'Ships site changes + new scanners + cron infra. Multi-tasker.', metric: 'pushes commits hourly' },
-      { name: 'Parrot',     role: 'TRANSLATOR',status: 'Localizes the content + disclosure queue (he / es-LA / pt-BR / ja).', metric: 'every 6h' },
-      { name: 'Peacock',    role: 'REEL',      status: 'Drafts weekly video scripts from the week’s findings.', metric: 'weekly · Sun' },
-      { name: 'Nightingale',role: 'BOOTH',     status: 'Drafts podcast + conference (CFP) outreach.', metric: 'weekly · Mon' },
-      { name: 'Meerkat',    role: 'BRIDGE',    status: 'Triages inbound GitHub issues + community replies.', metric: 'every 4h' },
-    ];
-
-    function renderAgents() {
-      const grid = document.getElementById('agents-grid');
-      grid.innerHTML = AGENTS_DATA.map((a, i) => `
-        <div class="panel agent active">
-          <div class="agent__head">
-            <span class="agent__name">${a.name}</span>
-            <span class="agent__role">${a.role}</span>
-          </div>
-          <div class="agent__status">${a.status}</div>
-          <div class="agent__metric">→ ${a.metric}</div>
-        </div>
-      `).join('');
-    }
-    renderAgents();
-
-    // Scanner status is hardcoded operational state — render it ALWAYS, with no
-    // network dependency, so a GitHub hiccup can never blank this section.
-    function renderScannerStatus() {
-      document.getElementById('scanner-status').innerHTML = `
-          <div>🟢 <strong>lictor-discover-loop</strong> · running 24/7 (7 scanners × 4 variants)</div>
-          <div>🟢 <strong>hourly cron</strong> · :05 every hour · 50/day cap</div>
-          <div>🟢 <strong>scanner-refresh cron</strong> · every 6h · firebase + db-creds + prtarget</div>
-          <div>🟢 <strong>reply-monitor</strong> · every 15min</div>
-          <div>🟢 <strong>recheck cron</strong> · every 3h · silent-fix detection</div>
-          <div>🟢 <strong>disclose-priority</strong> · every 6h · impact-weighted queue</div>
-          <div style="margin-top:.75rem; padding-top:.75rem; border-top:1px solid var(--panel-border);">
-            <strong style="color:var(--copper-1);">14 vuln classes scanned:</strong> Firebase · DB-creds · PR-target · Mailchimp · SendGrid · Twilio · Cloudflare · HF Spaces · npm · PyPI · GitLab · Gists · Twilio-SID · Open-DB
-          </div>`;
-    }
-    renderScannerStatus();
-
-    // GitHub disclosure stats: best-effort enhancement. ONE search call
-    // (unauthenticated Search API caps at 10 req/min/IP), with the last good
-    // result cached so a 403 shows stale-but-real numbers instead of a blank board.
-    const feedClass = t =>
-      t.includes('Firebase') ? 'firebase' : t.includes('pull_request_target') ? 'prtarget' :
-      t.includes('Mailchimp') ? 'mailchimp' : t.includes('Twilio') ? 'twilio' :
-      t.includes('DB connection') ? 'db-creds' : t.includes('/admin') ? 'admin-leak' : 'other';
-
-    function paintStats(d) {
-      document.getElementById('hud-total').textContent = (d.total ?? 0).toLocaleString();
-      document.getElementById('hud-today').textContent = d.today ?? 0;
-      document.getElementById('hud-closed').textContent = d.closed ?? 0;
-      document.getElementById('hud-replies').textContent = Math.max(5, d.closed ?? 0);
-      if (d.feed) document.getElementById('live-feed').innerHTML = d.feed;
-    }
-
-    async function refreshGitHub() {
-      const todayIso = new Date().toISOString().slice(0,10);
-      try {
-        const r = await fetch(`https://api.github.com/search/issues?q=${encodeURIComponent('author:Raffa-jarrl sort:created-desc')}&per_page=100`);
-        if (!r.ok) throw new Error('github ' + r.status);
-        const j = await r.json();
-        const items = j.items ?? [];
-        const data = {
-          total: j.total_count ?? 0,
-          today: items.filter(it => (it.created_at || '').slice(0,10) === todayIso).length,
-          closed: items.filter(it => it.state === 'closed').length,
-          feed: items.slice(0, 30).map(it => {
-            const time = new Date(it.created_at).toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit'});
-            const date = new Date(it.created_at).toLocaleDateString(undefined, {month:'short', day:'numeric'});
-            // REDACTION RULE: Lictor never publishes WHO was affected — only that a
-            // disclosure happened, its class, and its state. The repo name and issue
-            // URL are deliberately NOT placed in the DOM. (A CSS blur would still leak
-            // them in the page source — so we never emit them at all.)
-            return `
-              <div class="mc-feed__item">
-                <span class="mc-feed__time">${date} ${time}</span>
-                <span class="mc-feed__class">${feedClass(it.title)}</span>
-                <span class="mc-feed__repo" style="opacity:.55;letter-spacing:.5px" title="affected party redacted — responsible disclosure">████ redacted</span>
-                <span class="mc-feed__state ${it.state}">${it.state === 'closed' ? '✓' : '○'}</span>
-              </div>`;
-          }).join(''),
-        };
-        paintStats(data);
-        try { localStorage.setItem('mc-gh2', JSON.stringify({ ...data, at: Date.now() })); } catch (_) {}
-        document.getElementById('last-update').textContent =
-          'live · updated ' + new Date().toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit'});
-      } catch (e) {
-        // Degrade gracefully — show last-good from cache; never blank the board.
-        let cached = null;
-        try { cached = JSON.parse(localStorage.getItem('mc-gh2') || 'null'); } catch (_) {}
-        if (cached) {
-          paintStats(cached);
-          const mins = Math.round((Date.now() - (cached.at || Date.now())) / 60000);
-          document.getElementById('last-update').textContent = `cached ${mins}m ago · GitHub busy (10 req/min cap)`;
-        } else {
-          document.getElementById('last-update').textContent = 'GitHub busy (10 req/min cap) · disclosure stats load shortly';
-        }
-      }
-    }
-
-    refreshGitHub();
-    setInterval(refreshGitHub, 120000);
-  </script>
+  <script src="/static/mc-data.js" defer></script>
 </body>
 </html>

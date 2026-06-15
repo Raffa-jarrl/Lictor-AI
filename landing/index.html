@@ -28,8 +28,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <script>document.documentElement.classList.add('js');</script>
-  <link rel="stylesheet" href="/security.css?v=sec6" />
+  <script src="/static/head.js"></script>
+  <link rel="stylesheet" href="/security.css?v=sec7" />
+  <link rel="stylesheet" href="/static/premium.css?v=2" />
+  <script src="/static/premium.js" defer></script>
+  <link rel="stylesheet" href="/static/davinci.css?v=1" />
+  <script src="/static/davinci.js" defer></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script defer src="/static/codex3d.js?v=2"></script>
   <link rel="canonical" href="https://lictor-ai.com/" />
 
   <!-- Structured data — Organization (establishes brand entity for Google search) -->
@@ -176,6 +182,16 @@
           <span><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg> <b>0</b> disclosures ever exploited</span>
           <span><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg> 20-yr security engineer</span>
         </div>
+        <p class="works-with" style="margin-top:18px;display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;font-size:.82rem;color:var(--text-muted)">
+          <span style="text-transform:uppercase;letter-spacing:.09em;font-weight:700;color:var(--cream)">Works with</span>
+          <span style="font-weight:600">Claude&nbsp;Code</span><span aria-hidden="true" style="opacity:.4">·</span>
+          <span style="font-weight:600">Cursor</span><span aria-hidden="true" style="opacity:.4">·</span>
+          <span style="font-weight:600">OpenClaw</span><span aria-hidden="true" style="opacity:.4">·</span>
+          <span style="font-weight:600">Codex</span><span aria-hidden="true" style="opacity:.4">·</span>
+          <span style="font-weight:600">Antigravity</span><span aria-hidden="true" style="opacity:.4">·</span>
+          <span style="font-weight:600">local&nbsp;models&nbsp;(Hermes)</span>
+          <span style="opacity:.7">— same tools, any agent, <strong style="color:var(--accent)">zero cloud tokens</strong> on local.</span>
+        </p>
       </div>
       <svg class="hero__geo" viewBox="0 0 560 560" aria-hidden="true" fill="none" stroke="rgba(232,163,61,.15)" stroke-width="1">
         <circle class="g g1" cx="280" cy="280" r="252" pathLength="1"/>
@@ -404,45 +420,42 @@ default gateway        <span style="color:#ff6b60">blocked</span></pre>
       </div>
       <div class="codewrap" style="max-width:760px">
         <pre class="dplate__code">git clone https://github.com/Raffa-jarrl/Lictor-AI.git ~/Code/lictor</pre>
-        <button class="copy" onclick="navigator.clipboard.writeText('git clone https://github.com/Raffa-jarrl/Lictor-AI.git ~/Code/lictor');this.textContent='✓ copied';setTimeout(()=>this.textContent='copy',2000)">copy</button>
+        <button class="copy js-copy" data-copy="git clone https://github.com/Raffa-jarrl/Lictor-AI.git ~/Code/lictor" data-done="✓ copied">copy</button>
       </div>
+      <p class="shead__lede" style="margin-top:-.4rem"><strong style="color:var(--accent)">New:</strong> one-command installers for the top&nbsp;5 AI agents &mdash; and triage runs on <strong>local models</strong> (Hermes / Qwen) at <strong>zero cloud-token cost</strong>.</p>
       <div class="plates" style="margin-top:var(--s6u)">
         <article class="dplate">
-          <span class="dplate__num">01 · Primary</span>
+          <span class="dplate__num">01 · Claude Code</span>
           <h3><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg> Claude Code</h3>
-          <p>4 slash commands inside any project. Then run <code>/lictor-security-check</code>.</p>
-          <div class="codewrap"><pre class="dplate__code">mkdir -p ~/.claude/skills
-cp -r ~/Code/lictor/skills/lictor-* ~/.claude/skills/</pre><button class="copy" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText);this.textContent='✓';setTimeout(()=>this.textContent='copy',2000)">copy</button></div>
+          <p>4 slash commands. Then run <code>/lictor-security-check</code>.</p>
+          <div class="codewrap"><pre class="dplate__code">bash ~/Code/lictor/skills/install.sh</pre><button class="copy js-copy" data-done="✓">copy</button></div>
         </article>
         <article class="dplate">
-          <span class="dplate__num">02 · via MCP</span>
+          <span class="dplate__num">02 · Cursor</span>
           <h3><svg class="ic" aria-hidden="true"><use href="#i-bolt"/></svg> Cursor</h3>
-          <p>Add to <code>~/.cursor/mcp.json</code> — then <code>@lictor scan</code> in chat.</p>
-          <div class="codewrap"><pre class="dplate__code">{"mcpServers":{"lictor":{"command":"python3",
-"args":["~/Code/lictor/scripts/lictor-mcp.py"]}}}</pre><button class="copy" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText);this.textContent='✓';setTimeout(()=>this.textContent='copy',2000)">copy</button></div>
+          <p>Project rules + MCP. Then <code>@lictor scan</code> in chat.</p>
+          <div class="codewrap"><pre class="dplate__code">bash ~/Code/lictor/skills/install-cursor.sh</pre><button class="copy js-copy" data-done="✓">copy</button></div>
         </article>
         <article class="dplate">
-          <span class="dplate__num">03 · via MCP</span>
-          <h3><svg class="ic" aria-hidden="true"><use href="#i-plug"/></svg> VS Code (Cline)</h3>
-          <p>Cline → Settings → MCP Servers → Edit JSON. Then ask: &ldquo;scan this project with lictor&rdquo;.</p>
-          <div class="codewrap"><pre class="dplate__code">{"lictor":{"command":"python3",
-"args":["~/Code/lictor/scripts/lictor-mcp.py"]}}</pre><button class="copy" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText);this.textContent='✓';setTimeout(()=>this.textContent='copy',2000)">copy</button></div>
+          <span class="dplate__num">03 · OpenClaw <span style="color:var(--accent)">· new</span></span>
+          <h3><svg class="ic" aria-hidden="true"><use href="#i-plug"/></svg> OpenClaw</h3>
+          <p>MCP server, usable by any agent &mdash; incl. Hermes/Qwen-backed.</p>
+          <div class="codewrap"><pre class="dplate__code">bash ~/Code/lictor/skills/install-openclaw.sh</pre><button class="copy js-copy" data-done="✓">copy</button></div>
         </article>
         <article class="dplate">
-          <span class="dplate__num">04 · no IDE</span>
-          <h3><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg> Standalone CLI</h3>
-          <p>Plain terminal, any project. JSON output: add <code>--json</code>.</p>
-          <div class="codewrap"><pre class="dplate__code">cd ~/your-project
-python3 ~/Code/lictor/scripts/lictor-local.py</pre><button class="copy" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText);this.textContent='✓';setTimeout(()=>this.textContent='copy',2000)">copy</button></div>
+          <span class="dplate__num">04 · Codex <span style="color:var(--accent)">· new</span></span>
+          <h3><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg> OpenAI Codex</h3>
+          <p>Registers in <code>~/.codex/config.toml</code>. Then ask it to scan.</p>
+          <div class="codewrap"><pre class="dplate__code">bash ~/Code/lictor/skills/install-codex.sh</pre><button class="copy js-copy" data-done="✓">copy</button></div>
         </article>
         <article class="dplate">
-          <span class="dplate__num">05 · browser ext</span>
-          <h3><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg> Lictor Shield</h3>
-          <p>Audits any deployed AI-built site you visit — local only.</p>
-          <div class="codewrap"><pre class="dplate__code">github.com/Raffa-jarrl/Lictor-AI/tree/main/shield</pre><button class="copy" onclick="navigator.clipboard.writeText('https://github.com/Raffa-jarrl/Lictor-AI/tree/main/shield');this.textContent='✓';setTimeout(()=>this.textContent='copy',2000)">copy</button></div>
+          <span class="dplate__num">05 · Antigravity <span style="color:var(--accent)">· new</span></span>
+          <h3><svg class="ic" aria-hidden="true"><use href="#i-bolt"/></svg> Antigravity</h3>
+          <p>Registers in Antigravity&rsquo;s MCP config. Then ask it to scan.</p>
+          <div class="codewrap"><pre class="dplate__code">bash ~/Code/lictor/skills/install-antigravity.sh</pre><button class="copy js-copy" data-done="✓">copy</button></div>
         </article>
       </div>
-      <p class="pillars-foot">One scanner. Same checks. Five entry points — your assistant runs Lictor whichever you pick. (+ MCP also works in Windsurf &amp; Continue.dev.)</p>
+      <p class="pillars-foot">One scanner, same checks &mdash; the <strong>top&nbsp;5 AI agents</strong>, one command each. Any other MCP host (<strong>Windsurf · Cline · Continue.dev</strong>) &rarr; point it at <code>scripts/lictor-mcp.py</code>. Also ships a <strong>standalone CLI</strong> (<code>lictor-local.py</code>) and the <strong>Lictor Shield</strong> browser extension.</p>
     </div></section>
 
     <!-- ═══ SUITE — products with real UI ═══ -->
@@ -790,118 +803,8 @@ const client = wrap(new OpenAI(), {
     <div class="footer__bottom"><span>&copy; 2026 Lictor AI</span><span>v0.1.0-alpha · Pre-launch</span></div>
   </div></footer>
 
-  <script>
-  // Star magnet — fetch live count + supporters wall
-  (async function() {
-    try {
-      const repo = await fetch('https://api.github.com/repos/Raffa-jarrl/Lictor-AI').then(r => r.json());
-      const stars = repo.stargazers_count || 0;
-      // Dynamic target: 100 → 250 → 1000 once we hit each milestone
-      const target = stars >= 1000 ? 10000 : stars >= 250 ? 1000 : stars >= 100 ? 250 : 100;
-      document.getElementById('stars-current').textContent = stars.toLocaleString();
-      document.getElementById('founders-target').textContent = target.toLocaleString();
-      document.getElementById('founders-target-2').textContent = target.toLocaleString();
-      // Dynamic tier headline
-      const h = document.getElementById('star-headline');
-      if (h) {
-        if (stars >= 1000) h.innerHTML = `<span class="fx-gradient-text">${stars.toLocaleString()}</span> people back Lictor. Add your star.`;
-        else if (stars >= 250) h.innerHTML = `Almost a thousand. Push us over.`;
-        else if (stars >= 100) h.innerHTML = `Help us reach <span class="fx-gradient-text">250</span>.`;
-      }
-      const pct = Math.max(1, Math.min(100, (stars / target) * 100));
-      document.getElementById('stars-progress').style.width = pct + '%';
-      // Update button text to feel personal
-      const btn = document.getElementById('star-cta-text');
-      if (stars > 0) {
-        btn.textContent = `Star — be #${stars + 1}`;
-      }
-    } catch(e) {
-      document.getElementById('stars-current').textContent = '—';
-    }
-
-    // Wall of stargazers
-    try {
-      const gazers = await fetch('https://api.github.com/repos/Raffa-jarrl/Lictor-AI/stargazers?per_page=100').then(r => r.json());
-      const wall = document.getElementById('supporters-wall');
-      if (gazers.length === 0) {
-        wall.innerHTML = '<span class="wall__empty">No supporters yet — be the first</span>';
-      } else {
-        wall.innerHTML = gazers.map(u => `
-          <a href="${u.html_url}" target="_blank" rel="noopener" title="@${u.login}">
-            <img src="${u.avatar_url}&s=48" width="36" height="36" alt="" loading="lazy" />
-          </a>
-        `).join('');
-      }
-    } catch(e) {}
-  })();
-  </script>
-  <script>
-  // Motion layer — short, once; fully disabled under prefers-reduced-motion.
-  (function () {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    // (a) scroll-settle reveals — skip anything already on screen (no first-paint flicker)
-    var sel = '.shead,.inst,.step,.dplate,.suite-block,.crew__item,.why__item,' +
-              '.faq details,.founder,.cta,.star-block,.wall-block,.iso-frame,' +
-              '.wedge-frame,.codewrap,.pillars-foot,.crew__more';
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        var el = e.target;
-        var sibs = [].filter.call(el.parentElement.children, function (c) {
-          return c.classList.contains('reveal');
-        });
-        el.style.transitionDelay = Math.min(Math.max(sibs.indexOf(el), 0) * 70, 350) + 'ms';
-        el.classList.add('in');
-        io.unobserve(el);
-      });
-    }, { rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll(sel).forEach(function (el) {
-      if (el.getBoundingClientRect().top < innerHeight * 0.9) {
-        // above the fold: visible immediately; still let title rules draw
-        requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.add('in'); }); });
-        return;
-      }
-      el.classList.add('reveal');
-      io.observe(el);
-    });
-
-    // (b) hero terminal: type the command, then findings appear line by line
-    var term = document.querySelector('.hero-term');
-    if (!term) return;
-    var lines = term.querySelectorAll('.tl');
-    var cmd = document.getElementById('term-cmd');
-    if (!cmd || lines.length < 7) return;
-    term.classList.add('term-anim');
-    var full = cmd.textContent;
-    cmd.textContent = '';
-    var caret = document.createElement('span');
-    caret.className = 'term-caret';
-    cmd.after(caret);
-    function show(i) { if (lines[i]) lines[i].classList.add('on'); }
-    setTimeout(function () { show(0); }, 250);
-    // cue the hand: hero kicker sketches first, the trust bar after the command lands
-    var hk = document.querySelector('.hero__copy .kicker');
-    if (hk) setTimeout(function () { hk.classList.add('in'); }, 150);
-    var tb = document.querySelector('.trustbar');
-    if (tb) setTimeout(function () { tb.classList.add('in'); }, 1700);
-    setTimeout(function () {
-      show(1);
-      var k = 0;
-      var t = setInterval(function () {
-        cmd.textContent = full.slice(0, ++k);
-        if (k >= full.length) {
-          clearInterval(t);
-          setTimeout(function () {
-            caret.remove();
-            [2, 3, 4, 5].forEach(function (li, j) { setTimeout(function () { show(li); }, 320 * j); });
-            setTimeout(function () { show(6); }, 320 * 4 + 300);
-          }, 380);
-        }
-      }, 34);
-    }, 650);
-  })();
-  </script>
+  <script src="/static/home.js" defer></script>
+  <script src="/static/copy.js" defer></script>
   <script src="/static/waitlist.js" defer></script>
 
 </body>

@@ -24,6 +24,8 @@
   <link rel="stylesheet" href="/static/fx.css" />
   <script src="/static/fx.js" defer></script>
   <link rel="canonical" href="https://lictor-ai.com/scan/example-lictor-ai.html" />
+  <link rel="stylesheet" href="/static/codex.css?v=1" />
+  <script src="/static/codex.js" defer></script>
 </head>
 <body>
   <header class="nav">
@@ -32,15 +34,20 @@
       <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
     </a>
     <nav class="nav__links">
+      <a href="/#pillars">Pillars</a>
+      <a href="/#install">Install</a>
+      <a href="/mission-control">Mission Control</a>
       <a href="/scan" class="active">Scan</a>
       <a href="/patterns">Patterns</a>
+      <a href="/business">For Business</a>
       <a href="/donate">Support</a>
       <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
     </nav>
   </header>
 
   <main class="scorecard">
-    <section class="scorecard__hero">
+    <section class="scorecard__hero" style="position:relative">
+      <svg class="codex-geo" viewBox="0 0 320 320" aria-hidden="true"><circle class="ink" cx="160" cy="160" r="150"/><circle class="ink" cx="160" cy="160" r="92"/><path class="ink" d="M10 160h300M160 10v300"/></svg>
       <div class="grade-big grade-big--a" aria-label="Grade: A">A</div>
       <div class="scorecard__meta">
         <h1 class="scorecard__url">lictor-ai.com</h1>
@@ -53,7 +60,7 @@
       </div>
     </section>
 
-    <section class="scorecard__summary">
+    <section class="scorecard__summary" data-reveal>
       <p class="lede">
         <strong>Clean.</strong> Zero critical or high-severity findings. Two medium-severity opportunities to harden further — both expected on a static site without an app surface. The scorecard below is permanent (open the menu to share or re-run).
       </p>
@@ -65,10 +72,10 @@
       </div>
     </section>
 
-    <section class="scorecard__findings">
+    <section class="scorecard__findings" data-reveal>
       <h2 class="section__title">Findings</h2>
 
-      <article class="finding-card">
+      <article class="finding-card codex-glass" data-reveal>
         <header class="finding-card__header">
           <span class="severity-badge severity-badge--medium">🟡 Medium</span>
           <h3 class="finding-card__title">No <code>Content-Security-Policy</code> header set</h3>
@@ -86,7 +93,7 @@
         </div>
       </article>
 
-      <article class="finding-card">
+      <article class="finding-card codex-glass" data-reveal>
         <header class="finding-card__header">
           <span class="severity-badge severity-badge--medium">🟡 Medium</span>
           <h3 class="finding-card__title">No <code>Permissions-Policy</code> header restricting features</h3>
@@ -103,7 +110,7 @@
         </div>
       </article>
 
-      <article class="finding-card">
+      <article class="finding-card codex-glass" data-reveal>
         <header class="finding-card__header">
           <span class="severity-badge severity-badge--info">⚪ Info</span>
           <h3 class="finding-card__title">Google Fonts loaded from <code>fonts.googleapis.com</code></h3>
@@ -116,11 +123,11 @@
       </article>
     </section>
 
-    <section class="scorecard__share">
+    <section class="scorecard__share" data-reveal>
       <h2 class="section__title">Share this scorecard</h2>
       <div class="cta-row">
-        <a href="https://twitter.com/intent/tweet?text=lictor-ai.com%20scored%20an%20A%20on%20its%20own%20security%20scanner.%20Try%20yours%3A&url=https%3A%2F%2Flictor-ai.com%2Fscan" class="btn btn--ghost">Tweet</a>
-        <a href="/scan" class="btn btn--primary">Scan your app →</a>
+        <a href="https://twitter.com/intent/tweet?text=lictor-ai.com%20scored%20an%20A%20on%20its%20own%20security%20scanner.%20Try%20yours%3A&url=https%3A%2F%2Flictor-ai.com%2Fscan" class="btn btn--ghost codex-lift">Tweet</a>
+        <a href="/scan" class="btn btn--primary codex-lift">Scan your app →</a>
       </div>
       <p class="meta">
         <strong>Why scan yourself first?</strong> Because we'd be hypocrites to scan everyone else first. Patrol runs on lictor-ai.com every 6 hours; this scorecard updates automatically. Findings below `Critical` or `High` stay public; anything critical opens an issue at <a href="https://github.com/Raffa-jarrl/Lictor-AI/issues" class="link">the repo</a> immediately and gets fixed in the open.
