@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Compliance — Lictor AI</title>
+  <title>Compliance | Lictor AI</title>
   <meta name="description" content="How Lictor's products map onto SOC 2, GDPR Article 32, EU AI Act, NIST AI RMF, and ISO/IEC 42001. Pre-built answers to the questions in enterprise RFPs." />
 
-  <meta property="og:title" content="Lictor AI — Compliance & Regulatory Posture" />
+  <meta property="og:title" content="Lictor AI: Compliance & Regulatory Posture" />
   <meta property="og:description" content="Lictor mapped onto SOC 2 CC6-9, GDPR Article 32, EU AI Act Articles 9/12/14/26/50, NIST AI RMF, and ISO/IEC 42001." />
   <meta property="og:url" content="https://lictor-ai.com/compliance" />
   <meta property="og:type" content="article" />
@@ -75,16 +75,16 @@
       <aside class="toc" aria-label="Table of contents">
         <p class="toc__title">On this page</p>
         <ol>
-          <li><a href="#what-this-is">What this is — and isn't</a></li>
+          <li><a href="#what-this-is">What this is, and what it isn't</a></li>
           <li><a href="#soc2">SOC 2 Trust Services Criteria</a>
             <ol>
-              <li><a href="#soc2-cc6">CC6 — Access Controls</a></li>
-              <li><a href="#soc2-cc7">CC7 — System Operations</a></li>
-              <li><a href="#soc2-cc8">CC8 — Change Management</a></li>
-              <li><a href="#soc2-cc9">CC9 — Risk Mitigation</a></li>
+              <li><a href="#soc2-cc6">CC6: Access Controls</a></li>
+              <li><a href="#soc2-cc7">CC7: System Operations</a></li>
+              <li><a href="#soc2-cc8">CC8: Change Management</a></li>
+              <li><a href="#soc2-cc9">CC9: Risk Mitigation</a></li>
             </ol>
           </li>
-          <li><a href="#gdpr">GDPR — Article 32</a></li>
+          <li><a href="#gdpr">GDPR: Article 32</a></li>
           <li><a href="#eu-ai-act">EU AI Act</a></li>
           <li><a href="#nist">NIST AI RMF</a></li>
           <li><a href="#iso-42001">ISO/IEC 42001</a></li>
@@ -97,7 +97,7 @@
       <!-- BODY -->
       <article class="prose">
         <section id="what-this-is" data-reveal>
-          <h2>What this document is — and isn&rsquo;t</h2>
+          <h2>What this document is (and what it isn&rsquo;t)</h2>
           <div class="callout callout--green">
             <p><strong>Is:</strong> a reference for how Lictor&rsquo;s products map onto the controls and articles enterprise customers need to satisfy. Authored by a cybersecurity engineer with 20 years of audit and advisory experience.</p>
           </div>
@@ -114,7 +114,7 @@
           <h2>SOC 2 Trust Services Criteria</h2>
           <p>Lictor&rsquo;s products contribute evidence to the following <a href="https://www.aicpa.org/" rel="noopener">SOC 2 TSC</a> Common Criteria categories. The mapping below is what to put in your control matrix.</p>
 
-          <h3 id="soc2-cc6">CC6 — Logical and Physical Access Controls</h3>
+          <h3 id="soc2-cc6">CC6: Logical and Physical Access Controls</h3>
           <div class="table-wrap">
             <table>
               <thead><tr><th>Control</th><th>How Lictor contributes</th></tr></thead>
@@ -127,7 +127,7 @@
             </table>
           </div>
 
-          <h3 id="soc2-cc7">CC7 — System Operations</h3>
+          <h3 id="soc2-cc7">CC7: System Operations</h3>
           <div class="table-wrap">
             <table>
               <thead><tr><th>Control</th><th>How Lictor contributes</th></tr></thead>
@@ -141,10 +141,10 @@
             </table>
           </div>
 
-          <h3 id="soc2-cc8">CC8 — Change Management</h3>
+          <h3 id="soc2-cc8">CC8: Change Management</h3>
           <p>The Lictor source code is open (Apache 2.0 for OSS components; source-available for Guardian). Every change is tracked in Git with cryptographic signatures from CI. Customers self-verifying our change controls should reference our public commit history at <a href="https://github.com/Raffa-jarrl/Lictor-AI" rel="noopener">github.com/Raffa-jarrl/Lictor-AI</a>.</p>
 
-          <h3 id="soc2-cc9">CC9 — Risk Mitigation</h3>
+          <h3 id="soc2-cc9">CC9: Risk Mitigation</h3>
           <p>Sentinel + Shield + Guardian are <em>defensive</em> controls. They do not create new attack surface (Sentinel is an in-process middleware; Shield is a read-only browser extension; Guardian is an isolated SaaS). The wire-format privacy invariants ensure Lictor never accumulates the data it would need to be a high-value target itself.</p>
         </section>
 
@@ -152,17 +152,17 @@
 
         <!-- GDPR -->
         <section id="gdpr" data-reveal>
-          <h2>GDPR — Article 32 (Security of processing)</h2>
+          <h2>GDPR: Article 32 (Security of processing)</h2>
           <p>Article 32 requires data controllers and processors to implement <em>&ldquo;appropriate technical and organisational measures to ensure a level of security appropriate to the risk.&rdquo;</em> Lictor&rsquo;s products map onto specific Article 32(1) measures:</p>
 
-          <h3>32(1)(a) — Pseudonymisation and encryption</h3>
+          <h3>32(1)(a): Pseudonymisation and encryption</h3>
           <ul>
             <li><strong>Sentinel never transmits raw user content to Guardian.</strong> All telemetry uses 16-character SHA-256 fingerprints. This is a strong form of pseudonymisation by construction.</li>
             <li>All Sentinel↔Guardian transit is HTTPS (TLS 1.2+).</li>
             <li>Magic-link auth tokens are stored as SHA-256 hashes in the database; raw tokens never persist server-side.</li>
           </ul>
 
-          <h3>32(1)(b) — Confidentiality, integrity, availability, resilience</h3>
+          <h3>32(1)(b): Confidentiality, integrity, availability, resilience</h3>
           <ul>
             <li><strong>Confidentiality:</strong> bearer-token authentication on every ingest call; no cross-account read paths in Guardian&rsquo;s query layer.</li>
             <li><strong>Integrity:</strong> append-only audit log enforced via Postgres trigger. UPDATE that modifies audit content + DELETE on <code>audit_log</code> raise a SQL exception.</li>
@@ -170,48 +170,48 @@
             <li><strong>Resilience:</strong> documented incident-response runbook (Phase 4 deliverable; tracked in <code>LAUNCH_PLAN.md</code>).</li>
           </ul>
 
-          <h3>32(1)(c) — Restoration of availability</h3>
+          <h3>32(1)(c): Restoration of availability</h3>
           <p>Guardian&rsquo;s data model is fully reconstructable from Postgres dumps. Sentinel&rsquo;s events are append-only and idempotent on the wire (events have stable <code>ts</code> + <code>agent_id</code> + content, so retries don&rsquo;t double-count).</p>
 
-          <h3>32(1)(d) — Regular testing</h3>
+          <h3>32(1)(d): Regular testing</h3>
           <ul>
             <li>Lictor&rsquo;s test suite covers the privacy invariants. The fingerprint round-trip is verified in CI. The wire-format schema is enforced in code via Zod.</li>
             <li>Public CI runs the full test suite on every commit. Test failures block merges.</li>
           </ul>
 
-          <h3>32(2) — Risks of accidental loss, alteration, disclosure</h3>
-          <p>The wire-format privacy invariants make accidental disclosure of user content <strong>categorically impossible</strong> — the data Lictor collects cannot be reversed into the data it represents. This is design-level mitigation, not policy-level.</p>
+          <h3>32(2): Risks of accidental loss, alteration, disclosure</h3>
+          <p>The wire-format privacy invariants make accidental disclosure of user content <strong>categorically impossible</strong>. The data Lictor collects cannot be reversed into the data it represents. This is design-level mitigation, not policy-level.</p>
 
-          <h3>Data subject rights (Articles 15–22)</h3>
-          <p>Right to erasure is implemented via cascading foreign keys: deleting an account row removes every related row (incidents, sessions, magic_links). The audit log persists with <code>account_id</code> nullified — required by SOC 2 CC7.5 (incident communication evidence) but PII anonymized. One DELETE satisfies Article 17 for a Lictor account.</p>
+          <h3>Data subject rights (Articles 15 to 22)</h3>
+          <p>Right to erasure is implemented via cascading foreign keys: deleting an account row removes every related row (incidents, sessions, magic_links). The audit log persists with <code>account_id</code> nullified, which SOC 2 CC7.5 requires (incident communication evidence) but with PII anonymized. One DELETE satisfies Article 17 for a Lictor account.</p>
         </section>
 
         <hr />
 
         <!-- EU AI ACT -->
         <section id="eu-ai-act" data-reveal>
-          <h2>EU AI Act — relevant articles</h2>
-          <p>The <a href="https://artificialintelligenceact.eu/" rel="noopener">EU AI Act</a> is in phased enforcement through 2026–2027. Lictor&rsquo;s products are most relevant to providers and deployers of <em>high-risk</em> AI systems (Annex III categories) and to <em>general-purpose AI</em> providers.</p>
+          <h2>EU AI Act: the relevant articles</h2>
+          <p>The <a href="https://artificialintelligenceact.eu/" rel="noopener">EU AI Act</a> is in phased enforcement through 2026 and 2027. Lictor&rsquo;s products are most relevant to providers and deployers of <em>high-risk</em> AI systems (Annex III categories) and to <em>general-purpose AI</em> providers.</p>
 
-          <h3>Article 9 — Risk management system</h3>
+          <h3>Article 9: Risk management system</h3>
           <p>Article 9 requires high-risk AI providers to <em>&ldquo;establish, implement, document and maintain a risk management system.&rdquo;</em> Lictor&rsquo;s role:</p>
           <ul>
-            <li><strong>9(2)(a) Identification of risks</strong> — Sentinel&rsquo;s check catalog provides a starting taxonomy of AI-specific risks (prompt injection, data exfil, unsafe tool calls, PII leakage). Guardian&rsquo;s incident timeline tracks observed instances per deployment.</li>
-            <li><strong>9(2)(b) Estimation and evaluation</strong> — Sentinel events carry severity (<code>critical/high/medium/low/info</code>); Guardian aggregates by severity for trend analysis.</li>
-            <li><strong>9(2)(c) Post-market monitoring</strong> — Guardian <em>is</em> a post-market monitoring system. Audit log export satisfies the documentation requirement.</li>
-            <li><strong>9(2)(d) Risk-management measures</strong> — Sentinel&rsquo;s <code>onTrip: 'block'</code> and <code>'redact'</code> actions are technical risk-management measures applied at the runtime boundary.</li>
+            <li><strong>9(2)(a) Identification of risks.</strong> Sentinel&rsquo;s check catalog provides a starting taxonomy of AI-specific risks (prompt injection, data exfil, unsafe tool calls, PII leakage). Guardian&rsquo;s incident timeline tracks observed instances per deployment.</li>
+            <li><strong>9(2)(b) Estimation and evaluation.</strong> Sentinel events carry severity (<code>critical/high/medium/low/info</code>); Guardian aggregates by severity for trend analysis.</li>
+            <li><strong>9(2)(c) Post-market monitoring.</strong> Guardian <em>is</em> a post-market monitoring system. Audit log export satisfies the documentation requirement.</li>
+            <li><strong>9(2)(d) Risk-management measures.</strong> Sentinel&rsquo;s <code>onTrip: 'block'</code> and <code>'redact'</code> actions are technical risk-management measures applied at the runtime boundary.</li>
           </ul>
 
-          <h3>Article 12 — Record-keeping</h3>
+          <h3>Article 12: Record-keeping</h3>
           <p>Article 12 requires automatic logging of events relevant to the operation of high-risk AI systems. Guardian&rsquo;s incident store + audit_log together provide a <em>technical</em> record of the system&rsquo;s risk-relevant events. Retention is configurable per account.</p>
 
-          <h3>Article 14 — Human oversight</h3>
-          <p>Sentinel&rsquo;s blocking and redaction modes provide <em>automated detection</em>, but the human-oversight requirement is a property of the deploying organization. Lictor <em>enables</em> — but does not satisfy — Article 14.</p>
+          <h3>Article 14: Human oversight</h3>
+          <p>Sentinel&rsquo;s blocking and redaction modes provide <em>automated detection</em>, but the human-oversight requirement is a property of the deploying organization. Lictor <em>enables</em> Article 14, but it does not satisfy it.</p>
 
-          <h3>Article 26 — Obligations of deployers</h3>
+          <h3>Article 26: Obligations of deployers</h3>
           <p>Deployers must <em>&ldquo;monitor the operation of the high-risk AI system.&rdquo;</em> Guardian provides the monitoring substrate; the Slack webhook + audit log + per-incident drill-down provide the <em>practical</em> monitoring tools.</p>
 
-          <h3>Article 50 — Transparency obligations</h3>
+          <h3>Article 50: Transparency obligations</h3>
           <p>For deployers using AI to interact with humans, Article 50 requires that humans be <em>&ldquo;informed that they are interacting with an AI system.&rdquo;</em> Lictor Shield can detect AI-agent surfaces on websites and inform end-users; this is one of the few consumer-side products in the AI security category that addresses Article 50 directly.</p>
         </section>
 
@@ -219,7 +219,7 @@
 
         <!-- NIST -->
         <section id="nist" data-reveal>
-          <h2>NIST AI RMF — alignment</h2>
+          <h2>How Lictor aligns with the NIST AI RMF</h2>
           <p>The <a href="https://www.nist.gov/itl/ai-risk-management-framework" rel="noopener">NIST AI Risk Management Framework</a> maps cleanly onto Lictor&rsquo;s product surfaces:</p>
           <div class="table-wrap">
             <table>
@@ -241,10 +241,10 @@
           <h2>ISO/IEC 42001 (AI Management Systems)</h2>
           <p>ISO/IEC 42001 (published 2023) is the first AI-specific management-system standard. Lictor contributes evidence to the following clauses:</p>
           <ul>
-            <li><strong>8.2 (Operational planning and control)</strong> — Sentinel&rsquo;s runtime checks</li>
-            <li><strong>8.3 (Risk treatment)</strong> — Sentinel&rsquo;s blocking / redaction modes</li>
-            <li><strong>9.1 (Monitoring, measurement, analysis)</strong> — Guardian&rsquo;s dashboard</li>
-            <li><strong>9.2 (Internal audit)</strong> — Guardian&rsquo;s audit log export</li>
+            <li><strong>8.2 (Operational planning and control):</strong> Sentinel&rsquo;s runtime checks</li>
+            <li><strong>8.3 (Risk treatment):</strong> Sentinel&rsquo;s blocking / redaction modes</li>
+            <li><strong>9.1 (Monitoring, measurement, analysis):</strong> Guardian&rsquo;s dashboard</li>
+            <li><strong>9.2 (Internal audit):</strong> Guardian&rsquo;s audit log export</li>
           </ul>
           <p>ISO/IEC 42001 certification for the Lictor company itself is a Q3 2027 target, contingent on revenue.</p>
         </section>

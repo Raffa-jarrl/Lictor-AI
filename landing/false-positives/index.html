@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The false positives we DON'T report — Lictor AI</title>
-  <meta name="description" content="A security scanner is only as trustworthy as its false-positive rate. These are the 19 false-positive classes Lictor filters that naive scanners flag as bugs — each learned from a real disclosure or triager response." />
+  <title>The false positives we DON'T report | Lictor AI</title>
+  <meta name="description" content="A security scanner is only as trustworthy as its false-positive rate. These are the 19 false-positive classes Lictor filters that naive scanners flag as bugs. Each one was learned from a real disclosure or triager response." />
 
   <meta property="og:title" content="The false positives Lictor doesn't report" />
-  <meta property="og:description" content="19 documented false-positive classes Lictor filters — so you get findings that are real, not noise. Each with provenance." />
+  <meta property="og:description" content="19 documented false-positive classes Lictor filters, so you get findings that are real, not noise. Each with provenance." />
   <meta property="og:url" content="https://lictor-ai.com/false-positives" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://lictor-ai.com/og/og-image.png" />
@@ -30,7 +30,7 @@
   <script src="/static/fx.js" defer></script>
   <link rel="canonical" href="https://lictor-ai.com/false-positives/" />
 
-  <!-- Structured data — establishes this as a Lictor technical reference -->
+  <!-- Structured data: establishes this as a Lictor technical reference -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -75,8 +75,8 @@
       <p class="text-meta-md line-relaxed" style="max-width:680px;margin:0 auto;">
         A security scanner is only as trustworthy as its false-positive rate. A tool
         that flags noise as bugs gets uninstalled in a week. Below are the
-        false-positive classes Lictor filters that naive scanners report as findings &mdash;
-        each one learned the hard way, from a real disclosure or a triager's response.
+        false-positive classes Lictor filters that naive scanners report as findings.
+        We learned each one the hard way, from a real disclosure or a triager's response.
       </p>
       <p class="text-meta" style="margin-top:1.5rem;">
         Source of truth:
@@ -89,7 +89,7 @@
     <section class="shell-section divider-top" data-reveal>
       <p class="eyebrow">Category 1 &middot; HTTP response</p>
       <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .5rem;">A "200 OK" means nothing on its own</h2>
-      <p class="text-meta-md">The single biggest source of scanner noise. Every one of these returns HTTP 200 to a sensitive-file probe &mdash; and every one is a false positive.</p>
+      <p class="text-meta-md">The single biggest source of scanner noise. Every one of these returns HTTP 200 to a sensitive-file probe, and every one is a false positive.</p>
       <div class="pattern-grid" style="margin-top:1.5rem;">
         <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
@@ -109,7 +109,7 @@
         <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>Soft 404 / WAF challenge</h3>
-          <p>HTML 404s served with 200, and Cloudflare "Just a moment" interstitials &mdash; both look like content, neither is.</p>
+          <p>HTML 404s served with 200, and Cloudflare "Just a moment" interstitials. Both look like content, neither is.</p>
         </article>
         <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
@@ -142,7 +142,7 @@
         <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>Firebase web apiKey</h3>
-          <p>The <span class="mono">apiKey</span> in a <span class="mono">firebaseConfig</span> is not a secret &mdash; Firebase's own docs say so. Filtered when seen in config context.</p>
+          <p>The <span class="mono">apiKey</span> in a <span class="mono">firebaseConfig</span> is not a secret. Firebase's own docs say so. Filtered when seen in config context.</p>
         </article>
         <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
@@ -154,18 +154,18 @@
 
     <!-- 3. Takeover + 4. DB/infra + 5. contracts -->
     <section class="shell-section divider-top" data-reveal>
-      <p class="eyebrow">Categories 3&ndash;5 &middot; takeover, database, infra, contracts</p>
+      <p class="eyebrow">Categories 3 to 5 &middot; takeover, database, infra, contracts</p>
       <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .5rem;">"Reachable" is not "exploitable"</h2>
       <div class="pattern-grid" style="margin-top:1.5rem;">
         <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>Customer-resource infra</h3>
-          <p>A finding on <span class="mono">*.digitaloceanspaces.com</span> / <span class="mono">*.herokuapp.com</span> belongs to the customer, not the provider &mdash; out of scope. <span class="text-meta">(learned: a DigitalOcean triager)</span></p>
+          <p>A finding on <span class="mono">*.digitaloceanspaces.com</span> / <span class="mono">*.herokuapp.com</span> belongs to the customer, not the provider, so it's out of scope. <span class="text-meta">(learned: a DigitalOcean triager)</span></p>
         </article>
         <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
           <h3>Account-gated takeovers</h3>
-          <p>A dangling CNAME to Fastly/Magento Cloud isn't claimable without an account &mdash; theoretical, not exploitable. Only self-signup vendors stay HIGH.</p>
+          <p>A dangling CNAME to Fastly/Magento Cloud isn't claimable without an account, so it's theoretical, not exploitable. Only self-signup vendors stay HIGH.</p>
         </article>
         <article class="pattern-card codex-glass codex-lift">
           <div class="pattern-card__badge"><span class="severity-badge severity-badge--info">FILTERED</span></div>
@@ -188,7 +188,7 @@
     <section class="shell-section divider-top" data-reveal style="text-align:center;max-width:720px;margin:0 auto;">
       <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .75rem;">Why this matters to you</h2>
       <p class="text-meta-md line-relaxed">
-        Every class above is a finding a naive scanner would put in your inbox &mdash;
+        Every class above is a finding a naive scanner would put in your inbox
         and waste your time triaging. Lictor filters them at the source, so when it does
         flag something, it's worth your attention. That's the whole product.
       </p>

@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lictor AI — Security audit for anything you built with AI</title>
-  <meta name="description" content="Free open-source security audit for anything you built with AI — web apps, CLIs, browser extensions, MCP servers, desktop apps, serverless functions, CI/CD pipelines. Mobile coming soon. Plain English. 11 AI agents, one slash command, no signup, no telemetry, Apache 2.0." />
+  <title>Lictor AI: Security audit for anything you built with AI</title>
+  <meta name="description" content="Free open-source security audit for anything you built with AI: web apps, CLIs, browser extensions, MCP servers, desktop apps, serverless functions, CI/CD pipelines. Mobile coming soon. Plain English. 11 AI agents, one slash command, no signup, no telemetry, Apache 2.0." />
 
-  <meta property="og:title" content="Lictor AI — Security audit for anything you built with AI" />
-  <meta property="og:description" content="11 AI agents audit anything you built with AI — web, CLI, browser ext, MCP server, desktop, serverless — in plain English. (Mobile coming soon.) Free, open-source, runs locally inside Claude Code. No signup, no compliance dialect, no per-seat pricing." />
+  <meta property="og:title" content="Lictor AI: Security audit for anything you built with AI" />
+  <meta property="og:description" content="11 AI agents audit anything you built with AI (web, CLI, browser ext, MCP server, desktop, serverless) in plain English. Mobile coming soon. Free, open-source, runs locally inside Claude Code. No signup, no compliance dialect, no per-seat pricing." />
   <meta property="og:url" content="https://lictor-ai.com" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://lictor-ai.com/og/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Lictor AI — the security crew for apps you built with AI" />
+  <meta property="og:image:alt" content="Lictor AI: the security crew for apps you built with AI" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Lictor AI — The security crew for apps you built with AI" />
+  <meta name="twitter:title" content="Lictor AI: The security crew for apps you built with AI" />
   <meta name="twitter:image" content="https://lictor-ai.com/og/og-image.png" />
-  <meta name="twitter:image:alt" content="Lictor AI — the security crew for apps you built with AI" />
+  <meta name="twitter:image:alt" content="Lictor AI: the security crew for apps you built with AI" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
@@ -38,7 +38,7 @@
   <script defer src="/static/codex3d.js?v=2"></script>
   <link rel="canonical" href="https://lictor-ai.com/" />
 
-  <!-- Structured data — Organization (establishes brand entity for Google search) -->
+  <!-- Structured data: Organization (establishes brand entity for Google search) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -46,7 +46,7 @@
     "name": "Lictor AI",
     "url": "https://lictor-ai.com",
     "logo": "https://lictor-ai.com/static/lictor-mark.png",
-    "description": "Free open-source security audit suite for anything built with AI — web apps, CLIs, browser extensions, MCP servers, desktop apps, serverless functions, CI/CD pipelines.",
+    "description": "Free open-source security audit suite for anything built with AI: web apps, CLIs, browser extensions, MCP servers, desktop apps, serverless functions, CI/CD pipelines.",
     "sameAs": [
       "https://github.com/Raffa-jarrl/Lictor-AI"
     ],
@@ -57,7 +57,7 @@
   }
   </script>
 
-  <!-- Structured data — SoftwareApplication (Google may show price + category in snippet) -->
+  <!-- Structured data: SoftwareApplication (Google may show price + category in snippet) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -80,26 +80,26 @@
   }
   </script>
 
-  <!-- Structured data — FAQPage (helps search engines understand the Q&A content below) -->
+  <!-- Structured data: FAQPage (helps search engines understand the Q&A content below) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
       { "@type": "Question", "name": "Is my AI-generated app secure?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Usually not on the first ship. Industry research finds 40–62% of AI-generated code contains a vulnerability — most often an API key exposed in the browser bundle, or a database with no access rules. It's worth running a quick check before you go live." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "Usually not on the first ship. Industry research finds 40 to 62% of AI-generated code contains a vulnerability. Most often it's an API key exposed in the browser bundle, or a database with no access rules. It's worth running a quick check before you go live." } },
       { "@type": "Question", "name": "How do I check if my Lovable, Bolt, v0 or Cursor app has security holes?",
         "acceptedAnswer": { "@type": "Answer", "text": "Run Lictor's free /lictor-security-check inside Claude Code (or via MCP in Cursor, Windsurf, Cline). It walks your project, runs 7 checks tuned to the bugs AI assistants ship most, and writes a plain-English report in about a minute. No signup." } },
       { "@type": "Question", "name": "Is Lictor free?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes — Apache-2.0, open source, no per-seat pricing and no 'contact sales'. The audit, the Shield browser extension, and the Sentinel SDK are all free." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Apache-2.0, open source, no per-seat pricing and no 'contact sales'. The audit, the Shield browser extension, and the Sentinel SDK are all free." } },
       { "@type": "Question", "name": "Does Lictor send my code anywhere?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. The audit runs 100% locally inside your AI coding tool — no token, no signup, no telemetry. Your code never leaves your machine, and every check is a markdown file you can read." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The audit runs 100% locally inside your AI coding tool, with no token, no signup, no telemetry. Your code never leaves your machine, and every check is a markdown file you can read." } },
       { "@type": "Question", "name": "What does Lictor check for?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Leaked API keys and secrets, exposed databases (missing Supabase/Firebase row-level security), unprotected API routes, client-side-only auth, over-permissive CORS, and prompt-injection surface in AI features — the failure modes AI-built apps ship most." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "Leaked API keys and secrets, exposed databases (missing Supabase/Firebase row-level security), unprotected API routes, client-side-only auth, over-permissive CORS, and prompt-injection surface in AI features. These are the failure modes AI-built apps ship most." } },
       { "@type": "Question", "name": "How is Lictor different from Snyk or Aikido?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Those are built for dev teams with a CISO and a budget, and they run after you deploy. Lictor is free, speaks plain English (no CVSS scores), and runs right where you code — before you ship — so a solo founder can use it without a security background." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "Those are built for dev teams with a CISO and a budget, and they run after you deploy. Lictor is free, speaks plain English (no CVSS scores), and runs right where you code, before you ship, so a solo founder can use it without a security background." } },
       { "@type": "Question", "name": "What's the most common security bug in vibe-coded apps?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Missing row-level security on Supabase or Firebase — anyone can read everyone's data — and API keys hardcoded into the front-end bundle. Both are easy to find from the outside, so Lictor flags them first." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "Missing row-level security on Supabase or Firebase, which lets anyone read everyone's data, plus API keys hardcoded into the front-end bundle. Both are easy to find from the outside, so Lictor flags them first." } },
       { "@type": "Question", "name": "Can Lictor fix the issues, not just find them?",
         "acceptedAnswer": { "@type": "Answer", "text": "Yes. Run /lictor-fix-it and it walks each finding one at a time, shows the exact change, and applies it with your approval. For leaked keys, /lictor-rotate walks you through rotating them at the provider." } }
     ]
@@ -141,7 +141,7 @@
         <polygon points="0,7.8 3.2,10 0,12.2" fill="#613915"/>
         <polygon points="0,9.4 0.9,10 0,10.6" fill="#000000"/>
       </svg>
-      <span><b>Security is safety &mdash; and safety is for everyone.</b> Lictor proudly stands with the LGBTQ+ community. Happy Pride.</span>
+      <span><b>Security is safety, and safety is for everyone.</b> Lictor proudly stands with the LGBTQ+ community. Happy Pride.</span>
     </p>
   </div>
 
@@ -160,16 +160,16 @@
   </div></header>
 
   <main id="main">
-    <!-- ═══ HERO — headline + live audit terminal ═══ -->
+    <!-- ═══ HERO: headline + live audit terminal ═══ -->
     <section class="hero band"><div class="wrap"><div class="hero__grid">
       <div class="hero__copy">
         <p class="kicker"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg> Open-source security suite · Apache-2.0</p>
         <h1>Security audit for <em>anything</em> you built with AI.</h1>
-        <p class="hero__tag">One suite, three pillars — the bodyguard your AI didn&rsquo;t ship with.</p>
+        <p class="hero__tag">One suite, three pillars. The bodyguard your AI didn&rsquo;t ship with.</p>
         <p class="prose">
           Safety infrastructure for the AI agent era: secure the <strong>AI you use</strong>,
           secure your <strong>company</strong>, and scan the <strong>world</strong> for the bugs
-          AI assistants leave behind. Plain English, right where you code — in under a minute,
+          AI assistants leave behind. Plain English, right where you code, in under a minute,
           before you ship.
         </p>
         <div class="btn-row">
@@ -190,7 +190,7 @@
           <span style="font-weight:600">Codex</span><span aria-hidden="true" style="opacity:.4">·</span>
           <span style="font-weight:600">Antigravity</span><span aria-hidden="true" style="opacity:.4">·</span>
           <span style="font-weight:600">local&nbsp;models&nbsp;(Hermes)</span>
-          <span style="opacity:.7">— same tools, any agent, <strong style="color:var(--accent)">zero cloud tokens</strong> on local.</span>
+          <span style="opacity:.7">Same tools, any agent, <strong style="color:var(--accent)">zero cloud tokens</strong> on local.</span>
         </p>
       </div>
       <svg class="hero__geo" viewBox="0 0 560 560" aria-hidden="true" fill="none" stroke="rgba(232,163,61,.15)" stroke-width="1">
@@ -202,7 +202,7 @@
         <circle cx="280" cy="280" r="2.5" fill="rgba(232,163,61,.35)" stroke="none"/>
       </svg>
       <div class="term hero-term" aria-label="Example Lictor security check output">
-        <div class="term__bar"><span class="term__dot term__dot--r"></span><span class="term__dot term__dot--y"></span><span class="term__dot term__dot--g"></span><span class="term__title">~/my-app — claude code</span></div>
+        <div class="term__bar"><span class="term__dot term__dot--r"></span><span class="term__dot term__dot--y"></span><span class="term__dot term__dot--g"></span><span class="term__title">~/my-app · claude code</span></div>
         <pre class="term__body"><span class="tl"><span style="color:var(--text-muted)"># in your project, inside Claude Code or Cursor:</span></span>
 <span class="tl"><span id="term-cmd" style="color:var(--accent);font-weight:600">/lictor-security-check</span></span>
 
@@ -211,7 +211,7 @@
 <span class="tl"><span style="color:#ffbd2e;font-weight:600">HIGH</span>      <span style="color:var(--cream)">/api/users</span> returns every row to any logged-in user.</span>
 <span class="tl"><span style="color:#E8A33D;font-weight:600">MED</span>       Stripe webhook isn&rsquo;t signature-checked.  <span style="color:var(--text-muted)">(+5 more)</span></span>
 
-<span class="tl"><span style="color:#3ddc84">✓ 142 files scanned in 48s — report saved to SECURITY-AUDIT.md</span></span></pre>
+<span class="tl"><span style="color:#3ddc84">✓ 142 files scanned in 48s · report saved to SECURITY-AUDIT.md</span></span></pre>
       </div>
     </div></div></section>
 
@@ -220,19 +220,19 @@
       <div class="shead">
         <p class="kicker"><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg> The platform</p>
         <h2>One suite. Three pillars.</h2>
-        <p class="shead__lede">Lictor is one engine — Core — and one dashboard — Guardian — pointed at three jobs: the AI you use, the company you run, and the world you ship into.</p>
+        <p class="shead__lede">Lictor is one engine (Core) and one dashboard (Guardian), pointed at three jobs: the AI you use, the company you run, and the world you ship into.</p>
       </div>
       <div class="instruments">
         <article class="inst inst--principal">
           <div class="inst__icon"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-shield"/></svg></div>
           <div class="inst__key">For AI <span class="inst__tag">Shipped</span></div>
           <h3>Lictor for <em>AI</em></h3>
-          <p>Secure the AI you use. Drops into Claude Code, Cursor, Codex, Antigravity and the top-10 AI clients — the bodyguard your assistant didn&rsquo;t ship with.</p>
+          <p>Secure the AI you use. Drops into Claude Code, Cursor, Codex, Antigravity and the top-10 AI clients. The bodyguard your assistant didn&rsquo;t ship with.</p>
           <ul>
-            <li><strong>Shield</strong> — audits any deployed AI-built site you visit</li>
-            <li><strong>Sentinel</strong> — blocks prompt injection + secret leaks at runtime</li>
-            <li><strong>Airlock</strong> — isolates what your agent can touch</li>
-            <li><strong>Skills + VS Code</strong> — the 60-second audit, everywhere you build</li>
+            <li><strong>Shield</strong> audits any deployed AI-built site you visit</li>
+            <li><strong>Sentinel</strong> blocks prompt injection + secret leaks at runtime</li>
+            <li><strong>Airlock</strong> isolates what your agent can touch</li>
+            <li><strong>Skills + VS Code</strong>: the 60-second audit, everywhere you build</li>
           </ul>
           <a class="link" href="#install">Install <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
         </article>
@@ -242,8 +242,8 @@
           <h3>Lictor for <em>Business</em></h3>
           <p>Secure the company. Two products: an isolated AI workspace your team can&rsquo;t leak through, and an automated internal pentest priced for an SMB.</p>
           <ul>
-            <li><strong>Isolation OS</strong> — boot a USB into an air-gapped AI workspace</li>
-            <li><strong>Internal Check</strong> — the $20k pentest engagement at SMB price</li>
+            <li><strong>Isolation OS</strong> boots a USB into an air-gapped AI workspace</li>
+            <li><strong>Internal Check</strong>: the $20k pentest engagement at SMB price</li>
             <li>Your own AI accounts inside; your network stays invisible</li>
             <li>Same Core engine, same plain-English findings</li>
           </ul>
@@ -253,12 +253,12 @@
           <div class="inst__icon"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-satellite"/></svg></div>
           <div class="inst__key">Patrol <span class="inst__tag">Scanning now</span></div>
           <h3>Lictor <em>Patrol</em></h3>
-          <p>Scan the world. External attack-surface recon that finds the bugs AI assistants leave behind — at internet scale.</p>
+          <p>Scan the world. External attack-surface recon that finds the bugs AI assistants leave behind, at internet scale.</p>
           <ul>
             <li>Scanning the public internet now for AI-built apps leaking live keys</li>
             <li>Finds leaked secrets, exposed databases, open auth, takeover-able subdomains</li>
-            <li>A real track record — dozens of live exposures disclosed, none ever exploited</li>
-            <li>Ethical disclosure only — categories and counts, never a victim&rsquo;s name</li>
+            <li>A real track record: dozens of live exposures disclosed, none ever exploited</li>
+            <li>Ethical disclosure only. Categories and counts, never a victim&rsquo;s name</li>
           </ul>
           <a class="link" href="/scan">Scan a URL <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
         </article>
@@ -266,7 +266,7 @@
       <p class="pillars-foot">Under all three: one engine (<em>Core</em>) and one dashboard (<em>Guardian</em>).</p>
     </div></section>
 
-    <!-- ═══ FOUNDERS — GitHub star appeal ═══ -->
+    <!-- ═══ FOUNDERS: GitHub star appeal ═══ -->
     <section id="founders" class="band"><div class="wrap">
       <div class="founders">
         <div class="star-block">
@@ -277,7 +277,7 @@
           <div class="star-bar"><i id="stars-progress" style="width:1%"></i></div>
           <a id="star-cta" class="star-cta" href="https://github.com/Raffa-jarrl/Lictor-AI" target="_blank" rel="noopener">
             <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg>
-            <span id="star-cta-text">Star on GitHub — 4 seconds</span>
+            <span id="star-cta-text">Star on GitHub, 4 seconds</span>
           </a>
           <p class="star-note">Takes 4 seconds. Costs nothing. <strong>It&rsquo;s the difference between &ldquo;interesting project&rdquo; and &ldquo;trusted by thousands.&rdquo;</strong></p>
         </div>
@@ -289,19 +289,19 @@
       </div>
     </div></section>
 
-    <!-- ═══ ISOLATION OS — flagship ═══ -->
+    <!-- ═══ ISOLATION OS: flagship ═══ -->
     <section id="isolation-os" class="band band--raised"><div class="wrap iso">
       <p class="kicker kicker--bare"><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg> Flagship · early access</p>
       <h2>Boot AI. Touch <em>nothing</em>.</h2>
-      <p class="iso__lede"><strong>Lictor Isolation OS</strong> — a USB stick you boot into a clean, isolated workspace. Gemini, ChatGPT and Claude with <strong>your own accounts</strong>, full power — and <strong>zero access to your company network</strong>. Pull it out, and there&rsquo;s no trace.</p>
+      <p class="iso__lede"><strong>Lictor Isolation OS</strong> is a USB stick you boot into a clean, isolated workspace. Gemini, ChatGPT and Claude with <strong>your own accounts</strong>, full power, and <strong>zero access to your company network</strong>. Pull it out, and there&rsquo;s no trace.</p>
       <div class="steps">
-        <article class="step"><div class="step__num">Step 01 · Boot</div><h3>Plug in. Power on.</h3><p>Boot the stick into a hardened, ephemeral OS — separate from the machine&rsquo;s disk, the domain, and the company LAN.</p></article>
-        <article class="step"><div class="step__num">Step 02 · Log in</div><h3>Your AI, your accounts.</h3><p>The top AI clients come pre-installed — <strong>Claude Code, Codex, Cursor, Gemini, Antigravity, ChatGPT</strong>. Sign in with your own accounts; nothing to configure.</p></article>
-        <article class="step"><div class="step__num">Step 03 · Isolated</div><h3>Reaches the model. Not you.</h3><p>The workspace can talk to the AI providers and nothing else. Your domain, prod, and files stay invisible — air-gap by construction.</p></article>
+        <article class="step"><div class="step__num">Step 01 · Boot</div><h3>Plug in. Power on.</h3><p>Boot the stick into a hardened, ephemeral OS, separate from the machine&rsquo;s disk, the domain, and the company LAN.</p></article>
+        <article class="step"><div class="step__num">Step 02 · Log in</div><h3>Your AI, your accounts.</h3><p>The top AI clients come pre-installed: <strong>Claude Code, Codex, Cursor, Gemini, Antigravity, ChatGPT</strong>. Sign in with your own accounts; nothing to configure.</p></article>
+        <article class="step"><div class="step__num">Step 03 · Isolated</div><h3>Reaches the model. Not you.</h3><p>The workspace can talk to the AI providers and nothing else. Your domain, prod, and files stay invisible. Air-gap by construction.</p></article>
       </div>
       <div class="iso-frame">
         <div class="term">
-          <div class="term__bar"><span class="term__dot term__dot--r"></span><span class="term__dot term__dot--y"></span><span class="term__dot term__dot--g"></span><span class="term__title">isolation-os — network policy</span></div>
+          <div class="term__bar"><span class="term__dot term__dot--r"></span><span class="term__dot term__dot--y"></span><span class="term__dot term__dot--g"></span><span class="term__title">isolation-os · network policy</span></div>
           <pre class="term__body">api.anthropic.com      <span style="color:var(--success)">reachable</span>
 api.openai.com         <span style="color:var(--success)">reachable</span>
 10.0.0.0/8             <span style="color:#ff6b60">blocked</span>
@@ -309,15 +309,15 @@ api.openai.com         <span style="color:var(--success)">reachable</span>
 default gateway        <span style="color:#ff6b60">blocked</span></pre>
         </div>
       </div>
-      <p class="iso__proof">The boundary is <em>physical</em>, not a policy you hope holds. We proved it in the red-zone build: the AI reaches <code>api.anthropic.com</code>, but every path to a private network — <code>10.x</code>, <code>192.168.x</code>, your gateway — is blocked.</p>
-      <p class="iso__note">The model: pay once, download the image, boot it — no install, no setup. Available today as a container red-zone (open source); the bootable USB OS is in early access.</p>
+      <p class="iso__proof">The boundary is <em>physical</em>, not a policy you hope holds. We proved it in the red-zone build: the AI reaches <code>api.anthropic.com</code>, but every path to a private network (<code>10.x</code>, <code>192.168.x</code>, your gateway) is blocked.</p>
+      <p class="iso__note">The model: pay once, download the image, boot it. No install, no setup. Available today as a container red-zone (open source); the bootable USB OS is in early access.</p>
       <div class="btn-row btn-row--center">
         <a class="btn btn--primary" href="/isolation-os">Join the free beta <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
         <a class="btn btn--ghost" href="/business">For Business</a>
       </div>
     </div></section>
 
-    <!-- ═══ WEDGE — /lictor-security-check + the report artifact ═══ -->
+    <!-- ═══ WEDGE: /lictor-security-check + the report artifact ═══ -->
     <section id="wedge" class="band"><div class="wrap">
       <div class="shead center" style="margin-inline:auto">
         <p class="kicker kicker--bare"><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg> /lictor-security-check</p>
@@ -334,7 +334,7 @@ default gateway        <span style="color:#ff6b60">blocked</span></pre>
     <span class="frame__dot frame__dot--r"></span>
     <span class="frame__dot frame__dot--y"></span>
     <span class="frame__dot frame__dot--g"></span>
-    <span class="frame__title">SECURITY-AUDIT.md — preview</span>
+    <span class="frame__title">SECURITY-AUDIT.md · preview</span>
   </div>
   <div class="frame__body frame__body--flush">
     <div class="mk-report">
@@ -342,7 +342,7 @@ default gateway        <span style="color:#ff6b60">blocked</span></pre>
 
       <div class="mk-report__doc">
 
-        <div class="mk-report__h1">Security Audit <span class="mk-report__h1-sub">&mdash; my-app</span></div>
+        <div class="mk-report__h1">Security Audit <span class="mk-report__h1-sub">· my-app</span></div>
         <p class="mk-report__meta">142 files<span class="mk-report__dot">&middot;</span>7 checks<span class="mk-report__dot">&middot;</span>48s</p>
 
         <hr class="mk-report__rule" />
@@ -404,7 +404,7 @@ default gateway        <span style="color:#ff6b60">blocked</span></pre>
       </div>
       <div class="plates" style="margin-top:var(--s6u)">
         <article class="dplate"><span class="dplate__num">01</span><h3><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> 7 checks</h3><p>Tuned for AI-generated app patterns. Walks your project, writes a plain-English report.</p></article>
-        <article class="dplate"><span class="dplate__num">02</span><h3><svg class="ic" aria-hidden="true"><use href="#i-file-report"/></svg> Plain English</h3><p>No &ldquo;information disclosure vulnerability&rdquo; — just &ldquo;anyone can read your customer list.&rdquo;</p></article>
+        <article class="dplate"><span class="dplate__num">02</span><h3><svg class="ic" aria-hidden="true"><use href="#i-file-report"/></svg> Plain English</h3><p>No &ldquo;information disclosure vulnerability,&rdquo; just &ldquo;anyone can read your customer list.&rdquo;</p></article>
         <article class="dplate"><span class="dplate__num">03</span><h3><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg> Three siblings</h3><p>Run <code>/lictor-explain</code>, <code>/lictor-fix-it</code>, <code>/lictor-rotate</code>.</p></article>
         <article class="dplate"><span class="dplate__num">04</span><h3><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg> 100% local</h3><p>No token, no signup, no telemetry, no per-seat pricing.</p></article>
       </div>
@@ -422,7 +422,7 @@ default gateway        <span style="color:#ff6b60">blocked</span></pre>
         <pre class="dplate__code">git clone https://github.com/Raffa-jarrl/Lictor-AI.git ~/Code/lictor</pre>
         <button class="copy js-copy" data-copy="git clone https://github.com/Raffa-jarrl/Lictor-AI.git ~/Code/lictor" data-done="✓ copied">copy</button>
       </div>
-      <p class="shead__lede" style="margin-top:-.4rem"><strong style="color:var(--accent)">New:</strong> one-command installers for the top&nbsp;5 AI agents &mdash; and triage runs on <strong>local models</strong> (Hermes / Qwen) at <strong>zero cloud-token cost</strong>.</p>
+      <p class="shead__lede" style="margin-top:-.4rem"><strong style="color:var(--accent)">New:</strong> one-command installers for the top&nbsp;5 AI agents, and triage runs on <strong>local models</strong> (Hermes / Qwen) at <strong>zero cloud-token cost</strong>.</p>
       <div class="plates" style="margin-top:var(--s6u)">
         <article class="dplate">
           <span class="dplate__num">01 · Claude Code</span>
@@ -439,7 +439,7 @@ default gateway        <span style="color:#ff6b60">blocked</span></pre>
         <article class="dplate">
           <span class="dplate__num">03 · OpenClaw <span style="color:var(--accent)">· new</span></span>
           <h3><svg class="ic" aria-hidden="true"><use href="#i-plug"/></svg> OpenClaw</h3>
-          <p>MCP server, usable by any agent &mdash; incl. Hermes/Qwen-backed.</p>
+          <p>MCP server, usable by any agent, including Hermes/Qwen-backed.</p>
           <div class="codewrap"><pre class="dplate__code">bash ~/Code/lictor/skills/install-openclaw.sh</pre><button class="copy js-copy" data-done="✓">copy</button></div>
         </article>
         <article class="dplate">
@@ -455,20 +455,20 @@ default gateway        <span style="color:#ff6b60">blocked</span></pre>
           <div class="codewrap"><pre class="dplate__code">bash ~/Code/lictor/skills/install-antigravity.sh</pre><button class="copy js-copy" data-done="✓">copy</button></div>
         </article>
       </div>
-      <p class="pillars-foot">One scanner, same checks &mdash; the <strong>top&nbsp;5 AI agents</strong>, one command each. Any other MCP host (<strong>Windsurf · Cline · Continue.dev</strong>) &rarr; point it at <code>scripts/lictor-mcp.py</code>. Also ships a <strong>standalone CLI</strong> (<code>lictor-local.py</code>) and the <strong>Lictor Shield</strong> browser extension.</p>
+      <p class="pillars-foot">One scanner, same checks, across the <strong>top&nbsp;5 AI agents</strong>, one command each. Any other MCP host (<strong>Windsurf · Cline · Continue.dev</strong>) &rarr; point it at <code>scripts/lictor-mcp.py</code>. Also ships a <strong>standalone CLI</strong> (<code>lictor-local.py</code>) and the <strong>Lictor Shield</strong> browser extension.</p>
     </div></section>
 
-    <!-- ═══ SUITE — products with real UI ═══ -->
+    <!-- ═══ SUITE: products with real UI ═══ -->
     <section id="suite" class="band"><div class="wrap">
       <div class="shead">
         <p class="kicker"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg> The suite</p>
         <h2>When the audit isn&rsquo;t enough.</h2>
-        <p class="shead__lede">Three more layers when your project starts handling real users — web, CLIs, browser extensions, MCP servers, desktop apps, serverless functions, bots, CI/CD pipelines. Same engine, ships everywhere at once.</p>
+        <p class="shead__lede">Three more layers when your project starts handling real users: web, CLIs, browser extensions, MCP servers, desktop apps, serverless functions, bots, CI/CD pipelines. Same engine, ships everywhere at once.</p>
       </div>
       <div class="suite-grid">
         <article class="suite-block">
           <h3><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg> Lictor <em>Shield</em> <span class="inst__tag">Free · Chrome extension</span></h3>
-          <p>Audits any deployed AI-built site you visit. Catches the issues before you sign up. Local-only — no URL ever leaves your browser.</p>
+          <p>Audits any deployed AI-built site you visit. Catches the issues before you sign up. Local-only, so no URL ever leaves your browser.</p>
           <div class="suite-block__viz">
             <!-- #suite · Shield deep-dive visual. Wrapped in .frame window chrome.
      The popup keeps its own internal chrome; the .frame is the browser-window
@@ -478,7 +478,7 @@ default gateway        <span style="color:#ff6b60">blocked</span></pre>
     <span class="frame__dot frame__dot--r"></span>
     <span class="frame__dot frame__dot--y"></span>
     <span class="frame__dot frame__dot--g"></span>
-    <span class="frame__title">chrome — Lictor Shield</span>
+    <span class="frame__title">chrome · Lictor Shield</span>
   </div>
   <div class="frame__body">
     <div class="mk-shield">
@@ -563,7 +563,7 @@ default gateway        <span style="color:#ff6b60">blocked</span></pre>
         </article>
         <article class="suite-block">
           <h3><svg class="ic" aria-hidden="true"><use href="#i-bolt"/></svg> Lictor <em>Sentinel</em> <span class="inst__tag">Free · npm + PyPI</span></h3>
-          <p>For when your AI-built app calls OpenAI / Anthropic at runtime. Blocks prompt injection + secret leaks — 32 injection patterns, 15 secret patterns, Luhn-validated card detection. Never ships raw input/output, only 16-char fingerprints.</p>
+          <p>For when your AI-built app calls OpenAI / Anthropic at runtime. Blocks prompt injection + secret leaks: 32 injection patterns, 15 secret patterns, Luhn-validated card detection. Never ships raw input/output, only 16-char fingerprints.</p>
           <pre class="dplate__code">import { wrap } from "@lictor/sentinel";
 
 const client = wrap(new OpenAI(), {
@@ -587,7 +587,7 @@ const client = wrap(new OpenAI(), {
     <span class="frame__dot frame__dot--r"></span>
     <span class="frame__dot frame__dot--y"></span>
     <span class="frame__dot frame__dot--g"></span>
-    <span class="frame__title">guardian — incidents</span>
+    <span class="frame__title">guardian · incidents</span>
   </div>
   <div class="frame__body frame__body--flush">
     <div class="mk-guardian">
@@ -616,7 +616,7 @@ const client = wrap(new OpenAI(), {
       <div class="mk-guardian__main">
         <header class="mk-guardian__head">
           <div class="mk-guardian__htop">
-            <h3 class="mk-guardian__h1">Guardian — incident timeline</h3>
+            <h3 class="mk-guardian__h1">Guardian · incident timeline</h3>
             <span class="mk-guardian__range">last 24h</span>
           </div>
           <div class="mk-guardian__stats">
@@ -693,13 +693,13 @@ const client = wrap(new OpenAI(), {
       <div class="shead">
         <p class="kicker"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg> The crew</p>
         <h2>The crew that runs the audit.</h2>
-        <p class="shead__lede">Most AI security tools are a black box: input goes in, findings come out. Lictor&rsquo;s 11 specialist agents are named, transparent, and surface their work. You see which agent found what — and why.</p>
+        <p class="shead__lede">Most AI security tools are a black box: input goes in, findings come out. Lictor&rsquo;s 11 specialist agents are named, transparent, and surface their work. You see which agent found what, and why.</p>
       </div>
       <div class="crew">
         <article class="crew__item"><h3>Wolf <span class="role">Orchestrator</span></h3><p>Reads your project, plans the audit, hands work to the right specialist. Surfaces a daily briefing so you always know what the crew did and what&rsquo;s next.</p></article>
         <article class="crew__item"><h3>Owl <span class="role">Quality gate</span></h3><p>Scores every finding against three audience personas before it ships. A finding less than 6/10 doesn&rsquo;t make the report.</p></article>
-        <article class="crew__item"><h3>Hawk <span class="role">Pattern scout</span></h3><p>Hunts the bug shapes vibe-coders ship most — RLS gaps, env-var leaks, unsigned webhooks, hallucinated dependencies.</p></article>
-        <article class="crew__item"><h3>Lyrebird <span class="role">Voice keeper</span></h3><p>Translates every finding into plain English. Not &ldquo;information disclosure vulnerability&rdquo; — &ldquo;your /api/users page gives out the customer list to anyone.&rdquo;</p></article>
+        <article class="crew__item"><h3>Hawk <span class="role">Pattern scout</span></h3><p>Hunts the bug shapes vibe-coders ship most: RLS gaps, env-var leaks, unsigned webhooks, hallucinated dependencies.</p></article>
+        <article class="crew__item"><h3>Lyrebird <span class="role">Voice keeper</span></h3><p>Translates every finding into plain English. Not &ldquo;information disclosure vulnerability,&rdquo; but &ldquo;your /api/users page gives out the customer list to anyone.&rdquo;</p></article>
         <article class="crew__item"><h3>Bee <span class="role">Fix designer</span></h3><p>For every issue, drafts the smallest possible fix and the exact file + line to put it in. One paragraph, one diff, one rotated key.</p></article>
         <article class="crew__item"><h3>Mantis <span class="role">Audit auditor</span></h3><p>Weekly reviewer that grades the crew&rsquo;s own work. Catches false positives, drifting voice, missed patterns.</p></article>
       </div>
@@ -713,8 +713,8 @@ const client = wrap(new OpenAI(), {
         <h2>Why now.</h2>
       </div>
       <div class="why">
-        <article class="why__item"><h3>40–62% of AI-built code ships <em>vulnerable</em></h3><p>91.5% of vibe-coded apps had at least one AI-hallucination flaw in Q1 2026. Recent incidents exposed tens of thousands of users via simple RLS misconfigurations. 8 million people use these platforms. Most of them don&rsquo;t know what an &ldquo;RLS policy&rdquo; is.</p></article>
-        <article class="why__item"><h3>Enterprise tools weren&rsquo;t built for <em>you</em></h3><p>Snyk, Veracode, Checkmarx — they all assume a 5-developer team and a CISO who speaks SOC 2. Lictor assumes you, an AI assistant, and an app you shipped over a weekend.</p></article>
+        <article class="why__item"><h3>40 to 62% of AI-built code ships <em>vulnerable</em></h3><p>91.5% of vibe-coded apps had at least one AI-hallucination flaw in Q1 2026. Recent incidents exposed tens of thousands of users via simple RLS misconfigurations. 8 million people use these platforms. Most of them don&rsquo;t know what an &ldquo;RLS policy&rdquo; is.</p></article>
+        <article class="why__item"><h3>Enterprise tools weren&rsquo;t built for <em>you</em></h3><p>Snyk, Veracode, Checkmarx: they all assume a 5-developer team and a CISO who speaks SOC 2. Lictor assumes you, an AI assistant, and an app you shipped over a weekend.</p></article>
         <article class="why__item"><h3>Plain English isn&rsquo;t a feature. It&rsquo;s the <em>product</em></h3><p>Every Lictor finding is written as &ldquo;your X does Y, anyone can do Z.&rdquo; No CVE numbers in the headline. No CVSS scores. If the finding can&rsquo;t be explained to a non-technical co-founder, Lyrebird rewrites it.</p></article>
         <article class="why__item"><h3>Open source so trust is <em>verifiable</em></h3><p>Apache 2.0. Every check is a markdown file you can read. Every agent has a SOUL.md you can fork. No proprietary engine, no black box. Read it. Run it. Fork it. Trust comes from the code, not from a certificate.</p></article>
       </div>
@@ -728,13 +728,13 @@ const client = wrap(new OpenAI(), {
         <p class="shead__lede">The things people actually ask before running a security check on an app they built with AI.</p>
       </div>
       <div class="faq">
-        <details><summary><span><span class="faq__q-idx">Q.01</span>Is my AI-generated app secure?</span></summary><div class="faq__a">Usually not on the first ship. Industry research finds 40&ndash;62% of AI-generated code contains a vulnerability &mdash; most often an API key exposed in the browser bundle, or a database with no access rules. It&rsquo;s worth running a quick check before you go live.</div></details>
+        <details><summary><span><span class="faq__q-idx">Q.01</span>Is my AI-generated app secure?</span></summary><div class="faq__a">Usually not on the first ship. Industry research finds 40 to 62% of AI-generated code contains a vulnerability. Most often it&rsquo;s an API key exposed in the browser bundle, or a database with no access rules. It&rsquo;s worth running a quick check before you go live.</div></details>
         <details><summary><span><span class="faq__q-idx">Q.02</span>How do I check if my Lovable, Bolt, v0 or Cursor app has security holes?</span></summary><div class="faq__a">Run Lictor&rsquo;s free <code>/lictor-security-check</code> inside Claude Code (or via MCP in Cursor, Windsurf, Cline). It walks your project, runs 7 checks tuned to the bugs AI assistants ship most, and writes a plain-English report in about a minute. No signup.</div></details>
-        <details><summary><span><span class="faq__q-idx">Q.03</span>Is Lictor free?</span></summary><div class="faq__a">Yes &mdash; Apache-2.0, open source, no per-seat pricing and no &ldquo;contact sales.&rdquo; The audit, the Shield browser extension, and the Sentinel SDK are all free.</div></details>
-        <details><summary><span><span class="faq__q-idx">Q.04</span>Does Lictor send my code anywhere?</span></summary><div class="faq__a">No. The audit runs 100% locally inside your AI coding tool &mdash; no token, no signup, no telemetry. Your code never leaves your machine, and every check is a markdown file you can read.</div></details>
-        <details><summary><span><span class="faq__q-idx">Q.05</span>What does Lictor check for?</span></summary><div class="faq__a">Leaked API keys and secrets, exposed databases (missing Supabase/Firebase row-level security), unprotected API routes, client-side-only auth, over-permissive CORS, and prompt-injection surface in AI features &mdash; the failure modes AI-built apps ship most.</div></details>
-        <details><summary><span><span class="faq__q-idx">Q.06</span>How is Lictor different from Snyk or Aikido?</span></summary><div class="faq__a">Those are built for dev teams with a CISO and a budget, and they run after you deploy. Lictor is free, speaks plain English (no CVSS scores), and runs right where you code &mdash; before you ship &mdash; so a solo founder can use it without a security background.</div></details>
-        <details><summary><span><span class="faq__q-idx">Q.07</span>What&rsquo;s the most common security bug in vibe-coded apps?</span></summary><div class="faq__a">Missing row-level security on Supabase or Firebase &mdash; anyone can read everyone&rsquo;s data &mdash; and API keys hardcoded into the front-end bundle. Both are easy to find from the outside, so Lictor flags them first.</div></details>
+        <details><summary><span><span class="faq__q-idx">Q.03</span>Is Lictor free?</span></summary><div class="faq__a">Yes. Apache-2.0, open source, no per-seat pricing and no &ldquo;contact sales.&rdquo; The audit, the Shield browser extension, and the Sentinel SDK are all free.</div></details>
+        <details><summary><span><span class="faq__q-idx">Q.04</span>Does Lictor send my code anywhere?</span></summary><div class="faq__a">No. The audit runs 100% locally inside your AI coding tool, with no token, no signup, no telemetry. Your code never leaves your machine, and every check is a markdown file you can read.</div></details>
+        <details><summary><span><span class="faq__q-idx">Q.05</span>What does Lictor check for?</span></summary><div class="faq__a">Leaked API keys and secrets, exposed databases (missing Supabase/Firebase row-level security), unprotected API routes, client-side-only auth, over-permissive CORS, and prompt-injection surface in AI features. These are the failure modes AI-built apps ship most.</div></details>
+        <details><summary><span><span class="faq__q-idx">Q.06</span>How is Lictor different from Snyk or Aikido?</span></summary><div class="faq__a">Those are built for dev teams with a CISO and a budget, and they run after you deploy. Lictor is free, speaks plain English (no CVSS scores), and runs right where you code, before you ship, so a solo founder can use it without a security background.</div></details>
+        <details><summary><span><span class="faq__q-idx">Q.07</span>What&rsquo;s the most common security bug in vibe-coded apps?</span></summary><div class="faq__a">Missing row-level security on Supabase or Firebase, which lets anyone read everyone&rsquo;s data, plus API keys hardcoded into the front-end bundle. Both are easy to find from the outside, so Lictor flags them first.</div></details>
         <details><summary><span><span class="faq__q-idx">Q.08</span>Can Lictor fix the issues, not just find them?</span></summary><div class="faq__a">Yes. Run <code>/lictor-fix-it</code> and it walks each finding one at a time, shows the exact change, and applies it with your approval. For leaked keys, <code>/lictor-rotate</code> walks you through rotating them at the provider.</div></details>
       </div>
     </div></section>
@@ -748,17 +748,17 @@ const client = wrap(new OpenAI(), {
       <div class="founder">
         <blockquote class="founder__quote">Twenty years of writing security reports that nobody outside compliance teams could read.</blockquote>
         <p class="founder__body founder__body--lead">Lictor is built by a 20-year cybersecurity engineer based in Israel. Twenty years of CISO advisory at Fortune 500 and security architecture for venture-backed startups.</p>
-        <p class="founder__body">Lictor exists because the people shipping the most software right now — solo founders building an AI-generated SaaS on Saturday, indie hackers prototyping with an AI assistant at midnight, designers shipping an AI-built backend before their morning coffee — don&rsquo;t have a CISO. They have themselves, an AI assistant, and 48 hours to ship something. They need security tooling that speaks plain English and doesn&rsquo;t require a sales call.</p>
+        <p class="founder__body">Lictor exists because the people shipping the most software right now don&rsquo;t have a CISO. Solo founders building an AI-generated SaaS on Saturday, indie hackers prototyping with an AI assistant at midnight, designers shipping an AI-built backend before their morning coffee. They have themselves, an AI assistant, and 48 hours to ship something. They need security tooling that speaks plain English and doesn&rsquo;t require a sales call.</p>
         <p class="founder__sig">Built by a 20-year cybersecurity engineer · Israel</p>
       </div>
     </div></section>
 
-    <!-- ═══ WAITLIST — Sentry ═══ -->
+    <!-- ═══ WAITLIST: Sentry ═══ -->
     <section id="waitlist" class="band band--raised band--accent-top"><div class="wrap">
       <div class="cta">
         <p class="when"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg> Coming Q1 2027</p>
         <h2>Lictor <em>Sentry</em></h2>
-        <p class="prose cta__lede" style="margin-inline:auto">AI threat protection for high-value individuals. iOS VPN profile (in development) that watches outbound AI API calls from your phone — for executives, journalists, founders whose AI assistant has access to sensitive data.</p>
+        <p class="prose cta__lede" style="margin-inline:auto">AI threat protection for high-value individuals. iOS VPN profile (in development) that watches outbound AI API calls from your phone, for executives, journalists, founders whose AI assistant has access to sensitive data.</p>
         <form class="wl-form" action="/api/waitlist" method="post">
           <input type="email" name="email" required placeholder="you@example.com" aria-label="Email address" />
           <button type="submit">Join the waitlist</button>
