@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lictor, documented — the knowledge base | Lictor AI</title>
+  <title>Lictor, documented: the knowledge base | Lictor AI</title>
   <meta name="description" content="The technical knowledge base for Lictor: open-source, Apache 2.0, every one of the 48 checks a readable module. Start here, browse all 48 checks by group, read the methodology, the suite, and the standards we map to." />
 
-  <meta property="og:title" content="Lictor, documented — the knowledge base" />
-  <meta property="og:description" content="Open-source, Apache 2.0, every check a readable module. The hub for Lictor's whole product documentation — checks, methodology, the suite, and the standards." />
+  <meta property="og:title" content="Lictor, documented: the knowledge base" />
+  <meta property="og:description" content="Open-source, Apache 2.0, every check a readable module. The hub for Lictor's whole product documentation: checks, methodology, the suite, and the standards." />
   <meta property="og:url" content="https://lictor-ai.com/docs" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://lictor-ai.com/og/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Lictor, documented — the knowledge base" />
+  <meta name="twitter:title" content="Lictor, documented: the knowledge base" />
   <meta name="twitter:image" content="https://lictor-ai.com/og/og-image.png" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -35,7 +35,7 @@
   {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    "headline": "Lictor, documented — the knowledge base",
+    "headline": "Lictor, documented: the knowledge base",
     "about": "Technical documentation for an open-source pre-release security audit tool",
     "author": { "@type": "Organization", "name": "Lictor AI", "url": "https://lictor-ai.com" },
     "publisher": { "@type": "Organization", "name": "Lictor AI" },
@@ -76,7 +76,7 @@
       <p class="text-meta-md line-relaxed" style="max-width:720px;margin:0 auto;">
         Lictor is open-source and Apache&nbsp;2.0, and every one of its 48 checks is a
         readable markdown module you can open, audit and run before you trust it. This is
-        the technical knowledge base — the front door to how the tool thinks, what it
+        the technical knowledge base: the front door to how the tool thinks, what it
         looks for, what it refuses to flag, and the standards it maps to. No marketing
         gloss here, just the documentation.
       </p>
@@ -102,7 +102,7 @@
       <div class="pattern-grid" style="margin-top:1.5rem;">
         <article class="pattern-card codex-glass codex-lift">
           <h3>What Lictor is</h3>
-          <p class="line-relaxed">A free, read-only, pre-release security audit you run from one slash command. It reads your code and observes what's already public — it never attacks a live system. Open-source, Apache&nbsp;2.0, runs entirely on your machine.</p>
+          <p class="line-relaxed">A free, read-only, pre-release security audit you run from one slash command. It reads your code and observes what's already public. It never attacks a live system. Open-source, Apache&nbsp;2.0, runs entirely on your machine.</p>
         </article>
         <article class="pattern-card codex-glass codex-lift">
           <h3>Install in 60s</h3>
@@ -111,7 +111,7 @@
         </article>
         <article class="pattern-card codex-glass codex-lift">
           <h3>Run your first scan</h3>
-          <p class="line-relaxed">Point it at any project — AI-built or hand-written, web or mobile. It detects the stack, runs every applicable check, and hands back a plain-English report.</p>
+          <p class="line-relaxed">Point it at any project (AI-built or hand-written, web or mobile). It detects the stack, runs every applicable check, and hands back a plain-English report.</p>
           <p class="text-meta" style="margin-top:.75rem;"><a class="link" href="/scan">Run your first scan &rarr;</a></p>
         </article>
       </div>
@@ -122,7 +122,7 @@
       <p class="eyebrow">Reference &middot; the 48 checks</p>
       <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .5rem;">Every check, as a readable module</h2>
       <p class="text-meta-md line-relaxed" style="max-width:780px;">
-        The 48 checks group into 8 categories. Each one is a markdown file you can read —
+        The 48 checks group into 8 categories. Each one is a markdown file you can read:
         what it looks for, the severity, the OWASP/CWE mapping, and a built-in "what NOT
         to flag" guard. Open any check below, or read the
         <a class="link" href="/coverage">full coverage overview</a> first.
@@ -152,8 +152,8 @@
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3><a class="link" href="/docs/check.html?c=idor">Users seeing others' data (IDOR)</a></h3><p>Change the number in the URL, read records that aren't yours.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3><a class="link" href="/docs/check.html?c=mass-assignment">Mass assignment</a></h3><p>Extra JSON fields that set <span class="mono">role</span>/<span class="mono">isAdmin</span> you never meant to expose.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3><a class="link" href="/docs/check.html?c=admin-paths">The "painted lock" admin page</a></h3><p>Admin pages that send the data first, then redirect you away.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3><a class="link" href="/docs/check.html?c=db-exposure">Open database</a></h3><p>Supabase / Firebase with no security rules — the front-door key opens everything.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3><a class="link" href="/docs/check.html?c=audit-logging-gaps">Missing audit logging</a></h3><p>No record of logins, permission changes, payments — can't detect or investigate a breach.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3><a class="link" href="/docs/check.html?c=db-exposure">Open database</a></h3><p>Supabase / Firebase with no security rules: the front-door key opens everything.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3><a class="link" href="/docs/check.html?c=audit-logging-gaps">Missing audit logging</a></h3><p>No record of logins, permission changes, payments, so you can't detect or investigate a breach.</p></article>
       </div>
 
       <!-- Group 3 -->
@@ -185,8 +185,8 @@
       <div class="pattern-grid" style="margin-top:1.25rem;">
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3><a class="link" href="/docs/check.html?c=api-inventory">Shadow / old API inventory</a></h3><p>Undocumented, deprecated, debug or <span class="mono">/v1</span> endpoints still live.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3><a class="link" href="/docs/check.html?c=resource-amplification">Unrestricted resource use</a></h3><p>Uncapped page size, request body, batch size, GraphQL depth.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3><a class="link" href="/docs/check.html?c=business-flow-automation">Unprotected business flows</a></h3><p>No bot gate on signup / checkout / referral — free-tier farming, scalping, fraud.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3><a class="link" href="/docs/check.html?c=third-party-consumption">Unsafe 3rd-party consumption</a></h3><p>Trusting an external API's response blindly — no validation or timeout.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3><a class="link" href="/docs/check.html?c=business-flow-automation">Unprotected business flows</a></h3><p>No bot gate on signup / checkout / referral: free-tier farming, scalping, fraud.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3><a class="link" href="/docs/check.html?c=third-party-consumption">Unsafe 3rd-party consumption</a></h3><p>Trusting an external API's response blindly, with no validation or timeout.</p></article>
       </div>
 
       <!-- Group 6 -->
@@ -205,10 +205,10 @@
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3><a class="link" href="/docs/check.html?c=ai-agent">Prompt injection &amp; tool abuse</a></h3><p>Users overriding your rules to make the model do things you didn't allow.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3><a class="link" href="/docs/check.html?c=indirect-prompt-injection">Indirect prompt injection</a></h3><p>RAG docs, fetched pages, emails, DB rows carrying hidden instructions into the prompt.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3><a class="link" href="/docs/check.html?c=system-prompt-secrets">Secrets / rules in the system prompt</a></h3><p>Keys or load-bearing authz rules baked into the prompt as if it were private.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3><a class="link" href="/docs/check.html?c=llm-output-sink">Unsanitized model-output sink</a></h3><p>Model output flowing into HTML / <span class="mono">eval</span> / SQL — injection in reverse.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3><a class="link" href="/docs/check.html?c=llm-output-sink">Unsanitized model-output sink</a></h3><p>Model output flowing into HTML / <span class="mono">eval</span> / SQL: injection in reverse.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3><a class="link" href="/docs/check.html?c=llm-context-overscope">Over-scoped LLM context</a></h3><p>Feeding the model more data than the end user is allowed to see.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3><a class="link" href="/docs/check.html?c=agent-tool-permissions">Excessive agent tool permissions</a></h3><p>An AI agent wired to shell, raw SQL or money-moving APIs with no guardrail.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3><a class="link" href="/docs/check.html?c=vector-store-isolation">Vector-store tenant isolation</a></h3><p>A RAG query with no per-tenant filter — one customer retrieves another's docs.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3><a class="link" href="/docs/check.html?c=vector-store-isolation">Vector-store tenant isolation</a></h3><p>A RAG query with no per-tenant filter: one customer retrieves another's docs.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3><a class="link" href="/docs/check.html?c=rag-ingestion-trust">RAG ingestion trust</a></h3><p>A knowledge base anyone can poison with documents the model later trusts.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3><a class="link" href="/docs/check.html?c=model-artifact-provenance">Untrusted model artifacts</a></h3><p><span class="mono">torch.load</span> / <span class="mono">trust_remote_code</span> on third-party weights.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3><a class="link" href="/docs/check.html?c=ungrounded-output-trust">Ungrounded output trust</a></h3><p>Slopsquatting, and using a raw LLM answer as the sole decider for auth or pricing.</p></article>
@@ -244,12 +244,12 @@
         </article>
         <article class="pattern-card codex-glass codex-lift">
           <h3>Near-zero false positives</h3>
-          <p class="line-relaxed">A scanner that cries wolf is worse than none. We document every false-positive class we filter — learned the hard way, from real disclosures and triager responses.</p>
+          <p class="line-relaxed">A scanner that cries wolf is worse than none. We document every false-positive class we filter, learned the hard way, from real disclosures and triager responses.</p>
           <p class="text-meta" style="margin-top:.75rem;"><a class="link" href="/false-positives">The false positives we filter &rarr;</a></p>
         </article>
         <article class="pattern-card codex-glass codex-lift">
           <h3>Observe-only boundaries</h3>
-          <p class="line-relaxed">Lictor is read-only and local. It flags only what's confirmable by reading your code or observing what's already public. Anything that needs <em>attacking</em> a live system is out by design — that belongs to an authorized pentest.</p>
+          <p class="line-relaxed">Lictor is read-only and local. It flags only what's confirmable by reading your code or observing what's already public. Anything that needs <em>attacking</em> a live system is out by design. That belongs to an authorized pentest.</p>
         </article>
       </div>
     </section>
@@ -259,14 +259,14 @@
       <p class="eyebrow">The suite</p>
       <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .5rem;">One core, five surfaces</h2>
       <p class="text-meta-md line-relaxed" style="max-width:780px;">
-        The slash-command scan is one way in. Behind it is a small suite sharing one engine —
+        The slash-command scan is one way in. Behind it is a small suite sharing one engine,
         each piece documented on its own page.
       </p>
       <div class="pattern-grid" style="margin-top:1.5rem;">
-        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="/docs/suite.html#sentinel">Sentinel</a></h3><p>The detection engine — the 48 checks, the stack detection, the false-positive filters.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="/docs/suite.html#shield">Shield</a></h3><p>Runtime guardrails for AI apps — prompt-injection and output-sink defenses for what you ship.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="/docs/suite.html#guardian">Guardian</a></h3><p>The shared core both Sentinel and Patrol build on — the rules, mappings and reporting.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="/docs/suite.html#patrol">Patrol</a></h3><p>The external observe-only scanner — what's already public on the open internet.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="/docs/suite.html#sentinel">Sentinel</a></h3><p>The detection engine: the 48 checks, the stack detection, the false-positive filters.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="/docs/suite.html#shield">Shield</a></h3><p>Runtime guardrails for AI apps: prompt-injection and output-sink defenses for what you ship.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="/docs/suite.html#guardian">Guardian</a></h3><p>The shared core both Sentinel and Patrol build on: the rules, mappings and reporting.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="/docs/suite.html#patrol">Patrol</a></h3><p>The external observe-only scanner: what's already public on the open internet.</p></article>
         <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="/docs/suite.html#cli">The CLI</a></h3><p>The slash command that ties it together and writes your <span class="mono">SECURITY-AUDIT.md</span>.</p></article>
       </div>
     </section>
@@ -285,8 +285,8 @@
         <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="https://owasp.org/API-Security/editions/2023/en/0x11-t10/">OWASP API Top 10 (2023)</a></h3><p>BOLA, broken auth, property-level authz, resource consumption, business-flow abuse.</p></article>
         <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="https://owasp.org/www-project-mobile-top-10/">OWASP Mobile Top 10 (2024)</a></h3><p>Credential use, supply chain, auth, input/output, comms, privacy, binary, storage.</p></article>
         <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="https://genai.owasp.org/llm-top-10/">OWASP Top 10 for LLM apps (2025)</a></h3><p>Prompt injection, output handling, data leakage, supply chain, excessive agency, RAG.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="https://cwe.mitre.org/top25/">CWE Top 25 (MITRE)</a></h3><p>The most dangerous software weaknesses — every check cites its CWE.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="/compliance">SOC 2 / GDPR / EU AI Act</a></h3><p>Findings also map to compliance controls — surfaced only if you ask.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="https://cwe.mitre.org/top25/">CWE Top 25 (MITRE)</a></h3><p>The most dangerous software weaknesses. Every check cites its CWE.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="/compliance">SOC 2 / GDPR / EU AI Act</a></h3><p>Findings also map to compliance controls, surfaced only if you ask.</p></article>
       </div>
     </section>
 
@@ -294,7 +294,7 @@
     <section class="shell-section divider-top" data-reveal style="text-align:center;max-width:720px;margin:0 auto;">
       <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .75rem;">Read every check before you trust it.</h2>
       <p class="text-meta-md line-relaxed">
-        Open-source, Apache 2.0, runs entirely on your machine — no token, no signup,
+        Open-source, Apache 2.0, runs entirely on your machine: no token, no signup,
         no telemetry. The documentation is the product, and it's all here.
       </p>
       <div style="margin-top:1.5rem;">

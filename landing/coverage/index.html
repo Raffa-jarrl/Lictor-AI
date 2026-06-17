@@ -7,7 +7,7 @@
   <meta name="description" content="Lictor's free pre-release security audit runs 48 checks mapped to the full OWASP Top 10 for Web, API, Mobile and GenAI/LLM, plus the CWE Top 25. Every check is a readable markdown file with a 'what NOT to flag' guard. This is the complete coverage map." />
 
   <meta property="og:title" content="The 48 checks Lictor runs on your app" />
-  <meta property="og:description" content="From 7 to 48: the complete coverage map of Lictor's free pre-release audit — secrets, access control, injection, AI/LLM, mobile — mapped to OWASP and CWE." />
+  <meta property="og:description" content="From 7 to 48: the complete coverage map of Lictor's free pre-release audit (secrets, access control, injection, AI/LLM, mobile) mapped to OWASP and CWE." />
   <meta property="og:url" content="https://lictor-ai.com/coverage" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://lictor-ai.com/og/og-image.png" />
@@ -73,7 +73,7 @@
         It started at 7 checks. It runs <span class="fx-gradient-text">48</span> now.
       </h1>
       <p class="text-meta-md line-relaxed" style="max-width:720px;margin:0 auto;">
-        One slash command walks your project and runs 48 checks — every
+        One slash command walks your project and runs 48 checks, every
         externally-observable, ethically-confirmable security risk we know how to
         find in code, AI-built or hand-written, web or mobile. The set is mapped to
         the <strong>full OWASP Top&nbsp;10 for Web, API, Mobile and GenAI/LLM</strong>,
@@ -101,7 +101,7 @@
         Lictor is read-only and local. It detects the stack (Next.js, Vite, Astro,
         SvelteKit, Flutter, React Native, native iOS/Android, Python, Go, Ruby, PHP…),
         then runs every applicable check by <em>reading your code and observing what's
-        already public</em> — never by attacking a live system. Each finding is
+        already public</em>, never by attacking a live system. Each finding is
         confirmed against a "what NOT to flag" guard before it reaches you, then
         rewritten as a story a non-technical founder can act on: <em>"anyone who opens
         <span class="mono">your-app.com/api/users</span> gets your whole customer
@@ -114,20 +114,20 @@
     <section class="shell-section divider-top" data-reveal style="max-width:820px;margin:0 auto;">
       <p class="eyebrow">What you get back</p>
       <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 1rem;">A rendered <span class="mono">SECURITY-AUDIT.md</span></h2>
-      <pre class="codex-glass" style="padding:1.25rem 1.4rem;border-radius:14px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.6;"><code><span style="color:var(--accent,#E8A33D);font-weight:600);"># Security Audit — your-app.com</span>
+      <pre class="codex-glass" style="padding:1.25rem 1.4rem;border-radius:14px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.6;"><code><span style="color:var(--accent,#E8A33D);font-weight:600);"># Security Audit: your-app.com</span>
 <span class="text-meta">Verdict: 🔴 Don't ship yet · 2 critical, 1 high, 3 medium</span>
 
-<span style="color:#ff6b6b;font-weight:600;">🔴 CRITICAL — Your OpenAI key is in the browser bundle</span>
+<span style="color:#ff6b6b;font-weight:600;">🔴 CRITICAL: Your OpenAI key is in the browser bundle</span>
   Anyone who opens DevTools on your site can read your OpenAI key
   (found in /assets/index-4f2a.js, masked sk-proj-…aB12) and run
   unlimited requests on your account. You pay the bill.
   → Fix tonight: rotate the key, move it behind a server route.
   Maps to: OWASP LLM02 · CWE-312 · check #2 ai-keys
 
-<span style="color:#ff6b6b;font-weight:600;">🔴 CRITICAL — /api/users returns the customer list with no login</span>
+<span style="color:#ff6b6b;font-weight:600;">🔴 CRITICAL: /api/users returns the customer list with no login</span>
   Maps to: OWASP API1 (BOLA) · CWE-284 · check #7 api-auth
 
-<span style="color:#ffa94d;font-weight:600;">🟠 HIGH — CORS reflects any origin with credentials</span>
+<span style="color:#ffa94d;font-weight:600;">🟠 HIGH: CORS reflects any origin with credentials</span>
   Maps to: OWASP A05 · CWE-942 · check #19 cors
 
 <span class="text-meta">▸ 3 medium findings (collapsed) · full report in ./SECURITY-AUDIT.md</span></code></pre>
@@ -157,8 +157,8 @@
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3>Users seeing others' data (IDOR)</h3><p>Change the number in the URL, read records that aren't yours.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3>Mass assignment</h3><p>Extra JSON fields that set <span class="mono">role</span>/<span class="mono">isAdmin</span> you never meant to expose.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3>The "painted lock" admin page</h3><p>Admin pages that send the data first, then redirect you away.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3>Open database</h3><p>Supabase / Firebase with no security rules — the front-door key opens everything.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3>Missing audit logging</h3><p>No record of logins, permission changes, payments — can't detect or investigate a breach.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3>Open database</h3><p>Supabase / Firebase with no security rules, where the front-door key opens everything.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3>Missing audit logging</h3><p>No record of logins, permission changes, payments, so you can't detect or investigate a breach.</p></article>
       </div>
     </section>
 
@@ -193,8 +193,8 @@
       <div class="pattern-grid" style="margin-top:1.5rem;">
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3>Shadow / old API inventory</h3><p>Undocumented, deprecated, debug or <span class="mono">/v1</span> endpoints still live.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3>Unrestricted resource use</h3><p>Uncapped page size, request body, batch size, GraphQL depth.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3>Unprotected business flows</h3><p>No bot gate on signup / checkout / referral — free-tier farming, scalping, fraud.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3>Unsafe 3rd-party consumption</h3><p>Trusting an external API's response blindly — no validation or timeout.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3>Unprotected business flows</h3><p>No bot gate on signup / checkout / referral: free-tier farming, scalping, fraud.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3>Unsafe 3rd-party consumption</h3><p>Trusting an external API's response blindly, with no validation or timeout.</p></article>
       </div>
     </section>
 
@@ -215,10 +215,10 @@
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3>Prompt injection &amp; tool abuse</h3><p>Users overriding your rules to make the model do things you didn't allow.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3>Indirect prompt injection</h3><p>RAG docs, fetched pages, emails, DB rows carrying hidden instructions into the prompt.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3>Secrets / rules in the system prompt</h3><p>Keys or load-bearing authz rules baked into the prompt as if it were private.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3>Unsanitized model-output sink</h3><p>Model output flowing into HTML / <span class="mono">eval</span> / SQL — injection in reverse.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3>Unsanitized model-output sink</h3><p>Model output flowing into HTML / <span class="mono">eval</span> / SQL: injection in reverse.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3>Over-scoped LLM context</h3><p>Feeding the model more data than the end user is allowed to see.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3>Excessive agent tool permissions</h3><p>An AI agent wired to shell, raw SQL or money-moving APIs with no guardrail.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3>Vector-store tenant isolation</h3><p>A RAG query with no per-tenant filter — one customer retrieves another's docs.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3>Vector-store tenant isolation</h3><p>A RAG query with no per-tenant filter, so one customer retrieves another's docs.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3>RAG ingestion trust</h3><p>A knowledge base anyone can poison with documents the model later trusts.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3>Untrusted model artifacts</h3><p><span class="mono">torch.load</span> / <span class="mono">trust_remote_code</span> on third-party weights.</p></article>
         <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3>Ungrounded output trust</h3><p>Slopsquatting, and using a raw LLM answer as the sole decider for auth or pricing.</p></article>
@@ -254,8 +254,8 @@
         <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="https://owasp.org/API-Security/editions/2023/en/0x11-t10/">OWASP API Top 10 (2023)</a></h3><p>BOLA, broken auth, property-level authz, resource consumption, business-flow abuse.</p></article>
         <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="https://owasp.org/www-project-mobile-top-10/">OWASP Mobile Top 10 (2024)</a></h3><p>Credential use, supply chain, auth, input/output, comms, privacy, binary, storage.</p></article>
         <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="https://genai.owasp.org/llm-top-10/">OWASP Top 10 for LLM apps (2025)</a></h3><p>Prompt injection, output handling, data leakage, supply chain, excessive agency, RAG.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="https://cwe.mitre.org/top25/">CWE Top 25 (MITRE)</a></h3><p>The most dangerous software weaknesses — every check cites its CWE.</p></article>
-        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="/compliance">SOC 2 / GDPR / EU AI Act</a></h3><p>Findings also map to compliance controls — surfaced only if you ask.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="https://cwe.mitre.org/top25/">CWE Top 25 (MITRE)</a></h3><p>The most dangerous software weaknesses; every check cites its CWE.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="/compliance">SOC 2 / GDPR / EU AI Act</a></h3><p>Findings also map to compliance controls, surfaced only if you ask.</p></article>
       </div>
     </section>
 
@@ -266,18 +266,18 @@
       <p class="text-meta-md line-relaxed">
         Lictor only flags what can be confirmed by <em>reading your code or observing
         what's already public</em>. Anything that can only be proven by <em>attacking</em>
-        a live system — blind RCE, time-based SQLi exploitation — is out by design.
+        a live system (blind RCE, time-based SQLi exploitation) is out by design.
         Those belong to an authorized pentest, and Lictor never tells you to attack
         anything. And every one of the 48 carries a "what NOT to flag" guard, because a
-        scanner that cries wolf is worse than none —
-        <a class="link" href="/false-positives">here are the false positives we filter</a>.
+        scanner that cries wolf is worse than none.
+        <a class="link" href="/false-positives">Here are the false positives we filter</a>.
       </p>
     </section>
 
     <section class="shell-section divider-top" data-reveal style="text-align:center;max-width:720px;margin:0 auto;">
       <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .75rem;">48 checks. One slash command. Free.</h2>
       <p class="text-meta-md line-relaxed">
-        Open-source, Apache 2.0, runs entirely on your machine — no token, no signup,
+        Open-source, Apache 2.0, runs entirely on your machine: no token, no signup,
         no telemetry. Read every check as a markdown file before you trust it.
       </p>
       <div style="margin-top:1.5rem;">
