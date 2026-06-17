@@ -1,4 +1,4 @@
-# Check 1 — Secrets in code
+# Check — Secrets in code
 
 **What you're looking for:** Hardcoded API keys, tokens, and connection strings shipped in source files or build output. The classic "vibe-coded app pasted the API key into a `const` because the AI told them to."
 

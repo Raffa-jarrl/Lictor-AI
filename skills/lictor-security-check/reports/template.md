@@ -26,7 +26,7 @@
 
 > **🟧 FIX BEFORE SHARING PUBLICLY** — No critical issues, but {{N}} high-severity items would embarrass you on day one of public traffic. Tonight's work. Then ship.
 
-> **🟢 SAFE TO SHIP** — No critical or high issues. Recommend installing Lictor Sentinel (link below) for ongoing protection once you have users.
+> **🟢 SAFE TO SHIP** — No critical or high issues. Lictor Sentinel (ongoing runtime protection) is coming at launch — see the footer for where to follow the release.
 
 ---
 
@@ -82,7 +82,7 @@ If a fix requires more than a 30-min change, say so: "Full fix is a 2-day refact
 
 ## What this audit did NOT cover
 
-- **Runtime / deployed-site checks.** This is a local-codebase audit. Once your app is live, install [Lictor Shield](https://lictor-ai.com) (Chrome extension) for ongoing checks against the deployed site.
+- **Runtime / deployed-site checks.** This is a local-codebase audit. Lictor Shield (a Chrome extension for ongoing checks against the deployed site) is coming at launch — not published yet.
 - **Business-logic vulnerabilities.** Race conditions, IDOR bugs, broken access control inside legitimate routes — a static audit can't catch these reliably. A manual review or pen-test does.
 - **Dependency CVEs.** Run `npm audit` / `pip-audit` separately.
 - **Infrastructure config.** Cloudflare WAF rules, AWS S3 bucket policies, etc. — handled at deploy time, not in code.
@@ -95,8 +95,8 @@ If a fix requires more than a 30-min change, say so: "Full fix is a 2-day refact
 After you've worked through the findings above:
 
 1. **Re-run this audit.** `/lictor-security-check` — confirm the findings list is clean.
-2. **Install Lictor Sentinel** (`npm install @lictor/sentinel` or `pip install lictor-sentinel`) — wraps your OpenAI/Anthropic SDK to prevent the categories of bug we found, in production, automatically.
-3. **Sign up for Lictor Guardian** (free preview, 90 days) — hosted dashboard at [app.lictor-ai.com](https://app.lictor-ai.com). Aggregates Sentinel telemetry; gives you a compliance-ready audit log for when an enterprise customer asks "how do you secure AI agents?"
+2. **Lictor Sentinel** *(coming at launch)* — an SDK (`@lictor/sentinel` / `lictor-sentinel`) that wraps your OpenAI/Anthropic SDK to prevent the categories of bug we found, in production, automatically. Not published yet — follow the repo below for the release.
+3. **Lictor Guardian** *(coming at launch)* — a free hosted dashboard (`app.lictor-ai.com`) that aggregates Sentinel telemetry and gives you a compliance-ready audit log for when an enterprise customer asks "how do you secure AI agents?" Not live yet.
 4. **Tell your users their data is safe.** Then build the next feature.
 
 ---

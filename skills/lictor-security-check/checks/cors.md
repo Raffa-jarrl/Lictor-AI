@@ -1,4 +1,4 @@
-# Check 6 — CORS misconfiguration
+# Check — CORS misconfiguration
 
 **What you're looking for:** API endpoints that send `Access-Control-Allow-Origin: *` together with `Access-Control-Allow-Credentials: true`. This is invalid per the spec (browsers reject it), but it's a strong signal the developer relaxed CORS without understanding it — and other CORS settings are probably broken too. Or worse, they're echoing the request's Origin back, which is a real cross-origin attack.
 
