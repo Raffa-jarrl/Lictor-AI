@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Check docs | Lictor AI</title>
+  <meta name="description" content="The deep technical documentation for each of Lictor's 48 security checks — rendered straight from the source check modules the CLI runs, so the docs never drift from the tool." />
+
+  <meta property="og:title" content="Check docs — the deep technical reference" />
+  <meta property="og:description" content="Read any of Lictor's 48 check modules as a web page: how to scan, the dangerous patterns, what NOT to flag, and the OWASP/CWE mapping — rendered from the same markdown the CLI ships." />
+  <meta property="og:url" content="https://lictor-ai.com/docs/check.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://lictor-ai.com/og/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Check docs — the deep technical reference" />
+  <meta name="twitter:image" content="https://lictor-ai.com/og/og-image.png" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/components/components.css" />
+  <link rel="stylesheet" href="/patterns/patterns.css" />
+  <link rel="stylesheet" href="/static/shell.css" />
+  <link rel="stylesheet" href="/static/fx.css" />
+  <script src="/static/fx.js" defer></script>
+  <link rel="canonical" href="https://lictor-ai.com/docs/check.html" />
+
+  <!-- Structured data: establishes this as a Lictor technical reference -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Lictor check documentation",
+    "about": "Per-check security documentation for the Lictor pre-release audit",
+    "author": { "@type": "Organization", "name": "Lictor AI", "url": "https://lictor-ai.com" },
+    "publisher": { "@type": "Organization", "name": "Lictor AI" },
+    "license": "https://www.apache.org/licenses/LICENSE-2.0"
+  }
+  </script>
+
+  <link rel="stylesheet" href="/static/codex.css?v=1" />
+  <script src="/static/codex.js" defer></script>
+
+  <!-- Markdown renderer for the source check modules (pinned major) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+
+  <!-- Doc-body / sidebar specifics only. Everything else reuses shared classes. -->
+  <style>
+    .docs-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: start;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .docs-sidebar {
+      position: sticky;
+      top: 1.5rem;
+      max-height: calc(100vh - 3rem);
+      overflow-y: auto;
+      padding-right: .5rem;
+    }
+    .docs-sidebar__group { margin-bottom: 1.4rem; }
+    .docs-sidebar__group > .eyebrow { margin: 0 0 .5rem; }
+    .docs-sidebar__list { list-style: none; margin: 0; padding: 0; }
+    .docs-sidebar__list li { margin: 0; }
+    .docs-sidebar__link {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .3rem .55rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: .86rem;
+      line-height: 1.35;
+      color: inherit;
+      border: 1px solid transparent;
+      transition: background .15s ease, border-color .15s ease;
+    }
+    .docs-sidebar__link:hover { background: rgba(232,163,61,.08); }
+    .docs-sidebar__link[aria-current="true"] {
+      background: rgba(232,163,61,.12);
+      border-color: rgba(232,163,61,.35);
+      font-weight: 600;
+    }
+    .docs-sidebar__dot {
+      flex: 0 0 auto;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: .5;
+    }
+    .docs-sidebar__dot--critical { background: #ff6b6b; opacity: .9; }
+    .docs-sidebar__dot--high     { background: #ffa94d; opacity: .9; }
+    .docs-sidebar__dot--medium   { background: #ffd43b; opacity: .9; }
+    .docs-sidebar__dot--low      { background: #74c0fc; opacity: .9; }
+    .docs-sidebar__dot--info     { background: #adb5bd; opacity: .9; }
+
+    .docs-breadcrumb {
+      font-size: .82rem;
+      margin: 0 0 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      align-items: center;
+    }
+    .docs-breadcrumb span[aria-current] { font-weight: 600; }
+
+    /* Mobile "all checks" disclosure — hidden on desktop where the sidebar shows */
+    .docs-disclosure { display: none; }
+
+    /* Rendered markdown article */
+    .doc-body { font-size: .98rem; line-height: 1.7; }
+    .doc-body > :first-child { margin-top: 0; }
+    .doc-body h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.12;
+      margin: 0 0 1rem;
+    }
+    .doc-body h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      line-height: 1.2;
+      margin: 2.2rem 0 .75rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .doc-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      margin: 1.6rem 0 .5rem;
+    }
+    .doc-body h4 { font-size: 1rem; font-weight: 600; margin: 1.2rem 0 .4rem; }
+    .doc-body p, .doc-body li { line-height: 1.7; }
+    .doc-body ul, .doc-body ol { padding-left: 1.4rem; }
+    .doc-body li { margin: .3rem 0; }
+    .doc-body a { color: var(--accent, #E8A33D); text-decoration: underline; text-underline-offset: 2px; }
+    .doc-body strong { font-weight: 600; }
+    .doc-body blockquote {
+      margin: 1.2rem 0;
+      padding: .2rem 1.1rem;
+      border-left: 3px solid rgba(232,163,61,.5);
+      color: var(--text-meta, #b8b8b8);
+    }
+    .doc-body hr { border: 0; border-top: 1px solid rgba(255,255,255,.1); margin: 2rem 0; }
+
+    /* Inline code + fenced blocks in JetBrains Mono inside a codex-glass surface */
+    .doc-body code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .86em;
+      background: rgba(255,255,255,.06);
+      padding: .12em .38em;
+      border-radius: 5px;
+    }
+    .doc-body pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .82rem;
+      line-height: 1.6;
+      padding: 1.1rem 1.3rem;
+      border-radius: 14px;
+      overflow-x: auto;
+      margin: 1.1rem 0;
+    }
+    .doc-body pre code {
+      background: none;
+      padding: 0;
+      border-radius: 0;
+      font-size: inherit;
+      white-space: pre;
+    }
+
+    /* Readable tables */
+    .doc-body .doc-table-wrap { overflow-x: auto; margin: 1.2rem 0; }
+    .doc-body table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: .88rem;
+    }
+    .doc-body th, .doc-body td {
+      text-align: left;
+      padding: .55rem .8rem;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      vertical-align: top;
+    }
+    .doc-body th {
+      font-weight: 600;
+      border-bottom: 2px solid rgba(232,163,61,.35);
+      white-space: nowrap;
+    }
+    .doc-body tbody tr:hover { background: rgba(255,255,255,.03); }
+
+    /* The all-checks index grid (used when ?c is bad/empty/failed) */
+    .docs-index-group { margin-top: 2rem; }
+
+    @media (max-width: 880px) {
+      .docs-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+      .docs-sidebar { display: none; }
+      .docs-disclosure { display: block; margin-bottom: 1.5rem; }
+      .docs-disclosure summary {
+        cursor: pointer;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.2rem;
+      }
+      .docs-disclosure[open] summary { margin-bottom: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header class="nav">
+    <a href="/" class="brand">
+      <img src="/static/lictor-mark.png" alt="" width="28" height="28" />
+      <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
+    </a>
+    <nav class="nav__links">
+      <a href="/#pillars">Pillars</a>
+      <a href="/#install">Install</a>
+      <a href="/coverage">Coverage</a>
+      <a href="/docs/">Docs</a>
+      <a href="/scan">Scan</a>
+      <a href="/patterns">Patterns</a>
+      <a href="/false-positives">Quality</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="shell-section" style="max-width:1180px;margin:0 auto;">
+      <div class="docs-layout">
+        <!-- LEFT SIDEBAR (desktop) -->
+        <aside class="docs-sidebar" id="sidebar" aria-label="All checks"></aside>
+
+        <!-- CONTENT COLUMN -->
+        <div>
+          <!-- Mobile disclosure: all checks -->
+          <details class="docs-disclosure codex-glass" style="padding:1rem 1.2rem;border-radius:14px;">
+            <summary>All 48 checks</summary>
+            <div id="disclosure-list"></div>
+          </details>
+
+          <nav class="docs-breadcrumb text-meta" id="breadcrumb" aria-label="Breadcrumb"></nav>
+
+          <article class="doc-body" id="doc-body" data-reveal>
+            <p class="text-meta">Loading…</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell-footer">
+    &copy; 2026 Lictor AI &middot; Apache 2.0 &middot; Built by Raffa and an agent crew &middot;
+    <a href="/coverage" class="link">Coverage</a> &middot;
+    <a href="/docs/" class="link">Docs</a> &middot;
+    <a href="/false-positives" class="link">Quality</a> &middot;
+    <a href="/patterns" class="link">Patterns</a> &middot;
+    <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="link">Source</a>
+  </footer>
+
+  <script>
+  (function () {
+    "use strict";
+
+    // ---- The 48 checks, grouped into the 8 coverage categories. -------------
+    // slug = the .md basename under /docs/checks/. severity drives the dot color.
+    // This array IS the allowlist: only these slugs are ever fetched.
+    var CATEGORIES = [
+      { name: "Secrets & exposure", eyebrow: "Group 1 · Secrets & exposure", checks: [
+        { slug: "secrets",        title: "Hardcoded secrets",            sev: "critical" },
+        { slug: "ai-keys",        title: "Leaked AI-provider keys",       sev: "critical" },
+        { slug: "env-files",      title: "Exposed .env / .git / configs", sev: "critical" },
+        { slug: "cloud-storage",  title: "Public cloud storage",          sev: "critical" },
+        { slug: "logging-pii",    title: "Secrets & PII in logs",         sev: "high" },
+        { slug: "weak-crypto",    title: "Weak / broken crypto",          sev: "high" }
+      ]},
+      { name: "Access control", eyebrow: "Group 2 · Access control", checks: [
+        { slug: "api-auth",            title: "Unprotected user-data routes", sev: "critical" },
+        { slug: "authn-session",       title: "Broken auth & sessions",       sev: "critical" },
+        { slug: "idor",                title: "Users seeing others' data (IDOR)", sev: "critical" },
+        { slug: "mass-assignment",     title: "Mass assignment",              sev: "high" },
+        { slug: "admin-paths",         title: "The “painted lock” admin page", sev: "high" },
+        { slug: "db-exposure",         title: "Open database",                sev: "critical" },
+        { slug: "audit-logging-gaps",  title: "Missing audit logging",        sev: "medium" }
+      ]},
+      { name: "Injection & input", eyebrow: "Group 3 · Injection & input", checks: [
+        { slug: "injection",             title: "Injection (SQL/XSS/cmd/template)", sev: "critical" },
+        { slug: "ssrf",                  title: "SSRF",                         sev: "high" },
+        { slug: "file-upload",           title: "Insecure file upload",         sev: "high" },
+        { slug: "path-traversal",        title: "Path traversal",               sev: "critical" },
+        { slug: "unsafe-deserialization",title: "Unsafe deserialization",       sev: "critical" }
+      ]},
+      { name: "Web hardening", eyebrow: "Group 4 · Web hardening", checks: [
+        { slug: "cors",             title: "Over-permissive CORS",       sev: "critical" },
+        { slug: "security-headers", title: "Missing security headers",   sev: "medium" },
+        { slug: "webhooks-csrf",    title: "Unverified webhooks & CSRF", sev: "high" },
+        { slug: "rate-limiting",    title: "No rate limiting",           sev: "high" },
+        { slug: "open-redirect",    title: "Open redirect",              sev: "medium" },
+        { slug: "open-services",    title: "Exposed admin / debug surfaces", sev: "critical" }
+      ]},
+      { name: "API-specific", eyebrow: "Group 5 · API-specific", checks: [
+        { slug: "api-inventory",            title: "Shadow / old API inventory",   sev: "medium" },
+        { slug: "resource-amplification",   title: "Unrestricted resource use",    sev: "high" },
+        { slug: "business-flow-automation", title: "Unprotected business flows",   sev: "medium" },
+        { slug: "third-party-consumption",  title: "Unsafe 3rd-party consumption", sev: "medium" }
+      ]},
+      { name: "Supply chain & integrity", eyebrow: "Group 6 · Supply chain & integrity", checks: [
+        { slug: "dependencies",             title: "Vulnerable dependencies",   sev: "high" },
+        { slug: "cicd-pipeline-integrity",  title: "CI/CD & update integrity",  sev: "high" }
+      ]},
+      { name: "AI / LLM", eyebrow: "Group 7 · AI / LLM", checks: [
+        { slug: "ai-agent",                  title: "Prompt injection & tool abuse",    sev: "critical" },
+        { slug: "indirect-prompt-injection", title: "Indirect prompt injection",        sev: "critical" },
+        { slug: "system-prompt-secrets",     title: "Secrets / rules in the system prompt", sev: "high" },
+        { slug: "llm-output-sink",           title: "Unsanitized model-output sink",    sev: "high" },
+        { slug: "llm-context-overscope",     title: "Over-scoped LLM context",          sev: "high" },
+        { slug: "agent-tool-permissions",    title: "Excessive agent tool permissions", sev: "critical" },
+        { slug: "vector-store-isolation",    title: "Vector-store tenant isolation",    sev: "critical" },
+        { slug: "rag-ingestion-trust",       title: "RAG ingestion trust",              sev: "high" },
+        { slug: "model-artifact-provenance", title: "Untrusted model artifacts",        sev: "critical" },
+        { slug: "ungrounded-output-trust",   title: "Ungrounded output trust",          sev: "medium" }
+      ]},
+      { name: "Mobile", eyebrow: "Group 8 · Mobile", checks: [
+        { slug: "mobile",                    title: "Mobile core leaks",          sev: "critical" },
+        { slug: "mobile-auth-local",         title: "Client-side-only auth",      sev: "high" },
+        { slug: "mobile-data-storage",       title: "Insecure data at rest",      sev: "critical" },
+        { slug: "mobile-cert-pinning",       title: "Missing cert pinning",       sev: "high" },
+        { slug: "mobile-binary-protections", title: "Binary protections",         sev: "medium" },
+        { slug: "mobile-input-validation",   title: "Input / output validation",  sev: "high" },
+        { slug: "mobile-privacy-controls",   title: "Privacy controls",           sev: "medium" },
+        { slug: "mobile-supply-chain",       title: "Mobile supply chain",        sev: "high" }
+      ]}
+    ];
+
+    // Flat index: slug -> { ...check, category }
+    var BY_SLUG = Object.create(null);
+    CATEGORIES.forEach(function (cat) {
+      cat.checks.forEach(function (c) {
+        BY_SLUG[c.slug] = { slug: c.slug, title: c.title, sev: c.sev, category: cat.name };
+      });
+    });
+
+    function isAllowed(slug) {
+      return typeof slug === "string" && Object.prototype.hasOwnProperty.call(BY_SLUG, slug);
+    }
+
+    var SEV_LABEL = {
+      critical: "CRITICAL", high: "HIGH", medium: "MEDIUM", low: "LOW", info: "INFO"
+    };
+
+    // ---- Read ?c=<slug> from the URL ----------------------------------------
+    var params = new URLSearchParams(window.location.search);
+    var requestedSlug = (params.get("c") || "").trim();
+
+    // ---- DOM refs -----------------------------------------------------------
+    var sidebarEl    = document.getElementById("sidebar");
+    var disclosureEl = document.getElementById("disclosure-list");
+    var breadcrumbEl = document.getElementById("breadcrumb");
+    var bodyEl       = document.getElementById("doc-body");
+
+    // ---- Sidebar / disclosure render ----------------------------------------
+    function buildNav(currentSlug) {
+      var frag = document.createDocumentFragment();
+      CATEGORIES.forEach(function (cat) {
+        var group = document.createElement("div");
+        group.className = "docs-sidebar__group";
+
+        var head = document.createElement("p");
+        head.className = "eyebrow";
+        head.textContent = cat.eyebrow;
+        group.appendChild(head);
+
+        var ul = document.createElement("ul");
+        ul.className = "docs-sidebar__list";
+        cat.checks.forEach(function (c) {
+          var li = document.createElement("li");
+          var a = document.createElement("a");
+          a.className = "docs-sidebar__link";
+          a.href = "/docs/check.html?c=" + encodeURIComponent(c.slug);
+          if (c.slug === currentSlug) a.setAttribute("aria-current", "true");
+
+          var dot = document.createElement("span");
+          dot.className = "docs-sidebar__dot docs-sidebar__dot--" + c.sev;
+          dot.setAttribute("aria-hidden", "true");
+          a.appendChild(dot);
+
+          var label = document.createElement("span");
+          label.textContent = c.title;
+          a.appendChild(label);
+
+          li.appendChild(a);
+          ul.appendChild(li);
+        });
+        group.appendChild(ul);
+        frag.appendChild(group);
+      });
+      return frag;
+    }
+
+    function renderNav(currentSlug) {
+      sidebarEl.innerHTML = "";
+      sidebarEl.appendChild(buildNav(currentSlug));
+      disclosureEl.innerHTML = "";
+      disclosureEl.appendChild(buildNav(currentSlug));
+    }
+
+    // ---- Breadcrumb ---------------------------------------------------------
+    function renderBreadcrumb(meta) {
+      breadcrumbEl.innerHTML = "";
+
+      var back = document.createElement("a");
+      back.className = "link";
+      back.href = "/docs/";
+      back.textContent = "← all docs";
+      breadcrumbEl.appendChild(back);
+
+      var sep1 = document.createElement("span");
+      sep1.textContent = "·";
+      sep1.setAttribute("aria-hidden", "true");
+      breadcrumbEl.appendChild(sep1);
+
+      var crumbDocs = document.createElement("a");
+      crumbDocs.className = "link";
+      crumbDocs.href = "/docs/check.html";
+      crumbDocs.textContent = "Docs";
+      breadcrumbEl.appendChild(crumbDocs);
+
+      if (meta) {
+        breadcrumbEl.appendChild(sepDim());
+        var cat = document.createElement("span");
+        cat.textContent = meta.category;
+        breadcrumbEl.appendChild(cat);
+
+        breadcrumbEl.appendChild(sepDim());
+        var title = document.createElement("span");
+        title.setAttribute("aria-current", "page");
+        title.textContent = meta.title;
+        breadcrumbEl.appendChild(title);
+      }
+
+      function sepDim() {
+        var s = document.createElement("span");
+        s.textContent = "/";
+        s.setAttribute("aria-hidden", "true");
+        s.style.opacity = ".5";
+        return s;
+      }
+    }
+
+    // ---- The all-checks index (bad/empty/failed slug) -----------------------
+    function renderIndex(opts) {
+      opts = opts || {};
+      renderBreadcrumb(null);
+      bodyEl.innerHTML = "";
+
+      var eyebrow = document.createElement("p");
+      eyebrow.className = "eyebrow";
+      eyebrow.textContent = "Docs · the deep technical reference";
+      bodyEl.appendChild(eyebrow);
+
+      var h1 = document.createElement("h1");
+      h1.textContent = opts.heading || "All 48 check modules";
+      bodyEl.appendChild(h1);
+
+      var lead = document.createElement("p");
+      lead.className = "text-meta-md line-relaxed";
+      if (opts.message) {
+        lead.appendChild(document.createTextNode(opts.message + " "));
+      }
+      lead.appendChild(document.createTextNode(
+        "Each check below is rendered straight from the source module the CLI runs, " +
+        "so the deep technical content never drifts from the tool. Pick one to read " +
+        "how it scans, the dangerous patterns, and the “what NOT to flag” guard."
+      ));
+      bodyEl.appendChild(lead);
+
+      CATEGORIES.forEach(function (cat) {
+        var section = document.createElement("div");
+        section.className = "docs-index-group";
+
+        var head = document.createElement("p");
+        head.className = "eyebrow";
+        head.textContent = cat.eyebrow + " · " + cat.checks.length + " checks";
+        section.appendChild(head);
+
+        var grid = document.createElement("div");
+        grid.className = "pattern-grid";
+        grid.style.marginTop = "1rem";
+
+        cat.checks.forEach(function (c) {
+          var card = document.createElement("a");
+          card.className = "pattern-card codex-glass codex-lift";
+          card.href = "/docs/check.html?c=" + encodeURIComponent(c.slug);
+          card.style.textDecoration = "none";
+          card.style.color = "inherit";
+
+          var badgeWrap = document.createElement("div");
+          badgeWrap.className = "pattern-card__badge";
+          var badge = document.createElement("span");
+          badge.className = "severity-badge severity-badge--" + c.sev;
+          badge.textContent = SEV_LABEL[c.sev] || c.sev.toUpperCase();
+          badgeWrap.appendChild(badge);
+          card.appendChild(badgeWrap);
+
+          var h3 = document.createElement("h3");
+          h3.textContent = c.title;
+          card.appendChild(h3);
+
+          var p = document.createElement("p");
+          var code = document.createElement("span");
+          code.className = "mono";
+          code.textContent = c.slug + ".md";
+          p.appendChild(code);
+          card.appendChild(p);
+
+          grid.appendChild(card);
+        });
+
+        section.appendChild(grid);
+        bodyEl.appendChild(section);
+      });
+    }
+
+    // ---- Markdown rendering -------------------------------------------------
+    // The .md is our own trusted content (the check modules), not user input,
+    // but we still keep marked's settings conservative.
+    function configureMarked() {
+      if (typeof window.marked === "undefined") return false;
+      window.marked.setOptions({
+        gfm: true,
+        breaks: false,
+        headerIds: false,
+        mangle: false
+      });
+      return true;
+    }
+
+    function decorate(container) {
+      // Code fences -> JetBrains-Mono codex-glass surface with horizontal scroll.
+      container.querySelectorAll("pre").forEach(function (pre) {
+        pre.classList.add("codex-glass");
+      });
+      // Wrap tables so they scroll horizontally on narrow viewports.
+      container.querySelectorAll("table").forEach(function (table) {
+        if (table.parentNode && table.parentNode.classList &&
+            table.parentNode.classList.contains("doc-table-wrap")) return;
+        var wrap = document.createElement("div");
+        wrap.className = "doc-table-wrap";
+        table.parentNode.insertBefore(wrap, table);
+        wrap.appendChild(table);
+      });
+      // Body links use the shared .link class look (they already get accent color
+      // from .doc-body a, but add the class for consistency / external targets).
+      container.querySelectorAll("a[href]").forEach(function (a) {
+        a.classList.add("link");
+        if (/^https?:\/\//i.test(a.getAttribute("href") || "")) {
+          a.setAttribute("rel", "noopener noreferrer");
+        }
+      });
+    }
+
+    function showFatal(message) {
+      // Never throw an uncaught error; show a friendly state + the full index.
+      renderIndex({
+        heading: "Couldn’t load this module",
+        message: message
+      });
+    }
+
+    function loadCheck(slug) {
+      var meta = BY_SLUG[slug];
+      document.title = meta.title + " · Check docs | Lictor AI";
+      renderNav(slug);
+      renderBreadcrumb(meta);
+
+      bodyEl.innerHTML = '<p class="text-meta">Loading ' + meta.slug + '.md…</p>';
+
+      fetch("/docs/checks/" + encodeURIComponent(slug) + ".md", { cache: "no-cache" })
+        .then(function (res) {
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          return res.text();
+        })
+        .then(function (md) {
+          if (!configureMarked()) {
+            throw new Error("markdown renderer unavailable");
+          }
+          var html = window.marked.parse(md);
+          bodyEl.innerHTML = html;
+          decorate(bodyEl);
+        })
+        .catch(function () {
+          showFatal(
+            "We couldn’t load the " + meta.slug + ".md module right now. " +
+            "Here’s the full index instead — every other check is below."
+          );
+        });
+    }
+
+    // ---- Boot ---------------------------------------------------------------
+    try {
+      renderNav(isAllowed(requestedSlug) ? requestedSlug : null);
+
+      if (!requestedSlug) {
+        // Empty ?c -> friendly index of all 48.
+        renderIndex({
+          heading: "All 48 check modules",
+          message: "Pick a check to read its full module."
+        });
+      } else if (!isAllowed(requestedSlug)) {
+        // Bad ?c -> friendly index, not a fetch error.
+        renderIndex({
+          heading: "That check doesn’t exist",
+          message: "We don’t have a module called “" + requestedSlug +
+                   "”. Here are all 48 checks Lictor runs."
+        });
+      } else {
+        loadCheck(requestedSlug);
+      }
+    } catch (err) {
+      // Absolute backstop: no uncaught errors reach the console for the user.
+      showFatal("Something went wrong rendering the docs. Here’s the full index.");
+    }
+  })();
+  </script>
+</body>
+</html>

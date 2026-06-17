@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Lictor suite — technical docs | Lictor AI</title>
+  <meta name="description" content="Deep technical documentation for the Lictor suite: @lictor/sentinel runtime guard (npm + pip), Lictor Shield browser extension, Lictor Guardian dashboard, Lictor Patrol scanner, and the local CLI / skill suite. Detectors, checks, install snippets, and honest boundaries — Apache 2.0, no telemetry." />
+
+  <meta property="og:title" content="The Lictor suite — technical docs" />
+  <meta property="og:description" content="Sentinel, Shield, Guardian, Patrol and the CLI skills — what each product checks, how it runs, and how to install it. Plain-English but technical." />
+  <meta property="og:url" content="https://lictor-ai.com/docs/suite" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://lictor-ai.com/og/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Lictor suite — technical docs" />
+  <meta name="twitter:image" content="https://lictor-ai.com/og/og-image.png" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/components/components.css" />
+  <link rel="stylesheet" href="/patterns/patterns.css" />
+  <link rel="stylesheet" href="/static/shell.css" />
+  <link rel="stylesheet" href="/static/fx.css" />
+  <script src="/static/fx.js" defer></script>
+  <link rel="canonical" href="https://lictor-ai.com/docs/suite/" />
+
+  <!-- Structured data: establishes this as a Lictor technical reference -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "The Lictor suite — technical docs",
+    "about": "Technical documentation for the Lictor AI-security suite: Sentinel, Shield, Guardian, Patrol and the CLI skills",
+    "author": { "@type": "Organization", "name": "Lictor AI", "url": "https://lictor-ai.com" },
+    "publisher": { "@type": "Organization", "name": "Lictor AI" },
+    "license": "https://www.apache.org/licenses/LICENSE-2.0"
+  }
+  </script>
+
+  <link rel="stylesheet" href="/static/codex.css?v=1" />
+  <script src="/static/codex.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header class="nav">
+    <a href="/" class="brand">
+      <img src="/static/lictor-mark.png" alt="" width="28" height="28" />
+      <span class="brand__name">Lictor <span class="brand__name--accent">AI</span></span>
+    </a>
+    <nav class="nav__links">
+      <a href="/#pillars">Pillars</a>
+      <a href="/#install">Install</a>
+      <a href="/docs">Docs</a>
+      <a href="/coverage">Coverage</a>
+      <a href="/scan">Scan</a>
+      <a href="/patterns">Patterns</a>
+      <a href="/false-positives">Quality</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="nav__github">GitHub →</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="shell-section" style="text-align:center;max-width:880px;margin:0 auto;position:relative;">
+      <svg class="codex-geo" viewBox="0 0 320 320" aria-hidden="true"><circle class="ink" cx="160" cy="160" r="150"/><circle class="ink" cx="160" cy="160" r="92"/><path class="ink" d="M10 160h300M160 10v300"/></svg>
+      <p class="eyebrow">Docs &middot; the whole suite, end to end</p>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.2rem);line-height:1.1;margin:0 0 1rem;">
+        Five products. One <span class="fx-gradient-text">principle</span>: only flag what's confirmable.
+      </h1>
+      <p class="text-meta-md line-relaxed" style="max-width:740px;margin:0 auto;">
+        Lictor is an AI-security suite that meets your app at every layer it can be
+        watched honestly: <strong>at runtime</strong> while the model is answering,
+        <strong>in the browser</strong> against a live deployment, <strong>over time</strong>
+        on a dashboard, <strong>across the internet</strong> as a continuous scanner, and
+        <strong>in your editor</strong> as a local audit. Same rule everywhere — observe,
+        confirm, then report. Nothing attacks a live system; nothing leaves your machine
+        unless you choose to publish it.
+      </p>
+      <p class="text-meta" style="margin-top:1.5rem;">
+        Apache&nbsp;2.0 &middot; no telemetry &middot;
+        <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="link">github.com/Raffa-jarrl/Lictor-AI</a>
+      </p>
+      <div style="margin-top:1.5rem;">
+        <a href="#sentinel" class="shell-btn shell-btn--primary codex-lift">Jump to a product &rarr;</a>
+        <a href="/coverage" class="shell-btn shell-btn--ghost codex-lift">See the 48 checks &rarr;</a>
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="shell-section divider-top" data-reveal style="max-width:860px;margin:0 auto;">
+      <p class="eyebrow">The map</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .5rem;">Where each product sits</h2>
+      <p class="text-meta-md line-relaxed">
+        Pick by where the risk lives. The first three guard <em>your</em> app; Patrol is the
+        internet-scale scanner pillar behind the in-the-wild disclosures; the CLI is the
+        pre-release audit you run before you ship.
+      </p>
+      <div class="pattern-grid" style="margin-top:1.5rem;">
+        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="#sentinel">@lictor/sentinel</a></h3><p>Runtime guard. Wraps your OpenAI / Anthropic SDK and checks every prompt in and every answer out. <span class="text-meta">npm + pip</span></p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="#shield">Lictor Shield</a></h3><p>Browser extension. Audits a deployed site live, observe-only, one request a second. <span class="text-meta">Rust &rarr; WASM</span></p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="#guardian">Lictor Guardian</a></h3><p>Hosted dashboard and incident timeline. Aggregates findings over time. <span class="text-meta">free 90-day preview</span></p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="#patrol">Lictor Patrol</a></h3><p>Continuous internet-scale scanner. Passive recon plus a precision-gated active tier. <span class="text-meta">verify-gated</span></p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3><a class="link" href="#cli">CLI / skill suite</a></h3><p>The 48-check pre-release audit, plus explain, fix-it and rotate. <span class="text-meta">100% local</span></p></article>
+      </div>
+    </section>
+
+    <!-- ============================ SENTINEL ============================ -->
+    <section class="shell-section divider-top" data-reveal id="sentinel">
+      <p class="eyebrow">Product 1 &middot; runtime guard &middot; <span class="mono">@lictor/sentinel</span> (npm) &middot; <span class="mono">lictor-sentinel</span> (pip)</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .5rem;">A guard that rides along with every model call</h2>
+      <p class="text-meta-md line-relaxed" style="max-width:760px;">
+        Sentinel wraps your existing OpenAI or Anthropic client with a recursive
+        <span class="mono">Proxy</span>, so it sees calls at any depth
+        (<span class="mono">client.chat.completions.create</span>,
+        <span class="mono">client.messages.create</span>, and nested helpers) without you
+        rewriting a line of your own logic. Before a request leaves, it runs
+        <strong>pre-flight</strong> checks on the input text. After the model answers, it runs
+        <strong>post-flight</strong> checks on the output. Seven detectors total — the
+        <em>same seven</em> in both the npm and pip builds, so a Node service and a Python
+        worker behave identically.
+      </p>
+      <p class="text-meta-md line-relaxed" style="max-width:760px;">
+        Install is one line: you <span class="mono">wrap()</span> the client and keep using it
+        as before. Apache&nbsp;2.0, and no telemetry — nothing about your prompts or
+        completions is sent anywhere.
+      </p>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;margin:2rem 0 .75rem;">Pre-flight detectors &middot; run on the input</h3>
+      <div class="pattern-grid">
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">PRE-FLIGHT</span></div><h3>prompt-injection</h3><p>Catches a user trying to override your instructions — "ignore previous rules", role-swap, jailbreak framing — before it reaches the model.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">PRE-FLIGHT</span></div><h3>indirect-prompt-injection</h3><p>The same attack hidden inside content your app pulled in — a RAG document, a fetched page, an email — carrying instructions into the prompt second-hand.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">PRE-FLIGHT</span></div><h3>secrets-in-input</h3><p>Flags an API key, token or credential that's about to be shipped off to the model provider in the prompt — a leak you'd never see in your logs.</p></article>
+      </div>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;margin:2rem 0 .75rem;">Post-flight detectors &middot; run on the output</h3>
+      <div class="pattern-grid">
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">POST-FLIGHT</span></div><h3>pii-leak</h3><p>Catches the model handing back personal data — emails, phone numbers, IDs — in an answer that shouldn't contain it.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">POST-FLIGHT</span></div><h3>system-prompt-leak</h3><p>Catches the model reciting your system prompt back to the user — the classic "repeat everything above" exfiltration.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">POST-FLIGHT</span></div><h3>output-exfil-sink</h3><p>Catches model output that's trying to smuggle data out — a markdown image or link pointed at an attacker URL with your data in the query string.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--info">OPT-IN</span></div><h3>slopsquat-watch</h3><p>Informational only. Notices when the model suggests a package name that doesn't exist — the seed of a slopsquatting attack. Off the blocking path by default; it never blocks unless you ask it to.</p></article>
+      </div>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;margin:2rem 0 .75rem;">Install &middot; one line, then nothing changes</h3>
+      <pre class="codex-glass" style="padding:1.25rem 1.4rem;border-radius:14px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.6;"><code><span class="text-meta"># Node — npm</span>
+npm install @lictor/sentinel
+
+<span class="text-meta">// then wrap your client once</span>
+<span style="color:var(--accent,#E8A33D);">import</span> OpenAI <span style="color:var(--accent,#E8A33D);">from</span> <span style="color:#7bdff2;">"openai"</span>;
+<span style="color:var(--accent,#E8A33D);">import</span> { wrap } <span style="color:var(--accent,#E8A33D);">from</span> <span style="color:#7bdff2;">"@lictor/sentinel"</span>;
+
+<span style="color:var(--accent,#E8A33D);">const</span> client = wrap(<span style="color:var(--accent,#E8A33D);">new</span> OpenAI());
+<span class="text-meta">// use `client` exactly as before — pre/post-flight checks run on every call</span></code></pre>
+
+      <pre class="codex-glass" style="padding:1.25rem 1.4rem;border-radius:14px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.6;margin-top:1rem;"><code><span class="text-meta"># Python — pip</span>
+pip install lictor-sentinel
+
+<span class="text-meta"># then wrap your client once</span>
+<span style="color:var(--accent,#E8A33D);">from</span> anthropic <span style="color:var(--accent,#E8A33D);">import</span> Anthropic
+<span style="color:var(--accent,#E8A33D);">from</span> lictor_sentinel <span style="color:var(--accent,#E8A33D);">import</span> wrap
+
+client = wrap(Anthropic())
+<span class="text-meta"># use `client` exactly as before — same 7 detectors as the npm build</span></code></pre>
+      <p class="text-meta" style="margin-top:.75rem;">
+        Want to see what each detector maps to in the standards? The prompt-injection,
+        output-handling and exfiltration detectors line up with the
+        <a class="link" href="/coverage">OWASP Top&nbsp;10 for LLM apps in the coverage map</a>.
+      </p>
+    </section>
+
+    <!-- ============================ SHIELD ============================ -->
+    <section class="shell-section divider-top" data-reveal id="shield">
+      <p class="eyebrow">Product 2 &middot; browser extension &middot; Lictor Shield</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .5rem;">Audit the site you're actually looking at</h2>
+      <p class="text-meta-md line-relaxed" style="max-width:760px;">
+        Shield runs 10 checks against a <em>deployed</em> site — the real thing on the real
+        domain, not your source tree. It is <strong>observe-only</strong>: it reads what the
+        browser already has and makes a small number of plain requests, <strong>single-lane
+        at one request per second per host</strong>, always with
+        <span class="mono">credentials: omit</span> so it never rides your logged-in session.
+        The pattern-matching is done by a <strong>Rust core compiled to WASM</strong>, so the
+        heavy scanning happens locally in the page, fast, with no server round-trip.
+      </p>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;margin:2rem 0 .75rem;">The 10 live checks</h3>
+      <div class="pattern-grid">
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3>Secrets in HTML &amp; JS</h3><p>Key-shaped strings the live page ships in its markup or bundled scripts.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3>AI-agent fingerprint</h3><p>Detects when the site is fronted by an AI agent or assistant — the surface our runtime detectors guard.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3>Exposed <span class="mono">.env</span> / <span class="mono">.git</span></h3><p>Config and version-control directories the deployment accidentally serves.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3>Supabase / Firebase open</h3><p>A backend reachable from the page with no security rules in front of it.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3>Unauth API paths</h3><p>API endpoints the front-end calls that answer without a login check.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3>Admin paths</h3><p>Admin or dashboard surfaces left reachable on the public deployment.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3>CORS</h3><p>Cross-origin settings permissive enough to let another site read responses.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3>Security headers</h3><p>Missing CSP / HSTS / nosniff and the headers a framework leaves off.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3>Mixed content</h3><p>HTTPS pages pulling assets over plain HTTP — a downgrade and tamper risk.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--medium">MEDIUM</span></div><h3>Exposed source maps</h3><p>Published <span class="mono">.map</span> files that hand an attacker your original source.</p></article>
+      </div>
+      <p class="text-meta" style="margin-top:1rem;">
+        Shield holds itself to the same evidence bar as the audit — see
+        <a class="link" href="/false-positives">the false positives we filter</a> for why a
+        bare 200 OK is never enough to call something exposed.
+      </p>
+    </section>
+
+    <!-- ============================ GUARDIAN ============================ -->
+    <section class="shell-section divider-top" data-reveal id="guardian">
+      <p class="eyebrow">Product 3 &middot; hosted dashboard &middot; Lictor Guardian</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .5rem;">The findings, gathered over time</h2>
+      <p class="text-meta-md line-relaxed" style="max-width:760px;">
+        Sentinel and Shield each tell you about a moment. Guardian is the place those moments
+        add up. It's a hosted dashboard and incident timeline that aggregates findings over
+        time, so you can see whether a problem is new, recurring, or finally resolved — and
+        tell that story to the people who ask. Free as a <strong>90-day preview</strong>.
+      </p>
+      <div class="pattern-grid" style="margin-top:1.5rem;">
+        <article class="pattern-card codex-glass codex-lift"><h3>Incident timeline</h3><p>Findings laid out in order — when each first appeared, when it changed, when it cleared.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3>Aggregated over time</h3><p>One view across runs and sources, so a recurring issue reads as a pattern, not a surprise.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3>Free 90-day preview</h3><p>Try the whole timeline for 90 days at no cost while the dashboard is in preview.</p></article>
+      </div>
+    </section>
+
+    <!-- ============================ PATROL ============================ -->
+    <section class="shell-section divider-top" data-reveal id="patrol">
+      <p class="eyebrow">Product 4 &middot; continuous scanner pillar &middot; Lictor Patrol</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .5rem;">The engine behind the in-the-wild disclosures</h2>
+      <p class="text-meta-md line-relaxed" style="max-width:760px;">
+        Patrol is the internet-scale scanner pillar. It starts with <strong>passive recon</strong>
+        — what's already public, gathered without touching the target — and adds a
+        <strong>precision-gated active tier</strong> that confirms a narrow set of high-signal
+        exposures. Every finding, passive or active, passes through a <strong>central verify
+        gate</strong> before it is ever reported. Until a human confirms it, a finding is
+        <strong>SUSPECTED</strong>, never asserted. Disclosure is ethical and observe-only:
+        Patrol looks, it does not break in.
+      </p>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;margin:2rem 0 .75rem;">The precision-gated active tier</h3>
+      <p class="text-meta-md">These are the exposures the active tier confirms — each one observable from the outside, none requiring an attack.</p>
+      <div class="pattern-grid" style="margin-top:1.5rem;">
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3>Exposed configs</h3><p>Config files a deployment serves to the open internet.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3>Open buckets</h3><p>World-readable object storage with contents anyone can list.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3>CORS</h3><p>Cross-origin policies loose enough to leak authenticated responses.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--high">HIGH</span></div><h3>Subdomain takeovers</h3><p>Dangling DNS pointed at a service that can be claimed.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--critical">CRITICAL</span></div><h3>Leaked keys</h3><p>Live credentials exposed in public surfaces, confirmed before report.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><div class="pattern-card__badge"><span class="severity-badge severity-badge--info">VERIFY GATE</span></div><h3>SUSPECTED until verified</h3><p>Nothing is reported as fact until a human clears the central verify gate.</p></article>
+      </div>
+      <p class="text-meta" style="margin-top:1rem;">
+        The verify gate exists for the same reason as the audit's guards — see
+        <a class="link" href="/false-positives">how Patrol decides "reachable" is not "exploitable"</a>.
+      </p>
+    </section>
+
+    <!-- ============================ CLI ============================ -->
+    <section class="shell-section divider-top" data-reveal id="cli">
+      <p class="eyebrow">Product 5 &middot; local audit &middot; the CLI / skill suite</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .5rem;">The pre-release audit, in your editor</h2>
+      <p class="text-meta-md line-relaxed" style="max-width:760px;">
+        Four slash commands, all <strong>100% local</strong> — no token, no signup, no
+        telemetry. They read your code and explain what they find in plain English. The
+        headline command is the <strong>48-check audit</strong> documented in full on the
+        <a class="link" href="/coverage">coverage page</a>.
+      </p>
+      <div class="pattern-grid" style="margin-top:1.5rem;">
+        <article class="pattern-card codex-glass codex-lift"><h3><span class="mono">/lictor-security-check</span></h3><p>The 48-check pre-release audit. Detects the stack, runs every applicable check, writes a plain-English <span class="mono">SECURITY-AUDIT.md</span>.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3><span class="mono">/lictor-explain</span></h3><p>Takes any finding or jargon-heavy warning and rewrites it as something a non-technical founder can act on.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3><span class="mono">/lictor-fix-it</span></h3><p>Walks the findings one at a time, shows the proposed change, and applies it only with your explicit OK.</p></article>
+        <article class="pattern-card codex-glass codex-lift"><h3><span class="mono">/lictor-rotate</span></h3><p>Step-by-step, provider-specific rotation of a leaked key — the exact URL, the exact button, and how to confirm it worked.</p></article>
+      </div>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;margin:2rem 0 .75rem;">Usage</h3>
+      <pre class="codex-glass" style="padding:1.25rem 1.4rem;border-radius:14px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.6;"><code><span class="text-meta"># run the full 48-check audit on the current project</span>
+/lictor-security-check
+
+<span class="text-meta"># confused by a finding? get it in plain English</span>
+/lictor-explain
+
+<span class="text-meta"># apply the fixes, one at a time, with your approval</span>
+/lictor-fix-it
+
+<span class="text-meta"># a key leaked? rotate it, provider by provider</span>
+/lictor-rotate</code></pre>
+      <p class="text-meta" style="margin-top:.75rem;">
+        Full check list with OWASP / CWE mappings: <a class="link" href="/coverage">the 48 checks &rarr;</a>
+      </p>
+    </section>
+
+    <!-- HONEST BOUNDARIES -->
+    <section class="shell-section divider-top" data-reveal style="max-width:820px;margin:0 auto;">
+      <p class="eyebrow">Honest boundaries</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .5rem;">One rule across all five</h2>
+      <p class="text-meta-md line-relaxed">
+        Every product only reports what it can confirm by <em>reading code or observing what's
+        already public</em> — never by attacking a live system. Sentinel guards calls without
+        touching your prompts' contents off-box; Shield stays single-lane and credential-less;
+        Patrol holds findings at <span class="mono">SUSPECTED</span> until a human verifies them;
+        the CLI runs entirely on your machine. A scanner that cries wolf is worse than none —
+        so the same evidence bar runs through all of it.
+        <a class="link" href="/false-positives">Here are the false positives we filter.</a>
+      </p>
+    </section>
+
+    <section class="shell-section divider-top" data-reveal style="text-align:center;max-width:720px;margin:0 auto;">
+      <h2 style="font-family:'Cormorant Garamond',serif;margin:0 0 .75rem;">Open-source. Apache 2.0. No telemetry.</h2>
+      <p class="text-meta-md line-relaxed">
+        Read the code before you trust it, install only the pieces you need, and run the audit
+        on your own machine. Start with the 48-check audit, or wrap your model client today.
+      </p>
+      <div style="margin-top:1.5rem;">
+        <a href="/coverage" class="shell-btn shell-btn--primary codex-lift">See the 48 checks &rarr;</a>
+        <a href="/#install" class="shell-btn shell-btn--ghost codex-lift">Install the CLI &rarr;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell-footer">
+    &copy; 2026 Lictor AI &middot; Apache 2.0 &middot; Built by Raffa and an agent crew &middot;
+    <a href="/docs" class="link">Docs</a> &middot;
+    <a href="/coverage" class="link">Coverage</a> &middot;
+    <a href="/false-positives" class="link">Quality</a> &middot;
+    <a href="/patterns" class="link">Patterns</a> &middot;
+    <a href="https://github.com/Raffa-jarrl/Lictor-AI" class="link">Source</a>
+  </footer>
+</body>
+</html>
