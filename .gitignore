@@ -40,6 +40,9 @@ Thumbs.db
 coverage/
 *.lcov
 .nyc_output/
+# …but the landing /coverage docs page is real content, not a test artifact:
+!landing/coverage/
+!landing/coverage/**
 
 # OS-specific
 .fuse_hidden*
@@ -92,3 +95,8 @@ v3/reports/
 MORNING-BRIEFING-*.md
 TOMORROW-*.md
 /logs/
+
+# Local Wrangler state — holds the WAITLIST KV (subscriber emails). Never commit/copy.
+# (wrangler pages deploy already skips a root-level .wrangler; this stops it being
+#  committed or copied into a staged parent dir that then gets deployed)
+.wrangler/

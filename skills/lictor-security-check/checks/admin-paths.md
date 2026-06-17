@@ -1,4 +1,4 @@
-# Check 5 — Client-side-only auth gates
+# Check — Client-side-only auth gates
 
 **What you're looking for:** Admin pages, settings pages, or any sensitive UI that is "protected" by JavaScript redirecting the user away in `useEffect` — but where the HTML and JavaScript bundle have ALREADY been shipped to the browser. The data was fetched. The user just doesn't see it.
 

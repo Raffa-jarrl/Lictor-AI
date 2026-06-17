@@ -89,7 +89,7 @@
       { "@type": "Question", "name": "Is my AI-generated app secure?",
         "acceptedAnswer": { "@type": "Answer", "text": "Usually not on the first ship. Industry research finds 40 to 62% of AI-generated code contains a vulnerability. Most often it's an API key exposed in the browser bundle, or a database with no access rules. It's worth running a quick check before you go live." } },
       { "@type": "Question", "name": "How do I check if my Lovable, Bolt, v0 or Cursor app has security holes?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Run Lictor's free /lictor-security-check inside Claude Code (or via MCP in Cursor, Windsurf, Cline). It walks your project, runs 7 checks tuned to the bugs AI assistants ship most, and writes a plain-English report in about a minute. No signup." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "Run Lictor's free /lictor-security-check inside Claude Code (or via MCP in Cursor, Windsurf, Cline). It walks your project, runs 48 checks tuned to the bugs AI assistants ship most — mapped to the full OWASP Top 10 for Web, API, Mobile and LLM apps, plus the CWE Top 25 — and writes a plain-English report in about a minute. No signup." } },
       { "@type": "Question", "name": "Is Lictor free?",
         "acceptedAnswer": { "@type": "Answer", "text": "Yes. Apache-2.0, open source, no per-seat pricing and no 'contact sales'. The audit, the Shield browser extension, and the Sentinel SDK are all free." } },
       { "@type": "Question", "name": "Does Lictor send my code anywhere?",
@@ -152,6 +152,7 @@
       <a href="/#install">Install</a>
       <a href="/mission-control"><svg class="ic" aria-hidden="true"><use href="#i-satellite"/></svg> Mission Control</a>
       <a href="/scan">Scan</a>
+      <a href="/coverage">Coverage</a>
       <a href="/patterns">Patterns</a>
       <a href="/business">For Business</a>
       <a href="/donate">Support</a>
@@ -343,7 +344,7 @@ default gateway        <span style="color:#ff6b60">blocked</span></pre>
       <div class="mk-report__doc">
 
         <div class="mk-report__h1">Security Audit <span class="mk-report__h1-sub">· my-app</span></div>
-        <p class="mk-report__meta">142 files<span class="mk-report__dot">&middot;</span>7 checks<span class="mk-report__dot">&middot;</span>48s</p>
+        <p class="mk-report__meta">142 files<span class="mk-report__dot">&middot;</span>48 checks<span class="mk-report__dot">&middot;</span>51s</p>
 
         <hr class="mk-report__rule" />
 
@@ -403,7 +404,7 @@ default gateway        <span style="color:#ff6b60">blocked</span></pre>
 </div>
       </div>
       <div class="plates" style="margin-top:var(--s6u)">
-        <article class="dplate"><span class="dplate__num">01</span><h3><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> 7 checks</h3><p>Tuned for AI-generated app patterns. Walks your project, writes a plain-English report.</p></article>
+        <article class="dplate"><span class="dplate__num">01</span><h3><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> 48 checks</h3><p>The full OWASP Top 10 for Web, API, Mobile &amp; LLM, plus CWE Top 25. <a class="link" href="/coverage">See all 48 &rarr;</a></p></article>
         <article class="dplate"><span class="dplate__num">02</span><h3><svg class="ic" aria-hidden="true"><use href="#i-file-report"/></svg> Plain English</h3><p>No &ldquo;information disclosure vulnerability,&rdquo; just &ldquo;anyone can read your customer list.&rdquo;</p></article>
         <article class="dplate"><span class="dplate__num">03</span><h3><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg> Three siblings</h3><p>Run <code>/lictor-explain</code>, <code>/lictor-fix-it</code>, <code>/lictor-rotate</code>.</p></article>
         <article class="dplate"><span class="dplate__num">04</span><h3><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg> 100% local</h3><p>No token, no signup, no telemetry, no per-seat pricing.</p></article>
@@ -729,7 +730,7 @@ const client = wrap(new OpenAI(), {
       </div>
       <div class="faq">
         <details><summary><span><span class="faq__q-idx">Q.01</span>Is my AI-generated app secure?</span></summary><div class="faq__a">Usually not on the first ship. Industry research finds 40 to 62% of AI-generated code contains a vulnerability. Most often it&rsquo;s an API key exposed in the browser bundle, or a database with no access rules. It&rsquo;s worth running a quick check before you go live.</div></details>
-        <details><summary><span><span class="faq__q-idx">Q.02</span>How do I check if my Lovable, Bolt, v0 or Cursor app has security holes?</span></summary><div class="faq__a">Run Lictor&rsquo;s free <code>/lictor-security-check</code> inside Claude Code (or via MCP in Cursor, Windsurf, Cline). It walks your project, runs 7 checks tuned to the bugs AI assistants ship most, and writes a plain-English report in about a minute. No signup.</div></details>
+        <details><summary><span><span class="faq__q-idx">Q.02</span>How do I check if my Lovable, Bolt, v0 or Cursor app has security holes?</span></summary><div class="faq__a">Run Lictor&rsquo;s free <code>/lictor-security-check</code> inside Claude Code (or via MCP in Cursor, Windsurf, Cline). It walks your project, runs 48 checks tuned to the bugs AI assistants ship most — mapped to the full OWASP Top 10 for Web, API, Mobile and LLM apps, plus the CWE Top 25 — and writes a plain-English report in about a minute. No signup.</div></details>
         <details><summary><span><span class="faq__q-idx">Q.03</span>Is Lictor free?</span></summary><div class="faq__a">Yes. Apache-2.0, open source, no per-seat pricing and no &ldquo;contact sales.&rdquo; The audit, the Shield browser extension, and the Sentinel SDK are all free.</div></details>
         <details><summary><span><span class="faq__q-idx">Q.04</span>Does Lictor send my code anywhere?</span></summary><div class="faq__a">No. The audit runs 100% locally inside your AI coding tool, with no token, no signup, no telemetry. Your code never leaves your machine, and every check is a markdown file you can read.</div></details>
         <details><summary><span><span class="faq__q-idx">Q.05</span>What does Lictor check for?</span></summary><div class="faq__a">Leaked API keys and secrets, exposed databases (missing Supabase/Firebase row-level security), unprotected API routes, client-side-only auth, over-permissive CORS, and prompt-injection surface in AI features. These are the failure modes AI-built apps ship most.</div></details>

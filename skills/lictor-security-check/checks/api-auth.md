@@ -1,4 +1,4 @@
-# Check 3 — Unauthenticated API routes
+# Check — Unauthenticated API routes
 
 **What you're looking for:** `/api/*` route handlers that return user data without checking a session, cookie, or token. The classic vibe-coded SaaS bug: an AI generates `app/api/users/route.ts` that calls `db.user.findMany()` and the developer never adds auth because the AI didn't suggest it.
 

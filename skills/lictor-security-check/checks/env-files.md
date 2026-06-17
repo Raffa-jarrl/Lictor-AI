@@ -1,4 +1,4 @@
-# Check 2 — Exposed config files
+# Check — Exposed config files
 
 **What you're looking for:** Configuration files that contain secrets and accidentally get served by the production web server. The classic: `/.env` works in `curl` against the deployed site.
 
@@ -71,3 +71,14 @@ If the entire `.git` directory ends up in the deployed site (it happens — `cp 
 3. Read every line of source, every commit message, every credential ever leaked in history
 
 This is a CRITICAL finding worth its own remediation paragraph.
+
+## What NOT to flag
+
+Don't cry wolf — these are normal and should **not** be reported:
+
+- **`.env.example` / `.env.sample` / `.env.template`** with placeholder values (`API_KEY=your-key-here`). These are *meant* to be committed — they document what env vars the app needs, with no real secrets. Only flag them if they contain a real-looking key.
+- **A `.env` that's correctly in `.gitignore` and NOT in any build output.** That's exactly right — local secrets staying local. Confirm it's not in `out/`/`dist/`/`public/` and move on; don't flag the mere existence of a local `.env`.
+- **`.env*.local` in a Next.js project.** Next.js deploy-excludes `.env*.local` by default, so it's not in the public build unless someone moved it into `public/`. Only flag if you actually find it in the build output.
+- **`.env` files containing ONLY public-by-design vars** — `NEXT_PUBLIC_*`, `VITE_*`, `EXPO_PUBLIC_*`, `PUBLIC_*`. Those values are compiled into the client bundle on purpose. If that's *all* the file has, it's not a secret leak (though serving the file is still untidy — note it as LOW, not CRITICAL). If it also has non-prefixed secrets, that's the real finding.
+- **`config.json` / `docker-compose.yml` with no secrets** — just ports, service names, public URLs, feature flags. Structure isn't a secret. Only flag when a literal password/key/token is in it.
+- **`.git` folders that are NOT in the deploy artifact.** Every repo has a local `.git/`; that's normal. Only flag it when it ends up under `public/`/`out/`/`dist/` or is reachable on the live site.

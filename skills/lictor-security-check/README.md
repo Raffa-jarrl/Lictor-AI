@@ -12,7 +12,7 @@ If you built your app with Lovable / Bolt / v0 / Cursor or by prompting Claude d
 - CORS configs that let any website read your authenticated API responses
 - AI chat endpoints with no prompt-injection defense
 
-This skill catches all seven categories. **Read-only audit** — it doesn't change your code. Writes a markdown report (`SECURITY-AUDIT.md`) you can act on in 30 minutes.
+Those are just a few examples — this skill runs **48 checks** spanning the full OWASP Web/API/Mobile/GenAI Top 10s plus the CWE Top 25. **Read-only audit** — it doesn't change your code. Writes a markdown report (`SECURITY-AUDIT.md`) you can act on in 30 minutes.
 
 ## Install
 
@@ -51,7 +51,7 @@ In Claude Code, from your project's root directory:
 Claude will:
 
 1. Figure out what kind of project you have (Next.js, Vite, Astro, etc.)
-2. Run seven security checks against your codebase
+2. Run all 48 security checks against your codebase
 3. Write a `SECURITY-AUDIT.md` file with severity-ranked findings
 4. Tell you in chat whether it's safe to ship
 
@@ -76,15 +76,15 @@ Full report saved to ./SECURITY-AUDIT.md.
 
 ## What this skill is
 
-A wrapper around the same security check engine that powers [Lictor](https://lictor-ai.com)'s Shield Chrome extension and Sentinel SDK. The skill version is for *pre-deploy* audits — once you ship, install Sentinel for runtime protection.
+A wrapper around the same security check engine that powers [Lictor](https://lictor-ai.com)'s Shield Chrome extension and Sentinel SDK. The skill version is for *pre-deploy* audits; Shield and Sentinel cover the other stages and are coming at launch.
 
 | Stage | Tool | Catches |
 |---|---|---|
-| **Pre-release** (now) | `/lictor-security-check` (this skill) | Bugs in your source code |
-| **Production** | [`@lictor/sentinel`](https://npmjs.com/package/@lictor/sentinel) | Prompt injection + PII leak + secrets at runtime |
-| **End-user side** | [Lictor Shield](https://lictor-ai.com/shield) Chrome extension | Audits any AI-built site for these same issues |
+| **Pre-release** (available now) | `/lictor-security-check` (this skill) | Bugs in your source code |
+| **Production** (coming at launch) | `@lictor/sentinel` SDK | Prompt injection + PII leak + secrets at runtime |
+| **End-user side** (coming at launch) | Lictor Shield Chrome extension | Audits any AI-built site for these same issues |
 
-All three are free and open source.
+This skill is free, open source, and works today. Sentinel and Shield are free and open source too, but not published yet — the `npm`/store links go live at launch.
 
 ## What this skill is NOT
 

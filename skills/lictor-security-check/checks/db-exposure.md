@@ -1,4 +1,4 @@
-# Check 4 — Supabase / Firebase exposure
+# Check — Supabase / Firebase exposure
 
 **What you're looking for:** A Supabase or Firebase backend where the security rules (RLS for Supabase, security rules for Firebase) are wide open. The vibe-coded SaaS classic: "the AI told me to use Supabase, I ran the migrations, I never enabled RLS, and now my entire database is readable by anyone who has the anon key — which is in my JavaScript bundle."
 
