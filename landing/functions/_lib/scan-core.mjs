@@ -139,15 +139,15 @@ export async function runScan(input, env, ip) {
   // 2) security headers (from the root response)
   const H = (n) => (rootRes.headers.get(n) || "");
   const csp = H("content-security-policy");
-  if (!H("strict-transport-security")) findings.push(f("hsts", "medium", "No HSTS header",
+  if (!H("strict-transport-security")) findings.push(f("hsts", "low", "No HSTS header",
     "Browsers aren't told to always use HTTPS, leaving a downgrade window.",
     "Send `Strict-Transport-Security: max-age=31536000; includeSubDomains`."));
-  if (!csp) findings.push(f("csp", "medium", "No Content-Security-Policy",
+  if (!csp) findings.push(f("csp", "low", "No Content-Security-Policy",
     "Nothing constrains what scripts/resources can load — your main defense against injected scripts (XSS) is off.",
     "Add a Content-Security-Policy header (start in report-only mode)."));
-  if (!H("x-content-type-options")) findings.push(f("nosniff", "low", "No X-Content-Type-Options",
+  if (!H("x-content-type-options")) findings.push(f("nosniff", "info", "No X-Content-Type-Options",
     "Browsers may guess (sniff) content types, which can enable some attacks.", "Send `X-Content-Type-Options: nosniff`."));
-  if (!H("x-frame-options") && !/frame-ancestors/i.test(csp)) findings.push(f("clickjacking", "low", "No clickjacking protection",
+  if (!H("x-frame-options") && !/frame-ancestors/i.test(csp)) findings.push(f("clickjacking", "info", "No clickjacking protection",
     "Your site can be embedded in a hidden iframe on another site (clickjacking).",
     "Send `X-Frame-Options: DENY` or a CSP `frame-ancestors 'none'`."));
   if (!H("referrer-policy")) findings.push(info("referrer", "No Referrer-Policy", "Full URLs may leak to third parties via the Referer header.", "Send `Referrer-Policy: strict-origin-when-cross-origin`."));
@@ -158,7 +158,7 @@ export async function runScan(input, env, ip) {
   const setCookie = rootRes.headers.get("set-cookie") || "";
   if (setCookie) {
     if (!/;\s*secure/i.test(setCookie) || !/;\s*httponly/i.test(setCookie)) {
-      findings.push(f("cookie-flags", "medium", "Cookie missing Secure/HttpOnly",
+      findings.push(f("cookie-flags", "low", "Cookie missing Secure/HttpOnly",
         "A cookie is set without the Secure and/or HttpOnly flags — it can be stolen over HTTP or by injected scripts.",
         "Add `Secure; HttpOnly; SameSite=Lax` to your session cookies."));
     }
@@ -208,7 +208,10 @@ export function buildTelemetry(result) {
 function f(id, severity, title, detail, fix) { return { id, severity, title, detail, fix }; }
 function info(id, title, detail, fix) { return { id, severity: "info", title, detail, fix }; }
 function pass(id, title, detail) { return { id, severity: "pass", title, detail }; }
-const WEIGHT = { critical: 32, high: 18, medium: 10, low: 4, info: 0, pass: 0 };
+// Score is driven by REAL exposure (critical/high), not header hygiene. A clean,
+// well-built site that only lacks some hardening headers should still score ~90 —
+// it isn't exposing anyone. A genuinely exposed file (critical) tanks it to D/F.
+const WEIGHT = { critical: 45, high: 25, medium: 8, low: 4, info: 0, pass: 0 };
 const ORDER = { critical: 0, high: 1, medium: 2, low: 3, info: 4, pass: 5 };
 function scoreOf(fs) { return Math.max(0, 100 - fs.reduce((s, x) => s + (WEIGHT[x.severity] || 0), 0)); }
 function gradeOf(s) { return s >= 92 ? "A" : s >= 80 ? "B" : s >= 65 ? "C" : s >= 45 ? "D" : "F"; }
