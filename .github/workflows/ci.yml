@@ -434,60 +434,9 @@ jobs:
       - name: Cargo clippy (Studio crate)
         run: cargo clippy --manifest-path studio/src-tauri/Cargo.toml -- -D warnings
 
-  # ─── monthly-metrics (Python script smoke test) ───────────────────────────
-  metrics-script:
-    name: monthly-metrics-script
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Python version
-        run: python3 --version
-
-      - name: Dry-run the metrics generator
-        run: python3 scripts/generate-monthly-metrics.py --dry-run
-
-      - name: Verify markdown output structure
-        run: |
-          # Run for a known month and check the file shape
-          python3 scripts/generate-monthly-metrics.py 2026-04 --dry-run 2>&1 | grep -q "## Community + reach"
-          echo "✓ markdown structure intact"
-
-  # ─── setup-script (verify scripts/setup.sh runs end-to-end on Linux) ──────
-  setup-script:
-    name: setup.sh
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Rust toolchain
-        run: |
-          rustup toolchain install stable --profile minimal
-          rustup default stable
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
-        with:
-          version: 9
-
-      - name: Install rsvg-convert (for brand asset rendering)
-        run: sudo apt-get update && sudo apt-get install -y librsvg2-bin
-
-      - name: Skip macOS-only tools in setup.sh
-        run: |
-          # iconutil is macOS-only — patch the setup script for Linux CI
-          # by stubbing iconutil to a no-op for the duration of CI.
-          sudo tee /usr/local/bin/iconutil >/dev/null <<'EOF'
-          #!/bin/bash
-          # CI stub — Lictor Studio icon.icns requires macOS' iconutil at ship time.
-          # For workspace verification on Linux, this stub just exits 0.
-          exit 0
-          EOF
-          sudo chmod +x /usr/local/bin/iconutil
-
-      - name: Run setup.sh (skip macOS-only brand .icns step)
-        run: bash scripts/setup.sh
-        env:
-          LICTOR_SKIP_BRAND: '1'
+  # NOTE: the monthly-metrics and setup.sh CI jobs were removed when the repo was
+  # slimmed to the open-source AI tools (PR #48). They exercised
+  # scripts/generate-monthly-metrics.py (business diligence/data-room metrics —
+  # intentionally not in the public repo) and scripts/setup.sh (which calls that
+  # metrics script). The brand-render step above keeps its script, which the
+  # Studio Tauri build needs.
