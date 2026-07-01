@@ -1,0 +1,61 @@
+name: guard-private-code
+
+# Hard stop: this PUBLIC repo must never contain the private SaaS core, the old
+# Patrol scanner, or business materials. Those live in private repos only.
+# This guard fails any push/PR that reintroduces one of those paths, so a bad
+# merge or an accidental `git add` can't leak proprietary code again.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  no-private-paths:
+    name: no private code in public repo
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fail if any private / proprietary path is present
+        run: |
+          set -u
+          # Exact paths (files or directories) that must NEVER exist here.
+          FORBIDDEN=(
+            "external-dlp"          # the private DLP SaaS core (lictor_dlp engine)
+            "lictor_dlp"
+            "v3"                    # old Patrol scanner
+            "isolation"             # Business isolation / USB-boot infra
+            "teardowns"
+            "canary"
+            "docs/business"         # business diligence / data-room / model
+            "landing/business.html"
+          )
+          hits=0
+          for p in "${FORBIDDEN[@]}"; do
+            if [ -e "$p" ]; then
+              echo "::error file=$p::Forbidden path present in the public repo: $p"
+              hits=1
+            fi
+          done
+          # Glob: the old Patrol operational scripts.
+          for f in scripts/patrol-* scripts/generate-monthly-metrics.py; do
+            if [ -e "$f" ]; then
+              echo "::error file=$f::Forbidden path present in the public repo: $f"
+              hits=1
+            fi
+          done
+
+          if [ "$hits" -ne 0 ]; then
+            echo ""
+            echo "This is the OPEN-SOURCE repo. The private SaaS core (external-dlp /"
+            echo "lictor_dlp), the old Patrol scanner (v3, scripts/patrol-*), and business"
+            echo "materials must stay in private repos. Remove the flagged path(s) from"
+            echo "this branch before merging."
+            exit 1
+          fi
+          echo "OK — no private/proprietary paths present."
