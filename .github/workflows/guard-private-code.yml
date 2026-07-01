@@ -37,8 +37,12 @@ jobs:
             "teardowns"
             "canary"
             "docs/business"         # business diligence / data-room / model
-            "landing/business.html"
           )
+          # NOTE: landing/business.html is intentionally NOT blocked — it's the
+          # PUBLIC marketing/pricing page for the paid service. A sales page is
+          # meant to be public; it's the SCANNER CODE (external-dlp, lictor_dlp,
+          # v3, patrol-*) and internal business docs (docs/business) that must
+          # stay private, and those remain guarded above.
           hits=0
           for p in "${FORBIDDEN[@]}"; do
             if [ -e "$p" ]; then

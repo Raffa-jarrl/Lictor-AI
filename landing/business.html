@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lictor for Business — continuous external exposure monitoring</title>
+  <meta name="description" content="Lictor for Business watches the public internet surface you own — domains and GitHub orgs — and alerts your team the moment something leaks: exposed secrets, open databases, downloadable backups, spoofable email, and more. In plain English. Silver, Gold, and Diamond plans.">
+  <link rel="canonical" href="https://lictor-ai.com/business">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Canonical Lictor tokens, mirror of static/tokens.css (amber on charcoal). */
+    :root {
+      --bg: #070809;
+      --bg-card: #11141A;
+      --fg: #ECE3D6;
+      --fg-muted: #A29A8B;
+      --accent: #E8A33D;
+      --accent-hover: #F2B85C;
+      --border: #251E17;
+      --success: #3D7C5E;
+      --warn: #B8860B;
+      --critical: #C0392B;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 700; letter-spacing: -0.01em; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    nav { padding: 24px 0; border-bottom: 1px solid var(--border); }
+    nav .container { display: flex; justify-content: space-between; align-items: center; }
+    nav a { color: var(--fg); text-decoration: none; font-weight: 600; }
+    nav .nav-links a { color: var(--fg-muted); margin-left: 24px; font-weight: 500; }
+    nav .nav-links a:hover { color: var(--fg); }
+    .eyebrow { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 16px; }
+    .hero { padding: 96px 0 64px; }
+    .hero h1 { font-size: 56px; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; }
+    .hero h1 .accent { color: var(--accent); font-style: italic; }
+    .hero .subtitle { font-size: 20px; color: var(--fg-muted); max-width: 720px; margin-bottom: 32px; }
+    .cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #070809; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: background .15s; }
+    .cta:hover { background: var(--accent-hover); }
+    .cta.secondary { background: transparent; color: var(--fg); border: 1px solid var(--border); margin-left: 12px; }
+    section { padding: 64px 0; border-top: 1px solid var(--border); }
+    section h2 { font-size: 36px; margin-bottom: 24px; letter-spacing: -0.01em; }
+    section .lede { color: var(--fg-muted); max-width: 720px; margin-bottom: 48px; }
+    .grid { display: grid; gap: 24px; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 768px) {
+      .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 36px; }
+      nav .container { flex-direction: column; align-items: flex-start; gap: 14px; }
+      nav .nav-links { display: flex; flex-wrap: wrap; gap: 10px 18px; }
+      nav .nav-links a { margin-left: 0; }
+      .cta.secondary { margin-left: 0; margin-top: 12px; }
+    }
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+    .card h3 { font-size: 20px; margin-bottom: 12px; }
+    .card p { color: var(--fg-muted); font-size: 15px; }
+    .card .icon { font-size: 24px; margin-bottom: 12px; }
+    .steps { counter-reset: step; }
+    .step { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 24px; }
+    .step .n { counter-increment: step; flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--accent); color: var(--accent); display: flex; align-items: center; justify-content: center; font-family: "JetBrains Mono", monospace; font-weight: 600; }
+    .step .n::before { content: counter(step); }
+    .step h3 { font-size: 18px; margin-bottom: 4px; }
+    .step p { color: var(--fg-muted); font-size: 15px; }
+    /* Pricing */
+    .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 860px) { .plans { grid-template-columns: 1fr; } }
+    .plan { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px; display: flex; flex-direction: column; }
+    .plan.featured { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+    .plan .tier { font-family: "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: 0.1em; font-size: 13px; color: var(--accent); margin-bottom: 6px; }
+    .plan .price { font-size: 40px; font-weight: 700; color: var(--fg); font-family: "Cormorant Garamond", serif; }
+    .plan .price span { font-size: 15px; color: var(--fg-muted); font-family: "Inter", sans-serif; }
+    .plan .who { color: var(--fg-muted); font-size: 14px; margin: 8px 0 18px; min-height: 40px; }
+    .plan ul { list-style: none; margin-bottom: 22px; flex: 1; }
+    .plan li { padding: 7px 0 7px 24px; position: relative; font-size: 15px; }
+    .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--success); font-weight: 700; }
+    .plan .most { display: inline-block; background: rgba(232,163,61,0.14); color: var(--accent); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 10px; border-radius: 999px; margin-bottom: 10px; width: fit-content; }
+    .contact-form { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 32px; max-width: 640px; margin: 0 auto; }
+    .field { margin-bottom: 16px; }
+    .field label { display: block; margin-bottom: 6px; font-weight: 500; font-size: 14px; }
+    .field input, .field select, .field textarea { width: 100%; background: var(--bg); color: var(--fg); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; font-family: inherit; font-size: 15px; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
+    .field textarea { min-height: 100px; resize: vertical; }
+    button.cta { border: none; cursor: pointer; font-family: inherit; font-size: 15px; }
+    footer { padding: 48px 0; color: var(--fg-muted); font-size: 14px; text-align: center; border-top: 1px solid var(--border); }
+    footer a { color: var(--fg-muted); }
+  </style>
+  <link rel="stylesheet" href="/static/a11y.css" />
+  <script src="/static/a11y.js" defer></script>
+  <link rel="stylesheet" href="/static/codex.css?v=1" />
+  <script src="/static/codex.js" defer></script>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/">Lictor</a>
+    <div class="nav-links">
+      <a href="/#pillars">Pillars</a>
+      <a href="/coverage">Coverage</a>
+      <a href="/scan">Scan</a>
+      <a href="/patterns">Patterns</a>
+      <a href="/business" style="color: var(--accent);">For Business</a>
+      <a href="/donate">Support</a>
+      <a href="https://github.com/Raffa-jarrl/Lictor-AI">GitHub →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" style="position:relative;">
+  <svg class="codex-geo" viewBox="0 0 320 320" aria-hidden="true" style="right:-40px; top:-30px; width:360px; height:360px;"><circle class="ink" cx="160" cy="160" r="150"/><circle class="ink" cx="160" cy="160" r="92"/><path class="ink" d="M10 160h300M160 10v300"/></svg>
+  <div class="container">
+    <div class="eyebrow">Lictor for Business · Patrol monitoring</div>
+    <h1>We watch what you<br><span class="accent">accidentally leave open.</span></h1>
+    <p class="subtitle">Lictor watches the public internet surface you own — your domains and GitHub orgs — around the clock, and tells the right people the moment something leaks: an exposed secret, an open database, a downloadable backup, a spoofable email domain. In plain English, with the fix, before someone else finds it first.</p>
+    <a href="#pricing" class="cta codex-lift">See plans &amp; pricing →</a>
+    <a href="#contact" class="cta secondary codex-lift">Get started</a>
+    <a href="/coverage" class="cta secondary codex-lift">What we watch for</a>
+  </div>
+</header>
+
+<section data-reveal>
+  <div class="container">
+    <h2>What we watch for</h2>
+    <p class="lede">Every plan runs the full sweep across your authorized surface — these are the exposures most likely to bite a business first. We only ever look at what's already public, and every alert redacts the actual secret so it's never stored or emailed in the clear.</p>
+    <div class="grid grid-3">
+      <div class="card codex-glass codex-lift">
+        <div class="icon">🔑</div>
+        <h3>Exposed secrets &amp; API keys</h3>
+        <p>Live API keys, cloud credentials, and tokens sitting in public files, debug pages, or pushed to a public repo by mistake.</p>
+      </div>
+      <div class="card codex-glass codex-lift">
+        <div class="icon">🗄️</div>
+        <h3>Open databases &amp; buckets</h3>
+        <p>Cloud storage and databases that answer requests with no password — anyone can list files, pull backups, or read records.</p>
+      </div>
+      <div class="card codex-glass codex-lift">
+        <div class="icon">💾</div>
+        <h3>Downloadable backups</h3>
+        <p>Database dumps and site archives (backup.zip, db.sql.gz) left in the web root — your whole database in one download.</p>
+      </div>
+      <div class="card codex-glass codex-lift">
+        <div class="icon">📦</div>
+        <h3>Leaked source &amp; version control</h3>
+        <p>A public .git directory or source maps that hand attackers your codebase — and the git history that often hides old secrets.</p>
+      </div>
+      <div class="card codex-glass codex-lift">
+        <div class="icon">✉️</div>
+        <h3>Spoofable email</h3>
+        <p>Missing or weak SPF/DMARC that lets anyone forge mail from your domain for CEO-fraud and phishing.</p>
+      </div>
+      <div class="card codex-glass codex-lift">
+        <div class="icon">🔗</div>
+        <h3>Dangling subdomains</h3>
+        <p>A subdomain still pointing at a deleted cloud resource — anyone can claim it and serve malware from your domain.</p>
+      </div>
+      <div class="card codex-glass codex-lift">
+        <div class="icon">🛠️</div>
+        <h3>Admin &amp; debug surfaces</h3>
+        <p>Admin consoles, phpMyAdmin, and debug pages reachable from the open internet with no password.</p>
+      </div>
+      <div class="card codex-glass codex-lift">
+        <div class="icon">🧪</div>
+        <h3>Exposed dev / staging</h3>
+        <p>Pre-production environments left openly reachable instead of behind a VPN — usually the least-hardened thing you run.</p>
+      </div>
+      <div class="card codex-glass codex-lift">
+        <div class="icon">🏥</div>
+        <h3>Regulated data (PII / health / financial)</h3>
+        <p>Customer records, SSNs, or card data in publicly readable files — a compliance incident, not just a bug.</p>
+      </div>
+    </div>
+    <p style="color: var(--fg-muted); font-size: 14px; margin-top: 24px;">17 detectors across 21 exposure types, plus 46 recognized secret formats. See the full catalog on the <a href="/coverage" style="color: var(--accent);">Coverage page</a>.</p>
+  </div>
+</section>
+
+<section data-reveal>
+  <div class="container">
+    <h2>How it works</h2>
+    <p class="lede">Permission-based and observe-only by design. We never scan anything you haven't authorized, and we never touch or change your systems — we only look at what's already public.</p>
+    <div class="steps" style="max-width: 760px;">
+      <div class="step"><div class="n"></div><div><h3>You authorize your assets</h3><p>Add the domains and GitHub orgs you own and confirm you own them. That consent is what tells us what we're allowed to watch — nothing else is ever touched.</p></div></div>
+      <div class="step"><div class="n"></div><div><h3>Patrol watches, continuously</h3><p>Our engine sweeps your authorized surface on a cadence. A newly added asset gets its first look within about a minute; everything is re-checked automatically after that.</p></div></div>
+      <div class="step"><div class="n"></div><div><h3>You get told — with the secret redacted</h3><p>New exposures alert the people you designate, by email (SMS and phone escalation on higher plans). Every alert is plain-English, severity-ranked, and includes how to contain and fix it. The live secret is always masked.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" data-reveal>
+  <div class="container">
+    <h2>Plans &amp; pricing</h2>
+    <p class="lede">Simple, per-month, no long-term contract. Every plan runs the full detection sweep — the tiers differ by how much surface you watch and how urgently we can reach you.</p>
+    <div class="plans">
+      <div class="plan">
+        <div class="tier">Silver</div>
+        <div class="price">$49<span> / month</span></div>
+        <p class="who">For a single site or founder getting started.</p>
+        <ul>
+          <li>1 monitored asset (domain or GitHub org)</li>
+          <li>Full detection sweep</li>
+          <li>Continuous monitoring</li>
+          <li>Email alerts</li>
+          <li>Redacted, plain-English findings</li>
+        </ul>
+        <a href="#contact" class="cta codex-lift" style="justify-content:center;">Get started</a>
+      </div>
+      <div class="plan featured">
+        <div class="most">Most popular</div>
+        <div class="tier">Gold</div>
+        <div class="price">$149<span> / month</span></div>
+        <p class="who">For a growing company with a few properties.</p>
+        <ul>
+          <li>Up to 5 monitored assets</li>
+          <li>Full detection sweep</li>
+          <li>Continuous monitoring</li>
+          <li>Email <strong>+ SMS</strong> alerts</li>
+          <li>Multiple alert contacts</li>
+        </ul>
+        <a href="#contact" class="cta codex-lift" style="justify-content:center;">Get started</a>
+      </div>
+      <div class="plan">
+        <div class="tier">Diamond</div>
+        <div class="price">$399<span> / month</span></div>
+        <p class="who">For agencies, multi-brand, and regulated-data teams.</p>
+        <ul>
+          <li>Unlimited monitored assets</li>
+          <li>Full detection sweep</li>
+          <li>Continuous monitoring</li>
+          <li>Email + SMS <strong>+ phone escalation</strong></li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#contact" class="cta codex-lift" style="justify-content:center;">Talk to us</a>
+      </div>
+    </div>
+    <p style="color: var(--fg-muted); font-size: 14px; margin-top: 24px; text-align:center;">Need something bigger or a custom scope? <a href="#contact" style="color: var(--accent);">Talk to us</a> — we'll size it to your surface.</p>
+  </div>
+</section>
+
+<section data-reveal>
+  <div class="container">
+    <h2>Why Lictor</h2>
+    <div class="grid grid-3">
+      <div class="card codex-glass">
+        <div class="icon">🗣️</div>
+        <h3>Plain English, with the fix</h3>
+        <p>Most tools hand you a list of jargon. We tell you what's exposed, what someone could do with it, and exactly how to close it.</p>
+      </div>
+      <div class="card codex-glass">
+        <div class="icon">🛡️</div>
+        <h3>Safe by design</h3>
+        <p>Consent-gated and observe-only. We watch only what you authorize, never modify your systems, and redact every secret before it's stored or sent.</p>
+      </div>
+      <div class="card codex-glass">
+        <div class="icon">💸</div>
+        <h3>Built for real businesses</h3>
+        <p>Enterprise scanners are priced for enterprises. We're the affordable middle for teams that were running nothing — or overpaying for 5% of the features.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" data-reveal>
+  <div class="container">
+    <h2 style="text-align: center;">Get started</h2>
+    <p class="lede" style="margin: 0 auto 32px; text-align: center;">Tell us what you'd like watched and which plan fits. We'll get you set up and reply within one business day (EU/IL hours). No automated follow-up sequences.</p>
+
+    <form class="contact-form codex-glass" action="https://formsubmit.co/raffajarrl@gmail.com" method="POST" id="lictor-business-contact">
+      <!-- formsubmit.co: free, no-signup form-to-email. First submission triggers confirmation email to raffajarrl@gmail.com. -->
+      <input type="hidden" name="_subject" value="Lictor for Business — new signup interest">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="true">
+      <div class="field">
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="field">
+        <label for="email">Work email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="field">
+        <label for="company">Company</label>
+        <input type="text" id="company" name="company" required>
+      </div>
+      <div class="field">
+        <label for="plan">Plan you're interested in</label>
+        <select id="plan" name="plan" required>
+          <option value="">Select…</option>
+          <option value="Silver ($49/mo)">Silver — $49/mo (1 asset, email)</option>
+          <option value="Gold ($149/mo)">Gold — $149/mo (5 assets, email + SMS)</option>
+          <option value="Diamond ($399/mo)">Diamond — $399/mo (unlimited, email + SMS + phone)</option>
+          <option value="Not sure yet">Not sure yet — help me choose</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="domains">What would you like watched?</label>
+        <input type="text" id="domains" name="domains" placeholder="e.g. yourcompany.com, app.yourcompany.com, your GitHub org">
+      </div>
+      <div class="field">
+        <label for="message">Anything else? (optional)</label>
+        <textarea id="message" name="message" placeholder="What's prompting you to look at this now?"></textarea>
+      </div>
+      <button type="submit" class="cta codex-lift" style="width: 100%; margin-top: 8px;">Send →</button>
+      <p style="color: var(--fg-muted); font-size: 13px; margin-top: 16px; text-align: center;">We'll respond within one business day (EU/IL hours).</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Lictor for Business — continuous external exposure monitoring. The open-source AI-security tools live on <a href="https://github.com/Raffa-jarrl/Lictor-AI">GitHub</a>.</p>
+    <p style="margin-top: 8px;">Questions: <a href="mailto:raffajarrl@gmail.com">raffajarrl@gmail.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
