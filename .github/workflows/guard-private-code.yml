@@ -4,10 +4,14 @@ name: guard-private-code
 # Patrol scanner, or business materials. Those live in private repos only.
 # This guard fails any push/PR that reintroduces one of those paths, so a bad
 # merge or an accidental `git add` can't leak proprietary code again.
+#
+# Triggers on EVERY branch push, not just main: a direct `git push` of a
+# feature branch makes that content publicly fetchable/browsable immediately —
+# it doesn't need to reach main first, so `branches: [main]` alone left a real
+# gap (a push straight to any other branch bypassed this entirely).
 
 on:
   push:
-    branches: [main]
   pull_request:
 
 permissions:
